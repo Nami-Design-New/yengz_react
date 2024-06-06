@@ -12,6 +12,7 @@ import Requests from "./Components/pages/requests";
 import ReaquestDetails from "./Components/pages/ReaquestDetails";
 import RequestAdd from "./Components/pages/requestAdd";
 import Chat from "./Components/pages/chat";
+import Search from "./Components/pages/Search";
 
 
 function App() {
@@ -34,6 +35,10 @@ function App() {
 
           <Route path="/chat" element={<Chat />} />
 
+          <Route path="/Search" element={<Search />} />
+
+
+          
 
 
 

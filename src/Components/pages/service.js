@@ -30,8 +30,8 @@ const Services = () => {
             <div className="swiper mySwiper">
               <div className="swiper-wrapper">
                 <Swiper
-                  spaceBetween={500}
-                  slidesPerView={1}
+                  spaceBetween={600}
+                  slidesPerView={3}
                   navigation
                   pagination={{ clickable: true }}
                   scrollbar={{ draggable: true }}

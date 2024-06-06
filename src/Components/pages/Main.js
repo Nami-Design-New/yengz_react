@@ -135,7 +135,7 @@ const Main = () => {
                   <SwiperSlide>
                     <div className="swiper-slide">
                       <div className="category-card" data-aos="fade-up">
-                        <a href="search.html" className="inner-card">
+                        <Link to="/Search" className="inner-card">
                           <div className="category-img">
                             <img src={category1} alt="" />
                           </div>
@@ -145,7 +145,7 @@ const Main = () => {
                               <h5 className="text"> برمجة وتطوير </h5>
                             </div>
                           </div>
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </SwiperSlide>
@@ -153,7 +153,7 @@ const Main = () => {
                   <SwiperSlide>
                     <div className="swiper-slide">
                       <div className="category-card" data-aos="fade-up">
-                        <a href="search.html" className="inner-card">
+                        <Link to="/Search" className="inner-card">
                           <div className="category-img">
                             <img src={category2} alt="" />
                           </div>
@@ -163,7 +163,7 @@ const Main = () => {
                               <h5 className="text"> تصميم وابداع </h5>
                             </div>
                           </div>
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </SwiperSlide>
@@ -171,7 +171,7 @@ const Main = () => {
                   <SwiperSlide>
                     <div className="swiper-slide">
                       <div className="category-card" data-aos="fade-up">
-                        <a href="search.html" className="inner-card">
+                        <Link to="/Search" className="inner-card">
                           <div className="category-img">
                             <img src={category3} alt="" />
                           </div>
@@ -181,7 +181,7 @@ const Main = () => {
                               <h5 className="text"> تسويق الكتروني </h5>
                             </div>
                           </div>
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </SwiperSlide>
@@ -189,7 +189,7 @@ const Main = () => {
                   <SwiperSlide>
                     <div className="swiper-slide">
                       <div className="category-card" data-aos="fade-up">
-                        <a href="search.html" className="inner-card">
+                        <Link  to="/Search" className="inner-card">
                           <div className="category-img">
                             <img src={category4} alt="" />
                           </div>
@@ -199,7 +199,7 @@ const Main = () => {
                               <h5 className="text"> كتابة وترجمة </h5>
                             </div>
                           </div>
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </SwiperSlide>
@@ -207,7 +207,7 @@ const Main = () => {
                   <SwiperSlide>
                     <div className="swiper-slide">
                       <div className="category-card" data-aos="fade-up">
-                        <a href="search.html" className="inner-card">
+                        <Link  href="search.html"className="inner-card">
                           <div className="category-img">
                             <img src={category5} alt="" />
                           </div>
@@ -217,7 +217,7 @@ const Main = () => {
                               <h5 className="text"> صوتيات </h5>
                             </div>
                           </div>
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </SwiperSlide>
