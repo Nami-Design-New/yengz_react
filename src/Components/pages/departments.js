@@ -106,6 +106,8 @@ const Departments = () => {
                         <div className="category-card" data-aos="fade-up">
                             <Link to="/Search" className="inner-card">
                                 <div className="category-img">
+
+                                    
                                     <img src= {category1} alt="" />
                                 </div>
                                 <div className="category-content">
