@@ -6,6 +6,7 @@ import category4 from "../../Assets/images/category4.jpg";
 import category3 from "../../Assets/images/category3.jpg";
 import category1 from "../../Assets/images/category1.jpg";
 import category2 from "../../Assets/images/category2.jpg";
+import { Link } from 'react-router-dom';
 
 
 const Departments = () => {
@@ -20,7 +21,7 @@ const Departments = () => {
                 <div className="row">
                     <div className="col-lg-6 col-md-6 col-12">
                         <div className="text-wrap" data-aos="fade-up">
-                            <a href="index.html">الرئيسية /</a>
+                            <Link to="/">الرئيسية /</Link>
                             <h1>الاقسام</h1>
                         </div>
                     </div>
@@ -38,7 +39,7 @@ const Departments = () => {
                     
                     <div className="col-lg-3 col-6 p-2">
                         <div className="category-card" data-aos="fade-up">
-                            <a href="search.html" className="inner-card">
+                            <Link to="/Search" className="inner-card">
                                 <div className="category-img">
                                     <img src={category5} alt="" />
                                 </div>
@@ -48,13 +49,13 @@ const Departments = () => {
                                         <h5 className="text"> صوتيات </h5>
                                     </div>
                                 </div>
-                            </a>
+                            </Link>
                         </div>
                     </div>
 
                     <div className="col-lg-3 col-6 p-2">
                         <div className="category-card" data-aos="fade-up">
-                            <a href="search.html" className="inner-card">
+                            <Link to="/Search" className="inner-card">
                                 <div className="category-img">
                                     <img src= {category4} alt=""/>
                                 </div>
@@ -64,12 +65,12 @@ const Departments = () => {
                                         <h5 className="text"> كتابة وترجمة </h5>
                                     </div>
                                 </div>
-                            </a>
+                            </Link>
                         </div>
                     </div>
                     <div className="col-lg-3 col-6 p-2">
                         <div className="category-card" data-aos="fade-up">
-                            <a href="search.html" className="inner-card">
+                            <Link to="/Search" className="inner-card">
                                 <div className="category-img">
 
                                     <img src={category3} alt=""/>
@@ -81,12 +82,12 @@ const Departments = () => {
                                         <h5 className="text"> تسويق الكتروني </h5>
                                     </div>
                                 </div>
-                            </a>
+                            </Link>
                         </div>
                     </div>
                     <div className="col-lg-3 col-6 p-2">
                         <div className="category-card" data-aos="fade-up">
-                            <a href="search.html" className="inner-card">
+                            <Link to="/Search" className="inner-card">
                                 <div className="category-img">
                                 <img src= {category2} alt="" />
 
@@ -98,12 +99,12 @@ const Departments = () => {
                                         <h5 className="text"> تصميم وابداع </h5>
                                     </div>
                                 </div>
-                            </a>
+                            </Link>
                         </div>
                     </div>
                     <div className="col-lg-3 col-6 p-2">
                         <div className="category-card" data-aos="fade-up">
-                            <a href="search.html" className="inner-card">
+                            <Link to="/Search" className="inner-card">
                                 <div className="category-img">
                                     <img src= {category1} alt="" />
                                 </div>
@@ -113,7 +114,7 @@ const Departments = () => {
                                         <h5 className="text"> برمجة وتطوير </h5>
                                     </div>
                                 </div>
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>
