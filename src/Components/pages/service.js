@@ -296,13 +296,13 @@ const Services = () => {
                   <p className="rate-text">
                     انصح به وبقوة لن تجدون مثل خدمته وابداعه واخلاقه قد يفوتكم
                     عمركم اذا لم تتعملو معه لانه جدا بعد خدمته تقولون فعلا يستحق
-                    التتعامل معه
+                    التتعامل معه   
                   </p>
                   <div className="rating-cards container">
                     <div className="row">
                       <div className="col-4 p-2">
                         <div className="r-card ">
-                          <h6>التسليم بالموعد</h6>
+                          <h6>التسليم بالموعد </h6>
                           <div className="rate">
                             <ul>
                               <li className="star">
