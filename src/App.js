@@ -13,6 +13,8 @@ import ReaquestDetails from "./Components/pages/ReaquestDetails";
 import RequestAdd from "./Components/pages/requestAdd";
 import Chat from "./Components/pages/chat";
 import Search from "./Components/pages/Search";
+import Contact from "./Components/pages/Contact";
+import About from "./Components/pages/About";
 
 
 function App() {
@@ -22,9 +24,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Main />} />
-          
           <Route path="Services" element={<Services />} />
-
           <Route path="departments" element={<Departments />} />
           <Route path="purchases" element={<Purchases />} />
           <Route path="/orderDetails" element={<OrederDetails />} />
@@ -32,10 +32,17 @@ function App() {
           <Route path="Requests" element={<Requests/>} />
           <Route path="ReaquestDetails" element={<ReaquestDetails />} />
           <Route path="/RequestAdd" element={<RequestAdd />} />
-
           <Route path="/chat" element={<Chat />} />
-
           <Route path="/Search" element={<Search />} />
+          <Route path="/Contact" element={<Contact />} />
+          <Route path="/About" element={<About />} />
+
+          
+
+
+
+
+          
 
 
           
