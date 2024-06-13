@@ -15,6 +15,12 @@ import Chat from "./Components/pages/chat";
 import Search from "./Components/pages/Search";
 import Contact from "./Components/pages/Contact";
 import About from "./Components/pages/About";
+import Terms from "./Components/pages/Terms";
+import Blogs from "./Components/pages/Blogs";
+import BlogDetails from "./Components/pages/BlogDetails";
+import HowItWork from "./Components/pages/HowItWork";
+import Faq from "./Components/pages/Faq";
+import RecivedReqOrder from "./Components/pages/Recived-req-order";
 
 
 function App() {
@@ -36,6 +42,26 @@ function App() {
           <Route path="/Search" element={<Search />} />
           <Route path="/Contact" element={<Contact />} />
           <Route path="/About" element={<About />} />
+          <Route path="/Terms" element={<Terms />} />
+          <Route path="/Blogs" element={<Blogs />} />
+          <Route path="/BlogDetails" element={<BlogDetails />} />
+          <Route path="/HowItWork" element={<HowItWork />} />
+          <Route path="/Faq" element={<Faq />} />
+          <Route path="/RecivedReqOrder" element={<RecivedReqOrder />} />
+
+          
+
+
+         
+
+
+
+
+          
+
+
+
+          
 
           
 
