@@ -6,7 +6,7 @@ import SectionHead from './SectionHead'
 const Contact = () => {
 
   return (
-    <main class="main">
+    <main className="main">
 
     <section className="contact-section">
         <div className="section-head">

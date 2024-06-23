@@ -5,7 +5,7 @@ import Accordion from "react-bootstrap/Accordion";
 
 const FaqAccordin = () => {
   return (
-    <div class="container">
+    <div className="container">
       <Tabs
         defaultActiveKey="home"
         id="uncontrolled-tab-example"

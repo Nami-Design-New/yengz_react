@@ -11,7 +11,7 @@ const Terms = () => {
 
       </div>
 
-      <section class="faqs">
+      <section className="faqs">
         <div className="container">
           <div className="row cards-4 m-5">
             <div className="col-lg-6 col-12">
@@ -19,7 +19,7 @@ const Terms = () => {
                 <div className="icon">
                   <img src="assets/images/safety.svg" alt="icon" />
                 </div>
-                <div class="text">
+                <div className="text">
                   <h6>ينجز يضمن حقك</h6>
                   <p>
                     يضمن خمسات لمشتري ومقدمي الخدمات حقوقهم عبر سياسات صارمة
@@ -28,12 +28,12 @@ const Terms = () => {
                 </div>
               </div>
             </div>
-            <div class="col-lg-6 col-12">
-              <div class="p-3 d-flex cardd" data-aos="fade-up">
+            <div className="col-lg-6 col-12">
+              <div className="p-3 d-flex cardd" data-aos="fade-up">
                 <div className="icon">
                   <img src="assets/images/refundable.svg" alt="icon" />
                 </div>
-                <div class="text">
+                <div className="text">
                   <h6>أموالك قابلة للاسترداد</h6>
                   <p>
                     يمكنك إسترداد مبلغ الخدمة دائما إن لم تنفذ بالكامل وفقاً لما
@@ -47,7 +47,7 @@ const Terms = () => {
                 <div className="icon">
                   <img src="assets/images/support.svg" alt="icon" />
                 </div>
-                <div class="text">
+                <div className="text">
                   <h6>دعم فني على مدار 24 ساعة</h6>
                   <p>
                     نحن هنا لمساعدتك في حل أي مشكلة قد تواجهك وللإجابة عن أي
@@ -57,12 +57,12 @@ const Terms = () => {
                 </div>
               </div>
             </div>
-            <div class="col-lg-6 col-12">
-              <div class="p-3 d-flex cardd" data-aos="fade-up">
-                <div class="icon">
+            <div className="col-lg-6 col-12">
+              <div className="p-3 d-flex cardd" data-aos="fade-up">
+                <div className="icon">
                   <img src="assets/images/trusted.svg" alt="icon" />
                 </div>
-                <div class="text">
+                <div className="text">
                   <h6>هويات موثقة</h6>
                   <p>
                     يضم خمسات آلاف البائعين الذين وثقوا هوياتهم عبر نظام توثيق

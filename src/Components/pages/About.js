@@ -103,9 +103,9 @@ const About = () => {
             </div>
           </div>
 
-          <div class="container">
-            <div class="row">
-              <div class="testmonials">
+          <div className="container">
+            <div className="row">
+              <div className="testmonials">
                 <h3 data-aos="fade-up">
                   أصوات النجاح: شهادات من عملائنا المميزين
                 </h3>
@@ -116,36 +116,36 @@ const About = () => {
                   onSwiper={(swiper) => console.log(swiper)}
                 >
                   <SwiperSlide>
-                  <div class="swiper-slide">
-                      <div class="testmional-card">
-                        <div class="d-flex flex-column gap-2">
-                          <div class="rate">
+                  <div className="swiper-slide">
+                      <div className="testmional-card">
+                        <div className="d-flex flex-column gap-2">
+                          <div className="rate">
                             <ul>
                               <li>
-                                <i class="fa-sharp fa-solid fa-star"></i>
+                                <i className="fa-sharp fa-solid fa-star"></i>
                               </li>
                               <li>
-                                <i class="fa-sharp fa-solid fa-star"></i>
+                                <i className="fa-sharp fa-solid fa-star"></i>
                               </li>
                               <li>
-                                <i class="fa-sharp fa-solid fa-star"></i>
+                                <i className="fa-sharp fa-solid fa-star"></i>
                               </li>
                               <li>
-                                <i class="fa-sharp fa-solid fa-star"></i>
+                                <i className="fa-sharp fa-solid fa-star"></i>
                               </li>
                               <li>
-                                <i class="fa-sharp fa-solid fa-star"></i>
+                                <i className="fa-sharp fa-solid fa-star"></i>
                               </li>
                             </ul>
                           </div>
-                          <p class="opinion">
+                          <p className="opinion">
                             "لقد كانت تجربتي على هذا الموقع رائعة! وجدت الكثير
                             من المحترفين الموهوبين الذين ساعدوني في إتمام
                             مشاريعي بكل جودة واحترافية. أوصي به بشدة!"
                           </p>
                         </div>
-                        <div class="owner">
-                          <div class="d-flex flex-column">
+                        <div className="owner">
+                          <div className="d-flex flex-column">
                             <h6>محمد رضوان</h6>
                           </div>
                           <span>May 9, 2023</span>
@@ -155,36 +155,36 @@ const About = () => {
                   </SwiperSlide>
 
                   <SwiperSlide>
-                  <div class="swiper-slide">
-                      <div class="testmional-card">
-                        <div class="d-flex flex-column gap-2">
-                          <div class="rate">
+                  <div className="swiper-slide">
+                      <div className="testmional-card">
+                        <div className="d-flex flex-column gap-2">
+                          <div className="rate">
                             <ul>
                               <li>
-                                <i class="fa-sharp fa-solid fa-star"></i>
+                                <i className="fa-sharp fa-solid fa-star"></i>
                               </li>
                               <li>
-                                <i class="fa-sharp fa-solid fa-star"></i>
+                                <i className="fa-sharp fa-solid fa-star"></i>
                               </li>
                               <li>
-                                <i class="fa-sharp fa-solid fa-star"></i>
+                                <i className="fa-sharp fa-solid fa-star"></i>
                               </li>
                               <li>
-                                <i class="fa-sharp fa-solid fa-star"></i>
+                                <i className="fa-sharp fa-solid fa-star"></i>
                               </li>
                               <li>
-                                <i class="fa-sharp fa-solid fa-star"></i>
+                                <i className="fa-sharp fa-solid fa-star"></i>
                               </li>
                             </ul>
                           </div>
-                          <p class="opinion">
+                          <p className="opinion">
                             "لقد كانت تجربتي على هذا الموقع رائعة! وجدت الكثير
                             من المحترفين الموهوبين الذين ساعدوني في إتمام
                             مشاريعي بكل جودة واحترافية. أوصي به بشدة!"
                           </p>
                         </div>
-                        <div class="owner">
-                          <div class="d-flex flex-column">
+                        <div className="owner">
+                          <div className="d-flex flex-column">
                             <h6>محمد رضوان</h6>
                           </div>
                           <span>May 9, 2023</span>
@@ -194,36 +194,36 @@ const About = () => {
                   </SwiperSlide>
 
                   <SwiperSlide>
-                  <div class="swiper-slide">
-                      <div class="testmional-card">
-                        <div class="d-flex flex-column gap-2">
-                          <div class="rate">
+                  <div className="swiper-slide">
+                      <div className="testmional-card">
+                        <div className="d-flex flex-column gap-2">
+                          <div className="rate">
                             <ul>
                               <li>
-                                <i class="fa-sharp fa-solid fa-star"></i>
+                                <i className="fa-sharp fa-solid fa-star"></i>
                               </li>
                               <li>
-                                <i class="fa-sharp fa-solid fa-star"></i>
+                                <i className="fa-sharp fa-solid fa-star"></i>
                               </li>
                               <li>
-                                <i class="fa-sharp fa-solid fa-star"></i>
+                                <i className="fa-sharp fa-solid fa-star"></i>
                               </li>
                               <li>
-                                <i class="fa-sharp fa-solid fa-star"></i>
+                                <i className="fa-sharp fa-solid fa-star"></i>
                               </li>
                               <li>
-                                <i class="fa-sharp fa-solid fa-star"></i>
+                                <i className="fa-sharp fa-solid fa-star"></i>
                               </li>
                             </ul>
                           </div>
-                          <p class="opinion">
+                          <p className="opinion">
                             "لقد كانت تجربتي على هذا الموقع رائعة! وجدت الكثير
                             من المحترفين الموهوبين الذين ساعدوني في إتمام
                             مشاريعي بكل جودة واحترافية. أوصي به بشدة!"
                           </p>
                         </div>
-                        <div class="owner">
-                          <div class="d-flex flex-column">
+                        <div className="owner">
+                          <div className="d-flex flex-column">
                             <h6>محمد رضوان</h6>
                           </div>
                           <span>May 9, 2023</span>
@@ -233,36 +233,36 @@ const About = () => {
                   </SwiperSlide>
 
                   <SwiperSlide>
-                  <div class="swiper-slide">
-                      <div class="testmional-card">
-                        <div class="d-flex flex-column gap-2">
-                          <div class="rate">
+                  <div className="swiper-slide">
+                      <div className="testmional-card">
+                        <div className="d-flex flex-column gap-2">
+                          <div className="rate">
                             <ul>
                               <li>
-                                <i class="fa-sharp fa-solid fa-star"></i>
+                                <i className="fa-sharp fa-solid fa-star"></i>
                               </li>
                               <li>
-                                <i class="fa-sharp fa-solid fa-star"></i>
+                                <i className="fa-sharp fa-solid fa-star"></i>
                               </li>
                               <li>
-                                <i class="fa-sharp fa-solid fa-star"></i>
+                                <i className="fa-sharp fa-solid fa-star"></i>
                               </li>
                               <li>
-                                <i class="fa-sharp fa-solid fa-star"></i>
+                                <i className="fa-sharp fa-solid fa-star"></i>
                               </li>
                               <li>
-                                <i class="fa-sharp fa-solid fa-star"></i>
+                                <i className="fa-sharp fa-solid fa-star"></i>
                               </li>
                             </ul>
                           </div>
-                          <p class="opinion">
+                          <p className="opinion">
                             "لقد كانت تجربتي على هذا الموقع رائعة! وجدت الكثير
                             من المحترفين الموهوبين الذين ساعدوني في إتمام
                             مشاريعي بكل جودة واحترافية. أوصي به بشدة!"
                           </p>
                         </div>
-                        <div class="owner">
-                          <div class="d-flex flex-column">
+                        <div className="owner">
+                          <div className="d-flex flex-column">
                             <h6>محمد رضوان</h6>
                           </div>
                           <span>May 9, 2023</span>
@@ -272,36 +272,36 @@ const About = () => {
                   </SwiperSlide>
 
                   <SwiperSlide>
-                  <div class="swiper-slide">
-                      <div class="testmional-card">
-                        <div class="d-flex flex-column gap-2">
-                          <div class="rate">
+                  <div className="swiper-slide">
+                      <div className="testmional-card">
+                        <div className="d-flex flex-column gap-2">
+                          <div className="rate">
                             <ul>
                               <li>
-                                <i class="fa-sharp fa-solid fa-star"></i>
+                                <i className="fa-sharp fa-solid fa-star"></i>
                               </li>
                               <li>
-                                <i class="fa-sharp fa-solid fa-star"></i>
+                                <i className="fa-sharp fa-solid fa-star"></i>
                               </li>
                               <li>
-                                <i class="fa-sharp fa-solid fa-star"></i>
+                                <i className="fa-sharp fa-solid fa-star"></i>
                               </li>
                               <li>
-                                <i class="fa-sharp fa-solid fa-star"></i>
+                                <i className="fa-sharp fa-solid fa-star"></i>
                               </li>
                               <li>
-                                <i class="fa-sharp fa-solid fa-star"></i>
+                                <i className="fa-sharp fa-solid fa-star"></i>
                               </li>
                             </ul>
                           </div>
-                          <p class="opinion">
+                          <p className="opinion">
                             "لقد كانت تجربتي على هذا الموقع رائعة! وجدت الكثير
                             من المحترفين الموهوبين الذين ساعدوني في إتمام
                             مشاريعي بكل جودة واحترافية. أوصي به بشدة!"
                           </p>
                         </div>
-                        <div class="owner">
-                          <div class="d-flex flex-column">
+                        <div className="owner">
+                          <div className="d-flex flex-column">
                             <h6>محمد رضوان</h6>
                           </div>
                           <span>May 9, 2023</span>

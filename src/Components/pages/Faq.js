@@ -5,20 +5,20 @@ import FaqAccordin from "./FaqAccordin";
 
 const Faq = () => {
   return (
-    <main class="main">
+    <main className="main">
 
-      <div class="section-head">
+      <div className="section-head">
         <SectionHead />
       </div>
 
-      <section class="faqs">
+      <section className="faqs">
         
 
         <FaqAccordin />
 
       </section>
 
-      <div class="Newsletter">
+      <div className="Newsletter">
         <NewsLetter />
       </div>
     </main>

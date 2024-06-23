@@ -152,7 +152,7 @@ const Navbar = () => {
                   style={{ backgroundColor: "#f4f4f4" }}
                   id="dropdown-basic"
                 >
-                  <i class="fa-regular fa-magnifying-glass"></i>
+                  <i className="fa-regular fa-magnifying-glass"></i>
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
@@ -175,7 +175,7 @@ const Navbar = () => {
 
             <Dropdown>
                 <Dropdown.Toggle  style={{backgroundColor:"#f4f4f4"}} id="dropdown-basic">
-                <i class='fa-regular fa-language rounded-circle '></i>
+                <i className='fa-regular fa-language rounded-circle '></i>
 
 
                 </Dropdown.Toggle>

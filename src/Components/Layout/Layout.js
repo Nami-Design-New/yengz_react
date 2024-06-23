@@ -9,9 +9,7 @@ const Layout = () => {
   return (
     <div className="layoutContainer">
 
-      <nav >
         <Navbar />
-      </nav>
 
       <div className="contnet">
         <Outlet />
