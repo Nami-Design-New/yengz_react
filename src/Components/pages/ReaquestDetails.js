@@ -2,21 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import av2 from "../../Assets/images/av2.png";
 import av1 from "../../Assets/images/av1.png";
+import SectionHead from "./SectionHead";
 
 const ReaquestDetails = () => {
   return (
     <main className="main">
       <div className="section-head">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-6 col-md-6 col-12">
-              <div className="text-wrap" data-aos="fade-up">
-                <Link href="requests.html"> اطلب خدمة علي زوقك /</Link>
-                <h1> ابحث عن مصمم صفحة هبوط على ووردبرس </h1>
-              </div>
-            </div>
-          </div>
-        </div>
+      <SectionHead />        
       </div>
       <section className="requestDetails">
         <div className="container">

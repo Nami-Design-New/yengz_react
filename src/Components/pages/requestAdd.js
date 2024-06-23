@@ -1,20 +1,12 @@
 import React from 'react'
+import SectionHead from './SectionHead'
 
 const RequestAdd = () => {
 
   return (
         <main className="main">
         <div className="section-head">
-            <div className="container">
-                <div className="row">
-                    <div className="col-lg-6 col-md-6 col-12">
-                        <div className="text-wrap" data-aos="fade-up">
-                            <a href="requests.html"> اطلب خدمة علي زوقك /</a>
-                            <h1> إضافة موضوع جديد </h1>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <SectionHead />        
         </div>
         <section className="addRequest">
             <div className="container">

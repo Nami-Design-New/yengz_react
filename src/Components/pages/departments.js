@@ -7,6 +7,7 @@ import category3 from "../../Assets/images/category3.jpg";
 import category1 from "../../Assets/images/category1.jpg";
 import category2 from "../../Assets/images/category2.jpg";
 import { Link } from 'react-router-dom';
+import SectionHead from './SectionHead';
 
 
 const Departments = () => {
@@ -17,21 +18,7 @@ const Departments = () => {
 
     <main className="main">
         <div className="section-head">
-            <div className="container">
-                <div className="row">
-                    <div className="col-lg-6 col-md-6 col-12">
-                        <div className="text-wrap" data-aos="fade-up">
-                            <Link to="/">الرئيسية /</Link>
-                            <h1>الاقسام</h1>
-                        </div>
-                    </div>
-                    <div className="col-6 hide-sm">
-                        <div className="img" data-aos="zoom-in">
-                            <img src={about7} alt="" />
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <SectionHead />        
         </div>
         <section className="department">
             <div className="container">

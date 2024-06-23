@@ -9,12 +9,6 @@ import rateowner3 from "../../Assets/images/rateowner3.jpg";
 
 import vector88 from "../../Assets/images/vector88.png";
 
-
-
-
-
-
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -39,7 +33,7 @@ const Services = () => {
                   onSwiper={(swiper) => console.log(swiper)}
                 >
                   <SwiperSlide>
-                    <video  loop autoPlay width="750" height="500" controls>
+                    <video loop autoPlay width="750" height="500" controls>
                       <source src={servicet4} type="video/mp4" />
                     </video>
                   </SwiperSlide>
@@ -73,7 +67,6 @@ const Services = () => {
                         data-fancybox="owner"
                       >
                         <img src={rateowner2} alt="owner" />
-                        
                       </a>
                     </div>
                     <div className="title">
@@ -170,9 +163,7 @@ const Services = () => {
               </p>
               <div className="more-develop">
                 <h6>
-                
-                  <img src={vector88} alt="icon" /> تطويرات
-                  متوفرة لهذه الخدمة
+                  <img src={vector88} alt="icon" /> تطويرات متوفرة لهذه الخدمة
                 </h6>
                 <div className="d-flex input-field align-items-baseline">
                   <input type="checkbox" id="check-1" />
@@ -296,7 +287,7 @@ const Services = () => {
                   <p className="rate-text">
                     انصح به وبقوة لن تجدون مثل خدمته وابداعه واخلاقه قد يفوتكم
                     عمركم اذا لم تتعملو معه لانه جدا بعد خدمته تقولون فعلا يستحق
-                    التتعامل معه   
+                    التتعامل معه
                   </p>
                   <div className="rating-cards container">
                     <div className="row">

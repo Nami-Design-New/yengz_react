@@ -338,7 +338,7 @@ const Navbar = () => {
 
 
                   <Dropdown.Item>
-                    <Link className="dropdown-item_Link" to="profile.html">
+                    <Link className="dropdown-item_Link" to="/About">
                       <i className="fa-sharp fa-solid fa-pen-to-square"></i>
                       تعديل الحساب
 
@@ -347,11 +347,9 @@ const Navbar = () => {
                   </Dropdown.Item>
 
                   <Dropdown.Item>
-                    <Link className="dropdown-item_Link" to="profile.html">
+                    <Link className="dropdown-item_Link" to="/Contact">
                     <i className="fa-solid fa-circle-info"></i>
                     المساعده
-
-
                     </Link>
                   </Dropdown.Item>
                   <hr />

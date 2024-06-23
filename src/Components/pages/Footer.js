@@ -27,22 +27,22 @@ const Footer = () => {
                     <h4>روابط مهمة</h4>
                     <ul>
                         <li>
-                            <Link to="about.html">حول ينجز</Link>
+                            <Link to="/About">حول ينجز</Link>
                         </li>
                         <li>
-                            <Link to="contact.html">تواصل معنا</Link>
+                            <Link to="/Contact">تواصل معنا</Link>
                         </li>
                         <li>
-                            <Link to="faq.html">الاسئلة الشائعة</Link>
+                            <Link to="/Faq">الاسئلة الشائعة</Link>
                         </li>
                         <li>
-                            <Link to="terms.html">ضمان الحقوق</Link>
+                            <Link to="/Terms">ضمان الحقوق</Link>
                         </li>
                         <li>
-                            <Link to="blogs.html">المدونات</Link>
+                            <Link to="/Blogs">المدونات</Link>
                         </li>
                         <li>
-                            <Link to="how-it-works.html">كيف يعمل ينجز</Link>
+                            <Link to="/HowItWork">كيف يعمل ينجز</Link>
                         </li>
                     </ul>
                 </div>
