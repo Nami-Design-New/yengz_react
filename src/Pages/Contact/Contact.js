@@ -1,5 +1,5 @@
 import React from "react";
-import contact from "../../Assets/images/contact.jpg";
+import contact from "../../Assets/images/contact.webp";
 import SectionHead from "../../Components/SectionHead/SectionHead";
 import NewsLetter from "../../Components/NewsLetter/NewsLetter";
 
@@ -60,7 +60,6 @@ const Contact = () => {
                 <img className="c-image" src={contact} alt="" />
               </div>
             </div>
-            
           </div>
         </div>
 

@@ -1,23 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import bann2 from "../../Assets/images/bann2.jpg";
-import bann from "../../Assets/images/bann.jpg";
-import rateowner1 from "../../Assets/images/rateowner1.jpg";
-import rateowner2 from "../../Assets/images/rateowner2.jpg";
+import bann2 from "../../Assets/images/bann2.webp";
+import bann from "../../Assets/images/bann.webp";
+import rateowner1 from "../../Assets/images/rateowner1.webp";
+import rateowner2 from "../../Assets/images/rateowner2.webp";
 import law from "../../Assets/images/law.jpg";
 import av2 from "../../Assets/images/av2.png";
 import av1 from "../../Assets/images/av1.png";
 import servicet1 from "../../Assets/images/servicet1.jpg";
-import fin from "../../Assets/images/fin.jpg";
+import fin from "../../Assets/images/fin.webp";
 import avatar from "../../Assets/images/avatar.png";
-
 
 const Purchases = () => {
   return (
     <main>
       <section className="cart-section container">
         <div className="row">
-
           <div className="col-lg-2">
             <div className="filter side-menu">
               <div className="d-flex justify-content-between">
@@ -328,9 +326,7 @@ const Purchases = () => {
                 </div>
               </div>
             </div>
-
           </div>
-          
         </div>
       </section>
     </main>

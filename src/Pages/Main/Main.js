@@ -1,13 +1,13 @@
 import React from "react";
-import "../../Assets/css/styleAR.scss";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import category1 from "../../Assets/images/category1.jpg";
-import category2 from "../../Assets/images/category2.jpg";
-import category3 from "../../Assets/images/category3.jpg";
-import category4 from "../../Assets/images/category4.jpg";
-import category5 from "../../Assets/images/category5.jpg";
-import bann from "../../Assets/images/bann.jpg";
+import category1 from "../../Assets/images/category1.webp";
+import category2 from "../../Assets/images/category2.webp";
+import category3 from "../../Assets/images/category3.webp";
+import category4 from "../../Assets/images/category4.webp";
+import category5 from "../../Assets/images/category5.webp";
+import bann from "../../Assets/images/bann.webp";
 import { Link } from "react-router-dom";
 import NewsLetter from "../../Components/NewsLetter/NewsLetter";
 import Canavs from "../../Components/Canavs/Canavs";
@@ -15,7 +15,6 @@ import Canavs from "../../Components/Canavs/Canavs";
 const Main = () => {
   return (
     <>
-    
       <main className="main">
         <section className="mainSection">
           <div className="container">
@@ -23,13 +22,7 @@ const Main = () => {
               <div className="col-md-4 order-md-2 p-1">
                 {/*orbit canvas */}
 
-                <div id="globe">
-                  
-                  
-                {/*<Canavs /> */}
-
-                  
-                </div>
+                <div id="globe">{/*<Canavs /> */}</div>
               </div>
               <div className="col-md-8 order-md-1 p-1">
                 {/*main slider */}
@@ -42,7 +35,6 @@ const Main = () => {
                       <div className="swiper-slide mainSlideItem">
                         <div className="info">
                           <h1 className="sliderTitle">
-                            
                             أكبر سوق عربي لبيع وشراء الخدمات المصغرة
                           </h1>
                           <p className="hint">
@@ -73,9 +65,8 @@ const Main = () => {
           </div>
         </section>
 
-
         {/*start  categories*/}
-        
+
         <section className="categories ">
           <div className="container">
             <div className="row-head" data-aos="fade-up">
@@ -94,7 +85,6 @@ const Main = () => {
                   slidesPerView={4}
                   onSlideChange={() => console.log("slide change")}
                   onSwiper={(swiper) => console.log(swiper)}
-
                 >
                   <SwiperSlide>
                     <div className="swiper-slide">
@@ -153,7 +143,7 @@ const Main = () => {
                   <SwiperSlide>
                     <div className="swiper-slide">
                       <div className="category-card" data-aos="fade-up">
-                        <Link  to="/Search" className="inner-card">
+                        <Link to="/Search" className="inner-card">
                           <div className="category-img">
                             <img src={category4} alt="" />
                           </div>
@@ -171,7 +161,7 @@ const Main = () => {
                   <SwiperSlide>
                     <div className="swiper-slide">
                       <div className="category-card" data-aos="fade-up">
-                        <Link  href="search.html"className="inner-card">
+                        <Link href="search.html" className="inner-card">
                           <div className="category-img">
                             <img src={category5} alt="" />
                           </div>
@@ -186,7 +176,6 @@ const Main = () => {
                     </div>
                   </SwiperSlide>
                 </Swiper>
-
               </div>
             </div>
           </div>
@@ -706,7 +695,6 @@ const Main = () => {
 
         <NewsLetter />
 
-
         {/*End  newsletter*/}
       </main>
       <div className="smallNav">
@@ -743,7 +731,6 @@ const Main = () => {
             </Link>
           </li>
         </ul>
-        
       </div>
     </>
   );

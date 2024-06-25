@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import rateowner1 from "../../Assets/images/rateowner1.jpg";
-import bann from "../../Assets/images/bann.jpg";
+import rateowner1 from "../../Assets/images/rateowner1.webp";
+import bann from "../../Assets/images/bann.webp";
 
 const OrederDetails = () => {
   return (

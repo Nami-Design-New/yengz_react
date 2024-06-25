@@ -1,13 +1,13 @@
 import React from "react";
-import "../../Assets/css/styleAR.scss";
+
 import avatar from "../../Assets/images/avatar.png";
 import av1 from "../../Assets/images/av1.png";
 import av2 from "../../Assets/images/av2.png";
 import logo from "../../Assets/images/logo.svg";
 import { Link } from "react-router-dom";
-import "../../Assets/css/fontawesome.min.css";
+import "../../styles/fontawesome.min.css";
 import Dropdown from "react-bootstrap/Dropdown";
-import "../../Assets/css/dropdownes.scss";
+import "../../styles/dropdownes.css";
 
 const Navbar = () => {
   return (
@@ -269,13 +269,10 @@ const Navbar = () => {
                       </div>
                     </Link>
                   </Dropdown.Item>
-                  
 
                   <div className="showall">
                     <Link to="notifications.html">جميع الإشعارات</Link>
                   </div>
-
-
                 </Dropdown.Menu>
               </Dropdown>
             </li>
@@ -295,7 +292,6 @@ const Navbar = () => {
             {/*profile picture */}
             <li className="link hide-sm2">
               <Dropdown>
-
                 <Dropdown.Toggle
                   style={{ backgroundColor: "#f4f4f4" }}
                   id="dropdown-basic"
@@ -312,7 +308,6 @@ const Navbar = () => {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu className="Menu">
-
                   <Dropdown.Item>
                     <Link className="dropdown-item_Link" to="profile.html">
                       <i className="fa-solid fa-user"></i>
@@ -322,50 +317,42 @@ const Navbar = () => {
 
                   <Dropdown.Item>
                     <Link className="dropdown-item_Link" to="profile.html">
-                    <i className="fa-sharp fa-solid fa-dollar-sign"></i>
-                    الرصيد
+                      <i className="fa-sharp fa-solid fa-dollar-sign"></i>
+                      الرصيد
                     </Link>
                   </Dropdown.Item>
 
                   <Dropdown.Item>
                     <Link className="dropdown-item_Link" to="profile.html">
-                    <i className="fa-solid fa-sliders"></i>
-                    الإعدادات
+                      <i className="fa-solid fa-sliders"></i>
+                      الإعدادات
                     </Link>
                   </Dropdown.Item>
                   <hr />
-
 
                   <Dropdown.Item>
                     <Link className="dropdown-item_Link" to="/About">
                       <i className="fa-sharp fa-solid fa-pen-to-square"></i>
                       تعديل الحساب
-
-
                     </Link>
                   </Dropdown.Item>
 
                   <Dropdown.Item>
                     <Link className="dropdown-item_Link" to="/Contact">
-                    <i className="fa-solid fa-circle-info"></i>
-                    المساعده
+                      <i className="fa-solid fa-circle-info"></i>
+                      المساعده
                     </Link>
                   </Dropdown.Item>
                   <hr />
 
                   <Dropdown.Item>
                     <Link className="dropdown-item_Link" to="profile.html">
-                    <i className="fa-solid fa-right-from-bracket"></i>
-                    تسجيل الخروج
+                      <i className="fa-solid fa-right-from-bracket"></i>
+                      تسجيل الخروج
                     </Link>
                   </Dropdown.Item>
-
-
                 </Dropdown.Menu>
-
               </Dropdown>
-
-
             </li>
           </ul>
         </div>

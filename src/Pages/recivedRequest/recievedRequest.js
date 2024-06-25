@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import rateowner1 from "../../Assets/images/rateowner1.jpg";
-import rateowner2 from "../../Assets/images/rateowner2.jpg";
-import rateowner3 from "../../Assets/images/rateowner3.jpg";
+import rateowner1 from "../../Assets/images/rateowner1.webp";
+import rateowner2 from "../../Assets/images/rateowner2.webp";
+import rateowner3 from "../../Assets/images/rateowner3.webp";
 
 const RecievedRequest = () => {
   return (
