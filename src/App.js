@@ -1,26 +1,26 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Layout from "./Components/Layout/Layout";
 import { Route, Routes } from "react-router-dom";
-import Main from "./Components/pages/Main";
-import Departments from "./Components/pages/departments";
-import Services from "./Components/pages/service";
-import Purchases from "./Components/pages/purchases";
-import OrederDetails from "./Components/pages/orederDetails";
-import RecievedRequest from "./Components/pages/recievedRequest";
-import Requests from "./Components/pages/requests";
-import ReaquestDetails from "./Components/pages/ReaquestDetails";
-import RequestAdd from "./Components/pages/requestAdd";
-import Chat from "./Components/pages/chat";
-import Search from "./Components/pages/Search";
-import Contact from "./Components/pages/Contact";
-import About from "./Components/pages/About";
-import Terms from "./Components/pages/Terms";
-import Blogs from "./Components/pages/Blogs";
-import BlogDetails from "./Components/pages/BlogDetails";
-import HowItWork from "./Components/pages/HowItWork";
-import Faq from "./Components/pages/Faq";
-import RecivedReqOrder from "./Components/pages/Recived-req-order";
+import Chat from "./Pages/Chat/chat";
+import BlogDetails from "./Pages/BlogDetails/BlogDetails";
+import About from "./Pages/About/About";
+import Blogs from "./Pages/Blogs/Blogs";
+import Main from "./Pages/Main/Main";
+import Contact from "./Pages/Contact/Contact";
+import Departments from "./Pages/Departments/departments";
+import Faq from "./Pages/Faq/Faq";
+import Layout from "./Layout/Layout";
+import HowItWork from "./Pages/HowitWork/HowItWork";
+import OrederDetails from "./Pages/OrderDetails/orederDetails";
+import Purchases from "./Pages/Purchases/purchases";
+import ReaquestDetails from "./Pages/ReaquestDetails/ReaquestDetails";
+import RecievedRequest from "./Pages/recivedRequest/recievedRequest";
+import RecivedReqOrder from "./Pages/RecivedReqOrder/Recived-req-order";
+import Terms from "./Pages/Terms/Terms";
+import RequestAdd from "./Pages/RequestAdd/requestAdd";
+import Requests from "./Pages/Requests/requests";
+import Services from "./Pages/Services/service";
+import Search from "./Pages/Search/Search";
 
 
 function App() {
@@ -35,7 +35,7 @@ function App() {
           <Route path="purchases" element={<Purchases />} />
           <Route path="/orderDetails" element={<OrederDetails />} />
           <Route path="/RecievedRequest" element={<RecievedRequest/>} />
-          <Route path="Requests" element={<Requests/>} />
+          <Route path="Requests" element={<Requests />} />
           <Route path="ReaquestDetails" element={<ReaquestDetails />} />
           <Route path="/RequestAdd" element={<RequestAdd />} />
           <Route path="/chat" element={<Chat />} />
@@ -48,38 +48,6 @@ function App() {
           <Route path="/HowItWork" element={<HowItWork />} />
           <Route path="/Faq" element={<Faq />} />
           <Route path="/RecivedReqOrder" element={<RecivedReqOrder />} />
-
-          
-
-
-         
-
-
-
-
-          
-
-
-
-          
-
-          
-
-
-
-
-          
-
-
-          
-
-
-
-          
-
-
-
-
 
         </Route>
       </Routes>
