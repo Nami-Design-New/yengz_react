@@ -15,8 +15,6 @@ const About = () => {
   return (
     <>
       <div className="section-head">
-
-        
       <SectionHead />        
       </div>
 
@@ -27,8 +25,10 @@ const About = () => {
 
               <div className="col-lg-6 col-12 mb-lg-0 mb-5">
                 <div className="about-text" data-aos="fade-up">
+
                   <h3>
                     انضم إلى أفضل سوق عالمي للعمال والمُقدمين للخدمات الحرة.
+                    
                   </h3>
                   <p>
                     في هذا السوق الرائع، ستجد العديد من الفرص والإمكانيات لتطوير
@@ -369,7 +369,7 @@ const About = () => {
           <NewsLetter />
         </div>
       </section>
-
+      
     </>
   );
 };
