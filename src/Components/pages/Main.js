@@ -113,6 +113,7 @@ const Main = () => {
         </section> --> */}
 
         {/*start  categories*/}
+        
         <section className="categories ">
           <div className="container">
             <div className="row-head" data-aos="fade-up">

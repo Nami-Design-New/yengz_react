@@ -56,7 +56,7 @@ const RecievedRequest = () => {
               <div className="row">
                 <div className="col-lg-7 col-12">
                   <div className="service-head h-100">
-                    <Link href="service.html" className="request-owner-img">
+                    <Link to="/Services" className="request-owner-img">
                       <img src={rateowner1} alt="service" />
                     </Link>
                     <div className="title requester-title">
@@ -85,7 +85,7 @@ const RecievedRequest = () => {
                           ></div>
                         </div>
                       </div>
-                      <Link to="/orderDetails" className="details">
+                      <Link to="/RecivedReqOrder" className="details">
                         التفاصيل
                       </Link>
                     </div>
@@ -106,7 +106,7 @@ const RecievedRequest = () => {
               <div className="row">
                 <div className="col-lg-7 col-12">
                   <div className="service-head h-100">
-                    <Link href="service.html" className="request-owner-img">
+                    <Link to="/Services" className="request-owner-img">
                       <img src={rateowner2} alt="service" />
                     </Link>
                     <div className="title requester-title">
@@ -135,7 +135,7 @@ const RecievedRequest = () => {
                           ></div>
                         </div>
                       </div>
-                      <Link to="/orderDetails" className="details">
+                      <Link to="/RecivedReqOrder" className="details">
                         التفاصيل
                       </Link>
                     </div>
@@ -156,7 +156,7 @@ const RecievedRequest = () => {
               <div className="row">
                 <div className="col-lg-7 col-12">
                   <div className="service-head h-100">
-                    <Link href="service.html" className="request-owner-img">
+                    <Link to="/Services" className="request-owner-img">
                       <img src={rateowner3} alt="service" />
                     </Link>
                     <div className="title requester-title">
@@ -183,7 +183,7 @@ const RecievedRequest = () => {
                           ></div>
                         </div>
                       </div>
-                      <Link to="/orderDetails" className="details">
+                      <Link to="/RecivedReqOrder" className="details">
                         التفاصيل
                       </Link>
                     </div>

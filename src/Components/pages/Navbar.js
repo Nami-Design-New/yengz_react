@@ -114,7 +114,7 @@ const Navbar = () => {
           </div>
           <ul className="nav-links">
             <li className="nav-link">
-              <Link to="Services">
+              <Link to="services.html">
                 <i className="far fa-plus"></i> اضف خدمه
               </Link>
             </li>
@@ -231,7 +231,7 @@ const Navbar = () => {
 
                 <Dropdown.Menu className="drop_Message_Menu">
                   <Dropdown.Item className="drop_Message">
-                    <Link to="chat.html" style={{ display: "flex" }}>
+                    <Link to="/chat" style={{ display: "flex" }}>
                       <div className="image-wrap">
                         <img src={av1} alt="user" />
                       </div>
@@ -252,7 +252,7 @@ const Navbar = () => {
                   </Dropdown.Item>
 
                   <Dropdown.Item className="drop_Message">
-                    <Link to="chat.html" style={{ display: "flex" }}>
+                    <Link to="/chat" style={{ display: "flex" }}>
                       <div className="image-wrap">
                         <img src={av2} alt="user" />
                       </div>

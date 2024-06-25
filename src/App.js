@@ -30,11 +30,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Main />} />
-          <Route path="Services" element={<Services />} />
+          <Route path="/Services" element={<Services />} />
           <Route path="departments" element={<Departments />} />
           <Route path="purchases" element={<Purchases />} />
           <Route path="/orderDetails" element={<OrederDetails />} />
-          <Route path="RecievedRequest" element={<RecievedRequest/>} />
+          <Route path="/RecievedRequest" element={<RecievedRequest/>} />
           <Route path="Requests" element={<Requests/>} />
           <Route path="ReaquestDetails" element={<ReaquestDetails />} />
           <Route path="/RequestAdd" element={<RequestAdd />} />

@@ -1,5 +1,6 @@
 import React from 'react'
 import SectionHead from './SectionHead'
+import { Link } from 'react-router-dom'
 
 const RequestAdd = () => {
 
@@ -37,7 +38,11 @@ const RequestAdd = () => {
                     </div>
 
                     <div className="d-flex justify-content-center py-4">
+                        <Link to="/ReaquestDetails">
                         <button type="submit" className="btn btn-success px-5"> نشر </button>
+
+                        
+                        </Link>
 
                     </div>
                 </form>

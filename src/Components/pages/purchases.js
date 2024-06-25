@@ -11,6 +11,7 @@ import servicet1 from "../../Assets/images/servicet1.jpg";
 import fin from "../../Assets/images/fin.jpg";
 import avatar from "../../Assets/images/avatar.png";
 
+
 const Purchases = () => {
   return (
     <main>
@@ -58,12 +59,13 @@ const Purchases = () => {
               </button>
             </div>
           </div>
+
           <div className="col-lg-10 co-12">
             <div className="service container">
               <div className="row">
                 <div className="col-lg-7 col-12">
                   <div className="service-head">
-                    <Link href="Services" className="img">
+                    <Link to="/Services" className="img">
                       <img src={bann} alt="service" />
                     </Link>
                     <div className="title">
@@ -116,7 +118,7 @@ const Purchases = () => {
               <div className="row">
                 <div className="col-lg-7 col-12">
                   <div className="service-head">
-                    <Link to="Services" className="img">
+                    <Link to="/Services" className="img">
                       <img src={bann2} alt="service" />
                     </Link>
                     <div className="title">
@@ -169,7 +171,7 @@ const Purchases = () => {
               <div className="row">
                 <div className="col-lg-7 col-12">
                   <div className="service-head">
-                    <Link href="Services" className="img">
+                    <Link to="/Services" className="img">
                       <img src={law} alt="service" />
                     </Link>
                     <div className="title">
@@ -220,7 +222,7 @@ const Purchases = () => {
               <div className="row">
                 <div className="col-lg-7 col-12">
                   <div className="service-head">
-                    <Link to="Services" className="img">
+                    <Link to="/Services" className="img">
                       <img src={servicet1} alt="service" />
                     </Link>
                     <div className="title">
@@ -273,9 +275,10 @@ const Purchases = () => {
               <div className="row">
                 <div className="col-lg-7 col-12">
                   <div className="service-head">
-                    <Link to="Services" className="img">
+                    <Link to="/Services" className="img">
                       <img src={fin} alt="service" />
                     </Link>
+
                     <div className="title">
                       <h5>التحليل المالي المتقدم وبناء النماذج المالية</h5>
                       <div className="owner">
