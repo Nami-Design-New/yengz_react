@@ -1,18 +1,17 @@
 import React from "react";
-import "../../Assets/css/styleAR.scss";
+
 import servicet4 from "../../Assets/images/servicet4.mp4";
-import rateowner2 from "../../Assets/images/rateowner2.jpg";
+import rateowner2 from "../../Assets/images/rateowner2.webp";
 import servicet3 from "../../Assets/images/servicet3.mp4";
 import servicet2 from "../../Assets/images/servicet2.mp4";
-import rateowner1 from "../../Assets/images/rateowner1.jpg";
-import rateowner3 from "../../Assets/images/rateowner3.jpg";
+import rateowner1 from "../../Assets/images/rateowner1.webp";
+import rateowner3 from "../../Assets/images/rateowner3.webp";
 import vector88 from "../../Assets/images/vector88.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css";
-
 
 const Services = () => {
   return (

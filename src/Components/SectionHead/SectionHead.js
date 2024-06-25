@@ -1,11 +1,9 @@
-import React from 'react'
-import about7 from "../../Assets/images/about7.png";
-import { Link } from 'react-router-dom';
-
+import React from "react";
+import about7 from "../../Assets/images/about7.webp";
+import { Link } from "react-router-dom";
 
 const SectionHead = () => {
   return (
-
     <div className="container">
       <div className="row">
         <div className="col-lg-6 col-md-6 col-12">
@@ -21,8 +19,7 @@ const SectionHead = () => {
         </div>
       </div>
     </div>
+  );
+};
 
-  )
-}
-
-export default SectionHead
+export default SectionHead;

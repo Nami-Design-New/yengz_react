@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import rateowner1 from "../../Assets/images/rateowner1.jpg";
+import rateowner1 from "../../Assets/images/rateowner1.webp";
 import Modal from "react-bootstrap/Modal";
 
 const RecivedReqOrder = () => {

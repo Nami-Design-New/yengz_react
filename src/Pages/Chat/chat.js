@@ -1,5 +1,5 @@
-import rateowner3 from "../../Assets/images/rateowner3.jpg";
-import rateowner2 from "../../Assets/images/rateowner2.jpg";
+import rateowner3 from "../../Assets/images/rateowner3.webp";
+import rateowner2 from "../../Assets/images/rateowner2.webp";
 
 const Chat = () => {
   return (
@@ -37,7 +37,7 @@ const Chat = () => {
               <div className="image-wrap">
                 <img src={rateowner2} alt="user" />
               </div>
-              
+
               <div className="text-wrap">
                 <div className="d-flex justify-content-between w-100">
                   <h6>خالد عوض</h6>

@@ -1,5 +1,5 @@
 import React from "react";
-import slider1 from "../../Assets/images/slider1.jpg";
+import slider1 from "../../Assets/images/slider1.webp";
 import { Link } from "react-router-dom";
 import SectionHead from "../../Components/SectionHead/SectionHead";
 
@@ -8,7 +8,7 @@ const Blogs = () => {
     <>
       <main className="main">
         <div className="section-head">
-        <SectionHead />        
+          <SectionHead />
         </div>
         <section className="blogs">
           <div className="container">
@@ -20,7 +20,6 @@ const Blogs = () => {
                   </div>
                   <div className="data">
                     <h5 className="title">
-                      
                       الدليل النهائي لاختيار الدورة الأونلاين المناسبة
                     </h5>
                     <p className="description">
@@ -43,7 +42,6 @@ const Blogs = () => {
                   </div>
                   <div className="data">
                     <h5 className="title">
-                      
                       الدليل النهائي لاختيار الدورة الأونلاين المناسبة
                     </h5>
                     <p className="description">
@@ -67,7 +65,6 @@ const Blogs = () => {
                   </div>
                   <div className="data">
                     <h5 className="title">
-                      
                       الدليل النهائي لاختيار الدورة الأونلاين المناسبة
                     </h5>
                     <p className="description">

@@ -1,23 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import slider1 from "../../Assets/images/slider1.jpg";
-import slider2 from "../../Assets/images/slider2.jpg";
-import slider3 from "../../Assets/images/slider3.jpg";
-import slider4 from "../../Assets/images/slider4.jpg";
+import slider1 from "../../Assets/images/slider1.webp";
+import slider2 from "../../Assets/images/slider2.webp";
+import slider3 from "../../Assets/images/slider3.webp";
+import slider4 from "../../Assets/images/slider4.webp";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SectionHead from "../../Components/SectionHead/SectionHead";
 
-
 import "swiper/css";
-
 
 const BlogDetails = () => {
   return (
     <main className="main">
       <div className="section-head">
-        <SectionHead />        
+        <SectionHead />
       </div>
-      
+
       <section className="blogDetails">
         <div className="container">
           <div className="row justify-content-around">
@@ -60,7 +58,6 @@ const BlogDetails = () => {
                   18 , فبراير , 2023
                 </div>
                 <h2 className="title">
-                  
                   الدليل النهائي لاختيار الدورة الأونلاين المناسبة
                 </h2>
                 <p className="description">
@@ -138,7 +135,6 @@ const BlogDetails = () => {
                   <img className="lazy" src={slider1} alt="" />
                   <div className="data">
                     <h6 className="title">
-                      
                       كيف تستفيد إلى أقصى حد من استثمارك في الدورات الأونلاين
                     </h6>
                     <p className="description">
@@ -154,7 +150,6 @@ const BlogDetails = () => {
                   <img className="lazy" src={slider2} alt="" />
                   <div className="data">
                     <h6 className="title">
-                      
                       صعود التعلم الصغير: الدورات قصيرة المدى لأقصى تأثير
                     </h6>
                     <p className="description">
@@ -173,7 +168,6 @@ const BlogDetails = () => {
 
                   <div className="data">
                     <h6 className="title">
-                      
                       التعلم غير التقليدي: استكشاف دورات فريدة ومتخصصة
                     </h6>
                     <p className="description">
@@ -190,7 +184,6 @@ const BlogDetails = () => {
           </div>
         </div>
       </section>
-      
     </main>
   );
 };

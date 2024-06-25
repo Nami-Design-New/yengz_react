@@ -1,5 +1,5 @@
 import React from "react";
-import bann from "../../Assets/images/bann.jpg";
+import bann from "../../Assets/images/bann.webp";
 import { Link } from "react-router-dom";
 
 const Search = () => {

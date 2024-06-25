@@ -1,34 +1,30 @@
 import React from "react";
-import about1 from "../../Assets/images/about-1.png";
+import about1 from "../../Assets/images/about-1.webp";
 import m1 from "../../Assets/images/m1.png";
 import m2 from "../../Assets/images/m2.png";
 import m3 from "../../Assets/images/m3.png";
 import m4 from "../../Assets/images/m4.png";
 import m5 from "../../Assets/images/m5.png";
 import m6 from "../../Assets/images/m6.png";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 import SectionHead from "../../Components/SectionHead/SectionHead";
-
 
 const About = () => {
   return (
     <>
       <div className="section-head">
-      <SectionHead />        
+        <SectionHead />
       </div>
 
       <section className="about-section">
         <div className="about_wrap">
           <div className="container">
             <div className="row mb-64">
-
               <div className="col-lg-6 col-12 mb-lg-0 mb-5">
                 <div className="about-text" data-aos="fade-up">
-
                   <h3>
                     انضم إلى أفضل سوق عالمي للعمال والمُقدمين للخدمات الحرة.
-                    
                   </h3>
                   <p>
                     في هذا السوق الرائع، ستجد العديد من الفرص والإمكانيات لتطوير
@@ -61,12 +57,10 @@ const About = () => {
                   <img src={about1} alt="" />
                 </div>
               </div>
-
             </div>
           </div>
 
           <div className="counts-row">
-
             <div className="container">
               <div className="row">
                 <div className="col-lg-3 p-3 col-6">
@@ -106,7 +100,6 @@ const About = () => {
                 </div>
               </div>
             </div>
-
           </div>
 
           <div className="container">
@@ -122,7 +115,7 @@ const About = () => {
                   onSwiper={(swiper) => console.log(swiper)}
                 >
                   <SwiperSlide>
-                  <div className="swiper-slide">
+                    <div className="swiper-slide">
                       <div className="testmional-card">
                         <div className="d-flex flex-column gap-2">
                           <div className="rate">
@@ -161,7 +154,7 @@ const About = () => {
                   </SwiperSlide>
 
                   <SwiperSlide>
-                  <div className="swiper-slide">
+                    <div className="swiper-slide">
                       <div className="testmional-card">
                         <div className="d-flex flex-column gap-2">
                           <div className="rate">
@@ -200,7 +193,7 @@ const About = () => {
                   </SwiperSlide>
 
                   <SwiperSlide>
-                  <div className="swiper-slide">
+                    <div className="swiper-slide">
                       <div className="testmional-card">
                         <div className="d-flex flex-column gap-2">
                           <div className="rate">
@@ -239,7 +232,7 @@ const About = () => {
                   </SwiperSlide>
 
                   <SwiperSlide>
-                  <div className="swiper-slide">
+                    <div className="swiper-slide">
                       <div className="testmional-card">
                         <div className="d-flex flex-column gap-2">
                           <div className="rate">
@@ -278,7 +271,7 @@ const About = () => {
                   </SwiperSlide>
 
                   <SwiperSlide>
-                  <div className="swiper-slide">
+                    <div className="swiper-slide">
                       <div className="testmional-card">
                         <div className="d-flex flex-column gap-2">
                           <div className="rate">
@@ -369,7 +362,6 @@ const About = () => {
           <NewsLetter />
         </div>
       </section>
-      
     </>
   );
 };
