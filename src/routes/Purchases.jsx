@@ -64,7 +64,7 @@ const Purchases = () => {
               <div className="row">
                 <div className="col-lg-7 col-12">
                   <div className="service-head">
-                    <Link to="/Services" className="img">
+                    <Link to="/services" className="img">
                       <img src={bann} alt="service" />
                     </Link>
                     <div className="title">
@@ -96,7 +96,7 @@ const Purchases = () => {
                           ></div>
                         </div>
                       </div>
-                      <Link to="/orderDetails" className="details">
+                      <Link to="/order_details" className="details">
                         التفاصيل
                       </Link>
                     </div>
@@ -118,7 +118,7 @@ const Purchases = () => {
               <div className="row">
                 <div className="col-lg-7 col-12">
                   <div className="service-head">
-                    <Link to="/Services" className="img">
+                    <Link to="/services" className="img">
                       <img src={bann2} alt="service" />
                     </Link>
                     <div className="title">
@@ -150,7 +150,7 @@ const Purchases = () => {
                           ></div>
                         </div>
                       </div>
-                      <Link to="/orderDetails" className="details">
+                      <Link to="/order_details" className="details">
                         التفاصيل
                       </Link>
                     </div>
@@ -172,7 +172,7 @@ const Purchases = () => {
               <div className="row">
                 <div className="col-lg-7 col-12">
                   <div className="service-head">
-                    <Link to="/Services" className="img">
+                    <Link to="/services" className="img">
                       <img src={law} alt="service" />
                     </Link>
                     <div className="title">
@@ -202,7 +202,7 @@ const Purchases = () => {
                           ></div>
                         </div>
                       </div>
-                      <Link to="/orderDetails" className="details">
+                      <Link to="/order_details" className="details">
                         التفاصيل
                       </Link>
                     </div>
@@ -224,7 +224,7 @@ const Purchases = () => {
               <div className="row">
                 <div className="col-lg-7 col-12">
                   <div className="service-head">
-                    <Link to="/Services" className="img">
+                    <Link to="/services" className="img">
                       <img src={servicet1} alt="service" />
                     </Link>
                     <div className="title">
@@ -256,7 +256,7 @@ const Purchases = () => {
                           ></div>
                         </div>
                       </div>
-                      <Link to="/orderDetails" className="details">
+                      <Link to="/order_details" className="details">
                         التفاصيل
                       </Link>
                     </div>
@@ -278,7 +278,7 @@ const Purchases = () => {
               <div className="row">
                 <div className="col-lg-7 col-12">
                   <div className="service-head">
-                    <Link to="/Services" className="img">
+                    <Link to="/services" className="img">
                       <img src={fin} alt="service" />
                     </Link>
 
@@ -309,7 +309,7 @@ const Purchases = () => {
                           ></div>
                         </div>
                       </div>
-                      <Link to="/orderDetails" className="details">
+                      <Link to="/order_details" className="details">
                         التفاصيل
                       </Link>
                     </div>

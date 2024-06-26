@@ -21,7 +21,7 @@ const ReaquestDetails = () => {
               الطلب.
             </p>
             <div className="postUser">
-              <Link to="profile.html" className="name">
+              <Link to="/profile" className="name">
                 <i className="fa-regular fa-user"></i> محمد عصام
               </Link>
               <p className="time">

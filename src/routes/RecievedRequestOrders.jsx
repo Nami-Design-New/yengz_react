@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import rateowner1 from "../Assets/images/rateowner1.webp";
 import Modal from "react-bootstrap/Modal";
 
-const RecivedReqOrder = () => {
+const RecievedRequestOrders = () => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -519,4 +519,4 @@ const RecivedReqOrder = () => {
   );
 };
 
-export default RecivedReqOrder;
+export default RecievedRequestOrders;

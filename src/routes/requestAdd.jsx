@@ -53,7 +53,7 @@ const RequestAdd = () => {
             </div>
 
             <div className="d-flex justify-content-center py-4">
-              <Link to="/ReaquestDetails">
+              <Link to="/reaquest_details">
                 <button type="submit" className="btn btn-success px-5">
                   {" "}
                   نشر{" "}

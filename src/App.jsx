@@ -17,8 +17,8 @@ const OrederDetails = lazy(() => import("./routes/OrderDetails"));
 const Purchases = lazy(() => import("./routes/Purchases"));
 const ReaquestDetails = lazy(() => import("./routes/ReaquestDetails"));
 const RecievedRequest = lazy(() => import("./routes/RecievedRequest"));
-const RecivedRequestOrders = lazy(() =>
-  import("./routes/RecivedRequestOrders")
+const RecievedRequestOrders = lazy(() =>
+  import("./routes/RecievedRequestOrders")
 );
 const Terms = lazy(() => import("./routes/Terms"));
 const RequestAdd = lazy(() => import("./routes/RequestAdd"));
@@ -33,8 +33,8 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="/services" element={<Services />} />
-          <Route path="categories" element={<Categories />} />
-          <Route path="purchases" element={<Purchases />} />
+          <Route path="/categories" element={<Categories />} />
+          <Route path="/purchases" element={<Purchases />} />
           <Route path="/order_details" element={<OrederDetails />} />
           <Route path="/recieved_request" element={<RecievedRequest />} />
           <Route path="requests" element={<Requests />} />
@@ -50,8 +50,8 @@ function App() {
           <Route path="/how_it_work" element={<HowItWork />} />
           <Route path="/daq" element={<Faq />} />
           <Route
-            path="/RecivedRequestOrders"
-            element={<RecivedRequestOrders />}
+            path="/recieved_request_orders"
+            element={<RecievedRequestOrders />}
           />
         </Route>
       </Routes>

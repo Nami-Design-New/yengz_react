@@ -20,7 +20,7 @@ const Navbar = () => {
         </div>
         <div className="small-media-menu">
           <div className="user">
-            <Link to="profile" className="avatar">
+            <Link to="/profile" className="avatar">
               <img src={avatar} alt="" />5
             </Link>
             <div className="userr">
@@ -38,29 +38,29 @@ const Navbar = () => {
           </div>
           <ul className="nav-links">
             <li className="nav-link">
-              <Link to="services.html">
+              <Link to="/services">
                 <i className="far fa-plus"></i> اضف خدمه
               </Link>
             </li>
             <li className="nav-link">
-              <Link to="departments">
+              <Link to="/categories">
                 <i className="far fa-cube"></i> الأقسام
               </Link>
             </li>
             <li className="nav-link">
-              <Link to="purchases">
+              <Link to="/purchases">
                 <i className="far fa-shopping-bag"></i> المشتريات
               </Link>
               <span className="num-count2">3</span>
             </li>
             <li className="nav-link">
-              <Link to="RecievedRequest">
+              <Link to="/recieved_request">
                 <i className="far fa-clipboard-list-check"></i> الطلبات الواردة
               </Link>
               <span className="num-count2">2</span>
             </li>
             <li className="nav-link">
-              <Link to="Requests">
+              <Link to="/requests">
                 <i className="far fa-hand-point-up"></i> اطلب خدمة علي زوقك
               </Link>
             </li>
@@ -136,7 +136,7 @@ const Navbar = () => {
 
             {/*Cart*/}
             <li className="link hide-sm2">
-              <Link to="cart.html" className="cart btn">
+              <Link to="/cart" className="cart btn">
                 <i className="fa-light fa-cart-shopping"></i>
                 <span className="num-count">1</span>
               </Link>
@@ -196,7 +196,7 @@ const Navbar = () => {
                   </Dropdown.Item>
 
                   <div className="showall">
-                    <Link to="notifications.html">جميع الإشعارات</Link>
+                    <Link to="/notifications">جميع الإشعارات</Link>
                   </div>
                 </Dropdown.Menu>
               </Dropdown>
@@ -205,10 +205,10 @@ const Navbar = () => {
             {/*auth login  */}
             <li className="link hide-sm2">
               <div className="btns">
-                <Link to="auth-login.html">
+                <Link to="/login">
                   <i className="fa-light fa-arrow-right-to-bracket"></i> دخول
                 </Link>
-                <Link to="auth-register.html">
+                <Link to="/register">
                   <i className="fa-light fa-user-plus"></i> حساب جديد
                 </Link>
               </div>

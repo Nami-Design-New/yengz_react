@@ -13,7 +13,7 @@ const Requests = () => {
 
       <section className="allRequests">
         <div className="container align-items-end">
-          <Link to="/requestAdd" className="btn btn-success mb-4">
+          <Link to="/request_add" className="btn btn-success mb-4">
             <i className="fa-regular fa-hexagon-plus me-2"></i>
             اضف موضوع جديد
           </Link>
@@ -23,15 +23,15 @@ const Requests = () => {
               <div className="row">
                 <div className="col-md-8 p-1">
                   <div className="requstPost">
-                    <Link to="profile.html">
+                    <Link to="/profile">
                       <img src={av2} alt="" />
                     </Link>
                     <div className="postContent">
-                      <Link to="/ReaquestDetails" className="postTitle">
+                      <Link to="/reaquest_details" className="postTitle">
                         ابحث عن مصمم صفحة هبوط على ووردبرس
                       </Link>
                       <div className="postUser">
-                        <Link to="profile.html" className="name">
+                        <Link to="/profile" className="name">
                           <i className="fa-regular fa-user"></i> محمد عصام
                         </Link>
                         <p className="time">
@@ -49,7 +49,7 @@ const Requests = () => {
                       <img src={av1} alt="" />
                     </Link>
                     <div className="lastUser">
-                      <Link to="profile.html" className="name">
+                      <Link to="/profile" className="name">
                         محمد عصام
                       </Link>
                       <p className="time">
@@ -66,15 +66,15 @@ const Requests = () => {
               <div className="row">
                 <div className="col-md-8 p-1">
                   <div className="requstPost">
-                    <Link to="profile.html">
+                    <Link to="/profile">
                       <img src={av2} alt="" />
                     </Link>
                     <div className="postContent">
-                      <Link to="/ReaquestDetails" className="postTitle">
+                      <Link to="/reaquest_details" className="postTitle">
                         ابحث عن مصمم صفحة هبوط على ووردبرس
                       </Link>
                       <div className="postUser">
-                        <Link to="profile.html" className="name">
+                        <Link to="/profile" className="name">
                           <i className="fa-regular fa-user"></i> محمد عصام
                         </Link>
                         <p className="time">
@@ -92,7 +92,7 @@ const Requests = () => {
                       <img src={av1} alt="" />
                     </Link>
                     <div className="lastUser">
-                      <Link to="profile.html" className="name">
+                      <Link to="/profile" className="name">
                         محمد عصام
                       </Link>
                       <p className="time">
@@ -109,15 +109,15 @@ const Requests = () => {
               <div className="row">
                 <div className="col-md-8 p-1">
                   <div className="requstPost">
-                    <Link to="profile.html">
+                    <Link to="/profile">
                       <img src={av2} alt="" />
                     </Link>
                     <div className="postContent">
-                      <Link to="/ReaquestDetails" className="postTitle">
+                      <Link to="/reaquest_details" className="postTitle">
                         ابحث عن مصمم صفحة هبوط على ووردبرس
                       </Link>
                       <div className="postUser">
-                        <Link to="profile.html" className="name">
+                        <Link to="/profile" className="name">
                           <i className="fa-regular fa-user"></i> محمد عصام
                         </Link>
                         <p className="time">
@@ -135,7 +135,7 @@ const Requests = () => {
                       <img src={av1} alt="" />
                     </Link>
                     <div className="lastUser">
-                      <Link to="profile.html" className="name">
+                      <Link to="/profile" className="name">
                         محمد عصام
                       </Link>
                       <p className="time">
@@ -152,15 +152,15 @@ const Requests = () => {
               <div className="row">
                 <div className="col-md-8 p-1">
                   <div className="requstPost">
-                    <Link to="profile.html">
+                    <Link to="/profile">
                       <img src={av2} alt="" />
                     </Link>
                     <div className="postContent">
-                      <Link to="/ReaquestDetails" className="postTitle">
+                      <Link to="/reaquest_details" className="postTitle">
                         ابحث عن مصمم صفحة هبوط على ووردبرس
                       </Link>
                       <div className="postUser">
-                        <Link to="profile.html" className="name">
+                        <Link to="/profile" className="name">
                           <i className="fa-regular fa-user"></i> محمد عصام
                         </Link>
                         <p className="time">
@@ -178,7 +178,7 @@ const Requests = () => {
                       <img src={av1} alt="" />
                     </Link>
                     <div className="lastUser">
-                      <Link to="profile.html" className="name">
+                      <Link to="/profile" className="name">
                         محمد عصام
                       </Link>
                       <p className="time">
@@ -196,15 +196,15 @@ const Requests = () => {
               <div className="row">
                 <div className="col-md-8 p-1">
                   <div className="requstPost">
-                    <Link to="profile.html">
+                    <Link to="/profile">
                       <img src={av2} alt="" />
                     </Link>
                     <div className="postContent">
-                      <Link to="/ReaquestDetails" className="postTitle">
+                      <Link to="/reaquest_details" className="postTitle">
                         ابحث عن مصمم صفحة هبوط على ووردبرس
                       </Link>
                       <div className="postUser">
-                        <Link to="profile.html" className="name">
+                        <Link to="/profile" className="name">
                           <i className="fa-regular fa-user"></i> محمد عصام
                         </Link>
                         <p className="time">
@@ -218,11 +218,11 @@ const Requests = () => {
                 </div>
                 <div className="col-md-4 p-1">
                   <div className="lastInteraction">
-                    <Link to="profile.html">
+                    <Link to="/profile">
                       <img src={av1} alt="" />
                     </Link>
                     <div className="lastUser">
-                      <Link to="profile.html" className="name">
+                      <Link to="/profile" className="name">
                         محمد عصام
                       </Link>
                       <p className="time">
@@ -240,15 +240,15 @@ const Requests = () => {
               <div className="row">
                 <div className="col-md-8 p-1">
                   <div className="requstPost">
-                    <Link to="profile.html">
+                    <Link to="/profile">
                       <img src={av2} alt="" />
                     </Link>
                     <div className="postContent">
-                      <Link to="/ReaquestDetails" className="postTitle">
+                      <Link to="/reaquest_details" className="postTitle">
                         ابحث عن مصمم صفحة هبوط على ووردبرس
                       </Link>
                       <div className="postUser">
-                        <Link to="profile.html" className="name">
+                        <Link to="/profile" className="name">
                           <i className="fa-regular fa-user"></i> محمد عصام
                         </Link>
                         <p className="time">
@@ -262,11 +262,11 @@ const Requests = () => {
                 </div>
                 <div className="col-md-4 p-1">
                   <div className="lastInteraction">
-                    <Link to="profile.html">
+                    <Link to="/profile">
                       <img src={av1} alt="" />
                     </Link>
                     <div className="lastUser">
-                      <Link to="profile.html" className="name">
+                      <Link to="/profile" className="name">
                         محمد عصام
                       </Link>
                       <p className="time">
@@ -283,15 +283,15 @@ const Requests = () => {
               <div className="row">
                 <div className="col-md-8 p-1">
                   <div className="requstPost">
-                    <Link to="profile.html">
+                    <Link to="/profile">
                       <img src={av2} alt="" />
                     </Link>
                     <div className="postContent">
-                      <Link to="/ReaquestDetails" className="postTitle">
+                      <Link to="/reaquest_details" className="postTitle">
                         ابحث عن مصمم صفحة هبوط على ووردبرس
                       </Link>
                       <div className="postUser">
-                        <Link to="profile.html" className="name">
+                        <Link to="/profile" className="name">
                           <i className="fa-regular fa-user"></i> محمد عصام
                         </Link>
                         <p className="time">
@@ -305,11 +305,11 @@ const Requests = () => {
                 </div>
                 <div className="col-md-4 p-1">
                   <div className="lastInteraction">
-                    <Link to="profile.html">
+                    <Link to="/profile">
                       <img src={av1} alt="" />
                     </Link>
                     <div className="lastUser">
-                      <Link to="profile.html" className="name">
+                      <Link to="/profile" className="name">
                         محمد عصام
                       </Link>
                       <p className="time">
@@ -326,15 +326,15 @@ const Requests = () => {
               <div className="row">
                 <div className="col-md-8 p-1">
                   <div className="requstPost">
-                    <Link to="profile.html">
+                    <Link to="/profile">
                       <img src={av2} alt="" />
                     </Link>
                     <div className="postContent">
-                      <Link to="/ReaquestDetails" className="postTitle">
+                      <Link to="/reaquest_details" className="postTitle">
                         ابحث عن مصمم صفحة هبوط على ووردبرس
                       </Link>
                       <div className="postUser">
-                        <Link to="profile.html" className="name">
+                        <Link to="/profile" className="name">
                           <i className="fa-regular fa-user"></i> محمد عصام
                         </Link>
                         <p className="time">
@@ -348,11 +348,11 @@ const Requests = () => {
                 </div>
                 <div className="col-md-4 p-1">
                   <div className="lastInteraction">
-                    <Link to="profile.html">
+                    <Link to="/profile">
                       <img src={av1} alt="" />
                     </Link>
                     <div className="lastUser">
-                      <Link to="profile.html" className="name">
+                      <Link to="/profile" className="name">
                         محمد عصام
                       </Link>
                       <p className="time">
@@ -369,15 +369,15 @@ const Requests = () => {
               <div className="row">
                 <div className="col-md-8 p-1">
                   <div className="requstPost">
-                    <Link to="profile.html">
+                    <Link to="/profile">
                       <img src={av2} alt="" />
                     </Link>
                     <div className="postContent">
-                      <Link to="/ReaquestDetails" className="postTitle">
+                      <Link to="/reaquest_details" className="postTitle">
                         ابحث عن مصمم صفحة هبوط على ووردبرس
                       </Link>
                       <div className="postUser">
-                        <Link to="profile.html" className="name">
+                        <Link to="/profile" className="name">
                           <i className="fa-regular fa-user"></i> محمد عصام
                         </Link>
                         <p className="time">
@@ -391,11 +391,11 @@ const Requests = () => {
                 </div>
                 <div className="col-md-4 p-1">
                   <div className="lastInteraction">
-                    <Link to="profile.html">
+                    <Link to="/profile">
                       <img src={av1} alt="" />
                     </Link>
                     <div className="lastUser">
-                      <Link to="profile.html" className="name">
+                      <Link to="/profile" className="name">
                         محمد عصام
                       </Link>
                       <p className="time">
@@ -412,15 +412,15 @@ const Requests = () => {
               <div className="row">
                 <div className="col-md-8 p-1">
                   <div className="requstPost">
-                    <Link to="profile.html">
+                    <Link to="/profile">
                       <img src={av2} alt="" />
                     </Link>
                     <div className="postContent">
-                      <Link to="/ReaquestDetails" className="postTitle">
+                      <Link to="/reaquest_details" className="postTitle">
                         ابحث عن مصمم صفحة هبوط على ووردبرس
                       </Link>
                       <div className="postUser">
-                        <Link to="profile.html" className="name">
+                        <Link to="/profile" className="name">
                           <i className="fa-regular fa-user"></i> محمد عصام
                         </Link>
                         <p className="time">
@@ -434,11 +434,11 @@ const Requests = () => {
                 </div>
                 <div className="col-md-4 p-1">
                   <div className="lastInteraction">
-                    <Link to="profile.html">
+                    <Link to="/profile">
                       <img src={av1} alt="" />
                     </Link>
                     <div className="lastUser">
-                      <Link to="profile.html" className="name">
+                      <Link to="/profile" className="name">
                         محمد عصام
                       </Link>
                       <p className="time">
@@ -455,15 +455,15 @@ const Requests = () => {
               <div className="row">
                 <div className="col-md-8 p-1">
                   <div className="requstPost">
-                    <Link to="profile.html">
+                    <Link to="/profile">
                       <img src={av2} alt="" />
                     </Link>
                     <div className="postContent">
-                      <Link to="/ReaquestDetails" className="postTitle">
+                      <Link to="/reaquest_details" className="postTitle">
                         ابحث عن مصمم صفحة هبوط على ووردبرس
                       </Link>
                       <div className="postUser">
-                        <Link to="profile.html" className="name">
+                        <Link to="/profile" className="name">
                           <i className="fa-regular fa-user"></i> محمد عصام
                         </Link>
                         <p className="time">
@@ -477,11 +477,11 @@ const Requests = () => {
                 </div>
                 <div className="col-md-4 p-1">
                   <div className="lastInteraction">
-                    <Link to="profile.html">
+                    <Link to="/profile">
                       <img src={av1} alt="" />
                     </Link>
                     <div className="lastUser">
-                      <Link to="profile.html" className="name">
+                      <Link to="/profile" className="name">
                         محمد عصام
                       </Link>
                       <p className="time">

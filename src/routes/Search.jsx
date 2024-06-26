@@ -2101,7 +2101,7 @@ const Search = () => {
 
                   <div className="col-lg-4 col-6 mb-4">
                     <div className="service-card">
-                      <Link to="Services" className="img">
+                      <Link to="/services" className="img">
                         <img src={bann} alt="" />
                       </Link>
                       <div className="content">
@@ -2142,7 +2142,7 @@ const Search = () => {
 
                   <div className="col-lg-4 col-6 mb-4">
                     <div className="service-card">
-                      <Link to="Services" className="img">
+                      <Link to="/services" className="img">
                         <img src={bann} alt="" />
                       </Link>
                       <div className="content">
@@ -2184,7 +2184,7 @@ const Search = () => {
 
                   <div className="col-lg-4 col-6 mb-4">
                     <div className="service-card">
-                      <Link to="Services" className="img">
+                      <Link to="/services" className="img">
                         <img src={bann} alt="" />
                       </Link>
                       <div className="content">
@@ -2225,7 +2225,7 @@ const Search = () => {
                   {/*<!-- service --> */}
                   <div className="col-lg-4 col-6 mb-4">
                     <div className="service-card">
-                      <Link to="Services" className="img">
+                      <Link to="/services" className="img">
                         <img src={bann} alt="" />
                       </Link>
                       <div className="content">

@@ -20,7 +20,7 @@ const Categories = () => {
             <div className="row">
               <div className="col-lg-3 col-6 p-2">
                 <div className="category-card" data-aos="fade-up">
-                  <Link to="/Search" className="inner-card">
+                  <Link to="/search" className="inner-card">
                     <div className="category-img">
                       <img src={category5} alt="" />
                     </div>
@@ -36,7 +36,7 @@ const Categories = () => {
 
               <div className="col-lg-3 col-6 p-2">
                 <div className="category-card" data-aos="fade-up">
-                  <Link to="/Search" className="inner-card">
+                  <Link to="/search" className="inner-card">
                     <div className="category-img">
                       <img src={category4} alt="" />
                     </div>
@@ -51,7 +51,7 @@ const Categories = () => {
               </div>
               <div className="col-lg-3 col-6 p-2">
                 <div className="category-card" data-aos="fade-up">
-                  <Link to="/Search" className="inner-card">
+                  <Link to="/search" className="inner-card">
                     <div className="category-img">
                       <img src={category3} alt="" />
                     </div>
@@ -66,7 +66,7 @@ const Categories = () => {
               </div>
               <div className="col-lg-3 col-6 p-2">
                 <div className="category-card" data-aos="fade-up">
-                  <Link to="/Search" className="inner-card">
+                  <Link to="/search" className="inner-card">
                     <div className="category-img">
                       <img src={category2} alt="" />
 
@@ -83,7 +83,7 @@ const Categories = () => {
               </div>
               <div className="col-lg-3 col-6 p-2">
                 <div className="category-card" data-aos="fade-up">
-                  <Link to="/Search" className="inner-card">
+                  <Link to="/search" className="inner-card">
                     <div className="category-img">
                       <img src={category1} alt="" />
                     </div>

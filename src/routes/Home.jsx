@@ -73,7 +73,7 @@ const Home = () => {
               <h6>
                 <i className="fa-sharp fa-solid fa-grid-2"></i> الأقسام
               </h6>
-              <Link to="departments">
+              <Link to="/categories">
                 عرض الكل <i className="fa-regular fa-angle-left"></i>
               </Link>
             </div>
@@ -89,7 +89,7 @@ const Home = () => {
                   <SwiperSlide>
                     <div className="swiper-slide">
                       <div className="category-card" data-aos="fade-up">
-                        <Link to="/Search" className="inner-card">
+                        <Link to="/search" className="inner-card">
                           <div className="category-img">
                             <img src={category1} alt="" />
                           </div>
@@ -107,7 +107,7 @@ const Home = () => {
                   <SwiperSlide>
                     <div className="swiper-slide">
                       <div className="category-card" data-aos="fade-up">
-                        <Link to="/Search" className="inner-card">
+                        <Link to="/search" className="inner-card">
                           <div className="category-img">
                             <img src={category2} alt="" />
                           </div>
@@ -125,7 +125,7 @@ const Home = () => {
                   <SwiperSlide>
                     <div className="swiper-slide">
                       <div className="category-card" data-aos="fade-up">
-                        <Link to="/Search" className="inner-card">
+                        <Link to="/search" className="inner-card">
                           <div className="category-img">
                             <img src={category3} alt="" />
                           </div>
@@ -143,7 +143,7 @@ const Home = () => {
                   <SwiperSlide>
                     <div className="swiper-slide">
                       <div className="category-card" data-aos="fade-up">
-                        <Link to="/Search" className="inner-card">
+                        <Link to="/search" className="inner-card">
                           <div className="category-img">
                             <img src={category4} alt="" />
                           </div>
@@ -197,7 +197,7 @@ const Home = () => {
               <h6>
                 <i className="fa-light fa-briefcase"></i> خدمات أعمال
               </h6>
-              <Link to="departments">
+              <Link to="/categories">
                 عرض الكل <i className="fa-regular fa-angle-left"></i>
               </Link>
             </div>
@@ -205,7 +205,7 @@ const Home = () => {
             <div className="row mb-5">
               <div className="col-lg-3 col-6 mb-3">
                 <div className="service-card" data-aos="fade-up">
-                  <Link to="Services" className="img">
+                  <Link to="/services" className="img">
                     <img src={bann} alt="" />
                   </Link>
                   <div className="content">
@@ -243,7 +243,7 @@ const Home = () => {
               </div>
               <div className="col-lg-3 col-6 mb-3">
                 <div className="service-card" data-aos="fade-up">
-                  <Link to="Services" className="img">
+                  <Link to="/services" className="img">
                     <img src={bann} alt="" />
                   </Link>
                   <div className="content">
@@ -281,7 +281,7 @@ const Home = () => {
               </div>
               <div className="col-lg-3 col-6 mb-3">
                 <div className="service-card" data-aos="fade-up">
-                  <Link to="Services" className="img">
+                  <Link to="/services" className="img">
                     <img src={bann} alt="" />
                   </Link>
                   <div className="content">
@@ -320,7 +320,7 @@ const Home = () => {
 
               <div className="col-lg-3 col-6 mb-3">
                 <div className="service-card" data-aos="fade-up">
-                  <Link to="Services" className="img">
+                  <Link to="/services" className="img">
                     <img src={bann} alt="" />
                   </Link>
                   <div className="content">
@@ -362,7 +362,7 @@ const Home = () => {
               <h6>
                 <i className="fa-sharp fa-light fa-code"></i> خدمات برمجة وتطوير
               </h6>
-              <Link to="departments">
+              <Link to="/categories">
                 عرض الكل <i className="fa-regular fa-angle-left"></i>
               </Link>
             </div>
@@ -370,7 +370,7 @@ const Home = () => {
             <div className="row mb-5">
               <div className="col-lg-3 col-6 mb-3">
                 <div className="service-card" data-aos="fade-up">
-                  <Link to="Services" className="img">
+                  <Link to="/services" className="img">
                     <img src={bann} alt="" />
                   </Link>
                   <div className="content">
@@ -408,7 +408,7 @@ const Home = () => {
               </div>
               <div className="col-lg-3 col-6 mb-3">
                 <div className="service-card" data-aos="fade-up">
-                  <Link to="Services" className="img">
+                  <Link to="/services" className="img">
                     <img src={bann} alt="" />
                   </Link>
                   <div className="content">
@@ -446,7 +446,7 @@ const Home = () => {
               </div>
               <div className="col-lg-3 col-6 mb-3">
                 <div className="service-card" data-aos="fade-up">
-                  <Link to="Services" className="img">
+                  <Link to="/services" className="img">
                     <img src={bann} alt="" />
                   </Link>
                   <div className="content">
@@ -484,7 +484,7 @@ const Home = () => {
               </div>
               <div className="col-lg-3 col-6 mb-3">
                 <div className="service-card" data-aos="fade-up">
-                  <Link to="Services" className="img">
+                  <Link to="/services" className="img">
                     <img src={bann} alt="" />
                   </Link>
                   <div className="content">
@@ -526,7 +526,7 @@ const Home = () => {
               <h6>
                 <i className="fa-light fa-language"></i> خدمات كتابة وترجمة
               </h6>
-              <Link to="departments">
+              <Link to="/categories">
                 عرض الكل <i className="fa-regular fa-angle-left"></i>
               </Link>
             </div>
@@ -534,7 +534,7 @@ const Home = () => {
             <div className="row mb-5">
               <div className="col-lg-3 col-6 mb-3">
                 <div className="service-card" data-aos="fade-up">
-                  <Link to="Services" className="img">
+                  <Link to="/services" className="img">
                     <img src={bann} alt="" />
                   </Link>
                   <div className="content">
@@ -572,7 +572,7 @@ const Home = () => {
               </div>
               <div className="col-lg-3 col-6 mb-3">
                 <div className="service-card" data-aos="fade-up">
-                  <Link to="Services" className="img">
+                  <Link to="/services" className="img">
                     <img src={bann} alt="" />
                   </Link>
 
@@ -611,7 +611,7 @@ const Home = () => {
               </div>
               <div className="col-lg-3 col-6 mb-3">
                 <div className="service-card" data-aos="fade-up">
-                  <Link to="Services" className="img">
+                  <Link to="/services" className="img">
                     <img src={bann} alt="" />
                   </Link>
                   <div className="content">
@@ -649,7 +649,7 @@ const Home = () => {
               </div>
               <div className="col-lg-3 col-6 mb-3">
                 <div className="service-card" data-aos="fade-up">
-                  <Link to="Services" className="img">
+                  <Link to="/services" className="img">
                     <img src={bann} alt="" />
                   </Link>
                   <div className="content">
@@ -700,32 +700,32 @@ const Home = () => {
       <div className="smallNav">
         <ul>
           <li>
-            <Link to="index.html" className="active">
+            <Link to="/" className="active">
               <i className="fa-sharp fa-solid fa-house"></i>
               <span>الرئيسية</span>
             </Link>
           </li>
           <li>
-            <Link to="profile.html">
+            <Link to="/profile">
               <i className="fa-solid fa-user"></i>
               <span>حسابى</span>
             </Link>
           </li>
           <li>
-            <Link to="cart.html">
+            <Link to="/cart">
               <i className="fa-sharp fa-solid fa-cart-shopping"></i>
               <span>السلة</span>
             </Link>
           </li>
           <li>
-            <Link to="notifications.html">
+            <Link to="/notifications">
               <i className="fa-sharp fa-solid fa-bell"></i>
               <span>الاشعارات</span>
               <span className="num-count2">3</span>
             </Link>
           </li>
           <li>
-            <Link to="recieved-requests.html">
+            <Link to="/recieved-requests">
               <i className="fa-sharp fa-solid fa-cubes"></i>
               <span>الطلبات</span>
             </Link>

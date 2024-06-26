@@ -25,22 +25,22 @@ const Footer = () => {
               <h4>روابط مهمة</h4>
               <ul>
                 <li>
-                  <Link to="/About">حول ينجز</Link>
+                  <Link to="/about">حول ينجز</Link>
                 </li>
                 <li>
-                  <Link to="/Contact">تواصل معنا</Link>
+                  <Link to="/contact">تواصل معنا</Link>
                 </li>
                 <li>
-                  <Link to="/Faq">الاسئلة الشائعة</Link>
+                  <Link to="/faq">الاسئلة الشائعة</Link>
                 </li>
                 <li>
-                  <Link to="/Terms">ضمان الحقوق</Link>
+                  <Link to="/terms">ضمان الحقوق</Link>
                 </li>
                 <li>
-                  <Link to="/Blogs">المدونات</Link>
+                  <Link to="/blogs">المدونات</Link>
                 </li>
                 <li>
-                  <Link to="/HowItWork">كيف يعمل ينجز</Link>
+                  <Link to="/how_it_work">كيف يعمل ينجز</Link>
                 </li>
               </ul>
             </div>
@@ -50,19 +50,19 @@ const Footer = () => {
               <h4>الاقسام</h4>
               <ul>
                 <li>
-                  <Link to="search.html">برمجة وتطوير</Link>
+                  <Link to="/search">برمجة وتطوير</Link>
                 </li>
                 <li>
-                  <Link to="search.html">تصميم فيديو</Link>
+                  <Link to="/search">تصميم فيديو</Link>
                 </li>
                 <li>
-                  <Link to="search.html">تعليم عن بعد</Link>
+                  <Link to="/search">تعليم عن بعد</Link>
                 </li>
                 <li>
-                  <Link to="search.html">كتابة و ترجمة</Link>
+                  <Link to="/search">كتابة و ترجمة</Link>
                 </li>
                 <li>
-                  <Link to="search.html">التسويق الإلكتروني</Link>
+                  <Link to="/search">التسويق الإلكتروني</Link>
                 </li>
               </ul>
             </div>

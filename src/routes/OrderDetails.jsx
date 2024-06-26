@@ -13,7 +13,7 @@ function OrderDetails() {
               <div className="row justify-content-center">
                 <div className="col-lg-9 col-12 mb-5">
                   <div className="service-head">
-                    <Link to="Services" className="img">
+                    <Link to="/services" className="img">
                       <img src={bann} alt="service" />
                     </Link>
                     <div className="title">

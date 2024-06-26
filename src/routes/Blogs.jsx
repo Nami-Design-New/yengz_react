@@ -14,7 +14,7 @@ const Blogs = () => {
           <div className="container">
             <div className="row">
               <div className="col-lg-4 colmd-6 col-12 p-2">
-                <Link to="/BlogDetails" className="blog" data-aos="fade-up">
+                <Link to="/blog_details" className="blog" data-aos="fade-up">
                   <div className="">
                     <img src={slider1} alt="" />
                   </div>
@@ -36,7 +36,7 @@ const Blogs = () => {
                 </Link>
               </div>
               <div className="col-lg-4 colmd-6 col-12 p-2">
-                <Link to="/BlogDetails" className="blog" data-aos="fade-up">
+                <Link to="/blog_details" className="blog" data-aos="fade-up">
                   <div className="">
                     <img src={slider1} alt="" />
                   </div>
@@ -59,7 +59,7 @@ const Blogs = () => {
               </div>
 
               <div className="col-lg-4 colmd-6 col-12 p-2">
-                <Link to="/BlogDetails" className="blog" data-aos="fade-up">
+                <Link to="/blog_details" className="blog" data-aos="fade-up">
                   <div className="">
                     <img src={slider1} alt="" />
                   </div>
