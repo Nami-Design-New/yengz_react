@@ -21,7 +21,7 @@ const RecivedRequestOrders = lazy(() =>
   import("./routes/RecivedRequestOrders")
 );
 const Terms = lazy(() => import("./routes/Terms"));
-const RequestAdd = lazy(() => import("./routes/requestAdd"));
+const RequestAdd = lazy(() => import("./routes/RequestAdd"));
 const Requests = lazy(() => import("./routes/Requests"));
 const Services = lazy(() => import("./routes/Services"));
 const Search = lazy(() => import("./routes/Search"));
