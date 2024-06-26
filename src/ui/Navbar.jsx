@@ -11,7 +11,7 @@ import "../styles/dropdownes.css";
 
 const Navbar = () => {
   return (
-    <SectionHeader>
+    <header>
       <nav className="tnavbar">
         <div className="toogler">
           <span></span>
@@ -282,7 +282,7 @@ const Navbar = () => {
           </ul>
         </div>
       </nav>
-    </SectionHeader>
+    </header>
   );
 };
 
