@@ -2,7 +2,6 @@ import { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles/styleAR.css";
-import AddRequest from "./routes/AddRequest";
 
 const Layout = lazy(() => import("./ui/Layout"));
 const Home = lazy(() => import("./routes/Home"));
