@@ -2,6 +2,7 @@ import { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles/styleAR.css";
+import AddRequest from "./routes/AddRequest";
 
 const Layout = lazy(() => import("./ui/Layout"));
 const Home = lazy(() => import("./routes/Home"));
@@ -21,7 +22,7 @@ const RecievedRequestOrders = lazy(() =>
   import("./routes/RecievedRequestOrders")
 );
 const Terms = lazy(() => import("./routes/Terms"));
-const RequestAdd = lazy(() => import("./routes/RequestAdd"));
+const AddRequest = lazy(() => import("./routes/AddRequest"));
 const Requests = lazy(() => import("./routes/Requests"));
 const Services = lazy(() => import("./routes/Services"));
 const Search = lazy(() => import("./routes/Search"));
@@ -39,7 +40,7 @@ function App() {
           <Route path="/recieved_request" element={<RecievedRequest />} />
           <Route path="requests" element={<Requests />} />
           <Route path="reaquest_details" element={<ReaquestDetails />} />
-          <Route path="/request_add" element={<RequestAdd />} />
+          <Route path="/request_add" element={<AddRequest />} />
           <Route path="/chat" element={<Chat />} />
           <Route path="/search" element={<Search />} />
           <Route path="/contact" element={<Contact />} />

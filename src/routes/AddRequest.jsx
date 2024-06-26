@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import SectionHeader from "../ui/SectionHeader";
 
-const RequestAdd = () => {
+function AddRequest() {
   return (
     <main className="main">
       <div className="section-head">
@@ -65,6 +65,6 @@ const RequestAdd = () => {
       </section>
     </main>
   );
-};
+}
 
-export default RequestAdd;
+export default AddRequest
