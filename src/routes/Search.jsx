@@ -2107,7 +2107,7 @@ const Search = () => {
                       <div className="content">
                         <h6>اصنع لك تطبيق متجر الكتروني باستخدام flutter...</h6>
                         <p>
-                          <a href="#!">برمجة وتطوير</a> /
+                          <Link to="#!">برمجة وتطوير</Link> /
                           <span>إنشاء تطبيق</span>
                         </p>
                         <div className="d-flex gap-3">
@@ -2148,7 +2148,7 @@ const Search = () => {
                       <div className="content">
                         <h6>اصنع لك تطبيق متجر الكتروني باستخدام flutter...</h6>
                         <p>
-                          <a href="#!">برمجة وتطوير</a> /
+                          <Link to="#!">برمجة وتطوير</Link> /
                           <span>إنشاء تطبيق</span>
                         </p>
                         <div className="d-flex gap-3">
@@ -2190,7 +2190,7 @@ const Search = () => {
                       <div className="content">
                         <h6>اصنع لك تطبيق متجر الكتروني باستخدام flutter...</h6>
                         <p>
-                          <a href="#!">برمجة وتطوير</a> /
+                          <Link to="#!">برمجة وتطوير</Link> /
                           <span>إنشاء تطبيق</span>
                         </p>
                         <div className="d-flex gap-3">
@@ -2231,7 +2231,7 @@ const Search = () => {
                       <div className="content">
                         <h6>اصنع لك تطبيق متجر الكتروني باستخدام flutter...</h6>
                         <p>
-                          <a href="#!">برمجة وتطوير</a> /
+                          <Link to="#!">برمجة وتطوير</Link> /
                           <span>إنشاء تطبيق</span>
                         </p>
                         <div className="d-flex gap-3">
@@ -2265,13 +2265,13 @@ const Search = () => {
                   {/*!-- service --> */}
                   <div className="col-lg-4 col-6 mb-4">
                     <div className="service-card">
-                      <Link href="Services" className="img">
+                      <Link to="Services" className="img">
                         <img src={bann} alt="" />
                       </Link>
                       <div className="content">
                         <h6>اصنع لك تطبيق متجر الكتروني باستخدام flutter...</h6>
                         <p>
-                          <a href="#!">برمجة وتطوير</a> /
+                          <Link to="#!">برمجة وتطوير</Link> /
                           <span>إنشاء تطبيق</span>
                         </p>
                         <div className="d-flex gap-3">

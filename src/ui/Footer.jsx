@@ -10,9 +10,9 @@ const Footer = () => {
         <div className="row upper-row">
           <div className="col-lg-3 col-md-6 col-12">
             <div className="about">
-              <a className="logo">
+              <Link to="/" className="logo">
                 <img className="brand" src={logo} alt="" />
-              </a>
+              </Link>
               <p>
                 مرحبًا بك في أكبر سوق عربي لبيع وشراء الخدمات المصغرة. نحن هنا
                 لمساعدتك في تحقيق أهدافك بسهولة وأمان. يمكنك الاعتماد على منصتنا

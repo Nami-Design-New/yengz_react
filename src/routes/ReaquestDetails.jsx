@@ -43,13 +43,13 @@ const ReaquestDetails = () => {
 
                 <div className="comment">
                   <div className="userCommented">
-                    <Link href="profile.html">
+                    <Link to="/profile">
                       <img src={av2} alt="صورة المستخدم" />
                     </Link>
                     <div className="lastUser">
-                      <a href="profile.html" className="name">
+                      <Link to="/profile" className="name">
                         أحمد الزهراني
-                      </a>
+                      </Link>
                       <p className="time">
                         <i className="fa-regular fa-timer"></i> منذ ساعة واحدة
                       </p>
@@ -63,14 +63,14 @@ const ReaquestDetails = () => {
                 {/*<!--  Comment -->*/}
                 <div className="comment">
                   <div className="userCommented">
-                    <Link href="profile.html">
+                    <Link to="/profile">
                       <img src={av1} alt="صورة المستخدم" />
                     </Link>
 
                     <div className="lastUser">
-                      <a href="profile.html" className="name">
+                      <Link to="/profile" className="name">
                         سارة القحطاني
-                      </a>
+                      </Link>
                       <p className="time">
                         <i className="fa-regular fa-timer"></i> منذ 3 ساعات
                       </p>
@@ -84,13 +84,13 @@ const ReaquestDetails = () => {
                 {/*<!--  Comment -->*/}
                 <div className="comment">
                   <div className="userCommented">
-                    <Link href="profile.html">
+                    <Link to="/profile">
                       <img src={av2} alt="صورة المستخدم" />
                     </Link>
                     <div className="lastUser">
-                      <a href="profile.html" className="name">
+                      <Link to="/profile" className="name">
                         أحمد الزهراني
-                      </a>
+                      </Link>
                       <p className="time">
                         <i className="fa-regular fa-timer"></i> منذ ساعة واحدة
                       </p>
@@ -104,13 +104,13 @@ const ReaquestDetails = () => {
                 {/*<!--  Comment -->*/}
                 <div className="comment">
                   <div className="userCommented">
-                    <Link href="profile.html">
+                    <Link to="/profile">
                       <img src={av1} alt="صورة المستخدم" />
                     </Link>
                     <div className="lastUser">
-                      <a href="profile.html" className="name">
+                      <Link to="/profile" className="name">
                         سارة القحطاني
-                      </a>
+                      </Link>
                       <p className="time">
                         <i className="fa-regular fa-timer"></i> منذ 3 ساعات
                       </p>
@@ -145,7 +145,7 @@ const ReaquestDetails = () => {
                     />
                     <label for="terms">
                       لقد قرأت وأوافق على
-                      <a href="terms_and_conditions.html">الشروط والأحكام</a>
+                      <Link to="/terms">الشروط والأحكام</Link>
                     </label>
                   </div>
                   <div className="d-flex justify-content-start py-4">
@@ -167,40 +167,40 @@ const ReaquestDetails = () => {
                 <div className="posts">
                   {/*<!-- Post -->*/}
                   <div className="post">
-                    <Link href="profile.html">
+                    <Link to="/profile">
                       <img src={av2} alt="صورة المستخدم" />
                     </Link>
-                    <a href="post-details.html">
+                    <Link to="/post-details">
                       مطلوب مبرمج لتطوير تطبيق جوال
-                    </a>
+                    </Link>
                   </div>
                   {/*<!-- Post -->*/}
                   <div className="post">
-                    <Link href="profile.html">
+                    <Link to="/profile">
                       <img src={av1} alt="صورة المستخدم" />
                     </Link>
-                    <a href="another_post_details.html">
+                    <Link to="/another_post_details">
                       بحاجة إلى مصمم جرافيك لإنشاء شعار
-                    </a>
+                    </Link>
                   </div>
                   {/*<!-- Post -->*/}
                   <div className="post">
-                    <Link href="profile.html">
+                    <Link to="/profile">
                       <img src={av2} alt="صورة المستخدم" />
                     </Link>
-                    <a href="post-details.html">
+                    <Link to="/post-details">
                       مطلوب مبرمج لتطوير تطبيق جوال
-                    </a>
+                    </Link>
                   </div>
                   {/*<!-- Post -->*/}
 
                   <div className="post">
-                    <Link href="profile.html">
+                    <Link to="/profile">
                       <img src={av1} alt="صورة المستخدم" />
                     </Link>
-                    <a href="another_post_details.html">
+                    <Link to="another_post_details">
                       بحاجة إلى مصمم جرافيك لإنشاء شعار
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

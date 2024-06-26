@@ -60,12 +60,12 @@ const Services = () => {
                 <div className="d-flex justify-content-between h-100">
                   <div className="owner">
                     <div className="img">
-                      <a
-                        href="assets/images/rate-owner2.jpg"
+                      <Link
+                        to="assets/images/rate-owner2.jpg"
                         data-fancybox="owner"
                       >
                         <img src={rateowner2} alt="owner" />
-                      </a>
+                      </Link>
                     </div>
                     <div className="title">
                       <h6>خالد عوض</h6>
@@ -75,9 +75,9 @@ const Services = () => {
                     </div>
                   </div>
                   <div className="btns">
-                    <a href="chat.html" className="butn">
+                    <Link to="/chat" className="butn">
                       <i className="ti ti-md ti-message-2"></i>
-                    </a>
+                    </Link>
                     <div className="dropdown">
                       <button
                         className="butn dropdown-toggle"
@@ -95,33 +95,33 @@ const Services = () => {
                         <h5>مشاركة</h5>
                         <ul className="social">
                           <li>
-                            <a href="#">
+                            <Link to="#">
                               <i className="fa-brands fa-facebook-f"></i>
-                            </a>
+                            </Link>
                             facebook
                           </li>
                           <li>
-                            <a href="#">
+                            <Link to="#">
                               <i className="fa-brands fa-instagram"></i>
-                            </a>
+                            </Link>
                             Instagram
                           </li>
                           <li>
-                            <a href="#">
+                            <Link to="#">
                               <i className="fa-brands fa-twitter"></i>
-                            </a>
+                            </Link>
                             Twitter
                           </li>
                           <li>
-                            <a href="#">
+                            <Link to="#">
                               <i className="fa-brands fa-snapchat"></i>
-                            </a>
+                            </Link>
                             Snapchat
                           </li>
                           <li>
-                            <a href="#">
+                            <Link to="#">
                               <i className="fa-light fa-share-nodes"></i>
-                            </a>
+                            </Link>
                             More
                           </li>
                         </ul>
@@ -145,7 +145,7 @@ const Services = () => {
               </div>
               <h4>انشاء متجر الكتروني احترافي على منصة ووردبريس ووكومرس</h4>
               <p>
-                <a href="#!">برمجة وتطوير</a> / <span>إنشاء تطبيق</span>
+                <Link to="#!">برمجة وتطوير</Link> / <span>إنشاء تطبيق</span>
               </p>
               <p>
                 مرحبا بك. <br />

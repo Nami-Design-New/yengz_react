@@ -161,7 +161,7 @@ const Home = () => {
                   <SwiperSlide>
                     <div className="swiper-slide">
                       <div className="category-card" data-aos="fade-up">
-                        <Link href="search.html" className="inner-card">
+                        <Link to="/search" className="inner-card">
                           <div className="category-img">
                             <img src={category5} alt="" />
                           </div>
@@ -211,7 +211,8 @@ const Home = () => {
                   <div className="content">
                     <h6>اصنع لك تطبيق متجر الكتروني باستخدام flutter...</h6>
                     <p>
-                      <a href="#!">برمجة وتطوير</a> / <span>إنشاء تطبيق</span>
+                      <Link to="#!">برمجة وتطوير</Link> /{" "}
+                      <span>إنشاء تطبيق</span>
                     </p>
                     <div className="d-flex gap-3">
                       <div className="rate">
@@ -249,7 +250,8 @@ const Home = () => {
                   <div className="content">
                     <h6>اصنع لك تطبيق متجر الكتروني باستخدام flutter...</h6>
                     <p>
-                      <a href="#!">برمجة وتطوير</a> / <span>إنشاء تطبيق</span>
+                      <Link to="#!">برمجة وتطوير</Link> /{" "}
+                      <span>إنشاء تطبيق</span>
                     </p>
                     <div className="d-flex gap-3">
                       <div className="rate">
@@ -287,7 +289,8 @@ const Home = () => {
                   <div className="content">
                     <h6>اصنع لك تطبيق متجر الكتروني باستخدام flutter...</h6>
                     <p>
-                      <a href="#!">برمجة وتطوير</a> / <span>إنشاء تطبيق</span>
+                      <Link to="#!">برمجة وتطوير</Link> /{" "}
+                      <span>إنشاء تطبيق</span>
                     </p>
                     <div className="d-flex gap-3">
                       <div className="rate">
@@ -326,7 +329,8 @@ const Home = () => {
                   <div className="content">
                     <h6>اصنع لك تطبيق متجر الكتروني باستخدام flutter...</h6>
                     <p>
-                      <a href="#!">برمجة وتطوير</a> / <span>إنشاء تطبيق</span>
+                      <Link to="#!">برمجة وتطوير</Link> /{" "}
+                      <span>إنشاء تطبيق</span>
                     </p>
                     <div className="d-flex gap-3">
                       <div className="rate">
@@ -376,7 +380,8 @@ const Home = () => {
                   <div className="content">
                     <h6>اصنع لك تطبيق متجر الكتروني باستخدام flutter...</h6>
                     <p>
-                      <a href="#!">برمجة وتطوير</a> / <span>إنشاء تطبيق</span>
+                      <Link to="#!">برمجة وتطوير</Link> /{" "}
+                      <span>إنشاء تطبيق</span>
                     </p>
                     <div className="d-flex gap-3">
                       <div className="rate">
@@ -414,7 +419,8 @@ const Home = () => {
                   <div className="content">
                     <h6>اصنع لك تطبيق متجر الكتروني باستخدام flutter...</h6>
                     <p>
-                      <a href="#!">برمجة وتطوير</a> / <span>إنشاء تطبيق</span>
+                      <Link to="#!">برمجة وتطوير</Link> /{" "}
+                      <span>إنشاء تطبيق</span>
                     </p>
                     <div className="d-flex gap-3">
                       <div className="rate">
@@ -452,7 +458,8 @@ const Home = () => {
                   <div className="content">
                     <h6>اصنع لك تطبيق متجر الكتروني باستخدام flutter...</h6>
                     <p>
-                      <a href="#!">برمجة وتطوير</a> / <span>إنشاء تطبيق</span>
+                      <Link to="#!">برمجة وتطوير</Link> /{" "}
+                      <span>إنشاء تطبيق</span>
                     </p>
                     <div className="d-flex gap-3">
                       <div className="rate">
@@ -490,7 +497,8 @@ const Home = () => {
                   <div className="content">
                     <h6>اصنع لك تطبيق متجر الكتروني باستخدام flutter...</h6>
                     <p>
-                      <a href="#!">برمجة وتطوير</a> / <span>إنشاء تطبيق</span>
+                      <Link to="#!">برمجة وتطوير</Link> /{" "}
+                      <span>إنشاء تطبيق</span>
                     </p>
                     <div className="d-flex gap-3">
                       <div className="rate">
@@ -540,7 +548,8 @@ const Home = () => {
                   <div className="content">
                     <h6>اصنع لك تطبيق متجر الكتروني باستخدام flutter...</h6>
                     <p>
-                      <a href="#!">برمجة وتطوير</a> / <span>إنشاء تطبيق</span>
+                      <Link to="#!">برمجة وتطوير</Link> /{" "}
+                      <span>إنشاء تطبيق</span>
                     </p>
                     <div className="d-flex gap-3">
                       <div className="rate">
@@ -579,7 +588,8 @@ const Home = () => {
                   <div className="content">
                     <h6>اصنع لك تطبيق متجر الكتروني باستخدام flutter...</h6>
                     <p>
-                      <a href="#!">برمجة وتطوير</a> / <span>إنشاء تطبيق</span>
+                      <Link to="#!">برمجة وتطوير</Link> /{" "}
+                      <span>إنشاء تطبيق</span>
                     </p>
                     <div className="d-flex gap-3">
                       <div className="rate">
@@ -617,7 +627,8 @@ const Home = () => {
                   <div className="content">
                     <h6>اصنع لك تطبيق متجر الكتروني باستخدام flutter...</h6>
                     <p>
-                      <a href="#!">برمجة وتطوير</a> / <span>إنشاء تطبيق</span>
+                      <Link to="#!">برمجة وتطوير</Link> /{" "}
+                      <span>إنشاء تطبيق</span>
                     </p>
                     <div className="d-flex gap-3">
                       <div className="rate">
@@ -655,7 +666,8 @@ const Home = () => {
                   <div className="content">
                     <h6>اصنع لك تطبيق متجر الكتروني باستخدام flutter...</h6>
                     <p>
-                      <a href="#!">برمجة وتطوير</a> / <span>إنشاء تطبيق</span>
+                      <Link to="#!">برمجة وتطوير</Link> /{" "}
+                      <span>إنشاء تطبيق</span>
                     </p>
                     <div className="d-flex gap-3">
                       <div className="rate">

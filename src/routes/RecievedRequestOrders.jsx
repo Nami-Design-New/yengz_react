@@ -18,9 +18,9 @@ const RecievedRequestOrders = () => {
                 <div className="row justify-content-center">
                   <div className="col-lg-9 col-12 mb-5">
                     <div className="service-head">
-                      <a href="service.html" className="request-owner-img">
+                      <Link to="/service" className="request-owner-img">
                         <img src={rateowner1} alt="service" />
-                      </a>
+                      </Link>
                       <div className="title requester-title">
                         <div className="owner">
                           <span>خالد عوض</span>
@@ -78,9 +78,9 @@ const RecievedRequestOrders = () => {
                             ></div>
                           </div>
                         </div>
-                        <a href="chat.html" className="chat">
+                        <Link to="/chat" className="chat">
                           <i className="fa-light fa-message-lines"></i>
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>

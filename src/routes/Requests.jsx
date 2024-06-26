@@ -45,7 +45,7 @@ const Requests = () => {
                 </div>
                 <div className="col-md-4 p-1">
                   <div className="lastInteraction">
-                    <Link href="profile.html">
+                    <Link to="/profile">
                       <img src={av1} alt="" />
                     </Link>
                     <div className="lastUser">
@@ -88,7 +88,7 @@ const Requests = () => {
                 </div>
                 <div className="col-md-4 p-1">
                   <div className="lastInteraction">
-                    <Link href="profile.html">
+                    <Link to="/profile">
                       <img src={av1} alt="" />
                     </Link>
                     <div className="lastUser">
@@ -131,7 +131,7 @@ const Requests = () => {
                 </div>
                 <div className="col-md-4 p-1">
                   <div className="lastInteraction">
-                    <Link href="profile.html">
+                    <Link to="/profile">
                       <img src={av1} alt="" />
                     </Link>
                     <div className="lastUser">
@@ -174,7 +174,7 @@ const Requests = () => {
                 </div>
                 <div className="col-md-4 p-1">
                   <div className="lastInteraction">
-                    <Link href="profile.html">
+                    <Link to="/profile">
                       <img src={av1} alt="" />
                     </Link>
                     <div className="lastUser">

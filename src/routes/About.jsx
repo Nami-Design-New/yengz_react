@@ -48,7 +48,7 @@ const About = () => {
                       مثيل لها للوظائف البعيدة والمختلطة والمرنة
                     </li>
                   </ul>
-                  <a href="search.html">ابحث الان</a>
+                  <Link to="/search">ابحث الان</Link>
                 </div>
               </div>
 

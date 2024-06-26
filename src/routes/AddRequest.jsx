@@ -10,7 +10,7 @@ function AddRequest() {
       </div>
       <section className="addRequest">
         <div className="container">
-          <form action="request-details.html">
+          <form action="/request_details">
             <div className="input-field mb-4">
               <label for="service-name">عنوان الموضوع</label>
               <input
@@ -37,7 +37,7 @@ function AddRequest() {
               />
               <label for="terms">
                 راجعت محتوى الموضوع بدقة وهو لا يخالف{" "}
-                <a href="#!"> الشروط والاحكام </a>
+                <Link to="#!"> الشروط والاحكام </Link>
               </label>
             </div>
             <div className="input-field  mb-2 flex-row gap-4 ps-3 ">

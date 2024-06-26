@@ -81,7 +81,7 @@ const Navbar = () => {
 
                 <Dropdown.Menu>
                   <Dropdown.Item className="dropItem">
-                    <form action="search.html" aria-labelledby="searchmenu">
+                    <form action="/search" aria-labelledby="searchmenu">
                       <input
                         className="Search_input"
                         type="text"
@@ -234,21 +234,21 @@ const Navbar = () => {
 
                 <Dropdown.Menu className="Menu">
                   <Dropdown.Item>
-                    <Link className="dropdown-item_Link" to="profile.html">
+                    <Link className="dropdown-item_Link" to="/profile">
                       <i className="fa-solid fa-user"></i>
                       محمد عبد المعطي
                     </Link>
                   </Dropdown.Item>
 
                   <Dropdown.Item>
-                    <Link className="dropdown-item_Link" to="profile.html">
+                    <Link className="dropdown-item_Link" to="/profile">
                       <i className="fa-sharp fa-solid fa-dollar-sign"></i>
                       الرصيد
                     </Link>
                   </Dropdown.Item>
 
                   <Dropdown.Item>
-                    <Link className="dropdown-item_Link" to="profile.html">
+                    <Link className="dropdown-item_Link" to="/profile">
                       <i className="fa-solid fa-sliders"></i>
                       الإعدادات
                     </Link>
@@ -271,7 +271,7 @@ const Navbar = () => {
                   <hr />
 
                   <Dropdown.Item>
-                    <Link className="dropdown-item_Link" to="profile.html">
+                    <Link className="dropdown-item_Link" to="/profile">
                       <i className="fa-solid fa-right-from-bracket"></i>
                       تسجيل الخروج
                     </Link>
