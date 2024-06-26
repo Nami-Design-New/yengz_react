@@ -1,13 +1,13 @@
 import React from "react";
 import NewsLetter from "../ui/NewsLetter";
-import SectionHead from "../ui/SectionHead";
+import SectionHeader from "../ui/SectionHeader";
 
 const HowItWork = () => {
   return (
     <>
       <main className="main">
         <div className="section-head">
-          <SectionHead />
+          <SectionHeader />
         </div>
 
         <section className="terms" data-aos="fade-up">

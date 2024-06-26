@@ -11,7 +11,7 @@ import "../styles/dropdownes.css";
 
 const Navbar = () => {
   return (
-    <header>
+    <SectionHeader>
       <nav className="tnavbar">
         <div className="toogler">
           <span></span>
@@ -28,81 +28,6 @@ const Navbar = () => {
               <span>بائع مميز</span>
             </div>
           </div>
-
-          {/*
-          <ul className="nav-links">
-
-            <li className="nav-link">
-              <Link to="index">
-                
-                <i className="fa-sharp fa-regular fa-house"></i>الرئيسية
-              </Link>
-            </li>
-
-            <li className="nav-link">
-              <Link to="departments">
-                <i className="far fa-cube"></i> الأقسام
-              </Link>
-            </li>
-
-
-
-            <li className="nav-link">
-              <Link to="recieved-requests.html">
-                <i className="fa-sharp fa-light fa-clipboard-list-check"></i>
-                الطلبات الواردة
-              </Link>
-            </li>
-
-            
-            <li className="nav-link">
-              <Link to="add-sevice.html">
-                <i className="far fa-plus"></i> اضف خدمه
-              </Link>
-            </li>
-
-            <li className="nav-link">
-              <Link to="profile.html">
-                <i className="fa-light fa-user"></i> حسابى
-              </Link>
-            </li>
-
-            <li className="nav-link">
-              <Link to="chat.html">
-                <i className="fa-light fa-messages"></i> الرسائل
-              </Link>
-            </li>
-
-            <li className="nav-link">
-              <Link to="cart.html">
-                <i className="fal fa-shopping-bag"></i> سلة المشتريات
-              </Link>
-            </li>
-
-            <li className="nav-link">
-              <Link to="purchases.html">
-                <i className="fa-solid fa-bag-shopping"></i> المشتريات
-              </Link>
-            </li>
-
-            <li className="nav-link">
-              <Link to="edit-profile.html">
-                <i className="fa-light fa-gear"></i>المزيد
-              </Link>
-            </li>
-
-            <li className="nav-link">
-              <Link to="#">
-                <i className="fa-sharp fa-solid fa-arrow-right-from-bracket"></i>
-                تسجيل الخروج
-              </Link>
-            </li>
-
-            
-
-          </ul>
-
-          */}
         </div>
 
         <div className="right-wrapper">
@@ -357,7 +282,7 @@ const Navbar = () => {
           </ul>
         </div>
       </nav>
-    </header>
+    </SectionHeader>
   );
 };
 

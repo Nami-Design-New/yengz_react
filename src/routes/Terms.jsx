@@ -1,12 +1,12 @@
 import React from "react";
-import SectionHead from "../ui/SectionHead";
+import SectionHeader from "../ui/SectionHeader";
 import NewsLetter from "../ui/NewsLetter";
 
 const Terms = () => {
   return (
     <>
       <div className="section-head">
-        <SectionHead />
+        <SectionHeader />
       </div>
 
       <section className="faqs">

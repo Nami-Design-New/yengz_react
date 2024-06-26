@@ -5,7 +5,7 @@ import slider2 from "../Assets/images/slider2.webp";
 import slider3 from "../Assets/images/slider3.webp";
 import slider4 from "../Assets/images/slider4.webp";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SectionHead from "../ui/SectionHead";
+import SectionHeader from "../ui/SectionHeader";
 
 import "swiper/css";
 
@@ -13,7 +13,7 @@ const BlogDetails = () => {
   return (
     <main className="main">
       <div className="section-head">
-        <SectionHead />
+        <SectionHeader />
       </div>
 
       <section className="blogDetails">

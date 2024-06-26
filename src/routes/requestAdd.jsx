@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import SectionHead from "../ui/SectionHead";
+import SectionHeader from "../ui/SectionHeader";
 
 const RequestAdd = () => {
   return (
     <main className="main">
       <div className="section-head">
-        <SectionHead />
+        <SectionHeader />
       </div>
       <section className="addRequest">
         <div className="container">

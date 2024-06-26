@@ -2,7 +2,7 @@ import React from "react";
 import about7 from "../Assets/images/about7.webp";
 import { Link } from "react-router-dom";
 
-const SectionHead = () => {
+const SectionHeader = () => {
   return (
     <div className="container">
       <div className="row">
@@ -22,4 +22,4 @@ const SectionHead = () => {
   );
 };
 
-export default SectionHead;
+export default SectionHeader;

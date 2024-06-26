@@ -6,14 +6,14 @@ import category3 from "../Assets/images/category3.webp";
 import category1 from "../Assets/images/category1.webp";
 import category2 from "../Assets/images/category2.webp";
 import { Link } from "react-router-dom";
-import SectionHead from "../ui/SectionHead";
+import SectionHeader from "../ui/SectionHeader";
 
 const Categories = () => {
   return (
     <>
       <main className="main">
         <div className="section-head">
-          <SectionHead />
+          <SectionHeader />
         </div>
         <section className="department">
           <div className="container">

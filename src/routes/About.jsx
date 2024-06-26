@@ -8,13 +8,13 @@ import m5 from "../Assets/images/m5.png";
 import m6 from "../Assets/images/m6.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import SectionHead from "../ui/SectionHead";
+import SectionHeader from "../ui/SectionHeader";
 
 const About = () => {
   return (
     <>
       <div className="section-head">
-        <SectionHead />
+        <SectionHeader />
       </div>
 
       <section className="about-section">

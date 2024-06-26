@@ -1,6 +1,6 @@
 import React from "react";
 import contact from "../Assets/images/contact.webp";
-import SectionHead from "../ui/SectionHead";
+import SectionHeader from "../ui/SectionHeader";
 import NewsLetter from "../ui/NewsLetter";
 
 const Contact = () => {
@@ -8,7 +8,7 @@ const Contact = () => {
     <main className="main">
       <section className="contact-section">
         <div className="section-head">
-          <SectionHead />
+          <SectionHeader />
         </div>
 
         <div className="container mtb-64">

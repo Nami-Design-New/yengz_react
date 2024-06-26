@@ -1,14 +1,14 @@
 import React from "react";
 import slider1 from "../Assets/images/slider1.webp";
 import { Link } from "react-router-dom";
-import SectionHead from "../ui/SectionHead";
+import SectionHeader from "../ui/SectionHeader";
 
 const Blogs = () => {
   return (
     <>
       <main className="main">
         <div className="section-head">
-          <SectionHead />
+          <SectionHeader />
         </div>
         <section className="blogs">
           <div className="container">

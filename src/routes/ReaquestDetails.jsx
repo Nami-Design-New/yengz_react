@@ -2,13 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import av2 from "../Assets/images/av2.png";
 import av1 from "../Assets/images/av1.png";
-import SectionHead from "../ui/SectionHead";
+import SectionHeader from "../ui/SectionHeader";
 
 const ReaquestDetails = () => {
   return (
     <main className="main">
       <div className="section-head">
-        <SectionHead />
+        <SectionHeader />
       </div>
       <section className="requestDetails">
         <div className="container">
