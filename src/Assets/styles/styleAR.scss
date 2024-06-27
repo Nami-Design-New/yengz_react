@@ -284,7 +284,7 @@ header {
         height: 100%;
       }
     }
-
+    
     .loged-in-minor-menu {
       height: 100%;
       display: flex;
@@ -717,6 +717,7 @@ main {
   .department {
     padding: 80px 16px;
   }
+
   .login-section {
     padding: 32px 0;
     @media (max-width: 576px) {
@@ -2467,6 +2468,7 @@ main {
     }
   }
 
+
   .about-section {
     .mb-64 {
       margin-bottom: 80px;
@@ -2768,6 +2770,8 @@ main {
     }
   }
 
+
+
   .terms {
     padding: 80px 0;
     .row {
@@ -2787,6 +2791,7 @@ main {
       }
     }
   }
+  
 }
 footer {
   background: var(--input-bg);
@@ -5000,51 +5005,6 @@ main .search-section aside.side-menu {
     }
     &:hover {
       background: var(--main-color);
-    }
-  }
-}
-
-.modal-body {
-  padding: 0 30px 30px;
-  form {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 12px;
-    .sr {
-      display: flex;
-      flex-direction: row-reverse;
-      gap: 4px;
-      label {
-        cursor: pointer;
-        color: #eee;
-        &.active {
-          color: gold;
-        }
-      }
-      input {
-        appearance: none;
-      }
-    }
-    textarea {
-      width: 100%;
-      background: var(--input-bg);
-      border: none;
-      outline: none;
-      height: 150px;
-      padding: 8px 16px;
-      font-size: 14px;
-      border-radius: 12px;
-    }
-    button {
-      width: 100%;
-      height: 48px;
-      @include clearInput();
-      background: var(--main-color);
-      color: var(--white-color);
-      border-radius: 12px;
-      font-size: 14px;
     }
   }
 }

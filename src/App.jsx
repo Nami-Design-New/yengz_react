@@ -3,6 +3,13 @@ import { Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Assets/styles/styleAR.css";
 
+
+
+const ResetPassword = lazy(() => import("./features/auth/resetPassword/ResetPassword"));
+const Login = lazy(() => import("./features/auth/login/Login"));
+const Register = lazy(() => import("./features/auth/register/Register"));
+const ForgetPassword = lazy(() => import("./features/auth/resetPassword/ForgetPassword"));
+const PasswordOTP = lazy(() => import("./features/auth/resetPassword/PasswordOTP"));
 const Layout = lazy(() => import("./ui/Layout"));
 const Home = lazy(() => import("./routes/Home"));
 const Chat = lazy(() => import("./routes/Chat"));
@@ -29,6 +36,8 @@ const Search = lazy(() => import("./routes/Search"));
 function App() {
   return (
     <div className="App">
+
+
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
@@ -49,6 +58,15 @@ function App() {
           <Route path="/blog_details" element={<BlogDetails />} />
           <Route path="/how_it_work" element={<HowItWork />} />
           <Route path="/daq" element={<Faq />} />
+
+          <Route path="/">
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/forget_password" element={<ForgetPassword/>} />
+            <Route path="/password_OTP" element={<PasswordOTP />} />
+            <Route path="/resetPassword" element={<ResetPassword />} />
+
+          </Route>
           <Route
             path="/recieved_request_orders"
             element={<RecievedRequestOrders />}
