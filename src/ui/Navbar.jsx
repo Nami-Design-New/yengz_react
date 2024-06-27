@@ -19,7 +19,9 @@ const Navbar = () => {
           <span></span>
         </div>
         <div className="small-media-menu">
+
           <div className="user">
+            
             <Link to="/profile" className="avatar">
               <img src={avatar} alt="" />5
             </Link>
