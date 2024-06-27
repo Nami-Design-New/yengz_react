@@ -5,9 +5,9 @@ import av1 from "../Assets/images/av1.png";
 import av2 from "../Assets/images/av2.png";
 import logo from "../Assets/images/logo.svg";
 import { Link } from "react-router-dom";
-import "../styles/fontawesome.min.css";
+import "../Assets/styles/fontawesome.min.css";
 import Dropdown from "react-bootstrap/Dropdown";
-import "../styles/dropdownes.css";
+import "../Assets/styles/dropdownes.css";
 
 const Navbar = () => {
   return (
