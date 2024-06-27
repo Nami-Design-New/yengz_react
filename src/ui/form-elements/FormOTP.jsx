@@ -3,7 +3,7 @@ import React from "react";
 const FormOTP = () => {
   return (
     <form
-      action="auth-resetpassword-step3.html"
+      action="/reset-Password"
       class="container form forgetpasswordForm otp-small"
     >
       <div class="otp">

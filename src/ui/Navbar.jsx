@@ -9,9 +9,11 @@ import Dropdown from "react-bootstrap/Dropdown";
 import "../Assets/styles/dropdownes.css";
 
 const Navbar = () => {
+
   return (
     <header>
       <nav className="tnavbar">
+
         <div className="toogler">
           <span></span>
           <span></span>
@@ -54,7 +56,7 @@ const Navbar = () => {
               <span className="num-count2">3</span>
             </li>
             <li className="nav-link">
-              <Link to="/recieved_request">
+              <Link to="/recieved-request">
                 <i className="far fa-clipboard-list-check"></i> الطلبات الواردة
               </Link>
               <span className="num-count2">2</span>

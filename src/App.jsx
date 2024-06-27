@@ -36,8 +36,8 @@ function App() {
           <Route path="/purchases" element={<Purchases />} />
           <Route path="/order-details" element={<OrederDetails />} />
           <Route path="/recieved-request" element={<RecievedRequest />} />
-          <Route path="requests" element={<Requests />} />
-          <Route path="reaquest-details" element={<ReaquestDetails />} />
+          <Route path="/requests" element={<Requests />} />
+          <Route path="/reaquest-details" element={<ReaquestDetails />} />
           <Route path="/request-add" element={<AddRequest />} />
           <Route path="/chat" element={<Chat />} />
           <Route path="/search" element={<Search />} />
@@ -48,13 +48,11 @@ function App() {
           <Route path="/blog-details" element={<BlogDetails />} />
           <Route path="/how-it-work" element={<HowItWork />} />
           <Route path="/daq" element={<Faq />} />
-          <Route path="/">
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/forget-password" element={<ForgetPassword />} />
-            <Route path="/password-OTP" element={<PasswordOTP />} />
-            <Route path="/resetPassword" element={<ResetPassword />} />
-          </Route>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/forget-password" element={<ForgetPassword />} />
+          <Route path="/password-otp" element={<PasswordOTP />} />
+          <Route path="/reset-Password" element={<ResetPassword />} />
           <Route
             path="/recieved-request-orders"
             element={<RecievedRequestOrders />}

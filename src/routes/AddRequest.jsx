@@ -53,7 +53,7 @@ function AddRequest() {
             </div>
 
             <div className="d-flex justify-content-center py-4">
-              <Link to="/reaquest_details">
+              <Link to="/reaquest-details">
                 <button type="submit" className="btn btn-success px-5">
                   {" "}
                   نشر{" "}
