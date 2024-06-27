@@ -284,7 +284,7 @@ header {
         height: 100%;
       }
     }
-    
+
     .loged-in-minor-menu {
       height: 100%;
       display: flex;
@@ -628,6 +628,7 @@ main {
           gap: 12px;
           margin: 0 auto;
           width: 100%;
+          border: 1px solid var(--input-hint);
           i {
             color: #000;
           }
@@ -717,9 +718,8 @@ main {
   .department {
     padding: 80px 16px;
   }
-
   .login-section {
-    padding: 32px 0;
+    padding: 24px 0;
     @media (max-width: 576px) {
       padding: 0;
     }
@@ -740,13 +740,16 @@ main {
         font-size: 14px;
       }
     }
+    .illustration img {
+      height: 244px;
+    }
     .form {
       margin-top: 32px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 28px;
-      width: min(100% - 24px, 660px);
+      gap: 16px;
+      width: min(100% - 24px, 740px);
       .input-field {
         display: flex;
         width: 100%;
@@ -767,8 +770,9 @@ main {
           border: none;
           outline: none;
           padding: 10px 16px;
-          border-radius: 16px;
+          border-radius: 12px;
           background: var(--input-bg);
+          border: 1px solid var(--LightGray);
           font-size: 14px;
         }
         textarea {
@@ -780,7 +784,6 @@ main {
         color: var(--main-color);
       }
       .noAccount {
-        margin-top: 32px;
         color: var(--text-color);
         span {
           color: var(--main-color);
@@ -911,6 +914,45 @@ main {
           @media (max-width: 576px) {
             font-size: 14px;
           }
+        }
+      }
+      .pass-group {
+        display: flex;
+        button {
+          @include clearInput();
+          width: 60px;
+          height: 56px;
+          border: 1px solid var(--LightGray);
+          background: var(--input-bg);
+          border-right: 0;
+          border-radius: 12px 0 0 12px !important;
+          color: var(--text-color);
+        }
+        input {
+          border-left: 0 !important;
+          border-radius: 0 12px 12px 0 !important;
+        }
+      }
+      .phone-group {
+        .PhoneInput {
+          display: flex;
+          gap: 12px;
+          .PhoneInputCountryIcon {
+            position: relative;
+          }
+          .PhoneInputCountryIconImg {
+            width: 20px;
+            position: absolute;
+            top: -33px;
+            left: 10px;
+          }
+          select {
+            padding: 12px 6px 12px 30px;
+          }
+        }
+        .phone-code {
+          height: 54px;
+          border-radius: 4px;
         }
       }
     }
@@ -2468,7 +2510,6 @@ main {
     }
   }
 
-
   .about-section {
     .mb-64 {
       margin-bottom: 80px;
@@ -2770,8 +2811,6 @@ main {
     }
   }
 
-
-
   .terms {
     padding: 80px 0;
     .row {
@@ -2791,7 +2830,6 @@ main {
       }
     }
   }
-  
 }
 footer {
   background: var(--input-bg);
@@ -5007,4 +5045,7 @@ main .search-section aside.side-menu {
       background: var(--main-color);
     }
   }
+}
+.form-control {
+  box-shadow: none !important;
 }
