@@ -5,7 +5,6 @@ import av1 from "../Assets/images/av1.png";
 import av2 from "../Assets/images/av2.png";
 import logo from "../Assets/images/logo.svg";
 import { Link } from "react-router-dom";
-import "../Assets/styles/fontawesome.min.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import "../Assets/styles/dropdownes.css";
 
@@ -18,6 +17,7 @@ const Navbar = () => {
           <span></span>
           <span></span>
         </div>
+
         <div className="small-media-menu">
           <div className="user">
             <Link to="/profile" className="avatar">
@@ -93,46 +93,30 @@ const Navbar = () => {
               </Dropdown>
             </li>
 
-            {/*lang*
-
             <li className="link">
-
-            <Dropdown>
-                <Dropdown.Toggle  style={{backgroundColor:"#f4f4f4"}} id="dropdown-basic">
-                <i className='fa-regular fa-language rounded-circle '></i>
-
-
+              <Dropdown>
+                <Dropdown.Toggle
+                  style={{ backgroundColor: "#f4f4f4" }}
+                  id="dropdown-basic"
+                >
+                  <i className="fa-regular fa-language rounded-circle "></i>
                 </Dropdown.Toggle>
-
-                <Dropdown.Menu className="dropdown-menu"> 
-
-                  <Dropdown.Item >
-                  <Link className="dropdown-item" to="#">
-                    <div className="circle-filled"></div>
-                    عربى
-                  </Link>
-
-
+                <Dropdown.Menu className="dropdown-menu">
+                  <Dropdown.Item>
+                    <Link className="dropdown-item" to="#">
+                      <div className="circle-filled"></div>
+                      عربى
+                    </Link>
                   </Dropdown.Item>
-
-                  <Dropdown.Item >
-                  <Link className="dropdown-item" to="#">
-                    <div className="circle-outline"></div>
-                    English
-                  </Link>
-
-
+                  <Dropdown.Item>
+                    <Link className="dropdown-item" to="#">
+                      <div className="circle-outline"></div>
+                      English
+                    </Link>
                   </Dropdown.Item>
-
                 </Dropdown.Menu>
               </Dropdown>
-
-
-
-
             </li>
-
-        */}
 
             {/*Cart*/}
             <li className="link hide-sm2">

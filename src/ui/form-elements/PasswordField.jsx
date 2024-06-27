@@ -1,35 +1,23 @@
 import React, { useState } from "react";
+import { Form } from "react-bootstrap";
 
-const PasswordField = ({
-  htmlFor,
-  label,
-  icon,
-  value,
-  id,
-  formData,
-  setFormData
-}) => {
+const PasswordField = ({ label, ...props }) => {
   const [showPass, setShowPass] = useState(false);
   const handleInputType = (e) => {
     e.preventDefault();
     setShowPass(!showPass);
   };
+
   return (
     <div className="input-field">
-      <label htmlFor={htmlFor}>
-        {icon} {label}
-      </label>
+      <label htmlFor={props.id}>{label}</label>
       <div className="pass-group">
-        <input
-          placeholder="************"
+        <Form.Control
+          className="form-control"
+          placeholder="•••••••••••••••••"
           type={showPass ? "text" : "password"}
-          id={id}
           required
-          name={id}
-          value={value || formData[htmlFor]}
-          onChange={(e) => {
-            setFormData({ ...formData, [htmlFor]: e.target.value });
-          }}
+          {...props}
         />
         <button onClick={handleInputType}>
           <i
