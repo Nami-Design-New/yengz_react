@@ -5,6 +5,7 @@ import avatar from "../../../assets/images/avatar.jpg";
 const ImageUpload = ({formData , setFormData}) => {
   const { t } = useTranslation();
   const imgView = useRef(null);
+  
   const handleUpload = (e) => {
     imgView.current.src = URL.createObjectURL(e.target.files[0]);
     setFormData({ ...formData, [e.target.name]: e.target.files[0] });
