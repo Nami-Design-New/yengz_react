@@ -664,6 +664,7 @@ main .hero_section .hero_content form .input-fileld {
   gap: 12px;
   margin: 0 auto;
   width: 100%;
+  border: 1px solid var(--input-hint);
 }
 main .hero_section .hero_content form .input-fileld i {
   color: #000;
@@ -754,7 +755,7 @@ main .department {
   padding: 80px 16px;
 }
 main .login-section {
-  padding: 32px 0;
+  padding: 24px 0;
 }
 @media (max-width: 576px) {
   main .login-section {
@@ -782,13 +783,16 @@ main .login-section .title {
     font-size: 14px;
   }
 }
+main .login-section .illustration img {
+  height: 244px;
+}
 main .login-section .form {
   margin-top: 32px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 28px;
-  width: min(100% - 24px, 660px);
+  gap: 16px;
+  width: min(100% - 24px, 740px);
 }
 main .login-section .form .input-field {
   display: flex;
@@ -811,8 +815,9 @@ main .login-section .form .input-field textarea {
   border: none;
   outline: none;
   padding: 10px 16px;
-  border-radius: 16px;
+  border-radius: 12px;
   background: var(--input-bg);
+  border: 1px solid var(--LightGray);
   font-size: 14px;
 }
 main .login-section .form .input-field textarea {
@@ -823,7 +828,6 @@ main .login-section .form .forgetpass {
   color: var(--main-color);
 }
 main .login-section .form .noAccount {
-  margin-top: 32px;
   color: var(--text-color);
 }
 main .login-section .form .noAccount span {
@@ -975,6 +979,45 @@ main .login-section .form .line span {
     font-size: 14px;
   }
 }
+main .login-section .form .pass-group {
+  display: flex;
+}
+main .login-section .form .pass-group button {
+  border: none;
+  background: none;
+  outline: none;
+  width: 60px;
+  height: 56px;
+  border: 1px solid var(--LightGray);
+  background: var(--input-bg);
+  border-right: 0;
+  border-radius: 12px 0 0 12px !important;
+  color: var(--text-color);
+}
+main .login-section .form .pass-group input {
+  border-left: 0 !important;
+  border-radius: 0 12px 12px 0 !important;
+}
+main .login-section .form .phone-group .PhoneInput {
+  display: flex;
+  gap: 12px;
+}
+main .login-section .form .phone-group .PhoneInput .PhoneInputCountryIcon {
+  position: relative;
+}
+main .login-section .form .phone-group .PhoneInput .PhoneInputCountryIconImg {
+  width: 20px;
+  position: absolute;
+  top: -33px;
+  left: 10px;
+}
+main .login-section .form .phone-group .PhoneInput select {
+  padding: 12px 6px 12px 30px;
+}
+main .login-section .form .phone-group .phone-code {
+  height: 54px;
+  border-radius: 4px;
+}
 main .login-section .forgetpasswordForm {
   margin-top: 0;
   gap: 10px;
@@ -1051,7 +1094,7 @@ main .profile-section .profile-descripe .banner {
   width: 100%;
   height: 160px;
   border-radius: 12px;
-  background-image: url(../Assets/images/bann.webp);
+  background-image: url(../images/bann.webp);
   background-size: cover;
   background-position: 50% 50%;
   position: relative;
@@ -5346,4 +5389,8 @@ main .search-section aside.side-menu {
 .blogDetails .swiper-button-next:hover,
 .blogDetails .swiper-button-prev:hover {
   background: var(--main-color);
-}/*# sourceMappingURL=styleAR.css.map */
+}
+
+.form-control {
+  box-shadow: none !important;
+}/*# sourceMappingURL=style.css.map */

@@ -1,5 +1,5 @@
 import React from 'react'
-import FormOTP from '../../../ui/form-components/FormOTP'
+import FormOTP from '../../../ui/form-elements/FormOTP'
 
 const PasswordOTP = () => {
   return (

@@ -6,7 +6,7 @@ const ResetPassword = () => {
 
     <main>
         <section className="login-section forgetpassword container">
-            <form action="" className="container form forgetpasswordForm">
+            <form action="/reset-Password" className="container form forgetpasswordForm">
                 <div className="confirmpass">
                     <img src={newpass1} alt="" />
                 </div>

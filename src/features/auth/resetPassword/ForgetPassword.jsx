@@ -9,7 +9,7 @@ const ForgetPassword = () => {
     <main>
 
     <section className="login-section forgetpassword container">
-        <form action="/password_OTP" className="container form forgetpasswordForm">
+        <form action="/password-otp" className="container form forgetpasswordForm">
             <div className="illustration">
                 <img src={forgetpass1}  alt="" />
             </div>

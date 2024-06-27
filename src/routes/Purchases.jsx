@@ -96,7 +96,7 @@ const Purchases = () => {
                           ></div>
                         </div>
                       </div>
-                      <Link to="/order_details" className="details">
+                      <Link to="/order-details" className="details">
                         التفاصيل
                       </Link>
                     </div>
@@ -150,7 +150,7 @@ const Purchases = () => {
                           ></div>
                         </div>
                       </div>
-                      <Link to="/order_details" className="details">
+                      <Link to="/order-details" className="details">
                         التفاصيل
                       </Link>
                     </div>
@@ -202,7 +202,7 @@ const Purchases = () => {
                           ></div>
                         </div>
                       </div>
-                      <Link to="/order_details" className="details">
+                      <Link to="/order-details" className="details">
                         التفاصيل
                       </Link>
                     </div>
@@ -256,7 +256,7 @@ const Purchases = () => {
                           ></div>
                         </div>
                       </div>
-                      <Link to="/order_details" className="details">
+                      <Link to="/order-details" className="details">
                         التفاصيل
                       </Link>
                     </div>
@@ -309,7 +309,7 @@ const Purchases = () => {
                           ></div>
                         </div>
                       </div>
-                      <Link to="/order_details" className="details">
+                      <Link to="/order-details" className="details">
                         التفاصيل
                       </Link>
                     </div>
