@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Google from "../../../Assets/images/Google.svg";
+import InpuFeild from "../../../ui/form-elements/InputField";
 
 const Login = () => {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: ""
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
 
   return (
     <main>
@@ -13,14 +25,13 @@ const Login = () => {
         </p>
         <form action="register" className="container form">
           <div className="input-field col-12">
-            <label htmlFor="email">
-              <i className="ti ti-md ti-mail"></i> البريد الالكتروني
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="مثال : mail@mail.com"
+            <InpuFeild
+              label={"البريد الالكتروني"}
+              name={"email"}
+              id={"email"}
+              placeholder={"example@example.com"}
+              value={formData.email}
+              onChange={(e) => handleChange(e)}
             />
           </div>
           <div className="input-field col-12">
