@@ -1,18 +1,24 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Google from "../../../Assets/images/Google.svg";
-import InpuFeild from "../../../ui/form-elements/InputField";
-import PasswordField from "./../../../ui/form-elements/PasswordField";
-import axios from "./../../../utils/axios";
 import { toast } from "react-toastify";
+import { useCookies } from "react-cookie";
+import { useDispatch } from "react-redux";
+import { setIsLogged, setUser } from "../../../redux/slices/authedUser";
+import Google from "../../../Assets/images/Google.svg";
+import InputField from "../../../ui/form-elements/InputField";
+import PasswordField from "../../../ui/form-elements/PasswordField";
+import axios from "../../../utils/axios";
+import SubmitButton from "../../../ui/form-elements/SubmitButton";
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [, setCookie] = useCookies(["token"]);
+
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
-    password: "",
-    token: "1"
+    password: ""
   });
 
   const handleChange = (e) => {
@@ -22,14 +28,21 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = axios.post("/user/login", formData);
-      if (res.status === 200) {
+      const res = await axios.post("/user/login", formData);
+      if (res.data.code === 200) {
         toast.success("تم تسجيل الدخول بنجاح");
+        dispatch(setUser(res.data.data));
+        dispatch(setIsLogged(true));
         navigate("/");
+        setCookie("token", res.data.data.token, {
+          path: "/",
+          secure: true,
+          sameSite: "Strict"
+        });
         axios.defaults.headers.common[
           "Authorization"
         ] = `Bearer ${res.data.data.token}`;
@@ -37,7 +50,8 @@ const Login = () => {
         toast.error("البريد الالكتروني او كلمة المرور غير صحيحة");
       }
     } catch (error) {
-      console.log(error);
+      toast.error("حدث خطأ أثناء تسجيل الدخول");
+      console.error("Login error:", error);
     } finally {
       setLoading(false);
     }
@@ -52,7 +66,7 @@ const Login = () => {
         </p>
         <form className="container form" onSubmit={handleSubmit}>
           <div className="col-12 p-2">
-            <InpuFeild
+            <InputField
               label={"البريد الالكتروني"}
               name={"email"}
               id={"email"}
@@ -60,7 +74,7 @@ const Login = () => {
               required={true}
               placeholder={"example@example.com"}
               value={formData.email}
-              onChange={(e) => handleChange(e)}
+              onChange={handleChange}
             />
           </div>
           <div className="col-12 p-2">
@@ -69,13 +83,13 @@ const Login = () => {
               name={"password"}
               id={"password"}
               value={formData.password}
-              onChange={(e) => handleChange(e)}
+              onChange={handleChange}
             />
           </div>
           <Link to="/forget-password" className="forgetpass">
             نسيت كلمة المرور ؟
           </Link>
-          <button type="submit">تسجيل الدخول</button>
+          <SubmitButton loading={loading} name={"تسجيل الدخول"} />
           <div className="line">
             <span>أو تسجيل الدخول بواسطة</span>
           </div>

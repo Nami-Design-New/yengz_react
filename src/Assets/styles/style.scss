@@ -799,6 +799,7 @@ main {
       button {
         width: 100%;
         height: 56px;
+        gap: 6px;
         border-radius: 16px;
         @include centerFlex();
         @include clearInput();
@@ -5048,4 +5049,22 @@ main .search-section aside.side-menu {
 }
 .form-control {
   box-shadow: none !important;
+}
+
+.Toastify__toast-body {
+  direction: ltr !important;
+}
+.Toastify__toast-icon {
+  margin-inline-end: 0;
+  margin-inline-start: 10px;
+}
+.Toastify__toast-body > div:last-child {
+  line-height: 24px;
+  flex: unset;
+}
+@media only screen and (max-width: 480px) {
+  .Toastify__toast-container {
+    right: 0;
+    left: initial;
+  }
 }
