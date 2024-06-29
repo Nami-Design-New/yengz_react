@@ -1,9 +1,9 @@
 import { useEffect } from "react";
+import axios from "../../utils/axios";
 import { useCookies } from "react-cookie";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { logout, setLogged, setUser } from "../redux/slices/authedUser";
-import axios from "../util/axios";
+import { logout, setIsLogged, setUser } from "../../redux/slices/authedUser";
 
 const Logout = () => {
   const [, , deleteCookie] = useCookies();
@@ -11,12 +11,12 @@ const Logout = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    deleteCookie("refreshToken");
     const performLogout = async () => {
       try {
+        deleteCookie("token");
         delete axios.defaults.headers.common["Authorization"];
         dispatch(setUser({}));
-        dispatch(setLogged(false));
+        dispatch(setIsLogged(false));
         dispatch(logout());
         navigate("/");
       } catch (error) {
@@ -24,8 +24,9 @@ const Logout = () => {
       }
     };
     performLogout();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    
   }, []);
+
   return null;
 };
 

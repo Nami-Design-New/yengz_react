@@ -15,7 +15,6 @@ export const authedUser = createSlice({
     },
     logout: (state) => {
       state.user = {};
-      state.access_token = "";
     }
   }
 });
