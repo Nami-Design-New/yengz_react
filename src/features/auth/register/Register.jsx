@@ -1,10 +1,9 @@
 import React from "react";
 import userImg from "../../../Assets/images/userImg.svg";
-import Google from "../../../Assets/images/Google.svg"
+import Google from "../../../Assets/images/Google.svg";
 import { Link } from "react-router-dom";
 
 const Register = () => {
-    
   return (
     <main>
       <section className="login-section container">
@@ -12,7 +11,7 @@ const Register = () => {
         <p className="text-center mt-3 pe-3 ps-3 title">
           اهلا بك…! ادخل بيانات حقيقية وصحيحة لضمان توثيق حسابك ومباشرة العمل.
         </p>
-        
+
         <form action="" className="container form">
           <div className="input-field image-change-wrapper">
             <div className="img-wrap">

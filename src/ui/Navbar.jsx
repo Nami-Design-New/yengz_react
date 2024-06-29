@@ -122,7 +122,7 @@ const Navbar = () => {
                   style={{ backgroundColor: "#f4f4f4" }}
                   id="dropdown-basic"
                 >
-                  <IconLanguage stroke={2} />
+                  <IconLanguage stroke={1} />
                 </Dropdown.Toggle>
                 <Dropdown.Menu className="dropdown-menu">
                   <Dropdown.Item>
