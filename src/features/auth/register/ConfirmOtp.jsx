@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import Otpcontainer from "../../../ui/form-elements/OtpContainer";
 import { useTranslation } from "react-i18next";
+import SubmitButton from './../../../ui/form-elements/SubmitButton';
+import axios from './../../../utils/axios';
 
 const ConfirmOtp = ({ otpData, setOtpData, formData }) => {
   const { t } = useTranslation();
@@ -34,7 +36,7 @@ const ConfirmOtp = ({ otpData, setOtpData, formData }) => {
     }
   };
   return (
-    <form lassName="container form" onSubmit={handleSubmit}>
+    <form className="container form" onSubmit={handleSubmit}>
       <Otpcontainer formData={otpData} setFormData={setOtpData} />
       <SubmitButton loading={loading} name={t("auth.createAccount")} />
     </form>
