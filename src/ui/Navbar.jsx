@@ -263,7 +263,7 @@ const Navbar = () => {
                       </Dropdown.Item>
 
                       <div className="showall">
-                        <Link to="/notifications">جميع الإشعارات</Link>
+                        <Link to="/notifications">جميع الرسائل</Link>
                       </div>
                     </Dropdown.Menu>
                   </Dropdown>
@@ -283,44 +283,34 @@ const Navbar = () => {
                     <Dropdown.Menu className="drop_Message_Menu">
                       <Dropdown.Item className="drop_Message">
                         <Link to="/chat" style={{ display: "flex" }}>
-                          <div className="image-wrap">
-                            <img src={av1} alt="user" />
-                          </div>
                           <div className="text-wrap">
                             <div className="d-flex justify-content-between">
-                              <h6>خالد عوض</h6>
+                              <h6>اشعار جديد</h6>
                               <span className="time">20 / 10 / 2024</span>
                             </div>
                             <p>
                               انشاء متجر الكتروني احترافي على منصة ووردبريس
                               ووكومرس
                             </p>
-                            <div className="w-100 d-flex justify-content-between align-items-center">
-                              <h5 className="me">100 دولار ان شاء الله</h5>
-                              <span className="message-number">2</span>
-                            </div>
                           </div>
                         </Link>
                       </Dropdown.Item>
 
+                      <hr />
+
                       <Dropdown.Item className="drop_Message">
                         <Link to="/chat" style={{ display: "flex" }}>
-                          <div className="image-wrap">
-                            <img src={av2} alt="user" />
-                          </div>
                           <div className="text-wrap">
                             <div className="d-flex justify-content-between">
-                              <h6>خالد عوض</h6>
+                              <h6>اشعار جديد</h6>
                               <span className="time">18 / 10 / 2024</span>
                             </div>
                             <p>نظام الكتروني لعيادة طبية</p>
-                            <div className="w-100 d-flex justify-content-between align-items-center">
-                              <h5 className="me">150 دولار ان شاء الله</h5>
-                              <span className="message-number">2</span>
-                            </div>
                           </div>
                         </Link>
                       </Dropdown.Item>
+
+                      <hr />
 
                       <div className="showall">
                         <Link to="/notifications">جميع الإشعارات</Link>

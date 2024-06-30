@@ -1007,7 +1007,7 @@ main {
       .input-field {
         margin-bottom: 12px;
       }
-     
+
       .resend-code {
         width: 100%;
         display: flex;
@@ -1042,7 +1042,7 @@ main {
         font-size: 16px;
         width: fit-content;
         font-weight: 500;
-        transition: .3s ease-in-out;
+        transition: 0.3s ease-in-out;
         color: var(--black-color);
         @media (max-width: 576px) {
           font-size: 14px;
@@ -1056,7 +1056,7 @@ main {
           transform: translateX(-50%);
           height: 2px;
           background: var(--main-color);
-          transition: .3s ease-in-out;
+          transition: 0.3s ease-in-out;
         }
         &.active {
           color: var(--main-color);
@@ -3531,7 +3531,7 @@ footer {
           }
         }
       }
-     
+
       .t-select {
         width: 100%;
         justify-content: space-between;
