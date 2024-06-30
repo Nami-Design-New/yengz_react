@@ -131,7 +131,7 @@ const BlogDetails = () => {
               <div className="Moreblogs">
                 <h1 className="headTitle"> المزيد من الأخبار </h1>
                 {/*   <!-- blog -->*/}
-                <Link to="/blog_details" className="blog" data-aos="fade-up">
+                <Link to="/blog-details" className="blog" data-aos="fade-up">
                   <img className="lazy" src={slider1} alt="" />
                   <div className="data">
                     <h6 className="title">
@@ -146,7 +146,7 @@ const BlogDetails = () => {
                   </div>
                 </Link>
                 {/*   <!-- blog -->*/}
-                <Link to="/blog_details" className="blog" data-aos="fade-up">
+                <Link to="/blog-details" className="blog" data-aos="fade-up">
                   <img className="lazy" src={slider2} alt="" />
                   <div className="data">
                     <h6 className="title">
@@ -163,7 +163,7 @@ const BlogDetails = () => {
                   </div>
                 </Link>
                 {/*   <!-- blog -->*/}
-                <Link to="/blog_details" className="blog" data-aos="fade-up">
+                <Link to="/blog-details" className="blog" data-aos="fade-up">
                   <img className="lazy" src={slider3} alt="" />
 
                   <div className="data">

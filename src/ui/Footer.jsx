@@ -40,7 +40,7 @@ const Footer = () => {
                   <Link to="/blogs">المدونات</Link>
                 </li>
                 <li>
-                  <Link to="/how_it_work">كيف يعمل ينجز</Link>
+                  <Link to="/how-it-work">كيف يعمل ينجز</Link>
                 </li>
               </ul>
             </div>

@@ -13,7 +13,7 @@ const Requests = () => {
 
       <section className="allRequests">
         <div className="container align-items-end">
-          <Link to="/request_add" className="btn btn-success mb-4">
+          <Link to="/request-add" className="btn btn-success mb-4">
             <i className="fa-regular fa-hexagon-plus me-2"></i>
             اضف موضوع جديد
           </Link>
@@ -27,7 +27,7 @@ const Requests = () => {
                       <img src={av2} alt="" />
                     </Link>
                     <div className="postContent">
-                      <Link to="/reaquest_details" className="postTitle">
+                      <Link to="/reaquest-details" className="postTitle">
                         ابحث عن مصمم صفحة هبوط على ووردبرس
                       </Link>
                       <div className="postUser">
@@ -70,7 +70,7 @@ const Requests = () => {
                       <img src={av2} alt="" />
                     </Link>
                     <div className="postContent">
-                      <Link to="/reaquest_details" className="postTitle">
+                      <Link to="/reaquest-details" className="postTitle">
                         ابحث عن مصمم صفحة هبوط على ووردبرس
                       </Link>
                       <div className="postUser">
@@ -113,7 +113,7 @@ const Requests = () => {
                       <img src={av2} alt="" />
                     </Link>
                     <div className="postContent">
-                      <Link to="/reaquest_details" className="postTitle">
+                      <Link to="/reaquest-details" className="postTitle">
                         ابحث عن مصمم صفحة هبوط على ووردبرس
                       </Link>
                       <div className="postUser">
@@ -156,7 +156,7 @@ const Requests = () => {
                       <img src={av2} alt="" />
                     </Link>
                     <div className="postContent">
-                      <Link to="/reaquest_details" className="postTitle">
+                      <Link to="/reaquest-details" className="postTitle">
                         ابحث عن مصمم صفحة هبوط على ووردبرس
                       </Link>
                       <div className="postUser">
@@ -200,7 +200,7 @@ const Requests = () => {
                       <img src={av2} alt="" />
                     </Link>
                     <div className="postContent">
-                      <Link to="/reaquest_details" className="postTitle">
+                      <Link to="/reaquest-details" className="postTitle">
                         ابحث عن مصمم صفحة هبوط على ووردبرس
                       </Link>
                       <div className="postUser">
@@ -244,7 +244,7 @@ const Requests = () => {
                       <img src={av2} alt="" />
                     </Link>
                     <div className="postContent">
-                      <Link to="/reaquest_details" className="postTitle">
+                      <Link to="/reaquest-details" className="postTitle">
                         ابحث عن مصمم صفحة هبوط على ووردبرس
                       </Link>
                       <div className="postUser">
@@ -287,7 +287,7 @@ const Requests = () => {
                       <img src={av2} alt="" />
                     </Link>
                     <div className="postContent">
-                      <Link to="/reaquest_details" className="postTitle">
+                      <Link to="/reaquest-details" className="postTitle">
                         ابحث عن مصمم صفحة هبوط على ووردبرس
                       </Link>
                       <div className="postUser">
@@ -330,7 +330,7 @@ const Requests = () => {
                       <img src={av2} alt="" />
                     </Link>
                     <div className="postContent">
-                      <Link to="/reaquest_details" className="postTitle">
+                      <Link to="/reaquest-details" className="postTitle">
                         ابحث عن مصمم صفحة هبوط على ووردبرس
                       </Link>
                       <div className="postUser">
@@ -373,7 +373,7 @@ const Requests = () => {
                       <img src={av2} alt="" />
                     </Link>
                     <div className="postContent">
-                      <Link to="/reaquest_details" className="postTitle">
+                      <Link to="/reaquest-details" className="postTitle">
                         ابحث عن مصمم صفحة هبوط على ووردبرس
                       </Link>
                       <div className="postUser">
@@ -416,7 +416,7 @@ const Requests = () => {
                       <img src={av2} alt="" />
                     </Link>
                     <div className="postContent">
-                      <Link to="/reaquest_details" className="postTitle">
+                      <Link to="/reaquest-details" className="postTitle">
                         ابحث عن مصمم صفحة هبوط على ووردبرس
                       </Link>
                       <div className="postUser">
@@ -459,7 +459,7 @@ const Requests = () => {
                       <img src={av2} alt="" />
                     </Link>
                     <div className="postContent">
-                      <Link to="/reaquest_details" className="postTitle">
+                      <Link to="/reaquest-details" className="postTitle">
                         ابحث عن مصمم صفحة هبوط على ووردبرس
                       </Link>
                       <div className="postUser">
