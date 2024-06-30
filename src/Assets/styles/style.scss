@@ -394,6 +394,7 @@ header {
             background: var(--LightGray);
           }
           &.show {
+            overflow: hidden;
             transform: translateY(0px) !important;
             left: 0 !important;
           }
@@ -459,11 +460,13 @@ header {
             }
           }
           .showall {
-            width: 349px;
+            display: flex;
+            width: 100%;
             padding: 8px 14px;
             background: var(--LightGray);
             position: absolute;
-            bottom: 0;
+            bottom: 0px;
+            left: 0;
             a {
               color: var(--black-color);
             }
@@ -1078,7 +1081,7 @@ main {
         font-size: 16px;
         width: fit-content;
         font-weight: 500;
-        transition: .3s ease-in-out;
+        transition: 0.3s ease-in-out;
         color: var(--black-color);
         @media (max-width: 576px) {
           font-size: 14px;
@@ -1092,7 +1095,7 @@ main {
           transform: translateX(-50%);
           height: 2px;
           background: var(--main-color);
-          transition: .3s ease-in-out;
+          transition: 0.3s ease-in-out;
         }
         &.active {
           color: var(--main-color);
