@@ -20,6 +20,32 @@ const Navbar = () => {
   const user = useSelector((state) => state.authedUser.user);
   const lang = useSelector((state) => state.language.lang);
   const isLogged = useSelector((state) => state.authedUser.isLogged);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+  const searchRef = useRef();
+  const profileMenuRef = useRef();
+  const [searchValue, setSearchValue] = useState("");
+  const navigate = useNavigate();
+
+  function handleToggleSearchInput() {
+    setIsSearchOpen((open) => !open);
+  }
+
+  function handleToggleProfileMenu() {
+    setIsProfileMenuOpen((open) => !open);
+  }
+
+  function closeSearchInput() {
+    setIsSearchOpen(false);
+  }
+
+  function closeProfileMenu() {
+    setIsProfileMenuOpen(false);
+  }
+
+  function handleSearchValue(e) {
+    setSearchValue(e.target.value);
+  }
 
   const handleLang = (newLang) => {
     dispatch(setLanguage(newLang));
@@ -53,10 +79,10 @@ const Navbar = () => {
         <div className="small-media-menu">
           <div className="user">
             <Link to="/profile" className="avatar">
-              <img src={avatar} alt="" />5
+              <img src={avatar} alt="" />
             </Link>
             <div className="userr">
-              <h6>محمدعبد المعطي</h6>
+              <h6>محمد عبد المعطي</h6>
               <span>بائع مميز</span>
             </div>
           </div>
@@ -326,69 +352,71 @@ const Navbar = () => {
               <>
                 {/* profile picture */}
                 <li className="link hide-sm2">
-                  <Dropdown>
-                    <Dropdown.Toggle
-                      style={{ backgroundColor: "#f4f4f4" }}
-                      id="dropdown-basic"
-                    >
-                      <button
-                        className="btn dropdown-toggle"
-                        type="button"
-                        id="usermenu"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                      >
-                        <img src={avatar} alt="user-avatar" />
-                      </button>
-                    </Dropdown.Toggle>
-
-                    <Dropdown.Menu className="Menu">
-                      <Dropdown.Item>
-                        <Link className="dropdown-item_Link" to="/profile">
-                          <i className="fa-solid fa-user"></i>
-                          محمد عبد المعطي
-                        </Link>
-                      </Dropdown.Item>
-
-                      <Dropdown.Item>
-                        <Link className="dropdown-item_Link" to="/profile">
-                          <i className="fa-sharp fa-solid fa-dollar-sign"></i>
-                          الرصيد
-                        </Link>
-                      </Dropdown.Item>
-
-                      <Dropdown.Item>
-                        <Link className="dropdown-item_Link" to="/profile">
-                          <i className="fa-solid fa-sliders"></i>
-                          الإعدادات
-                        </Link>
-                      </Dropdown.Item>
-                      <hr />
-
-                      <Dropdown.Item>
-                        <Link className="dropdown-item_Link" to="/About">
-                          <i className="fa-sharp fa-solid fa-pen-to-square"></i>
-                          تعديل الحساب
-                        </Link>
-                      </Dropdown.Item>
-
-                      <Dropdown.Item>
-                        <Link className="dropdown-item_Link" to="/Contact">
-                          <i className="fa-solid fa-circle-info"></i>
-                          المساعده
-                        </Link>
-                      </Dropdown.Item>
-                      <hr />
-
-                      <Dropdown.Item>
-                        <Link className="dropdown-item_Link" to="/profile">
-                          <i className="fa-solid fa-right-from-bracket"></i>
-                          تسجيل الخروج
-                        </Link>
-                      </Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
+                  <span
+                    className="btn dropdown-toggle"
+                    type="button"
+                    id="usermenu"
+                    onClick={handleToggleProfileMenu}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <img src={avatar} alt="user-avatar" />
+                  </span>
                 </li>
+                {isProfileMenuOpen && (
+                  <ul className="profile-menu" ref={profileMenuRef}>
+                    <li>
+                      <Link className="dropdown-item_Link" to="/profile">
+                        <i className="fa-solid fa-user"></i>
+                        محمد عبد المعطي
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        className="dropdown-item_Link"
+                        to="/profile/balance"
+                      >
+                        <i className="fa-sharp fa-solid fa-dollar-sign"></i>
+                        الرصيد
+                      </Link>
+                    </li>
+                    <hr />
+                    <li>
+                      <Link className="dropdown-item_Link" to="/profile/edit">
+                        <i className="fa-sharp fa-solid fa-pen-to-square"></i>
+                        تعديل الحساب
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="dropdown-item_Link" to="/support">
+                        <i className="fa-solid fa-file"></i>
+                        المساعدة
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="dropdown-item_Link" to="/report">
+                        <i className="fa-solid fa-circle-info"></i>
+                        تقديم بلاغ
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="dropdown-item_Link" to="/login">
+                        <i className="fa-solid fa-trash"></i>
+                        حذف الحساب
+                      </Link>
+                    </li>
+                    <hr />
+                    <li>
+                      <Link
+                        className="dropdown-item_Link"
+                        to="/"
+                        onClick={() => dispatch(logout())}
+                      >
+                        <i className="fa-solid fa-right-from-bracket"></i>
+                        تسجيل الخروج
+                      </Link>
+                    </li>
+                  </ul>
+                )}
               </>
             )}
           </ul>

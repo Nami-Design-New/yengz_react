@@ -5100,3 +5100,60 @@ main .search-section aside.side-menu {
     left: initial;
   }
 }
+.nav-search {
+  width: 100vw;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  @include clearInput();
+  color: var(--black-color);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: space-between;
+  padding: 0 16px;
+
+  input {
+    flex: 1 0 0;
+    border: none;
+    outline: none;
+  }
+
+  button {
+    padding: 8px 24px;
+    border-radius: 12px;
+    color: #fff;
+    border: none;
+    background: none;
+    outline: none;
+    background-color: var(--main-color);
+  }
+}
+
+.profile-menu {
+  position: absolute;
+  border-radius: 0 !important;
+  border: none !important;
+  inset: unset !important;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  top: 100% !important;
+  left: 16px !important;
+  background: var(--white-color);
+  padding: 16px 0;
+  border-radius: 16px !important;
+  li {
+    a {
+      padding: 6px 30px !important;
+      display: flex;
+      gap: 12px;
+      font-size: 14px;
+      align-items: center;
+      color: var(--black-color);
+      text-wrap: nowrap;
+    }
+    &:hover {
+      background: var(--gray-background) !important;
+    }
+  }
+}
