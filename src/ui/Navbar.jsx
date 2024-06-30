@@ -1,18 +1,18 @@
-import React from "react";
-
+import React, { useRef, useState } from "react";
 import avatar from "../Assets/images/avatar.png";
 import av1 from "../Assets/images/av1.png";
 import av2 from "../Assets/images/av2.png";
 import logo from "../Assets/images/logo.svg";
-import axios from "./../utils/axios";
 import Dropdown from "react-bootstrap/Dropdown";
 import i18next from "i18next";
 import "../Assets/styles/dropdownes.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IconLanguage } from "@tabler/icons-react";
 import { useDispatch, useSelector } from "react-redux";
 import { setLanguage } from "../redux/slices/language";
 import { useTranslation } from "react-i18next";
+import { logout } from "../redux/slices/authedUser";
+import useOutsideClose from "../hooks/useOutsideClose";
 
 const Navbar = () => {
   const { t } = useTranslation();
@@ -20,14 +20,26 @@ const Navbar = () => {
   const user = useSelector((state) => state.authedUser.user);
   const lang = useSelector((state) => state.language.lang);
   const isLogged = useSelector((state) => state.authedUser.isLogged);
-  console.log(user);
 
   const handleLang = (newLang) => {
     dispatch(setLanguage(newLang));
     i18next.changeLanguage(newLang);
-    axios.defaults.headers.common["lang"] = newLang;
-    document.querySelector("body").classList.toggle("en", newLang === "en");
+
+    const bodyElement = document.querySelector("body");
+    if (bodyElement) {
+      bodyElement.classList.toggle("en", newLang === "en");
+    }
   };
+
+  useOutsideClose(searchRef, closeSearchInput, true);
+  useOutsideClose(profileMenuRef, closeProfileMenu, true);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (searchValue.trim()) {
+      navigate(`/search/s=${searchValue}`);
+    }
+  }
 
   return (
     <header>
@@ -41,10 +53,10 @@ const Navbar = () => {
         <div className="small-media-menu">
           <div className="user">
             <Link to="/profile" className="avatar">
-              <img src={user?.image} alt="" />
+              <img src={avatar} alt="" />5
             </Link>
             <div className="userr">
-              <h6>{user?.name}</h6>
+              <h6>محمدعبد المعطي</h6>
               <span>بائع مميز</span>
             </div>
           </div>
@@ -95,38 +107,42 @@ const Navbar = () => {
         </div>
         <div className="left-wrapper">
           <ul className="loged-in-minor-menu">
-            {/* search*/}
+            {/* search */}
             <li className="link">
-              <Dropdown>
-                <Dropdown.Toggle
-                  style={{ backgroundColor: "#f4f4f4" }}
-                  id="dropdown-basic"
-                >
-                  <i className="fa-regular fa-magnifying-glass"></i>
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                  <Dropdown.Item className="dropItem">
-                    <form action="/search" aria-labelledby="searchmenu">
-                      <input
-                        className="Search_input"
-                        type="text"
-                        placeholder="ابحث عن..."
-                      />
-                    </form>
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
+              <i
+                className="fa-regular fa-magnifying-glass"
+                style={{ cursor: "pointer" }}
+                onClick={handleToggleSearchInput}
+              ></i>
             </li>
+            {isSearchOpen && (
+              <form
+                action="/search"
+                aria-labelledby="searchForm"
+                className="nav-search"
+                ref={searchRef}
+                onSubmit={handleSubmit}
+              >
+                <input
+                  className="Search_input"
+                  type="text"
+                  placeholder="ابحث عن..."
+                  value={searchValue}
+                  onChange={handleSearchValue}
+                />
+                <i className="fa-sharp fa-regular fa-magnifying-glass"></i>
+              </form>
+            )}
 
             <li className="link">
-              <Dropdown>
+              <Dropdown style={{ position: "relative" }}>
                 <Dropdown.Toggle
                   style={{ backgroundColor: "#f4f4f4" }}
                   id="dropdown-basic"
                 >
                   <IconLanguage stroke={1} />
                 </Dropdown.Toggle>
-                <Dropdown.Menu className="dropdown-menu">
+                <Dropdown.Menu className="dropdown-menu lang-menu">
                   <Dropdown.Item>
                     <div
                       className="dropdown-item"
@@ -159,7 +175,7 @@ const Navbar = () => {
 
             {isLogged && (
               <>
-                {/*Cart*/}
+                {/* Cart */}
                 <li className="link hide-sm2">
                   <Link to="/cart" className="cart btn">
                     <i className="fa-light fa-cart-shopping"></i>
@@ -167,9 +183,9 @@ const Navbar = () => {
                   </Link>
                 </li>
 
-                {/*messsage*/}
+                {/* Message */}
                 <li className="link hide-sm2">
-                  <Dropdown>
+                  <Dropdown style={{ position: "relative" }}>
                     <Dropdown.Toggle
                       style={{ backgroundColor: "#f4f4f4" }}
                       id="dropdown-basic"
@@ -193,8 +209,8 @@ const Navbar = () => {
                               انشاء متجر الكتروني احترافي على منصة ووردبريس
                               ووكومرس
                             </p>
-                            <div className="d-flex justify-content-between align-items-center">
-                              <h5 className="me">150 دولار ان شاء الله</h5>
+                            <div className="w-100 d-flex justify-content-between align-items-center">
+                              <h5 className="me">100 دولار ان شاء الله</h5>
                               <span className="message-number">2</span>
                             </div>
                           </div>
@@ -211,9 +227,68 @@ const Navbar = () => {
                               <h6>خالد عوض</h6>
                               <span className="time">18 / 10 / 2024</span>
                             </div>
-                            <br />
                             <p>نظام الكتروني لعيادة طبية</p>
-                            <div className="d-flex justify-content-between align-items-center">
+                            <div className="w-100 d-flex justify-content-between align-items-center">
+                              <h5 className="me">150 دولار ان شاء الله</h5>
+                              <span className="message-number">2</span>
+                            </div>
+                          </div>
+                        </Link>
+                      </Dropdown.Item>
+
+                      <div className="showall">
+                        <Link to="/notifications">جميع الإشعارات</Link>
+                      </div>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </li>
+
+                {/* Notifications */}
+                <li className="link hide-sm2">
+                  <Dropdown style={{ position: "relative" }}>
+                    <Dropdown.Toggle
+                      style={{ backgroundColor: "#f4f4f4" }}
+                      id="dropdown-basic"
+                    >
+                      <i class="fa-regular fa-bell"></i>
+                      <span className="num-count">1</span>
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu className="drop_Message_Menu">
+                      <Dropdown.Item className="drop_Message">
+                        <Link to="/chat" style={{ display: "flex" }}>
+                          <div className="image-wrap">
+                            <img src={av1} alt="user" />
+                          </div>
+                          <div className="text-wrap">
+                            <div className="d-flex justify-content-between">
+                              <h6>خالد عوض</h6>
+                              <span className="time">20 / 10 / 2024</span>
+                            </div>
+                            <p>
+                              انشاء متجر الكتروني احترافي على منصة ووردبريس
+                              ووكومرس
+                            </p>
+                            <div className="w-100 d-flex justify-content-between align-items-center">
+                              <h5 className="me">100 دولار ان شاء الله</h5>
+                              <span className="message-number">2</span>
+                            </div>
+                          </div>
+                        </Link>
+                      </Dropdown.Item>
+
+                      <Dropdown.Item className="drop_Message">
+                        <Link to="/chat" style={{ display: "flex" }}>
+                          <div className="image-wrap">
+                            <img src={av2} alt="user" />
+                          </div>
+                          <div className="text-wrap">
+                            <div className="d-flex justify-content-between">
+                              <h6>خالد عوض</h6>
+                              <span className="time">18 / 10 / 2024</span>
+                            </div>
+                            <p>نظام الكتروني لعيادة طبية</p>
+                            <div className="w-100 d-flex justify-content-between align-items-center">
                               <h5 className="me">150 دولار ان شاء الله</h5>
                               <span className="message-number">2</span>
                             </div>
@@ -232,7 +307,7 @@ const Navbar = () => {
 
             {!isLogged && (
               <>
-                {/*auth login  */}
+                {/* auth login */}
                 <li className="link hide-sm2">
                   <div className="btns">
                     <Link to="/login">
@@ -249,7 +324,7 @@ const Navbar = () => {
 
             {isLogged && (
               <>
-                {/*profile picture */}
+                {/* profile picture */}
                 <li className="link hide-sm2">
                   <Dropdown>
                     <Dropdown.Toggle
@@ -263,7 +338,7 @@ const Navbar = () => {
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
                       >
-                        <img src={user?.image} alt="user-avatar" />
+                        <img src={avatar} alt="user-avatar" />
                       </button>
                     </Dropdown.Toggle>
 
@@ -271,7 +346,7 @@ const Navbar = () => {
                       <Dropdown.Item>
                         <Link className="dropdown-item_Link" to="/profile">
                           <i className="fa-solid fa-user"></i>
-                          {user?.name}
+                          محمد عبد المعطي
                         </Link>
                       </Dropdown.Item>
 
@@ -306,7 +381,7 @@ const Navbar = () => {
                       <hr />
 
                       <Dropdown.Item>
-                        <Link className="dropdown-item_Link" to="/logout">
+                        <Link className="dropdown-item_Link" to="/profile">
                           <i className="fa-solid fa-right-from-bracket"></i>
                           تسجيل الخروج
                         </Link>

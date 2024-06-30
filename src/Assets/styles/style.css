@@ -356,23 +356,54 @@ header .tnavbar .loged-in-minor-menu .link .btn img {
 header .tnavbar .loged-in-minor-menu .link .dropdown-menu {
   padding: 0 !important;
   background: var(--white-color);
+  border-radius: 20px !important;
+  position: absolute;
+  transform: translate(0, 0) !important;
+  border-radius: 0 !important;
+  border: none !important;
+  inset: unset !important;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  top: calc(100% + 20px) !important;
+  bottom: unset !important;
+  border-radius: 16px !important;
 }
-header .tnavbar .loged-in-minor-menu .link .dropdown-menu li a {
+header .tnavbar .loged-in-minor-menu .link .dropdown-menu.search-dropdown-menu {
+  width: 100vw;
+  top: 100% !important;
+  border-radius: 0 !important;
+}
+header .tnavbar .loged-in-minor-menu .link .dropdown-menu.search-dropdown-menu a {
+  width: 100% !important;
+}
+header .tnavbar .loged-in-minor-menu .link .dropdown-menu .dropdown-item {
   padding: 6px 14px !important;
-  display: flex;
+  display: flex !important;
   gap: 12px;
   font-size: 14px;
   align-items: center;
   color: var(--black-color);
 }
-header .tnavbar .loged-in-minor-menu .link .dropdown-menu li a i {
+header .tnavbar .loged-in-minor-menu .link .dropdown-menu .dropdown-item a {
+  display: flex !important;
+  gap: 12px;
+  font-size: 14px;
+  align-items: center;
+  width: 100%;
+}
+header .tnavbar .loged-in-minor-menu .link .dropdown-menu .dropdown-item .text-wrap {
+  flex: 1 0 0;
+}
+header .tnavbar .loged-in-minor-menu .link .dropdown-menu .dropdown-item .text-wrap p {
+  text-align: start;
+}
+header .tnavbar .loged-in-minor-menu .link .dropdown-menu .dropdown-item i {
   width: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--main-color);
 }
-header .tnavbar .loged-in-minor-menu .link .dropdown-menu li a:hover {
+header .tnavbar .loged-in-minor-menu .link .dropdown-menu .dropdown-item:hover {
   background: var(--gray-background) !important;
 }
 header .tnavbar .loged-in-minor-menu .link .dropdown-menu .line {
@@ -381,11 +412,7 @@ header .tnavbar .loged-in-minor-menu .link .dropdown-menu .line {
   background: var(--LightGray);
 }
 header .tnavbar .loged-in-minor-menu .link .dropdown-menu.show {
-  transform: translate(0px, 0px) !important;
-  border-radius: 0 !important;
-  border: 1px solid var(--LightGray);
-  inset: unset !important;
-  top: 100% !important;
+  transform: translateY(0px) !important;
   left: 0 !important;
 }
 header .tnavbar .loged-in-minor-menu .link .dropdown-menu .circle-filled {
@@ -1531,6 +1558,7 @@ main .service-details .service-content .content .service-owner-card .btns .dropd
   align-items: center;
   gap: 12px;
   border-radius: 16px;
+  position: relative;
 }
 main .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu .link button {
   width: 32px;
@@ -5421,6 +5449,7 @@ main .search-section aside.side-menu {
     left: initial;
   }
 }
+<<<<<<< Updated upstream
 .form-switch .form-check-input {
   box-shadow: none !important;
 }
@@ -5461,4 +5490,60 @@ main .search-section aside.side-menu {
   .otp-container .otp-input {
     height: 60px !important;
   }
+=======
+.nav-search {
+  width: 100vw;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border: none;
+  background: none;
+  outline: none;
+  color: var(--black-color);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: space-between;
+  padding: 0 16px;
+}
+.nav-search input {
+  flex: 1 0 0;
+  border: none;
+  outline: none;
+}
+.nav-search button {
+  padding: 8px 24px;
+  border-radius: 12px;
+  color: #fff;
+  border: none;
+  background: none;
+  outline: none;
+  background-color: var(--main-color);
+}
+
+.profile-menu {
+  position: absolute;
+  border-radius: 0 !important;
+  border: none !important;
+  inset: unset !important;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  top: 100% !important;
+  left: 16px !important;
+  background: var(--white-color);
+  padding: 16px 0;
+  border-radius: 16px !important;
+}
+.profile-menu li a {
+  padding: 6px 30px !important;
+  display: flex;
+  gap: 12px;
+  font-size: 14px;
+  align-items: center;
+  color: var(--black-color);
+  text-wrap: nowrap;
+}
+.profile-menu li:hover {
+  background: var(--gray-background) !important;
+>>>>>>> Stashed changes
 }/*# sourceMappingURL=style.css.map */
