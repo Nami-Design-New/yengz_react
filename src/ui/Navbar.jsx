@@ -1,4 +1,10 @@
 import React, { useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { IconLanguage } from "@tabler/icons-react";
+import { useDispatch, useSelector } from "react-redux";
+import { setLanguage } from "../redux/slices/language";
+import { useTranslation } from "react-i18next";
+import { logout } from "../redux/slices/authedUser";
 import avatar from "../Assets/images/avatar.png";
 import av1 from "../Assets/images/av1.png";
 import av2 from "../Assets/images/av2.png";
@@ -6,26 +12,22 @@ import logo from "../Assets/images/logo.svg";
 import Dropdown from "react-bootstrap/Dropdown";
 import i18next from "i18next";
 import "../Assets/styles/dropdownes.css";
-import { Link, useNavigate } from "react-router-dom";
-import { IconLanguage } from "@tabler/icons-react";
-import { useDispatch, useSelector } from "react-redux";
-import { setLanguage } from "../redux/slices/language";
-import { useTranslation } from "react-i18next";
-import { logout } from "../redux/slices/authedUser";
+
 import useOutsideClose from "../hooks/useOutsideClose";
 
 const Navbar = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const searchRef = useRef();
+  const profileMenuRef = useRef();
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+  const [isSmallMediaMenuOpen, setIsSmallMediaMenuOpen] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
   const user = useSelector((state) => state.authedUser.user);
   const lang = useSelector((state) => state.language.lang);
   const isLogged = useSelector((state) => state.authedUser.isLogged);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
-  const searchRef = useRef();
-  const profileMenuRef = useRef();
-  const [searchValue, setSearchValue] = useState("");
-  const navigate = useNavigate();
 
   function handleToggleSearchInput() {
     setIsSearchOpen((open) => !open);
@@ -70,20 +72,24 @@ const Navbar = () => {
   return (
     <header>
       <nav className="tnavbar">
-        <div className="toogler">
+        <div
+          className={`toogler ${isSmallMediaMenuOpen ? "close" : ""}`}
+          onClick={() => setIsSmallMediaMenuOpen(() => !isSmallMediaMenuOpen)}
+        >
           <span></span>
           <span></span>
           <span></span>
         </div>
 
-        <div className="small-media-menu">
+        <div
+          className={`small-media-menu  ${isSmallMediaMenuOpen ? "show" : ""}`}
+        >
           <div className="user">
             <Link to="/profile" className="avatar">
-              <img src={avatar} alt="" />
+              <img src={user?.image} alt="" />
             </Link>
             <div className="userr">
-              <h6>محمد عبد المعطي</h6>
-              <span>بائع مميز</span>
+              <h6>{user?.name}</h6>
             </div>
           </div>
         </div>
@@ -104,33 +110,36 @@ const Navbar = () => {
             )}
             <li className="nav-link">
               <Link to="/categories">
-                <i className="far fa-cube"></i> {t("navbar.departments")}
+                <i className="far fa-cube"></i> {t("navbar.categories")}
               </Link>
             </li>
             {isLogged && (
               <>
                 <li className="nav-link">
                   <Link to="/purchases">
-                    <i className="far fa-shopping-bag"></i> المشتريات
+                    <i className="far fa-shopping-bag"></i>{" "}
+                    {t("navbar.purchase")}
                   </Link>
                   <span className="num-count2">3</span>
                 </li>
                 <li className="nav-link">
                   <Link to="/recieved-request">
-                    <i className="far fa-clipboard-list-check"></i> الطلبات
-                    الواردة
+                    <i className="far fa-clipboard-list-check"></i>{" "}
+                    {t("navbar.requestsRecieved")}
                   </Link>
                   <span className="num-count2">2</span>
                 </li>
                 <li className="nav-link">
                   <Link to="/requests">
-                    <i className="far fa-hand-point-up"></i> اطلب خدمة علي زوقك
+                    <i className="far fa-hand-point-up"></i>{" "}
+                    {t("navbar.serviceAsYouLike")}
                   </Link>
                 </li>
               </>
             )}
           </ul>
         </div>
+
         <div className="left-wrapper">
           <ul className="loged-in-minor-menu">
             {/* search */}
@@ -152,14 +161,13 @@ const Navbar = () => {
                 <input
                   className="Search_input"
                   type="text"
-                  placeholder="ابحث عن..."
+                  placeholder={t("navbar.searchFor")}
                   value={searchValue}
                   onChange={handleSearchValue}
                 />
                 <i className="fa-sharp fa-regular fa-magnifying-glass"></i>
               </form>
             )}
-
             <li className="link">
               <Dropdown style={{ position: "relative" }}>
                 <Dropdown.Toggle
@@ -198,7 +206,6 @@ const Navbar = () => {
                 </Dropdown.Menu>
               </Dropdown>
             </li>
-
             {isLogged && (
               <>
                 {/* Cart */}
@@ -208,7 +215,6 @@ const Navbar = () => {
                     <span className="num-count">1</span>
                   </Link>
                 </li>
-
                 {/* Message */}
                 <li className="link hide-sm2">
                   <Dropdown style={{ position: "relative" }}>
@@ -217,6 +223,63 @@ const Navbar = () => {
                       id="dropdown-basic"
                     >
                       <i className="fa-regular fa-message-lines"></i>
+                      <span className="num-count">1</span>
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu className="drop_Message_Menu">
+                      <Dropdown.Item className="drop_Message">
+                        <Link to="/chat" style={{ display: "flex" }}>
+                          <div className="image-wrap">
+                            <img src={av1} alt="user" />
+                          </div>
+                          <div className="text-wrap">
+                            <div className="d-flex justify-content-between">
+                              <h6>خالد عوض</h6>
+                              <span className="time">20 / 10 / 2024</span>
+                            </div>
+                            <p>
+                              انشاء متجر الكتروني احترافي على منصة ووردبريس
+                              ووكومرس
+                            </p>
+                            <div className="w-100 d-flex justify-content-between align-items-center">
+                              <h5 className="me">100 دولار ان شاء الله</h5>
+                              <span className="message-number">2</span>
+                            </div>
+                          </div>
+                        </Link>
+                      </Dropdown.Item>
+                      <Dropdown.Item className="drop_Message">
+                        <Link to="/chat" style={{ display: "flex" }}>
+                          <div className="image-wrap">
+                            <img src={av2} alt="user" />
+                          </div>
+                          <div className="text-wrap">
+                            <div className="d-flex justify-content-between">
+                              <h6>خالد عوض</h6>
+                              <span className="time">18 / 10 / 2024</span>
+                            </div>
+                            <p>نظام الكتروني لعيادة طبية</p>
+                            <div className="w-100 d-flex justify-content-between align-items-center">
+                              <h5 className="me">150 دولار ان شاء الله</h5>
+                              <span className="message-number">2</span>
+                            </div>
+                          </div>
+                        </Link>
+                      </Dropdown.Item>
+                      <div className="showall">
+                        <Link to="/notifications">جميع الإشعارات</Link>
+                      </div>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </li>
+
+                {/* Notifications */}
+                <li className="link hide-sm2">
+                  <Dropdown style={{ position: "relative" }}>
+                    <Dropdown.Toggle
+                      style={{ backgroundColor: "#f4f4f4" }}
+                      id="dropdown-basic"
+                    >
+                      <i class="fa-regular fa-bell"></i>
                       <span className="num-count">1</span>
                     </Dropdown.Toggle>
 
@@ -328,10 +391,11 @@ const Navbar = () => {
                   <div className="btns">
                     <Link to="/login">
                       <i className="fa-light fa-arrow-right-to-bracket"></i>{" "}
-                      دخول
+                      {t("navbar.login")}
                     </Link>
                     <Link to="/register">
-                      <i className="fa-light fa-user-plus"></i> حساب جديد
+                      <i className="fa-light fa-user-plus"></i>{" "}
+                      {t("navbar.newAccount")}
                     </Link>
                   </div>
                 </li>
@@ -349,7 +413,7 @@ const Navbar = () => {
                     onClick={handleToggleProfileMenu}
                     style={{ cursor: "pointer" }}
                   >
-                    <img src={avatar} alt="user-avatar" />
+                    <img src={user.image} alt="user-avatar" />
                   </span>
                 </li>
                 {isProfileMenuOpen && (
@@ -357,7 +421,7 @@ const Navbar = () => {
                     <li>
                       <Link className="dropdown-item_Link" to="/profile">
                         <i className="fa-solid fa-user"></i>
-                        محمد عبد المعطي
+                        {user.name}
                       </Link>
                     </li>
                     <li>
@@ -366,43 +430,39 @@ const Navbar = () => {
                         to="/profile/balance"
                       >
                         <i className="fa-sharp fa-solid fa-dollar-sign"></i>
-                        الرصيد
+                        {t("navbar.balance")}
                       </Link>
                     </li>
                     <hr />
                     <li>
                       <Link className="dropdown-item_Link" to="/profile/edit">
                         <i className="fa-sharp fa-solid fa-pen-to-square"></i>
-                        تعديل الحساب
+                        {t("navbar.editProfile")}
                       </Link>
                     </li>
                     <li>
                       <Link className="dropdown-item_Link" to="/support">
                         <i className="fa-solid fa-file"></i>
-                        المساعدة
+                        {t("navbar.support")}
                       </Link>
                     </li>
                     <li>
                       <Link className="dropdown-item_Link" to="/report">
                         <i className="fa-solid fa-circle-info"></i>
-                        تقديم بلاغ
+                        {t("navbar.report")}
                       </Link>
                     </li>
                     <li>
                       <Link className="dropdown-item_Link" to="/login">
                         <i className="fa-solid fa-trash"></i>
-                        حذف الحساب
+                        {t("navbar.deleteAccount")}
                       </Link>
                     </li>
                     <hr />
                     <li>
-                      <Link
-                        className="dropdown-item_Link"
-                        to="/"
-                        onClick={() => dispatch(logout())}
-                      >
+                      <Link className="dropdown-item_Link" to="/logout">
                         <i className="fa-solid fa-right-from-bracket"></i>
-                        تسجيل الخروج
+                        {t("navbar.logout")}
                       </Link>
                     </li>
                   </ul>

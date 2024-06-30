@@ -38,7 +38,7 @@ const ConfirmOtp = ({ otpData, setOtpData, formData }) => {
   return (
     <form className="container form" onSubmit={handleSubmit}>
       <Otpcontainer formData={otpData} setFormData={setOtpData} />
-      <SubmitButton loading={loading} name={t("auth.createAccount")} />
+      <SubmitButton loading={loading} name={t("auth.createAccount")} className={"mt-3"}/>
     </form>
   );
 };
