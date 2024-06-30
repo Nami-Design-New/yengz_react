@@ -854,7 +854,7 @@ main {
       }
       .image-change-wrapper {
         border-radius: 16px;
-        border: 1px solid var(--gray-background);
+        border: 1px solid var(--input-hint);
         @include centerFlex();
         flex-direction: column;
         padding: 16px 0;
