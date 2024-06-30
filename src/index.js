@@ -7,6 +7,7 @@ import { store } from "./redux/store";
 import { ToastContainer } from "react-toastify";
 import { BrowserRouter } from "react-router-dom";
 import ToTopOnNavigation from "./utils/ToTopOnNavigation";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 
 /*---------- fontawesome ----------*/
 import "./Assets/styles/all.min.css";
@@ -18,15 +19,19 @@ import "../node_modules/react-toastify/dist/ReactToastify.css";
 /*---------- app style global -----*/
 import "./Assets/styles/style.css";
 
+const queryClient = new QueryClient();
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <ToastContainer />
-      <BrowserRouter>
-        <ToTopOnNavigation />
-        <App />
-      </BrowserRouter>
-    </Provider>
+    <QueryClientProvider client={queryClient}>
+      <Provider store={store}>
+        <ToastContainer />
+        <BrowserRouter>
+          <ToTopOnNavigation />
+          <App />
+        </BrowserRouter>
+      </Provider>
+    </QueryClientProvider>
   </React.StrictMode>
 );

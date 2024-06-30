@@ -351,7 +351,7 @@ header .tnavbar .loged-in-minor-menu .link .btn img {
   width: 40px;
   height: 40px;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
 }
 header .tnavbar .loged-in-minor-menu .link .dropdown-menu {
   padding: 0 !important;
@@ -372,12 +372,7 @@ header .tnavbar .loged-in-minor-menu .link .dropdown-menu.search-dropdown-menu {
   top: 100% !important;
   border-radius: 0 !important;
 }
-header
-  .tnavbar
-  .loged-in-minor-menu
-  .link
-  .dropdown-menu.search-dropdown-menu
-  a {
+header .tnavbar .loged-in-minor-menu .link .dropdown-menu.search-dropdown-menu a {
   width: 100% !important;
 }
 header .tnavbar .loged-in-minor-menu .link .dropdown-menu .dropdown-item {
@@ -395,23 +390,10 @@ header .tnavbar .loged-in-minor-menu .link .dropdown-menu .dropdown-item a {
   align-items: center;
   width: 100%;
 }
-header
-  .tnavbar
-  .loged-in-minor-menu
-  .link
-  .dropdown-menu
-  .dropdown-item
-  .text-wrap {
+header .tnavbar .loged-in-minor-menu .link .dropdown-menu .dropdown-item .text-wrap {
   flex: 1 0 0;
 }
-header
-  .tnavbar
-  .loged-in-minor-menu
-  .link
-  .dropdown-menu
-  .dropdown-item
-  .text-wrap
-  p {
+header .tnavbar .loged-in-minor-menu .link .dropdown-menu .dropdown-item .text-wrap p {
   text-align: start;
 }
 header .tnavbar .loged-in-minor-menu .link .dropdown-menu .dropdown-item i {
@@ -455,7 +437,7 @@ header .tnavbar .loged-in-minor-menu .link .dropdown-menu .image-wrap img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
 }
 header .tnavbar .loged-in-minor-menu .link .dropdown-menu .text-wrap {
   display: flex;
@@ -486,13 +468,7 @@ header .tnavbar .loged-in-minor-menu .link .dropdown-menu .text-wrap p {
   line-height: 18px;
   color: var(--text-color);
 }
-header
-  .tnavbar
-  .loged-in-minor-menu
-  .link
-  .dropdown-menu
-  .text-wrap
-  .message-number {
+header .tnavbar .loged-in-minor-menu .link .dropdown-menu .text-wrap .message-number {
   width: 16px;
   height: 16px;
   font-size: 12px;
@@ -776,7 +752,7 @@ main .hero_section .swiper .swiper-slide .img img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
 }
 main .categories {
   padding: 40px 16px;
@@ -921,8 +897,8 @@ main .login-section .form .question .quest {
 }
 main .login-section .form .question .vendorInput {
   -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   position: relative;
   cursor: pointer;
 }
@@ -978,9 +954,9 @@ main .login-section .form .image-change-wrapper .img-wrap img {
   height: 100%;
   aspect-ratio: 1/1;
   -o-object-fit: contain;
-  object-fit: contain;
+     object-fit: contain;
   -o-object-position: center;
-  object-position: center;
+     object-position: center;
 }
 main .login-section .form .image-change-wrapper .upload input {
   display: none;
@@ -1191,7 +1167,7 @@ main .profile-section .profile-descripe .banner .user-avatar {
 }
 main .profile-section .profile-descripe .banner .user-avatar img {
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   width: 100%;
   height: 100%;
   border-radius: 50%;
@@ -1326,12 +1302,10 @@ main .profile-section .profile-taps .nav-pills .nav-link::after {
   transition: var(--main-transation);
   opacity: 0;
 }
-main .profile-section .profile-taps .nav-pills .nav-link:hover,
-main .profile-section .profile-taps .nav-pills .nav-link.active {
+main .profile-section .profile-taps .nav-pills .nav-link:hover, main .profile-section .profile-taps .nav-pills .nav-link.active {
   color: var(--main-color);
 }
-main .profile-section .profile-taps .nav-pills .nav-link:hover::after,
-main .profile-section .profile-taps .nav-pills .nav-link.active::after {
+main .profile-section .profile-taps .nav-pills .nav-link:hover::after, main .profile-section .profile-taps .nav-pills .nav-link.active::after {
   width: 100%;
   opacity: 1;
 }
@@ -1393,12 +1367,7 @@ main .profile-section .profile-taps .tab-content .unverified-box a:hover {
   background: var(--main-color);
   color: #fff;
 }
-main
-  .profile-section
-  .profile-taps
-  .tab-content
-  .services-contianer
-  .add-service {
+main .profile-section .profile-taps .tab-content .services-contianer .add-service {
   width: 100%;
   border: 1px solid var(--main-color);
   color: var(--main-color);
@@ -1409,21 +1378,10 @@ main
   transition: var(--main-transation);
   border-radius: 16px;
 }
-main
-  .profile-section
-  .profile-taps
-  .tab-content
-  .services-contianer
-  .add-service
-  i {
+main .profile-section .profile-taps .tab-content .services-contianer .add-service i {
   margin: 0 4px;
 }
-main
-  .profile-section
-  .profile-taps
-  .tab-content
-  .services-contianer
-  .add-service:hover {
+main .profile-section .profile-taps .tab-content .services-contianer .add-service:hover {
   background: var(--main-color);
   color: #fff;
 }
@@ -1453,9 +1411,9 @@ main .service-details .service-content .swiper .swiper-slide .img video {
   width: 100%;
   aspect-ratio: 4/3;
   -o-object-position: center;
-  object-position: center;
+     object-position: center;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
 }
 main .service-details .service-content .swiper .swiper-pagination-fraction {
   top: 12px !important;
@@ -1465,12 +1423,7 @@ main .service-details .service-content .swiper .swiper-pagination-fraction {
   direction: ltr !important;
   color: #fff;
 }
-main
-  .service-details
-  .service-content
-  .swiper
-  .swiper-pagination-fraction
-  .swiper-pagination-current {
+main .service-details .service-content .swiper .swiper-pagination-fraction .swiper-pagination-current {
   font-size: 24px;
   font-weight: bold;
 }
@@ -1513,107 +1466,46 @@ main .service-details .service-content .content .service-owner-card .owner {
   align-items: center;
   gap: 16px;
 }
-main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .owner
-  .img {
+main .service-details .service-content .content .service-owner-card .owner .img {
   width: 90px;
   height: 90px;
   border-radius: 50%;
   overflow: hidden;
 }
-main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .owner
-  .img
-  img {
+main .service-details .service-content .content .service-owner-card .owner .img img {
   max-width: 100%;
 }
 @media (max-width: 576px) {
-  main
-    .service-details
-    .service-content
-    .content
-    .service-owner-card
-    .owner
-    .img {
+  main .service-details .service-content .content .service-owner-card .owner .img {
     width: 70px;
     height: 70px;
   }
 }
-main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .owner
-  .title {
+main .service-details .service-content .content .service-owner-card .owner .title {
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 5px;
 }
-main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .owner
-  .title
-  h6 {
+main .service-details .service-content .content .service-owner-card .owner .title h6 {
   font-size: 22px;
   color: var(--black-color);
   font-weight: bold;
 }
 @media (max-width: 576px) {
-  main
-    .service-details
-    .service-content
-    .content
-    .service-owner-card
-    .owner
-    .title
-    h6 {
+  main .service-details .service-content .content .service-owner-card .owner .title h6 {
     font-size: 18px;
   }
 }
-main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .owner
-  .title
-  span {
+main .service-details .service-content .content .service-owner-card .owner .title span {
   color: var(--text-color);
   font-weight: 500;
 }
-main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .owner
-  .title
-  span
-  i {
+main .service-details .service-content .content .service-owner-card .owner .title span i {
   color: var(--main-color);
 }
 @media (max-width: 576px) {
-  main
-    .service-details
-    .service-content
-    .content
-    .service-owner-card
-    .owner
-    .title
-    span {
+  main .service-details .service-content .content .service-owner-card .owner .title span {
     font-size: 14px;
   }
 }
@@ -1624,13 +1516,7 @@ main .service-details .service-content .content .service-owner-card .btns {
   gap: 18px;
   padding: 0 16px;
 }
-main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .btns
-  .butn {
+main .service-details .service-content .content .service-owner-card .btns .butn {
   width: 40px;
   height: 40px;
   border: none;
@@ -1642,74 +1528,29 @@ main
   border-radius: 50%;
   color: #fff;
 }
-main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .btns
-  .butn
-  i {
+main .service-details .service-content .content .service-owner-card .btns .butn i {
   font-size: 20px !important;
 }
-main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .btns
-  .dropdown
-  .dropdown-menu {
+main .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu {
   background: var(--white-color);
   border: 1px solid var(--gray-background);
   padding: 32px;
 }
 @media (max-width: 576px) {
-  main
-    .service-details
-    .service-content
-    .content
-    .service-owner-card
-    .btns
-    .dropdown
-    .dropdown-menu {
+  main .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu {
     padding: 16px 12px;
   }
 }
-main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .btns
-  .dropdown
-  .dropdown-menu
-  h5 {
+main .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu h5 {
   margin-bottom: 20px;
   font-weight: 600;
   font-size: 16px;
 }
-main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .btns
-  .dropdown
-  .dropdown-menu
-  p {
+main .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu p {
   color: var(--text-color);
   margin-bottom: 16px;
 }
-main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .btns
-  .dropdown
-  .dropdown-menu
-  .link {
+main .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu .link {
   width: 100%;
   padding: 14px;
   background-color: var(--gray-background);
@@ -1719,16 +1560,7 @@ main
   border-radius: 16px;
   position: relative;
 }
-main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .btns
-  .dropdown
-  .dropdown-menu
-  .link
-  button {
+main .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu .link button {
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -1739,70 +1571,22 @@ main
   background: none;
   outline: none;
 }
-main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .btns
-  .dropdown
-  .dropdown-menu
-  .link
-  button
-  i {
+main .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu .link button i {
   color: var(--main-color);
 }
-main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .btns
-  .dropdown
-  .dropdown-menu
-  .link
-  button:hover {
+main .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu .link button:hover {
   background: var(--main-color);
 }
-main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .btns
-  .dropdown
-  .dropdown-menu
-  .link
-  button:hover
-  i {
+main .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu .link button:hover i {
   color: #fff;
 }
-main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .btns
-  .dropdown
-  .dropdown-menu
-  .link
-  span {
+main .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu .link span {
   cursor: pointer;
   color: var(--text-color);
   font-size: 12px;
   position: relative;
 }
-main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .btns
-  .dropdown
-  .dropdown-menu
-  .link
-  span
-  .alert {
+main .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu .link span .alert {
   position: absolute;
   background: var(--input-bg);
   padding: 4px 8px;
@@ -1813,19 +1597,9 @@ main
   transition: var(--main-transation);
   opacity: 0;
 }
-main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .btns
-  .dropdown
-  .dropdown-menu
-  .link
-  span
-  .alert::after {
+main .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu .link span .alert::after {
   -webkit-clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+          clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
   width: 16px;
   height: 10px;
   background: var(--input-bg);
@@ -1835,41 +1609,16 @@ main
   transform: translateX(-50%);
   top: -10px;
 }
-main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .btns
-  .dropdown
-  .dropdown-menu
-  .social {
+main .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu .social {
   display: flex;
   gap: 20px;
 }
 @media (max-width: 576px) {
-  main
-    .service-details
-    .service-content
-    .content
-    .service-owner-card
-    .btns
-    .dropdown
-    .dropdown-menu
-    .social {
+  main .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu .social {
     gap: 16px;
   }
 }
-main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .btns
-  .dropdown
-  .dropdown-menu
-  .social
-  li {
+main .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu .social li {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1877,17 +1626,7 @@ main
   gap: 8px;
   font-size: 14px;
 }
-main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .btns
-  .dropdown
-  .dropdown-menu
-  .social
-  li
-  a {
+main .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu .social li a {
   width: 48px;
   height: 48px;
   border-radius: 50%;
@@ -1896,18 +1635,7 @@ main
   align-items: center;
   justify-content: center;
 }
-main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .btns
-  .dropdown
-  .dropdown-menu
-  .social
-  li
-  a
-  i {
+main .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu .social li a i {
   color: var(--main-color);
 }
 @media (max-width: 576px) {
@@ -1970,14 +1698,7 @@ main .service-details .service-content .content .add-cart .input-field button {
   align-items: center;
   justify-content: center;
 }
-main
-  .service-details
-  .service-content
-  .content
-  .add-cart
-  .input-field
-  button
-  i {
+main .service-details .service-content .content .add-cart .input-field button i {
   color: var(--main-color);
 }
 main .service-details .service-content .content .add-cart .input-field input {
@@ -1990,25 +1711,13 @@ main .service-details .service-content .content .add-cart .input-field input {
   color: var(--black-color);
   border-radius: 16px;
 }
-main
-  .service-details
-  .service-content
-  .content
-  .add-cart
-  .input-field
-  input::-webkit-outer-spin-button {
+main .service-details .service-content .content .add-cart .input-field input::-webkit-outer-spin-button {
   -webkit-appearance: none;
-  appearance: none;
+          appearance: none;
 }
-main
-  .service-details
-  .service-content
-  .content
-  .add-cart
-  .input-field
-  input::-webkit-inner-spin-button {
+main .service-details .service-content .content .add-cart .input-field input::-webkit-inner-spin-button {
   -webkit-appearance: none;
-  appearance: none;
+          appearance: none;
 }
 main .service-details .service-content .content .add-cart .total {
   width: 100%;
@@ -2250,24 +1959,14 @@ main .chat-section .chat-container .inner-container .message .time {
 main .chat-section .chat-container .inner-container .message.sent-message {
   justify-content: flex-end;
 }
-main
-  .chat-section
-  .chat-container
-  .inner-container
-  .message.sent-message
-  .message-content {
+main .chat-section .chat-container .inner-container .message.sent-message .message-content {
   background: var(--input-bg);
   padding: 10px 16px;
   border-radius: 12px 12px 12px 0;
   color: var(--black-color);
   position: relative;
 }
-main
-  .chat-section
-  .chat-container
-  .inner-container
-  .message.sent-message
-  .message-content::after {
+main .chat-section .chat-container .inner-container .message.sent-message .message-content::after {
   width: 14px;
   height: 12px;
   background: var(--input-bg);
@@ -2276,29 +1975,19 @@ main
   left: -14px;
   bottom: 0;
   -webkit-clip-path: polygon(0 100%, 100% 100%, 100% 0);
-  clip-path: polygon(0 100%, 100% 100%, 100% 0);
+          clip-path: polygon(0 100%, 100% 100%, 100% 0);
 }
 main .chat-section .chat-container .inner-container .message.recieved-message {
   justify-content: flex-start;
 }
-main
-  .chat-section
-  .chat-container
-  .inner-container
-  .message.recieved-message
-  .message-content {
+main .chat-section .chat-container .inner-container .message.recieved-message .message-content {
   background: var(--main-color);
   padding: 10px 16px;
   border-radius: 12px 12px 0 12px;
   color: #fff;
   position: relative;
 }
-main
-  .chat-section
-  .chat-container
-  .inner-container
-  .message.recieved-message
-  .message-content::after {
+main .chat-section .chat-container .inner-container .message.recieved-message .message-content::after {
   width: 14px;
   height: 12px;
   background: var(--main-color);
@@ -2307,7 +1996,7 @@ main
   right: -14px;
   bottom: 0;
   -webkit-clip-path: polygon(0 100%, 100% 100%, 0 0);
-  clip-path: polygon(0 100%, 100% 100%, 0 0);
+          clip-path: polygon(0 100%, 100% 100%, 0 0);
 }
 main .chat-section .chat-container .chat-send {
   width: 100%;
@@ -2345,14 +2034,7 @@ main .chat-section .chat-container .chat-send form .input-field .files-input i {
   font-size: 20px;
   color: var(--text-color);
 }
-main
-  .chat-section
-  .chat-container
-  .chat-send
-  form
-  .input-field
-  .files-input
-  input {
+main .chat-section .chat-container .chat-send form .input-field .files-input input {
   display: none;
 }
 main .chat-section .chat-container .chat-send form button {
@@ -2433,9 +2115,9 @@ main .cart-section .service-head .img img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   -o-object-position: center;
-  object-position: center;
+     object-position: center;
 }
 main .cart-section .service-head .title h5 {
   font-size: 16px;
@@ -2678,8 +2360,8 @@ main .checkout-section form .label input {
   top: 0;
   width: 100%;
   -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   height: 100%;
   background-color: var(--light-bg);
   border: 1px solid var(--LightGray);
@@ -2782,15 +2464,15 @@ main .checkout-section form .info-card .pay button {
     padding: 8px 18px;
   }
 }
-main .search-section input[type="radio"] {
+main .search-section input[type=radio] {
   width: 8px;
   cursor: pointer;
   -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   position: relative;
 }
-main .search-section input[type="radio"]::after {
+main .search-section input[type=radio]::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -2801,7 +2483,7 @@ main .search-section input[type="radio"]::after {
   height: 14px;
   border: 1px solid var(--input-hint);
 }
-main .search-section input[type="radio"]::before {
+main .search-section input[type=radio]::before {
   content: "";
   position: absolute;
   top: 50%;
@@ -2813,10 +2495,10 @@ main .search-section input[type="radio"]::before {
   background: var(--black-color);
   display: none;
 }
-main .search-section input[type="radio"]:checked::after {
+main .search-section input[type=radio]:checked::after {
   border-color: var(--black-color);
 }
-main .search-section input[type="radio"]:checked::before {
+main .search-section input[type=radio]:checked::before {
   display: block;
 }
 main .search-section .filter-wrap {
@@ -2864,51 +2546,20 @@ main .search-section .filter-wrap form .departments .deps {
 main .search-section .filter-wrap form .departments .deps li {
   color: var(--black-color);
 }
-main
-  .search-section
-  .filter-wrap
-  form
-  .departments
-  .deps
-  li
-  .department-header {
+main .search-section .filter-wrap form .departments .deps li .department-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-main
-  .search-section
-  .filter-wrap
-  form
-  .departments
-  .deps
-  li
-  .department-header
-  input {
+main .search-section .filter-wrap form .departments .deps li .department-header input {
   width: 20px;
 }
-main
-  .search-section
-  .filter-wrap
-  form
-  .departments
-  .deps
-  li
-  .department-header
-  .dep_name {
+main .search-section .filter-wrap form .departments .deps li .department-header .dep_name {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-main
-  .search-section
-  .filter-wrap
-  form
-  .departments
-  .deps
-  li
-  .department-header
-  .accordion-button {
+main .search-section .filter-wrap form .departments .deps li .department-header .accordion-button {
   border: none;
   background: none;
   outline: none;
@@ -2916,16 +2567,7 @@ main
   height: 12px;
   position: relative;
 }
-main
-  .search-section
-  .filter-wrap
-  form
-  .departments
-  .deps
-  li
-  .department-header
-  .accordion-button
-  .horizontal {
+main .search-section .filter-wrap form .departments .deps li .department-header .accordion-button .horizontal {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -2934,16 +2576,7 @@ main
   height: 1px;
   background-color: var(--black-color);
 }
-main
-  .search-section
-  .filter-wrap
-  form
-  .departments
-  .deps
-  li
-  .department-header
-  .accordion-button
-  .vertical {
+main .search-section .filter-wrap form .departments .deps li .department-header .accordion-button .vertical {
   transition: 0.2s ease-in-out;
   height: 12px;
   width: 1px;
@@ -2953,16 +2586,7 @@ main
   left: 50%;
   transform: translate(-50%, -50%) rotate(90deg);
 }
-main
-  .search-section
-  .filter-wrap
-  form
-  .departments
-  .deps
-  li
-  .department-header
-  .accordion-button.collapsed
-  .vertical {
+main .search-section .filter-wrap form .departments .deps li .department-header .accordion-button.collapsed .vertical {
   height: 12px;
   width: 1px;
   background-color: var(--black-color);
@@ -3199,13 +2823,7 @@ main .about-section .about_wrap .testmonials .swiper .swiper-slide {
   justify-content: center;
   height: auto;
 }
-main
-  .about-section
-  .about_wrap
-  .testmonials
-  .swiper
-  .swiper-slide
-  .testmional-card {
+main .about-section .about_wrap .testmonials .swiper .swiper-slide .testmional-card {
   width: 100%;
   border: 1px solid var(--id-confirm);
   padding: 24px 16px;
@@ -3217,14 +2835,7 @@ main
   gap: 32px;
   position: relative;
 }
-main
-  .about-section
-  .about_wrap
-  .testmonials
-  .swiper
-  .swiper-slide
-  .testmional-card
-  img {
+main .about-section .about_wrap .testmonials .swiper .swiper-slide .testmional-card img {
   position: absolute;
   left: 16px;
   transform: scale(-1);
@@ -3234,125 +2845,49 @@ main
   filter: grayscale(1);
   z-index: -1;
 }
-main
-  .about-section
-  .about_wrap
-  .testmonials
-  .swiper
-  .swiper-slide
-  .testmional-card
-  .rate
-  ul {
+main .about-section .about_wrap .testmonials .swiper .swiper-slide .testmional-card .rate ul {
   display: flex;
   gap: 4px;
 }
-main
-  .about-section
-  .about_wrap
-  .testmonials
-  .swiper
-  .swiper-slide
-  .testmional-card
-  .rate
-  ul
-  li {
+main .about-section .about_wrap .testmonials .swiper .swiper-slide .testmional-card .rate ul li {
   font-size: 16px;
 }
-main
-  .about-section
-  .about_wrap
-  .testmonials
-  .swiper
-  .swiper-slide
-  .testmional-card
-  .rate
-  ul
-  li
-  i {
+main .about-section .about_wrap .testmonials .swiper .swiper-slide .testmional-card .rate ul li i {
   color: #ffca40 !important;
 }
-main
-  .about-section
-  .about_wrap
-  .testmonials
-  .swiper
-  .swiper-slide
-  .testmional-card
-  .opinion {
+main .about-section .about_wrap .testmonials .swiper .swiper-slide .testmional-card .opinion {
   font-size: 14px;
   font-style: italic;
   line-height: 22px;
   color: var(--text-color);
 }
-main
-  .about-section
-  .about_wrap
-  .testmonials
-  .swiper
-  .swiper-slide
-  .testmional-card
-  .owner {
+main .about-section .about_wrap .testmonials .swiper .swiper-slide .testmional-card .owner {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
 }
-main
-  .about-section
-  .about_wrap
-  .testmonials
-  .swiper
-  .swiper-slide
-  .testmional-card
-  .owner
-  h6 {
+main .about-section .about_wrap .testmonials .swiper .swiper-slide .testmional-card .owner h6 {
   color: var(--black-color);
   font-size: 16px;
   font-weight: 600;
   margin: 0;
 }
-main
-  .about-section
-  .about_wrap
-  .testmonials
-  .swiper
-  .swiper-slide
-  .testmional-card
-  .owner
-  a {
+main .about-section .about_wrap .testmonials .swiper .swiper-slide .testmional-card .owner a {
   color: var(--main-color);
   font-size: 14px;
 }
-main
-  .about-section
-  .about_wrap
-  .testmonials
-  .swiper
-  .swiper-slide
-  .testmional-card
-  .owner
-  span {
+main .about-section .about_wrap .testmonials .swiper .swiper-slide .testmional-card .owner span {
   color: #727272;
   font-size: 12px;
 }
-main
-  .about-section
-  .about_wrap
-  .testmonials
-  .swiper
-  .testimonialsSwiperPagination {
+main .about-section .about_wrap .testmonials .swiper .testimonialsSwiperPagination {
   padding: 40px 0 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 4px;
 }
-main
-  .about-section
-  .about_wrap
-  .testmonials
-  .swiper
-  .testimonialsSwiperPagination
-  .swiper-pagination-bullet {
+main .about-section .about_wrap .testmonials .swiper .testimonialsSwiperPagination .swiper-pagination-bullet {
   width: 12px;
   height: 12px;
   border-radius: 0;
@@ -3360,23 +2895,11 @@ main
   background: none;
   border-radius: 50%;
 }
-main
-  .about-section
-  .about_wrap
-  .testmonials
-  .swiper
-  .testimonialsSwiperPagination
-  .swiper-pagination-bullet.swiper-pagination-bullet-active {
+main .about-section .about_wrap .testmonials .swiper .testimonialsSwiperPagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
   border-color: var(--main-color);
   position: relative;
 }
-main
-  .about-section
-  .about_wrap
-  .testmonials
-  .swiper
-  .testimonialsSwiperPagination
-  .swiper-pagination-bullet.swiper-pagination-bullet-active::after {
+main .about-section .about_wrap .testmonials .swiper .testimonialsSwiperPagination .swiper-pagination-bullet.swiper-pagination-bullet-active::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -3871,11 +3394,11 @@ footer .copy-rights .pay-methods li i {
 }
 .add-cart .input-field input::-webkit-outer-spin-button {
   -webkit-appearance: none;
-  appearance: none;
+          appearance: none;
 }
 .add-cart .input-field input::-webkit-inner-spin-button {
   -webkit-appearance: none;
-  appearance: none;
+          appearance: none;
 }
 .add-cart .total {
   width: 100%;
@@ -4179,9 +3702,7 @@ footer .copy-rights .pay-methods li i {
   color: var(--black-color);
   background: var(--input-bg);
 }
-#msform fieldset .input-field input::-moz-placeholder,
-#msform fieldset .input-field textarea::-moz-placeholder,
-#msform fieldset .input-field .form-select::-moz-placeholder {
+#msform fieldset .input-field input::-moz-placeholder, #msform fieldset .input-field textarea::-moz-placeholder, #msform fieldset .input-field .form-select::-moz-placeholder {
   color: var(--input-hint);
 }
 #msform fieldset .input-field input::placeholder,
@@ -4197,7 +3718,7 @@ footer .copy-rights .pay-methods li i {
 #msform fieldset .input-field textarea {
   height: 170px;
 }
-#msform fieldset .input-field input[type="button"] {
+#msform fieldset .input-field input[type=button] {
   background: none;
   border: 1px dashed var(--main-color);
   color: var(--main-color);
@@ -4234,8 +3755,8 @@ footer .copy-rights .pay-methods li i {
   top: 0;
   width: 100%;
   -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   height: 100%;
   background-color: var(--light-bg);
   border: 1px solid var(--LightGray);
@@ -4307,15 +3828,15 @@ footer .copy-rights .pay-methods li i {
   padding: 16px;
 }
 
-input[type="checkbox"] {
+input[type=checkbox] {
   width: 20px;
   -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   position: relative;
   cursor: pointer;
 }
-input[type="checkbox"]::after {
+input[type=checkbox]::after {
   position: absolute;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -4332,7 +3853,7 @@ input[type="checkbox"]::after {
   justify-content: center;
   color: var(--main-color);
 }
-input[type="checkbox"]:checked::after {
+input[type=checkbox]:checked::after {
   content: "\f00c";
   background: var(--main-color);
   color: #fff;
@@ -4360,7 +3881,7 @@ input[type="checkbox"]:checked::after {
   aspect-ratio: 3/2;
   transition: var(--main-transation);
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
 }
 .service-card .content {
   padding: 12px;
@@ -4538,15 +4059,7 @@ input[type="checkbox"]:checked::after {
   color: var(--black-color);
 }
 
-body.dark-theme
-  main
-  .about-section
-  .about_wrap
-  .testmonials
-  .swiper
-  .swiper-slide
-  .testmional-card
-  img {
+body.dark-theme main .about-section .about_wrap .testmonials .swiper .swiper-slide .testmional-card img {
   opacity: 0.05 !important;
 }
 
@@ -4613,7 +4126,7 @@ body.dark-theme
   width: 100%;
   aspect-ratio: 1/1;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
 }
 .category-card .inner-card .category-content {
   bottom: 0;
@@ -4700,7 +4213,7 @@ body.dark-theme
   width: 64px;
   aspect-ratio: 1/1;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
 }
 .allRequests .allRequestsContainer .requstPost .postContent,
 .allRequests .allRequestsContainer .lastInteraction .postContent {
@@ -4933,7 +4446,7 @@ body.dark-theme
   width: 64px;
   aspect-ratio: 1/1;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
 }
 .requestDetails .allComments .userCommented .lastUser {
   display: flex;
@@ -5037,7 +4550,7 @@ body.dark-theme
   height: 40px;
   aspect-ratio: 1/1;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   border-radius: 100px;
 }
 .requestDetails .lastPosts .posts .post a {
@@ -5225,8 +4738,8 @@ header .tnavbar .right-wrapper .nav-links .nav-link {
 }
 #rateModal .modal-body form .sr input {
   -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 }
 #rateModal .modal-body form textarea {
   width: 100%;
@@ -5296,7 +4809,7 @@ header {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
 }
 .notifications_section .notify .notify_info .content h6 {
   font-size: 12px;
@@ -5601,12 +5114,7 @@ main .service-details .service-content .content .service-owner-card {
   margin-bottom: 20px;
 }
 @media (max-width: 768px) {
-  .mainSection
-    .mainSlider
-    .mainSliderContainer
-    .swiper-slide
-    .info
-    .sliderTitle {
+  .mainSection .mainSlider .mainSliderContainer .swiper-slide .info .sliderTitle {
     font-size: 24px !important;
   }
 }
@@ -5634,18 +5142,10 @@ main .service-details .service-content .content .service-owner-card {
   left: 20px !important;
   transform: translateX(0%);
 }
-.mainSection
-  .mainSlider
-  .mainSliderContainer
-  .swiper-pagination
-  .swiper-pagination-bullet {
+.mainSection .mainSlider .mainSliderContainer .swiper-pagination .swiper-pagination-bullet {
   background-color: var(--white-color);
 }
-.mainSection
-  .mainSlider
-  .mainSliderContainer
-  .swiper-pagination
-  .swiper-pagination-bullet-active {
+.mainSection .mainSlider .mainSliderContainer .swiper-pagination .swiper-pagination-bullet-active {
   background-color: var(--white-color);
 }
 .mainSection .mainSlideItem.swiper-slide-active .sliderTitle {
@@ -5762,7 +5262,7 @@ main .search-section aside.side-menu {
 .blogs .blog img {
   height: 250px;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   width: 100%;
 }
 .blogs .blog .data {
@@ -5826,7 +5326,7 @@ main .search-section aside.side-menu {
 .blogDetails .blog img {
   aspect-ratio: 2/1;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   width: 100%;
 }
 .blogDetails .blog .date {
@@ -5895,7 +5395,7 @@ main .search-section aside.side-menu {
   height: 120px;
   aspect-ratio: 1/1;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
 }
 .blogDetails p {
   font-size: 12px;
@@ -5954,7 +5454,7 @@ main .search-section aside.side-menu {
   position: absolute;
   top: 100%;
   left: 0;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 4px 4px 0px;
   border: none;
   background: none;
   outline: none;
@@ -6003,4 +5503,4 @@ main .search-section aside.side-menu {
 }
 .profile-menu li:hover {
   background: var(--gray-background) !important;
-} /*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */
