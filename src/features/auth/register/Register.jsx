@@ -14,41 +14,19 @@ const Register = () => {
     email: "",
     password: "",
     isFreelancing: false,
-    token: "1",
+    token: "1"
   });
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      const res = axios.post("/user/login", formData);
-      if (res.status === 200) {
-        toast.success("تم تسجيل الدخول بنجاح");
-        navigate("/");
-        axios.defaults.headers.common[
-          "Authorization"
-        ] = `Bearer ${res.data.data.token}`;
-      } else {
-        toast.error("البريد الالكتروني او كلمة المرور غير صحيحة");
-      }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
   };
 
   return (
     <main>
       <section className="login-section container">
-
         <form action="" className="container form">
           <ImageUpload
             type="file"
@@ -85,7 +63,7 @@ const Register = () => {
               label="password "
               id="password"
               name="password"
-              placeholder="***********"
+              placeholder="*"
               formData={formData}
               onChange={(e) => handleChange(e)}
             />
