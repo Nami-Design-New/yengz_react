@@ -853,7 +853,6 @@ main {
       }
       .image-change-wrapper {
         border-radius: 16px;
-        border: 1px solid var(--gray-background);
         @include centerFlex();
         flex-direction: column;
         padding: 16px 0;
