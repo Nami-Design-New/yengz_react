@@ -13,8 +13,8 @@
     "loginSuccess": "Login Successful",
     "emailOrPasswordWrong": "Email or Password is wrong",
     "loginErorr": "Login Error",
-    "RegisterPageTitle": "Create an account",
-    "RegisterPageSubTitle": "Hey you…! Enter real and correct data to ensure your account is verified and work begins",
+    "registerPageTitle": "Create an account",
+    "registerPageSubTitle": "Hey you…! Enter real and correct data to ensure your account is verified and work begins",
     "personalPhoto": "Personal Photo",
     "name": "Name",
     "nameAsInCard": "Name as in ID",
@@ -43,6 +43,22 @@
   },
   "navbar": {
     "addService": "Add Service",
-    "departments": "Departments"
+    "categories": "Categories",
+    "purchase": "Purchase",
+    "requestsRecieved": "Requests Recieved",
+    "serviceAsYouLike": " Service As You Like",
+    "searchFor": "Search For...",
+    "login": "Login",
+    "newAccount": "New Account",
+    "balance": "Balance",
+    "editProfile": "Edit Profile",
+    "support": "Support",
+    "report": "Report",
+    "deleteAccount": "Delete Account",
+    "logout": "Logout"
+  },
+  "home": {
+    "searchFor": "Search For...",
+    "heroSectionTitle": "The largest Arab market for buying and selling microservices"
   }
 }

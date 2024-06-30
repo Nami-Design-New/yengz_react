@@ -43,7 +43,7 @@ const Search = () => {
                             برمجة وتطوير
                           </div>
                           <input
-                            type="radio"
+                            type="checkbox"
                             name="department"
                             id="department"
                             checked
@@ -78,7 +78,7 @@ const Search = () => {
                                     لغات البرمجة
                                   </div>
                                   <input
-                                    type="radio"
+                                    type="checkbox"
                                     name="sub_department"
                                     id="sub_department"
                                   />
@@ -99,7 +99,7 @@ const Search = () => {
                                             برمجة CSS و HTML
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -111,7 +111,7 @@ const Search = () => {
                                             برمجة PHP
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -123,7 +123,7 @@ const Search = () => {
                                             برمجة بايثون
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -135,7 +135,7 @@ const Search = () => {
                                             برمجة Java و .NET
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -163,7 +163,7 @@ const Search = () => {
                                     خدمات ووردبريس
                                   </div>
                                   <input
-                                    type="radio"
+                                    type="checkbox"
                                     name="sub_department"
                                     id="sub_department"
                                   />
@@ -183,7 +183,7 @@ const Search = () => {
                                             برمجة CSS و HTML
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -195,7 +195,7 @@ const Search = () => {
                                             برمجة PHP
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -207,7 +207,7 @@ const Search = () => {
                                             برمجة بايثون
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -219,7 +219,7 @@ const Search = () => {
                                             برمجة Java و .NET
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -247,7 +247,7 @@ const Search = () => {
                                     تطوير متاجر إلكترونية
                                   </div>
                                   <input
-                                    type="radio"
+                                    type="checkbox"
                                     name="sub_department"
                                     id="sub_department"
                                   />
@@ -268,7 +268,7 @@ const Search = () => {
                                             برمجة CSS و HTML
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -280,7 +280,7 @@ const Search = () => {
                                             برمجة PHP
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -292,7 +292,7 @@ const Search = () => {
                                             برمجة بايثون
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -304,7 +304,7 @@ const Search = () => {
                                             برمجة Java و .NET
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -332,7 +332,7 @@ const Search = () => {
                                     برمجة تطبيقات الجوال
                                   </div>
                                   <input
-                                    type="radio"
+                                    type="checkbox"
                                     name="sub_department"
                                     id="sub_department"
                                   />
@@ -353,7 +353,7 @@ const Search = () => {
                                             برمجة CSS و HTML
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -365,7 +365,7 @@ const Search = () => {
                                             برمجة PHP
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -377,7 +377,7 @@ const Search = () => {
                                             برمجة بايثون
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -389,7 +389,7 @@ const Search = () => {
                                             برمجة Java و .NET
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -422,7 +422,7 @@ const Search = () => {
                             تصميم فيديو
                           </div>
                           <input
-                            type="radio"
+                            type="checkbox"
                             name="department"
                             id="department"
                           />
@@ -456,7 +456,7 @@ const Search = () => {
                                     لغات البرمجة
                                   </div>
                                   <input
-                                    type="radio"
+                                    type="checkbox"
                                     name="sub_department"
                                     id="sub_department"
                                   />
@@ -477,7 +477,7 @@ const Search = () => {
                                             برمجة CSS و HTML
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -489,7 +489,7 @@ const Search = () => {
                                             برمجة PHP
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -501,7 +501,7 @@ const Search = () => {
                                             برمجة بايثون
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -513,7 +513,7 @@ const Search = () => {
                                             برمجة Java و .NET
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -542,7 +542,7 @@ const Search = () => {
                                     خدمات ووردبريس
                                   </div>
                                   <input
-                                    type="radio"
+                                    type="checkbox"
                                     name="sub_department"
                                     id="sub_department"
                                   />
@@ -563,7 +563,7 @@ const Search = () => {
                                             برمجة CSS و HTML
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -575,7 +575,7 @@ const Search = () => {
                                             برمجة PHP
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -587,7 +587,7 @@ const Search = () => {
                                             برمجة بايثون
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -599,7 +599,7 @@ const Search = () => {
                                             برمجة Java و .NET
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -628,7 +628,7 @@ const Search = () => {
                                     تطوير متاجر إلكترونية
                                   </div>
                                   <input
-                                    type="radio"
+                                    type="checkbox"
                                     name="sub_department"
                                     id="sub_department"
                                   />
@@ -649,7 +649,7 @@ const Search = () => {
                                             برمجة CSS و HTML
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -661,7 +661,7 @@ const Search = () => {
                                             برمجة PHP
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -673,7 +673,7 @@ const Search = () => {
                                             برمجة بايثون
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -685,7 +685,7 @@ const Search = () => {
                                             برمجة Java و .NET
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -715,7 +715,7 @@ const Search = () => {
                                     برمجة تطبيقات الجوال
                                   </div>
                                   <input
-                                    type="radio"
+                                    type="checkbox"
                                     name="sub_department"
                                     id="sub_department"
                                   />
@@ -736,7 +736,7 @@ const Search = () => {
                                             برمجة CSS و HTML
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -748,7 +748,7 @@ const Search = () => {
                                             برمجة PHP
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -760,7 +760,7 @@ const Search = () => {
                                             برمجة بايثون
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -772,7 +772,7 @@ const Search = () => {
                                             برمجة Java و .NET
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -806,7 +806,7 @@ const Search = () => {
                             تعليم عن بعد
                           </div>
                           <input
-                            type="radio"
+                            type="checkbox"
                             name="department"
                             id="department"
                           />
@@ -840,7 +840,7 @@ const Search = () => {
                                     لغات البرمجة
                                   </div>
                                   <input
-                                    type="radio"
+                                    type="checkbox"
                                     name="sub_department"
                                     id="sub_department"
                                   />
@@ -861,7 +861,7 @@ const Search = () => {
                                             برمجة CSS و HTML
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -873,7 +873,7 @@ const Search = () => {
                                             برمجة PHP
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -885,7 +885,7 @@ const Search = () => {
                                             برمجة بايثون
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -897,7 +897,7 @@ const Search = () => {
                                             برمجة Java و .NET
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -926,7 +926,7 @@ const Search = () => {
                                     خدمات ووردبريس
                                   </div>
                                   <input
-                                    type="radio"
+                                    type="checkbox"
                                     name="sub_department"
                                     id="sub_department"
                                   />
@@ -947,7 +947,7 @@ const Search = () => {
                                             برمجة CSS و HTML
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -959,7 +959,7 @@ const Search = () => {
                                             برمجة PHP
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -971,7 +971,7 @@ const Search = () => {
                                             برمجة بايثون
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -983,7 +983,7 @@ const Search = () => {
                                             برمجة Java و .NET
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1012,7 +1012,7 @@ const Search = () => {
                                     تطوير متاجر إلكترونية
                                   </div>
                                   <input
-                                    type="radio"
+                                    type="checkbox"
                                     name="sub_department"
                                     id="sub_department"
                                   />
@@ -1033,7 +1033,7 @@ const Search = () => {
                                             برمجة CSS و HTML
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1045,7 +1045,7 @@ const Search = () => {
                                             برمجة PHP
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1057,7 +1057,7 @@ const Search = () => {
                                             برمجة بايثون
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1069,7 +1069,7 @@ const Search = () => {
                                             برمجة Java و .NET
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1097,7 +1097,7 @@ const Search = () => {
                                     برمجة تطبيقات الجوال
                                   </div>
                                   <input
-                                    type="radio"
+                                    type="checkbox"
                                     name="sub_department"
                                     id="sub_department"
                                   />
@@ -1118,7 +1118,7 @@ const Search = () => {
                                             برمجة CSS و HTML
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1130,7 +1130,7 @@ const Search = () => {
                                             برمجة PHP
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1142,7 +1142,7 @@ const Search = () => {
                                             برمجة بايثون
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1154,7 +1154,7 @@ const Search = () => {
                                             برمجة Java و .NET
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1188,7 +1188,7 @@ const Search = () => {
                             التسويق الإلكتروني
                           </div>
                           <input
-                            type="radio"
+                            type="checkbox"
                             name="department"
                             id="department"
                           />
@@ -1222,7 +1222,7 @@ const Search = () => {
                                     لغات البرمجة
                                   </div>
                                   <input
-                                    type="radio"
+                                    type="checkbox"
                                     name="sub_department"
                                     id="sub_department"
                                   />
@@ -1243,7 +1243,7 @@ const Search = () => {
                                             برمجة CSS و HTML
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1255,7 +1255,7 @@ const Search = () => {
                                             برمجة PHP
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1267,7 +1267,7 @@ const Search = () => {
                                             برمجة بايثون
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1279,7 +1279,7 @@ const Search = () => {
                                             برمجة Java و .NET
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1308,7 +1308,7 @@ const Search = () => {
                                     خدمات ووردبريس
                                   </div>
                                   <input
-                                    type="radio"
+                                    type="checkbox"
                                     name="sub_department"
                                     id="sub_department"
                                   />
@@ -1329,7 +1329,7 @@ const Search = () => {
                                             برمجة CSS و HTML
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1341,7 +1341,7 @@ const Search = () => {
                                             برمجة PHP
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1353,7 +1353,7 @@ const Search = () => {
                                             برمجة بايثون
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1365,7 +1365,7 @@ const Search = () => {
                                             برمجة Java و .NET
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1394,7 +1394,7 @@ const Search = () => {
                                     تطوير متاجر إلكترونية
                                   </div>
                                   <input
-                                    type="radio"
+                                    type="checkbox"
                                     name="sub_department"
                                     id="sub_department"
                                   />
@@ -1415,7 +1415,7 @@ const Search = () => {
                                             برمجة CSS و HTML
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1427,7 +1427,7 @@ const Search = () => {
                                             برمجة PHP
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1439,7 +1439,7 @@ const Search = () => {
                                             برمجة بايثون
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1451,7 +1451,7 @@ const Search = () => {
                                             برمجة Java و .NET
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1481,7 +1481,7 @@ const Search = () => {
                                     برمجة تطبيقات الجوال
                                   </div>
                                   <input
-                                    type="radio"
+                                    type="checkbox"
                                     name="sub_department"
                                     id="sub_department"
                                   />
@@ -1502,7 +1502,7 @@ const Search = () => {
                                             برمجة CSS و HTML
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1514,7 +1514,7 @@ const Search = () => {
                                             برمجة PHP
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1526,7 +1526,7 @@ const Search = () => {
                                             برمجة بايثون
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1538,7 +1538,7 @@ const Search = () => {
                                             برمجة Java و .NET
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1572,7 +1572,7 @@ const Search = () => {
                             أعمال
                           </div>
                           <input
-                            type="radio"
+                            type="checkbox"
                             name="department"
                             id="department"
                           />
@@ -1605,7 +1605,7 @@ const Search = () => {
                                     لغات البرمجة
                                   </div>
                                   <input
-                                    type="radio"
+                                    type="checkbox"
                                     name="sub_department"
                                     id="sub_department"
                                   />
@@ -1626,7 +1626,7 @@ const Search = () => {
                                             برمجة CSS و HTML
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1638,7 +1638,7 @@ const Search = () => {
                                             برمجة PHP
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1650,7 +1650,7 @@ const Search = () => {
                                             برمجة بايثون
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1662,7 +1662,7 @@ const Search = () => {
                                             برمجة Java و .NET
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1692,7 +1692,7 @@ const Search = () => {
                                     خدمات ووردبريس
                                   </div>
                                   <input
-                                    type="radio"
+                                    type="checkbox"
                                     name="sub_department"
                                     id="sub_department"
                                   />
@@ -1713,7 +1713,7 @@ const Search = () => {
                                             برمجة CSS و HTML
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1725,7 +1725,7 @@ const Search = () => {
                                             برمجة PHP
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1737,7 +1737,7 @@ const Search = () => {
                                             برمجة بايثون
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1749,7 +1749,7 @@ const Search = () => {
                                             برمجة Java و .NET
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1778,7 +1778,7 @@ const Search = () => {
                                     تطوير متاجر إلكترونية
                                   </div>
                                   <input
-                                    type="radio"
+                                    type="checkbox"
                                     name="sub_department"
                                     id="sub_department"
                                   />
@@ -1799,7 +1799,7 @@ const Search = () => {
                                             برمجة CSS و HTML
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1811,7 +1811,7 @@ const Search = () => {
                                             برمجة PHP
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1823,7 +1823,7 @@ const Search = () => {
                                             برمجة بايثون
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1835,7 +1835,7 @@ const Search = () => {
                                             برمجة Java و .NET
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1863,7 +1863,7 @@ const Search = () => {
                                     برمجة تطبيقات الجوال
                                   </div>
                                   <input
-                                    type="radio"
+                                    type="checkbox"
                                     name="sub_department"
                                     id="sub_department"
                                   />
@@ -1884,7 +1884,7 @@ const Search = () => {
                                             برمجة CSS و HTML
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1896,7 +1896,7 @@ const Search = () => {
                                             برمجة PHP
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1908,7 +1908,7 @@ const Search = () => {
                                             برمجة بايثون
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
@@ -1920,7 +1920,7 @@ const Search = () => {
                                             برمجة Java و .NET
                                           </div>
                                           <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="sub_sub_department"
                                             id="sub_sub_department"
                                           />
