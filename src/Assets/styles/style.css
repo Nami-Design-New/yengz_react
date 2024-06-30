@@ -1131,6 +1131,47 @@ main .login-section .tabs button.active {
 main .login-section .tabs button.active::after {
   width: 100%;
 }
+main .login-section .tabs {
+  width: 100%;
+  border-bottom: 2px solid var(--LightGray);
+  margin-bottom: 12px;
+  display: flex;
+}
+main .login-section .tabs button {
+  border: none;
+  background: none;
+  outline: none;
+  padding: 0 12px;
+  position: relative;
+  font-size: 16px;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-weight: 500;
+  transition: 0.3s ease-in-out;
+  color: var(--black-color);
+}
+@media (max-width: 576px) {
+  main .login-section .tabs button {
+    font-size: 14px;
+  }
+}
+main .login-section .tabs button::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  width: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 2px;
+  background: var(--main-color);
+  transition: 0.3s ease-in-out;
+}
+main .login-section .tabs button.active {
+  color: var(--main-color);
+}
+main .login-section .tabs button.active::after {
+  width: 100%;
+}
 main .profile-section {
   padding: 0 12px;
 }

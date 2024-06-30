@@ -1042,6 +1042,42 @@ main {
         font-size: 16px;
         width: fit-content;
         font-weight: 500;
+        transition: 0.3s ease-in-out;
+        color: var(--black-color);
+        @media (max-width: 576px) {
+          font-size: 14px;
+        }
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -2px;
+          width: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          height: 2px;
+          background: var(--main-color);
+          transition: 0.3s ease-in-out;
+        }
+        &.active {
+          color: var(--main-color);
+          &::after {
+            width: 100%;
+          }
+        }
+      }
+    }
+    .tabs {
+      width: 100%;
+      border-bottom: 2px solid var(--LightGray);
+      margin-bottom: 12px;
+      display: flex;
+      button {
+        @include clearInput();
+        padding: 0 12px;
+        position: relative;
+        font-size: 16px;
+        width: fit-content;
+        font-weight: 500;
         transition: .3s ease-in-out;
         color: var(--black-color);
         @media (max-width: 576px) {

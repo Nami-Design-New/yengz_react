@@ -326,6 +326,56 @@ const Navbar = () => {
                       </Dropdown.Item>
 
                       <div className="showall">
+                        <Link to="/notifications">جميع الرسائل</Link>
+                      </div>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </li>
+
+                {/* Notifications */}
+                <li className="link hide-sm2">
+                  <Dropdown style={{ position: "relative" }}>
+                    <Dropdown.Toggle
+                      style={{ backgroundColor: "#f4f4f4" }}
+                      id="dropdown-basic"
+                    >
+                      <i class="fa-regular fa-bell"></i>
+                      <span className="num-count">1</span>
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu className="drop_Message_Menu">
+                      <Dropdown.Item className="drop_Message">
+                        <Link to="/chat" style={{ display: "flex" }}>
+                          <div className="text-wrap">
+                            <div className="d-flex justify-content-between">
+                              <h6>اشعار جديد</h6>
+                              <span className="time">20 / 10 / 2024</span>
+                            </div>
+                            <p>
+                              انشاء متجر الكتروني احترافي على منصة ووردبريس
+                              ووكومرس
+                            </p>
+                          </div>
+                        </Link>
+                      </Dropdown.Item>
+
+                      <hr />
+
+                      <Dropdown.Item className="drop_Message">
+                        <Link to="/chat" style={{ display: "flex" }}>
+                          <div className="text-wrap">
+                            <div className="d-flex justify-content-between">
+                              <h6>اشعار جديد</h6>
+                              <span className="time">18 / 10 / 2024</span>
+                            </div>
+                            <p>نظام الكتروني لعيادة طبية</p>
+                          </div>
+                        </Link>
+                      </Dropdown.Item>
+
+                      <hr />
+
+                      <div className="showall">
                         <Link to="/notifications">جميع الإشعارات</Link>
                       </div>
                     </Dropdown.Menu>
