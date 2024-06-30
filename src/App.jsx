@@ -6,11 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useJwt } from "react-jwt";
 import { setIsLogged, setUser } from "./redux/slices/authedUser";
 
-import ResetPassword from "./features/auth/resetPassword/ResetPassword";
 import Login from "./features/auth/login/Login";
 import Register from "./features/auth/register/Register";
 import ForgetPassword from "./features/auth/resetPassword/ForgetPassword";
-import PasswordOTP from "./features/auth/resetPassword/PasswordOTP";
 import Layout from "./ui/Layout";
 import Home from "./routes/Home";
 import Chat from "./routes/Chat";
@@ -96,8 +94,6 @@ function App() {
           <Route path="/logout" element={<Logout />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forget-password" element={<ForgetPassword />} />
-          <Route path="/password-otp" element={<PasswordOTP />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
           <Route
             path="/recieved-request-orders"
             element={<RecievedRequestOrders />}

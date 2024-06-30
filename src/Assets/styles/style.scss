@@ -754,7 +754,7 @@ main {
         display: flex;
         width: 100%;
         flex-direction: column;
-        gap: 10px;
+        gap: 8px;
         label {
           color: var(--black-color);
           i {
@@ -762,14 +762,15 @@ main {
           }
         }
         input,
-        textarea {
+        textarea,
+        select {
           color: var(--black-color);
           direction: rtl;
           height: 56px;
           width: 100%;
           border: none;
           outline: none;
-          padding: 10px 16px;
+          padding: 12px;
           border-radius: 12px;
           background: var(--input-bg);
           border: 1px solid var(--LightGray);
@@ -854,10 +855,10 @@ main {
       }
       .image-change-wrapper {
         border-radius: 16px;
-        border: 1px solid var(--input-hint);
+        border: 1px solid var(--LightGray);
         @include centerFlex();
         flex-direction: column;
-        padding: 16px 0;
+        padding: 16px;
         .img-wrap {
           width: 130px;
           height: 130px;
@@ -878,14 +879,14 @@ main {
             display: none;
           }
           .plus {
-            width: 30px;
-            height: 30px;
+            width: 26px;
+            height: 26px;
             border-radius: 50%;
             background-color: var(--main-color);
             @include centerFlex();
             cursor: pointer;
             i {
-              font-size: 20px;
+              font-size: 14px;
               color: #fff;
             }
           }
@@ -938,6 +939,7 @@ main {
         .PhoneInput {
           display: flex;
           gap: 12px;
+          flex-direction: row-reverse;
           .PhoneInputCountryIcon {
             position: relative;
           }
@@ -949,6 +951,7 @@ main {
           }
           select {
             padding: 12px 6px 12px 30px;
+            direction: ltr !important;
           }
         }
         .phone-code {
@@ -967,7 +970,7 @@ main {
       p {
         font-size: 14px;
         align-self: flex-start;
-        margin-bottom: 32px;
+        margin-bottom: 24px;
         span {
           color: var(--main-color);
         }
@@ -976,22 +979,7 @@ main {
       .input-field {
         margin-bottom: 12px;
       }
-      .otp-container {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        gap: 16px;
-        direction: ltr !important;
-        .otp-input {
-          width: 70px;
-          height: 70px;
-          background: var(--main30-color);
-          padding: 10px 28px;
-          font-size: 24px;
-          font-weight: bold;
-          color: var(--main-color);
-        }
-      }
+     
       .resend-code {
         width: 100%;
         display: flex;
@@ -1012,6 +1000,42 @@ main {
       h1,
       p {
         align-self: center !important;
+      }
+    }
+    .tabs {
+      width: 100%;
+      border-bottom: 2px solid var(--LightGray);
+      margin-bottom: 12px;
+      display: flex;
+      button {
+        @include clearInput();
+        padding: 0 12px;
+        position: relative;
+        font-size: 16px;
+        width: fit-content;
+        font-weight: 500;
+        transition: .3s ease-in-out;
+        color: var(--black-color);
+        @media (max-width: 576px) {
+          font-size: 14px;
+        }
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -2px;
+          width: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          height: 2px;
+          background: var(--main-color);
+          transition: .3s ease-in-out;
+        }
+        &.active {
+          color: var(--main-color);
+          &::after {
+            width: 100%;
+          }
+        }
       }
     }
   }
@@ -3478,27 +3502,7 @@ footer {
           }
         }
       }
-      .otp-container {
-        margin-top: 32px;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        gap: 16px;
-        direction: ltr !important;
-        .otp-input {
-          width: 70px;
-          height: 70px;
-          background: var(--main30-color);
-          padding: 10px 28px;
-          font-size: 24px;
-          font-weight: bold;
-          color: var(--main-color);
-          @media (max-width: 576px) {
-            width: 60px;
-            height: 60px;
-          }
-        }
-      }
+     
       .t-select {
         width: 100%;
         justify-content: space-between;
@@ -4875,7 +4879,6 @@ main .search-section aside.side-menu {
 }
 
 // ================ blogs =========== //
-
 .blogs {
   padding: 120px 0 40px;
   .blog {
@@ -5066,5 +5069,42 @@ main .search-section aside.side-menu {
   .Toastify__toast-container {
     right: 0;
     left: initial;
+  }
+}
+.form-switch .form-check-input {
+  box-shadow: none !important;
+  &:checked {
+    background-color: var(--main-color);
+    border-color: var(--main-color);
+  }
+}
+
+.otp-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  direction: ltr !important;
+  @media (max-width: 576px) {
+    gap: 8px;
+  }
+  .otp-input {
+    border-radius: 12px;
+    flex: 1;
+    width: inherit;
+    height: 80px !important;
+    text-align: center;
+    border: 1px solid var(--main-color);
+    background: var(--main10-color);
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--main-color) !important;
+    outline: none;
+    &::-webkit-inner-spin-button {
+      display: none;
+    }
+    @media (max-width: 576px) {
+      height: 60px !important;
+    }
   }
 }

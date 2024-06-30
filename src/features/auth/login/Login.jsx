@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { useCookies } from "react-cookie";
 import { useDispatch } from "react-redux";
 import { setIsLogged, setUser } from "../../../redux/slices/authedUser";
+import { useTranslation } from "react-i18next";
 import Google from "../../../Assets/images/Google.svg";
 import InputField from "../../../ui/form-elements/InputField";
 import PasswordField from "../../../ui/form-elements/PasswordField";
@@ -11,6 +12,7 @@ import axios from "../../../utils/axios";
 import SubmitButton from "../../../ui/form-elements/SubmitButton";
 
 const Login = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [, setCookie] = useCookies(["token"]);
@@ -34,7 +36,7 @@ const Login = () => {
     try {
       const res = await axios.post("/user/login", formData);
       if (res.data.code === 200) {
-        toast.success("تم تسجيل الدخول بنجاح");
+        toast.success(t("auth.loginSuccess"));
         dispatch(setUser(res.data.data));
         dispatch(setIsLogged(true));
         navigate("/");
@@ -47,10 +49,10 @@ const Login = () => {
           "Authorization"
         ] = `Bearer ${res.data.data.token}`;
       } else {
-        toast.error("البريد الالكتروني او كلمة المرور غير صحيحة");
+        toast.error(t("auth.emailOrPasswordWrong"));
       }
     } catch (error) {
-      toast.error("حدث خطأ أثناء تسجيل الدخول");
+      toast.error(t("auth.loginErorr"));
       console.error("Login error:", error);
     } finally {
       setLoading(false);
@@ -60,26 +62,24 @@ const Login = () => {
   return (
     <main>
       <section className="login-section container">
-        <h1 className="text-center">تسجيل الدخول</h1>
-        <p className="text-center mt-3 title">
-          اهلا بك ...! ادخل بياناتك المسجلة لإتمام عملية الدخول
-        </p>
+        <h1 className="text-center">{t("auth.loginPageTitle")}</h1>
+        <p className="text-center mt-3 title">{t("auth.loginPageSubTitle")}</p>
         <form className="container form" onSubmit={handleSubmit}>
           <div className="col-12 p-2">
             <InputField
-              label={"البريد الالكتروني"}
+              label={t("auth.email")}
               name={"email"}
               id={"email"}
               type={"email"}
               required={true}
-              placeholder={"example@example.com"}
               value={formData.email}
               onChange={handleChange}
+              placeholder={"example@example.com"}
             />
           </div>
           <div className="col-12 p-2">
             <PasswordField
-              label={"كلمة المرور"}
+              label={t("auth.password")}
               name={"password"}
               id={"password"}
               value={formData.password}
@@ -87,17 +87,17 @@ const Login = () => {
             />
           </div>
           <Link to="/forget-password" className="forgetpass">
-            نسيت كلمة المرور ؟
+            {t("auth.forgetPassword")}
           </Link>
-          <SubmitButton loading={loading} name={"تسجيل الدخول"} />
+          <SubmitButton loading={loading} name={t("auth.login")} />
           <div className="line">
-            <span>أو تسجيل الدخول بواسطة</span>
+            <span>{t("auth.orLoginWith")}</span>
           </div>
           <button className="google-login">
-            <img src={Google} alt="google" /> حساب جوجل
+            <img src={Google} alt="google" /> {t("auth.googleAccount")}
           </button>
-          <Link to="register" className="noAccount">
-            ليس لديك حساب ؟ <span>انشاء حساب</span>
+          <Link to="/register" className="noAccount">
+            {t("auth.don'tHaveAccount")} <span>{t("auth.createAccount")}</span>
           </Link>
         </form>
       </section>
