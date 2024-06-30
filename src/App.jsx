@@ -30,6 +30,7 @@ import Requests from "./routes/Requests";
 import Services from "./routes/Services";
 import Search from "./routes/Search";
 import Logout from "./features/auth/Logout";
+import Profile from "./routes/Profile";
 
 function App() {
   const dispatch = useDispatch();
@@ -97,6 +98,8 @@ function App() {
           <Route path="/logout" element={<Logout />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forget-password" element={<ForgetPassword />} />
+          <Route path="/profile" element={<Profile />} />
+
           <Route
             path="/recieved-request-orders"
             element={<RecievedRequestOrders />}
