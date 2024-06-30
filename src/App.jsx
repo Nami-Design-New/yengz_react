@@ -1,4 +1,11 @@
+import axios from "./utils/axios";
+import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import { useDispatch, useSelector } from "react-redux";
+import { useJwt } from "react-jwt";
+import { setIsLogged, setUser } from "./redux/slices/authedUser";
+
 import ResetPassword from "./features/auth/resetPassword/ResetPassword";
 import Login from "./features/auth/login/Login";
 import Register from "./features/auth/register/Register";
@@ -14,9 +21,9 @@ import Contact from "./routes/Contact";
 import Categories from "./routes/Categories";
 import Faq from "./routes/Faq";
 import HowItWork from "./routes/HowItWork";
-import OrederDetails from "./routes/OrderDetails";
+import OrderDetails from "./routes/OrderDetails";
 import Purchases from "./routes/Purchases";
-import ReaquestDetails from "./routes/ReaquestDetails";
+import RequestDetails from "./routes/RequestDetails";
 import RecievedRequest from "./routes/RecievedRequest";
 import RecievedRequestOrders from "./routes/RecievedRequestOrders";
 import Terms from "./routes/Terms";
@@ -26,6 +33,37 @@ import Services from "./routes/Services";
 import Search from "./routes/Search";
 
 function App() {
+  const dispatch = useDispatch();
+  const lang = useSelector((state) => state.language.lang);
+  const [cookies, , removeCookie] = useCookies(["token"]);
+  const token = cookies?.token;
+  const { decodedToken, isExpired } = useJwt(token || "");
+
+  useEffect(() => {
+    if (decodedToken && !isExpired) {
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      const user = axios.get("/user/get_profile");
+      user
+        .then((res) => {
+          dispatch(setUser(res.data.data));
+          dispatch(setIsLogged(true));
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (isExpired) {
+      removeCookie();
+      dispatch(setIsLogged(false));
+      delete axios.defaults.headers.common["Authorization"];
+    }
+  }, [decodedToken, isExpired, dispatch, token, removeCookie]);
+
+  useEffect(() => {
+    sessionStorage.setItem("lang", lang);
+    const body = document.querySelector("body");
+    lang === "en" ? body.classList.add("en") : body.classList.remove("en");
+  }, [lang]);
+
   return (
     <div className="App">
       <Routes>
@@ -34,10 +72,10 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/purchases" element={<Purchases />} />
-          <Route path="/order-details" element={<OrederDetails />} />
+          <Route path="/order-details" element={<OrderDetails />} />
           <Route path="/recieved-request" element={<RecievedRequest />} />
-          <Route path="requests" element={<Requests />} />
-          <Route path="reaquest-details" element={<ReaquestDetails />} />
+          <Route path="/requests" element={<Requests />} />
+          <Route path="/request-details" element={<RequestDetails />} />
           <Route path="/request-add" element={<AddRequest />} />
           <Route path="/chat" element={<Chat />} />
           <Route path="/search" element={<Search />} />
@@ -47,14 +85,13 @@ function App() {
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/blog-details" element={<BlogDetails />} />
           <Route path="/how-it-work" element={<HowItWork />} />
-          <Route path="/daq" element={<Faq />} />
-          <Route path="/">
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/forget-password" element={<ForgetPassword />} />
-            <Route path="/password-OTP" element={<PasswordOTP />} />
-            <Route path="/resetPassword" element={<ResetPassword />} />
-          </Route>
+          <Route path="/faq" element={<Faq />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/logout" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/forget-password" element={<ForgetPassword />} />
+          <Route path="/password-otp" element={<PasswordOTP />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
           <Route
             path="/recieved-request-orders"
             element={<RecievedRequestOrders />}
