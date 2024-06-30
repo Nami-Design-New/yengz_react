@@ -48,7 +48,7 @@
     "requestsRecieved": "Requests Recieved",
     "serviceAsYouLike": " Service As You Like",
     "searchFor": "Search For...",
-    "login":"Login",
+    "login": "Login",
     "newAccount": "New Account",
     "balance": "Balance",
     "editProfile": "Edit Profile",
@@ -56,5 +56,9 @@
     "report": "Report",
     "deleteAccount": "Delete Account",
     "logout": "Logout"
+  },
+  "home": {
+    "searchFor": "Search For...",
+    "heroSectionTitle": "The largest Arab market for buying and selling microservices"
   }
 }
