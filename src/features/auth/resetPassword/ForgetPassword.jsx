@@ -1,32 +1,37 @@
-import React from 'react'
-import forgetpass1 from "../../../Assets/images/forgetpass1.svg";
-
+import React, { useState } from "react";
+import Step1 from "./Step1";
+import Step2 from "./Step2";
+import Step3 from "./Step3";
 
 const ForgetPassword = () => {
-
+  const [step, setStep] = useState(1);
+  const [formData, setFormData] = useState({
+    email: ""
+  });
+  const [otpData, setOtpData] = useState({});
   return (
-    
     <main>
+      <section className="login-section forgetpassword container">
+        {step === 1 && (
+          <Step1
+            setStep={setStep}
+            setOtpData={setOtpData}
+            formData={formData}
+            setFormData={setFormData}
+          />
+        )}
+        {step === 2 && (
+          <Step2
+            setStep={setStep}
+            setOtpData={setOtpData}
+            otpData={otpData}
+            email={formData.email}
+          />
+        )}
+        {step === 3 && <Step3 />}
+      </section>
+    </main>
+  );
+};
 
-    <section className="login-section forgetpassword container">
-        <form action="/password-otp" className="container form forgetpasswordForm">
-            <div className="illustration">
-                <img src={forgetpass1}  alt="" />
-            </div>
-            <h1>نسيت كلمة المرور ..!</h1>
-            <p className="title">من فضلك ادخل البريد الالكتروني المسجل لدينا لارسال رمز التحقق. </p>
-            <div className="input-field">
-                <label htmfor="email"><i className="ti ti-md ti-mail"></i> البريد الالكتروني</label>
-                <input type="email" id="email" name="email" placeholder="مثال : mail@mail.com" />
-            </div>
-            <button type="submit">ارسال</button>
-        </form>
-    </section>
-
-  </main>
-
-   
-  )
-}
-
-export default ForgetPassword
+export default ForgetPassword;

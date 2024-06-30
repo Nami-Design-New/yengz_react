@@ -1,10 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
+import "./utils/i18n";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import { ToastContainer } from "react-toastify";
 import { BrowserRouter } from "react-router-dom";
+import ToTopOnNavigation from "./utils/ToTopOnNavigation";
 
 /*---------- fontawesome ----------*/
 import "./Assets/styles/all.min.css";
@@ -22,6 +24,7 @@ root.render(
     <Provider store={store}>
       <ToastContainer />
       <BrowserRouter>
+        <ToTopOnNavigation />
         <App />
       </BrowserRouter>
     </Provider>

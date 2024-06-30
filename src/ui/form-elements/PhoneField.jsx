@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import PhoneInput from "react-phone-number-input";
 
-const PhoneField = ({ formData, setFormData, id, value, label, icon }) => {
+const PhoneField = ({ formData, setFormData, id, value }) => {
   const [phoneNumber, setPhoneNumber] = useState();
+  const { t } = useTranslation();
 
   const handlePhoneNumberChange = (value) => {
     setPhoneNumber(value);
@@ -11,9 +13,7 @@ const PhoneField = ({ formData, setFormData, id, value, label, icon }) => {
 
   return (
     <div className="input-field">
-      <label htmlFor="phone">
-        {icon} {label}
-      </label>
+      <label htmlFor="phone">{t("auth.phone")}</label>
       <div className="phone-group">
         <PhoneInput
           placeholder="0XXXXXXXXXX"
