@@ -1,50 +1,11 @@
 import React, { useState } from "react";
 import userImg from "../../../Assets/images/userImg.svg";
 import Google from "../../../Assets/images/Google.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import InputField from "../../../ui/form-elements/InputField";
 import ImageUpload from "../../../ui/form-elements/ImageUpload";
 
 const Register = () => {
-  const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState({
-    userImage: "",
-    name: "",
-    email: "",
-    password: "",
-    isFreelancing: false,
-    token: "1",
-  });
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      const res = axios.post("/user/login", formData);
-      if (res.status === 200) {
-        toast.success("تم تسجيل الدخول بنجاح");
-        navigate("/");
-        axios.defaults.headers.common[
-          "Authorization"
-        ] = `Bearer ${res.data.data.token}`;
-      } else {
-        toast.error("البريد الالكتروني او كلمة المرور غير صحيحة");
-      }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
     <main>
       <section className="login-section container">
@@ -54,24 +15,19 @@ const Register = () => {
         </p>
 
         <form action="" className="container form">
-          <div className="input-field image-change-wrapper">
-            <ImageUpload
-              type="file"
-              name="userImage"
-              id="img-upload"
-              accept="image/*"
-              formData={formData}
-              onChange={(e) => handleChange(e)}
-            />
-          </div>
+        <ImageUpload
+                  type="file"
+                  name="userImage"
+                  id="img-upload"
+                  accept="image/*"
+                />
           <div className="input-field">
             <div className="d-flex gap-3">
+              <InputField name={"الأول"} placeholder="الأول" label="الاسم" />
               <InputField
-                name="name"
-                placeholder="الاسم"
+                name={"الاسم الاخير"}
+                placeholder="الاخير"
                 label="الاسم"
-                formData={formData}
-                onChange={(e) => handleChange(e)}
               />
             </div>
           </div>
@@ -79,10 +35,8 @@ const Register = () => {
             <InputField
               label={` البريد الالكتروني`}
               type="email"
-              name="email"
+              name={"البريد الالكتروني"}
               placeholder="البريد الالكتروني"
-              formData={formData}
-              onChange={(e) => handleChange(e)}
             />
           </div>
           <div className="input-field">
