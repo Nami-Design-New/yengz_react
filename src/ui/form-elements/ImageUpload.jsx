@@ -33,5 +33,4 @@ const ImageUpload = ({ formData, setFormData }) => {
     </div>
   );
 };
-
 export default ImageUpload;

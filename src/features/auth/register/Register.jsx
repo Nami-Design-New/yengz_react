@@ -56,7 +56,7 @@ const Register = () => {
               id="img-upload"
               accept="image/*"
               formData={formData}
-              onChange={(e) => handleChange(e)}
+              setFormData={(e) => handleChange(e)}
             />
           </div>
           <div className="input-field">
