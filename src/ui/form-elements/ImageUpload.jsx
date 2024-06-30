@@ -1,17 +1,17 @@
 import React, { useRef } from "react";
 import { useTranslation } from "react-i18next";
-import avatar from "../../../assets/images/avatar.jpg";
+import avatar from "../../Assets/images/userImg.svg";
 
-const ImageUpload = ({formData , setFormData}) => {
+const ImageUpload = ({ formData, setFormData }) => {
   const { t } = useTranslation();
   const imgView = useRef(null);
-  
+
   const handleUpload = (e) => {
     imgView.current.src = URL.createObjectURL(e.target.files[0]);
     setFormData({ ...formData, [e.target.name]: e.target.files[0] });
-  }
+  };
   return (
-    <div className="image-change-wrapper">
+    <div className="w-100 image-change-wrapper">
       <div className="img-wrap">
         <img ref={imgView} src={avatar} alt="avatar" />
       </div>
@@ -33,5 +33,4 @@ const ImageUpload = ({formData , setFormData}) => {
     </div>
   );
 };
-
 export default ImageUpload;

@@ -1,6 +1,10 @@
 {
-    "navbar": {
-        "addService": "اضف خدمة",
-        "departments": "الأقسام"
-    }
+  "auth": {
+    "personalPhoto": "الصورة الشخصية"
+  },
+  "navbar": {
+    "addService": "اضف خدمة",
+    "departments": "الأقسام"
+  }
 }
+
