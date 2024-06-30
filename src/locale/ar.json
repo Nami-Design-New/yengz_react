@@ -43,6 +43,22 @@
   },
   "navbar": {
     "addService": "اضف خدمة",
-    "departments": "الأقسام"
+    "categories": "الأقسام",
+    "purchase": "المشتريات",
+    "requestsRecieved": " الطلبات الواردة",
+    "serviceAsYouLike": " اطلب خدمة علي زوقك",
+    "searchFor": "ابحث عن...",
+    "login": "تسجيل الدخول",
+    "newAccount": "حساب جديد",
+    "balance": "الرصيد",
+    "editProfile": "تعديل الملف الشخصي",
+    "support": "المساعدة",
+    "report": "الابلاغ عن مشكلة",
+    "deleteAccount": "حذف الحساب",
+    "logout": "تسجيل الخروج"
+  },
+  "home":{
+    "searchFor": "ابحث عن...",
+    "heroSectionTitle": "أكبر سوق عربي لبيع وشراء الخدمات المصغرة"
   }
 }
