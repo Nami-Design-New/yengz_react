@@ -11,7 +11,7 @@ const ImageUpload = ({ formData, setFormData }) => {
     setFormData({ ...formData, [e.target.name]: e.target.files[0] });
   };
   return (
-    <div className="w-100 image-change-wrapper">
+    <div className="w-100 p-2 image-change-wrapper">
       <div className="img-wrap">
         <img ref={imgView} src={avatar} alt="avatar" />
       </div>

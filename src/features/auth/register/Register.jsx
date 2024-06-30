@@ -49,16 +49,14 @@ const Register = () => {
     <main>
       <section className="login-section container">
         <form action="" className="container form">
-          <div className="input-field image-change-wrapper">
-            <ImageUpload
-              type="file"
-              name="userImage"
-              id="img-upload"
-              accept="image/*"
-              formData={formData}
-              setFormData={(e) => handleChange(e)}
-            />
-          </div>
+          <ImageUpload
+            type="file"
+            name="userImage"
+            id="img-upload"
+            accept="image/*"
+            formData={formData}
+            setFormData={(e) => handleChange(e)}
+          />
           <div className="input-field">
             <div className="d-flex gap-3">
               <InputField

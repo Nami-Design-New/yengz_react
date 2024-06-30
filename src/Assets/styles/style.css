@@ -904,6 +904,7 @@ main .login-section .form .question .vendorInput:checked::before {
 }
 main .login-section .form .image-change-wrapper {
   border-radius: 16px;
+  border: 1px solid var(--input-hint);
   display: flex;
   align-items: center;
   justify-content: center;

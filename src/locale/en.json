@@ -1,3 +1,9 @@
 {
-    
+  "auth": {
+    "personalPhoto": "Personal Photo"
+  },
+  "navbar": {
+    "addService": "Add Service",
+    "departments": "Departments"
+  }
 }
