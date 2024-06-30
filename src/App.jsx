@@ -31,6 +31,7 @@ import AddRequest from "./routes/AddRequest";
 import Requests from "./routes/Requests";
 import Services from "./routes/Services";
 import Search from "./routes/Search";
+import Logout from "./features/auth/Logout";
 
 function App() {
   const dispatch = useDispatch();
@@ -45,8 +46,13 @@ function App() {
       const user = axios.get("/user/get_profile");
       user
         .then((res) => {
-          dispatch(setUser(res.data.data));
-          dispatch(setIsLogged(true));
+          if (res.data.code === 200) {
+            dispatch(setUser(res.data.data));
+            dispatch(setIsLogged(true));
+          } else {
+            dispatch(setIsLogged(false));
+            dispatch(setUser({}));
+          }
         })
         .catch((err) => {
           console.log(err);
@@ -87,7 +93,7 @@ function App() {
           <Route path="/how-it-work" element={<HowItWork />} />
           <Route path="/faq" element={<Faq />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/logout" element={<Login />} />
+          <Route path="/logout" element={<Logout />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forget-password" element={<ForgetPassword />} />
           <Route path="/password-otp" element={<PasswordOTP />} />

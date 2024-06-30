@@ -48,6 +48,7 @@ const Register = () => {
   return (
     <main>
       <section className="login-section container">
+
         <form action="" className="container form">
           <ImageUpload
             type="file"

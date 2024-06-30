@@ -16,9 +16,11 @@ import { useTranslation } from "react-i18next";
 
 const Navbar = () => {
   const { t } = useTranslation();
-  const lang = useSelector((state) => state.language.lang);
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.authedUser.user);
+  const lang = useSelector((state) => state.language.lang);
   const isLogged = useSelector((state) => state.authedUser.isLogged);
+  console.log(user);
 
   const handleLang = (newLang) => {
     dispatch(setLanguage(newLang));
@@ -39,10 +41,10 @@ const Navbar = () => {
         <div className="small-media-menu">
           <div className="user">
             <Link to="/profile" className="avatar">
-              <img src={avatar} alt="" />5
+              <img src={user?.image} alt="" />
             </Link>
             <div className="userr">
-              <h6>محمدعبد المعطي</h6>
+              <h6>{user?.name}</h6>
               <span>بائع مميز</span>
             </div>
           </div>
@@ -122,7 +124,7 @@ const Navbar = () => {
                   style={{ backgroundColor: "#f4f4f4" }}
                   id="dropdown-basic"
                 >
-                  <IconLanguage stroke={2} />
+                  <IconLanguage stroke={1} />
                 </Dropdown.Toggle>
                 <Dropdown.Menu className="dropdown-menu">
                   <Dropdown.Item>
@@ -261,7 +263,7 @@ const Navbar = () => {
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
                       >
-                        <img src={avatar} alt="user-avatar" />
+                        <img src={user?.image} alt="user-avatar" />
                       </button>
                     </Dropdown.Toggle>
 
@@ -269,7 +271,7 @@ const Navbar = () => {
                       <Dropdown.Item>
                         <Link className="dropdown-item_Link" to="/profile">
                           <i className="fa-solid fa-user"></i>
-                          محمد عبد المعطي
+                          {user?.name}
                         </Link>
                       </Dropdown.Item>
 
@@ -304,7 +306,7 @@ const Navbar = () => {
                       <hr />
 
                       <Dropdown.Item>
-                        <Link className="dropdown-item_Link" to="/profile">
+                        <Link className="dropdown-item_Link" to="/logout">
                           <i className="fa-solid fa-right-from-bracket"></i>
                           تسجيل الخروج
                         </Link>
