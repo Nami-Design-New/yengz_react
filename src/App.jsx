@@ -76,10 +76,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="/services" element={<Services />} />
-          <Route path="/categories">
-            <Route index element={<Categories />} />
-            <Route path=":id" element={<Search />} />
-          </Route>
+          <Route path="/categories" element={<Categories />} />
           <Route path="/purchases" element={<Purchases />} />
           <Route path="/order-details" element={<OrderDetails />} />
           <Route path="/recieved-request" element={<RecievedRequest />} />
@@ -101,9 +98,6 @@ function App() {
           <Route path="/forget-password" element={<ForgetPassword />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/Cart" element={<Cart />} />
-
-          
-
           <Route
             path="/recieved-request-orders"
             element={<RecievedRequestOrders />}

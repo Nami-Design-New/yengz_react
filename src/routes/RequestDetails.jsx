@@ -143,7 +143,7 @@ const ReaquestDetails = () => {
                       name="terms"
                       className="bg-transparent p-0 w-auto h-auto"
                     />
-                    <label for="terms">
+                    <label htmlFor="terms">
                       لقد قرأت وأوافق على
                       <Link to="/terms">الشروط والأحكام</Link>
                     </label>

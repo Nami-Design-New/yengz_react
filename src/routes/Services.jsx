@@ -166,14 +166,14 @@ const Services = () => {
                 <div className="d-flex input-field align-items-baseline">
                   <input type="checkbox" id="check-1" />
                   <div className="label">
-                    <label for="check-1">لوغو احترافي للمتجر</label>
+                    <label htmlFor="check-1">لوغو احترافي للمتجر</label>
                     <p>مقابل 15.00$ إضافية على سعر الخدمة.</p>
                   </div>
                 </div>
                 <div className="d-flex input-field align-items-baseline">
                   <input type="checkbox" id="check-2" />
                   <div className="label">
-                    <label for="check-2">
+                    <label htmlFor="check-2">
                       خدمة VIP متجر عربي (هوية بصرية لمتجرك+25 منتج رابح مع وصف
                       إحترافي+ ومقابلة زووم لشرح )
                     </label>
@@ -186,7 +186,7 @@ const Services = () => {
                 <div className="d-flex input-field align-items-baseline">
                   <input type="checkbox" id="check-3" />
                   <div className="label">
-                    <label for="check-3">
+                    <label htmlFor="check-3">
                       ترجمة قالب المتجر الى اللغة العربية
                     </label>
                     <p>

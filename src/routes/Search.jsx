@@ -15,7 +15,7 @@ const Search = () => {
                 </div>
                 <form action="">
                   <div className="input-field">
-                    <label for="search">بحث</label>
+                    <label htmlFor="search">بحث</label>
                     <input type="text" id="search" name="search" />
                   </div>
                   {/*<!-- filter by department_name -->*/}
@@ -2058,15 +2058,15 @@ const Search = () => {
                     <ul>
                       <li>
                         <input type="checkbox" id="featured-seller" checked />
-                        <label for="featured-seller">بائع مميز</label>
+                        <label htmlFor="featured-seller">بائع مميز</label>
                       </li>
                       <li>
                         <input type="checkbox" id="active-seller" />
-                        <label for="active-seller">بائع نشيط</label>
+                        <label htmlFor="active-seller">بائع نشيط</label>
                       </li>
                       <li>
                         <input type="checkbox" id="new-seller" />
-                        <label for="new-seller">بائع جديد</label>
+                        <label htmlFor="new-seller">بائع جديد</label>
                       </li>
                     </ul>
                   </ul>
@@ -2077,11 +2077,11 @@ const Search = () => {
                     <ul>
                       <li>
                         <input type="checkbox" id="verified-seller" checked />
-                        <label for="verified-seller">هوية موثقة</label>
+                        <label htmlFor="verified-seller">هوية موثقة</label>
                       </li>
                       <li>
                         <input type="checkbox" id="available-seller" />
-                        <label for="available-seller">متواجد حالياً</label>
+                        <label htmlFor="available-seller">متواجد حالياً</label>
                       </li>
                     </ul>
                   </ul>

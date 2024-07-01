@@ -127,7 +127,7 @@ const RecievedRequestOrders = () => {
                                         value="5"
                                       />
                                       <label
-                                        for="star5_onTimeDelivery"
+                                        htmlFor="star5_onTimeDelivery"
                                         title="5 stars"
                                       >
                                         <i className="fa-sharp fa-solid fa-star"></i>
@@ -139,7 +139,7 @@ const RecievedRequestOrders = () => {
                                         value="4"
                                       />
                                       <label
-                                        for="star4_onTimeDelivery"
+                                        htmlFor="star4_onTimeDelivery"
                                         title="4 stars"
                                       >
                                         <i className="fa-sharp fa-solid fa-star"></i>
@@ -151,7 +151,7 @@ const RecievedRequestOrders = () => {
                                         value="3"
                                       />
                                       <label
-                                        for="star3_onTimeDelivery"
+                                        htmlFor="star3_onTimeDelivery"
                                         title="3 stars"
                                       >
                                         <i className="fa-sharp fa-solid fa-star"></i>
@@ -163,7 +163,7 @@ const RecievedRequestOrders = () => {
                                         value="2"
                                       />
                                       <label
-                                        for="star2_onTimeDelivery"
+                                        htmlFor="star2_onTimeDelivery"
                                         title="2 stars"
                                       >
                                         <i className="fa-sharp fa-solid fa-star"></i>
@@ -175,7 +175,7 @@ const RecievedRequestOrders = () => {
                                         value="1"
                                       />
                                       <label
-                                        for="star1_onTimeDelivery"
+                                        htmlFor="star1_onTimeDelivery"
                                         title="1 star"
                                       >
                                         <i className="fa-sharp fa-solid fa-star"></i>
@@ -194,7 +194,7 @@ const RecievedRequestOrders = () => {
                                         value="5"
                                       />
                                       <label
-                                        for="star5_followUp"
+                                        htmlFor="star5_followUp"
                                         title="5 stars"
                                       >
                                         <i className="fa-sharp fa-solid fa-star"></i>
@@ -206,7 +206,7 @@ const RecievedRequestOrders = () => {
                                         value="4"
                                       />
                                       <label
-                                        for="star4_followUp"
+                                        htmlFor="star4_followUp"
                                         title="4 stars"
                                       >
                                         <i className="fa-sharp fa-solid fa-star"></i>
@@ -218,7 +218,7 @@ const RecievedRequestOrders = () => {
                                         value="3"
                                       />
                                       <label
-                                        for="star3_followUp"
+                                        htmlFor="star3_followUp"
                                         title="3 stars"
                                       >
                                         <i className="fa-sharp fa-solid fa-star"></i>
@@ -230,7 +230,7 @@ const RecievedRequestOrders = () => {
                                         value="2"
                                       />
                                       <label
-                                        for="star2_followUp"
+                                        htmlFor="star2_followUp"
                                         title="2 stars"
                                       >
                                         <i className="fa-sharp fa-solid fa-star"></i>
@@ -242,7 +242,7 @@ const RecievedRequestOrders = () => {
                                         value="1"
                                       />
                                       <label
-                                        for="star1_followUp"
+                                        htmlFor="star1_followUp"
                                         title="1 star"
                                       >
                                         <i className="fa-sharp fa-solid fa-star"></i>
@@ -260,7 +260,7 @@ const RecievedRequestOrders = () => {
                                         name="rating_qos"
                                         value="5"
                                       />
-                                      <label for="star5_qos" title="5 stars">
+                                      <label htmlFor="star5_qos" title="5 stars">
                                         <i className="fa-sharp fa-solid fa-star"></i>
                                       </label>
                                       <input
@@ -269,7 +269,7 @@ const RecievedRequestOrders = () => {
                                         name="rating_qos"
                                         value="4"
                                       />
-                                      <label for="star4_qos" title="4 stars">
+                                      <label htmlFor="star4_qos" title="4 stars">
                                         <i className="fa-sharp fa-solid fa-star"></i>
                                       </label>
                                       <input
@@ -278,7 +278,7 @@ const RecievedRequestOrders = () => {
                                         name="rating_qos"
                                         value="3"
                                       />
-                                      <label for="star3_qos" title="3 stars">
+                                      <label htmlFor="star3_qos" title="3 stars">
                                         <i className="fa-sharp fa-solid fa-star"></i>
                                       </label>
                                       <input
@@ -287,7 +287,7 @@ const RecievedRequestOrders = () => {
                                         name="rating_qos"
                                         value="2"
                                       />
-                                      <label for="star2_qos" title="2 stars">
+                                      <label htmlFor="star2_qos" title="2 stars">
                                         <i className="fa-sharp fa-solid fa-star"></i>
                                       </label>
                                       <input
@@ -296,7 +296,7 @@ const RecievedRequestOrders = () => {
                                         name="rating_qos"
                                         value="1"
                                       />
-                                      <label for="star1_qos" title="1 star">
+                                      <label htmlFor="star1_qos" title="1 star">
                                         <i className="fa-sharp fa-solid fa-star"></i>
                                       </label>
                                     </div>
@@ -358,7 +358,7 @@ const RecievedRequestOrders = () => {
                         name="rating_onTimeDelivery"
                         value="5"
                       />
-                      <label for="star5_onTimeDelivery" title="5 stars">
+                      <label htmlFor="star5_onTimeDelivery" title="5 stars">
                         <i className="fa-sharp fa-solid fa-star"></i>
                       </label>
                       <input
@@ -367,7 +367,7 @@ const RecievedRequestOrders = () => {
                         name="rating_onTimeDelivery"
                         value="4"
                       />
-                      <label for="star4_onTimeDelivery" title="4 stars">
+                      <label htmlFor="star4_onTimeDelivery" title="4 stars">
                         <i className="fa-sharp fa-solid fa-star"></i>
                       </label>
                       <input
@@ -376,7 +376,7 @@ const RecievedRequestOrders = () => {
                         name="rating_onTimeDelivery"
                         value="3"
                       />
-                      <label for="star3_onTimeDelivery" title="3 stars">
+                      <label htmlFor="star3_onTimeDelivery" title="3 stars">
                         <i className="fa-sharp fa-solid fa-star"></i>
                       </label>
                       <input
@@ -385,7 +385,7 @@ const RecievedRequestOrders = () => {
                         name="rating_onTimeDelivery"
                         value="2"
                       />
-                      <label for="star2_onTimeDelivery" title="2 stars">
+                      <label htmlFor="star2_onTimeDelivery" title="2 stars">
                         <i className="fa-sharp fa-solid fa-star"></i>
                       </label>
                       <input
@@ -394,7 +394,7 @@ const RecievedRequestOrders = () => {
                         name="rating_onTimeDelivery"
                         value="1"
                       />
-                      <label for="star1_onTimeDelivery" title="1 star">
+                      <label htmlFor="star1_onTimeDelivery" title="1 star">
                         <i className="fa-sharp fa-solid fa-star"></i>
                       </label>
                     </div>
@@ -410,7 +410,7 @@ const RecievedRequestOrders = () => {
                         name="rating_followUp"
                         value="5"
                       />
-                      <label for="star5_followUp" title="5 stars">
+                      <label htmlFor="star5_followUp" title="5 stars">
                         <i className="fa-sharp fa-solid fa-star"></i>
                       </label>
                       <input
@@ -419,7 +419,7 @@ const RecievedRequestOrders = () => {
                         name="rating_followUp"
                         value="4"
                       />
-                      <label for="star4_followUp" title="4 stars">
+                      <label htmlFor="star4_followUp" title="4 stars">
                         <i className="fa-sharp fa-solid fa-star"></i>
                       </label>
                       <input
@@ -428,7 +428,7 @@ const RecievedRequestOrders = () => {
                         name="rating_followUp"
                         value="3"
                       />
-                      <label for="star3_followUp" title="3 stars">
+                      <label htmlFor="star3_followUp" title="3 stars">
                         <i className="fa-sharp fa-solid fa-star"></i>
                       </label>
                       <input
@@ -437,7 +437,7 @@ const RecievedRequestOrders = () => {
                         name="rating_followUp"
                         value="2"
                       />
-                      <label for="star2_followUp" title="2 stars">
+                      <label htmlFor="star2_followUp" title="2 stars">
                         <i className="fa-sharp fa-solid fa-star"></i>
                       </label>
                       <input
@@ -446,7 +446,7 @@ const RecievedRequestOrders = () => {
                         name="rating_followUp"
                         value="1"
                       />
-                      <label for="star1_followUp" title="1 star">
+                      <label htmlFor="star1_followUp" title="1 star">
                         <i className="fa-sharp fa-solid fa-star"></i>
                       </label>
                     </div>
@@ -462,7 +462,7 @@ const RecievedRequestOrders = () => {
                         name="rating_qos"
                         value="5"
                       />
-                      <label for="star5_qos" title="5 stars">
+                      <label htmlFor="star5_qos" title="5 stars">
                         <i className="fa-sharp fa-solid fa-star"></i>
                       </label>
                       <input
@@ -471,7 +471,7 @@ const RecievedRequestOrders = () => {
                         name="rating_qos"
                         value="4"
                       />
-                      <label for="star4_qos" title="4 stars">
+                      <label htmlFor="star4_qos" title="4 stars">
                         <i className="fa-sharp fa-solid fa-star"></i>
                       </label>
                       <input
@@ -480,7 +480,7 @@ const RecievedRequestOrders = () => {
                         name="rating_qos"
                         value="3"
                       />
-                      <label for="star3_qos" title="3 stars">
+                      <label htmlFor="star3_qos" title="3 stars">
                         <i className="fa-sharp fa-solid fa-star"></i>
                       </label>
                       <input
@@ -489,7 +489,7 @@ const RecievedRequestOrders = () => {
                         name="rating_qos"
                         value="2"
                       />
-                      <label for="star2_qos" title="2 stars">
+                      <label htmlFor="star2_qos" title="2 stars">
                         <i className="fa-sharp fa-solid fa-star"></i>
                       </label>
                       <input
@@ -498,7 +498,7 @@ const RecievedRequestOrders = () => {
                         name="rating_qos"
                         value="1"
                       />
-                      <label for="star1_qos" title="1 star">
+                      <label htmlFor="star1_qos" title="1 star">
                         <i className="fa-sharp fa-solid fa-star"></i>
                       </label>
                     </div>

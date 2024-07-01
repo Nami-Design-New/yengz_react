@@ -1,51 +1,46 @@
 import React from "react";
-import bann2 from "../Assets/images/bann2.webp"
-import bann from "../Assets/images/bann.webp"
-import rateowner1 from "../Assets/images/rateowner1.webp"
+import bann2 from "../Assets/images/bann2.webp";
+import bann from "../Assets/images/bann.webp";
+import rateowner1 from "../Assets/images/rateowner1.webp";
 import { Link } from "react-router-dom";
 
-
 const Cart = () => {
-    
   return (
     <main>
-      <section class="cart-section container">
-        <div class="row">
-          <div class="col-12">
-            <div class="service container">
-              <div class="row">
-                <div class="col-lg-7 col-12">
-                  <div class="service-head">
-                    <Link to="/services" class="img">
+      <section className="cart-section container">
+        <div className="row">
+          <div className="col-12">
+            <div className="service container">
+              <div className="row">
+                <div className="col-lg-7 col-12">
+                  <div className="service-head">
+                    <Link to="/services" className="img">
                       <img src={bann} alt="service" />
                     </Link>
-                    <div class="title">
+                    <div className="title">
                       <h5>
                         انشاء متجر الكتروني احترافي على منصة ووردبريس ووكومرس
                       </h5>
-                      <div class="owner">
-                        <div class="owner-avatar">
-                          <img
-                            src="assets/images/rate-owner1.jpg"
-                            alt="owner"
-                          />
+                      <div className="owner">
+                        <div className="owner-avatar">
+                          <img src={rateowner1} alt="owner" />
                         </div>
                         <span>خالد عوض</span>
                       </div>
                     </div>
                   </div>
-                  <div class="more-develop">
-                    <div class="d-flex input-field align-items-baseline">
+                  <div className="more-develop">
+                    <div className="d-flex input-field align-items-baseline">
                       <input type="checkbox" id="check-1" />
-                      <div class="label">
-                        <label for="check-1">لوغو احترافي للمتجر</label>
+                      <div className="label">
+                        <label htmlFor="check-1">لوغو احترافي للمتجر</label>
                         <p>مقابل 15.00$ إضافية على سعر الخدمة.</p>
                       </div>
                     </div>
-                    <div class="d-flex input-field align-items-baseline">
+                    <div className="d-flex input-field align-items-baseline">
                       <input type="checkbox" id="check-2" />
-                      <div class="label">
-                        <label for="check-2">
+                      <div className="label">
+                        <label htmlFor="check-2">
                           خدمة VIP متجر عربي (هوية بصرية لمتجرك+25 منتج رابح مع
                           وصف إحترافي+ ومقابلة زووم لشرح )
                         </label>
@@ -55,10 +50,10 @@ const Cart = () => {
                         </p>
                       </div>
                     </div>
-                    <div class="d-flex input-field align-items-baseline">
+                    <div className="d-flex input-field align-items-baseline">
                       <input type="checkbox" id="check-3" />
-                      <div class="label">
-                        <label for="check-3">
+                      <div className="label">
+                        <label htmlFor="check-3">
                           ترجمة قالب المتجر الى اللغة العربية
                         </label>
                         <p>
@@ -69,69 +64,65 @@ const Cart = () => {
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-5 col-12">
-                  <div class="add-cart">
-                    <div class="input-field">
-                      <button class="add">
-                        <i class="ti ti-md ti-plus"></i>
+                <div className="col-lg-5 col-12">
+                  <div className="add-cart">
+                    <div className="input-field">
+                      <button className="add">
+                        <i class="fa-solid fa-plus"></i>
                       </button>
                       <input type="number" />
-                      <button class="minus">
-                        <i class="ti ti-md ti-minus"></i>
+                      <button className="minus">
+                        <i class="fa-solid fa-minus"></i>
                       </button>
                     </div>
-                    <div class="total d-flex justify-content-between align-items-center">
+                    <div className="total d-flex justify-content-between align-items-center">
                       <p>
                         الإجمالي : <br />
                         <span>
                           + <span id="num">1</span> خدمة مضافة
                         </span>
                       </p>
-                      <div class="d-flex gap-3">
+                      <div className="d-flex gap-3">
                         <h6>
-                          40.00<i class="fa-solid fa-dollar-sign"></i>
+                          40.00<i className="fa-solid fa-dollar-sign"></i>
                         </h6>
                         <button>
-                          <i class="fa-light fa-trash-can"></i>
+                          <i className="fa-light fa-trash-can"></i>
                         </button>
                       </div>
                     </div>
-                    <button class="request-order">
-                      <i class="fa-solid fa-cart-plus"></i> اضف الي السلة
+                    <button className="request-order">
+                      <i className="fa-solid fa-cart-plus"></i> اضف الي السلة
                     </button>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="service container">
-              <div class="row">
-                <div class="col-lg-7 col-12">
-                  <div class="service-head">
-
-                    <Link to="/services" class="img">
-                      <img src={bann2}  alt="service" />
+            <div className="service container">
+              <div className="row">
+                <div className="col-lg-7 col-12">
+                  <div className="service-head">
+                    <Link to="/services" className="img">
+                      <img src={bann2} alt="service" />
                     </Link>
 
-                    <div class="title">
+                    <div className="title">
                       <h5>
                         تنسيق البحوث المكتوبة باللغة الانجليزية للكليات العلمية
                       </h5>
-                      <div class="owner">
-                        <div class="owner-avatar">
-                          <img
-                            src={rateowner1}
-                            alt="owner"
-                          />
+                      <div className="owner">
+                        <div className="owner-avatar">
+                          <img src={rateowner1} alt="owner" />
                         </div>
                         <span>خالد عوض</span>
                       </div>
                     </div>
                   </div>
-                  <div class="more-develop">
-                    <div class="d-flex input-field align-items-baseline">
+                  <div className="more-develop">
+                    <div className="d-flex input-field align-items-baseline">
                       <input type="checkbox" id="check-1" />
-                      <div class="label">
-                        <label for="check-1">ترجمة لأكثر من لغة</label>
+                      <div className="label">
+                        <label htmlFor="check-1">ترجمة لأكثر من لغة</label>
                         <p>
                           مقابل 100.00$ إضافية على سعر الخدمة. سيزيد مدة التنفيذ
                           7 أيام إضافية.
@@ -140,45 +131,44 @@ const Cart = () => {
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-5 col-12">
-                  <div class="add-cart">
-                    <div class="input-field">
-                      <button class="add">
-                        <i class="ti ti-md ti-plus"></i>
+                <div className="col-lg-5 col-12">
+                  <div className="add-cart">
+                    <div className="input-field">
+                      <button className="add">
+                        <i class="fa-solid fa-plus"></i>
                       </button>
                       <input type="number" />
-                      <button class="minus">
-                        <i class="ti ti-md ti-minus"></i>
+                      <button className="minus">
+                        <i class="fa-solid fa-minus"></i>
                       </button>
                     </div>
-                    <div class="total d-flex justify-content-between align-items-center">
+                    <div className="total d-flex justify-content-between align-items-center">
                       <p>
                         الإجمالي : <br />
                         <span>
                           + <span id="num">1</span> خدمة مضافة
                         </span>
                       </p>
-                      <div class="d-flex gap-3">
+                      <div className="d-flex gap-3">
                         <h6>
-                          10.00<i class="fa-solid fa-dollar-sign"></i>
+                          10.00<i className="fa-solid fa-dollar-sign"></i>
                         </h6>
                         <button>
-                            
-                          <i class="fa-light fa-trash-can"></i>
+                          <i className="fa-light fa-trash-can"></i>
                         </button>
                       </div>
                     </div>
-                    <button class="request-order">
-                      <i class="fa-solid fa-cart-plus"></i> اضف الي السلة
+                    <button className="request-order">
+                      <i className="fa-solid fa-cart-plus"></i> اضف الي السلة
                     </button>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="container">
-              <div class="row justify-content-center">
-                <div class="col-lg-6 col-md-6 col-12">
-                  <Link class="order-now" to="checkout.html">
+            <div className="container">
+              <div className="row justify-content-center">
+                <div className="col-lg-6 col-md-6 col-12">
+                  <Link className="order-now" to="checkout.html">
                     اطلب الان
                   </Link>
                 </div>
