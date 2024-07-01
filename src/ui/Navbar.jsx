@@ -1,10 +1,4 @@
 import React, { useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { IconLanguage } from "@tabler/icons-react";
-import { useDispatch, useSelector } from "react-redux";
-import { setLanguage } from "../redux/slices/language";
-import { useTranslation } from "react-i18next";
-import { logout } from "../redux/slices/authedUser";
 import avatar from "../Assets/images/avatar.png";
 import av1 from "../Assets/images/av1.png";
 import av2 from "../Assets/images/av2.png";
@@ -12,7 +6,12 @@ import logo from "../Assets/images/logo.svg";
 import Dropdown from "react-bootstrap/Dropdown";
 import i18next from "i18next";
 import "../Assets/styles/dropdownes.css";
-
+import { Link, useNavigate } from "react-router-dom";
+import { IconLanguage } from "@tabler/icons-react";
+import { useDispatch, useSelector } from "react-redux";
+import { setLanguage } from "../redux/slices/language";
+import { useTranslation } from "react-i18next";
+import { logout } from "../redux/slices/authedUser";
 import useOutsideClose from "../hooks/useOutsideClose";
 
 const Navbar = () => {
@@ -28,6 +27,12 @@ const Navbar = () => {
   const user = useSelector((state) => state.authedUser.user);
   const lang = useSelector((state) => state.language.lang);
   const isLogged = useSelector((state) => state.authedUser.isLogged);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+  const searchRef = useRef();
+  const profileMenuRef = useRef();
+  const [searchValue, setSearchValue] = useState("");
+  const navigate = useNavigate();
 
   function handleToggleSearchInput() {
     setIsSearchOpen((open) => !open);
@@ -87,10 +92,11 @@ const Navbar = () => {
           <div className="user">
             
             <Link to="/profile" className="avatar">
-              <img src={user?.image} alt="" />
+              <img src={avatar} alt="" />
             </Link>
             <div className="userr">
-              <h6>{user?.name}</h6>
+              <h6>محمد عبد المعطي</h6>
+              <span>بائع مميز</span>
             </div>
           </div>
         </div>
@@ -162,13 +168,14 @@ const Navbar = () => {
                 <input
                   className="Search_input"
                   type="text"
-                  placeholder={t("navbar.searchFor")}
+                  placeholder="ابحث عن..."
                   value={searchValue}
                   onChange={handleSearchValue}
                 />
                 <i className="fa-sharp fa-regular fa-magnifying-glass"></i>
               </form>
             )}
+
             <li className="link">
               <Dropdown style={{ position: "relative" }}>
                 <Dropdown.Toggle
@@ -216,6 +223,7 @@ const Navbar = () => {
                     <span className="num-count">1</span>
                   </Link>
                 </li>
+
                 {/* Message */}
                 <li className="link hide-sm2">
                   <Dropdown style={{ position: "relative" }}>
@@ -248,6 +256,66 @@ const Navbar = () => {
                           </div>
                         </Link>
                       </Dropdown.Item>
+                      <Dropdown.Item className="drop_Message">
+                        <Link to="/chat" style={{ display: "flex" }}>
+                          <div className="image-wrap">
+                            <img src={av2} alt="user" />
+                          </div>
+                          <div className="text-wrap">
+                            <div className="d-flex justify-content-between">
+                              <h6>خالد عوض</h6>
+                              <span className="time">18 / 10 / 2024</span>
+                            </div>
+                            <p>نظام الكتروني لعيادة طبية</p>
+                            <div className="w-100 d-flex justify-content-between align-items-center">
+                              <h5 className="me">150 دولار ان شاء الله</h5>
+                              <span className="message-number">2</span>
+                            </div>
+                          </div>
+                        </Link>
+                      </Dropdown.Item>
+
+                      <div className="showall">
+                        <Link to="/notifications">جميع الإشعارات</Link>
+                      </div>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </li>
+
+                {/* Notifications */}
+                <li className="link hide-sm2">
+                  <Dropdown style={{ position: "relative" }}>
+                    <Dropdown.Toggle
+                      style={{ backgroundColor: "#f4f4f4" }}
+                      id="dropdown-basic"
+                    >
+                      <i class="fa-regular fa-bell"></i>
+                      <span className="num-count">1</span>
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu className="drop_Message_Menu">
+                      <Dropdown.Item className="drop_Message">
+                        <Link to="/chat" style={{ display: "flex" }}>
+                          <div className="image-wrap">
+                            <img src={av1} alt="user" />
+                          </div>
+                          <div className="text-wrap">
+                            <div className="d-flex justify-content-between">
+                              <h6>خالد عوض</h6>
+                              <span className="time">20 / 10 / 2024</span>
+                            </div>
+                            <p>
+                              انشاء متجر الكتروني احترافي على منصة ووردبريس
+                              ووكومرس
+                            </p>
+                            <div className="w-100 d-flex justify-content-between align-items-center">
+                              <h5 className="me">100 دولار ان شاء الله</h5>
+                              <span className="message-number">2</span>
+                            </div>
+                          </div>
+                        </Link>
+                      </Dropdown.Item>
+
                       <Dropdown.Item className="drop_Message">
                         <Link to="/chat" style={{ display: "flex" }}>
                           <div className="image-wrap">
@@ -354,7 +422,7 @@ const Navbar = () => {
                     onClick={handleToggleProfileMenu}
                     style={{ cursor: "pointer" }}
                   >
-                    <img src={user.image} alt="user-avatar" />
+                    <img src={avatar} alt="user-avatar" />
                   </span>
                 </li>
                 {isProfileMenuOpen && (
@@ -362,7 +430,7 @@ const Navbar = () => {
                     <li>
                       <Link className="dropdown-item_Link" to="/profile">
                         <i className="fa-solid fa-user"></i>
-                        {user.name}
+                        محمد عبد المعطي
                       </Link>
                     </li>
                     <li>
@@ -371,40 +439,43 @@ const Navbar = () => {
                         to="/profile/balance"
                       >
                         <i className="fa-sharp fa-solid fa-dollar-sign"></i>
-                        
-                        {t("navbar.balance")}
+                        الرصيد
                       </Link>
                     </li>
                     <hr />
                     <li>
                       <Link className="dropdown-item_Link" to="/profile/edit">
                         <i className="fa-sharp fa-solid fa-pen-to-square"></i>
-                        {t("navbar.editProfile")}
+                        تعديل الحساب
                       </Link>
                     </li>
                     <li>
                       <Link className="dropdown-item_Link" to="/support">
                         <i className="fa-solid fa-file"></i>
-                        {t("navbar.support")}
+                        المساعدة
                       </Link>
                     </li>
                     <li>
                       <Link className="dropdown-item_Link" to="/report">
                         <i className="fa-solid fa-circle-info"></i>
-                        {t("navbar.report")}
+                        تقديم بلاغ
                       </Link>
                     </li>
                     <li>
                       <Link className="dropdown-item_Link" to="/login">
                         <i className="fa-solid fa-trash"></i>
-                        {t("navbar.deleteAccount")}
+                        حذف الحساب
                       </Link>
                     </li>
                     <hr />
                     <li>
-                      <Link className="dropdown-item_Link" to="/logout">
+                      <Link
+                        className="dropdown-item_Link"
+                        to="/"
+                        onClick={() => dispatch(logout())}
+                      >
                         <i className="fa-solid fa-right-from-bracket"></i>
-                        {t("navbar.logout")}
+                        تسجيل الخروج
                       </Link>
                     </li>
                   </ul>
