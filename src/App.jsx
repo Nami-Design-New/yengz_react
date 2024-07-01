@@ -31,6 +31,7 @@ import Services from "./routes/Services";
 import Search from "./routes/Search";
 import Logout from "./features/auth/Logout";
 import Profile from "./routes/Profile";
+import Cart from "./routes/Cart";
 
 function App() {
   const dispatch = useDispatch();
@@ -99,6 +100,9 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/forget-password" element={<ForgetPassword />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/Cart" element={<Cart />} />
+
+          
 
           <Route
             path="/recieved-request-orders"
