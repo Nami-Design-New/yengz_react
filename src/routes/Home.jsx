@@ -80,12 +80,7 @@ const Home = () => {
 
             <div className="swiper categories-swiper">
               <div className="swiper-wrapper">
-                <Swiper
-                  spaceBetween={30}
-                  slidesPerView={4}
-                  onSlideChange={() => console.log("slide change")}
-                  onSwiper={(swiper) => console.log(swiper)}
-                >
+                <Swiper spaceBetween={30} slidesPerView={4}>
                   <SwiperSlide>
                     <div className="swiper-slide">
                       <div className="category-card" data-aos="fade-up">

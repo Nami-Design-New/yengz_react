@@ -8,6 +8,7 @@ import { ToastContainer } from "react-toastify";
 import { BrowserRouter } from "react-router-dom";
 import ToTopOnNavigation from "./utils/ToTopOnNavigation";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 /*---------- fontawesome ----------*/
 import "./Assets/styles/all.min.css";
@@ -30,6 +31,7 @@ root.render(
         <BrowserRouter>
           <ToTopOnNavigation />
           <App />
+          <ReactQueryDevtools initialIsOpen={false} />
         </BrowserRouter>
       </Provider>
     </QueryClientProvider>
