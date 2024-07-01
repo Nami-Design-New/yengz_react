@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect } from "react";
 
 function useOutsideClose(ref, handler, useCapturePhase) {
   useEffect(() => {
@@ -7,14 +7,18 @@ function useOutsideClose(ref, handler, useCapturePhase) {
         e.stopPropagation();
         handler();
       }
-    }
+    };
 
     document.addEventListener("click", handleOutsideClick, useCapturePhase);
 
     return () => {
-      document.removeEventListener("click", handleOutsideClick, useCapturePhase);
-    }
-  }, [ref, handler, useCapturePhase])
+      document.removeEventListener(
+        "click",
+        handleOutsideClick,
+        useCapturePhase
+      );
+    };
+  }, [ref, handler, useCapturePhase]);
 
   useEffect(() => {
     const handlePressEscape = (e) => {
@@ -25,8 +29,13 @@ function useOutsideClose(ref, handler, useCapturePhase) {
 
     document.addEventListener("keydown", handlePressEscape, useCapturePhase);
 
-    return () => document.removeEventListener("keydown", handlePressEscape, useCapturePhase);
+    return () =>
+      document.removeEventListener(
+        "keydown",
+        handlePressEscape,
+        useCapturePhase
+      );
   }, [ref, handler, useCapturePhase]);
 }
 
-export default useOutsideClose
+export default useOutsideClose;

@@ -6,7 +6,7 @@ import SectionHeader from "../ui/SectionHeader";
 
 const ReaquestDetails = () => {
   return (
-    <main className="main">
+    <>
       <div className="section-head">
         <SectionHeader />
       </div>
@@ -208,7 +208,7 @@ const ReaquestDetails = () => {
           </div>
         </div>
       </section>
-    </main>
+    </>
   );
 };
 

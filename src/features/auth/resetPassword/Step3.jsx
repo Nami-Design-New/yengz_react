@@ -1,16 +1,17 @@
 import React, { useState } from "react";
-import newpass1 from "../../../Assets/images/newpass1.svg";
+import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import newpass1 from "../../../Assets/images/newpass1.svg";
 import PasswordField from "../../../ui/form-elements/PasswordField";
 import SubmitButton from "../../../ui/form-elements/SubmitButton";
-import { useNavigate } from "react-router-dom";
-import axios from './../../../utils/axios';
-import { toast } from "react-toastify";
-const Step3 = () => {
+import axios from "./../../../utils/axios";
+const Step3 = ({ userId }) => {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
+    id: userId,
     password: ""
   });
 
@@ -27,6 +28,7 @@ const Step3 = () => {
       }
     } catch (error) {
       console.error("Forget password error:", error);
+      throw new Error(error.message);
     } finally {
       setLoading(false);
     }

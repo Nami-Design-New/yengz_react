@@ -17,6 +17,9 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min";
 /*---------- toastify css ---------*/
 import "../node_modules/react-toastify/dist/ReactToastify.css";
+/*---------- swiper css -----------*/
+import "swiper/css";
+import "swiper/css/pagination";
 /*---------- app style global -----*/
 import "./Assets/styles/style.css";
 

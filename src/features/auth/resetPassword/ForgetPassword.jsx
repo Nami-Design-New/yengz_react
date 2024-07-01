@@ -5,6 +5,7 @@ import Step3 from "./Step3";
 
 const ForgetPassword = () => {
   const [step, setStep] = useState(1);
+  const [userId, setUserId] = useState(null);
   const [formData, setFormData] = useState({
     email: ""
   });
@@ -17,6 +18,7 @@ const ForgetPassword = () => {
             setStep={setStep}
             setOtpData={setOtpData}
             formData={formData}
+            setUserId={setUserId}
             setFormData={setFormData}
           />
         )}
@@ -28,7 +30,7 @@ const ForgetPassword = () => {
             email={formData.email}
           />
         )}
-        {step === 3 && <Step3 />}
+        {step === 3 && <Step3 userId={userId} />}
       </section>
     </main>
   );

@@ -11,7 +11,7 @@ import "swiper/css";
 
 const BlogDetails = () => {
   return (
-    <main className="main">
+    <>
       <div className="section-head">
         <SectionHeader />
       </div>
@@ -184,7 +184,7 @@ const BlogDetails = () => {
           </div>
         </div>
       </section>
-    </main>
+    </>
   );
 };
 

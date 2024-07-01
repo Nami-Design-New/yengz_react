@@ -22,7 +22,7 @@ const Otpcontainer = ({ formData, setFormData }) => {
       currentInput.value +
       otpValue.substring(index + 1);
     setOtpValue(newOtpValue);
-    setFormData({ ...formData, otp: newOtpValue });
+    setFormData({ ...formData, code: newOtpValue });
   };
   const handleKeyDown = (index, event) => {
     const currentInput = event.target;
@@ -38,7 +38,7 @@ const Otpcontainer = ({ formData, setFormData }) => {
       const newOtpValue =
         otpValue.substring(0, index - 1) + otpValue.substring(index);
       setOtpValue(newOtpValue);
-      setFormData({ ...formData, otp: newOtpValue });
+      setFormData({ ...formData, code: newOtpValue });
     }
   };
   return (
