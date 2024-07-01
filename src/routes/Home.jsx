@@ -13,6 +13,12 @@ import NewsLetter from "../ui/NewsLetter";
 // import Canavs from "../ui/Canavs";
 
 const Home = () => {
+  function handleSubmitSearch(e) {
+    e.preventDefault();
+    const searchInput = e.target[0].value;
+    navigate(`/search?s=${searchInput}`);
+  }
+
   return (
     <>
       <main className="main">
@@ -47,13 +53,13 @@ const Home = () => {
                   </div>
                 </div>
                 <div className="hero_content">
-                  <form action="">
+                  <form action="/search" onSubmit={handleSubmitSearch}>
                     <div className="input-fileld">
                       <i className="fa-sharp fa-regular fa-magnifying-glass"></i>
                       <input
                         type="text"
                         id="search"
-                        name="search"
+                        name="s"
                         placeholder="جرّب: تصميم تطبيق أو موقع .."
                       />
                       <button>بحث</button>

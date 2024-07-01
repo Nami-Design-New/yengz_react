@@ -4,6 +4,7 @@ import bann from "../Assets/images/bann.webp";
 import rateowner1 from "../Assets/images/rateowner1.webp";
 import { Link } from "react-router-dom";
 import CartBox from "../ui/cart/CartBox";
+import useCartList from "../features/cart/useCartList";
 
 const cart = [
   {
@@ -35,7 +36,7 @@ const cart = [
     },
   },
   {
-    id:2,
+    id: 2,
     title: "تنسيق البحوث المكتوبة باللغة الانجليزية للكليات العلمية",
     price: 50,
     quantity: 2,
@@ -55,6 +56,10 @@ const cart = [
 ];
 
 const Cart = () => {
+  const { isLoading, data } = useCartList();
+
+  console.log(data);
+
   return (
     <main>
       <section className="cart-section container">

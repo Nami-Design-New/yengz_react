@@ -24,7 +24,6 @@ const Navbar = () => {
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const searchRef = useRef();
   const profileMenuRef = useRef();
-  const [searchValue, setSearchValue] = useState("");
   const navigate = useNavigate();
   const [isSmallMediaMenuOpen, setIsSmallMediaMenuOpen] = useState(false);
 
@@ -44,10 +43,6 @@ const Navbar = () => {
     setIsProfileMenuOpen(false);
   }
 
-  function handleSearchValue(e) {
-    setSearchValue(e.target.value);
-  }
-
   function handleToggleSearchInput() {
     setIsSearchOpen((open) => !open);
   }
@@ -64,10 +59,6 @@ const Navbar = () => {
     setIsProfileMenuOpen(false);
   }
 
-  function handleSearchValue(e) {
-    setSearchValue(e.target.value);
-  }
-
   const handleLang = (newLang) => {
     dispatch(setLanguage(newLang));
     i18next.changeLanguage(newLang);
@@ -81,11 +72,10 @@ const Navbar = () => {
   useOutsideClose(searchRef, closeSearchInput, true);
   useOutsideClose(profileMenuRef, closeProfileMenu, true);
 
-  function handleSubmit(e) {
+  function handleSubmitSearch(e) {
     e.preventDefault();
-    if (searchValue.trim()) {
-      navigate(`/search/s=${searchValue}`);
-    }
+    const searchInput = e.target[0].value;
+    navigate(`/search?s=${searchInput}`);
   }
 
   return (
@@ -175,16 +165,17 @@ const Navbar = () => {
                 aria-labelledby="searchForm"
                 className="nav-search"
                 ref={searchRef}
-                onSubmit={handleSubmit}
+                onSubmit={handleSubmitSearch}
               >
                 <input
-                  className="Search_input"
+                  className="search_input"
                   type="text"
+                  name="s"
                   placeholder={t("navbar.searchFor")}
-                  value={searchValue}
-                  onChange={handleSearchValue}
                 />
-                <i className="fa-sharp fa-regular fa-magnifying-glass"></i>
+                <button type="submit">
+                  <i className="fa-sharp fa-regular fa-magnifying-glass"></i>
+                </button>
               </form>
             )}
             <li className="link">
