@@ -371,6 +371,7 @@ const Navbar = () => {
                         to="/profile/balance"
                       >
                         <i className="fa-sharp fa-solid fa-dollar-sign"></i>
+                        
                         {t("navbar.balance")}
                       </Link>
                     </li>
