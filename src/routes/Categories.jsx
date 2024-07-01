@@ -20,7 +20,7 @@ const Categories = () => {
                   <div className="col-lg-3 col-6 p-2" key={category.id}>
                     <div className="category-card" data-aos="fade-up">
                       <Link
-                        to={`/categories/${category.id}`}
+                        to={`/search?id=${category.id}`}
                         className="inner-card"
                       >
                         <div className="category-img">

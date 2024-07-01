@@ -20,27 +20,27 @@ const RecievedRequest = () => {
               <ul className="order-status">
                 <li>
                   <input type="checkbox" id="all" checked />
-                  <label for="all">الكل</label>
+                  <label htmlFor="all">الكل</label>
                 </li>
                 <li>
                   <input type="checkbox" id="waiting" />
-                  <label for="waiting">بانتظار التعليمات</label>
+                  <label htmlFor="waiting">بانتظار التعليمات</label>
                 </li>
                 <li>
                   <input type="checkbox" id="underway" />
-                  <label for="underway">جاري تنفيذها</label>
+                  <label htmlFor="underway">جاري تنفيذها</label>
                 </li>
                 <li>
                   <input type="checkbox" id="waiting-delivery" />
-                  <label for="waiting-delivery">بانتظار الاستلام</label>
+                  <label htmlFor="waiting-delivery">بانتظار الاستلام</label>
                 </li>
                 <li>
                   <input type="checkbox" id="delivered" />
-                  <label for="delivered"> تم تسليمها</label>
+                  <label htmlFor="delivered"> تم تسليمها</label>
                 </li>
                 <li>
                   <input type="checkbox" id="canceled" />
-                  <label for="canceled"> ملغية </label>
+                  <label htmlFor="canceled"> ملغية </label>
                 </li>
               </ul>
             </div>

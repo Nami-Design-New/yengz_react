@@ -12,7 +12,7 @@ function AddRequest() {
         <div className="container">
           <form action="/request_details">
             <div className="input-field mb-4">
-              <label for="service-name">عنوان الموضوع</label>
+              <label htmlFor="service-name">عنوان الموضوع</label>
               <input
                 type="text"
                 id="service-name"
@@ -21,7 +21,7 @@ function AddRequest() {
               />
             </div>
             <div className="input-field mb-4">
-              <label for="info-for-customer">محتوى الموضوع</label>
+              <label htmlFor="info-for-customer">محتوى الموضوع</label>
               <textarea
                 name="info-for-customer"
                 id="info-for-customer"
@@ -35,7 +35,7 @@ function AddRequest() {
                 name=""
                 className="bg-transparent p-0 w-auto h-auto"
               />
-              <label for="terms">
+              <label htmlFor="terms">
                 راجعت محتوى الموضوع بدقة وهو لا يخالف{" "}
                 <Link to="#!"> الشروط والاحكام </Link>
               </label>
@@ -47,7 +47,7 @@ function AddRequest() {
                 name=""
                 className="bg-transparent p-0 w-auto h-auto"
               />
-              <label for="searchInWeb">
+              <label htmlFor="searchInWeb">
                 بحثت عن الخدمات المعروضة في الموقع قبل كتابة هذا الموضوع
               </label>
             </div>

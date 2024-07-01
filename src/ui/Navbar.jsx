@@ -12,22 +12,41 @@ import logo from "../Assets/images/logo.svg";
 import Dropdown from "react-bootstrap/Dropdown";
 import i18next from "i18next";
 import "../Assets/styles/dropdownes.css";
-
 import useOutsideClose from "../hooks/useOutsideClose";
 
 const Navbar = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const searchRef = useRef();
-  const profileMenuRef = useRef();
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
-  const [isSmallMediaMenuOpen, setIsSmallMediaMenuOpen] = useState(false);
-  const [searchValue, setSearchValue] = useState("");
   const user = useSelector((state) => state.authedUser.user);
   const lang = useSelector((state) => state.language.lang);
   const isLogged = useSelector((state) => state.authedUser.isLogged);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+  const searchRef = useRef();
+  const profileMenuRef = useRef();
+  const [searchValue, setSearchValue] = useState("");
+  const navigate = useNavigate();
+  const [isSmallMediaMenuOpen, setIsSmallMediaMenuOpen] = useState(false);
+
+  function handleToggleSearchInput() {
+    setIsSearchOpen((open) => !open);
+  }
+
+  function handleToggleProfileMenu() {
+    setIsProfileMenuOpen((open) => !open);
+  }
+
+  function closeSearchInput() {
+    setIsSearchOpen(false);
+  }
+
+  function closeProfileMenu() {
+    setIsProfileMenuOpen(false);
+  }
+
+  function handleSearchValue(e) {
+    setSearchValue(e.target.value);
+  }
 
   function handleToggleSearchInput() {
     setIsSearchOpen((open) => !open);
@@ -85,7 +104,6 @@ const Navbar = () => {
           className={`small-media-menu  ${isSmallMediaMenuOpen ? "show" : ""}`}
         >
           <div className="user">
-            
             <Link to="/profile" className="avatar">
               <img src={user?.image} alt="" />
             </Link>
@@ -280,7 +298,7 @@ const Navbar = () => {
                       style={{ backgroundColor: "#f4f4f4" }}
                       id="dropdown-basic"
                     >
-                      <i class="fa-regular fa-bell"></i>
+                      <i className="fa-regular fa-bell"></i>
                       <span className="num-count">1</span>
                     </Dropdown.Toggle>
 
@@ -371,7 +389,7 @@ const Navbar = () => {
                         to="/profile/balance"
                       >
                         <i className="fa-sharp fa-solid fa-dollar-sign"></i>
-                        
+
                         {t("navbar.balance")}
                       </Link>
                     </li>
