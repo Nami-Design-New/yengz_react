@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 import RegisterForm from "./RegisterForm";
 import ConfirmOtp from "./ConfirmOtp";
+import otpSvg from "../../../Assets/images/otp1.svg";
 
 const Register = () => {
   const { t } = useTranslation();
@@ -14,16 +14,22 @@ const Register = () => {
     email: "",
     phone: "",
     password: "",
-    isFreelancer: false
+    is_freelance: false,
+    categories: []
   });
 
   return (
     <main>
       <section className="login-section container">
+        {showOtp && (
+          <div className="otp">
+            <img src={otpSvg} alt="" />
+          </div>
+        )}
         <h1 className="text-center">
           {!showOtp ? t("auth.registerPageTitle") : t("auth.otpTitle")}
         </h1>
-        <p className="text-center mt-3 title">
+        <p className="text-center mt-3 mb-4 title">
           {!showOtp
             ? t("auth.registerPageSubTitle")
             : t("auth.otpSubTitle") + formData.email}

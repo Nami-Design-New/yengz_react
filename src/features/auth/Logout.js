@@ -26,6 +26,7 @@ const Logout = () => {
         }
       } catch (error) {
         console.error("Error during logout:", error);
+        throw new Error(error.message);
       }
     };
     performLogout();

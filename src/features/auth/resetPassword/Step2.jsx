@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 import otpSvg from "../../../Assets/images/otp1.svg";
 import Otpcontainer from "../../../ui/form-elements/OtpContainer";
-import { useTranslation } from "react-i18next";
 import SubmitButton from "./../../../ui/form-elements/SubmitButton";
 import axios from './../../../utils/axios';
-import { toast } from "react-toastify";
 
 const Step2 = ({ email, otpData, setOtpData, setStep }) => {
   const { t } = useTranslation();
@@ -22,6 +22,7 @@ const Step2 = ({ email, otpData, setOtpData, setStep }) => {
       }
     } catch (error) {
       console.error("Forget password error:", error);
+      throw new Error(error.message);
     } finally {
       setLoading(false);
     }

@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import Google from "../../../Assets/images/Google.svg";
+import Facebook from "../../../Assets/images/facebook.svg";
 import InputField from "../../../ui/form-elements/InputField";
 import ImageUpload from "../../../ui/form-elements/ImageUpload";
 import PasswordField from "./../../../ui/form-elements/PasswordField";
 import PhoneField from "../../../ui/form-elements/PhoneField";
 import SubmitButton from "../../../ui/form-elements/SubmitButton";
-import axios from './../../../utils/axios';
+import axios from "./../../../utils/axios";
+import MultiSelect from "../../../ui/form-elements/MultiSelect";
+import isSeller from "../../../Assets/images/Vector.svg";
 
 const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
   const { t } = useTranslation();
@@ -21,29 +25,44 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
     });
   };
 
+  const headers = {
+    Accept: "application/json",
+    "Content-Type": "multipart/form-data"
+  };
+  const request = {
+    method: "POST",
+    headers: headers,
+    data: {
+      ...formData,
+      is_freelance: formData.is_freelance ? 1 : 0
+    },
+    url: "/user/can_register"
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post("/user/can_register", formData);
+      const res = await axios.request(request);
       if (res.data.code === 200) {
         setShowOtp(true);
         setOtpData((prev) => ({
           ...prev,
-          code: res.data.data
+          hashed_code: res.data.data
         }));
       } else {
         toast.error(res.data.message);
       }
     } catch (error) {
       console.error("Register error:", error);
+      throw new Error(error.message);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <form action="" className="container form" onSubmit={handleSubmit}>
+    <form className="container form" onSubmit={handleSubmit}>
       <ImageUpload
         type="file"
         name="userImage"
@@ -82,9 +101,16 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
         value={formData.password}
         onChange={handleChange}
       />
+      <MultiSelect
+        label={t("auth.interestes")}
+        id="interest"
+        name="interest"
+        formData={formData}
+        setFormData={setFormData}
+      />
       <div className="question">
         <label htmlFor="isFreelancer" className="quest">
-          <img src="assets/images/Vector.svg" alt="" />
+          <img src={isSeller} alt="isSeller" />
           {t("auth.areYouSeller")}
         </label>
         <Form.Switch
@@ -93,7 +119,7 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
           onChange={() =>
             setFormData({
               ...formData,
-              isFreelancer: !formData.isFreelancer
+              is_freelance: !formData.is_freelance
             })
           }
         />
@@ -107,9 +133,14 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
       <div className="line">
         <span>{t("auth.orRegisterWith")}</span>
       </div>
-      <button className="google-login">
-        <img src={Google} alt="google" /> {t("auth.googleAccount")}
-      </button>
+      <div className="d-flex gap-2 w-100">
+        <button className="google-login">
+          <img src={Google} alt="google" /> {t("auth.googleAccount")}
+        </button>
+        <button className="google-login">
+          <img src={Facebook} alt="google" /> {t("auth.facebookAccount")}
+        </button>
+      </div>
     </form>
   );
 };

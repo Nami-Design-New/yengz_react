@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { setIsLogged, setUser } from "../../../redux/slices/authedUser";
 import { useTranslation } from "react-i18next";
 import Google from "../../../Assets/images/Google.svg";
+import Facebook from "../../../Assets/images/facebook.svg";
 import InputField from "../../../ui/form-elements/InputField";
 import PasswordField from "../../../ui/form-elements/PasswordField";
 import axios from "../../../utils/axios";
@@ -53,7 +54,7 @@ const Login = () => {
       }
     } catch (error) {
       toast.error(t("auth.loginErorr"));
-      console.error("Login error:", error);
+      throw new Error(error.message);
     } finally {
       setLoading(false);
     }
@@ -93,9 +94,14 @@ const Login = () => {
           <div className="line">
             <span>{t("auth.orLoginWith")}</span>
           </div>
-          <button className="google-login">
-            <img src={Google} alt="google" /> {t("auth.googleAccount")}
-          </button>
+          <div className="d-flex gap-2 w-100">
+            <button className="google-login">
+              <img src={Google} alt="google" /> {t("auth.googleAccount")}
+            </button>
+            <button className="google-login">
+              <img src={Facebook} alt="google" /> {t("auth.facebookAccount")}
+            </button>
+          </div>
           <Link to="/register" className="noAccount">
             {t("auth.don'tHaveAccount")} <span>{t("auth.createAccount")}</span>
           </Link>

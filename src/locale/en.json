@@ -7,6 +7,7 @@
     "forgetPassword": "Forget Password",
     "orLoginWith": "or Login with",
     "googleAccount": "Google Account",
+    "facebookAccount": "Facebook Account",
     "don'tHaveAccount": "Don't have an account?",
     "createAccount": "Create Account",
     "login": "Login",
@@ -39,7 +40,9 @@
     "newPasswordTitle": "Enter New Password",
     "newPasswordSubTitle": "Please enter a new password that is strong and easy to remember.",
     "newPassword": "New Password",
-    "newPasswordSuccess": "Password changed successfully"
+    "newPasswordSuccess": "Password changed successfully",
+    "interestes": "Interests",
+    "registerSuccess": "Registration Successful"
   },
   "navbar": {
     "addService": "Add Service",
@@ -59,6 +62,14 @@
   },
   "home": {
     "searchFor": "Search For...",
-    "heroSectionTitle": "The largest Arab market for buying and selling microservices"
+    "search": "Search",
+    "searchPlaceHolder": "Try: Design an application or website..",
+    "heroSectionTitle": "The largest Arab market for buying and selling microservices",
+    "heroSectionSubTitle": "The largest Arab market for buying and selling microservices",
+    "categories": "Categories",
+    "viewAll": "View All",
+    "service": "Service",
+    "bestServices": "The most popular services",
+    "bestServicesSubTitle": "The most viewed and best-selling services ever"
   }
 }

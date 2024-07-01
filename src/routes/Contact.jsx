@@ -5,12 +5,11 @@ import NewsLetter from "../ui/NewsLetter";
 
 const Contact = () => {
   return (
-    <main className="main">
+    <>
       <section className="contact-section">
         <div className="section-head">
           <SectionHeader />
         </div>
-
         <div className="container mtb-64">
           <div className="row">
             <div className="col-lg-6 col-12 p-3">
@@ -62,12 +61,12 @@ const Contact = () => {
             </div>
           </div>
         </div>
-
+        
         <div className="Newsletter">
           <NewsLetter />
         </div>
       </section>
-    </main>
+    </>
   );
 };
 

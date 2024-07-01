@@ -6,7 +6,7 @@ import SectionHeader from "../ui/SectionHeader";
 
 const Requests = () => {
   return (
-    <main className="main">
+    <>
       <div className="section-head">
         <SectionHeader />
       </div>
@@ -501,7 +501,7 @@ const Requests = () => {
           </button>
         </div>
       </section>
-    </main>
+    </>
   );
 };
 

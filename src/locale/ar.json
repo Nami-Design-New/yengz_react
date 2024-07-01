@@ -7,6 +7,7 @@
     "forgetPassword": "نسيت كلمة المرور",
     "orLoginWith": "او تسجيل الدخول باستخدام",
     "googleAccount": "حساب جوجل",
+    "facebookAccount": "حساب فيسبوك",
     "don'tHaveAccount": "ليس لديك حساب؟",
     "createAccount": "انشاء حساب",
     "login": "تسجيل الدخول",
@@ -39,7 +40,9 @@
     "newPasswordTitle": "ادخل كلمة المرور الجديدة",
     "newPasswordSubTitle": "من فضلك ادخل كلمة المرور الجديدة تكون قوية ويسهل تذكرها .",
     "newPassword": "كلمة المرور الجديدة",
-    "newPasswordSuccess": "تم تغيير كلمة المرور بنجاح"
+    "newPasswordSuccess": "تم تغيير كلمة المرور بنجاح",
+    "interestes": "الاهتمامات",
+    "registerSuccess": "تم التسجيل بنجاح"
   },
   "navbar": {
     "addService": "اضف خدمة",
@@ -57,8 +60,16 @@
     "deleteAccount": "حذف الحساب",
     "logout": "تسجيل الخروج"
   },
-  "home":{
+  "home": {
     "searchFor": "ابحث عن...",
-    "heroSectionTitle": "أكبر سوق عربي لبيع وشراء الخدمات المصغرة"
+    "search": "ابحث",
+    "searchPlaceHolder": "جرّب: تصميم تطبيق أو موقع ..",
+    "heroSectionTitle": "أكبر سوق عربي لبيع وشراء الخدمات المصغرة",
+    "heroSectionSubTitle": "أنجز أعمالك بسهولة وأمان بلاسعار التي تناسبك",
+    "categories": "الأقسام",
+    "viewAll": "عرض الكل",
+    "service": "خدمة",
+    "bestServices": "الخدمات الاكثر شهرة",
+    "bestServicesSubTitle": "الخدمات الأكثر مشاهدة والأكثر مبيعًا على الإطلاق"
   }
 }

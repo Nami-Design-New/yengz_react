@@ -6,7 +6,7 @@ import SubmitButton from "../../../ui/form-elements/SubmitButton";
 import axios from "./../../../utils/axios";
 import { toast } from "react-toastify";
 
-const Step1 = ({ setStep, setOtpData, formData, setFormData }) => {
+const Step1 = ({ setStep, setOtpData, formData, setFormData, setUserId }) => {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
 
@@ -19,14 +19,16 @@ const Step1 = ({ setStep, setOtpData, formData, setFormData }) => {
         toast.success(t("auth.otpSentSuccess"));
         setOtpData((prev) => ({
           ...prev,
-          code: res.data.data.code
+          hashed_code: res.data.data.code
         }));
         setStep(2);
+        setUserId(res.data.data.user.id);
       } else {
         toast.error(res.data.message.email[0]);
       }
     } catch (error) {
       console.error("Forget password error:", error);
+      throw new Error(error.message);
     } finally {
       setLoading(false);
     }

@@ -4,7 +4,7 @@ import SectionHeader from "../ui/SectionHeader";
 
 function AddRequest() {
   return (
-    <main className="main">
+    <>
       <div className="section-head">
         <SectionHeader />
       </div>
@@ -63,8 +63,8 @@ function AddRequest() {
           </form>
         </div>
       </section>
-    </main>
+    </>
   );
 }
 
-export default AddRequest
+export default AddRequest;
