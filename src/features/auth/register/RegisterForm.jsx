@@ -125,10 +125,11 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
         <Form.Switch
           id="isFreelancer"
           name="isFreelancer"
+          checked={formData.is_freelance === 1 ? true : false}
           onChange={() =>
             setFormData({
               ...formData,
-              is_freelance: !formData.is_freelance
+              is_freelance: formData.is_freelance === 1 ? 0 : 1
             })
           }
         />

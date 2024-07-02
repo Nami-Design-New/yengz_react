@@ -5,7 +5,7 @@ import useTruncateString from "../../hooks/useTruncateString";
 import { useTranslation } from "react-i18next";
 import StarsList from "../StarsList";
 
-const ServiceCard = ({ service }) => {
+const ServiceCard = ({ service, canEdit }) => {
   const { t } = useTranslation();
   return (
     <div className="service-card" data-aos="fade-up">
@@ -27,6 +27,11 @@ const ServiceCard = ({ service }) => {
         <h6 className="start-from">
           {t("home.startFrom")} : <b>{service?.price || 0} $</b>
         </h6>
+        {canEdit && (
+          <Link to={`/edit-service/${service?.id}`} className="editService">
+            <i className="fa-regular fa-file-pen"></i>
+          </Link>
+        )}
       </div>
     </div>
   );

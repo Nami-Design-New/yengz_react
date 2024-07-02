@@ -30,9 +30,9 @@ import Requests from "./routes/Requests";
 import Services from "./routes/Services";
 import Search from "./routes/Search";
 import Logout from "./features/auth/Logout";
-import Profile from "./routes/Profile";
 import Cart from "./routes/Cart";
-import EditProfile from "./routes/EditProfile";
+import Profile from './features/profile/Profile';
+import EditProfile from './features/profile/EditProfile';
 
 function App() {
   const dispatch = useDispatch();
@@ -40,7 +40,7 @@ function App() {
   const [cookies, , removeCookie] = useCookies(["token"]);
   const token = cookies?.token;
   const { decodedToken, isExpired } = useJwt(token || "");
-  
+  console.log(isExpired);
 
   useEffect(() => {
     if (decodedToken && !isExpired) {
@@ -99,10 +99,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/forget-password" element={<ForgetPassword />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/profile/edit" element={<EditProfile />} />
-
-
-
+          <Route path="/edit-profile" element={<EditProfile />} />
           <Route path="/Cart" element={<Cart />} />
           <Route
             path="/recieved-request-orders"

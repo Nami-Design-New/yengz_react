@@ -42,7 +42,11 @@
     "newPassword": "New Password",
     "newPasswordSuccess": "Password changed successfully",
     "interestes": "Interests",
-    "registerSuccess": "Registration Successful"
+    "age": "Age",
+    "edit": "Edit",
+    "registerSuccess": "Registration Successful",
+    "aboutUser": "About User",
+    "aboutPlaceHolder": "Website developer. I learned the languages ​​HTML5-CSS3-JAVASCRIPT-JQUERY-BOOTSTRAP-PHP-MYSQL-AJAX-JSON-API. I have more than 50 clients with a 5-star rating on various freelance platforms. I have experience in designing and developing websites for more than 5 years and I have worked on all... Types of web projects (electronic stores - informational sites - business fairs - educational sites - employment sites). We have worked with various types of companies and bodies (small companies - large companies - government bodies). I can convert PSD, XD, or Figma designs into interactive websites only. Take a look at my work and feel free to contact me :)"
   },
   "navbar": {
     "addService": "Add Service",
@@ -78,7 +82,7 @@
   },
   "footer": {
     "importantLinks": "Important Links",
-    "categories":"Categories",
+    "categories": "Categories",
     "dowloadApp": "Download App",
     "aboutYengz": "About Yengz",
     "contactUs": "Contact Us",
@@ -87,5 +91,17 @@
     "howYengzWork": "How Yengz works",
     "copyright": "Copyright",
     "allRightsReserved": "All rights reserved for Yengz"
+  },
+  "profile": {
+    "editProfile": "Edit Profile",
+    "totalBalance":  "Total Balance",
+    "pendingBalance": "Pending Balance",
+    "availableBalance": "Available Balance",
+    "balance": "Balance",
+    "withdraw": "Withdraw",
+    "aboutMe":"About Me",
+    "noAbout": "This section is not available yet. Add it to see it here.",
+    "services": "Services",
+    "addService":"Add Service"
   }
 }
