@@ -5459,7 +5459,6 @@ body .profile-menu li a {
 body .profile-menu li:hover {
   background: var(--gray-background) !important;
 }
-<<<<<<< Updated upstream
 body .form-switch .form-check-input {
   box-shadow: none !important;
 }
@@ -5555,6 +5554,16 @@ body.en main .row-head a i {
   height: 100% !important;
 }
 
+body main .login-section .form .image-change-wrapper .img-wrap img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+[type=tel] {
+  direction: ltr !important;
+}
+
 .stars {
   display: flex;
   gap: 4px;
@@ -5568,16 +5577,6 @@ body.en main .row-head a i {
 .stars img {
   height: 16px !important;
 }
-
-body main .login-section .form .image-change-wrapper .img-wrap img {
-  width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
-[type=tel] {
-  direction: ltr !important;
-=======
 
 .Item_bussnies {
   text-align: center;
@@ -5630,10 +5629,5 @@ body main .login-section .form .image-change-wrapper .img-wrap img {
 }
 
 .tab {
-  color: red;
   background-color: #fafafa;
-}
-.tab .tab_item {
-  color: #d81b1b;
->>>>>>> Stashed changes
 }/*# sourceMappingURL=style.css.map */
