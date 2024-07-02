@@ -26,6 +26,11 @@ const Navbar = () => {
   const profileMenuRef = useRef();
   const navigate = useNavigate();
   const [isSmallMediaMenuOpen, setIsSmallMediaMenuOpen] = useState(false);
+  const [avatarError, setAvatarError] = useState(false);
+
+  function handleAvatarError() {
+    setAvatarError(true);
+  }
 
   function handleToggleSearchInput() {
     setIsSearchOpen((open) => !open);
@@ -363,7 +368,15 @@ const Navbar = () => {
                     onClick={handleToggleProfileMenu}
                     style={{ cursor: "pointer" }}
                   >
-                    <img src={user.image} alt="user-avatar" />
+                    {avatarError ? (
+                      <i className="fa-regular fa-user"></i>
+                    ) : (
+                      <img
+                        src={user.image}
+                        alt="user-avatar"
+                        onError={handleAvatarError}
+                      />
+                    )}
                   </span>
                 </li>
                 {isProfileMenuOpen && (
