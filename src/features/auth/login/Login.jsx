@@ -21,13 +21,13 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
-    password: ""
+    password: "",
   });
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -44,7 +44,7 @@ const Login = () => {
         setCookie("token", res.data.data.token, {
           path: "/",
           secure: true,
-          sameSite: "Strict"
+          sameSite: "Strict",
         });
         axios.defaults.headers.common[
           "Authorization"
@@ -87,6 +87,7 @@ const Login = () => {
               onChange={handleChange}
             />
           </div>
+
           <Link to="/forget-password" className="forgetpass">
             {t("auth.forgetPassword")}
           </Link>

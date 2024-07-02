@@ -95,6 +95,8 @@ const Tabsui = () => {
         </div>
       </Tab>
 
+      
+
       <Tab eventKey="Rating" title="التقييمات" className="tab_item">
         <div>
           <div className="rate-card">
@@ -440,6 +442,7 @@ const Tabsui = () => {
           <ul className="statics-list">
             <li className="d-flex justify-content-between">
               <div className="Item_bussnies row">
+
                 <div className="box col-5">
                   <img src={Rect} alt="" />
                   <h4>تنفيذ اردوينو</h4>
