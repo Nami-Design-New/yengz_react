@@ -5554,4 +5554,14 @@ body.en main .row-head a i {
 #globe canvas {
   width: 100% !important;
   height: 100% !important;
+}
+
+body main .login-section .form .image-change-wrapper .img-wrap img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+[type=tel] {
+  direction: ltr !important;
 }/*# sourceMappingURL=style.css.map */
