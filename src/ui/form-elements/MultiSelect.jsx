@@ -1,17 +1,10 @@
 import React from "react";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
-import useCategoriesList from "../../features/categories/useCategoriesList";
 
 const animatedComponents = makeAnimated();
 
-const MultiSelect = ({ label, formData, setFormData, ...props }) => {
-  const { data } = useCategoriesList();
-  const options = data?.data?.map((category) => ({
-    value: category.id,
-    label: category.name
-  }));
-
+const MultiSelect = ({ label, formData, setFormData, options, ...props }) => {
   const handleChange = (selectedOptions) => {
     const selectedValues = selectedOptions
       ? selectedOptions.map((option) => option.value)

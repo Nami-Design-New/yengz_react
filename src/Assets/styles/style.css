@@ -5409,6 +5409,7 @@ body .nav-search {
   position: absolute;
   top: 95px;
   left: 50%;
+  background: var(--white-color) !important;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   border: none;
   background: none;
@@ -5630,4 +5631,8 @@ body main .login-section .form .image-change-wrapper .img-wrap img {
 
 .tab {
   background-color: #fafafa;
+}
+
+hr {
+  margin: 0.5rem 0;
 }/*# sourceMappingURL=style.css.map */
