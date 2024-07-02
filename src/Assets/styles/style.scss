@@ -5285,6 +5285,62 @@ body main .login-section .form .image-change-wrapper .img-wrap img {
 [type="tel"] {
   direction: ltr !important;
 }
+.Item_bussnies {
+  text-align: center;
+  margin-top: 10px;
+
+  .box {
+    position: relative;
+    h4 {
+      text-align: center;
+      padding: 12px;
+      margin-top: 5px;
+      font-size: 14px !important;
+    }
+    .icons {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      position: absolute;
+      top: 5%;
+      right: 15%;
+      opacity: 0;
+      .backG {
+        height: 28px;
+        width: 28px;
+        background-color: #eee;
+        border-radius: 50px;
+        text-align: center;
+        i {
+          color: black;
+          text-align: center;
+        }
+      }
+    }
+    &:hover {
+      .icons {
+        opacity: 1;
+      }
+    }
+  }
+}
+.TabButton {
+  height: 60px;
+  font-size: 15px;
+  font-weight: 500;
+  @include centerFlex();
+  a {
+    color: var(--black-color);
+  }
+  color: var(--black-color);
+}
+
+.tab {
+  color: red;
+  background-color: #fafafa;
+  .tab_item {
+    color: #d81b1b;
+
 .stars {
   display: flex;
   gap: 4px;
@@ -5296,5 +5352,6 @@ body main .login-section .form .image-change-wrapper .img-wrap img {
   }
   img {
     height: 16px !important;
+
   }
 }

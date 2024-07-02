@@ -5459,6 +5459,7 @@ body .profile-menu li a {
 body .profile-menu li:hover {
   background: var(--gray-background) !important;
 }
+<<<<<<< Updated upstream
 body .form-switch .form-check-input {
   box-shadow: none !important;
 }
@@ -5576,4 +5577,63 @@ body main .login-section .form .image-change-wrapper .img-wrap img {
 
 [type=tel] {
   direction: ltr !important;
+=======
+
+.Item_bussnies {
+  text-align: center;
+  margin-top: 10px;
+}
+.Item_bussnies .box {
+  position: relative;
+}
+.Item_bussnies .box h4 {
+  text-align: center;
+  padding: 12px;
+  margin-top: 5px;
+  font-size: 14px !important;
+}
+.Item_bussnies .box .icons {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  position: absolute;
+  top: 5%;
+  right: 15%;
+  opacity: 0;
+}
+.Item_bussnies .box .icons .backG {
+  height: 28px;
+  width: 28px;
+  background-color: #eee;
+  border-radius: 50px;
+  text-align: center;
+}
+.Item_bussnies .box .icons .backG i {
+  color: black;
+  text-align: center;
+}
+.Item_bussnies .box:hover .icons {
+  opacity: 1;
+}
+
+.TabButton {
+  height: 60px;
+  font-size: 15px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--black-color);
+}
+.TabButton a {
+  color: var(--black-color);
+}
+
+.tab {
+  color: red;
+  background-color: #fafafa;
+}
+.tab .tab_item {
+  color: #d81b1b;
+>>>>>>> Stashed changes
 }/*# sourceMappingURL=style.css.map */
