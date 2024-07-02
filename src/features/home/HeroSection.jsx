@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Orbit3d from "./../../ui/Orbit3d";
 import { useTranslation } from "react-i18next";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
+import { useSelector } from "react-redux";
+import "swiper/swiper-bundle.css";
 
 const HeroSection = () => {
   const { t } = useTranslation();
+  const lang = useSelector((state) => state.language.lang);
+  const [direction, setDirection] = useState("ltr");
+
+  useEffect(() => {
+    if (lang === "ar") {
+      setDirection("rtl");
+    } else {
+      setDirection("ltr");
+    }
+  }, [lang]);
+
   return (
     <section className="mainSection">
       <div className="container">
@@ -23,8 +36,9 @@ const HeroSection = () => {
                 speed={1000}
                 loop={true}
                 modules={[Autoplay]}
-                autoplay={{ delay: 3000, disableOnInteraction: false }}
+                dir="rtl"
                 className="mainSliderContainer"
+                autoplay={{ delay: 3000, disableOnInteraction: false }}
               >
                 <SwiperSlide>
                   <div className="info">

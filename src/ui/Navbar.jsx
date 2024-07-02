@@ -117,7 +117,7 @@ const Navbar = () => {
           <ul className="nav-links">
             {isLogged && (
               <li className="nav-link">
-                <Link to="/services">
+                <Link to="/add-service">
                   <i className="far fa-plus"></i> {t("navbar.addService")}
                 </Link>
               </li>
