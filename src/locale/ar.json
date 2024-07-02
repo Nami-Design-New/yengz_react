@@ -71,5 +71,8 @@
     "service": "خدمة",
     "bestServices": "الخدمات الاكثر شهرة",
     "bestServicesSubTitle": "الخدمات الأكثر مشاهدة والأكثر مبيعًا على الإطلاق"
+  },
+  "edit": {
+    "editPassword": "تعديل كلمه المرور"
   }
 }

@@ -5467,7 +5467,6 @@ body .profile-menu li a {
 body .profile-menu li:hover {
   background: var(--gray-background) !important;
 }
-<<<<<<< Updated upstream
 body .form-switch .form-check-input {
   box-shadow: none !important;
 }
@@ -5565,7 +5564,7 @@ body main .login-section .form .image-change-wrapper .img-wrap img {
 
 [type=tel] {
   direction: ltr !important;
-=======
+}
 
 .Item_bussnies {
   text-align: center;
@@ -5618,10 +5617,5 @@ body main .login-section .form .image-change-wrapper .img-wrap img {
 }
 
 .tab {
-  color: red;
   background-color: #fafafa;
-}
-.tab .tab_item {
-  color: #d81b1b;
->>>>>>> Stashed changes
 }/*# sourceMappingURL=style.css.map */

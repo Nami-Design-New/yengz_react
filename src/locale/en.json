@@ -71,5 +71,8 @@
     "service": "Service",
     "bestServices": "The most popular services",
     "bestServicesSubTitle": "The most viewed and best-selling services ever"
+  },
+  "edit": {
+    "editPassword": "edit Password"
   }
 }
