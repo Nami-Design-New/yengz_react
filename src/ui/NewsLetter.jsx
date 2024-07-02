@@ -1,7 +1,9 @@
 import React from "react";
 import about6 from "../Assets/images/about6.webp";
+import { useTranslation } from "react-i18next";
 
 const NewsLetter = () => {
+  const { t } = useTranslation();
   return (
     <section className="newsletter">
       <div className="container">
@@ -13,11 +15,11 @@ const NewsLetter = () => {
           </div>
           <div className="col-lg-6 col-md-6 col-12">
             <div className="form" data-aos="fade-up">
-              <h3>ابقَ على اتصال مع عالمنا المليء بالإبداع</h3>
-              <form action="">
+              <h3>{t("home.newsletterTitle")}</h3>
+              <form>
                 <div className="input-field">
-                  <input type="email" placeholder="البريد الالكترونى" />
-                  <button type="submit">ارسال</button>
+                  <input type="email" placeholder={t("home.emailAddress")} />
+                  <button type="submit">{t("home.send")}</button>
                 </div>
               </form>
             </div>

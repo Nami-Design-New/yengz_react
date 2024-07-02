@@ -70,9 +70,22 @@
     "viewAll": "View All",
     "service": "Service",
     "bestServices": "The most popular services",
-    "bestServicesSubTitle": "The most viewed and best-selling services ever"
+    "bestServicesSubTitle": "The most viewed and best-selling services ever",
+    "startFrom": "Start From",
+    "newsletterTitle": "Stay connected to our world full of creativity",
+    "emailAddress": "Email Address",
+    "send": "Send"
   },
-  "edit": {
-    "editPassword": "edit Password"
+  "footer": {
+    "importantLinks": "Important Links",
+    "categories":"Categories",
+    "dowloadApp": "Download App",
+    "aboutYengz": "About Yengz",
+    "contactUs": "Contact Us",
+    "faq": "FAQ",
+    "rightsReserved": "Guarantee of rights",
+    "howYengzWork": "How Yengz works",
+    "copyright": "Copyright",
+    "allRightsReserved": "All rights reserved for Yengz"
   }
 }

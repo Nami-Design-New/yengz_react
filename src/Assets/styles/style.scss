@@ -145,7 +145,6 @@ body {
         padding: 10px 12px;
       }
       @include space-between();
-
       .small-media-menu {
         width: 100%;
         height: calc(100vh - 80px);
@@ -507,7 +506,6 @@ body {
     }
   }
   main {
-    padding: 40px 0;
     min-height: calc(100vh - 489px);
     &.main {
       padding: 0;
@@ -516,7 +514,7 @@ body {
       display: flex;
       align-items: center;
       width: 100%;
-      margin-bottom: 40px;
+      margin-bottom: 32px;
       justify-content: space-between;
       h6 {
         color: var(--black-color);
@@ -2958,10 +2956,10 @@ body {
       .links {
         display: flex;
         flex-direction: column;
-        gap: 32px;
+        gap: 24px;
         ul {
           li {
-            margin-bottom: 12px;
+            margin-bottom: 8px;
             a {
               color: var(--black-color);
             }
@@ -3684,11 +3682,11 @@ body {
       padding: 12px;
       display: flex;
       flex-direction: column;
+      gap: 8px;
       flex: 1;
       h6 {
         font-size: 14px;
         line-height: 28px;
-        margin-bottom: 12px;
         color: var(--black-color);
         @media (max-width: 576px) {
           font-size: 12px;
@@ -3716,7 +3714,6 @@ body {
       }
       .start-from {
         color: var(--black-color);
-        margin-top: 16px;
         b {
           color: var(--main-color);
         }
@@ -3744,13 +3741,13 @@ body {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 48px;
+      gap: 42px;
       form {
-        @include centerFlex();
+        display: flex;
       }
       h3 {
         color: var(--black-color);
-        text-align: center;
+        font-size: 36px;
         @media (max-width: 768px) {
           line-height: 40px;
           font-size: 28px;
@@ -4924,7 +4921,7 @@ body {
     z-index: 9;
   }
   .service-card .content {
-    padding: 12px 12px 36px 12px;
+    padding: 12px;
   }
 
   // ================ blogs =========== //
@@ -5106,10 +5103,6 @@ body {
   .Toastify__toast-body {
     direction: ltr !important;
   }
-  .Toastify__toast-icon {
-    margin-inline-end: 0;
-    margin-inline-start: 10px;
-  }
   .Toastify__toast-body > div:last-child {
     line-height: 24px;
     flex: unset;
@@ -5260,6 +5253,14 @@ body {
         }
       }
     }
+    .newsletter .form {
+      h3 {
+        font-size: 28px !important;
+      }
+      .input-field input {
+        direction: ltr !important;
+      }
+    }
     main .row-head a i {
       transform: scaleX(-1);
     }
@@ -5277,7 +5278,6 @@ body {
     height: 100% !important;
   }
 }
-
 body main .login-section .form .image-change-wrapper .img-wrap img {
   width: 100%;
   object-fit: cover;
@@ -5285,8 +5285,6 @@ body main .login-section .form .image-change-wrapper .img-wrap img {
 [type="tel"] {
   direction: ltr !important;
 }
-
-//Tab
 .Item_bussnies {
   text-align: center;
   margin-top: 10px;
@@ -5338,5 +5336,22 @@ body main .login-section .form .image-change-wrapper .img-wrap img {
 }
 
 .tab {
+  color: red;
   background-color: #fafafa;
+  .tab_item {
+    color: #d81b1b;
+
+.stars {
+  display: flex;
+  gap: 4px;
+  li {
+    color: var(--LightGray);
+    &.star {
+      color: var(--star-color);
+    }
+  }
+  img {
+    height: 16px !important;
+
+  }
 }

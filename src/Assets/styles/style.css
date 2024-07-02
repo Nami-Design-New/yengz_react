@@ -548,7 +548,6 @@ body header .tnavbar .loged-in-minor-menu .link .searchmenu input {
   color: var(--black-color);
 }
 body main {
-  padding: 40px 0;
   min-height: calc(100vh - 489px);
 }
 body main.main {
@@ -558,7 +557,7 @@ body main .row-head {
   display: flex;
   align-items: center;
   width: 100%;
-  margin-bottom: 40px;
+  margin-bottom: 32px;
   justify-content: space-between;
 }
 body main .row-head h6 {
@@ -3159,10 +3158,10 @@ body footer .upper-row .about p {
 body footer .upper-row .links {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 24px;
 }
 body footer .upper-row .links ul li {
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 body footer .upper-row .links ul li a {
   color: var(--black-color);
@@ -3932,12 +3931,12 @@ body .service-card .content {
   padding: 12px;
   display: flex;
   flex-direction: column;
+  gap: 8px;
   flex: 1;
 }
 body .service-card .content h6 {
   font-size: 14px;
   line-height: 28px;
-  margin-bottom: 12px;
   color: var(--black-color);
 }
 @media (max-width: 576px) {
@@ -3971,7 +3970,6 @@ body .service-card .content .sell-count {
 }
 body .service-card .content .start-from {
   color: var(--black-color);
-  margin-top: 16px;
 }
 body .service-card .content .start-from b {
   color: var(--main-color);
@@ -4000,16 +3998,14 @@ body .newsletter .form {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 48px;
+  gap: 42px;
 }
 body .newsletter .form form {
   display: flex;
-  align-items: center;
-  justify-content: center;
 }
 body .newsletter .form h3 {
   color: var(--black-color);
-  text-align: center;
+  font-size: 36px;
 }
 @media (max-width: 768px) {
   body .newsletter .form h3 {
@@ -5211,7 +5207,7 @@ body main .search-section aside.side-menu {
   z-index: 9;
 }
 body .service-card .content {
-  padding: 12px 12px 36px 12px;
+  padding: 12px;
 }
 body .blogs {
   padding: 120px 0 40px;
@@ -5397,10 +5393,6 @@ body .form-control {
 body .Toastify__toast-body {
   direction: ltr !important;
 }
-body .Toastify__toast-icon {
-  margin-inline-end: 0;
-  margin-inline-start: 10px;
-}
 body .Toastify__toast-body > div:last-child {
   line-height: 24px;
   flex: unset;
@@ -5539,6 +5531,12 @@ body.en main .login-section .form .input-field textarea,
 body.en main .login-section .form .input-field select {
   direction: ltr !important;
 }
+body.en .newsletter .form h3 {
+  font-size: 28px !important;
+}
+body.en .newsletter .form .input-field input {
+  direction: ltr !important;
+}
 body.en main .row-head a i {
   transform: scaleX(-1);
 }
@@ -5618,4 +5616,7 @@ body main .login-section .form .image-change-wrapper .img-wrap img {
 
 .tab {
   background-color: #fafafa;
+}
+.tab .tab_item {
+  color: #d81b1b;
 }/*# sourceMappingURL=style.css.map */

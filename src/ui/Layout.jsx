@@ -8,11 +8,11 @@ const Layout = () => {
   return (
     <div className="layoutContainer">
       <Navbar />
-      <main className="m">
+      <main>
         <Outlet />
       </main>
       <Footer />
-      <MobileNav/>
+      <MobileNav />
     </div>
   );
 };
