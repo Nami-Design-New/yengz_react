@@ -1,4 +1,4 @@
-import React from "react";;
+import React from "react";
 import { useTranslation } from "react-i18next";
 import Department from "./Department";
 
@@ -12,10 +12,7 @@ const PopularServicesSection = () => {
       <p className="sub-title" data-aos="fade-up">
         {t("home.bestServicesSubTitle")}
       </p>
-
-      <div className="container">
-        <Department />
-      </div>
+      <Department />
     </section>
   );
 };

@@ -1,9 +1,10 @@
 import React from "react";
-
-import logo from "../Assets/images/logo.svg";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import logo from "../Assets/images/logo.svg";
 
 const Footer = () => {
+  const { t } = useTranslation();
   return (
     <footer>
       <div className="container">
@@ -22,25 +23,24 @@ const Footer = () => {
           </div>
           <div className="col-lg-3 col-6">
             <div className="links pa-24">
-              <h4>روابط مهمة</h4>
+              <h4>{t("footer.importantLinks")}</h4>
               <ul>
                 <li>
-                  <Link to="/about">حول ينجز</Link>
+                  <Link to="/about">{t("footer.aboutYengz")}</Link>
                 </li>
                 <li>
-                  <Link to="/contact">تواصل معنا</Link>
+                  <Link to="/contact">{t("footer.contactUs")}</Link>
                 </li>
                 <li>
-                  <Link to="/faq">الاسئلة الشائعة</Link>
+                  <Link to="/faq">{t("footer.faq")}</Link>
                 </li>
                 <li>
-                  <Link to="/terms">ضمان الحقوق</Link>
+                  <Link to="/guarantee-of-rights">
+                    {t("footer.rightsReserved")}
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/blogs">المدونات</Link>
-                </li>
-                <li>
-                  <Link to="/how-it-work">كيف يعمل ينجز</Link>
+                  <Link to="/how-it-work">{t("footer.howYengzWork")}</Link>
                 </li>
               </ul>
             </div>
@@ -124,7 +124,10 @@ const Footer = () => {
         <div className="row">
           <div className="col-12">
             <div className="copy-rights d-flex justify-content-around">
-              <p>حقوق النشر © 2024 جميع الحقوق محفوظة</p>
+              <p>
+                {t("footer.copyright")} © {new Date().getFullYear()}{" "}
+                {t("footer.allRightsReserved")}
+              </p>
             </div>
           </div>
         </div>

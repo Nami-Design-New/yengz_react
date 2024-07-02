@@ -12,7 +12,6 @@ export async function getCategories() {
 export async function getSpecificCategoriesById(id) {
   try {
     const req = await axios.post("/get_sub_categories", id);
-
     return req.data;
   } catch (err) {
     throw new Error(err.message);
