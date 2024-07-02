@@ -9,7 +9,7 @@ const Home = () => {
   function handleSubmitSearch(e) {
     e.preventDefault();
     const searchInput = e.target[0].value;
-    navigate(`/search?s=${searchInput}`);
+    navigate(`/search?search=${searchInput}`);
   }
 
   return (

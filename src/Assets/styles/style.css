@@ -2603,21 +2603,33 @@ body main .search-section .filter-wrap form .departments .deps {
 }
 body main .search-section .filter-wrap form .departments .deps li {
   color: var(--black-color);
-}
-body main .search-section .filter-wrap form .departments .deps li .department-header {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start !important;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-body main .search-section .filter-wrap form .departments .deps li .department-header input {
+body main .search-section .filter-wrap form .departments .deps li input {
   width: 20px;
 }
-body main .search-section .filter-wrap form .departments .deps li .department-header .dep_name {
+body main .search-section .filter-wrap form .departments .deps li .department-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+}
+body main .search-section .filter-wrap form .departments .deps li .department-header label {
+  flex: 1 0 0;
   display: flex;
   align-items: center;
   gap: 10px;
 }
-body main .search-section .filter-wrap form .departments .deps li .department-header .accordion-button {
+body main .search-section .filter-wrap form .departments .deps li .accordion-button {
   border: none;
   background: none;
   outline: none;
@@ -2625,7 +2637,7 @@ body main .search-section .filter-wrap form .departments .deps li .department-he
   height: 12px;
   position: relative;
 }
-body main .search-section .filter-wrap form .departments .deps li .department-header .accordion-button .horizontal {
+body main .search-section .filter-wrap form .departments .deps li .accordion-button .horizontal {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -2634,7 +2646,7 @@ body main .search-section .filter-wrap form .departments .deps li .department-he
   height: 1px;
   background-color: var(--black-color);
 }
-body main .search-section .filter-wrap form .departments .deps li .department-header .accordion-button .vertical {
+body main .search-section .filter-wrap form .departments .deps li .accordion-button .vertical {
   transition: 0.2s ease-in-out;
   height: 12px;
   width: 1px;
@@ -2644,7 +2656,7 @@ body main .search-section .filter-wrap form .departments .deps li .department-he
   left: 50%;
   transform: translate(-50%, -50%) rotate(90deg);
 }
-body main .search-section .filter-wrap form .departments .deps li .department-header .accordion-button.collapsed .vertical {
+body main .search-section .filter-wrap form .departments .deps li .accordion-button.collapsed .vertical {
   height: 12px;
   width: 1px;
   background-color: var(--black-color);
@@ -2653,8 +2665,16 @@ body main .search-section .filter-wrap form .departments .deps li .department-he
   left: 50%;
   transform: translate(-50%, -50%);
 }
-body main .search-section .filter-wrap form .departments .deps li .accordion-body {
+body main .search-section .filter-wrap form .departments .deps li .accordion-collapse {
+  width: 100%;
   padding: 16px;
+  position: relative;
+}
+body main .search-section .filter-wrap form .departments .deps li .accordion-collapse .accordion-body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 body main .search-section .filter-wrap form .rate-range {
   display: flex;
@@ -5634,4 +5654,28 @@ body main .login-section .form .image-change-wrapper .img-wrap img {
 
 hr {
   margin: 0.5rem 0;
+}
+
+.search-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.search-btn button {
+  width: 100%;
+  white-space: nowrap;
+  background: none;
+  outline: none;
+  border: 1px solid var(--input-hint);
+  padding: 4px 16px;
+  font-size: 14px;
+  color: var(--black-color);
+  border-radius: 12px;
+  transition: var(--main-transation);
+}
+.search-btn button:hover {
+  background: var(--main-color);
+  border-color: var(--main-color);
+  color: #fff;
 }/*# sourceMappingURL=style.css.map */

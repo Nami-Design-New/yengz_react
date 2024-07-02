@@ -7,7 +7,7 @@ const CategoryCard = ({ category }) => {
   const { t } = useTranslation();
   return (
     <div className="category-card" data-aos="fade-up">
-      <Link to="/search" className="inner-card">
+      <Link to={`/search?id=${category.id}`} className="inner-card">
         <div className="category-img">
           <img src={category?.image || category1} alt="" />
         </div>
