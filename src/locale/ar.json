@@ -70,6 +70,22 @@
     "viewAll": "عرض الكل",
     "service": "خدمة",
     "bestServices": "الخدمات الاكثر شهرة",
-    "bestServicesSubTitle": "الخدمات الأكثر مشاهدة والأكثر مبيعًا على الإطلاق"
+    "bestServicesSubTitle": "الخدمات الأكثر مشاهدة والأكثر مبيعًا على الإطلاق",
+    "startFrom": "تبدأ من",
+    "newsletterTitle": "ابقَ على اتصال مع عالمنا المليء بالإبداع",
+    "emailAddress": "البريد الالكتروني",
+    "send": "ارسال"
+  },
+  "footer": {
+    "importantLinks": "روابط مهمة",
+    "categories": "الاقسام",
+    "dowloadApp": "تحميل التطبيق",
+    "aboutYengz": "حول ينجز",
+    "contactUs": "اتصل بنا",
+    "faq": "الأسئلة الشائعة",
+    "rightsReserved": "ضمان الحقوق",
+    "howYengzWork": "كيف يعمل ينجز",
+    "copyright": "حقوق النشر",
+    "allRightsReserved": "جميع الحقوق محفوظة لدى ينجز"
   }
 }
