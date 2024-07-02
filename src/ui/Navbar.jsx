@@ -399,7 +399,7 @@ const Navbar = () => {
                     </li>
                     <hr />
                     <li>
-                      <Link className="dropdown-item_Link" to="/profile/edit">
+                      <Link className="dropdown-item_Link" to="/edit-profile">
                         <i className="fa-sharp fa-solid fa-pen-to-square"></i>
                         {t("navbar.editProfile")}
                       </Link>

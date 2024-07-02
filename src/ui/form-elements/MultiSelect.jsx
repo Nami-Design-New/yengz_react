@@ -5,9 +5,14 @@ import makeAnimated from "react-select/animated";
 const animatedComponents = makeAnimated();
 
 const MultiSelect = ({ label, formData, setFormData, options, ...props }) => {
+  const selectedOptions = formData?.categories?.map((category) => ({
+    value: category.id,
+    label: category.name
+  }));
+
   const handleChange = (selectedOptions) => {
     const selectedValues = selectedOptions
-      ? selectedOptions.map((option) => option.value)
+      ? selectedOptions?.map((option) => option.value)
       : [];
     setFormData({
       ...formData,
@@ -23,6 +28,7 @@ const MultiSelect = ({ label, formData, setFormData, options, ...props }) => {
         components={animatedComponents}
         isMulti
         options={options}
+        value={selectedOptions}
         onChange={handleChange}
         {...props}
       />

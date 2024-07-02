@@ -1,101 +1,51 @@
 import React from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
-import bann from "../Assets/images/bann.webp";
-import rateowner1 from "../Assets/images/rateowner1.webp";
-import rateowner2 from "../Assets/images/rateowner2.webp";
-import rateowner3 from "../Assets/images/rateowner3.webp";
-
-import Rect from "../Assets/images/Rect.png";
+import rateowner1 from "../../Assets/images/rateowner1.webp";
+import rateowner2 from "../../Assets/images/rateowner2.webp";
+import rateowner3 from "../../Assets/images/rateowner3.webp";
+import Rect from "../../Assets/images/Rect.png";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { IconCirclePlus, IconPlus } from "@tabler/icons-react";
+import ServiceCard from "../../ui/cards/ServiceCard";
 
-const Tabsui = () => {
+const ProfileTabs = ({ user }) => {
+  const { t } = useTranslation();
   return (
-    <Tabs
-      defaultActiveKey="home"
-      id="uncontrolled-tab-example"
-      className="mb-3 tab"
-    >
-      <Tab eventKey="home" title="نبذه عني " className="tab_item">
-        <div>
-          انا خالد عوض مبرمج مواقع بخبرة تفوق الاربع سنوات عملت على كثير من
-          المشاريع وقمت بتنفيذ عدت مواقع لشركات محلية ودولية.
-          =================مميزات العمل معي=================
-          <br />
-          <ul>
-            <li>-توفير خدمة ممتازة وبحودة عالية في وقت قياسي.</li>
-
-            <li>
-              -توفير خدمة الدعم بعد البيع واستلام مشروعك في حالة ظهور اي شئ.
-            </li>
-
-            <li>
-              -خبرة جيدة في مجال البرمجة ويمكنني فهم اي خدمات تريدها في مشروعك .
-            </li>
-
-            <li>-تخصصي ((computer science and artificial intellience)).</li>
-
-            <li>-سرعة الرد على الرسائل.</li>
-
-            <li>-هدفي الاول هو ارضائك كعميل.</li>
-          </ul>
+    <Tabs defaultActiveKey="about" id="uncontrolled-tab-example">
+      {/* about me */}
+      <Tab eventKey="about" title={t("profile.aboutMe")} className="tab_item">
+        <div className="user_about">
+          {user?.about ? (
+            <p>{user?.about}</p>
+          ) : (
+            <Link to="/edit-profile">
+              <IconPlus stroke={1} /> {t("profile.noAbout")}
+            </Link>
+          )}
         </div>
       </Tab>
 
-      <Tab eventKey="service" title="الخدمات" className="tab_item">
+      {/* services */}
+      <Tab
+        eventKey="service"
+        title={t("profile.services")}
+        className="tab_item"
+      >
         <div className="services-contianer">
-          <a href="add-sevice.html" className="add-service">
-            <i className="ti ti-md ti-circle-plus"></i> اضف خدمة
-          </a>
-          <div className="container mt-4">
+          <Link to="/add-sevice" className="add-service">
+            <IconCirclePlus stroke={2} /> {t("profile.addService")}
+          </Link>
+          <div className="container mt-3">
             <div className="row">
               <div className="col-lg-6 col-12 p-2">
-                <div className="service-card">
-                  <Link href="service.html" className="img">
-                    <img src={bann} alt="" />
-                  </Link>
-                  <div className="content">
-                    <h6>اصنع لك تطبيق متجر الكتروني باستخدام flutter...</h6>
-                    <p>
-                      <a href="#!">برمجة وتطوير</a> / <span>إنشاء تطبيق</span>
-                    </p>
-                    <div className="d-flex gap-3">
-                      <div className="rate">
-                        <ul>
-                          <li className="star">
-                            <i className="fa-solid fa-star"></i>
-                          </li>
-                          <li className="star">
-                            <i className="fa-solid fa-star"></i>
-                          </li>
-                          <li className="star">
-                            <i className="fa-solid fa-star"></i>
-                          </li>
-                          <li className="star">
-                            <i className="fa-solid fa-star"></i>
-                          </li>
-                          <li>
-                            <i className="fa-solid fa-star"></i>
-                          </li>
-                        </ul>
-                      </div>
-                      <span className="sell-count">( 4 )</span>
-                    </div>
-                    <h6 className="start-from">
-                      تبدأ من : <b>10.00$</b>
-                    </h6>
-                    <Link href="edit-service.html" className="editService">
-                      <i className="fa-regular fa-file-pen"></i>
-                    </Link>
-                  </div>
-                </div>
+                <ServiceCard canEdit={true} />
               </div>
             </div>
           </div>
         </div>
       </Tab>
-
-      
 
       <Tab eventKey="Rating" title="التقييمات" className="tab_item">
         <div>
@@ -437,12 +387,12 @@ const Tabsui = () => {
           </ul>
         </div>
       </Tab>
+
       <Tab eventKey="My business" title="اعمالي" className="tab_item">
         <div className="tab-pane ">
           <ul className="statics-list">
             <li className="d-flex justify-content-between">
               <div className="Item_bussnies row">
-
                 <div className="box col-5">
                   <img src={Rect} alt="" />
                   <h4>تنفيذ اردوينو</h4>
@@ -498,6 +448,7 @@ const Tabsui = () => {
           </ul>
         </div>
       </Tab>
+
       <Tab eventKey="My testimonials" title="شهاداتي " className="tab_item">
         <div className="tab-pane ">
           <ul className="statics-list">
@@ -562,4 +513,4 @@ const Tabsui = () => {
   );
 };
 
-export default Tabsui;
+export default ProfileTabs;
