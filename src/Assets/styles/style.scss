@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap");
-
 :target {
   scroll-margin-top: 100px;
 }
@@ -282,7 +281,6 @@ body {
           height: 100%;
         }
       }
-
       .loged-in-minor-menu {
         height: 100%;
         display: flex;
@@ -346,7 +344,6 @@ body {
             top: calc(100% + 20px) !important;
             bottom: unset !important;
             border-radius: 16px !important;
-
             &.search-dropdown-menu {
               width: 100vw;
               top: 100% !important;
@@ -355,7 +352,6 @@ body {
                 width: 100% !important;
               }
             }
-
             .dropdown-item {
               padding: 6px 14px !important;
               display: flex !important;
@@ -1006,7 +1002,6 @@ body {
         .input-field {
           margin-bottom: 12px;
         }
-
         .resend-code {
           width: 100%;
           display: flex;
@@ -2530,7 +2525,6 @@ body {
         }
       }
     }
-
     .contact-section {
       width: 100%;
       position: relative;
@@ -2598,7 +2592,6 @@ body {
         }
       }
     }
-
     .about-section {
       .mb-64 {
         margin-bottom: 80px;
@@ -2775,7 +2768,6 @@ body {
         }
       }
     }
-
     .faqs {
       padding: 40px 16px;
       .cards-4 {
@@ -2899,7 +2891,6 @@ body {
         }
       }
     }
-
     .terms {
       padding: 80px 0;
       .row {
@@ -3566,7 +3557,6 @@ body {
             }
           }
         }
-
         .t-select {
           width: 100%;
           justify-content: space-between;
@@ -3987,7 +3977,6 @@ body {
           gap: 12px;
           row-gap: 2px;
           flex-wrap: wrap;
-
           .time,
           .name {
             display: flex;
@@ -4027,7 +4016,6 @@ body {
           display: flex;
           flex-direction: column;
           flex-wrap: wrap;
-
           .name {
             font-size: 14px;
           }
@@ -4133,7 +4121,6 @@ body {
         gap: 12px;
         row-gap: 2px;
         flex-wrap: wrap;
-
         .time,
         .name {
           display: flex;
@@ -4164,7 +4151,6 @@ body {
         }
       }
     }
-
     .allComments {
       padding: 16px;
       display: flex;
@@ -4196,7 +4182,6 @@ body {
           aspect-ratio: 1/1;
           object-fit: cover;
         }
-
         .lastUser {
           display: flex;
           flex-direction: column;
@@ -4327,7 +4312,6 @@ body {
       font-size: 13px !important;
     }
   }
-
   /*/////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////
@@ -4854,7 +4838,6 @@ body {
       }
     }
   }
-
   .section-head {
     @media (max-width: 576px) {
       height: 100px;
@@ -4863,7 +4846,6 @@ body {
   .newsletter .form .input-field {
     background: var(--light-bg);
   }
-
   footer .copy-rights {
     @media (max-width: 576px) {
       margin-bottom: 60px;
@@ -4923,7 +4905,6 @@ body {
   .service-card .content {
     padding: 12px;
   }
-
   // ================ blogs =========== //
   .blogs {
     padding: 120px 0 40px;
@@ -5099,7 +5080,6 @@ body {
   .form-control {
     box-shadow: none !important;
   }
-
   .Toastify__toast-body {
     direction: ltr !important;
   }
@@ -5119,6 +5099,7 @@ body {
     position: absolute;
     top: 95px;
     left: 50%;
+    background: var(--white-color) !important;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     border: none;
     background: none;
@@ -5130,13 +5111,11 @@ body {
     gap: 16px;
     justify-content: space-between;
     padding: 8px 16px;
-
     input {
       flex: 1 0 0;
       border: none;
       outline: none;
     }
-
     button {
       padding: 8px 24px;
       border-radius: 12px;
@@ -5147,7 +5126,6 @@ body {
       background-color: var(--main-color);
     }
   }
-
   .profile-menu {
     position: absolute;
     border-radius: 0 !important;
@@ -5181,7 +5159,6 @@ body {
       border-color: var(--main-color);
     }
   }
-
   .otp-container {
     display: flex;
     align-items: center;
@@ -5222,13 +5199,11 @@ body {
     border-radius: 12px !important;
     border-color: var(--LightGray) !important;
   }
-
   /*//////////////////////////////////////////////
   ////////////////////////////////////////////////
   ////////////////// LTR ////////////////////////
   ////////////////////////////////////////////////
   /////////////////////////////////////////////*/
-
   &.en {
     direction: ltr;
     header .tnavbar .loged-in-minor-menu .link .btns a i {
@@ -5285,10 +5260,22 @@ body main .login-section .form .image-change-wrapper .img-wrap img {
 [type="tel"] {
   direction: ltr !important;
 }
+.stars {
+  display: flex;
+  gap: 4px;
+  li {
+    color: var(--LightGray);
+    &.star {
+      color: var(--star-color);
+    }
+  }
+  img {
+    height: 16px !important;
+  }
+}
 .Item_bussnies {
   text-align: center;
   margin-top: 10px;
-
   .box {
     position: relative;
     h4 {
@@ -5334,24 +5321,9 @@ body main .login-section .form .image-change-wrapper .img-wrap img {
   }
   color: var(--black-color);
 }
-
 .tab {
-  color: red;
   background-color: #fafafa;
-  .tab_item {
-    color: #d81b1b;
-
-.stars {
-  display: flex;
-  gap: 4px;
-  li {
-    color: var(--LightGray);
-    &.star {
-      color: var(--star-color);
-    }
-  }
-  img {
-    height: 16px !important;
-
-  }
+}
+hr {
+  margin: .5rem 0;
 }

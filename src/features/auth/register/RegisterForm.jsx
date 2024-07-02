@@ -13,30 +13,37 @@ import SubmitButton from "../../../ui/form-elements/SubmitButton";
 import axios from "./../../../utils/axios";
 import MultiSelect from "../../../ui/form-elements/MultiSelect";
 import isSeller from "../../../Assets/images/Vector.svg";
+import useCategoriesList from "../../categories/useCategoriesList";
 
 const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
 
+  const { data } = useCategoriesList();
+  const options = data?.data?.map((category) => ({
+    value: category.id,
+    label: category.name
+  }));
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
   const headers = {
     Accept: "application/json",
-    "Content-Type": "multipart/form-data",
+    "Content-Type": "multipart/form-data"
   };
   const request = {
     method: "POST",
     headers: headers,
     data: {
       ...formData,
-      is_freelance: formData.is_freelance ? 1 : 0,
+      is_freelance: formData.is_freelance ? 1 : 0
     },
-    url: "/user/can_register",
+    url: "/user/can_register"
   };
 
   const handleSubmit = async (e) => {
@@ -48,7 +55,7 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
         setShowOtp(true);
         setOtpData((prev) => ({
           ...prev,
-          hashed_code: res.data.data,
+          hashed_code: res.data.data
         }));
       } else {
         toast.error(res.data.message);
@@ -106,6 +113,7 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
         label={t("auth.interestes")}
         id="interest"
         name="interest"
+        options={options}
         formData={formData}
         setFormData={setFormData}
       />
@@ -120,7 +128,7 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
           onChange={() =>
             setFormData({
               ...formData,
-              is_freelance: !formData.is_freelance,
+              is_freelance: !formData.is_freelance
             })
           }
         />
