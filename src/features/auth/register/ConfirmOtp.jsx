@@ -18,7 +18,7 @@ const ConfirmOtp = ({ otpData, setOtpData, formData }) => {
 
   const headers = {
     Accept: "application/json",
-    "Content-Type": "multipart/form-data"
+    "Content-Type": "multipart/form-data",
   };
   const checkCodeRequest = {
     method: "POST",
@@ -27,9 +27,9 @@ const ConfirmOtp = ({ otpData, setOtpData, formData }) => {
       ...otpData,
       ...formData,
       is_freelance: formData.is_freelance ? 1 : 0,
-      type: "register"
+      type: "register",
     },
-    url: "/user/check_code"
+    url: "/user/check_code",
   };
 
   const handleSubmit = async (e) => {
@@ -41,7 +41,7 @@ const ConfirmOtp = ({ otpData, setOtpData, formData }) => {
         toast.success(t("auth.registerSuccess"));
         const login = await axios.post("/user/login", {
           email: formData.email,
-          password: formData.password
+          password: formData.password,
         });
         if (login.data.code === 200) {
           navigate("/");
@@ -50,7 +50,7 @@ const ConfirmOtp = ({ otpData, setOtpData, formData }) => {
           setCookie("token", login.data.data.token, {
             path: "/",
             secure: true,
-            sameSite: "Strict"
+            sameSite: "Strict",
           });
           axios.defaults.headers.common[
             "Authorization"

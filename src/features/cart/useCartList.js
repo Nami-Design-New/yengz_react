@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getCart } from "../../services/apiCart";
 import { useDispatch } from "react-redux";
-import { updateWholeCart } from "../../redux/slices/cartSlice";
+import { updateEntireCart } from "../../redux/slices/cartSlice";
 
 function useCartList() {
   const dispatch = useDispatch();
@@ -11,7 +11,7 @@ function useCartList() {
     retry: false,
 
     onSuccess: () => {
-      dispatch(updateWholeCart(data.data));
+      dispatch(updateEntireCart(data.data));
     },
   });
 

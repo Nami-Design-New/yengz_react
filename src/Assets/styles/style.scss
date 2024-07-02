@@ -5291,3 +5291,10 @@ body {
     height: 16px !important;
   }
 }
+body main .login-section .form .image-change-wrapper .img-wrap img {
+  width: 100%;
+  object-fit: cover;
+}
+[type="tel"] {
+  direction: ltr !important;
+}
