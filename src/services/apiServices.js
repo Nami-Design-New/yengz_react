@@ -18,7 +18,7 @@ export async function getServicesByFilter(
       ...(!user_available && { user_available }),
       ...(!categories && { categories }),
       ...(!sub_categories && { sub_categories }),
-      is_old: 0,
+      ...(!is_old && { is_old }),
     });
 
     return req.data;
@@ -29,7 +29,10 @@ export async function getServicesByFilter(
 
 export async function getServicesByCategoryId(id, page) {
   try {
-    const req = await axios.post("/get_sub_category_services", {id: [id], page});
+    const req = await axios.post("/get_sub_category_services", {
+      id: [id],
+      page,
+    });
 
     return req.data;
   } catch (err) {

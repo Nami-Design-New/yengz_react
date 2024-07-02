@@ -10,11 +10,12 @@ function useSearchServicesList() {
   const [searchParams] = useSearchParams();
   const search = searchParams.get("search");
   const page = Number(searchParams.get("page")) || 1;
-  const rate = Number(searchParams.get("rate"));
-  const user_verification = searchParams.get("user_verification");
-  const user_available = searchParams.get("user_available");
+  const rate = Number(searchParams.get("rate")) || 1;
+  const user_verification = Number(searchParams.get("user_verification")) || 1;
+  const user_available = Number(searchParams.get("user_available")) || 1;
   const categories = searchParams.get("categories");
   const sub_categories = searchParams.get("sub_categories");
+  const is_old = Number(searchParams.get("is_old")) || 0;
   const id = Number(searchParams.get("id"));
 
   const { isLoading, data, error } = useQuery({
@@ -38,7 +39,8 @@ function useSearchServicesList() {
             user_verification,
             user_available,
             categories,
-            sub_categories
+            sub_categories,
+            is_old
           ),
     retry: false,
   });
