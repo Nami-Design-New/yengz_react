@@ -5,7 +5,6 @@ import { useCookies } from "react-cookie";
 import { useDispatch, useSelector } from "react-redux";
 import { useJwt } from "react-jwt";
 import { setIsLogged, setUser } from "./redux/slices/authedUser";
-
 import Login from "./features/auth/login/Login";
 import Register from "./features/auth/register/Register";
 import ForgetPassword from "./features/auth/resetPassword/ForgetPassword";
@@ -33,6 +32,9 @@ import Logout from "./features/auth/Logout";
 import Profile from "./routes/Profile";
 import Cart from "./routes/Cart";
 import EditProfile from "./routes/EditProfile";
+import AddServices from "./routes/AddServices";
+import EditServices from "./routes/EditServices";
+import Notifcations from "./routes/Notifcations";
 
 function App() {
   const dispatch = useDispatch();
@@ -40,7 +42,6 @@ function App() {
   const [cookies, , removeCookie] = useCookies(["token"]);
   const token = cookies?.token;
   const { decodedToken, isExpired } = useJwt(token || "");
-  
 
   useEffect(() => {
     if (decodedToken && !isExpired) {
@@ -78,10 +79,14 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/Addservices" element={<AddServices />} />
+          <Route path="/EditServices" element={<EditServices />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/purchases" element={<Purchases />} />
           <Route path="/order-details" element={<OrderDetails />} />
+
           <Route path="/recieved-request" element={<RecievedRequest />} />
+
           <Route path="/requests" element={<Requests />} />
           <Route path="/request-details" element={<RequestDetails />} />
           <Route path="/request-add" element={<AddRequest />} />
@@ -100,12 +105,12 @@ function App() {
           <Route path="/forget-password" element={<ForgetPassword />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile/edit" element={<EditProfile />} />
-
-
-
           <Route path="/Cart" element={<Cart />} />
+          <Route path="/Cart" element={<Cart />} />
+          <Route path="/notifications" element={<Notifcations />} />
+
           <Route
-            path="/recieved-request-orders"
+            path="/recievedRequestOrders"
             element={<RecievedRequestOrders />}
           />
         </Route>

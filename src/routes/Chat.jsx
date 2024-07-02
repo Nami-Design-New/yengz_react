@@ -13,7 +13,8 @@ const Chat = () => {
 
           {/* <!-- Tab-list -->  */}
 
-          <div className="nav flex-column nav-pills  col-lg-5 col-12 side-menu"
+          <div
+            className="nav flex-column nav-pills  col-lg-5 col-12 side-menu"
             id="v-pills-tab"
             role="tablist"
             aria-orientation="vertical"
@@ -77,18 +78,18 @@ const Chat = () => {
             </button>
           </div>
 
-
-          <div className="tab-content col-lg-7 col-12 pe-lg-4 pe-2 ps-lg-4 ps-2"
+          <div
+            className="tab-content col-lg-7 col-12 pe-lg-4 pe-2 ps-lg-4 ps-2"
             id="v-pills-tabContent"
           >
             {/*<!-- chat -->*/}
 
-            <div className="tab-pane fade show active"
+            <div
+              className="tab-pane fade show active"
               id="v-pills-home"
               role="tabpanel"
               aria-labelledby="v-pills-home-tab"
             >
-
               <div className="chat-container">
                 <div className="chat-head">
                   <div className="d-flex align-items-center gap-3">

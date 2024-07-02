@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import rateowner1 from "../Assets/images/rateowner1.webp";
 import Modal from "react-bootstrap/Modal";
+import { Link } from "react-router-dom";
 
 const RecievedRequestOrders = () => {
   const [show, setShow] = useState(false);
@@ -260,7 +261,10 @@ const RecievedRequestOrders = () => {
                                         name="rating_qos"
                                         value="5"
                                       />
-                                      <label htmlFor="star5_qos" title="5 stars">
+                                      <label
+                                        htmlFor="star5_qos"
+                                        title="5 stars"
+                                      >
                                         <i className="fa-sharp fa-solid fa-star"></i>
                                       </label>
                                       <input
@@ -269,7 +273,10 @@ const RecievedRequestOrders = () => {
                                         name="rating_qos"
                                         value="4"
                                       />
-                                      <label htmlFor="star4_qos" title="4 stars">
+                                      <label
+                                        htmlFor="star4_qos"
+                                        title="4 stars"
+                                      >
                                         <i className="fa-sharp fa-solid fa-star"></i>
                                       </label>
                                       <input
@@ -278,7 +285,10 @@ const RecievedRequestOrders = () => {
                                         name="rating_qos"
                                         value="3"
                                       />
-                                      <label htmlFor="star3_qos" title="3 stars">
+                                      <label
+                                        htmlFor="star3_qos"
+                                        title="3 stars"
+                                      >
                                         <i className="fa-sharp fa-solid fa-star"></i>
                                       </label>
                                       <input
@@ -287,7 +297,10 @@ const RecievedRequestOrders = () => {
                                         name="rating_qos"
                                         value="2"
                                       />
-                                      <label htmlFor="star2_qos" title="2 stars">
+                                      <label
+                                        htmlFor="star2_qos"
+                                        title="2 stars"
+                                      >
                                         <i className="fa-sharp fa-solid fa-star"></i>
                                       </label>
                                       <input
@@ -331,10 +344,11 @@ const RecievedRequestOrders = () => {
           </div>
         </section>
       </main>
+
       <div
         className="modal fade"
         id="rateModal"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="rateModalLabel"
         aria-hidden="true"
       >

@@ -17,7 +17,7 @@ const EditProfile = () => {
             </div>
 
             <div className="d-flex w-100 pe-5 ps-5 justify-content-between align-items-center">
-              <label for="img">الصورةالشخصية</label>
+              <label htmlFor="img">الصورةالشخصية</label>
               <label className="upload">
                 <div className="plus">
                   <i className="fa-regular fa-plus"></i>
@@ -51,14 +51,11 @@ const EditProfile = () => {
                 name="last-name"
                 placeholder="عوض"
               />
-
-
-              
             </div>
           </div>
 
           <div className="input-field">
-            <label for="email">
+            <label htmlFor="email">
               <i className="ti ti-md ti-mail"></i> البريد الالكتروني
             </label>
             <input
@@ -70,7 +67,7 @@ const EditProfile = () => {
           </div>
 
           <div className="input-field">
-            <label for="about">
+            <label htmlFor="about">
               <i className="fa-regular fa-circle-info"></i> النبذة التعريفية
             </label>
             <textarea
@@ -88,7 +85,7 @@ const EditProfile = () => {
             />
           </div>
           <div className="question">
-            <label for="vendor" className="quest">
+            <label htmlFor="vendor" className="quest">
               <img src={Vector} alt="" />
               هل انت بائع ؟
             </label>

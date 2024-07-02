@@ -2,6 +2,7 @@ import React from "react";
 import avatar from "../Assets/images/avatar.png";
 
 import Tabsui from "../ui/Tabsui";
+import { Link } from "react-router-dom";
 const Profile = () => {
   return (
     <main>
@@ -10,9 +11,9 @@ const Profile = () => {
           <div className="profile-descripe col-lg-5 col-12">
             <div className="banner">
               <div className="user-avatar">
-                <a href="assets/images/avatar.png" data-fancybox="user-avatar">
+                <Link to="assets/images/avatar.png" data-fancybox="user-avatar">
                   <img src={avatar} alt="user-avatar" />
-                </a>
+                </Link>
                 <span className="status"></span>
               </div>
             </div>
@@ -46,7 +47,7 @@ const Profile = () => {
                 <h4>
                   <i className="ti ti-md ti-info-circle"></i> الرصيد
                 </h4>
-                <a href="#!">سحب</a>
+                <Link to="#!">سحب</Link>
               </div>
               <div className="row mt-3">
                 <div className="col-4 p-0">

@@ -44,20 +44,21 @@ const Tabsui = () => {
 
       <Tab eventKey="service" title="الخدمات" className="tab_item">
         <div className="services-contianer">
-          <a href="add-sevice.html" className="add-service">
+          <Link to="/Addservices" className="add-service">
             <i className="ti ti-md ti-circle-plus"></i> اضف خدمة
-          </a>
+          </Link>
           <div className="container mt-4">
             <div className="row">
               <div className="col-lg-6 col-12 p-2">
                 <div className="service-card">
-                  <Link href="service.html" className="img">
+                  <Link to="/service" className="img">
                     <img src={bann} alt="" />
                   </Link>
                   <div className="content">
                     <h6>اصنع لك تطبيق متجر الكتروني باستخدام flutter...</h6>
                     <p>
-                      <a href="#!">برمجة وتطوير</a> / <span>إنشاء تطبيق</span>
+                      <Link to="#!">برمجة وتطوير</Link> /{" "}
+                      <span>إنشاء تطبيق</span>
                     </p>
                     <div className="d-flex gap-3">
                       <div className="rate">
@@ -84,7 +85,7 @@ const Tabsui = () => {
                     <h6 className="start-from">
                       تبدأ من : <b>10.00$</b>
                     </h6>
-                    <Link href="edit-service.html" className="editService">
+                    <Link to="/EditServices" className="editService">
                       <i className="fa-regular fa-file-pen"></i>
                     </Link>
                   </div>
@@ -94,8 +95,6 @@ const Tabsui = () => {
           </div>
         </div>
       </Tab>
-
-      
 
       <Tab eventKey="Rating" title="التقييمات" className="tab_item">
         <div>
@@ -407,7 +406,7 @@ const Tabsui = () => {
 
           <div className="unverified-box">
             <h6>الحساب غير موثق</h6>
-            <a href="auth-verify-steps.html">توثيق الحساب</a>
+            <Link to="auth-verify-steps.html">توثيق الحساب</Link>
           </div>
         </div>
       </Tab>
@@ -442,7 +441,6 @@ const Tabsui = () => {
           <ul className="statics-list">
             <li className="d-flex justify-content-between">
               <div className="Item_bussnies row">
-
                 <div className="box col-5">
                   <img src={Rect} alt="" />
                   <h4>تنفيذ اردوينو</h4>
