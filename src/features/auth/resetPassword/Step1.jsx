@@ -24,7 +24,7 @@ const Step1 = ({ setStep, setOtpData, formData, setFormData, setUserId }) => {
         setStep(2);
         setUserId(res.data.data.user.id);
       } else {
-        toast.error(res.data.message.email[0]);
+        toast.error(res.data.message);
       }
     } catch (error) {
       console.error("Forget password error:", error);
