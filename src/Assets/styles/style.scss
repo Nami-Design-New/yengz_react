@@ -5278,6 +5278,13 @@ body {
     height: 100% !important;
   }
 }
+body main .login-section .form .image-change-wrapper .img-wrap img {
+  width: 100%;
+  object-fit: cover;
+}
+[type="tel"] {
+  direction: ltr !important;
+}
 .stars {
   display: flex;
   gap: 4px;
@@ -5290,11 +5297,4 @@ body {
   img {
     height: 16px !important;
   }
-}
-body main .login-section .form .image-change-wrapper .img-wrap img {
-  width: 100%;
-  object-fit: cover;
-}
-[type="tel"] {
-  direction: ltr !important;
 }
