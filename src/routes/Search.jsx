@@ -26,9 +26,9 @@ const departmentFilter = [
         created_at: null,
         updated_at: null,
         name: "Name Ar",
-        count: 18,
-      },
-    ],
+        count: 18
+      }
+    ]
   },
   {
     id: 2,
@@ -47,7 +47,7 @@ const departmentFilter = [
         created_at: null,
         updated_at: null,
         name: "Name Ar 2",
-        count: 18,
+        count: 18
       },
       {
         id: 5,
@@ -57,10 +57,10 @@ const departmentFilter = [
         created_at: null,
         updated_at: null,
         name: "Name Ar 3",
-        count: 18,
-      },
-    ],
-  },
+        count: 18
+      }
+    ]
+  }
 ];
 
 const Search = () => {
@@ -85,7 +85,7 @@ const Search = () => {
           .split("-")
           .map((subcategory) => Number(subcategory))
       : [],
-    is_old: Number(searchParams.get("is_old")) || 0,
+    is_old: Number(searchParams.get("is_old")) || 0
   });
 
   const handleChange = (e) => {
@@ -98,7 +98,7 @@ const Search = () => {
           ...prevState,
           [name]: checked
             ? [...prevState[name], parsedValue]
-            : prevState[name].filter((item) => item !== parsedValue),
+            : prevState[name].filter((item) => item !== parsedValue)
         };
 
         if (name === "categories") {
@@ -111,8 +111,8 @@ const Search = () => {
             updatedState["sub_categories"] = [
               ...new Set([
                 ...prevState["sub_categories"],
-                ...relatedSubCategories,
-              ]),
+                ...relatedSubCategories
+              ])
             ];
           } else {
             updatedState["sub_categories"] = prevState["sub_categories"].filter(
@@ -136,7 +136,7 @@ const Search = () => {
 
           if (areAllChildrenChecked) {
             updatedState["categories"] = [
-              ...new Set([...prevState["categories"], parentCategory.id]),
+              ...new Set([...prevState["categories"], parentCategory.id])
             ];
           } else {
             updatedState["categories"] = prevState["categories"].filter(
@@ -150,7 +150,7 @@ const Search = () => {
     } else {
       setSearchFilterData({
         ...searchFilterData,
-        [name]: value,
+        [name]: value
       });
     }
   };
@@ -222,73 +222,71 @@ const Search = () => {
   }, [searchParams, setSearchParams]);
 
   return (
-    <main>
-      <section className="search-section">
-        <div className="container">
-          <div className="row">
-            <aside
-              className={`col-lg-3 side-menu ${isFilterOpen ? "active" : ""}`}
-            >
-              <div className="filter-wrap">
-                <div className="colse" onClick={() => setIsFilterOpen(false)}>
-                  <i className="fa-light fa-xmark"></i>
-                </div>
-                <form onSubmit={handleSubmit}>
-                  <InputField
-                    id="aside-search-input"
-                    name="search"
-                    className="aside-search-input"
-                    value={searchFilterData.search}
-                    onChange={handleChange}
-                    label={"بحث"}
-                  />
-                  <DepartmentFilterBox
-                    categoriesValue={searchFilterData.categories}
-                    sub_categoriesValue={searchFilterData.sub_categories}
-                    onChange={handleChange}
-                    departmentFilter={departmentFilter}
-                  />
-                  <RatingFilterBox
-                    value={searchFilterData.rate}
-                    onChange={handleChange}
-                  />
-                  <SellerFilterBox />
-                  <SellerStatusFilterBox
-                    user_available={searchFilterData.user_available}
-                    user_verification={searchFilterData.user_verification}
-                    onChange={handleChange}
-                  />
-                  <div className="search-btn">
-                    <button onClick={handleApplyFilters}>تأكيد</button>
-                  </div>
-                </form>
+    <section className="search-section">
+      <div className="container">
+        <div className="row">
+          <aside
+            className={`col-lg-3 side-menu ${isFilterOpen ? "active" : ""}`}
+          >
+            <div className="filter-wrap">
+              <div className="colse" onClick={() => setIsFilterOpen(false)}>
+                <i className="fa-light fa-xmark"></i>
               </div>
-            </aside>
-            <div className="small-filter-header">
-              <h6>نتائج البحث</h6>
-              <button
-                className="openfilter"
-                onClick={() => setIsFilterOpen(true)}
-              >
-                <i className="fa-light fa-sliders"></i>
-              </button>
-            </div>
-            <div className="col-lg-9 col-12 p-2 results-wrapper">
-              <div className="container">
-                <div className="row">
-                  {data &&
-                    data.data.map((service) => (
-                      <div className="col-lg-4 col-6 p-2" key={service.id}>
-                        <ServiceCard service={service} />
-                      </div>
-                    ))}
+              <form onSubmit={handleSubmit}>
+                <InputField
+                  id="aside-search-input"
+                  name="search"
+                  className="aside-search-input"
+                  value={searchFilterData.search}
+                  onChange={handleChange}
+                  label={"بحث"}
+                />
+                <DepartmentFilterBox
+                  categoriesValue={searchFilterData.categories}
+                  sub_categoriesValue={searchFilterData.sub_categories}
+                  onChange={handleChange}
+                  departmentFilter={departmentFilter}
+                />
+                <RatingFilterBox
+                  value={searchFilterData.rate}
+                  onChange={handleChange}
+                />
+                <SellerFilterBox />
+                <SellerStatusFilterBox
+                  user_available={searchFilterData.user_available}
+                  user_verification={searchFilterData.user_verification}
+                  onChange={handleChange}
+                />
+                <div className="search-btn">
+                  <button onClick={handleApplyFilters}>تأكيد</button>
                 </div>
+              </form>
+            </div>
+          </aside>
+          <div className="small-filter-header">
+            <h6>نتائج البحث</h6>
+            <button
+              className="openfilter"
+              onClick={() => setIsFilterOpen(true)}
+            >
+              <i className="fa-light fa-sliders"></i>
+            </button>
+          </div>
+          <div className="col-lg-9 col-12 p-2 results-wrapper">
+            <div className="container">
+              <div className="row">
+                {data &&
+                  data.data.map((service) => (
+                    <div className="col-lg-4 col-6 p-2" key={service.id}>
+                      <ServiceCard service={service} />
+                    </div>
+                  ))}
               </div>
             </div>
           </div>
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
   );
 };
 
