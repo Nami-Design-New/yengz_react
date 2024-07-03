@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import avatar from "../../Assets/images/avatar.png";
-import { useTranslation } from "react-i18next";
 import StarsList from "../../ui/StarsList";
-import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { IconInfoCircle } from "@tabler/icons-react";
 
 const UserProfileCard = ({ user }) => {

@@ -503,9 +503,6 @@ body {
   }
   main {
     min-height: calc(100vh - 489px);
-    &.main {
-      padding: 0;
-    }
     .row-head {
       display: flex;
       align-items: center;
@@ -1252,6 +1249,7 @@ body {
             border-radius: 8px;
             width: 100%;
             border: 0;
+            padding: 12px;
             color: var(--main-color);
             &.active {
               background: var(--main-color);
@@ -1269,8 +1267,9 @@ body {
           @include centerFlex();
           padding: 16px 0;
           transition: var(--main-transation);
-          border-radius: 16px;
+          border-radius: 12px;
           gap: 4px;
+          background: none;
           i {
             margin: 0 4px;
           }
@@ -1279,70 +1278,116 @@ body {
             color: #fff;
           }
         }
-      }
-      .profile-taps {
-        .tab-content {
-          .statics-list {
+        .services_grid {
+          display: grid;
+          margin-top: 16px;
+          gap: 16px;
+          grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+          .noDataFound {
             display: flex;
-            flex-direction: column;
-            gap: 12px;
-            li h6 {
-              color: var(--black-color);
-              font-size: 16px;
-              font-weight: 500;
-            }
-            li span {
-              color: var(--main-color);
-              font-weight: bold;
-              font-size: 18px;
-              small {
-                color: var(--text-color);
-              }
+            padding: 120px 0;
+            justify-content: center;
+            align-items: center;
+            h4 {
+              font-size: 42px;
+              color: var(--LightGray);
+              font-weight: 900;
             }
           }
-          .verify-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            padding-bottom: 24px;
-            li {
-              color: var(--black-color);
-              i {
-                color: #26ba58;
+          .workCard {
+            overflow: hidden;
+            .img {
+              position: relative;
+              aspect-ratio: 3 / 2;
+              img {
+                border-radius: 12px;
+                object-fit: cover;
+                width: 100%;
+                height: 100%;
+              }
+              .icons {
+                position: absolute;
+                top: 12px;
+                left: 12px;
+                display: flex;
+                gap: 8px;
+                button {
+                  @include clearInput();
+                  background: var(--white-color);
+                  border-radius: 50%;
+                  color: var(--main-color);
+                  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+                  height: 36px;
+                  width: 36px;
+                  svg {
+                    height: 16px;
+                    width: 16px;
+                  }
+                }
               }
             }
-          }
-          .unverified-box {
-            width: 100%;
-            @include centerFlex();
-            flex-direction: column;
-            gap: 16px;
-            h6 {
-              color: var(--black-color);
-              font-weight: 600;
+            h4 {
+              padding: 12px 8px;
               font-size: 18px;
-            }
-            a {
-              width: 100%;
-              border: 1px solid var(--main-color);
-              color: var(--main-color);
-              @include centerFlex();
-              padding: 16px 0;
-              transition: var(--main-transation);
-              border-radius: 16px;
-              &:hover {
-                background: var(--main-color);
-                color: #fff;
-              }
+              color: var(--black-color);
             }
           }
         }
-        .nav-pills .nav-link.active,
-        .nav-pills .show > .nav-link {
-          background: none !important;
-          color: var(--main-color);
-          &::after {
+        .verify-list {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          padding-bottom: 24px;
+          li {
+            color: var(--black-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            svg {
+              stroke: #26ba58;
+            }
+          }
+        }
+        .unverified-box {
+          width: 100%;
+          @include centerFlex();
+          flex-direction: column;
+          gap: 16px;
+          h6 {
+            color: var(--black-color);
+            font-weight: 600;
+            font-size: 18px;
+          }
+          a {
             width: 100%;
+            border: 1px solid var(--main-color);
+            color: var(--main-color);
+            @include centerFlex();
+            padding: 16px 0;
+            transition: var(--main-transation);
+            border-radius: 16px;
+            &:hover {
+              background: var(--main-color);
+              color: #fff;
+            }
+          }
+        }
+        .statics-list {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          li h6 {
+            color: var(--black-color);
+            font-size: 16px;
+            font-weight: 500;
+          }
+          li span {
+            color: var(--main-color);
+            font-weight: bold;
+            font-size: 18px;
+            small {
+              color: var(--text-color);
+            }
           }
         }
       }
@@ -3089,19 +3134,6 @@ body {
       }
     }
   }
-  .progress {
-    height: 8px;
-    background-color: var(--gray-background);
-  }
-  .progress-bar-striped {
-    background-image: none;
-  }
-  .progress-bar {
-    background: var(--main-color);
-  }
-  .dropdown-toggle::after {
-    display: none;
-  }
   .rate {
     display: flex;
     gap: 28px;
@@ -3125,21 +3157,22 @@ body {
     background-color: var(--input-bg);
     padding: 16px;
     margin-bottom: 24px;
-    border-radius: 16px;
+    border-radius: 12px;
     .rate-owner {
       display: flex;
       flex-direction: column;
-      gap: 16px;
       .rate-head {
         display: flex;
         gap: 16px;
         .img {
-          width: 80px;
-          height: 80px;
-          border-radius: 12px;
+          width: 60px;
+          height: 60px;
           overflow: hidden;
+          border-radius: 50%;
           img {
-            max-width: 100%;
+            width: 100%;
+            object-fit: cover;
+            aspect-ratio: 1/1;
           }
         }
         .name-time {
@@ -3169,15 +3202,15 @@ body {
     }
     .rating-cards {
       .r-card {
-        padding: 12px 8px;
+        padding: 16px 12px;
         border-radius: 16px;
         @include centerFlex();
         flex-direction: column;
-        gap: 6px;
+        gap: 12px;
         background: var(--white-color);
         h6 {
           color: var(--black-color);
-          font-size: 12px;
+          font-size: 14px;
         }
       }
     }
@@ -3633,13 +3666,6 @@ body {
       }
     }
   }
-  .nav-pills .nav-link.active,
-  .nav-pills .show > .nav-link {
-    background: var(--white-color) !important;
-  }
-  .nav-pills .nav-link {
-    padding: 16px;
-  }
   input[type="checkbox"] {
     width: 20px;
     appearance: none;
@@ -3668,7 +3694,7 @@ body {
     }
   }
   .service-card {
-    border-radius: 4px;
+    border-radius: 12px;
     background-color: var(--input-bg);
     overflow: hidden;
     height: 100%;
@@ -4347,6 +4373,19 @@ body {
   ///////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////*/
+  .progress {
+    height: 8px;
+    background-color: var(--gray-background);
+  }
+  .progress-bar-striped {
+    background-image: none;
+  }
+  .progress-bar {
+    background: var(--main-color);
+  }
+  .dropdown-toggle::after {
+    display: none;
+  }
   .category-card .inner-card .category-img img {
     filter: brightness(0.6);
   }
@@ -4583,11 +4622,6 @@ body {
           color: var(--white-color);
         }
       }
-    }
-  }
-  main {
-    @media (max-width: 450px) {
-      padding: 20px 0;
     }
   }
   .service-content {
@@ -4894,11 +4928,6 @@ body {
       color: #fff;
       font-size: 16px;
     }
-  }
-  .rate-card .rate-owner .rate-head .img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
   }
   @media (max-width: 576px) {
     .rate-card .rate-owner .rate-text {
@@ -5295,57 +5324,6 @@ body main .login-section .form .image-change-wrapper .img-wrap img {
     height: 16px !important;
   }
 }
-.Item_bussnies {
-  text-align: center;
-  margin-top: 10px;
-  .box {
-    position: relative;
-    h4 {
-      text-align: center;
-      padding: 12px;
-      margin-top: 5px;
-      font-size: 14px !important;
-    }
-    .icons {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      position: absolute;
-      top: 5%;
-      right: 15%;
-      opacity: 0;
-      .backG {
-        height: 28px;
-        width: 28px;
-        background-color: #eee;
-        border-radius: 50px;
-        text-align: center;
-        i {
-          color: black;
-          text-align: center;
-        }
-      }
-    }
-    &:hover {
-      .icons {
-        opacity: 1;
-      }
-    }
-  }
-}
-.TabButton {
-  height: 60px;
-  font-size: 15px;
-  font-weight: 500;
-  @include centerFlex();
-  a {
-    color: var(--black-color);
-  }
-  color: var(--black-color);
-}
-.tab {
-  background-color: #fafafa;
-}
 hr {
   margin: 0.5rem 0;
 }
@@ -5354,7 +5332,6 @@ hr {
   display: flex;
   align-items: center;
   justify-content: center;
-
   button {
     width: 100%;
     white-space: nowrap;
@@ -5371,5 +5348,46 @@ hr {
       border-color: var(--main-color);
       color: #fff;
     }
+  }
+}
+.confirm-delete {
+  p {
+    color: var(--black-color);
+    font-size: 16px;
+    margin-bottom: 12px;
+    span {
+      color: red;
+      font-weight: 600;
+    }
+  }
+  .cancel-btn {
+    border: 1px solid var(--black-color);
+    color: var(--black-color);
+    width: 100%;
+    outline: none;
+    background: none;
+    padding: 8px;
+    border-radius: 8px;
+  }
+  .delete-btn {
+    width: 100%;
+    padding: 8px;
+    background: red;
+    color: var(--white-color);
+    border-radius: 8px;
+    border: 0;
+    outline: none;
+  }
+}
+.modal-header {
+  border-bottom: 0;
+  .modal-title {
+    font-size: 14px;
+  }
+  .btn-close {
+    box-shadow: none !important;
+    background-image: url("../images/close.svg");
+    margin-left: 0;
+    margin-right: auto;
   }
 }
