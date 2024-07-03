@@ -102,6 +102,7 @@
     "aboutMe":"About Me",
     "noAbout": "This section is not available yet. Add it to see it here.",
     "services": "Services",
-    "addService":"Add Service"
+    "addService":"Add Service",
+    "noService": "No Service found yet."
   }
 }

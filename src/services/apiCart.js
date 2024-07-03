@@ -1,5 +1,7 @@
 import axios from "../utils/axios";
 
+import axios from './../utils/axios';
+
 export async function getCart() {
   try {
     const req = await axios.get("/get_cart");
