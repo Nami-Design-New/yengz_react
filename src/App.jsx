@@ -40,7 +40,6 @@ function App() {
   const [cookies, , removeCookie] = useCookies(["token"]);
   const token = cookies?.token;
   const { decodedToken, isExpired } = useJwt(token || "");
-  console.log(isExpired);
 
   useEffect(() => {
     if (decodedToken && !isExpired) {

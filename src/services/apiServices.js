@@ -1,4 +1,5 @@
-import axios from "../utils/axios";
+
+import axios from './../utils/axios';
 
 export async function getServicesByFilter(
   search,
@@ -9,22 +10,42 @@ export async function getServicesByFilter(
   categories,
   sub_categories
 ) {
-  const requestBody = {};
-
-  if (page) requestBody.page = page;
-  if (search) requestBody.search = search;
-  if (rate) requestBody.rate = rate;
-  if (user_verification) requestBody.user_verification = user_verification;
-  if (user_available) requestBody.user_available = user_available;
-  if (categories) requestBody.categories = categories;
-  if (sub_categories) requestBody.sub_categories = sub_categories;
-  if (is_old) requestBody.is_old = is_old;
-
   try {
-    const req = await axios.post("/get_services", requestBody);
-
+    const req = await axios.post("/get_services", {
+      ...(!search && { search }),
+      ...(!page && { page }),
+      ...(!rate && { rate }),
+      ...(!user_verification && { user_verification }),
+      ...(!user_available && { user_available }),
+      ...(!categories && { categories }),
+      ...(!sub_categories && { sub_categories }),
+      ...(!is_old && { is_old })
+    });
     return req.data;
   } catch (err) {
     throw new Error(err.message);
+  }
+}
+
+export async function getServicesByCategoryId(id, page) {
+  try {
+    const req = await axios.post("/get_sub_category_services", {
+      id: [id],
+      page
+    });
+    return req.data;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+}
+
+export async function getUserServices(userId) {
+  try {
+    const req = await axios.post("/user/get_user_services", {
+      id: userId
+    });
+    return req.data.data;
+  } catch (error) {
+    throw new Error(error.message);
   }
 }
