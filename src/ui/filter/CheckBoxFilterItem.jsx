@@ -1,19 +1,25 @@
-function CheckBoxFilterItem({ name, subTitle, checked, onChange }) {
+import React from "react";
+
+const CheckBoxFilterItem = ({ sub_category, onChange, checked }) => {
   return (
-    <div className="department-header">
-      <label className="dep_name" htmlFor={subTitle}>
-        {subTitle}
-      </label>
+    <div className="form-check">
       <input
         type="checkbox"
-        name={name}
-        value={subTitle}
-        id={subTitle}
+        className="form-check-input"
+        id={`sub_category-${sub_category.id}`}
+        value={sub_category.id}
+        name="sub_categories"
         checked={checked}
         onChange={onChange}
       />
+      <label
+        className="form-check-label"
+        htmlFor={`sub_category-${sub_category.id}`}
+      >
+        {sub_category.name}
+      </label>
     </div>
   );
-}
+};
 
 export default CheckBoxFilterItem;
