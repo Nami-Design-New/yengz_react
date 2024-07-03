@@ -1,9 +1,16 @@
-function RatingFilterBox({ ratingLength }) {
+function RatingFilterBox({ value, onChange }) {
   return (
     <ul className="rate-range">
       <h6>تقييم الخدمة</h6>
       <li>
-        <input type="radio" name="rate-range" id="rate-range" />
+        <input
+          type="radio"
+          name="rate"
+          id="rate-5"
+          value={5}
+          checked={+value === 5}
+          onChange={onChange}
+        />
         <ul className="stars">
           <li className="star">
             <i className="fa-solid fa-star"></i>
@@ -23,7 +30,14 @@ function RatingFilterBox({ ratingLength }) {
         </ul>
       </li>
       <li>
-        <input type="radio" name="rate-range" id="rate-range" />
+        <input
+          type="radio"
+          name="rate"
+          id="rate-4"
+          value={4}
+          checked={+value === 4}
+          onChange={onChange}
+        />
 
         <ul className="stars">
           <li className="star">
@@ -45,7 +59,14 @@ function RatingFilterBox({ ratingLength }) {
         <span>او اكثر</span>
       </li>
       <li>
-        <input type="radio" name="rate-range" id="rate-range" />
+        <input
+          type="radio"
+          name="rate"
+          id="rate-3"
+          value={3}
+          checked={+value === 3}
+          onChange={onChange}
+        />
         <ul className="stars">
           <li className="star">
             <i className="fa-solid fa-star"></i>
@@ -66,7 +87,14 @@ function RatingFilterBox({ ratingLength }) {
         <span>او اكثر</span>
       </li>
       <li>
-        <input type="radio" name="rate-range" id="rate-range" />
+        <input
+          type="radio"
+          name="rate"
+          id="rate-2"
+          value={2}
+          checked={+value === 2}
+          onChange={onChange}
+        />
         <ul className="stars">
           <li className="star">
             <i className="fa-solid fa-star"></i>
@@ -87,7 +115,14 @@ function RatingFilterBox({ ratingLength }) {
         <span>او اكثر</span>
       </li>
       <li>
-        <input type="radio" name="rate-range" id="rate-range" />
+        <input
+          type="radio"
+          name="rate"
+          id="rate-1"
+          value={1}
+          checked={+value === 1}
+          onChange={onChange}
+        />
         <ul className="stars">
           <li className="star">
             <i className="fa-solid fa-star"></i>

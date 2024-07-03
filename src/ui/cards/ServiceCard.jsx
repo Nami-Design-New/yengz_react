@@ -16,6 +16,10 @@ const ServiceCard = ({ service, canEdit }) => {
         <h6>
           {service?.title || "اصنع لك تطبيق متجر الكتروني باستخدام flutter..."}
         </h6>
+        {/* <p>
+          <span>{service?.category || "برمجة وتطوير"}</span> /{" "}
+          <span>{service?.subCategory || "تطبيقات"}</span>
+        </p> */}
         <p>
           <span>{service?.category?.name || "برمجة وتطوير"}</span> /{" "}
           <span>{service?.subCategory?.name || "تطبيقات"}</span>
