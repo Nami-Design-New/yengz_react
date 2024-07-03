@@ -9,9 +9,10 @@ export async function getCategories() {
   }
 }
 
-export async function getSpecificCategoriesById(id) {
+export async function getGategoriesWithSubcategories() {
   try {
-    const req = await axios.post("/get_sub_categories", id);
+    const req = await axios.get("/get_categories_with_sub_categories");
+
     return req.data;
   } catch (err) {
     throw new Error(err.message);
