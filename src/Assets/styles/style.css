@@ -4922,7 +4922,7 @@ body .smallNav {
   left: 0;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   background-color: var(--white-color);
-  z-index: 99999;
+  z-index: 9;
   display: none;
 }
 body .smallNav ul {
@@ -5223,7 +5223,7 @@ body .rate-card .rate-owner .rate-head .name-time {
   align-items: unset;
 }
 body main .search-section aside.side-menu {
-  z-index: 9;
+  z-index: 90;
 }
 body .service-card .content {
   padding: 12px;
