@@ -1,10 +1,23 @@
 import CheckBoxFilterItem from "./CheckBoxFilterItem";
 
 function CheckBoxContainer({ item, activeAccordion, onChange }) {
+  const isParentChecked = activeAccordion.includes(item.id);
+  const areAllChildrenChecked = item.subTitles.every((subTitle) =>
+    activeAccordion.includes(`${item.id}-${subTitle}`)
+  );
+
+  function handleParentChange(e) {
+    onChange(e, item.id, "parent");
+  }
+
+  function handleChildChange(e, subTitle) {
+    onChange(e, `${item.id}-${subTitle}`, "child");
+  }
+
   return (
     <li className="department-item">
       <div className="department-header">
-        <label htmlFor={item.title}>
+        <label htmlFor={item.id}>
           {item?.subTitles && (
             <button
               className="accordion-button collapsed"
@@ -25,8 +38,8 @@ function CheckBoxContainer({ item, activeAccordion, onChange }) {
           name={item.title}
           value={item.title}
           id={item.id}
-          checked={activeAccordion.includes(+item.id)}
-          onChange={onChange}
+          checked={isParentChecked || areAllChildrenChecked}
+          onChange={handleParentChange}
         />
       </div>
       {item?.subTitles && (
@@ -39,9 +52,11 @@ function CheckBoxContainer({ item, activeAccordion, onChange }) {
           <div className="accordion-body">
             {item.subTitles.map((subTitle) => (
               <CheckBoxFilterItem
+                key={subTitle}
                 name={item.title}
                 subTitle={subTitle}
-                key={subTitle}
+                checked={activeAccordion.includes(`${item.id}-${subTitle}`)}
+                onChange={(e) => handleChildChange(e, subTitle)}
               />
             ))}
           </div>

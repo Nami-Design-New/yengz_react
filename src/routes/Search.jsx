@@ -10,17 +10,31 @@ import useSearchServicesList from "../features/services/useSearchServicesList";
 import ServiceCard from "../ui/cards/ServiceCard";
 
 const Search = () => {
-  const [searchValue, setSearchValue] = useState("");
-  const { isLoading, data } = useSearchServicesList();
+  const { data } = useSearchServicesList();
   const [searchParams, setSearchParams] = useSearchParams();
-  const page = Number(searchParams.get("page")) || 1;
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const searchFilterParams = {
+    search: "",
+    page: 1,
+    rate: 0,
+    user_verification: 1,
+    user_available: 1,
+    categories: [],
+    sub_categories: [],
+    is_old: 0,
+  };
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   useEffect(() => {
     if (!searchParams.get("page")) {
-      setSearchParams((prevParams) => ({
-        ...Object.fromEntries(prevParams),
-        page: 1,
-      }));
+      searchParams.append("page", 1);
+      setSearchParams(searchParams);
     }
   }, [searchParams, setSearchParams]);
 
@@ -29,9 +43,11 @@ const Search = () => {
       <section className="search-section">
         <div className="container">
           <div className="row">
-            <aside className="col-lg-3 side-menu">
+            <aside
+              className={`col-lg-3 side-menu ${isFilterOpen ? "active" : ""}`}
+            >
               <div className="filter-wrap">
-                <div className="colse">
+                <div className="colse" onClick={() => setIsFilterOpen(false)}>
                   <i className="fa-light fa-xmark"></i>
                 </div>
                 <form action="/search">
@@ -39,8 +55,8 @@ const Search = () => {
                     id="aside-search-input"
                     name="search"
                     className="aside-search-input"
-                    value={searchValue}
-                    onChange={(e) => setSearchValue(e.target.value)}
+                    value={searchFilterParams.search}
+                    onChange={handleChange}
                     label={"بحث"}
                   />
 
@@ -60,7 +76,10 @@ const Search = () => {
             </aside>
             <div className="small-filter-header">
               <h6>نتائج البحث</h6>
-              <button className="openfilter">
+              <button
+                className="openfilter"
+                onClick={() => setIsFilterOpen(true)}
+              >
                 <i className="fa-light fa-sliders"></i>
               </button>
             </div>
@@ -69,7 +88,9 @@ const Search = () => {
                 <div className="row">
                   {data &&
                     data.data.map((service) => (
-                      <ServiceCard key={service.id} service={service} />
+                      <div className="col-lg-4 col-6 p-2" key={service.id}>
+                        <ServiceCard service={service} />
+                      </div>
                     ))}
                 </div>
               </div>
