@@ -550,9 +550,6 @@ body header .tnavbar .loged-in-minor-menu .link .searchmenu input {
 body main {
   min-height: calc(100vh - 489px);
 }
-body main.main {
-  padding: 0;
-}
 body main .row-head {
   display: flex;
   align-items: center;
@@ -1357,6 +1354,7 @@ body main .profile-section .nav-tabs .nav-item button {
   border-radius: 8px;
   width: 100%;
   border: 0;
+  padding: 12px;
   color: var(--main-color);
 }
 body main .profile-section .nav-tabs .nav-item button.active {
@@ -1375,8 +1373,9 @@ body main .profile-section .tab-content .add-service {
   justify-content: center;
   padding: 16px 0;
   transition: var(--main-transation);
-  border-radius: 16px;
+  border-radius: 12px;
   gap: 4px;
+  background: none;
 }
 body main .profile-section .tab-content .add-service i {
   margin: 0 4px;
@@ -1385,37 +1384,80 @@ body main .profile-section .tab-content .add-service:hover {
   background: var(--main-color);
   color: #fff;
 }
-body main .profile-section .profile-taps .tab-content .statics-list {
+body main .profile-section .tab-content .services_grid {
+  display: grid;
+  margin-top: 16px;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+body main .profile-section .tab-content .services_grid .noDataFound {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  padding: 120px 0;
+  justify-content: center;
+  align-items: center;
 }
-body main .profile-section .profile-taps .tab-content .statics-list li h6 {
-  color: var(--black-color);
-  font-size: 16px;
-  font-weight: 500;
+body main .profile-section .tab-content .services_grid .noDataFound h4 {
+  font-size: 42px;
+  color: var(--LightGray);
+  font-weight: 900;
 }
-body main .profile-section .profile-taps .tab-content .statics-list li span {
+body main .profile-section .tab-content .services_grid .workCard {
+  overflow: hidden;
+}
+body main .profile-section .tab-content .services_grid .workCard .img {
+  position: relative;
+  aspect-ratio: 3/2;
+}
+body main .profile-section .tab-content .services_grid .workCard .img img {
+  border-radius: 12px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+body main .profile-section .tab-content .services_grid .workCard .img .icons {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  gap: 8px;
+}
+body main .profile-section .tab-content .services_grid .workCard .img .icons button {
+  border: none;
+  background: none;
+  outline: none;
+  background: var(--white-color);
+  border-radius: 50%;
   color: var(--main-color);
-  font-weight: bold;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  height: 36px;
+  width: 36px;
+}
+body main .profile-section .tab-content .services_grid .workCard .img .icons button svg {
+  height: 16px;
+  width: 16px;
+}
+body main .profile-section .tab-content .services_grid .workCard h4 {
+  padding: 12px 8px;
   font-size: 18px;
+  color: var(--black-color);
 }
-body main .profile-section .profile-taps .tab-content .statics-list li span small {
-  color: var(--text-color);
-}
-body main .profile-section .profile-taps .tab-content .verify-list {
+body main .profile-section .tab-content .verify-list {
   display: flex;
   flex-direction: column;
   gap: 12px;
   padding-bottom: 24px;
 }
-body main .profile-section .profile-taps .tab-content .verify-list li {
+body main .profile-section .tab-content .verify-list li {
   color: var(--black-color);
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
-body main .profile-section .profile-taps .tab-content .verify-list li i {
-  color: #26ba58;
+body main .profile-section .tab-content .verify-list li svg {
+  stroke: #26ba58;
 }
-body main .profile-section .profile-taps .tab-content .unverified-box {
+body main .profile-section .tab-content .unverified-box {
   width: 100%;
   display: flex;
   align-items: center;
@@ -1423,12 +1465,12 @@ body main .profile-section .profile-taps .tab-content .unverified-box {
   flex-direction: column;
   gap: 16px;
 }
-body main .profile-section .profile-taps .tab-content .unverified-box h6 {
+body main .profile-section .tab-content .unverified-box h6 {
   color: var(--black-color);
   font-weight: 600;
   font-size: 18px;
 }
-body main .profile-section .profile-taps .tab-content .unverified-box a {
+body main .profile-section .tab-content .unverified-box a {
   width: 100%;
   border: 1px solid var(--main-color);
   color: var(--main-color);
@@ -1439,18 +1481,27 @@ body main .profile-section .profile-taps .tab-content .unverified-box a {
   transition: var(--main-transation);
   border-radius: 16px;
 }
-body main .profile-section .profile-taps .tab-content .unverified-box a:hover {
+body main .profile-section .tab-content .unverified-box a:hover {
   background: var(--main-color);
   color: #fff;
 }
-body main .profile-section .profile-taps .nav-pills .nav-link.active,
-body main .profile-section .profile-taps .nav-pills .show > .nav-link {
-  background: none !important;
-  color: var(--main-color);
+body main .profile-section .tab-content .statics-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
-body main .profile-section .profile-taps .nav-pills .nav-link.active::after,
-body main .profile-section .profile-taps .nav-pills .show > .nav-link::after {
-  width: 100%;
+body main .profile-section .tab-content .statics-list li h6 {
+  color: var(--black-color);
+  font-size: 16px;
+  font-weight: 500;
+}
+body main .profile-section .tab-content .statics-list li span {
+  color: var(--main-color);
+  font-weight: bold;
+  font-size: 18px;
+}
+body main .profile-section .tab-content .statics-list li span small {
+  color: var(--text-color);
 }
 body main .service-details .service-content .swiper {
   max-height: 500px;
@@ -3297,19 +3348,6 @@ body footer .copy-rights .pay-methods li i {
   font-size: 24px;
   color: var(--black-color);
 }
-body .progress {
-  height: 8px;
-  background-color: var(--gray-background);
-}
-body .progress-bar-striped {
-  background-image: none;
-}
-body .progress-bar {
-  background: var(--main-color);
-}
-body .dropdown-toggle::after {
-  display: none;
-}
 body .rate {
   display: flex;
   gap: 28px;
@@ -3333,25 +3371,27 @@ body .rate-card {
   background-color: var(--input-bg);
   padding: 16px;
   margin-bottom: 24px;
-  border-radius: 16px;
+  border-radius: 12px;
 }
 body .rate-card .rate-owner {
   display: flex;
   flex-direction: column;
-  gap: 16px;
 }
 body .rate-card .rate-owner .rate-head {
   display: flex;
   gap: 16px;
 }
 body .rate-card .rate-owner .rate-head .img {
-  width: 80px;
-  height: 80px;
-  border-radius: 12px;
+  width: 60px;
+  height: 60px;
   overflow: hidden;
+  border-radius: 50%;
 }
 body .rate-card .rate-owner .rate-head .img img {
-  max-width: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  aspect-ratio: 1/1;
 }
 body .rate-card .rate-owner .rate-head .name-time {
   display: flex;
@@ -3381,18 +3421,18 @@ body .rate-card .rate-owner .rate-text {
   }
 }
 body .rate-card .rating-cards .r-card {
-  padding: 12px 8px;
+  padding: 16px 12px;
   border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 6px;
+  gap: 12px;
   background: var(--white-color);
 }
 body .rate-card .rating-cards .r-card h6 {
   color: var(--black-color);
-  font-size: 12px;
+  font-size: 14px;
 }
 body .more-develop {
   padding: 32px 0 0;
@@ -3885,13 +3925,6 @@ body #msform fieldset .resend-code a {
 body #msform fieldset .resend-code .timer span {
   color: var(--text-color);
 }
-body .nav-pills .nav-link.active,
-body .nav-pills .show > .nav-link {
-  background: var(--white-color) !important;
-}
-body .nav-pills .nav-link {
-  padding: 16px;
-}
 body input[type=checkbox] {
   width: 20px;
   -webkit-appearance: none;
@@ -3924,7 +3957,7 @@ body input[type=checkbox]:checked::after {
   border-color: var(--main-color);
 }
 body .service-card {
-  border-radius: 4px;
+  border-radius: 12px;
   background-color: var(--input-bg);
   overflow: hidden;
   height: 100%;
@@ -4621,6 +4654,19 @@ body .dark-theme .requestDetails .lastPosts {
     font-size: 13px !important;
   }
 }
+body .progress {
+  height: 8px;
+  background-color: var(--gray-background);
+}
+body .progress-bar-striped {
+  background-image: none;
+}
+body .progress-bar {
+  background: var(--main-color);
+}
+body .dropdown-toggle::after {
+  display: none;
+}
 body .category-card .inner-card .category-img img {
   filter: brightness(0.6);
 }
@@ -4883,11 +4929,6 @@ body .notifications_section .pagination .dots .dot {
   border-radius: 50%;
   background-color: var(--main-color);
   color: var(--white-color);
-}
-@media (max-width: 450px) {
-  body main {
-    padding: 20px 0;
-  }
 }
 body .service-content {
   height: -moz-fit-content;
@@ -5195,11 +5236,6 @@ body main .chat-section .openTaps {
 body main .chat-section .openTaps i {
   color: #fff;
   font-size: 16px;
-}
-body .rate-card .rate-owner .rate-head .img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
 }
 @media (max-width: 576px) {
   body .rate-card .rate-owner .rate-text {
@@ -5598,60 +5634,6 @@ body main .login-section .form .image-change-wrapper .img-wrap img {
   height: 16px !important;
 }
 
-.Item_bussnies {
-  text-align: center;
-  margin-top: 10px;
-}
-.Item_bussnies .box {
-  position: relative;
-}
-.Item_bussnies .box h4 {
-  text-align: center;
-  padding: 12px;
-  margin-top: 5px;
-  font-size: 14px !important;
-}
-.Item_bussnies .box .icons {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  position: absolute;
-  top: 5%;
-  right: 15%;
-  opacity: 0;
-}
-.Item_bussnies .box .icons .backG {
-  height: 28px;
-  width: 28px;
-  background-color: #eee;
-  border-radius: 50px;
-  text-align: center;
-}
-.Item_bussnies .box .icons .backG i {
-  color: black;
-  text-align: center;
-}
-.Item_bussnies .box:hover .icons {
-  opacity: 1;
-}
-
-.TabButton {
-  height: 60px;
-  font-size: 15px;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--black-color);
-}
-.TabButton a {
-  color: var(--black-color);
-}
-
-.tab {
-  background-color: #fafafa;
-}
-
 hr {
   margin: 0.5rem 0;
 }
@@ -5678,4 +5660,45 @@ hr {
   background: var(--main-color);
   border-color: var(--main-color);
   color: #fff;
+}
+
+.confirm-delete p {
+  color: var(--black-color);
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+.confirm-delete p span {
+  color: red;
+  font-weight: 600;
+}
+.confirm-delete .cancel-btn {
+  border: 1px solid var(--black-color);
+  color: var(--black-color);
+  width: 100%;
+  outline: none;
+  background: none;
+  padding: 8px;
+  border-radius: 8px;
+}
+.confirm-delete .delete-btn {
+  width: 100%;
+  padding: 8px;
+  background: red;
+  color: var(--white-color);
+  border-radius: 8px;
+  border: 0;
+  outline: none;
+}
+
+.modal-header {
+  border-bottom: 0;
+}
+.modal-header .modal-title {
+  font-size: 14px;
+}
+.modal-header .btn-close {
+  box-shadow: none !important;
+  background-image: url("../images/close.svg");
+  margin-left: 0;
+  margin-right: auto;
 }/*# sourceMappingURL=style.css.map */

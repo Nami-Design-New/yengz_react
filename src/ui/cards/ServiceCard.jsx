@@ -17,8 +17,8 @@ const ServiceCard = ({ service, canEdit }) => {
           {service?.title || "اصنع لك تطبيق متجر الكتروني باستخدام flutter..."}
         </h6>
         <p>
-          <span>{service?.category || "برمجة وتطوير"}</span> /{" "}
-          <span>{service?.subCategory || "تطبيقات"}</span>
+          <span>{service?.category?.name || "برمجة وتطوير"}</span> /{" "}
+          <span>{service?.subCategory?.name || "تطبيقات"}</span>
         </p>
         <div className="d-flex gap-3 align-items-center">
           <StarsList rate={service?.rate || 0} />
