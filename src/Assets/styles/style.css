@@ -5701,4 +5701,8 @@ hr {
   background-image: url("../images/close.svg");
   margin-left: 0;
   margin-right: auto;
+}
+
+.search-section {
+  padding: 48px 0;
 }/*# sourceMappingURL=style.css.map */
