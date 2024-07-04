@@ -17,9 +17,9 @@ import useOutsideClose from "../hooks/useOutsideClose";
 const Navbar = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.authedUser.user);
+  const user = useSelector((state) => state.autheduser?.user);
   const lang = useSelector((state) => state.language.lang);
-  const isLogged = useSelector((state) => state.authedUser.isLogged);
+  const isLogged = useSelector((state) => state.autheduser?.isLogged);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const searchRef = useRef();
@@ -372,7 +372,7 @@ const Navbar = () => {
                       <i className="fa-regular fa-user"></i>
                     ) : (
                       <img
-                        src={user.image}
+                        src={user?.image}
                         alt="user-avatar"
                         onError={handleAvatarError}
                       />
@@ -384,7 +384,7 @@ const Navbar = () => {
                     <li>
                       <Link className="dropdown-item_Link" to="/profile">
                         <i className="fa-solid fa-user"></i>
-                        {user.name}
+                        {user?.name}
                       </Link>
                     </li>
                     <li>

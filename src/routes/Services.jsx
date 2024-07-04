@@ -25,7 +25,7 @@ const Services = () => {
                 <Swiper
                   spaceBetween={600}
                   slidesPerView={3}
-                  navigation
+                  autoplay={{ delay: 3000, disableOnInteraction: false }}
                   pagination={{ clickable: true }}
                   scrollbar={{ draggable: true }}
                   onSlideChange={() => console.log("slide change")}
