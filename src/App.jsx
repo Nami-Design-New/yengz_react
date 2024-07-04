@@ -10,7 +10,6 @@ import Register from "./features/auth/register/Register";
 import ForgetPassword from "./features/auth/resetPassword/ForgetPassword";
 import Layout from "./ui/Layout";
 import Home from "./routes/Home";
-import Chat from "./routes/Chat";
 import BlogDetails from "./routes/BlogDetails";
 import About from "./routes/About";
 import Blogs from "./routes/Blogs";
@@ -35,6 +34,8 @@ import EditProfile from "./features/profile/EditProfile";
 import AddServices from "./routes/AddServices";
 import EditServices from "./routes/EditServices";
 import Notifcations from "./routes/Notifcations";
+import Chats from "./routes/Chats";
+import AuthVerifySteps from "./features/auth/verification/AuthVerifySteps";
 
 function App() {
   const dispatch = useDispatch();
@@ -85,13 +86,12 @@ function App() {
           <Route path="/categories" element={<Categories />} />
           <Route path="/purchases" element={<Purchases />} />
           <Route path="/order-details" element={<OrderDetails />} />
-
           <Route path="/recieved-request" element={<RecievedRequest />} />
-
           <Route path="/requests" element={<Requests />} />
           <Route path="/request-details" element={<RequestDetails />} />
           <Route path="/request-add" element={<AddRequest />} />
-          <Route path="/chat" element={<Chat />} />
+          <Route path="/chat" element={<Chats />} />
+          <Route path="/verify-user" element={<AuthVerifySteps />} />
           <Route path="/search" element={<Search />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
@@ -108,7 +108,6 @@ function App() {
           <Route path="/edit-profile" element={<EditProfile />} />
           <Route path="/Cart" element={<Cart />} />
           <Route path="/notifications" element={<Notifcations />} />
-
           <Route
             path="/recievedRequestOrders"
             element={<RecievedRequestOrders />}
