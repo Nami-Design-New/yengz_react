@@ -5400,4 +5400,304 @@ hr {
 
 .search-section {
   padding: 48px 0;
+}
+
+.tabler-danger {
+  stroke: red !important;
+}
+
+#msform {
+  text-align: center;
+  position: relative;
+  margin-top: 28px;
+}
+#msform .action-button-previous {
+  height: 56px;
+  border-radius: 16px;
+  border: 1px solid var(--black-color);
+  width: 120px;
+  color: var(--black-color);
+  cursor: pointer;
+  margin: 32px 0px 10px 5px;
+  float: right;
+  background: none;
+}
+@media (max-width: 576px) {
+  #msform .action-button-previous {
+    margin: 16px 0 0;
+  }
+}
+#msform .action-button {
+  height: 56px;
+  border-radius: 16px;
+  background: var(--main-color);
+  width: 200px;
+  color: white;
+  border: 0 none;
+  cursor: pointer;
+  margin: 32px 0px 10px 5px;
+  float: left;
+}
+@media (max-width: 576px) {
+  #msform .action-button {
+    margin: 16px 0 0;
+  }
+}
+#msform fieldset {
+  border: 0 none;
+  border-radius: 0.5rem;
+  width: 100%;
+  margin: 0;
+  padding-bottom: 20px;
+  position: relative;
+}
+#msform fieldset:not(:first-of-type) {
+  display: none;
+}
+#msform fieldset .purple-text {
+  padding: 40px 0 30px;
+  line-height: 36px;
+  font-size: 20px;
+  color: var(--black-color);
+}
+#msform fieldset a {
+  color: var(--main-color);
+}
+#msform fieldset .advice {
+  width: 100%;
+  margin: 40px 0;
+  border-radius: 4px;
+  background-color: var(--id-confirm);
+  position: relative;
+  padding-top: 22px;
+  padding-bottom: 32px;
+}
+#msform fieldset .advice .icon {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--id-confirm);
+  border: 2px solid var(--white-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#msform fieldset .advice .icon img {
+  max-height: 40px;
+}
+#msform fieldset .advice ul {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+#msform fieldset .advice ul li {
+  color: var(--black-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+#msform fieldset .advice ul li i {
+  width: 40px;
+  color: #7dc0f7;
+  font-size: 24px;
+}
+#msform fieldset h6 {
+  font-weight: 600;
+  margin-top: 24px;
+  font-size: 16px;
+  color: var(--black-color);
+}
+#msform fieldset p {
+  color: var(--main-color);
+}
+#msform fieldset .input-field {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 28px;
+  gap: 10px;
+}
+#msform fieldset .input-field label {
+  width: 100%;
+  color: var(--black-color);
+  text-align: justify;
+  font-weight: 500;
+}
+#msform fieldset .input-field label i {
+  color: var(--main-color);
+}
+#msform fieldset .input-field label .info-label {
+  color: var(--text-color);
+  font-size: 18px;
+}
+#msform fieldset .input-field label small {
+  color: var(--text-color);
+  margin: 16px 0;
+  display: block;
+}
+#msform fieldset .input-field .img-upload {
+  padding: 22px;
+  width: 100%;
+  height: 230px;
+  border: 1px solid var(--gray-background);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  cursor: pointer;
+}
+#msform fieldset .input-field .img-upload input {
+  display: none;
+}
+#msform fieldset .input-field .selcet-wrap {
+  position: relative;
+  width: 100%;
+}
+#msform fieldset .input-field .selcet-wrap::before {
+  content: "\f107";
+  font-family: "Font Awesome 6 pro";
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  color: var(--input-hint);
+}
+#msform fieldset .input-field .selcet-wrap .form-select {
+  font-size: 14px;
+  color: var(--input-hint);
+}
+#msform fieldset .input-field input,
+#msform fieldset .input-field textarea,
+#msform fieldset .input-field .form-select {
+  direction: rtl;
+  height: 56px;
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 14px;
+  padding: 10px 16px;
+  border-radius: 16px;
+  color: var(--black-color);
+  background: var(--input-bg);
+}
+#msform fieldset .input-field input::-moz-placeholder, #msform fieldset .input-field textarea::-moz-placeholder, #msform fieldset .input-field .form-select::-moz-placeholder {
+  color: var(--input-hint);
+}
+#msform fieldset .input-field input::placeholder,
+#msform fieldset .input-field textarea::placeholder,
+#msform fieldset .input-field .form-select::placeholder {
+  color: var(--input-hint);
+}
+#msform fieldset .input-field input:focus,
+#msform fieldset .input-field textarea:focus,
+#msform fieldset .input-field .form-select:focus {
+  box-shadow: none !important;
+}
+#msform fieldset .input-field textarea {
+  height: 170px;
+}
+#msform fieldset .input-field input[type=button] {
+  background: none;
+  border: 1px dashed var(--main-color);
+  color: var(--main-color);
+}
+#msform fieldset .input-field .inputs {
+  display: flex;
+  width: 100%;
+  gap: 16px;
+}
+#msform fieldset .input-field .inputs .country-picker {
+  width: 80px;
+  pointer-events: none;
+}
+#msform fieldset .input-field .inputs label {
+  width: 100%;
+  height: 140px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+}
+#msform fieldset .input-field .inputs label .gender {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: var(--black-color);
+}
+#msform fieldset .input-field .inputs label input {
+  z-index: -1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  height: 100%;
+  background-color: var(--light-bg);
+  border: 1px solid var(--LightGray);
+}
+#msform fieldset .input-field .inputs label input:checked {
+  background-color: var(--check-color);
+  border: 1px solid var(--main-color);
+}
+#msform fieldset .input-field .t-select {
+  width: 100%;
+  justify-content: space-between;
+}
+#msform fieldset .input-field .t-select .selcet-wrap:first-child {
+  width: 68%;
+}
+#msform fieldset .input-field .t-select .selcet-wrap:last-child {
+  width: 28%;
+}
+#msform fieldset .input-field .t-select .form-select {
+  margin: 0;
+}
+#msform fieldset .add-more-model {
+  width: 100%;
+  margin-bottom: 24px;
+  padding: 16px;
+  border-radius: 16px;
+  background: var(--input-bg);
+}
+#msform fieldset .add-more-model .delete-model {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+}
+#msform fieldset .add-more-model .delete-model i {
+  font-size: 24px;
+  color: var(--main-color);
+  cursor: pointer;
+}
+#msform fieldset .add-more-model input,
+#msform fieldset .add-more-model .form-select {
+  background: var(--white-color);
+}
+#msform fieldset .resend-code {
+  width: 100%;
+  display: flex;
+  padding: 40px 0;
+  gap: 60px;
+  justify-content: center;
+}
+@media (max-width: 576px) {
+  #msform fieldset .resend-code {
+    justify-content: space-between;
+  }
+}
+#msform fieldset .resend-code a {
+  color: var(--main-color);
+}
+#msform fieldset .resend-code .timer span {
+  color: var(--text-color);
 }/*# sourceMappingURL=style.css.map */

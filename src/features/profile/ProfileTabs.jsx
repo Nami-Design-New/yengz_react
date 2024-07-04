@@ -5,23 +5,19 @@ import {
   IconCirclePlus,
   IconCircleX,
   IconPlus,
-  IconRosetteDiscountCheck
+  IconRosetteDiscountCheck,
+  IconBrandXamarin
 } from "@tabler/icons-react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import ServiceCard from "../../ui/cards/ServiceCard";
 import useGetWorks from "./useGetWorks";
 import useUserServices from "./../services/useUserServices";
-import ConfirmationModal from "../../ui/modals/ConfirmationModal";
-import AddWorkModal from "../../ui/modals/AddWorkModal";
 import CertificatesTab from "./CertificatesTab";
 import WorksTab from "./WorksTab";
 
 const ProfileTabs = ({ user }) => {
   const { t } = useTranslation();
-  const [showConfirmation, setShowConfirmation] = useState(false);
-  const [showAddWorkModal, setShowAddWorkModal] = useState(false);
-  const [targetId, setTargetId] = useState(null);
   const { data: services } = useUserServices(user?.id);
   const { data: works } = useGetWorks(user?.id);
 
@@ -69,7 +65,6 @@ const ProfileTabs = ({ user }) => {
             </div>
           </div>
         </Tab>
-        
         {/* verifications */}
         <Tab
           eventKey="documentation"
@@ -79,14 +74,18 @@ const ProfileTabs = ({ user }) => {
           <div className="tab-pane">
             <ul className="verify-list">
               <li className="d-flex gap-2">
-                <IconRosetteDiscountCheck stroke={2} />
+                {user?.phone_verified === 1 ? (
+                  <IconRosetteDiscountCheck stroke={2} />
+                ) : (
+                  <IconBrandXamarin className="tabler-danger" stroke={2} />
+                )}
                 {t("profile.personalIdentification")}
               </li>
               <li className="d-flex gap-2">
                 {user?.phone_verified === 1 ? (
                   <IconRosetteDiscountCheck stroke={2} />
                 ) : (
-                  <IconCircleX stroke={2} />
+                  <IconBrandXamarin className="tabler-danger" stroke={2} />
                 )}
                 {t("profile.phoneNumber")}
               </li>
@@ -103,7 +102,6 @@ const ProfileTabs = ({ user }) => {
             )}
           </div>
         </Tab>
-
         {/*  statistics */}
         <Tab
           eventKey="statistics"
@@ -117,12 +115,6 @@ const ProfileTabs = ({ user }) => {
             aria-labelledby="pills-statics-tab"
           >
             <ul className="statics-list p-2">
-              {/* <li className="d-flex justify-content-between">
-                <h6>{t("profile.averageResponseTime")}</h6>
-                <span>
-                  60 <small>د</small>
-                </span>
-              </li> */}
               <li className="d-flex justify-content-between">
                 <h6>{t("profile.puplidhedServices")}</h6>
                 <span>{user?.service_count}</span>
@@ -134,7 +126,6 @@ const ProfileTabs = ({ user }) => {
             </ul>
           </div>
         </Tab>
-
         {/* my works */}
         <Tab
           eventKey="My works"
@@ -143,7 +134,6 @@ const ProfileTabs = ({ user }) => {
         >
           <WorksTab works={works} />
         </Tab>
-
         {/* my certificates */}
         <Tab
           eventKey="My Certifications"
