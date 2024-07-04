@@ -33,27 +33,6 @@
   --main-transation: all 0.5s ease-in-out;
 }
 
-.dark-theme {
-  transition: var(--main-transation);
-  --white-color: #0d0d0d;
-  --main-color: #cf2a51;
-  --main30-color: #480e1d;
-  --main10-color: #171717;
-  --main1010-color: #0d0d0d;
-  --gray-background: #171717;
-  --check-color: #171717;
-  --black-color: #e0dcdd;
-  --text-color: #777777;
-  --input-bg: #171717;
-  --LightGray: #171717;
-  --id-confirm: #171717;
-  --light-bg: #171717;
-  --star: #d9d9d9;
-}
-.dark-theme * {
-  color: #bdbdbd;
-}
-
 ::-webkit-scrollbar {
   width: 4px;
 }
@@ -799,14 +778,6 @@ body main .department {
 body main .login-section {
   padding: 48px 0;
 }
-@media (max-width: 576px) {
-  body main .login-section {
-    padding: 0;
-  }
-}
-body main .login-section.forgetpassword {
-  padding: 0;
-}
 body main .login-section h1 {
   font-size: 32px;
   color: var(--black-color);
@@ -827,242 +798,6 @@ body main .login-section .title {
 }
 body main .login-section .illustration img {
   height: 244px;
-}
-body main .login-section .form {
-  margin-top: 32px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  width: min(100% - 24px, 740px);
-}
-body main .login-section .form .input-field {
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  gap: 8px;
-}
-body main .login-section .form .input-field label {
-  color: var(--black-color);
-}
-body main .login-section .form .input-field label i {
-  color: var(--main-color);
-}
-body main .login-section .form .input-field input,
-body main .login-section .form .input-field textarea,
-body main .login-section .form .input-field select {
-  color: var(--black-color);
-  direction: rtl;
-  height: 56px;
-  width: 100%;
-  border: none;
-  outline: none;
-  padding: 12px;
-  border-radius: 12px;
-  background: var(--input-bg);
-  border: 1px solid var(--LightGray);
-  font-size: 14px;
-}
-body main .login-section .form .input-field textarea {
-  height: 230px;
-}
-body main .login-section .form .forgetpass {
-  align-self: flex-end;
-  color: var(--main-color);
-}
-body main .login-section .form .noAccount {
-  color: var(--text-color);
-}
-body main .login-section .form .noAccount span {
-  color: var(--main-color);
-}
-body main .login-section .form p {
-  color: var(--text-color);
-}
-body main .login-section .form p a {
-  color: var(--main-color);
-  text-decoration: underline;
-}
-body main .login-section .form button {
-  width: 100%;
-  height: 56px;
-  gap: 6px;
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  background: none;
-  outline: none;
-  color: #fff;
-  background: var(--main-color);
-}
-body main .login-section .form .question {
-  padding: 0 0 30px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-body main .login-section .form .question .quest {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--black-color);
-}
-body main .login-section .form .question .vendorInput {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  position: relative;
-  cursor: pointer;
-}
-body main .login-section .form .question .vendorInput::after {
-  display: block;
-  width: 48px;
-  height: 24px;
-  border-radius: 16px;
-  content: "";
-  background-color: var(--text-color);
-  transition: var(--main-transation);
-}
-body main .login-section .form .question .vendorInput::before {
-  transition: var(--main-transation);
-  display: block;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  content: "";
-  background-color: var(--white-color);
-}
-body main .login-section .form .question .vendorInput:checked::after {
-  background-color: var(--main-color);
-}
-body main .login-section .form .question .vendorInput:checked::before {
-  right: initial;
-  left: 4px;
-}
-body main .login-section .form .image-change-wrapper {
-  border-radius: 16px;
-  border: 1px solid var(--LightGray);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 16px;
-}
-body main .login-section .form .image-change-wrapper .img-wrap {
-  width: 130px;
-  height: 130px;
-  border-radius: 50%;
-  border: 1px solid var(--input-hint);
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-body main .login-section .form .image-change-wrapper .img-wrap img {
-  width: 100%;
-  height: 100%;
-  aspect-ratio: 1/1;
-  -o-object-fit: contain;
-     object-fit: contain;
-  -o-object-position: center;
-     object-position: center;
-}
-body main .login-section .form .image-change-wrapper .upload input {
-  display: none;
-}
-body main .login-section .form .image-change-wrapper .upload .plus {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background-color: var(--main-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-body main .login-section .form .image-change-wrapper .upload .plus i {
-  font-size: 14px;
-  color: #fff;
-}
-body main .login-section .form .google-login {
-  margin-top: 24px;
-  border: none;
-  background: none;
-  outline: none;
-  width: 100%;
-  height: 48px;
-  border: 1px solid var(--input-hint);
-  color: var(--black-color);
-  gap: 16px;
-}
-body main .login-section .form .line {
-  width: 100%;
-  height: 1px;
-  background: var(--gray-background);
-  position: relative;
-  margin-top: 24px;
-}
-body main .login-section .form .line span {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: var(--white-color);
-  padding: 0 16px;
-  color: var(--black-color);
-  white-space: nowrap;
-}
-@media (max-width: 576px) {
-  body main .login-section .form .line span {
-    font-size: 14px;
-  }
-}
-body main .login-section .form .pass-group {
-  display: flex;
-}
-body main .login-section .form .pass-group button {
-  border: none;
-  background: none;
-  outline: none;
-  width: 60px;
-  height: 56px;
-  border: 1px solid var(--LightGray);
-  background: var(--input-bg);
-  border-right: 0;
-  border-radius: 12px 0 0 12px !important;
-  color: var(--text-color);
-}
-body main .login-section .form .pass-group input {
-  border-left: 0 !important;
-  border-radius: 0 12px 12px 0 !important;
-}
-body main .login-section .form .phone-group .PhoneInput {
-  display: flex;
-  gap: 12px;
-  flex-direction: row-reverse;
-}
-body main .login-section .form .phone-group .PhoneInput .PhoneInputCountryIcon {
-  position: relative;
-}
-body main .login-section .form .phone-group .PhoneInput .PhoneInputCountryIconImg {
-  width: 20px;
-  position: absolute;
-  top: -33px;
-  left: 10px;
-}
-body main .login-section .form .phone-group .PhoneInput select {
-  padding: 12px 6px 12px 30px;
-  direction: ltr !important;
-}
-body main .login-section .form .phone-group .phone-code {
-  height: 54px;
-  border-radius: 4px;
 }
 body main .login-section .forgetpasswordForm {
   margin-top: 0;
@@ -1104,88 +839,6 @@ body main .login-section .forgetpasswordForm .resend-code .timer span {
 body main .login-section .otp-small h1,
 body main .login-section .otp-small p {
   align-self: center !important;
-}
-body main .login-section .tabs {
-  width: 100%;
-  border-bottom: 2px solid var(--LightGray);
-  margin-bottom: 12px;
-  display: flex;
-}
-body main .login-section .tabs button {
-  border: none;
-  background: none;
-  outline: none;
-  padding: 0 12px;
-  position: relative;
-  font-size: 16px;
-  width: -moz-fit-content;
-  width: fit-content;
-  font-weight: 500;
-  transition: 0.3s ease-in-out;
-  color: var(--black-color);
-}
-@media (max-width: 576px) {
-  body main .login-section .tabs button {
-    font-size: 14px;
-  }
-}
-body main .login-section .tabs button::after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  width: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 2px;
-  background: var(--main-color);
-  transition: 0.3s ease-in-out;
-}
-body main .login-section .tabs button.active {
-  color: var(--main-color);
-}
-body main .login-section .tabs button.active::after {
-  width: 100%;
-}
-body main .login-section .tabs {
-  width: 100%;
-  border-bottom: 2px solid var(--LightGray);
-  margin-bottom: 12px;
-  display: flex;
-}
-body main .login-section .tabs button {
-  border: none;
-  background: none;
-  outline: none;
-  padding: 0 12px;
-  position: relative;
-  font-size: 16px;
-  width: -moz-fit-content;
-  width: fit-content;
-  font-weight: 500;
-  transition: 0.3s ease-in-out;
-  color: var(--black-color);
-}
-@media (max-width: 576px) {
-  body main .login-section .tabs button {
-    font-size: 14px;
-  }
-}
-body main .login-section .tabs button::after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  width: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 2px;
-  background: var(--main-color);
-  transition: 0.3s ease-in-out;
-}
-body main .login-section .tabs button.active {
-  color: var(--main-color);
-}
-body main .login-section .tabs button.active::after {
-  width: 100%;
 }
 body main .profile-section {
   padding: 48px 0;
@@ -1385,13 +1038,14 @@ body main .profile-section .tab-content .add-service:hover {
   color: #fff;
 }
 body main .profile-section .tab-content .services_grid {
-  display: grid;
+  display: flex;
   margin-top: 16px;
   gap: 16px;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  flex-wrap: wrap;
 }
 body main .profile-section .tab-content .services_grid .noDataFound {
   display: flex;
+  margin: 0 auto;
   padding: 120px 0;
   justify-content: center;
   align-items: center;
@@ -1403,6 +1057,8 @@ body main .profile-section .tab-content .services_grid .noDataFound h4 {
 }
 body main .profile-section .tab-content .services_grid .workCard {
   overflow: hidden;
+  flex: 0 1;
+  min-width: calc(33.3333333333% - 11px);
 }
 body main .profile-section .tab-content .services_grid .workCard .img {
   position: relative;
@@ -1426,9 +1082,9 @@ body main .profile-section .tab-content .services_grid .workCard .img .icons but
   border: none;
   background: none;
   outline: none;
-  background: var(--white-color);
+  background: var(--input-hint);
   border-radius: 50%;
-  color: var(--main-color);
+  color: var(--white-color);
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   height: 36px;
   width: 36px;
@@ -1436,6 +1092,9 @@ body main .profile-section .tab-content .services_grid .workCard .img .icons but
 body main .profile-section .tab-content .services_grid .workCard .img .icons button svg {
   height: 16px;
   width: 16px;
+}
+body main .profile-section .tab-content .services_grid .workCard .img .icons button:nth-child(2) {
+  background: red;
 }
 body main .profile-section .tab-content .services_grid .workCard h4 {
   padding: 12px 8px;
@@ -2613,6 +2272,9 @@ body main .search-section input[type=radio]:checked::before {
 body main .search-section .filter-wrap {
   position: sticky;
   top: 100px;
+  background: var(--input-bg);
+  padding: 16px;
+  border-radius: 12px;
 }
 body main .search-section .filter-wrap .colse {
   display: none;
@@ -2621,7 +2283,7 @@ body main .search-section .filter-wrap form {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 22px;
 }
 body main .search-section .filter-wrap form .input-field {
   display: flex;
@@ -2631,6 +2293,7 @@ body main .search-section .filter-wrap form .input-field label {
   color: var(--input-hint);
 }
 body main .search-section .filter-wrap form .input-field input {
+  height: 50px;
   border: none;
   background: none;
   outline: none;
@@ -3348,6 +3011,345 @@ body footer .copy-rights .pay-methods li i {
   font-size: 24px;
   color: var(--black-color);
 }
+body .form {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: min(100% - 24px, 740px);
+}
+body .form .input-field {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 8px;
+}
+body .form .input-field label {
+  color: var(--black-color);
+}
+body .form .input-field label i {
+  color: var(--main-color);
+}
+body .form .input-field input,
+body .form .input-field textarea,
+body .form .input-field select {
+  color: var(--black-color);
+  direction: rtl;
+  height: 56px;
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 12px;
+  border-radius: 12px;
+  background: var(--input-bg);
+  border: 1px solid var(--LightGray);
+  font-size: 14px;
+}
+body .form .input-field textarea {
+  height: 140px;
+}
+body .form .forgetpass {
+  align-self: flex-end;
+  color: var(--main-color);
+}
+body .form .noAccount {
+  color: var(--text-color);
+}
+body .form .noAccount span {
+  color: var(--main-color);
+}
+body .form p {
+  color: var(--text-color);
+}
+body .form p a {
+  color: var(--main-color);
+  text-decoration: underline;
+}
+body .form button {
+  width: 100%;
+  height: 56px;
+  gap: 6px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  outline: none;
+  color: #fff;
+  background: var(--main-color);
+}
+body .form .question {
+  padding: 0 0 30px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+body .form .question .quest {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--black-color);
+}
+body .form .question .vendorInput {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  position: relative;
+  cursor: pointer;
+}
+body .form .question .vendorInput::after {
+  display: block;
+  width: 48px;
+  height: 24px;
+  border-radius: 16px;
+  content: "";
+  background-color: var(--text-color);
+  transition: var(--main-transation);
+}
+body .form .question .vendorInput::before {
+  transition: var(--main-transation);
+  display: block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  content: "";
+  background-color: var(--white-color);
+}
+body .form .question .vendorInput:checked::after {
+  background-color: var(--main-color);
+}
+body .form .question .vendorInput:checked::before {
+  right: initial;
+  left: 4px;
+}
+body .form .image-change-wrapper {
+  border-radius: 16px;
+  border: 1px solid var(--LightGray);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 16px;
+}
+body .form .image-change-wrapper .img-wrap {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  border: 1px solid var(--input-hint);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body .form .image-change-wrapper .img-wrap img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1/1;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-position: center;
+     object-position: center;
+}
+body .form .image-change-wrapper .upload input {
+  display: none;
+}
+body .form .image-change-wrapper .upload .plus {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background-color: var(--main-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+body .form .image-change-wrapper .upload .plus i {
+  font-size: 14px;
+  color: #fff;
+}
+body .form .google-login {
+  margin-top: 24px;
+  border: none;
+  background: none;
+  outline: none;
+  width: 100%;
+  height: 48px;
+  border: 1px solid var(--input-hint);
+  color: var(--black-color);
+  gap: 16px;
+}
+body .form .line {
+  width: 100%;
+  height: 1px;
+  background: var(--gray-background);
+  position: relative;
+  margin-top: 24px;
+}
+body .form .line span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--white-color);
+  padding: 0 16px;
+  color: var(--black-color);
+  white-space: nowrap;
+}
+@media (max-width: 576px) {
+  body .form .line span {
+    font-size: 14px;
+  }
+}
+body .form .pass-group {
+  display: flex;
+}
+body .form .pass-group button {
+  border: none;
+  background: none;
+  outline: none;
+  width: 60px;
+  height: 56px;
+  border: 1px solid var(--LightGray);
+  background: var(--input-bg);
+  border-right: 0;
+  border-radius: 12px 0 0 12px !important;
+  color: var(--text-color);
+}
+body .form .pass-group input {
+  border-left: 0 !important;
+  border-radius: 0 12px 12px 0 !important;
+}
+body .form .phone-group .PhoneInput {
+  display: flex;
+  gap: 12px;
+  flex-direction: row-reverse;
+}
+body .form .phone-group .PhoneInput .PhoneInputCountryIcon {
+  position: relative;
+}
+body .form .phone-group .PhoneInput .PhoneInputCountryIconImg {
+  width: 20px;
+  position: absolute;
+  top: -33px;
+  left: 10px;
+}
+body .form .phone-group .PhoneInput select {
+  padding: 12px 6px 12px 30px;
+  direction: ltr !important;
+}
+body .form .phone-group .phone-code {
+  height: 54px;
+  border-radius: 4px;
+}
+body .form .image_field {
+  width: 100%;
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+}
+body .form .image_field label {
+  color: var(--black-color);
+}
+body .form .image_field label i {
+  color: var(--main-color);
+}
+body .form .image_field .imagewrap {
+  border-radius: 12px;
+  padding: 12px;
+  border: 1px solid var(--LightGray);
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body .form .image_field .imagewrap input {
+  display: none;
+}
+body .form .image_field .imagewrap .img {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body .form .image_field .imagewrap .img img {
+  height: 100%;
+  -o-object-fit: scale-down;
+     object-fit: scale-down;
+}
+body .images_grid_upload {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+body .images_grid_upload .file_upload {
+  border: 1px solid var(--LightGray);
+  border-radius: 12px;
+  width: calc(25% - 6px);
+  height: 150px;
+}
+body .images_grid_upload .file_upload label {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body .images_grid_upload .file_upload label input {
+  display: none;
+}
+body .images_grid_upload .file_upload label img {
+  height: 60px;
+}
+body .images_grid_upload .uploaded_file {
+  border: 1px solid var(--LightGray);
+  border-radius: 12px;
+  width: calc(25% - 6px);
+  position: relative;
+  height: 150px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body .images_grid_upload .uploaded_file img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+body .images_grid_upload .uploaded_file button {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 26px;
+  font-size: 16px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--main-color);
+  color: var(--white-color);
+}
+body .images_grid_upload .uploaded_file .doc_icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 4px;
+}
+body .images_grid_upload .uploaded_file .doc_icon span {
+  font-size: 10px;
+  line-height: normal;
+  color: var(--check-color);
+}
+body .images_grid_upload .uploaded_file .doc_icon img {
+  width: auto;
+  height: 50px;
+}
 body .rate {
   display: flex;
   gap: 28px;
@@ -3630,308 +3632,20 @@ body .products-card .order li .order-number {
   font-weight: bold;
   font-size: 18px;
 }
-body #msform {
-  text-align: center;
-  position: relative;
-  margin-top: 28px;
-}
-body #msform .action-button-previous {
-  height: 56px;
-  border-radius: 16px;
-  border: 1px solid var(--black-color);
-  width: 120px;
-  color: var(--black-color);
-  cursor: pointer;
-  margin: 32px 0px 10px 5px;
-  float: right;
-  background: none;
-}
-@media (max-width: 576px) {
-  body #msform .action-button-previous {
-    margin: 16px 0 0;
-  }
-}
-body #msform .action-button {
-  height: 56px;
-  border-radius: 16px;
-  background: var(--main-color);
-  width: 200px;
-  color: white;
-  border: 0 none;
-  cursor: pointer;
-  margin: 32px 0px 10px 5px;
-  float: left;
-}
-@media (max-width: 576px) {
-  body #msform .action-button {
-    margin: 16px 0 0;
-  }
-}
-body #msform fieldset {
-  border: 0 none;
-  border-radius: 0.5rem;
-  width: 100%;
-  margin: 0;
-  padding-bottom: 20px;
-  position: relative;
-}
-body #msform fieldset:not(:first-of-type) {
-  display: none;
-}
-body #msform fieldset .purple-text {
-  padding: 40px 0 30px;
-  line-height: 36px;
-  font-size: 20px;
-  color: var(--black-color);
-}
-body #msform fieldset a {
-  color: var(--main-color);
-}
-body #msform fieldset .advice {
-  width: 100%;
-  margin: 40px 0;
-  border-radius: 4px;
-  background-color: var(--id-confirm);
-  position: relative;
-  padding-top: 22px;
-  padding-bottom: 32px;
-}
-body #msform fieldset .advice .icon {
-  position: absolute;
-  top: -30px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: var(--id-confirm);
-  border: 2px solid var(--white-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-body #msform fieldset .advice .icon img {
-  max-height: 40px;
-}
-body #msform fieldset .advice ul {
-  padding-top: 20px;
-  display: flex;
-  flex-direction: column;
-}
-body #msform fieldset .advice ul li {
-  color: var(--black-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-}
-body #msform fieldset .advice ul li i {
-  width: 40px;
-  color: #7dc0f7;
-  font-size: 24px;
-}
-body #msform fieldset h6 {
-  font-weight: 600;
-  margin-top: 24px;
-  font-size: 16px;
-  color: var(--black-color);
-}
-body #msform fieldset p {
-  color: var(--main-color);
-}
-body #msform fieldset .input-field {
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: 28px;
-  gap: 10px;
-}
-body #msform fieldset .input-field label {
-  width: 100%;
-  color: var(--black-color);
-  text-align: justify;
-  font-weight: 500;
-}
-body #msform fieldset .input-field label i {
-  color: var(--main-color);
-}
-body #msform fieldset .input-field label .info-label {
-  color: var(--text-color);
-  font-size: 18px;
-}
-body #msform fieldset .input-field label small {
-  color: var(--text-color);
-  margin: 16px 0;
-  display: block;
-}
-body #msform fieldset .input-field .img-upload {
-  padding: 22px;
-  width: 100%;
-  height: 230px;
-  border: 1px solid var(--gray-background);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 16px;
-  cursor: pointer;
-}
-body #msform fieldset .input-field .img-upload input {
-  display: none;
-}
-body #msform fieldset .input-field .selcet-wrap {
-  position: relative;
-  width: 100%;
-}
-body #msform fieldset .input-field .selcet-wrap::before {
-  content: "\f107";
-  font-family: "Font Awesome 6 pro";
-  position: absolute;
-  left: 16px;
-  top: 16px;
-  color: var(--input-hint);
-}
-body #msform fieldset .input-field .selcet-wrap .form-select {
-  font-size: 14px;
-  color: var(--input-hint);
-}
-body #msform fieldset .input-field input,
-body #msform fieldset .input-field textarea,
-body #msform fieldset .input-field .form-select {
-  direction: rtl;
-  height: 56px;
-  border: none;
-  outline: none;
-  width: 100%;
-  font-size: 14px;
-  padding: 10px 16px;
-  border-radius: 16px;
-  color: var(--black-color);
-  background: var(--input-bg);
-}
-body #msform fieldset .input-field input::-moz-placeholder, body #msform fieldset .input-field textarea::-moz-placeholder, body #msform fieldset .input-field .form-select::-moz-placeholder {
-  color: var(--input-hint);
-}
-body #msform fieldset .input-field input::placeholder,
-body #msform fieldset .input-field textarea::placeholder,
-body #msform fieldset .input-field .form-select::placeholder {
-  color: var(--input-hint);
-}
-body #msform fieldset .input-field input:focus,
-body #msform fieldset .input-field textarea:focus,
-body #msform fieldset .input-field .form-select:focus {
-  box-shadow: none !important;
-}
-body #msform fieldset .input-field textarea {
-  height: 170px;
-}
-body #msform fieldset .input-field input[type=button] {
-  background: none;
-  border: 1px dashed var(--main-color);
-  color: var(--main-color);
-}
-body #msform fieldset .input-field .inputs {
-  display: flex;
-  width: 100%;
-  gap: 16px;
-}
-body #msform fieldset .input-field .inputs .country-picker {
-  width: 80px;
-  pointer-events: none;
-}
-body #msform fieldset .input-field .inputs label {
-  width: 100%;
-  height: 140px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  position: relative;
-}
-body #msform fieldset .input-field .inputs label .gender {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  color: var(--black-color);
-}
-body #msform fieldset .input-field .inputs label input {
-  z-index: -1;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  height: 100%;
-  background-color: var(--light-bg);
-  border: 1px solid var(--LightGray);
-}
-body #msform fieldset .input-field .inputs label input:checked {
-  background-color: var(--check-color);
-  border: 1px solid var(--main-color);
-}
-body #msform fieldset .input-field .t-select {
-  width: 100%;
-  justify-content: space-between;
-}
-body #msform fieldset .input-field .t-select .selcet-wrap:first-child {
-  width: 68%;
-}
-body #msform fieldset .input-field .t-select .selcet-wrap:last-child {
-  width: 28%;
-}
-body #msform fieldset .input-field .t-select .form-select {
-  margin: 0;
-}
-body #msform fieldset .add-more-model {
-  width: 100%;
-  margin-bottom: 24px;
-  padding: 16px;
-  border-radius: 16px;
-  background: var(--input-bg);
-}
-body #msform fieldset .add-more-model .delete-model {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 12px;
-}
-body #msform fieldset .add-more-model .delete-model i {
-  font-size: 24px;
-  color: var(--main-color);
-  cursor: pointer;
-}
-body #msform fieldset .add-more-model input,
-body #msform fieldset .add-more-model .form-select {
-  background: var(--white-color);
-}
-body #msform fieldset .resend-code {
-  width: 100%;
-  display: flex;
-  padding: 40px 0;
-  gap: 60px;
-  justify-content: center;
-}
-@media (max-width: 576px) {
-  body #msform fieldset .resend-code {
-    justify-content: space-between;
-  }
-}
-body #msform fieldset .resend-code a {
-  color: var(--main-color);
-}
-body #msform fieldset .resend-code .timer span {
-  color: var(--text-color);
-}
 body input[type=checkbox] {
-  width: 20px;
+  width: 18px;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
   position: relative;
   cursor: pointer;
+}
+body input[type=checkbox].form-check-input {
+  box-shadow: none !important;
+  border: none !important;
+}
+body input[type=checkbox].form-check-input:checked {
+  background: none !important;
 }
 body input[type=checkbox]::after {
   position: absolute;
@@ -3940,11 +3654,11 @@ body input[type=checkbox]::after {
   top: 50%;
   content: "";
   font-family: "Font Awesome 6 pro";
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   border: 1px solid var(--input-hint);
   border-radius: 4px;
-  font-size: 14px;
+  font-size: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -4638,21 +4352,6 @@ body .requestDetails .lastPosts .posts .post img {
 body .requestDetails .lastPosts .posts .post a {
   color: var(--black-color);
   font-size: 13px;
-}
-body .dark-theme .requestDetails .postDetails,
-body .dark-theme .requestDetails .addComment,
-body .dark-theme .requestDetails .allComments,
-body .dark-theme .requestDetails .lastPosts {
-  background-color: #1f1f1f;
-}
-@media (max-width: 768px) {
-  body span,
-  body button,
-  body body,
-  body h6,
-  body p {
-    font-size: 13px !important;
-  }
 }
 body .progress {
   height: 8px;
@@ -5646,20 +5345,15 @@ hr {
 }
 .search-btn button {
   width: 100%;
-  white-space: nowrap;
   background: none;
   outline: none;
-  border: 1px solid var(--input-hint);
-  padding: 4px 16px;
+  padding: 8px 16px;
+  border: none;
   font-size: 14px;
-  color: var(--black-color);
+  color: var(--white-color);
   border-radius: 12px;
-  transition: var(--main-transation);
-}
-.search-btn button:hover {
   background: var(--main-color);
-  border-color: var(--main-color);
-  color: #fff;
+  transition: var(--main-transation);
 }
 
 .confirm-delete p {
