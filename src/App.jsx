@@ -81,7 +81,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="/services" element={<Services />} />
-          <Route path="/Addservices" element={<AddServices />} />
+          <Route path="/add-service" element={<AddServices />} />
           <Route path="/EditServices" element={<EditServices />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/purchases" element={<Purchases />} />
