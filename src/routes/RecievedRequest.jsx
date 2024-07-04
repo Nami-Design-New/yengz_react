@@ -85,7 +85,7 @@ const RecievedRequest = () => {
                           ></div>
                         </div>
                       </div>
-                      <Link to="/recieved-request_orders" className="details">
+                      <Link to="/recievedRequestOrders" className="details">
                         التفاصيل
                       </Link>
                     </div>
@@ -135,7 +135,7 @@ const RecievedRequest = () => {
                           ></div>
                         </div>
                       </div>
-                      <Link to="/recieved-request_orders" className="details">
+                      <Link to="/recievedRequestOrders" className="details">
                         التفاصيل
                       </Link>
                     </div>
@@ -183,7 +183,7 @@ const RecievedRequest = () => {
                           ></div>
                         </div>
                       </div>
-                      <Link to="/recieved-request_orders" className="details">
+                      <Link to="/recievedRequestOrders" className="details">
                         التفاصيل
                       </Link>
                     </div>
