@@ -31,8 +31,8 @@ import Services from "./routes/Services";
 import Search from "./routes/Search";
 import Logout from "./features/auth/Logout";
 import Cart from "./routes/Cart";
-import Profile from './features/profile/Profile';
-import EditProfile from './features/profile/EditProfile';
+import Profile from "./features/profile/Profile";
+import EditProfile from "./features/profile/EditProfile";
 
 function App() {
   const dispatch = useDispatch();
@@ -43,8 +43,9 @@ function App() {
 
   useEffect(() => {
     if (decodedToken && !isExpired) {
+      const userId = decodedToken.sub;
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      const user = axios.get("/user/get_profile");
+      const user = axios.get(`/user/get_profile?id=${userId}`);
       user
         .then((res) => {
           if (res.data.code === 200) {

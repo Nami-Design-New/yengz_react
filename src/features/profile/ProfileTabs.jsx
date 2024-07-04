@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
-import { useQueryClient } from "@tanstack/react-query";
-import { deleteWork } from "../../services/apiWorks";
 import {
   IconCirclePlus,
   IconCircleX,
@@ -15,35 +12,18 @@ import Tabs from "react-bootstrap/Tabs";
 import ServiceCard from "../../ui/cards/ServiceCard";
 import useGetWorks from "./useGetWorks";
 import useUserServices from "./../services/useUserServices";
-import UserReviewCard from "../../ui/cards/UserReviewCard";
-import WorkCard from "../../ui/cards/WorkCard";
 import ConfirmationModal from "../../ui/modals/ConfirmationModal";
 import AddWorkModal from "../../ui/modals/AddWorkModal";
+import CertificatesTab from "./CertificatesTab";
+import WorksTab from "./WorksTab";
 
 const ProfileTabs = ({ user }) => {
+  const { t } = useTranslation();
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [showAddWorkModal, setShowAddWorkModal] = useState(false);
   const [targetId, setTargetId] = useState(null);
-  const { t } = useTranslation();
-  const queryClient = useQueryClient();
   const { data: services } = useUserServices(user?.id);
   const { data: works } = useGetWorks(user?.id);
-
-  const onDeleteModalShow = (id) => {
-    setShowConfirmation(true);
-    setTargetId(id);
-  };
-
-  const handleDelete = async () => {
-    try {
-      await deleteWork(targetId, queryClient);
-      toast.success(t("profile.workDeletedSuccessfully"));
-    } catch (error) {
-      toast.error(t("profile.errorDeletingWork"));
-    } finally {
-      setShowConfirmation(false);
-    }
-  };
 
   return (
     <>
@@ -60,7 +40,6 @@ const ProfileTabs = ({ user }) => {
             )}
           </div>
         </Tab>
-
         {/* services */}
         <Tab
           eventKey="service"
@@ -90,16 +69,14 @@ const ProfileTabs = ({ user }) => {
             </div>
           </div>
         </Tab>
-
         {/* reviews */}
-        <Tab
+        {/* <Tab
           eventKey="Rating"
           title={t("profile.reviews")}
           className="tab_item"
         >
           <UserReviewCard />
-        </Tab>
-
+        </Tab> */}
         {/* verifications */}
         <Tab
           eventKey="documentation"
@@ -133,7 +110,6 @@ const ProfileTabs = ({ user }) => {
             )}
           </div>
         </Tab>
-
         {/*  statistics */}
         <Tab
           eventKey="statistics"
@@ -164,58 +140,24 @@ const ProfileTabs = ({ user }) => {
             </ul>
           </div>
         </Tab>
-
         {/* my works */}
         <Tab
           eventKey="My works"
           title={t("profile.myWorks")}
           className="tab_item"
         >
-          <div className="tab-pane ">
-            <div className="services-container">
-              <button
-                onClick={() => setShowAddWorkModal(true)}
-                className="add-service"
-              >
-                <IconCirclePlus stroke={2} /> {t("profile.addWork")}
-              </button>
-              <div className="services_grid">
-                {works?.length === 0 ? (
-                  <div className="noDataFound">
-                    <h4>{t("profile.noWorksFound")}</h4>
-                  </div>
-                ) : (
-                  <>
-                    {works?.map((work) => (
-                      <WorkCard
-                        canEdit={true}
-                        key={work.id}
-                        work={work}
-                        onDeleteModalShow={onDeleteModalShow}
-                      />
-                    ))}
-                  </>
-                )}
-              </div>
-            </div>
-          </div>
+          <WorksTab works={works} />
+        </Tab>
+
+        {/* my certificates */}
+        <Tab
+          eventKey="My Certifications"
+          title={t("profile.myCertificates")}
+          className="tab_item"
+        >
+          <CertificatesTab user={user} />
         </Tab>
       </Tabs>
-
-      <ConfirmationModal
-        showModal={showConfirmation}
-        setShowModal={setShowConfirmation}
-        type="delete"
-        target={works?.find((w) => w?.id === targetId)?.title}
-        eventFun={handleDelete}
-        buttonText={t("profile.delete")}
-        text={t("profile.areYouSureYouWantToDelete")}
-      />
-
-      <AddWorkModal
-        showModal={showAddWorkModal}
-        setShowModal={setShowAddWorkModal}
-      />
     </>
   );
 };
