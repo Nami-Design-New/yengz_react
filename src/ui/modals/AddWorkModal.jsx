@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import { addWork } from "../../services/apiWorks";
+import { addWork, updateWork } from "../../services/apiWorks";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import InputField from "../form-elements/InputField";
@@ -24,17 +24,21 @@ const AddWorkModal = ({
     description: "",
     start_date: "",
     end_date: "",
-    images: []
+    images: [],
+    delete_images: []
   });
+
   useEffect(() => {
     if (targetWork) {
       setFormData({
+        id: targetWork.id,
         title: targetWork.title,
         link: targetWork.link,
         description: targetWork.description,
         start_date: targetWork.start_date,
         end_date: targetWork.end_date,
-        images: targetWork.images
+        images: targetWork.images || [],
+        delete_images: []
       });
     }
   }, [targetWork]);
@@ -46,18 +50,29 @@ const AddWorkModal = ({
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    const dataToSendForUpdate = {
+      ...formData,
+      images: formData.images.filter((image) => image?.type?.startsWith("image/"))
+    };
     try {
-      await addWork(formData, queryClient);
+      if (targetWork?.id) {
+        await updateWork(dataToSendForUpdate, queryClient);
+        toast.success(t("profile.workUpdatedSuccessfully"));
+      } else {
+        await addWork(formData, queryClient);
+        toast.success(t("profile.workAddedSuccessfully"));
+      }
       setShowModal(false);
-      toast.success(t("profile.workAddedSuccessfully"));
       setFormData({
         title: "",
         link: "",
         description: "",
         start_date: "",
         end_date: "",
-        images: []
+        images: [],
+        delete_images: []
       });
+      setTargetWork(null);
     } catch (error) {
       console.error("Add work error:", error);
       throw new Error(error.message);
@@ -68,16 +83,26 @@ const AddWorkModal = ({
 
   const handleImagesChange = (e) => {
     e.preventDefault();
-    const imagesClone = [...formData.images];
-    const images = Array.from(e.target.files);
-    setFormData({ ...formData, images: [...imagesClone, ...images] });
+    const newImages = Array.from(e.target.files);
+    setFormData((prevState) => ({
+      ...prevState,
+      images: [...prevState.images, ...newImages]
+    }));
   };
 
-  const handleRemoveImage = (e, index) => {
-    e.preventDefault();
-    const imagesClone = [...formData.images];
-    imagesClone.splice(index, 1);
-    setFormData({ ...formData, images: imagesClone });
+  const handleRemoveImage = (index, image) => {
+    if (image.id) {
+      setFormData((prevState) => ({
+        ...prevState,
+        images: prevState.images.filter((_, i) => i !== index),
+        delete_images: [...prevState.delete_images, image.id]
+      }));
+    } else {
+      setFormData((prevState) => ({
+        ...prevState,
+        images: prevState.images.filter((_, i) => i !== index)
+      }));
+    }
   };
 
   return (
@@ -91,7 +116,8 @@ const AddWorkModal = ({
           description: "",
           start_date: "",
           end_date: "",
-          images: []
+          images: [],
+          delete_images: []
         });
         setTargetWork(null);
       }}
@@ -136,7 +162,12 @@ const AddWorkModal = ({
                             }
                             alt="file"
                           />
-                          <button onClick={(e) => handleRemoveImage(e, index)}>
+                          <button
+                            onClick={(e) => {
+                              e.preventDefault();
+                              handleRemoveImage(index, image);
+                            }}
+                          >
                             <i className="fa-light fa-xmark"></i>
                           </button>
                         </div>
@@ -195,7 +226,9 @@ const AddWorkModal = ({
               </div>
               <div className="col-12 p-2">
                 <SubmitButton
-                  name={t("profile.addProject")}
+                  name={
+                    targetWork?.id ? t("profile.edit") : t("profile.addProject")
+                  }
                   loading={loading}
                 />
               </div>
