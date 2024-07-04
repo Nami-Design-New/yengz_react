@@ -1,2314 +1,298 @@
-import React from "react";
-import bann from "../Assets/images/bann.webp";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
+import DepartmentFilterBox from "../ui/filter/DepartmentFilterBox";
+import RatingFilterBox from "../ui/filter/RatingFilterBox";
+import SellerFilterBox from "../ui/filter/SellerFilterBox";
+import SellerStatusFilterBox from "../ui/filter/SellerStatusFilterBox";
+import InputField from "../ui/form-elements/InputField";
+import useSearchServicesList from "../features/services/useSearchServicesList";
+import ServiceCard from "../ui/cards/ServiceCard";
+import { t } from "i18next";
+import { useTranslation } from "react-i18next";
+
+const departmentFilter = [
+  {
+    id: 1,
+    image: "https://ynjez.frmawy.tech/images/place_holder/default.png",
+    deleted_at: null,
+    created_at: null,
+    updated_at: "2024-05-09T18:01:46.000000Z",
+    name: "test",
+    count: 18,
+    sub_categories: [
+      {
+        id: 1,
+        image: "https://ynjez.frmawy.tech/images/place_holder/default.png",
+        category_id: 1,
+        deleted_at: null,
+        created_at: null,
+        updated_at: null,
+        name: "Name Ar",
+        count: 18
+      }
+    ]
+  },
+  {
+    id: 2,
+    image: "https://ynjez.frmawy.tech/images/place_holder/default.png",
+    deleted_at: null,
+    created_at: null,
+    updated_at: "2024-05-09T18:01:46.000000Z",
+    name: "test 2",
+    count: 18,
+    sub_categories: [
+      {
+        id: 2,
+        image: "https://ynjez.frmawy.tech/images/place_holder/default.png",
+        category_id: 1,
+        deleted_at: null,
+        created_at: null,
+        updated_at: null,
+        name: "Name Ar 2",
+        count: 18
+      },
+      {
+        id: 5,
+        image: "https://ynjez.frmawy.tech/images/place_holder/default.png",
+        category_id: 1,
+        deleted_at: null,
+        created_at: null,
+        updated_at: null,
+        name: "Name Ar 3",
+        count: 18
+      }
+    ]
+  }
+];
 
 const Search = () => {
+  const { data } = useSearchServicesList();
+  const { t } = useTranslation();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [searchFilterData, setSearchFilterData] = useState({
+    search: searchParams.get("search") || "",
+    page: Number(searchParams.get("page")) || 1,
+    rate: Number(searchParams.get("rate")) || 1,
+    user_verification: Number(searchParams.get("user_verification")) || 0,
+    user_available: Number(searchParams.get("user_available")) || 0,
+    categories: searchParams.get("categories")
+      ? searchParams
+          .get("categories")
+          .split("-")
+          .map((category) => Number(category))
+      : [],
+    sub_categories: searchParams.get("sub_categories")
+      ? searchParams
+          .get("sub_categories")
+          .split("-")
+          .map((subcategory) => Number(subcategory))
+      : [],
+    is_old: Number(searchParams.get("is_old")) || 0
+  });
+
+  const handleChange = (e) => {
+    const { name, value, checked } = e.target;
+    const parsedValue = Number(value);
+
+    if (name === "categories" || name === "sub_categories") {
+      setSearchFilterData((prevState) => {
+        const updatedState = {
+          ...prevState,
+          [name]: checked
+            ? [...prevState[name], parsedValue]
+            : prevState[name].filter((item) => item !== parsedValue)
+        };
+
+        if (name === "categories") {
+          const relatedSubCategories =
+            departmentFilter
+              .find((category) => category.id === parsedValue)
+              ?.sub_categories.map((sub_category) => sub_category.id) || [];
+
+          if (checked) {
+            updatedState["sub_categories"] = [
+              ...new Set([
+                ...prevState["sub_categories"],
+                ...relatedSubCategories
+              ])
+            ];
+          } else {
+            updatedState["sub_categories"] = prevState["sub_categories"].filter(
+              (subCategoryId) => !relatedSubCategories.includes(subCategoryId)
+            );
+          }
+        } else if (name === "sub_categories") {
+          const parentCategory = departmentFilter.find((category) =>
+            category.sub_categories.some(
+              (sub_category) => sub_category.id === parsedValue
+            )
+          );
+
+          const allChildIds = parentCategory.sub_categories.map(
+            (sub_category) => sub_category.id
+          );
+
+          const areAllChildrenChecked = allChildIds.every((id) =>
+            updatedState["sub_categories"].includes(id)
+          );
+
+          if (areAllChildrenChecked) {
+            updatedState["categories"] = [
+              ...new Set([...prevState["categories"], parentCategory.id])
+            ];
+          } else {
+            updatedState["categories"] = prevState["categories"].filter(
+              (categoryId) => categoryId !== parentCategory.id
+            );
+          }
+        }
+
+        return updatedState;
+      });
+    } else {
+      setSearchFilterData({
+        ...searchFilterData,
+        [name]: value
+      });
+    }
+  };
+
+  function handleApplyFilters() {
+    if (searchFilterData.page) {
+      searchParams.set("page", searchFilterData.page);
+      setSearchParams(searchParams);
+    }
+    if (String(searchFilterData.search).trim()) {
+      searchParams.set("search", searchFilterData.search);
+      setSearchParams(searchParams);
+    }
+    if (
+      searchFilterData.rate !== undefined &&
+      searchFilterData.rate !== null &&
+      searchFilterData.rate !== ""
+    ) {
+      searchParams.set("rate", searchFilterData.rate);
+      setSearchParams(searchParams);
+    }
+    if (
+      searchFilterData.user_verification !== undefined &&
+      searchFilterData.user_verification !== null &&
+      searchFilterData.user_verification !== ""
+    ) {
+      searchParams.set("user_verification", searchFilterData.user_verification);
+      setSearchParams(searchParams);
+    }
+    if (
+      searchFilterData.user_available !== undefined &&
+      searchFilterData.user_available !== null &&
+      searchFilterData.user_available !== ""
+    ) {
+      searchParams.set("user_available", searchFilterData.user_available);
+      setSearchParams(searchParams);
+    }
+    if (searchFilterData.categories?.length > 0) {
+      searchParams.set("categories", searchFilterData.categories.join("-"));
+      setSearchParams(searchParams);
+    }
+    if (searchFilterData.sub_categories?.length > 0) {
+      searchParams.set(
+        "sub_categories",
+        searchFilterData.sub_categories.join("-")
+      );
+      setSearchParams(searchParams);
+    }
+    if (
+      searchFilterData.is_old !== undefined &&
+      searchFilterData.is_old !== null &&
+      searchFilterData.is_old !== ""
+    ) {
+      searchParams.set("is_old", searchFilterData.is_old);
+      setSearchParams(searchParams);
+    }
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    handleApplyFilters();
+  }
+
+  useEffect(() => {
+    if (!searchParams.get("page")) {
+      searchParams.append("page", 1);
+      setSearchParams(searchParams);
+    }
+  }, [searchParams, setSearchParams]);
+
   return (
-    <main>
-      <section className="search-section">
-        <div className="container">
-          <div className="row">
-            <aside className="col-lg-3 side-menu">
-              <div className="filter-wrap">
-                <div className="colse">
-                  <i className="fa-light fa-xmark"></i>
-                </div>
-                <form action="">
-                  <div className="input-field">
-                    <label htmlFor="search">بحث</label>
-                    <input type="text" id="search" name="search" />
-                  </div>
-                  {/*<!-- filter by department_name -->*/}
-
-                  <div className="departments">
-                    <h6>القسم</h6>
-                    {/*<!-- level one of departments list -->*/}
-
-                    <ul className="deps">
-                      {/*<!-- programing and development department -->*/}
-                      <li>
-                        <div className="department-header">
-                          <div className="dep_name">
-                            <button
-                              className="accordion-button collapsed"
-                              type="button"
-                              data-bs-toggle="collapse"
-                              data-bs-target="#programing-development"
-                              aria-expanded="true"
-                              aria-controls="programing-development"
-                            >
-                              <span className="horizontal"></span>
-                              <span className="vertical"></span>
-                            </button>
-                            برمجة وتطوير
-                          </div>
-                          <input
-                            type="checkbox"
-                            name="department"
-                            id="department"
-                            checked
-                          />
-                        </div>
-                        <div
-                          id="programing-development"
-                          className="accordion-collapse collapse"
-                          aria-labelledby="headingOne"
-                          data-bs-parent="#accordionExample"
-                        >
-                          <div className="accordion-body">
-                            {/*<!-- level two of departments list -->*/}
-
-                            <ul className="deps">
-                              {/*<!-- programing languages -->*/}
-
-                              <li>
-                                <div className="department-header">
-                                  <div className="dep_name">
-                                    <button
-                                      className="accordion-button collapsed"
-                                      type="button"
-                                      data-bs-toggle="collapse"
-                                      data-bs-target="#programing-languages"
-                                      aria-expanded="true"
-                                      aria-controls="programing-languages"
-                                    >
-                                      <span className="horizontal"></span>
-                                      <span className="vertical"></span>
-                                    </button>
-                                    لغات البرمجة
-                                  </div>
-                                  <input
-                                    type="checkbox"
-                                    name="sub_department"
-                                    id="sub_department"
-                                  />
-                                </div>
-                                <div
-                                  id="programing-languages"
-                                  className="accordion-collapse collapse"
-                                  aria-labelledby="headingOne"
-                                  data-bs-parent="#accordionExample"
-                                >
-                                  <div className="accordion-body">
-                                    {/*<!-- level three of departments level -->*/}
-
-                                    <ul className="deps">
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة CSS و HTML
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة PHP
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة بايثون
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة Java و .NET
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </li>
-                              {/* <!-- wordpress -->*/}
-                              <li>
-                                <div className="department-header">
-                                  <div className="dep_name">
-                                    <button
-                                      className="accordion-button collapsed"
-                                      type="button"
-                                      data-bs-toggle="collapse"
-                                      data-bs-target="#wordpress"
-                                      aria-expanded="true"
-                                      aria-controls="wordpress"
-                                    >
-                                      <span className="horizontal"></span>
-                                      <span className="vertical"></span>
-                                    </button>
-                                    خدمات ووردبريس
-                                  </div>
-                                  <input
-                                    type="checkbox"
-                                    name="sub_department"
-                                    id="sub_department"
-                                  />
-                                </div>
-                                <div
-                                  id="wordpress"
-                                  className="accordion-collapse collapse"
-                                  aria-labelledby="headingOne"
-                                  data-bs-parent="#accordionExample"
-                                >
-                                  <div className="accordion-body">
-                                    {/*<!-- level three of departments level -->*/}
-                                    <ul className="deps">
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة CSS و HTML
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة PHP
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة بايثون
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة Java و .NET
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </li>
-                              {/*<!-- e-commerce --> */}
-                              <li>
-                                <div className="department-header">
-                                  <div className="dep_name">
-                                    <button
-                                      className="accordion-button collapsed"
-                                      type="button"
-                                      data-bs-toggle="collapse"
-                                      data-bs-target="#ecommerce"
-                                      aria-expanded="true"
-                                      aria-controls="ecommerce"
-                                    >
-                                      <span className="horizontal"></span>
-                                      <span className="vertical"></span>
-                                    </button>
-                                    تطوير متاجر إلكترونية
-                                  </div>
-                                  <input
-                                    type="checkbox"
-                                    name="sub_department"
-                                    id="sub_department"
-                                  />
-                                </div>
-                                <div
-                                  id="ecommerce"
-                                  className="accordion-collapse collapse"
-                                  aria-labelledby="headingOne"
-                                  data-bs-parent="#accordionExample"
-                                >
-                                  <div className="accordion-body">
-                                    {/* <!-- level three of departments level -->*/}
-
-                                    <ul className="deps">
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة CSS و HTML
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة PHP
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة بايثون
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة Java و .NET
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </li>
-                              {/*<!-- mobile apllication -->*/}
-                              <li>
-                                <div className="department-header">
-                                  <div className="dep_name">
-                                    <button
-                                      className="accordion-button collapsed"
-                                      type="button"
-                                      data-bs-toggle="collapse"
-                                      data-bs-target="#app-dev"
-                                      aria-expanded="true"
-                                      aria-controls="app-dev"
-                                    >
-                                      <span className="horizontal"></span>
-                                      <span className="vertical"></span>
-                                    </button>
-                                    برمجة تطبيقات الجوال
-                                  </div>
-                                  <input
-                                    type="checkbox"
-                                    name="sub_department"
-                                    id="sub_department"
-                                  />
-                                </div>
-                                <div
-                                  id="app-dev"
-                                  className="accordion-collapse collapse"
-                                  aria-labelledby="headingOne"
-                                  data-bs-parent="#accordionExample"
-                                >
-                                  <div className="accordion-body">
-                                    {/* <!-- level three of departments level -->*/}
-
-                                    <ul className="deps">
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة CSS و HTML
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة PHP
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة بايثون
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة Java و .NET
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </li>
-
-                      {/* <!-- video design department -->*/}
-                      <li>
-                        <div className="department-header">
-                          <div className="dep_name">
-                            <button
-                              className="accordion-button collapsed"
-                              type="button"
-                              data-bs-toggle="collapse"
-                              data-bs-target="#video-design"
-                              aria-expanded="true"
-                              aria-controls="video-design"
-                            >
-                              <span className="horizontal"></span>
-                              <span className="vertical"></span>
-                            </button>
-                            تصميم فيديو
-                          </div>
-                          <input
-                            type="checkbox"
-                            name="department"
-                            id="department"
-                          />
-                        </div>
-                        <div
-                          id="video-design"
-                          className="accordion-collapse collapse"
-                          aria-labelledby="headingOne"
-                          data-bs-parent="#accordionExample"
-                        >
-                          <div className="accordion-body">
-                            {/* <!-- level two of departments list -->*/}
-
-                            <ul className="deps">
-                              {/*<!-- programing languages -->*/}
-
-                              <li>
-                                <div className="department-header">
-                                  <div className="dep_name">
-                                    <button
-                                      className="accordion-button collapsed"
-                                      type="button"
-                                      data-bs-toggle="collapse"
-                                      data-bs-target="#programing-languages"
-                                      aria-expanded="true"
-                                      aria-controls="programing-languages"
-                                    >
-                                      <span className="horizontal"></span>
-                                      <span className="vertical"></span>
-                                    </button>
-                                    لغات البرمجة
-                                  </div>
-                                  <input
-                                    type="checkbox"
-                                    name="sub_department"
-                                    id="sub_department"
-                                  />
-                                </div>
-                                <div
-                                  id="programing-languages"
-                                  className="accordion-collapse collapse"
-                                  aria-labelledby="headingOne"
-                                  data-bs-parent="#accordionExample"
-                                >
-                                  <div className="accordion-body">
-                                    {/*<!-- level three of departments level -->*/}
-
-                                    <ul className="deps">
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة CSS و HTML
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة PHP
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة بايثون
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة Java و .NET
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </li>
-                              {/*<!-- wordpress -->*/}
-
-                              <li>
-                                <div className="department-header">
-                                  <div className="dep_name">
-                                    <button
-                                      className="accordion-button collapsed"
-                                      type="button"
-                                      data-bs-toggle="collapse"
-                                      data-bs-target="#wordpress"
-                                      aria-expanded="true"
-                                      aria-controls="wordpress"
-                                    >
-                                      <span className="horizontal"></span>
-                                      <span className="vertical"></span>
-                                    </button>
-                                    خدمات ووردبريس
-                                  </div>
-                                  <input
-                                    type="checkbox"
-                                    name="sub_department"
-                                    id="sub_department"
-                                  />
-                                </div>
-                                <div
-                                  id="wordpress"
-                                  className="accordion-collapse collapse"
-                                  aria-labelledby="headingOne"
-                                  data-bs-parent="#accordionExample"
-                                >
-                                  <div className="accordion-body">
-                                    {/* <!-- level three of departments level -->*/}
-
-                                    <ul className="deps">
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة CSS و HTML
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة PHP
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة بايثون
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة Java و .NET
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </li>
-                              {/* <!-- e-commerce -->*/}
-
-                              <li>
-                                <div className="department-header">
-                                  <div className="dep_name">
-                                    <button
-                                      className="accordion-button collapsed"
-                                      type="button"
-                                      data-bs-toggle="collapse"
-                                      data-bs-target="#ecommerce"
-                                      aria-expanded="true"
-                                      aria-controls="ecommerce"
-                                    >
-                                      <span className="horizontal"></span>
-                                      <span className="vertical"></span>
-                                    </button>
-                                    تطوير متاجر إلكترونية
-                                  </div>
-                                  <input
-                                    type="checkbox"
-                                    name="sub_department"
-                                    id="sub_department"
-                                  />
-                                </div>
-                                <div
-                                  id="ecommerce"
-                                  className="accordion-collapse collapse"
-                                  aria-labelledby="headingOne"
-                                  data-bs-parent="#accordionExample"
-                                >
-                                  <div className="accordion-body">
-                                    {/*  <!-- level three of departments level -->*/}
-
-                                    <ul className="deps">
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة CSS و HTML
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة PHP
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة بايثون
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة Java و .NET
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </li>
-
-                              {/* <!-- mobile apllication -->*/}
-
-                              <li>
-                                <div className="department-header">
-                                  <div className="dep_name">
-                                    <button
-                                      className="accordion-button collapsed"
-                                      type="button"
-                                      data-bs-toggle="collapse"
-                                      data-bs-target="#app-dev"
-                                      aria-expanded="true"
-                                      aria-controls="app-dev"
-                                    >
-                                      <span className="horizontal"></span>
-                                      <span className="vertical"></span>
-                                    </button>
-                                    برمجة تطبيقات الجوال
-                                  </div>
-                                  <input
-                                    type="checkbox"
-                                    name="sub_department"
-                                    id="sub_department"
-                                  />
-                                </div>
-                                <div
-                                  id="app-dev"
-                                  className="accordion-collapse collapse"
-                                  aria-labelledby="headingOne"
-                                  data-bs-parent="#accordionExample"
-                                >
-                                  <div className="accordion-body">
-                                    {/* <!-- level three of departments level -->*/}
-
-                                    <ul className="deps">
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة CSS و HTML
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة PHP
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة بايثون
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة Java و .NET
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </li>
-
-                      {/* <!-- remote learning department -->*/}
-
-                      <li>
-                        <div className="department-header">
-                          <div className="dep_name">
-                            <button
-                              className="accordion-button collapsed"
-                              type="button"
-                              data-bs-toggle="collapse"
-                              data-bs-target="#remote-learning"
-                              aria-expanded="true"
-                              aria-controls="remote-learning"
-                            >
-                              <span className="horizontal"></span>
-                              <span className="vertical"></span>
-                            </button>
-                            تعليم عن بعد
-                          </div>
-                          <input
-                            type="checkbox"
-                            name="department"
-                            id="department"
-                          />
-                        </div>
-                        <div
-                          id="remote-learning"
-                          className="accordion-collapse collapse"
-                          aria-labelledby="headingOne"
-                          data-bs-parent="#accordionExample"
-                        >
-                          <div className="accordion-body">
-                            {/* <!-- level two of departments list -->s*/}
-
-                            <ul className="deps">
-                              {/*  <!-- programing languages --> */}
-
-                              <li>
-                                <div className="department-header">
-                                  <div className="dep_name">
-                                    <button
-                                      className="accordion-button collapsed"
-                                      type="button"
-                                      data-bs-toggle="collapse"
-                                      data-bs-target="#programing-languages"
-                                      aria-expanded="true"
-                                      aria-controls="programing-languages"
-                                    >
-                                      <span className="horizontal"></span>
-                                      <span className="vertical"></span>
-                                    </button>
-                                    لغات البرمجة
-                                  </div>
-                                  <input
-                                    type="checkbox"
-                                    name="sub_department"
-                                    id="sub_department"
-                                  />
-                                </div>
-                                <div
-                                  id="programing-languages"
-                                  className="accordion-collapse collapse"
-                                  aria-labelledby="headingOne"
-                                  data-bs-parent="#accordionExample"
-                                >
-                                  <div className="accordion-body">
-                                    {/* <!-- level three of departments level -->*/}
-
-                                    <ul className="deps">
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة CSS و HTML
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة PHP
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة بايثون
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة Java و .NET
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </li>
-                              {/* <!-- wordpress -->*/}
-
-                              <li>
-                                <div className="department-header">
-                                  <div className="dep_name">
-                                    <button
-                                      className="accordion-button collapsed"
-                                      type="button"
-                                      data-bs-toggle="collapse"
-                                      data-bs-target="#wordpress"
-                                      aria-expanded="true"
-                                      aria-controls="wordpress"
-                                    >
-                                      <span className="horizontal"></span>
-                                      <span className="vertical"></span>
-                                    </button>
-                                    خدمات ووردبريس
-                                  </div>
-                                  <input
-                                    type="checkbox"
-                                    name="sub_department"
-                                    id="sub_department"
-                                  />
-                                </div>
-                                <div
-                                  id="wordpress"
-                                  className="accordion-collapse collapse"
-                                  aria-labelledby="headingOne"
-                                  data-bs-parent="#accordionExample"
-                                >
-                                  <div className="accordion-body">
-                                    {/*<!-- level three of departments level --> */}
-
-                                    <ul className="deps">
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة CSS و HTML
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة PHP
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة بايثون
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة Java و .NET
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </li>
-                              {/*<!-- e-commerce --> */}
-
-                              <li>
-                                <div className="department-header">
-                                  <div className="dep_name">
-                                    <button
-                                      className="accordion-button collapsed"
-                                      type="button"
-                                      data-bs-toggle="collapse"
-                                      data-bs-target="#ecommerce"
-                                      aria-expanded="true"
-                                      aria-controls="ecommerce"
-                                    >
-                                      <span className="horizontal"></span>
-                                      <span className="vertical"></span>
-                                    </button>
-                                    تطوير متاجر إلكترونية
-                                  </div>
-                                  <input
-                                    type="checkbox"
-                                    name="sub_department"
-                                    id="sub_department"
-                                  />
-                                </div>
-                                <div
-                                  id="ecommerce"
-                                  className="accordion-collapse collapse"
-                                  aria-labelledby="headingOne"
-                                  data-bs-parent="#accordionExample"
-                                >
-                                  <div className="accordion-body">
-                                    {/*<!-- level three of departments level --> */}
-
-                                    <ul className="deps">
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة CSS و HTML
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة PHP
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة بايثون
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة Java و .NET
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </li>
-                              {/* <!-- mobile apllication -->*/}
-                              <li>
-                                <div className="department-header">
-                                  <div className="dep_name">
-                                    <button
-                                      className="accordion-button collapsed"
-                                      type="button"
-                                      data-bs-toggle="collapse"
-                                      data-bs-target="#app-dev"
-                                      aria-expanded="true"
-                                      aria-controls="app-dev"
-                                    >
-                                      <span className="horizontal"></span>
-                                      <span className="vertical"></span>
-                                    </button>
-                                    برمجة تطبيقات الجوال
-                                  </div>
-                                  <input
-                                    type="checkbox"
-                                    name="sub_department"
-                                    id="sub_department"
-                                  />
-                                </div>
-                                <div
-                                  id="app-dev"
-                                  className="accordion-collapse collapse"
-                                  aria-labelledby="headingOne"
-                                  data-bs-parent="#accordionExample"
-                                >
-                                  <div className="accordion-body">
-                                    {/*<!-- level three of departments level --> */}
-
-                                    <ul className="deps">
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة CSS و HTML
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة PHP
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة بايثون
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة Java و .NET
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </li>
-
-                      {/* <!-- digital marketing department -->*/}
-
-                      <li>
-                        <div className="department-header">
-                          <div className="dep_name">
-                            <button
-                              className="accordion-button collapsed"
-                              type="button"
-                              data-bs-toggle="collapse"
-                              data-bs-target="#digital-marketing"
-                              aria-expanded="true"
-                              aria-controls="digital-marketing"
-                            >
-                              <span className="horizontal"></span>
-                              <span className="vertical"></span>
-                            </button>
-                            التسويق الإلكتروني
-                          </div>
-                          <input
-                            type="checkbox"
-                            name="department"
-                            id="department"
-                          />
-                        </div>
-                        <div
-                          id="digital-marketing"
-                          className="accordion-collapse collapse"
-                          aria-labelledby="headingOne"
-                          data-bs-parent="#accordionExample"
-                        >
-                          <div className="accordion-body">
-                            {/* <!-- level two of departments list -->*/}
-
-                            <ul className="deps">
-                              {/*  <!-- programing languages -->*/}
-
-                              <li>
-                                <div className="department-header">
-                                  <div className="dep_name">
-                                    <button
-                                      className="accordion-button collapsed"
-                                      type="button"
-                                      data-bs-toggle="collapse"
-                                      data-bs-target="#programing-languages"
-                                      aria-expanded="true"
-                                      aria-controls="programing-languages"
-                                    >
-                                      <span className="horizontal"></span>
-                                      <span className="vertical"></span>
-                                    </button>
-                                    لغات البرمجة
-                                  </div>
-                                  <input
-                                    type="checkbox"
-                                    name="sub_department"
-                                    id="sub_department"
-                                  />
-                                </div>
-                                <div
-                                  id="programing-languages"
-                                  className="accordion-collapse collapse"
-                                  aria-labelledby="headingOne"
-                                  data-bs-parent="#accordionExample"
-                                >
-                                  <div className="accordion-body">
-                                    {/*<!-- level three of departments level --> */}
-
-                                    <ul className="deps">
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة CSS و HTML
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة PHP
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة بايثون
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة Java و .NET
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </li>
-                              {/* <!-- wordpress -->*/}
-
-                              <li>
-                                <div className="department-header">
-                                  <div className="dep_name">
-                                    <button
-                                      className="accordion-button collapsed"
-                                      type="button"
-                                      data-bs-toggle="collapse"
-                                      data-bs-target="#wordpress"
-                                      aria-expanded="true"
-                                      aria-controls="wordpress"
-                                    >
-                                      <span className="horizontal"></span>
-                                      <span className="vertical"></span>
-                                    </button>
-                                    خدمات ووردبريس
-                                  </div>
-                                  <input
-                                    type="checkbox"
-                                    name="sub_department"
-                                    id="sub_department"
-                                  />
-                                </div>
-                                <div
-                                  id="wordpress"
-                                  className="accordion-collapse collapse"
-                                  aria-labelledby="headingOne"
-                                  data-bs-parent="#accordionExample"
-                                >
-                                  <div className="accordion-body">
-                                    {/* <!-- level three of departments level -->*/}
-
-                                    <ul className="deps">
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة CSS و HTML
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة PHP
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة بايثون
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة Java و .NET
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </li>
-                              {/*<!-- e-commerce --> */}
-
-                              <li>
-                                <div className="department-header">
-                                  <div className="dep_name">
-                                    <button
-                                      className="accordion-button collapsed"
-                                      type="button"
-                                      data-bs-toggle="collapse"
-                                      data-bs-target="#ecommerce"
-                                      aria-expanded="true"
-                                      aria-controls="ecommerce"
-                                    >
-                                      <span className="horizontal"></span>
-                                      <span className="vertical"></span>
-                                    </button>
-                                    تطوير متاجر إلكترونية
-                                  </div>
-                                  <input
-                                    type="checkbox"
-                                    name="sub_department"
-                                    id="sub_department"
-                                  />
-                                </div>
-                                <div
-                                  id="ecommerce"
-                                  className="accordion-collapse collapse"
-                                  aria-labelledby="headingOne"
-                                  data-bs-parent="#accordionExample"
-                                >
-                                  <div className="accordion-body">
-                                    {/* <!-- level three of departments level -->*/}
-
-                                    <ul className="deps">
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة CSS و HTML
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة PHP
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة بايثون
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة Java و .NET
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </li>
-
-                              {/* <!-- mobile apllication -->*/}
-
-                              <li>
-                                <div className="department-header">
-                                  <div className="dep_name">
-                                    <button
-                                      className="accordion-button collapsed"
-                                      type="button"
-                                      data-bs-toggle="collapse"
-                                      data-bs-target="#app-dev"
-                                      aria-expanded="true"
-                                      aria-controls="app-dev"
-                                    >
-                                      <span className="horizontal"></span>
-                                      <span className="vertical"></span>
-                                    </button>
-                                    برمجة تطبيقات الجوال
-                                  </div>
-                                  <input
-                                    type="checkbox"
-                                    name="sub_department"
-                                    id="sub_department"
-                                  />
-                                </div>
-                                <div
-                                  id="app-dev"
-                                  className="accordion-collapse collapse"
-                                  aria-labelledby="headingOne"
-                                  data-bs-parent="#accordionExample"
-                                >
-                                  <div className="accordion-body">
-                                    {/* <!-- level three of departments level -->
-                                     */}
-                                    <ul className="deps">
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة CSS و HTML
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة PHP
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة بايثون
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة Java و .NET
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </li>
-
-                      {/*<!-- project managemnet department --> */}
-
-                      <li>
-                        <div className="department-header">
-                          <div className="dep_name">
-                            <button
-                              className="accordion-button collapsed"
-                              type="button"
-                              data-bs-toggle="collapse"
-                              data-bs-target="#works"
-                              aria-expanded="true"
-                              aria-controls="works"
-                            >
-                              <span className="horizontal"></span>
-                              <span className="vertical"></span>
-                            </button>
-                            أعمال
-                          </div>
-                          <input
-                            type="checkbox"
-                            name="department"
-                            id="department"
-                          />
-                        </div>
-                        <div
-                          id="works"
-                          className="accordion-collapse collapse"
-                          aria-labelledby="headingOne"
-                          data-bs-parent="#accordionExample"
-                        >
-                          <div className="accordion-body">
-                            {/* <!-- level two of departments list -->*/}
-                            <ul className="deps">
-                              {/* -- programing languages -->*/}
-
-                              <li>
-                                <div className="department-header">
-                                  <div className="dep_name">
-                                    <button
-                                      className="accordion-button collapsed"
-                                      type="button"
-                                      data-bs-toggle="collapse"
-                                      data-bs-target="#programing-languages"
-                                      aria-expanded="true"
-                                      aria-controls="programing-languages"
-                                    >
-                                      <span className="horizontal"></span>
-                                      <span className="vertical"></span>
-                                    </button>
-                                    لغات البرمجة
-                                  </div>
-                                  <input
-                                    type="checkbox"
-                                    name="sub_department"
-                                    id="sub_department"
-                                  />
-                                </div>
-                                <div
-                                  id="programing-languages"
-                                  className="accordion-collapse collapse"
-                                  aria-labelledby="headingOne"
-                                  data-bs-parent="#accordionExample"
-                                >
-                                  <div className="accordion-body">
-                                    {/*<!-- level three of departments level --> */}
-
-                                    <ul className="deps">
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة CSS و HTML
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة PHP
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة بايثون
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة Java و .NET
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </li>
-
-                              {/* <!-- wordpress -->*/}
-
-                              <li>
-                                <div className="department-header">
-                                  <div className="dep_name">
-                                    <button
-                                      className="accordion-button collapsed"
-                                      type="button"
-                                      data-bs-toggle="collapse"
-                                      data-bs-target="#wordpress"
-                                      aria-expanded="true"
-                                      aria-controls="wordpress"
-                                    >
-                                      <span className="horizontal"></span>
-                                      <span className="vertical"></span>
-                                    </button>
-                                    خدمات ووردبريس
-                                  </div>
-                                  <input
-                                    type="checkbox"
-                                    name="sub_department"
-                                    id="sub_department"
-                                  />
-                                </div>
-                                <div
-                                  id="wordpress"
-                                  className="accordion-collapse collapse"
-                                  aria-labelledby="headingOne"
-                                  data-bs-parent="#accordionExample"
-                                >
-                                  <div className="accordion-body">
-                                    {/* <!-- level three of departments level -->*/}
-
-                                    <ul className="deps">
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة CSS و HTML
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة PHP
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة بايثون
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة Java و .NET
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </li>
-                              {/*<!-- e-commerce --> */}
-
-                              <li>
-                                <div className="department-header">
-                                  <div className="dep_name">
-                                    <button
-                                      className="accordion-button collapsed"
-                                      type="button"
-                                      data-bs-toggle="collapse"
-                                      data-bs-target="#ecommerce"
-                                      aria-expanded="true"
-                                      aria-controls="ecommerce"
-                                    >
-                                      <span className="horizontal"></span>
-                                      <span className="vertical"></span>
-                                    </button>
-                                    تطوير متاجر إلكترونية
-                                  </div>
-                                  <input
-                                    type="checkbox"
-                                    name="sub_department"
-                                    id="sub_department"
-                                  />
-                                </div>
-                                <div
-                                  id="ecommerce"
-                                  className="accordion-collapse collapse"
-                                  aria-labelledby="headingOne"
-                                  data-bs-parent="#accordionExample"
-                                >
-                                  <div className="accordion-body">
-                                    {/* !-- level three of departments level -->*/}
-
-                                    <ul className="deps">
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة CSS و HTML
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة PHP
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة بايثون
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة Java و .NET
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </li>
-                              {/*<!-- mobile apllication -->*/}
-                              <li>
-                                <div className="department-header">
-                                  <div className="dep_name">
-                                    <button
-                                      className="accordion-button collapsed"
-                                      type="button"
-                                      data-bs-toggle="collapse"
-                                      data-bs-target="#app-dev"
-                                      aria-expanded="true"
-                                      aria-controls="app-dev"
-                                    >
-                                      <span className="horizontal"></span>
-                                      <span className="vertical"></span>
-                                    </button>
-                                    برمجة تطبيقات الجوال
-                                  </div>
-                                  <input
-                                    type="checkbox"
-                                    name="sub_department"
-                                    id="sub_department"
-                                  />
-                                </div>
-                                <div
-                                  id="app-dev"
-                                  className="accordion-collapse collapse"
-                                  aria-labelledby="headingOne"
-                                  data-bs-parent="#accordionExample"
-                                >
-                                  <div className="accordion-body">
-                                    {/* <!-- level three of departments level -->*/}
-
-                                    <ul className="deps">
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة CSS و HTML
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة PHP
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة بايثون
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                      <li>
-                                        <div className="department-header">
-                                          <div className="dep_name">
-                                            برمجة Java و .NET
-                                          </div>
-                                          <input
-                                            type="checkbox"
-                                            name="sub_sub_department"
-                                            id="sub_sub_department"
-                                          />
-                                        </div>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                  {/*<!-- filter by rate_range --> */}
-
-                  <ul className="rate-range">
-                    <h6>تقييم الخدمة</h6>
-                    <li>
-                      <input
-                        type="radio"
-                        name="rate-range"
-                        id="rate-range"
-                        checked
-                      />
-                      <ul className="stars">
-                        <li className="star">
-                          <i className="fa-solid fa-star"></i>
-                        </li>
-                        <li className="star">
-                          <i className="fa-solid fa-star"></i>
-                        </li>
-                        <li className="star">
-                          <i className="fa-solid fa-star"></i>
-                        </li>
-                        <li className="star">
-                          <i className="fa-solid fa-star"></i>
-                        </li>
-                        <li className="star">
-                          <i className="fa-solid fa-star"></i>
-                        </li>
-                      </ul>
-                    </li>
-                    <li>
-                      <input type="radio" name="rate-range" id="rate-range" />
-
-                      <ul className="stars">
-                        <li className="star">
-                          <i className="fa-solid fa-star"></i>
-                        </li>
-                        <li className="star">
-                          <i className="fa-solid fa-star"></i>
-                        </li>
-                        <li className="star">
-                          <i className="fa-solid fa-star"></i>
-                        </li>
-                        <li className="star">
-                          <i className="fa-solid fa-star"></i>
-                        </li>
-                        <li>
-                          <i className="fa-solid fa-star"></i>
-                        </li>
-                      </ul>
-                      <span>او اكثر</span>
-                    </li>
-                    <li>
-                      <input type="radio" name="rate-range" id="rate-range" />
-                      <ul className="stars">
-                        <li className="star">
-                          <i className="fa-solid fa-star"></i>
-                        </li>
-                        <li className="star">
-                          <i className="fa-solid fa-star"></i>
-                        </li>
-                        <li className="star">
-                          <i className="fa-solid fa-star"></i>
-                        </li>
-                        <li>
-                          <i className="fa-solid fa-star"></i>
-                        </li>
-                        <li>
-                          <i className="fa-solid fa-star"></i>
-                        </li>
-                      </ul>
-                      <span>او اكثر</span>
-                    </li>
-                    <li>
-                      <input type="radio" name="rate-range" id="rate-range" />
-                      <ul className="stars">
-                        <li className="star">
-                          <i className="fa-solid fa-star"></i>
-                        </li>
-                        <li className="star">
-                          <i className="fa-solid fa-star"></i>
-                        </li>
-                        <li>
-                          <i className="fa-solid fa-star"></i>
-                        </li>
-                        <li>
-                          <i className="fa-solid fa-star"></i>
-                        </li>
-                        <li>
-                          <i className="fa-solid fa-star"></i>
-                        </li>
-                      </ul>
-                      <span>او اكثر</span>
-                    </li>
-                    <li>
-                      <input type="radio" name="rate-range" id="rate-range" />
-                      <ul className="stars">
-                        <li className="star">
-                          <i className="fa-solid fa-star"></i>
-                        </li>
-                        <li>
-                          <i className="fa-solid fa-star"></i>
-                        </li>
-                        <li>
-                          <i className="fa-solid fa-star"></i>
-                        </li>
-                        <li>
-                          <i className="fa-solid fa-star"></i>
-                        </li>
-                        <li>
-                          <i className="fa-solid fa-star"></i>
-                        </li>
-                      </ul>
-                      <span>او اكثر</span>
-                    </li>
-                  </ul>
-                  {/* <!-- filter by seller_level -->*/}
-
-                  <ul className="seller-level">
-                    <h6>مستوى البائع</h6>
-                    <ul>
-                      <li>
-                        <input type="checkbox" id="featured-seller" checked />
-                        <label htmlFor="featured-seller">بائع مميز</label>
-                      </li>
-                      <li>
-                        <input type="checkbox" id="active-seller" />
-                        <label htmlFor="active-seller">بائع نشيط</label>
-                      </li>
-                      <li>
-                        <input type="checkbox" id="new-seller" />
-                        <label htmlFor="new-seller">بائع جديد</label>
-                      </li>
-                    </ul>
-                  </ul>
-                  {/*<!-- filter by seller_status --> */}
-
-                  <ul className="seller-level">
-                    <h6>حالة البائع</h6>
-                    <ul>
-                      <li>
-                        <input type="checkbox" id="verified-seller" checked />
-                        <label htmlFor="verified-seller">هوية موثقة</label>
-                      </li>
-                      <li>
-                        <input type="checkbox" id="available-seller" />
-                        <label htmlFor="available-seller">متواجد حالياً</label>
-                      </li>
-                    </ul>
-                  </ul>
-                </form>
+    <section className="search-section">
+      <div className="container">
+        <div className="row">
+          <aside
+            className={`col-lg-3 side-menu ${isFilterOpen ? "active" : ""}`}
+          >
+            <div className="filter-wrap">
+              <div className="colse" onClick={() => setIsFilterOpen(false)}>
+                <i className="fa-light fa-xmark"></i>
               </div>
-            </aside>
-            <div className="small-filter-header">
-              <h6>نتائج البحث</h6>
-              <button className="openfilter">
-                <i className="fa-light fa-sliders"></i>
-              </button>
-            </div>
-            <div className="col-lg-9 col-12 p-2 results-wrapper">
-              <div className="container">
-                <div className="row">
-                  {/*<!-- service -->*/}
-
-                  <div className="col-lg-4 col-6 mb-4">
-                    <div className="service-card">
-                      <Link to="/services" className="img">
-                        <img src={bann} alt="" />
-                      </Link>
-                      <div className="content">
-                        <h6>اصنع لك تطبيق متجر الكتروني باستخدام flutter...</h6>
-                        <p>
-                          <Link to="#!">برمجة وتطوير</Link> /
-                          <span>إنشاء تطبيق</span>
-                        </p>
-                        <div className="d-flex gap-3">
-                          <div className="rate">
-                            <ul>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li>
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                            </ul>
-                          </div>
-                          <span className="sell-count">( 4 )</span>
-                        </div>
-                        <h6 className="start-from">
-                          تبدأ من : <b>10.00$</b>
-                        </h6>
-                      </div>
-                    </div>
-                  </div>
-                  {/*<!-- service -->*/}
-
-                  <div className="col-lg-4 col-6 mb-4">
-                    <div className="service-card">
-                      <Link to="/services" className="img">
-                        <img src={bann} alt="" />
-                      </Link>
-                      <div className="content">
-                        <h6>اصنع لك تطبيق متجر الكتروني باستخدام flutter...</h6>
-                        <p>
-                          <Link to="#!">برمجة وتطوير</Link> /
-                          <span>إنشاء تطبيق</span>
-                        </p>
-                        <div className="d-flex gap-3">
-                          <div className="rate">
-                            <ul>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li>
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                            </ul>
-                          </div>
-                          <span className="sell-count">( 4 )</span>
-                        </div>
-                        <h6 className="start-from">
-                          تبدأ من : <b>10.00$</b>
-                        </h6>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/*<!-- service --> */}
-
-                  <div className="col-lg-4 col-6 mb-4">
-                    <div className="service-card">
-                      <Link to="/services" className="img">
-                        <img src={bann} alt="" />
-                      </Link>
-                      <div className="content">
-                        <h6>اصنع لك تطبيق متجر الكتروني باستخدام flutter...</h6>
-                        <p>
-                          <Link to="#!">برمجة وتطوير</Link> /
-                          <span>إنشاء تطبيق</span>
-                        </p>
-                        <div className="d-flex gap-3">
-                          <div className="rate">
-                            <ul>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li>
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                            </ul>
-                          </div>
-                          <span className="sell-count">( 4 )</span>
-                        </div>
-                        <h6 className="start-from">
-                          تبدأ من : <b>10.00$</b>
-                        </h6>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/*<!-- service --> */}
-                  <div className="col-lg-4 col-6 mb-4">
-                    <div className="service-card">
-                      <Link to="/services" className="img">
-                        <img src={bann} alt="" />
-                      </Link>
-                      <div className="content">
-                        <h6>اصنع لك تطبيق متجر الكتروني باستخدام flutter...</h6>
-                        <p>
-                          <Link to="#!">برمجة وتطوير</Link> /
-                          <span>إنشاء تطبيق</span>
-                        </p>
-                        <div className="d-flex gap-3">
-                          <div className="rate">
-                            <ul>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li>
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                            </ul>
-                          </div>
-                          <span className="sell-count">( 4 )</span>
-                        </div>
-                        <h6 className="start-from">
-                          تبدأ من : <b>10.00$</b>
-                        </h6>
-                      </div>
-                    </div>
-                  </div>
-                  {/*!-- service --> */}
-                  <div className="col-lg-4 col-6 mb-4">
-                    <div className="service-card">
-                      <Link to="Services" className="img">
-                        <img src={bann} alt="" />
-                      </Link>
-                      <div className="content">
-                        <h6>اصنع لك تطبيق متجر الكتروني باستخدام flutter...</h6>
-                        <p>
-                          <Link to="#!">برمجة وتطوير</Link> /
-                          <span>إنشاء تطبيق</span>
-                        </p>
-                        <div className="d-flex gap-3">
-                          <div className="rate">
-                            <ul>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li>
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                            </ul>
-                          </div>
-                          <span className="sell-count">( 4 )</span>
-                        </div>
-                        <h6 className="start-from">
-                          تبدأ من : <b>10.00$</b>
-                        </h6>
-                      </div>
-                    </div>
-                  </div>
+              <form onSubmit={handleSubmit}>
+                <InputField
+                  id="aside-search-input"
+                  name="search"
+                  className="aside-search-input"
+                  value={searchFilterData.search}
+                  onChange={handleChange}
+                  placeholder={t("home.searchPlaceHolder")}
+                />
+                <DepartmentFilterBox
+                  categoriesValue={searchFilterData.categories}
+                  sub_categoriesValue={searchFilterData.sub_categories}
+                  onChange={handleChange}
+                  departmentFilter={departmentFilter}
+                />
+                <hr />
+                <RatingFilterBox
+                  value={searchFilterData.rate}
+                  onChange={handleChange}
+                />
+                <hr />
+                <SellerFilterBox />
+                <hr />
+                <SellerStatusFilterBox
+                  user_available={searchFilterData.user_available}
+                  user_verification={searchFilterData.user_verification}
+                  onChange={handleChange}
+                />
+                <div className="search-btn">
+                  <button onClick={handleApplyFilters}>تأكيد</button>
                 </div>
+              </form>
+            </div>
+          </aside>
+          <div className="small-filter-header">
+            <h6>نتائج البحث</h6>
+            <button
+              className="openfilter"
+              onClick={() => setIsFilterOpen(true)}
+            >
+              <i className="fa-light fa-sliders"></i>
+            </button>
+          </div>
+          <div className="col-lg-9 col-12 p-2 results-wrapper">
+            <div className="container">
+              <div className="row">
+                {data &&
+                  data.data.map((service) => (
+                    <div className="col-lg-4 col-6 p-2" key={service.id}>
+                      <ServiceCard service={service} />
+                    </div>
+                  ))}
               </div>
             </div>
           </div>
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
   );
 };
 

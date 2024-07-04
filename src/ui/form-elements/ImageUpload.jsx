@@ -1,10 +1,16 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import avatar from "../../Assets/images/userImg.svg";
 
-const ImageUpload = ({ formData, setFormData }) => {
+const ImageUpload = ({ formData, setFormData, image }) => {
   const { t } = useTranslation();
   const imgView = useRef(null);
+
+  useEffect(() => {
+    if (image) {
+      imgView.current.src = image;
+    }
+  }, [image]);
 
   const handleUpload = (e) => {
     imgView.current.src = URL.createObjectURL(e.target.files[0]);

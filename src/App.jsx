@@ -29,9 +29,9 @@ import Requests from "./routes/Requests";
 import Services from "./routes/Services";
 import Search from "./routes/Search";
 import Logout from "./features/auth/Logout";
-import Profile from "./routes/Profile";
 import Cart from "./routes/Cart";
-import EditProfile from "./routes/EditProfile";
+import Profile from "./features/profile/Profile";
+import EditProfile from "./features/profile/EditProfile";
 import AddServices from "./routes/AddServices";
 import EditServices from "./routes/EditServices";
 import Notifcations from "./routes/Notifcations";
@@ -45,8 +45,9 @@ function App() {
 
   useEffect(() => {
     if (decodedToken && !isExpired) {
+      const userId = decodedToken.sub;
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      const user = axios.get("/user/get_profile");
+      const user = axios.get(`/user/get_profile?id=${userId}`);
       user
         .then((res) => {
           if (res.data.code === 200) {
@@ -104,8 +105,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/forget-password" element={<ForgetPassword />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/profile/edit" element={<EditProfile />} />
-          <Route path="/Cart" element={<Cart />} />
+          <Route path="/edit-profile" element={<EditProfile />} />
           <Route path="/Cart" element={<Cart />} />
           <Route path="/notifications" element={<Notifcations />} />
 
