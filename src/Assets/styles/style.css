@@ -347,7 +347,7 @@ body header .tnavbar .loged-in-minor-menu .link .btn img {
   width: 40px;
   height: 40px;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
 }
 body header .tnavbar .loged-in-minor-menu .link .dropdown-menu {
   padding: 0 !important;
@@ -363,23 +363,12 @@ body header .tnavbar .loged-in-minor-menu .link .dropdown-menu {
   bottom: unset !important;
   border-radius: 16px !important;
 }
-body
-  header
-  .tnavbar
-  .loged-in-minor-menu
-  .link
-  .dropdown-menu.search-dropdown-menu {
+body header .tnavbar .loged-in-minor-menu .link .dropdown-menu.search-dropdown-menu {
   width: 100vw;
   top: 100% !important;
   border-radius: 0 !important;
 }
-body
-  header
-  .tnavbar
-  .loged-in-minor-menu
-  .link
-  .dropdown-menu.search-dropdown-menu
-  a {
+body header .tnavbar .loged-in-minor-menu .link .dropdown-menu.search-dropdown-menu a {
   width: 100% !important;
 }
 body header .tnavbar .loged-in-minor-menu .link .dropdown-menu .dropdown-item {
@@ -390,62 +379,27 @@ body header .tnavbar .loged-in-minor-menu .link .dropdown-menu .dropdown-item {
   align-items: center;
   color: var(--black-color);
 }
-body
-  header
-  .tnavbar
-  .loged-in-minor-menu
-  .link
-  .dropdown-menu
-  .dropdown-item
-  a {
+body header .tnavbar .loged-in-minor-menu .link .dropdown-menu .dropdown-item a {
   display: flex !important;
   gap: 12px;
   font-size: 14px;
   align-items: center;
   width: 100%;
 }
-body
-  header
-  .tnavbar
-  .loged-in-minor-menu
-  .link
-  .dropdown-menu
-  .dropdown-item
-  .text-wrap {
+body header .tnavbar .loged-in-minor-menu .link .dropdown-menu .dropdown-item .text-wrap {
   flex: 1 0 0;
 }
-body
-  header
-  .tnavbar
-  .loged-in-minor-menu
-  .link
-  .dropdown-menu
-  .dropdown-item
-  .text-wrap
-  p {
+body header .tnavbar .loged-in-minor-menu .link .dropdown-menu .dropdown-item .text-wrap p {
   text-align: start;
 }
-body
-  header
-  .tnavbar
-  .loged-in-minor-menu
-  .link
-  .dropdown-menu
-  .dropdown-item
-  i {
+body header .tnavbar .loged-in-minor-menu .link .dropdown-menu .dropdown-item i {
   width: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--main-color);
 }
-body
-  header
-  .tnavbar
-  .loged-in-minor-menu
-  .link
-  .dropdown-menu
-  .dropdown-item:hover {
+body header .tnavbar .loged-in-minor-menu .link .dropdown-menu .dropdown-item:hover {
   background: var(--gray-background) !important;
 }
 body header .tnavbar .loged-in-minor-menu .link .dropdown-menu .line {
@@ -480,7 +434,7 @@ body header .tnavbar .loged-in-minor-menu .link .dropdown-menu .image-wrap img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
 }
 body header .tnavbar .loged-in-minor-menu .link .dropdown-menu .text-wrap {
   display: flex;
@@ -493,14 +447,7 @@ body header .tnavbar .loged-in-minor-menu .link .dropdown-menu .text-wrap h6 {
   color: var(--black-color);
   line-height: 20px;
 }
-body
-  header
-  .tnavbar
-  .loged-in-minor-menu
-  .link
-  .dropdown-menu
-  .text-wrap
-  .time {
+body header .tnavbar .loged-in-minor-menu .link .dropdown-menu .text-wrap .time {
   font-size: 10px;
   color: var(--text-color);
   line-height: 20px;
@@ -510,14 +457,7 @@ body header .tnavbar .loged-in-minor-menu .link .dropdown-menu .text-wrap h5 {
   font-weight: bold;
   color: var(--black-color);
 }
-body
-  header
-  .tnavbar
-  .loged-in-minor-menu
-  .link
-  .dropdown-menu
-  .text-wrap
-  h5.me {
+body header .tnavbar .loged-in-minor-menu .link .dropdown-menu .text-wrap h5.me {
   color: var(--main-color);
 }
 body header .tnavbar .loged-in-minor-menu .link .dropdown-menu .text-wrap p {
@@ -525,14 +465,7 @@ body header .tnavbar .loged-in-minor-menu .link .dropdown-menu .text-wrap p {
   line-height: 18px;
   color: var(--text-color);
 }
-body
-  header
-  .tnavbar
-  .loged-in-minor-menu
-  .link
-  .dropdown-menu
-  .text-wrap
-  .message-number {
+body header .tnavbar .loged-in-minor-menu .link .dropdown-menu .text-wrap .message-number {
   width: 16px;
   height: 16px;
   font-size: 12px;
@@ -658,12 +591,7 @@ body main .hero_section .swiperControl .swiper-pagination {
   width: 27px;
   right: 10px;
 }
-body
-  main
-  .hero_section
-  .swiperControl
-  .swiper-pagination
-  .swiper-pagination-bullet {
+body main .hero_section .swiperControl .swiper-pagination .swiper-pagination-bullet {
   width: 8px;
   height: 8px;
   border-radius: 50%;
@@ -818,7 +746,7 @@ body main .hero_section .swiper .swiper-slide .img img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
 }
 body main .categories {
   padding: 40px 16px;
@@ -948,7 +876,7 @@ body main .profile-section .profile-descripe .banner .user-avatar {
 }
 body main .profile-section .profile-descripe .banner .user-avatar img {
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   width: 100%;
   height: 100%;
   border-radius: 50%;
@@ -1139,7 +1067,7 @@ body main .profile-section .tab-content .services_grid .workCard .img {
 body main .profile-section .tab-content .services_grid .workCard .img img {
   border-radius: 12px;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   width: 100%;
   height: 100%;
 }
@@ -1150,15 +1078,7 @@ body main .profile-section .tab-content .services_grid .workCard .img .icons {
   display: flex;
   gap: 8px;
 }
-body
-  main
-  .profile-section
-  .tab-content
-  .services_grid
-  .workCard
-  .img
-  .icons
-  button {
+body main .profile-section .tab-content .services_grid .workCard .img .icons button {
   border: none;
   background: none;
   outline: none;
@@ -1169,28 +1089,11 @@ body
   height: 36px;
   width: 36px;
 }
-body
-  main
-  .profile-section
-  .tab-content
-  .services_grid
-  .workCard
-  .img
-  .icons
-  button
-  svg {
+body main .profile-section .tab-content .services_grid .workCard .img .icons button svg {
   height: 16px;
   width: 16px;
 }
-body
-  main
-  .profile-section
-  .tab-content
-  .services_grid
-  .workCard
-  .img
-  .icons
-  button:nth-child(2) {
+body main .profile-section .tab-content .services_grid .workCard .img .icons button:nth-child(2) {
   background: red;
 }
 body main .profile-section .tab-content .services_grid .workCard h4 {
@@ -1276,16 +1179,11 @@ body main .service-details .service-content .swiper .swiper-slide .img video {
   width: 100%;
   aspect-ratio: 4/3;
   -o-object-position: center;
-  object-position: center;
+     object-position: center;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
 }
-body
-  main
-  .service-details
-  .service-content
-  .swiper
-  .swiper-pagination-fraction {
+body main .service-details .service-content .swiper .swiper-pagination-fraction {
   top: 12px !important;
   left: 12px !important;
   width: 100px !important;
@@ -1293,13 +1191,7 @@ body
   direction: ltr !important;
   color: #fff;
 }
-body
-  main
-  .service-details
-  .service-content
-  .swiper
-  .swiper-pagination-fraction
-  .swiper-pagination-current {
+body main .service-details .service-content .swiper .swiper-pagination-fraction .swiper-pagination-current {
   font-size: 24px;
   font-weight: bold;
 }
@@ -1337,127 +1229,51 @@ body main .service-details .service-content .content .service-owner-card {
   border-radius: 120px;
   z-index: 99;
 }
-body
-  main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .owner {
+body main .service-details .service-content .content .service-owner-card .owner {
   display: flex;
   align-items: center;
   gap: 16px;
 }
-body
-  main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .owner
-  .img {
+body main .service-details .service-content .content .service-owner-card .owner .img {
   width: 90px;
   height: 90px;
   border-radius: 50%;
   overflow: hidden;
 }
-body
-  main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .owner
-  .img
-  img {
+body main .service-details .service-content .content .service-owner-card .owner .img img {
   max-width: 100%;
 }
 @media (max-width: 576px) {
-  body
-    main
-    .service-details
-    .service-content
-    .content
-    .service-owner-card
-    .owner
-    .img {
+  body main .service-details .service-content .content .service-owner-card .owner .img {
     width: 70px;
     height: 70px;
   }
 }
-body
-  main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .owner
-  .title {
+body main .service-details .service-content .content .service-owner-card .owner .title {
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 5px;
 }
-body
-  main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .owner
-  .title
-  h6 {
+body main .service-details .service-content .content .service-owner-card .owner .title h6 {
   font-size: 22px;
   color: var(--black-color);
   font-weight: bold;
 }
 @media (max-width: 576px) {
-  body
-    main
-    .service-details
-    .service-content
-    .content
-    .service-owner-card
-    .owner
-    .title
-    h6 {
+  body main .service-details .service-content .content .service-owner-card .owner .title h6 {
     font-size: 18px;
   }
 }
-body
-  main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .owner
-  .title
-  span {
+body main .service-details .service-content .content .service-owner-card .owner .title span {
   color: var(--text-color);
   font-weight: 500;
 }
-body
-  main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .owner
-  .title
-  span
-  i {
+body main .service-details .service-content .content .service-owner-card .owner .title span i {
   color: var(--main-color);
 }
 @media (max-width: 576px) {
-  body
-    main
-    .service-details
-    .service-content
-    .content
-    .service-owner-card
-    .owner
-    .title
-    span {
+  body main .service-details .service-content .content .service-owner-card .owner .title span {
     font-size: 14px;
   }
 }
@@ -1468,14 +1284,7 @@ body main .service-details .service-content .content .service-owner-card .btns {
   gap: 18px;
   padding: 0 16px;
 }
-body
-  main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .btns
-  .butn {
+body main .service-details .service-content .content .service-owner-card .btns .butn {
   width: 40px;
   height: 40px;
   border: none;
@@ -1487,80 +1296,29 @@ body
   border-radius: 50%;
   color: #fff;
 }
-body
-  main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .btns
-  .butn
-  i {
+body main .service-details .service-content .content .service-owner-card .btns .butn i {
   font-size: 20px !important;
 }
-body
-  main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .btns
-  .dropdown
-  .dropdown-menu {
+body main .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu {
   background: var(--white-color);
   border: 1px solid var(--gray-background);
   padding: 32px;
 }
 @media (max-width: 576px) {
-  body
-    main
-    .service-details
-    .service-content
-    .content
-    .service-owner-card
-    .btns
-    .dropdown
-    .dropdown-menu {
+  body main .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu {
     padding: 16px 12px;
   }
 }
-body
-  main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .btns
-  .dropdown
-  .dropdown-menu
-  h5 {
+body main .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu h5 {
   margin-bottom: 20px;
   font-weight: 600;
   font-size: 16px;
 }
-body
-  main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .btns
-  .dropdown
-  .dropdown-menu
-  p {
+body main .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu p {
   color: var(--text-color);
   margin-bottom: 16px;
 }
-body
-  main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .btns
-  .dropdown
-  .dropdown-menu
-  .link {
+body main .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu .link {
   width: 100%;
   padding: 14px;
   background-color: var(--gray-background);
@@ -1570,17 +1328,7 @@ body
   border-radius: 16px;
   position: relative;
 }
-body
-  main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .btns
-  .dropdown
-  .dropdown-menu
-  .link
-  button {
+body main .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu .link button {
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -1591,75 +1339,22 @@ body
   background: none;
   outline: none;
 }
-body
-  main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .btns
-  .dropdown
-  .dropdown-menu
-  .link
-  button
-  i {
+body main .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu .link button i {
   color: var(--main-color);
 }
-body
-  main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .btns
-  .dropdown
-  .dropdown-menu
-  .link
-  button:hover {
+body main .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu .link button:hover {
   background: var(--main-color);
 }
-body
-  main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .btns
-  .dropdown
-  .dropdown-menu
-  .link
-  button:hover
-  i {
+body main .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu .link button:hover i {
   color: #fff;
 }
-body
-  main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .btns
-  .dropdown
-  .dropdown-menu
-  .link
-  span {
+body main .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu .link span {
   cursor: pointer;
   color: var(--text-color);
   font-size: 12px;
   position: relative;
 }
-body
-  main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .btns
-  .dropdown
-  .dropdown-menu
-  .link
-  span
-  .alert {
+body main .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu .link span .alert {
   position: absolute;
   background: var(--input-bg);
   padding: 4px 8px;
@@ -1670,20 +1365,9 @@ body
   transition: var(--main-transation);
   opacity: 0;
 }
-body
-  main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .btns
-  .dropdown
-  .dropdown-menu
-  .link
-  span
-  .alert::after {
+body main .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu .link span .alert::after {
   -webkit-clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+          clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
   width: 16px;
   height: 10px;
   background: var(--input-bg);
@@ -1693,44 +1377,16 @@ body
   transform: translateX(-50%);
   top: -10px;
 }
-body
-  main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .btns
-  .dropdown
-  .dropdown-menu
-  .social {
+body main .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu .social {
   display: flex;
   gap: 20px;
 }
 @media (max-width: 576px) {
-  body
-    main
-    .service-details
-    .service-content
-    .content
-    .service-owner-card
-    .btns
-    .dropdown
-    .dropdown-menu
-    .social {
+  body main .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu .social {
     gap: 16px;
   }
 }
-body
-  main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .btns
-  .dropdown
-  .dropdown-menu
-  .social
-  li {
+body main .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu .social li {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1738,18 +1394,7 @@ body
   gap: 8px;
   font-size: 14px;
 }
-body
-  main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .btns
-  .dropdown
-  .dropdown-menu
-  .social
-  li
-  a {
+body main .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu .social li a {
   width: 48px;
   height: 48px;
   border-radius: 50%;
@@ -1758,19 +1403,7 @@ body
   align-items: center;
   justify-content: center;
 }
-body
-  main
-  .service-details
-  .service-content
-  .content
-  .service-owner-card
-  .btns
-  .dropdown
-  .dropdown-menu
-  .social
-  li
-  a
-  i {
+body main .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu .social li a i {
   color: var(--main-color);
 }
 @media (max-width: 576px) {
@@ -1821,14 +1454,7 @@ body main .service-details .service-content .content .add-cart .input-field {
   gap: 16px;
   width: 100%;
 }
-body
-  main
-  .service-details
-  .service-content
-  .content
-  .add-cart
-  .input-field
-  button {
+body main .service-details .service-content .content .add-cart .input-field button {
   border: none;
   background: none;
   outline: none;
@@ -1840,25 +1466,10 @@ body
   align-items: center;
   justify-content: center;
 }
-body
-  main
-  .service-details
-  .service-content
-  .content
-  .add-cart
-  .input-field
-  button
-  i {
+body main .service-details .service-content .content .add-cart .input-field button i {
   color: var(--main-color);
 }
-body
-  main
-  .service-details
-  .service-content
-  .content
-  .add-cart
-  .input-field
-  input {
+body main .service-details .service-content .content .add-cart .input-field input {
   outline: none;
   text-align: center;
   width: 100%;
@@ -1868,27 +1479,13 @@ body
   color: var(--black-color);
   border-radius: 16px;
 }
-body
-  main
-  .service-details
-  .service-content
-  .content
-  .add-cart
-  .input-field
-  input::-webkit-outer-spin-button {
+body main .service-details .service-content .content .add-cart .input-field input::-webkit-outer-spin-button {
   -webkit-appearance: none;
-  appearance: none;
+          appearance: none;
 }
-body
-  main
-  .service-details
-  .service-content
-  .content
-  .add-cart
-  .input-field
-  input::-webkit-inner-spin-button {
+body main .service-details .service-content .content .add-cart .input-field input::-webkit-inner-spin-button {
   -webkit-appearance: none;
-  appearance: none;
+          appearance: none;
 }
 body main .service-details .service-content .content .add-cart .total {
   width: 100%;
@@ -2130,26 +1727,14 @@ body main .chat-section .chat-container .inner-container .message .time {
 body main .chat-section .chat-container .inner-container .message.sent-message {
   justify-content: flex-end;
 }
-body
-  main
-  .chat-section
-  .chat-container
-  .inner-container
-  .message.sent-message
-  .message-content {
+body main .chat-section .chat-container .inner-container .message.sent-message .message-content {
   background: var(--input-bg);
   padding: 10px 16px;
   border-radius: 12px 12px 12px 0;
   color: var(--black-color);
   position: relative;
 }
-body
-  main
-  .chat-section
-  .chat-container
-  .inner-container
-  .message.sent-message
-  .message-content::after {
+body main .chat-section .chat-container .inner-container .message.sent-message .message-content::after {
   width: 14px;
   height: 12px;
   background: var(--input-bg);
@@ -2158,36 +1743,19 @@ body
   left: -14px;
   bottom: 0;
   -webkit-clip-path: polygon(0 100%, 100% 100%, 100% 0);
-  clip-path: polygon(0 100%, 100% 100%, 100% 0);
+          clip-path: polygon(0 100%, 100% 100%, 100% 0);
 }
-body
-  main
-  .chat-section
-  .chat-container
-  .inner-container
-  .message.recieved-message {
+body main .chat-section .chat-container .inner-container .message.recieved-message {
   justify-content: flex-start;
 }
-body
-  main
-  .chat-section
-  .chat-container
-  .inner-container
-  .message.recieved-message
-  .message-content {
+body main .chat-section .chat-container .inner-container .message.recieved-message .message-content {
   background: var(--main-color);
   padding: 10px 16px;
   border-radius: 12px 12px 0 12px;
   color: #fff;
   position: relative;
 }
-body
-  main
-  .chat-section
-  .chat-container
-  .inner-container
-  .message.recieved-message
-  .message-content::after {
+body main .chat-section .chat-container .inner-container .message.recieved-message .message-content::after {
   width: 14px;
   height: 12px;
   background: var(--main-color);
@@ -2196,7 +1764,7 @@ body
   right: -14px;
   bottom: 0;
   -webkit-clip-path: polygon(0 100%, 100% 100%, 0 0);
-  clip-path: polygon(0 100%, 100% 100%, 0 0);
+          clip-path: polygon(0 100%, 100% 100%, 0 0);
 }
 body main .chat-section .chat-container .chat-send {
   width: 100%;
@@ -2222,14 +1790,7 @@ body main .chat-section .chat-container .chat-send form .input-field input {
   outline: none;
   color: var(--text-color);
 }
-body
-  main
-  .chat-section
-  .chat-container
-  .chat-send
-  form
-  .input-field
-  .files-input {
+body main .chat-section .chat-container .chat-send form .input-field .files-input {
   width: 30px;
   height: 30px;
   display: flex;
@@ -2237,27 +1798,11 @@ body
   justify-content: center;
   cursor: pointer;
 }
-body
-  main
-  .chat-section
-  .chat-container
-  .chat-send
-  form
-  .input-field
-  .files-input
-  i {
+body main .chat-section .chat-container .chat-send form .input-field .files-input i {
   font-size: 20px;
   color: var(--text-color);
 }
-body
-  main
-  .chat-section
-  .chat-container
-  .chat-send
-  form
-  .input-field
-  .files-input
-  input {
+body main .chat-section .chat-container .chat-send form .input-field .files-input input {
   display: none;
 }
 body main .chat-section .chat-container .chat-send form button {
@@ -2338,9 +1883,9 @@ body main .cart-section .service-head .img img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   -o-object-position: center;
-  object-position: center;
+     object-position: center;
 }
 body main .cart-section .service-head .title h5 {
   font-size: 16px;
@@ -2431,31 +1976,13 @@ body main .cart-section .progress-card .progress-details .pro-container {
   border: 1px solid var(--gray-background);
   border-radius: 16px;
 }
-body
-  main
-  .cart-section
-  .progress-card
-  .progress-details
-  .pro-container
-  .progress {
+body main .cart-section .progress-card .progress-details .pro-container .progress {
   background: var(--white-color) !important;
 }
-body
-  main
-  .cart-section
-  .progress-card
-  .progress-details
-  .pro-container
-  .sucses {
+body main .cart-section .progress-card .progress-details .pro-container .sucses {
   background: #26ba35 !important;
 }
-body
-  main
-  .cart-section
-  .progress-card
-  .progress-details
-  .pro-container
-  .status {
+body main .cart-section .progress-card .progress-details .pro-container .status {
   font-size: 12px;
   margin-bottom: 4px;
   color: var(--text-color);
@@ -2601,8 +2128,8 @@ body main .checkout-section form .label input {
   top: 0;
   width: 100%;
   -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   height: 100%;
   background-color: var(--light-bg);
   border: 1px solid var(--LightGray);
@@ -2705,15 +2232,15 @@ body main .checkout-section form .info-card .pay button {
     padding: 8px 18px;
   }
 }
-body main .search-section input[type="radio"] {
+body main .search-section input[type=radio] {
   width: 8px;
   cursor: pointer;
   -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   position: relative;
 }
-body main .search-section input[type="radio"]::after {
+body main .search-section input[type=radio]::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -2724,7 +2251,7 @@ body main .search-section input[type="radio"]::after {
   height: 14px;
   border: 1px solid var(--input-hint);
 }
-body main .search-section input[type="radio"]::before {
+body main .search-section input[type=radio]::before {
   content: "";
   position: absolute;
   top: 50%;
@@ -2736,10 +2263,10 @@ body main .search-section input[type="radio"]::before {
   background: var(--black-color);
   display: none;
 }
-body main .search-section input[type="radio"]:checked::after {
+body main .search-section input[type=radio]:checked::after {
   border-color: var(--black-color);
 }
-body main .search-section input[type="radio"]:checked::before {
+body main .search-section input[type=radio]:checked::before {
   display: block;
 }
 body main .search-section .filter-wrap {
@@ -2803,45 +2330,20 @@ body main .search-section .filter-wrap form .departments .deps li {
 body main .search-section .filter-wrap form .departments .deps li input {
   width: 20px;
 }
-body
-  main
-  .search-section
-  .filter-wrap
-  form
-  .departments
-  .deps
-  li
-  .department-header {
+body main .search-section .filter-wrap form .departments .deps li .department-header {
   width: 100%;
   display: flex;
   align-items: center;
   gap: 10px;
   justify-content: space-between;
 }
-body
-  main
-  .search-section
-  .filter-wrap
-  form
-  .departments
-  .deps
-  li
-  .department-header
-  label {
+body main .search-section .filter-wrap form .departments .deps li .department-header label {
   flex: 1 0 0;
   display: flex;
   align-items: center;
   gap: 10px;
 }
-body
-  main
-  .search-section
-  .filter-wrap
-  form
-  .departments
-  .deps
-  li
-  .accordion-button {
+body main .search-section .filter-wrap form .departments .deps li .accordion-button {
   border: none;
   background: none;
   outline: none;
@@ -2849,16 +2351,7 @@ body
   height: 12px;
   position: relative;
 }
-body
-  main
-  .search-section
-  .filter-wrap
-  form
-  .departments
-  .deps
-  li
-  .accordion-button
-  .horizontal {
+body main .search-section .filter-wrap form .departments .deps li .accordion-button .horizontal {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -2867,16 +2360,7 @@ body
   height: 1px;
   background-color: var(--black-color);
 }
-body
-  main
-  .search-section
-  .filter-wrap
-  form
-  .departments
-  .deps
-  li
-  .accordion-button
-  .vertical {
+body main .search-section .filter-wrap form .departments .deps li .accordion-button .vertical {
   transition: 0.2s ease-in-out;
   height: 12px;
   width: 1px;
@@ -2886,16 +2370,7 @@ body
   left: 50%;
   transform: translate(-50%, -50%) rotate(90deg);
 }
-body
-  main
-  .search-section
-  .filter-wrap
-  form
-  .departments
-  .deps
-  li
-  .accordion-button.collapsed
-  .vertical {
+body main .search-section .filter-wrap form .departments .deps li .accordion-button.collapsed .vertical {
   height: 12px;
   width: 1px;
   background-color: var(--black-color);
@@ -2904,29 +2379,12 @@ body
   left: 50%;
   transform: translate(-50%, -50%);
 }
-body
-  main
-  .search-section
-  .filter-wrap
-  form
-  .departments
-  .deps
-  li
-  .accordion-collapse {
+body main .search-section .filter-wrap form .departments .deps li .accordion-collapse {
   width: 100%;
   padding: 16px;
   position: relative;
 }
-body
-  main
-  .search-section
-  .filter-wrap
-  form
-  .departments
-  .deps
-  li
-  .accordion-collapse
-  .accordion-body {
+body main .search-section .filter-wrap form .departments .deps li .accordion-collapse .accordion-body {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -3157,14 +2615,7 @@ body main .about-section .about_wrap .testmonials .swiper .swiper-slide {
   justify-content: center;
   height: auto;
 }
-body
-  main
-  .about-section
-  .about_wrap
-  .testmonials
-  .swiper
-  .swiper-slide
-  .testmional-card {
+body main .about-section .about_wrap .testmonials .swiper .swiper-slide .testmional-card {
   width: 100%;
   border: 1px solid var(--id-confirm);
   padding: 24px 16px;
@@ -3176,15 +2627,7 @@ body
   gap: 32px;
   position: relative;
 }
-body
-  main
-  .about-section
-  .about_wrap
-  .testmonials
-  .swiper
-  .swiper-slide
-  .testmional-card
-  img {
+body main .about-section .about_wrap .testmonials .swiper .swiper-slide .testmional-card img {
   position: absolute;
   left: 16px;
   transform: scale(-1);
@@ -3194,135 +2637,49 @@ body
   filter: grayscale(1);
   z-index: -1;
 }
-body
-  main
-  .about-section
-  .about_wrap
-  .testmonials
-  .swiper
-  .swiper-slide
-  .testmional-card
-  .rate
-  ul {
+body main .about-section .about_wrap .testmonials .swiper .swiper-slide .testmional-card .rate ul {
   display: flex;
   gap: 4px;
 }
-body
-  main
-  .about-section
-  .about_wrap
-  .testmonials
-  .swiper
-  .swiper-slide
-  .testmional-card
-  .rate
-  ul
-  li {
+body main .about-section .about_wrap .testmonials .swiper .swiper-slide .testmional-card .rate ul li {
   font-size: 16px;
 }
-body
-  main
-  .about-section
-  .about_wrap
-  .testmonials
-  .swiper
-  .swiper-slide
-  .testmional-card
-  .rate
-  ul
-  li
-  i {
+body main .about-section .about_wrap .testmonials .swiper .swiper-slide .testmional-card .rate ul li i {
   color: #ffca40 !important;
 }
-body
-  main
-  .about-section
-  .about_wrap
-  .testmonials
-  .swiper
-  .swiper-slide
-  .testmional-card
-  .opinion {
+body main .about-section .about_wrap .testmonials .swiper .swiper-slide .testmional-card .opinion {
   font-size: 14px;
   font-style: italic;
   line-height: 22px;
   color: var(--text-color);
 }
-body
-  main
-  .about-section
-  .about_wrap
-  .testmonials
-  .swiper
-  .swiper-slide
-  .testmional-card
-  .owner {
+body main .about-section .about_wrap .testmonials .swiper .swiper-slide .testmional-card .owner {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
 }
-body
-  main
-  .about-section
-  .about_wrap
-  .testmonials
-  .swiper
-  .swiper-slide
-  .testmional-card
-  .owner
-  h6 {
+body main .about-section .about_wrap .testmonials .swiper .swiper-slide .testmional-card .owner h6 {
   color: var(--black-color);
   font-size: 16px;
   font-weight: 600;
   margin: 0;
 }
-body
-  main
-  .about-section
-  .about_wrap
-  .testmonials
-  .swiper
-  .swiper-slide
-  .testmional-card
-  .owner
-  a {
+body main .about-section .about_wrap .testmonials .swiper .swiper-slide .testmional-card .owner a {
   color: var(--main-color);
   font-size: 14px;
 }
-body
-  main
-  .about-section
-  .about_wrap
-  .testmonials
-  .swiper
-  .swiper-slide
-  .testmional-card
-  .owner
-  span {
+body main .about-section .about_wrap .testmonials .swiper .swiper-slide .testmional-card .owner span {
   color: #727272;
   font-size: 12px;
 }
-body
-  main
-  .about-section
-  .about_wrap
-  .testmonials
-  .swiper
-  .testimonialsSwiperPagination {
+body main .about-section .about_wrap .testmonials .swiper .testimonialsSwiperPagination {
   padding: 40px 0 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 4px;
 }
-body
-  main
-  .about-section
-  .about_wrap
-  .testmonials
-  .swiper
-  .testimonialsSwiperPagination
-  .swiper-pagination-bullet {
+body main .about-section .about_wrap .testmonials .swiper .testimonialsSwiperPagination .swiper-pagination-bullet {
   width: 12px;
   height: 12px;
   border-radius: 0;
@@ -3330,25 +2687,11 @@ body
   background: none;
   border-radius: 50%;
 }
-body
-  main
-  .about-section
-  .about_wrap
-  .testmonials
-  .swiper
-  .testimonialsSwiperPagination
-  .swiper-pagination-bullet.swiper-pagination-bullet-active {
+body main .about-section .about_wrap .testmonials .swiper .testimonialsSwiperPagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
   border-color: var(--main-color);
   position: relative;
 }
-body
-  main
-  .about-section
-  .about_wrap
-  .testmonials
-  .swiper
-  .testimonialsSwiperPagination
-  .swiper-pagination-bullet.swiper-pagination-bullet-active::after {
+body main .about-section .about_wrap .testmonials .swiper .testimonialsSwiperPagination .swiper-pagination-bullet.swiper-pagination-bullet-active::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -3752,8 +3095,8 @@ body .form .question .quest {
 }
 body .form .question .vendorInput {
   -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   position: relative;
   cursor: pointer;
 }
@@ -3809,9 +3152,9 @@ body .form .image-change-wrapper .img-wrap img {
   height: 100%;
   aspect-ratio: 1/1;
   -o-object-fit: contain;
-  object-fit: contain;
+     object-fit: contain;
   -o-object-position: center;
-  object-position: center;
+     object-position: center;
 }
 body .form .image-change-wrapper .upload input {
   display: none;
@@ -3938,7 +3281,7 @@ body .form .image_field .imagewrap .img {
 body .form .image_field .imagewrap .img img {
   height: 100%;
   -o-object-fit: scale-down;
-  object-fit: scale-down;
+     object-fit: scale-down;
 }
 body .images_grid_upload {
   display: flex;
@@ -3978,7 +3321,7 @@ body .images_grid_upload .uploaded_file img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
 }
 body .images_grid_upload .uploaded_file button {
   position: absolute;
@@ -4049,7 +3392,7 @@ body .rate-card .rate-owner .rate-head .img {
 body .rate-card .rate-owner .rate-head .img img {
   width: 100%;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   aspect-ratio: 1/1;
 }
 body .rate-card .rate-owner .rate-head .name-time {
@@ -4162,11 +3505,11 @@ body .add-cart .input-field input {
 }
 body .add-cart .input-field input::-webkit-outer-spin-button {
   -webkit-appearance: none;
-  appearance: none;
+          appearance: none;
 }
 body .add-cart .input-field input::-webkit-inner-spin-button {
   -webkit-appearance: none;
-  appearance: none;
+          appearance: none;
 }
 body .add-cart .total {
   width: 100%;
@@ -4289,22 +3632,22 @@ body .products-card .order li .order-number {
   font-weight: bold;
   font-size: 18px;
 }
-body input[type="checkbox"] {
+body input[type=checkbox] {
   width: 18px;
   -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   position: relative;
   cursor: pointer;
 }
-body input[type="checkbox"].form-check-input {
+body input[type=checkbox].form-check-input {
   box-shadow: none !important;
   border: none !important;
 }
-body input[type="checkbox"].form-check-input:checked {
+body input[type=checkbox].form-check-input:checked {
   background: none !important;
 }
-body input[type="checkbox"]::after {
+body input[type=checkbox]::after {
   position: absolute;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -4321,7 +3664,7 @@ body input[type="checkbox"]::after {
   justify-content: center;
   color: var(--main-color);
 }
-body input[type="checkbox"]:checked::after {
+body input[type=checkbox]:checked::after {
   content: "\f00c";
   background: var(--main-color);
   color: #fff;
@@ -4348,7 +3691,7 @@ body .service-card .img img {
   aspect-ratio: 3/2;
   transition: var(--main-transation);
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
 }
 body .service-card .content {
   padding: 12px;
@@ -4519,16 +3862,7 @@ body .our-partners h6 {
   margin-bottom: 60px;
   color: var(--black-color);
 }
-body
-  body.dark-theme
-  main
-  .about-section
-  .about_wrap
-  .testmonials
-  .swiper
-  .swiper-slide
-  .testmional-card
-  img {
+body body.dark-theme main .about-section .about_wrap .testmonials .swiper .swiper-slide .testmional-card img {
   opacity: 0.05 !important;
 }
 @media (max-width: 576px) {
@@ -4593,7 +3927,7 @@ body .category-card .inner-card .category-img img {
   width: 100%;
   aspect-ratio: 1/1;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
 }
 body .category-card .inner-card .category-content {
   bottom: 0;
@@ -4678,7 +4012,7 @@ body .allRequests .allRequestsContainer .lastInteraction img {
   width: 64px;
   aspect-ratio: 1/1;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
 }
 body .allRequests .allRequestsContainer .requstPost .postContent,
 body .allRequests .allRequestsContainer .lastInteraction .postContent {
@@ -4908,7 +4242,7 @@ body .requestDetails .allComments .userCommented img {
   width: 64px;
   aspect-ratio: 1/1;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
 }
 body .requestDetails .allComments .userCommented .lastUser {
   display: flex;
@@ -5012,7 +4346,7 @@ body .requestDetails .lastPosts .posts .post img {
   height: 40px;
   aspect-ratio: 1/1;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   border-radius: 100px;
 }
 body .requestDetails .lastPosts .posts .post a {
@@ -5172,8 +4506,8 @@ body #rateModal .modal-body form .sr label.active {
 }
 body #rateModal .modal-body form .sr input {
   -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 }
 body #rateModal .modal-body form textarea {
   width: 100%;
@@ -5239,7 +4573,7 @@ body .notifications_section .notify .notify_info .img img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
 }
 body .notifications_section .notify .notify_info .content h6 {
   font-size: 12px;
@@ -5517,13 +4851,7 @@ body .mainSection .mainSlider .mainSliderContainer .swiper-slide .info .hint {
     font-size: 12px !important;
   }
 }
-body
-  .mainSection
-  .mainSlider
-  .mainSliderContainer
-  .swiper-slide
-  .info
-  .sliderTitle {
+body .mainSection .mainSlider .mainSliderContainer .swiper-slide .info .sliderTitle {
   text-wrap: balance;
   margin-bottom: 0;
   line-height: 48px;
@@ -5534,13 +4862,7 @@ body
   margin-bottom: 20px;
 }
 @media (max-width: 768px) {
-  body
-    .mainSection
-    .mainSlider
-    .mainSliderContainer
-    .swiper-slide
-    .info
-    .sliderTitle {
+  body .mainSection .mainSlider .mainSliderContainer .swiper-slide .info .sliderTitle {
     font-size: 24px !important;
   }
 }
@@ -5568,20 +4890,10 @@ body .mainSection .mainSlider .mainSliderContainer .swiper-pagination {
   left: 20px !important;
   transform: translateX(0%);
 }
-body
-  .mainSection
-  .mainSlider
-  .mainSliderContainer
-  .swiper-pagination
-  .swiper-pagination-bullet {
+body .mainSection .mainSlider .mainSliderContainer .swiper-pagination .swiper-pagination-bullet {
   background-color: var(--white-color);
 }
-body
-  .mainSection
-  .mainSlider
-  .mainSliderContainer
-  .swiper-pagination
-  .swiper-pagination-bullet-active {
+body .mainSection .mainSlider .mainSliderContainer .swiper-pagination .swiper-pagination-bullet-active {
   background-color: var(--white-color);
 }
 body .mainSection .mainSlideItem.swiper-slide-active .sliderTitle {
@@ -5668,7 +4980,7 @@ body .blogs .blog {
 body .blogs .blog img {
   height: 250px;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   width: 100%;
 }
 body .blogs .blog .data {
@@ -5731,7 +5043,7 @@ body .blogDetails .blog .swiper {
 body .blogDetails .blog img {
   aspect-ratio: 2/1;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   width: 100%;
 }
 body .blogDetails .blog .date {
@@ -5800,7 +5112,7 @@ body .blogDetails .Moreblogs .blog img {
   height: 120px;
   aspect-ratio: 1/1;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
 }
 body .blogDetails p {
   font-size: 12px;
@@ -6000,10 +5312,10 @@ body.en main .row-head a i {
 body main .login-section .form .image-change-wrapper .img-wrap img {
   width: 100%;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
 }
 
-[type="tel"] {
+[type=tel] {
   direction: ltr !important;
 }
 
@@ -6087,4 +5399,4 @@ hr {
 
 .search-section {
   padding: 48px 0;
-} /*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */
