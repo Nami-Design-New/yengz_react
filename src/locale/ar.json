@@ -142,6 +142,7 @@
     "certificateUpdatedSuccessfully": "تم تحديث الشهادة بنجاح",
     "errorDeletingWork": "حدث خطأ في حذف المشروع",
     "imageGallery": "معرض الصور",
+    "workUpdatedSuccessfully": "تم تحديث المشروع بنجاح",
     "edit": "تعديل",
     "add": "اضافة"
   },

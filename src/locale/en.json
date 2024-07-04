@@ -110,6 +110,7 @@
     "serviceQuality": "Service Quality",
     "personalIdentification": "Personal Identification",
     "phoneNumber": "Phone Number",
+    "emailAddress":"Email Address",
     "verification": "Verification",
     "notVerified": "The account is not verified",
     "verifyAccount": "Verify Account",
@@ -141,6 +142,7 @@
     "certificateUpdatedSuccessfully": "Certificate updated successfully",
     "errorDeletingWork": "Error deleting work",
     "imageGallery": "Image Gallery",
+    "workUpdatedSuccessfully": "Work updated successfully",
     "edit": "Edit",
     "add": "Add"
   },

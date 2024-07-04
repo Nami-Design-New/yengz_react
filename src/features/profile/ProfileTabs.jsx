@@ -69,14 +69,7 @@ const ProfileTabs = ({ user }) => {
             </div>
           </div>
         </Tab>
-        {/* reviews */}
-        {/* <Tab
-          eventKey="Rating"
-          title={t("profile.reviews")}
-          className="tab_item"
-        >
-          <UserReviewCard />
-        </Tab> */}
+        
         {/* verifications */}
         <Tab
           eventKey="documentation"
@@ -110,6 +103,7 @@ const ProfileTabs = ({ user }) => {
             )}
           </div>
         </Tab>
+
         {/*  statistics */}
         <Tab
           eventKey="statistics"
@@ -123,12 +117,12 @@ const ProfileTabs = ({ user }) => {
             aria-labelledby="pills-statics-tab"
           >
             <ul className="statics-list p-2">
-              <li className="d-flex justify-content-between">
+              {/* <li className="d-flex justify-content-between">
                 <h6>{t("profile.averageResponseTime")}</h6>
                 <span>
                   60 <small>د</small>
                 </span>
-              </li>
+              </li> */}
               <li className="d-flex justify-content-between">
                 <h6>{t("profile.puplidhedServices")}</h6>
                 <span>{user?.service_count}</span>
@@ -140,6 +134,7 @@ const ProfileTabs = ({ user }) => {
             </ul>
           </div>
         </Tab>
+
         {/* my works */}
         <Tab
           eventKey="My works"
