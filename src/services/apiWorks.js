@@ -11,6 +11,32 @@ export async function getWorks(userId) {
   }
 }
 
+export async function addWork(data, queryClient) {
+  try {
+    await axios.post("/user/create_works", data, {
+      headers: {
+        "Content-Type": "multipart/form-data"
+      }
+    });
+    queryClient.invalidateQueries(["userWorks"]);
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+export async function updateWork(data, queryClient) {
+  try {
+    await axios.post("/user/update_works", data, {
+      headers: {
+        "Content-Type": "multipart/form-data"
+      }
+    });
+    queryClient.invalidateQueries(["userWorks"]);
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
 export async function deleteWork(id, queryClient) {
   try {
     await axios.post("/user/delete_works", {

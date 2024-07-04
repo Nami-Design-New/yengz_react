@@ -7,6 +7,8 @@ import SellerStatusFilterBox from "../ui/filter/SellerStatusFilterBox";
 import InputField from "../ui/form-elements/InputField";
 import useSearchServicesList from "../features/services/useSearchServicesList";
 import ServiceCard from "../ui/cards/ServiceCard";
+import { t } from "i18next";
+import { useTranslation } from "react-i18next";
 
 const departmentFilter = [
   {
@@ -65,6 +67,7 @@ const departmentFilter = [
 
 const Search = () => {
   const { data } = useSearchServicesList();
+  const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [searchFilterData, setSearchFilterData] = useState({
@@ -239,7 +242,7 @@ const Search = () => {
                   className="aside-search-input"
                   value={searchFilterData.search}
                   onChange={handleChange}
-                  label={"بحث"}
+                  placeholder={t("home.searchPlaceHolder")}
                 />
                 <DepartmentFilterBox
                   categoriesValue={searchFilterData.categories}
@@ -247,11 +250,14 @@ const Search = () => {
                   onChange={handleChange}
                   departmentFilter={departmentFilter}
                 />
+                <hr />
                 <RatingFilterBox
                   value={searchFilterData.rate}
                   onChange={handleChange}
                 />
+                <hr />
                 <SellerFilterBox />
+                <hr />
                 <SellerStatusFilterBox
                   user_available={searchFilterData.user_available}
                   user_verification={searchFilterData.user_verification}
