@@ -1,65 +1,35 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { IconDeviceMobile } from "@tabler/icons-react";
+import PhoneField from "./../../../ui/form-elements/PhoneField";
+import SubmitButton from "../../../ui/form-elements/SubmitButton";
 
-const VerifyStep1 = () => {
+const VerifyStep1 = ({ setStep, formData, setFormData }) => {
+  const { user } = useSelector((state) => state.authedUser);
+  const { t } = useTranslation();
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setStep(2);
+  };
+
   return (
-    <div className="container-fluid">
-      <div className="row justify-content-center">
-        <div className="col-11 col-md-10 col-lg-7 text-center p-0 mb-2">
-          <div>
-            <form id="msform">
-              {/* <!-- progressbar -->*/}
-              <div className="progress">
-                <div
-                  className="progress-bar progress-bar-striped progress-bar-animated"
-                  role="progressbar"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                ></div>
-              </div>
-              <br />
-              {/*<!-- wizard step --> */}
-
-              <fieldset>
-                <div className="form-card">
-                  <div className="input-field">
-                    <label for="phone">
-                      <i className="ti ti-md ti-device-mobile"></i> رقم الهاتف
-                    </label>
-
-                    <div
-                      className="inputs"
-                      style={{ direction: "rtl !important;" }}
-                    >
-                      <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        placeholder="0XXXXXXXXXX"
-                      />
-                      <input
-                        type="text"
-                        id="phoneField1"
-                        name="countryPicker"
-                        className="country-picker"
-                      />
-                    </div>
-                  </div>
-                  <Link to="/VerifyStep2">
-                    <input
-                      type="button"
-                      name="next"
-                      className="next action-button"
-                      value="التالي"
-                    />
-                  </Link>
-                </div>
-              </fieldset>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
+    <form className="form" onSubmit={handleSubmit}>
+      <PhoneField
+        formData={formData}
+        setFormData={setFormData}
+        value={formData?.phone}
+        id="phone"
+        icon={<IconDeviceMobile stroke={2} />}
+      />
+      <SubmitButton
+        name={t("auth.next")}
+        loading={loading}
+        className={"w-25 mt-4 align-self-end"}
+      />
+    </form>
   );
 };
 

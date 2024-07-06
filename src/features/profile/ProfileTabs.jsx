@@ -36,6 +36,7 @@ const ProfileTabs = ({ user }) => {
             )}
           </div>
         </Tab>
+
         {/* services */}
         <Tab
           eventKey="service"
@@ -65,6 +66,7 @@ const ProfileTabs = ({ user }) => {
             </div>
           </div>
         </Tab>
+
         {/* verifications */}
         <Tab
           eventKey="documentation"
@@ -97,11 +99,12 @@ const ProfileTabs = ({ user }) => {
             {user?.verified === 0 && (
               <div className="unverified-box">
                 <h6>{t("profile.notVerified")}</h6>
-                <a href="/verify-user">{t("profile.verifyAccount")}</a>
+                <Link to="/verify-user">{t("profile.verifyAccount")}</Link>
               </div>
             )}
           </div>
         </Tab>
+
         {/*  statistics */}
         <Tab
           eventKey="statistics"
@@ -126,6 +129,7 @@ const ProfileTabs = ({ user }) => {
             </ul>
           </div>
         </Tab>
+
         {/* my works */}
         <Tab
           eventKey="My works"
@@ -134,6 +138,7 @@ const ProfileTabs = ({ user }) => {
         >
           <WorksTab works={works} />
         </Tab>
+
         {/* my certificates */}
         <Tab
           eventKey="My Certifications"

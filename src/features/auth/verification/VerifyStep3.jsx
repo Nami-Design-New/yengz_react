@@ -1,116 +1,105 @@
-import React from "react";
+import React, { useState } from "react";
 import id from "../../../Assets/images/id.svg";
 import fileup1 from "../../../Assets/images/fileup1.svg";
-import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import SubmitButton from "../../../ui/form-elements/SubmitButton";
 
-const VerifyStep3 = () => {
+const VerifyStep3 = ({ setStep, formData, setFormData }) => {
+  const { t } = useTranslation();
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setStep(4);
+  };
+
   return (
-    <div className="container-fluid">
-      <div className="row justify-content-center">
-        <div className="col-11 col-md-10 col-lg-7 text-center p-0 mb-2">
-          <div>
-            <form id="msform">
-              {/* <!-- progressbar -->*/}
-
-              <div className="progress">
-                <div
-                  className="progress-bar progress-bar-striped progress-bar-animated"
-                  role="progressbar"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                ></div>
-              </div>
-
-              <br />
-
-              {/*<!-- wizard step 3 --> */}
-
-              <fieldset>
-                <div className="form-card">
-                  <div className="advice">
-                    <div className="icon">
-                      <img src={id} alt="icon" />
-                    </div>
-                    <h6>يرجى ارفاق بطاقة الهوية الوطنية والتأكد من أنها:</h6>
-                    <ul>
-                      <li>
-                        <i className="fa-solid fa-check"></i> مضيئة بشكل جيد
-                        وواضحة للقراءة
-                      </li>
-                      <li>
-                        <i className="fa-solid fa-check"></i> موضوعة داخل الإطار
-                        وغير مقصوصة
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="input-field">
-                    <label>
-                      <i className="fa-solid fa-id-card"></i> صورة الجهة
-                      الأمامية للهوية الوطنية
-                    </label>
-                    <label className="img-upload">
-                      <img src={fileup1} alt="icon" />
-                      <input
-                        name="front-id-img"
-                        id="img-upload-front"
-                        accept="image/*"
-                        type="file"
-                      />
-                    </label>
-                  </div>
-                  <div className="input-field">
-                    <label>
-                      <i className="fa-solid fa-id-card"></i> صورة الجهة الخلفية
-                      للهوية الوطنية
-                    </label>
-                    <label className="img-upload">
-                      <img src={fileup1} alt="icon" />
-                      <input
-                        name="back-id-img"
-                        id="img-upload-back"
-                        accept="image/*"
-                        type="file"
-                      />
-                    </label>
-                  </div>
-                  <div className="input-field">
-                    <label>
-                      <i className="fa-solid fa-id-card-clip"></i> صورتك مع
-                      الهوية الوطنية
-                    </label>
-                    <label className="img-upload">
-                      <img src={fileup1} alt="icon" />
-                      <input
-                        name="front-id-img"
-                        id="img-upload-id-with-user"
-                        accept="image/*"
-                        type="file"
-                      />
-                    </label>
-                  </div>
-                </div>
-                <Link to="/VerifyStep4">
-                  <input
-                    type="button"
-                    name="next"
-                    className="next action-button"
-                    value="التالي"
-                  />
-                </Link>
-
-                <Link to="/VerifyStep2"></Link>
-                <input
-                  type="button"
-                  name="previous"
-                  className="previous action-button-previous"
-                  value="السابق"
-                />
-              </fieldset>
-            </form>
-          </div>
+    <form className="form" onSubmit={handleSubmit}>
+      <div className="advice">
+        <div className="icon">
+          <img src={id} alt="icon" />
         </div>
+        <h6>{t("auth.idAdvice")}</h6>
+        <ul>
+          <li>
+            <i className="fa-solid fa-check"></i> {t("auth.advice1")}
+          </li>
+          <li>
+            <i className="fa-solid fa-check"></i> {t("auth.advice2")}
+          </li>
+        </ul>
       </div>
-    </div>
+      <div className="image_field">
+        <label htmlFor="id-image-front">
+          <i className="fa-solid fa-id-card"></i> {t("auth.idFront")}
+        </label>
+        <label htmlFor="id-image-front" className="imagewrap">
+          <input
+            type="file"
+            required={true}
+            name="image"
+            id="id-image-front"
+            accept="image/*"
+            //onChange={handleChange}
+          />
+          <div className="img">
+            <img src={fileup1} alt="gallery" />
+          </div>
+        </label>
+      </div>
+      <div className="image_field">
+        <label htmlFor="id-image-back">
+          <i className="fa-solid fa-id-card"></i> {t("auth.idBack")}
+        </label>
+        <label htmlFor="id-image-back" className="imagewrap">
+          <input
+            type="file"
+            required={true}
+            name="image"
+            id="id-image-back"
+            accept="image/*"
+            //onChange={handleChange}
+          />
+          <div className="img">
+            <img src={fileup1} alt="gallery" />
+          </div>
+        </label>
+      </div>
+      <div className="image_field">
+        <label htmlFor="id-image-selfie">
+          <i className="fa-solid fa-id-card"></i> {t("auth.idSelfie")}
+        </label>
+        <label htmlFor="id-image-selfie" className="imagewrap">
+          <input
+            type="file"
+            required={true}
+            name="image"
+            id="id-image-selfie"
+            accept="image/*"
+            //onChange={handleChange}
+          />
+          <div className="img">
+            <img src={fileup1} alt="gallery" />
+          </div>
+        </label>
+      </div>
+      <div className="d-flex justify-content-between mt-4 w-100">
+        <button
+          className="back_btn"
+          onClick={(e) => {
+            e.preventDefault();
+            setStep(4);
+          }}
+        >
+          {t("auth.back")}
+        </button>
+        <SubmitButton
+          name={t("auth.next")}
+          loading={loading}
+          className={"w-25 "}
+        />
+      </div>
+    </form>
   );
 };
 

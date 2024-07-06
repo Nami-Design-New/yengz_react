@@ -1,28 +1,58 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { ProgressBar } from "react-bootstrap";
 import VerifyStep1 from "./VerifyStep1";
 import VerifyStep2 from "./VerifyStep2";
 import VerifyStep3 from "./VerifyStep3";
-import VerifyStep5 from "./VerifyStep5";
+import VerifyStep4 from "./VerifyStep4";
+import { useSelector } from "react-redux";
 
 const AuthVerifySteps = () => {
+  const { t } = useTranslation();
   const [step, setStep] = useState(1);
+  const { user } = useSelector((state) => state.authedUser);
+  const totalSteps = 4;
+  const [progress, setProgress] = useState((step / totalSteps) * 100);
+  const [formData, setFormData] = useState({});
+
+  useEffect(() => {
+    setProgress((step / totalSteps) * 100);
+    setFormData({ phone: `+${user?.phone_code}${user?.phone}` });
+  }, [step, user]);
 
   return (
     <section className="login-section container">
-      <h1 className="text-center">توثيق الحساب</h1>
-      <p className="text-center mt-3 title">
-        مرحبا بك …! ادخل جميع البيانات المطلوبة لإتمام عمليه توثيق الحساب.
+      <h1 className="text-center">{t("auth.verifyPageTitle")}</h1>
+      <p className="text-center mt-3 mb-4 title">
+        {t("auth.verifyPageSubTitle")}
       </p>
-
-      {step === 1 && <VerifyStep1 />}
-
-      {step === 2 && <VerifyStep2 />}
-
-      {step === 3 && <VerifyStep3 />}
-
-      {step === 4 && <VerifyStep3 />}
-
-      {step === 5 && <VerifyStep5 />}
+      <div className="row justify-content-center">
+        <div className="col-lg-8 col-12 p-2">
+          <ProgressBar striped animated now={progress} />
+          {step === 1 && (
+            <VerifyStep1
+              setStep={setStep}
+              formData={formData}
+              setFormData={setFormData}
+            />
+          )}
+          {step === 2 && (
+            <VerifyStep2
+              setStep={setStep}
+              formData={formData}
+              setFormData={setFormData}
+            />
+          )}
+          {step === 3 && (
+            <VerifyStep3
+              setStep={setStep}
+              formData={formData}
+              setFormData={setFormData}
+            />
+          )}
+          {step === 4 && <VerifyStep4 setStep={setStep} />}
+        </div>
+      </div>
     </section>
   );
 };
