@@ -14,7 +14,7 @@ const NewsLetter = () => {
             </div>
           </div>
           <div className="col-lg-6 col-md-6 col-12">
-            <div className="form" data-aos="fade-up">
+            <div className="form-news" data-aos="fade-up">
               <h3>{t("home.newsletterTitle")}</h3>
               <form>
                 <div className="input-field">

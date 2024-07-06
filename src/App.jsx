@@ -5,13 +5,11 @@ import { useCookies } from "react-cookie";
 import { useDispatch, useSelector } from "react-redux";
 import { useJwt } from "react-jwt";
 import { setIsLogged, setUser } from "./redux/slices/authedUser";
-
 import Login from "./features/auth/login/Login";
 import Register from "./features/auth/register/Register";
 import ForgetPassword from "./features/auth/resetPassword/ForgetPassword";
 import Layout from "./ui/Layout";
 import Home from "./routes/Home";
-import Chat from "./routes/Chat";
 import BlogDetails from "./routes/BlogDetails";
 import About from "./routes/About";
 import Blogs from "./routes/Blogs";
@@ -33,6 +31,10 @@ import Logout from "./features/auth/Logout";
 import Cart from "./routes/Cart";
 import Profile from "./features/profile/Profile";
 import EditProfile from "./features/profile/EditProfile";
+import Notifcations from "./routes/Notifcations";
+import Chats from "./routes/Chats";
+import AuthVerifySteps from "./features/auth/verification/AuthVerifySteps";
+import AddServices from './features/services/AddServices';
 
 function App() {
   const dispatch = useDispatch();
@@ -78,6 +80,8 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/add-service" element={<AddServices />} />
+          <Route path="/EditServices/:id" element={<AddServices />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/purchases" element={<Purchases />} />
           <Route path="/order-details" element={<OrderDetails />} />
@@ -85,7 +89,8 @@ function App() {
           <Route path="/requests" element={<Requests />} />
           <Route path="/request-details" element={<RequestDetails />} />
           <Route path="/request-add" element={<AddRequest />} />
-          <Route path="/chat" element={<Chat />} />
+          <Route path="/chat" element={<Chats />} />
+          <Route path="/verify-user" element={<AuthVerifySteps />} />
           <Route path="/search" element={<Search />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
@@ -101,8 +106,9 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/edit-profile" element={<EditProfile />} />
           <Route path="/Cart" element={<Cart />} />
+          <Route path="/notifications" element={<Notifcations />} />
           <Route
-            path="/recieved-request-orders"
+            path="/recievedRequestOrders"
             element={<RecievedRequestOrders />}
           />
         </Route>

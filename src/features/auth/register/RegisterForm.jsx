@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
+import axios from "./../../../utils/axios";
 import Google from "../../../Assets/images/Google.svg";
 import Facebook from "../../../Assets/images/facebook.svg";
 import InputField from "../../../ui/form-elements/InputField";
@@ -10,7 +11,6 @@ import ImageUpload from "../../../ui/form-elements/ImageUpload";
 import PasswordField from "./../../../ui/form-elements/PasswordField";
 import PhoneField from "../../../ui/form-elements/PhoneField";
 import SubmitButton from "../../../ui/form-elements/SubmitButton";
-import axios from "./../../../utils/axios";
 import MultiSelect from "../../../ui/form-elements/MultiSelect";
 import isSeller from "../../../Assets/images/Vector.svg";
 import useCategoriesList from "../../categories/useCategoriesList";
@@ -18,12 +18,43 @@ import useCategoriesList from "../../categories/useCategoriesList";
 const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
+  const { data: categories } = useCategoriesList();
+  const [options, setOptions] = useState([]);
+  const [selectedOptions, setSelectedOptions] = useState([]);
 
-  const { data } = useCategoriesList();
-  const options = data?.data?.map((category) => ({
-    value: category.id,
-    label: category.name
-  }));
+  useEffect(() => {
+    if (categories) {
+      const options = categories.data.map((category) => ({
+        value: category.id,
+        label: category.name
+      }));
+      setOptions(options);
+    }
+  }, [categories]);
+
+  useEffect(() => {
+    if (options.length > 0 && formData.categories?.length > 0) {
+      const selectedOptions = formData.categories.map((categoryId) => {
+        const option = options.find((opt) => opt.value === categoryId);
+        return {
+          value: option?.value,
+          label: option?.label
+        };
+      });
+      setSelectedOptions(selectedOptions);
+    }
+  }, [formData.categories, options]);
+
+  const handleSelect = (selectedItems) => {
+    setSelectedOptions(selectedItems);
+    const selectedValues = selectedItems
+      ? selectedItems.map((option) => option.value)
+      : [];
+    setFormData({
+      ...formData,
+      categories: selectedValues
+    });
+  };
 
   const handleChange = (e) => {
     setFormData({
@@ -114,8 +145,8 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
         id="interest"
         name="interest"
         options={options}
-        formData={formData}
-        setFormData={setFormData}
+        selectedOptions={selectedOptions}
+        handleChange={handleSelect}
       />
       <div className="question">
         <label htmlFor="isFreelancer" className="quest">

@@ -2,7 +2,7 @@ import axios from "./../utils/axios";
 
 export async function getWorks(userId) {
   try {
-    const req = await axios.post("/user/get_works", {
+    const req = await axios.post("/get_works", {
       id: userId
     });
     return req.data.data;

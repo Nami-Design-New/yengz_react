@@ -44,9 +44,21 @@
     "interestes": "Interests",
     "age": "Age",
     "edit": "Edit",
+    "next": "Next",
+    "back": "Back",
     "registerSuccess": "Registration Successful",
     "aboutUser": "About User",
-    "aboutPlaceHolder": "Website developer. I learned the languages ​​HTML5-CSS3-JAVASCRIPT-JQUERY-BOOTSTRAP-PHP-MYSQL-AJAX-JSON-API. I have more than 50 clients with a 5-star rating on various freelance platforms. I have experience in designing and developing websites for more than 5 years and I have worked on all... Types of web projects (electronic stores - informational sites - business fairs - educational sites - employment sites). We have worked with various types of companies and bodies (small companies - large companies - government bodies). I can convert PSD, XD, or Figma designs into interactive websites only. Take a look at my work and feel free to contact me :)"
+    "aboutPlaceHolder": "Website developer. I learned the languages HTML5-CSS3-JAVASCRIPT-JQUERY-BOOTSTRAP-PHP-MYSQL-AJAX-JSON-API. I have more than 50 clients with a 5-star rating on various freelance platforms. I have experience in designing and developing websites for more than 5 years and I have worked on all... Types of web projects (electronic stores - informational sites - business fairs - educational sites - employment sites). We have worked with various types of companies and bodies (small companies - large companies - government bodies). I can convert PSD, XD, or Figma designs into interactive websites only. Take a look at my work and feel free to contact me :)",
+    "verifyPageTitle": "Account Verification",
+    "verifyPageSubTitle": "Enter the verification code sent to your email address",
+    "verificationCode": "Please enter the code sent to the number",
+    "idFront": "Photo of the front side of the national ID",
+    "idAdvice": "Please attach your national ID card and make sure it is:",
+    "advice1": "Well illuminated and clear to read",
+    "advice2": "Placed in the frame and not cropped",
+    "idBack": "Photo of the back side of the national ID",
+    "idSelfie": "Your photo with the national ID",
+    "verificationSuccess": "Your data has been sent successfully and is currently being reviewed. You will be notified on the email address registered with us"
   },
   "navbar": {
     "addService": "Add Service",
@@ -110,6 +122,7 @@
     "serviceQuality": "Service Quality",
     "personalIdentification": "Personal Identification",
     "phoneNumber": "Phone Number",
+    "emailAddress": "Email Address",
     "verification": "Verification",
     "notVerified": "The account is not verified",
     "verifyAccount": "Verify Account",
@@ -141,8 +154,15 @@
     "certificateUpdatedSuccessfully": "Certificate updated successfully",
     "errorDeletingWork": "Error deleting work",
     "imageGallery": "Image Gallery",
+    "workUpdatedSuccessfully": "Work updated successfully",
     "edit": "Edit",
     "add": "Add"
   },
-  "cancel": "Cancel"
+  "addService": {
+    "serviceTitle": "Service Title",
+    "serviceTitlePlaceholder": "Example: Web Development",
+    "titleHint": "Choose a short and concise title that describes the service, it will be used in the search engine results"
+  },
+  "cancel": "Cancel",
+  "homePage": "Home"
 }

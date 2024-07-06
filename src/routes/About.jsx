@@ -9,13 +9,17 @@ import m6 from "../Assets/images/m6.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import SectionHeader from "../ui/SectionHeader";
+import { Link } from "react-router-dom";
+import NewsLetter from "../ui/NewsLetter";
 
 const About = () => {
   return (
     <>
+
       <div className="section-head">
         <SectionHeader />
       </div>
+      
 
       <section className="about-section">
         <div className="about_wrap">
@@ -362,6 +366,7 @@ const About = () => {
           <NewsLetter />
         </div>
       </section>
+
     </>
   );
 };

@@ -4,7 +4,8 @@ import { useTranslation } from "react-i18next";
 import otpSvg from "../../../Assets/images/otp1.svg";
 import Otpcontainer from "../../../ui/form-elements/OtpContainer";
 import SubmitButton from "./../../../ui/form-elements/SubmitButton";
-import axios from './../../../utils/axios';
+import axios from "./../../../utils/axios";
+import { Link } from "react-router-dom";
 
 const Step2 = ({ email, otpData, setOtpData, setStep }) => {
   const { t } = useTranslation();
@@ -45,7 +46,7 @@ const Step2 = ({ email, otpData, setOtpData, setStep }) => {
       <Otpcontainer formData={otpData} setFormData={setOtpData} />
 
       <div className="resend-code">
-        <a href="#!">{t("auth.resendCode")}</a>
+        <Link to="#!">{t("auth.resendCode")}</Link>
         <div className="timer">
           <span>48</span> :<span>00</span>
         </div>
