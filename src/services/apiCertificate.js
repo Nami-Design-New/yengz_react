@@ -2,7 +2,7 @@ import axios from "./../utils/axios";
 
 export async function getCertificates(userId) {
   try {
-    const req = await axios.post("/user/get_certificates", {
+    const req = await axios.post("/get_certificates", {
       id: userId
     });
     return req.data.data;

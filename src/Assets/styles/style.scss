@@ -981,6 +981,10 @@ body {
               font-weight: 900;
             }
           }
+          .service-card {
+            flex: 0 1;
+            min-width: calc(100% / 3 - 11px);
+          }
           .workCard {
             overflow: hidden;
             flex: 0 1;
@@ -3400,13 +3404,13 @@ body {
     appearance: none;
     position: relative;
     cursor: pointer;
-    &.form-check-input {
-      box-shadow: none !important;
-      border: none !important;
-      &:checked {
-        background: none !important;
-      }
-    }
+    // &.form-check-input {
+    //   box-shadow: none !important;
+    //   border: none !important;
+    //   &:checked {
+    //     background: none !important;
+    //   }
+    // }
     &::after {
       position: absolute;
       left: 50%;
@@ -3510,7 +3514,7 @@ body {
         max-width: 70%;
       }
     }
-    .form {
+    .form-news {
       height: 100%;
       display: flex;
       flex-direction: column;
@@ -4616,7 +4620,7 @@ body {
       height: 100px;
     }
   }
-  .newsletter .form .input-field {
+  .newsletter .form-news .input-field {
     background: var(--light-bg);
   }
   footer .copy-rights {
@@ -4996,7 +5000,7 @@ body {
         }
       }
     }
-    .newsletter .form {
+    .newsletter .form-news {
       h3 {
         font-size: 28px !important;
       }
