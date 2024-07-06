@@ -158,6 +158,11 @@
     "edit": "Edit",
     "add": "Add"
   },
+  "addService": {
+    "serviceTitle": "Service Title",
+    "serviceTitlePlaceholder": "Example: Web Development",
+    "titleHint": "Choose a short and concise title that describes the service, it will be used in the search engine results"
+  },
   "cancel": "Cancel",
   "homePage": "Home"
 }

@@ -735,6 +735,9 @@ body {
         }
       }
     }
+    .add-service {
+      padding: 48px 0;
+    }
     .profile-section {
       padding: 48px 0;
       .profile-descripe {
@@ -4570,7 +4573,7 @@ body {
     header .tnavbar .loged-in-minor-menu .link .btns a i {
       transform: scaleX(-1);
     }
-    main .login-section .form {
+    main .form {
       .pass-group input {
         border-radius: 12px 0 0 12px !important;
         border-left: 1px solid var(--LightGray) !important;
