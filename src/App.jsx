@@ -31,11 +31,10 @@ import Logout from "./features/auth/Logout";
 import Cart from "./routes/Cart";
 import Profile from "./features/profile/Profile";
 import EditProfile from "./features/profile/EditProfile";
-import AddServices from "./routes/AddServices";
-import EditServices from "./routes/EditServices";
 import Notifcations from "./routes/Notifcations";
 import Chats from "./routes/Chats";
 import AuthVerifySteps from "./features/auth/verification/AuthVerifySteps";
+import AddServices from './features/services/AddServices';
 
 function App() {
   const dispatch = useDispatch();
@@ -82,7 +81,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/services" element={<Services />} />
           <Route path="/add-service" element={<AddServices />} />
-          <Route path="/EditServices" element={<EditServices />} />
+          <Route path="/EditServices/:id" element={<AddServices />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/purchases" element={<Purchases />} />
           <Route path="/order-details" element={<OrderDetails />} />
