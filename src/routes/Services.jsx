@@ -1,5 +1,3 @@
-import React from "react";
-
 import servicet4 from "../Assets/images/servicet4.mp4";
 import rateowner2 from "../Assets/images/rateowner2.webp";
 import servicet3 from "../Assets/images/servicet3.mp4";
@@ -8,13 +6,26 @@ import rateowner1 from "../Assets/images/rateowner1.webp";
 import rateowner3 from "../Assets/images/rateowner3.webp";
 import vector88 from "../Assets/images/vector88.png";
 import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import "swiper/css";
+import { Autoplay, Navigation, Pagination, Scrollbar } from "swiper/modules";
+
 import { Link } from "react-router-dom";
+import useServiceDetails from "../features/services/useServiceDetails";
+import { useState } from "react";
 
 const Services = () => {
+  const { data } = useServiceDetails(20);
+  const [avatarError, setAvatarError] = useState(false);
+
+  function handleAvatarError() {
+    setAvatarError(true);
+  }
+
+  console.log(data);
+
   return (
     <main>
       <section className="service-details container">
@@ -24,12 +35,14 @@ const Services = () => {
               <div className="swiper-wrapper">
                 <Swiper
                   spaceBetween={600}
-                  slidesPerView={3}
-                  autoplay={{ delay: 3000, disableOnInteraction: false }}
-                  pagination={{ clickable: true }}
+                  slidesPerView={1}
                   scrollbar={{ draggable: true }}
-                  onSlideChange={() => console.log("slide change")}
-                  onSwiper={(swiper) => console.log(swiper)}
+                  pagination={{ clickable: true }}
+                  navigation
+                  loop={true}
+                  modules={[Autoplay, Pagination, Scrollbar, Navigation]}
+                  autoplay={{ delay: 3000, disableOnInteraction: false }}
+                  className="servicesSwiper"
                 >
                   <SwiperSlide>
                     <video loop autoPlay width="750" height="500" controls>
@@ -65,19 +78,29 @@ const Services = () => {
                         to="assets/images/rate-owner2.jpg"
                         data-fancybox="owner"
                       >
-                        <img src={rateowner2} alt="owner" />
+                        {avatarError ? (
+                          <img
+                            src={data?.user.image}
+                            alt="owner"
+                            onError={handleAvatarError}
+                          />
+                        ) : (
+                          <i className="fa-regular fa-user"></i>
+                        )}
                       </Link>
                     </div>
                     <div className="title">
-                      <h6>خالد عوض</h6>
-                      <span>
-                        <i className="ti ti-md ti-briefcase"></i> بائع مميز
-                      </span>
+                      <h6>{data?.user?.name || "خالد عوض"}</h6>
+                      {data?.is_favorite && (
+                        <span>
+                          <i className="ti ti-md ti-briefcase"></i> بائع مميز
+                        </span>
+                      )}
                     </div>
                   </div>
                   <div className="btns">
                     <Link to="/chat" className="butn">
-                      <i className="ti ti-md ti-message-2"></i>
+                      <i className="fa-regular fa-message-lines"></i>
                     </Link>
                     <div className="dropdown">
                       <button
@@ -87,7 +110,7 @@ const Services = () => {
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
                       >
-                        <i className="ti ti-md ti-share"></i>
+                        <i className="fa-regular fa-share-nodes"></i>
                       </button>
                       <div
                         className="dropdown-menu"
@@ -128,11 +151,11 @@ const Services = () => {
                         </ul>
                         <p className="text-center">او نسخ الرابط</p>
                         <div className="link">
-                          <button onclick="copyToClipboard('#url',event)">
+                          <button onClick={`copyToClipboard('#url',event)`}>
                             <i className="fa-sharp fa-regular fa-copy"></i>
                           </button>
                           <span
-                            onclick="copyToClipboard('#url',event)"
+                            onClick={`copyToClipboard('#url',event)`}
                             id="url"
                           >
                             https://www.link.com/file/NlfVhYygR9mAQasassdsada/
@@ -200,11 +223,11 @@ const Services = () => {
               <div className="add-cart">
                 <div className="input-field">
                   <button className="add">
-                    <i className="ti ti-md ti-plus"></i>
+                    <i className="fa-regular fa-plus"></i>
                   </button>
                   <input type="number" />
                   <button className="minus">
-                    <i className="ti ti-md ti-minus"></i>
+                    <i className="fa-regular fa-minus"></i>
                   </button>
                 </div>
                 <div className="total d-flex justify-content-between align-items-center">
@@ -219,7 +242,7 @@ const Services = () => {
                   </h6>
                 </div>
                 <button className="request-order">
-                  <i className="fa-solid fa-cart-plus"></i> اضف الي السلة
+                  <i className="fa-regular fa-cart-plus"></i> اضف الي السلة
                 </button>
               </div>
             </div>
@@ -232,7 +255,7 @@ const Services = () => {
               </div>
               <ul className="card-ul">
                 <li className="rate d-flex justify-content-between">
-                  <p>التقييمات ( 53 )</p>
+                  <p>التقييمات ( {data?.rates?.length} )</p>
                   <div className="rate">
                     <ul>
                       <li className="star">

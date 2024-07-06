@@ -1,3 +1,4 @@
+import { t } from "i18next";
 import axios from "./../utils/axios";
 
 export async function getServicesByFilter(
@@ -45,7 +46,18 @@ export async function getServicesByFilter(
 export async function getUserServices(userId) {
   try {
     const req = await axios.post("/user/get_user_services", {
-      id: userId,
+      id,
+    });
+    return req.data.data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+export async function getServiceDetails(id) {
+  try {
+    const req = await axios.post("/get_service_details", {
+      id,
     });
     return req.data.data;
   } catch (error) {

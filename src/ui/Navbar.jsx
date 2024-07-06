@@ -83,6 +83,8 @@ const Navbar = () => {
     navigate(`/search?search=${searchInput}`);
   }
 
+  console.log(user);
+
   return (
     <header>
       <nav className="tnavbar">

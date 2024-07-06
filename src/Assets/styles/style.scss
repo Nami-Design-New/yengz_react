@@ -1122,8 +1122,21 @@ body {
                 height: 90px;
                 border-radius: 50%;
                 overflow: hidden;
-                img {
-                  max-width: 100%;
+                // abdleghany
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                img,
+                a {
+                  // abdelghany
+                  width: 100%;
+                  aspect-ratio: 1 / 1;
+                  object-fit: cover;
+                  position: relative;
+                  flex: 1 0 0;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
                 }
                 @media (max-width: 576px) {
                   width: 70px;

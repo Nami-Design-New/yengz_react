@@ -1209,9 +1209,21 @@ body main .service-details .service-content .content .service-owner-card .owner 
   height: 90px;
   border-radius: 50%;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-body main .service-details .service-content .content .service-owner-card .owner .img img {
-  max-width: 100%;
+body main .service-details .service-content .content .service-owner-card .owner .img img,
+body main .service-details .service-content .content .service-owner-card .owner .img a {
+  width: 100%;
+  aspect-ratio: 1/1;
+  -o-object-fit: cover;
+     object-fit: cover;
+  position: relative;
+  flex: 1 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 @media (max-width: 576px) {
   body main .service-details .service-content .content .service-owner-card .owner .img {
@@ -4852,7 +4864,7 @@ body .search-btn {
   align-items: center;
   justify-content: center;
 }
-body .search-btn button {
+.search-btn button {
   width: 100%;
   background: none;
   outline: none;
@@ -4891,6 +4903,7 @@ body.en .newsletter .form-news h3 {
 body.en .newsletter .form-news .input-field input {
   direction: ltr !important;
 }
-body.en main .row-head a i {
-  transform: scaleX(-1);
+
+.search-section {
+  padding: 48px 0;
 }/*# sourceMappingURL=style.css.map */
