@@ -12,24 +12,28 @@ const ForgetPassword = () => {
   const [otpData, setOtpData] = useState({});
   return (
     <section className="login-section forgetpassword container">
-      {step === 1 && (
-        <Step1
-          setStep={setStep}
-          setOtpData={setOtpData}
-          formData={formData}
-          setUserId={setUserId}
-          setFormData={setFormData}
-        />
-      )}
-      {step === 2 && (
-        <Step2
-          setStep={setStep}
-          setOtpData={setOtpData}
-          otpData={otpData}
-          email={formData.email}
-        />
-      )}
-      {step === 3 && <Step3 userId={userId} />}
+      <div className="row justify-content-center">
+        <div className="col-lg-8 col-12 p-2">
+          {step === 1 && (
+            <Step1
+              setStep={setStep}
+              setOtpData={setOtpData}
+              formData={formData}
+              setUserId={setUserId}
+              setFormData={setFormData}
+            />
+          )}
+          {step === 2 && (
+            <Step2
+              setStep={setStep}
+              setOtpData={setOtpData}
+              otpData={otpData}
+              email={formData.email}
+            />
+          )}
+          {step === 3 && <Step3 userId={userId} />}
+        </div>
+      </div>
     </section>
   );
 };

@@ -33,21 +33,25 @@ const Register = () => {
           ? t("auth.registerPageSubTitle")
           : t("auth.otpSubTitle") + formData.email}
       </p>
-      {!showOtp && (
-        <RegisterForm
-          formData={formData}
-          setFormData={setFormData}
-          setOtpData={setOtpData}
-          setShowOtp={setShowOtp}
-        />
-      )}
-      {showOtp && (
-        <ConfirmOtp
-          otpData={otpData}
-          setOtpData={setOtpData}
-          formData={formData}
-        />
-      )}
+      <div className="row justify-content-center">
+        <div className="col-lg-8 col-12 p-2">
+          {!showOtp && (
+            <RegisterForm
+              formData={formData}
+              setFormData={setFormData}
+              setOtpData={setOtpData}
+              setShowOtp={setShowOtp}
+            />
+          )}
+          {showOtp && (
+            <ConfirmOtp
+              otpData={otpData}
+              setOtpData={setOtpData}
+              formData={formData}
+            />
+          )}
+        </div>
+      </div>
     </section>
   );
 };
