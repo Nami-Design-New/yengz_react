@@ -57,7 +57,8 @@
     "advice1": "Well illuminated and clear to read",
     "advice2": "Placed in the frame and not cropped",
     "idBack": "Photo of the back side of the national ID",
-    "idSelfie": "Your photo with the national ID"
+    "idSelfie": "Your photo with the national ID",
+    "verificationSuccess": "Your data has been sent successfully and is currently being reviewed. You will be notified on the email address registered with us"
   },
   "navbar": {
     "addService": "Add Service",

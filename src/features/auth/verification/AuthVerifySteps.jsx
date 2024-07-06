@@ -13,12 +13,23 @@ const AuthVerifySteps = () => {
   const { user } = useSelector((state) => state.authedUser);
   const totalSteps = 4;
   const [progress, setProgress] = useState((step / totalSteps) * 100);
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    phone: "",
+    hashed_code: "",
+    code: "",
+    images: []
+  });
 
   useEffect(() => {
     setProgress((step / totalSteps) * 100);
-    setFormData({ phone: `+${user?.phone_code}${user?.phone}` });
-  }, [step, user]);
+  }, [step]);
+
+  useEffect(() => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      phone: `+${user?.phone_code}${user?.phone}`
+    }));
+  }, [user]);
 
   return (
     <section className="login-section container">

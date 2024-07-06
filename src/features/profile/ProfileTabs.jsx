@@ -76,7 +76,7 @@ const ProfileTabs = ({ user }) => {
           <div className="tab-pane">
             <ul className="verify-list">
               <li className="d-flex gap-2">
-                {user?.phone_verified === 1 ? (
+                {user?.verified === 1 ? (
                   <IconRosetteDiscountCheck stroke={2} />
                 ) : (
                   <IconBrandXamarin className="tabler-danger" stroke={2} />

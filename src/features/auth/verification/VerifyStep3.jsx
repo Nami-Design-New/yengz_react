@@ -1,16 +1,55 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import id from "../../../Assets/images/id.svg";
 import fileup1 from "../../../Assets/images/fileup1.svg";
 import { useTranslation } from "react-i18next";
 import SubmitButton from "../../../ui/form-elements/SubmitButton";
+import axios from "./../../../utils/axios";
 
 const VerifyStep3 = ({ setStep, formData, setFormData }) => {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
+  const frontIdImage = useRef(null);
+  const backIdImage = useRef(null);
+  const selfieImage = useRef(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setStep(4);
+    setLoading(true);
+    try {
+      const res = await axios.post(
+        "/user/verify_user",
+        {
+          images: formData.images
+        },
+        {
+          headers: {
+            "Content-Type": "multipart/form-data"
+          }
+        }
+      );
+      if (res?.data?.code === 200) {
+        setStep(4);
+      }
+    } catch (error) {
+      throw new Error(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleChange = (e) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      images: [...prevFormData.images, e.target.files[0]]
+    }));
+
+    if (e.target.id === "id-image-front") {
+      frontIdImage.current.src = URL.createObjectURL(e.target.files[0]);
+    } else if (e.target.id === "id-image-back") {
+      backIdImage.current.src = URL.createObjectURL(e.target.files[0]);
+    } else if (e.target.id === "id-image-selfie") {
+      selfieImage.current.src = URL.createObjectURL(e.target.files[0]);
+    }
   };
 
   return (
@@ -40,10 +79,10 @@ const VerifyStep3 = ({ setStep, formData, setFormData }) => {
             name="image"
             id="id-image-front"
             accept="image/*"
-            //onChange={handleChange}
+            onChange={handleChange}
           />
           <div className="img">
-            <img src={fileup1} alt="gallery" />
+            <img src={fileup1} ref={frontIdImage} alt="gallery" />
           </div>
         </label>
       </div>
@@ -58,10 +97,10 @@ const VerifyStep3 = ({ setStep, formData, setFormData }) => {
             name="image"
             id="id-image-back"
             accept="image/*"
-            //onChange={handleChange}
+            onChange={handleChange}
           />
           <div className="img">
-            <img src={fileup1} alt="gallery" />
+            <img src={fileup1} ref={backIdImage} alt="gallery" />
           </div>
         </label>
       </div>
@@ -76,10 +115,10 @@ const VerifyStep3 = ({ setStep, formData, setFormData }) => {
             name="image"
             id="id-image-selfie"
             accept="image/*"
-            //onChange={handleChange}
+            onChange={handleChange}
           />
           <div className="img">
-            <img src={fileup1} alt="gallery" />
+            <img src={fileup1} ref={selfieImage} alt="gallery" />
           </div>
         </label>
       </div>
@@ -88,7 +127,7 @@ const VerifyStep3 = ({ setStep, formData, setFormData }) => {
           className="back_btn"
           onClick={(e) => {
             e.preventDefault();
-            setStep(4);
+            setStep(2);
           }}
         >
           {t("auth.back")}

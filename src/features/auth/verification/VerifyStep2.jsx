@@ -3,16 +3,25 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Otpcontainer from "../../../ui/form-elements/OtpContainer";
 import SubmitButton from "../../../ui/form-elements/SubmitButton";
+import axios from './../../../utils/axios';
 
 const VerifyStep2 = ({ setStep, formData, setFormData }) => {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setStep(3);
-    setLoading(false);
+    try {
+      const res = await axios.post("/user/verify_phone", formData);
+      if (res.data.code === 200) {
+        setStep(3);
+      }
+    } catch (error) {
+      throw new Error(error.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

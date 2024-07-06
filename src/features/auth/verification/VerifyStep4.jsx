@@ -10,10 +10,7 @@ const VerifyStep4 = () => {
       <img src={success} />
       <div className="row justify-content-center">
         <div className="col-10 text-center">
-          <h5 className="text-center">
-            تم ارسال بياناتك بنجاح وجاري مراجعتها حالياً , سيتم اخطارك علي
-            البريد الالكتروني المسجل لدينا
-          </h5>
+          <h5 className="text-center">{t("auth.verificationSuccess")}</h5>
           <Link to="/">
             {t("homePage")} <i className="fa-solid fa-angle-left"></i>
           </Link>
