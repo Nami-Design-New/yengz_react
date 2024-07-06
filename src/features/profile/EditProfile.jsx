@@ -127,99 +127,103 @@ const EditProfile = () => {
   return (
     <section className="login-section container">
       <h1 className="text-center">{t("profile.editProfile")}</h1>
-      <form className="container form" onSubmit={handleSubmit}>
-        <ImageUpload
-          type="file"
-          name="userImage"
-          id="img-upload"
-          accept="image/*"
-          image={user?.image}
-          formData={formData}
-          setFormData={setFormData}
-        />
-        <div className="d-flex gap-2 flex-lg-row flex-column w-100">
-          <InputField
-            label={t("auth.name")}
-            placeholder={t("auth.nameAsInCard")}
-            name="name"
-            type="text"
-            id="name"
-            required={true}
-            value={formData?.name}
-            onChange={(e) => handleChange(e)}
-          />
-          <InputField
-            label={t("auth.age")}
-            name="age"
-            type="date"
-            id="age"
-            required={true}
-            value={formData?.age}
-            onChange={(e) => handleChange(e)}
-          />
+      <div className="row justify-content-center">
+        <div className="col-lg-8 col-12 p-2">
+          <form className="container form" onSubmit={handleSubmit}>
+            <ImageUpload
+              type="file"
+              name="userImage"
+              id="img-upload"
+              accept="image/*"
+              image={user?.image}
+              formData={formData}
+              setFormData={setFormData}
+            />
+            <div className="d-flex gap-2 flex-lg-row flex-column w-100">
+              <InputField
+                label={t("auth.name")}
+                placeholder={t("auth.nameAsInCard")}
+                name="name"
+                type="text"
+                id="name"
+                required={true}
+                value={formData?.name}
+                onChange={(e) => handleChange(e)}
+              />
+              <InputField
+                label={t("auth.age")}
+                name="age"
+                type="date"
+                id="age"
+                required={true}
+                value={formData?.age}
+                onChange={(e) => handleChange(e)}
+              />
+            </div>
+            <div className="d-flex gap-2 flex-lg-row flex-column">
+              <InputField
+                label={t("auth.email")}
+                placeholder="example@example.com"
+                type="email"
+                name="email"
+                id="email"
+                required={true}
+                value={formData?.email}
+                onChange={(e) => handleChange(e)}
+              />
+              <PhoneField
+                formData={formData}
+                setFormData={setFormData}
+                value={`+${user?.phone_code}${user?.phone}`}
+                id="phone"
+              />
+            </div>
+            <TextField
+              icon={<i className="fa-regular fa-circle-info"></i>}
+              name="about"
+              id="about"
+              value={formData?.about}
+              onChange={(e) => handleChange(e)}
+              label={t("auth.aboutUser")}
+              placeholder={t("auth.aboutPlaceHolder")}
+            />
+            <PasswordField
+              label={t("auth.password")}
+              name={"password"}
+              id={"password"}
+              minLength={6}
+              value={formData?.password}
+              onChange={handleChange}
+            />
+            <MultiSelect
+              label={t("auth.interestes")}
+              id="interest"
+              name="interest"
+              options={options}
+              selectedOptions={selectedOptions}
+              handleChange={handleSelect}
+            />
+            <div className="question">
+              <label htmlFor="isFreelancer" className="quest">
+                <img src={Vector} alt="isSeller" />
+                {t("auth.areYouSeller")}
+              </label>
+              <Form.Switch
+                id="isFreelancer"
+                name="isFreelancer"
+                checked={formData?.is_freelance === 1 ? true : false}
+                onChange={() =>
+                  setFormData({
+                    ...formData,
+                    is_freelance: formData?.is_freelance === 1 ? 0 : 1
+                  })
+                }
+              />
+            </div>
+            <SubmitButton loading={loading} name={t("auth.edit")} />
+          </form>
         </div>
-        <div className="d-flex gap-2 flex-lg-row flex-column">
-          <InputField
-            label={t("auth.email")}
-            placeholder="example@example.com"
-            type="email"
-            name="email"
-            id="email"
-            required={true}
-            value={formData?.email}
-            onChange={(e) => handleChange(e)}
-          />
-          <PhoneField
-            formData={formData}
-            setFormData={setFormData}
-            value={`+${user?.phone_code}${user?.phone}`}
-            id="phone"
-          />
-        </div>
-        <TextField
-          icon={<i className="fa-regular fa-circle-info"></i>}
-          name="about"
-          id="about"
-          value={formData?.about}
-          onChange={(e) => handleChange(e)}
-          label={t("auth.aboutUser")}
-          placeholder={t("auth.aboutPlaceHolder")}
-        />
-        <PasswordField
-          label={t("auth.password")}
-          name={"password"}
-          id={"password"}
-          minLength={6}
-          value={formData?.password}
-          onChange={handleChange}
-        />
-        <MultiSelect
-          label={t("auth.interestes")}
-          id="interest"
-          name="interest"
-          options={options}
-          selectedOptions={selectedOptions}
-          handleChange={handleSelect}
-        />
-        <div className="question">
-          <label htmlFor="isFreelancer" className="quest">
-            <img src={Vector} alt="isSeller" />
-            {t("auth.areYouSeller")}
-          </label>
-          <Form.Switch
-            id="isFreelancer"
-            name="isFreelancer"
-            checked={formData?.is_freelance === 1 ? true : false}
-            onChange={() =>
-              setFormData({
-                ...formData,
-                is_freelance: formData?.is_freelance === 1 ? 0 : 1
-              })
-            }
-          />
-        </div>
-        <SubmitButton loading={loading} name={t("auth.edit")} />
-      </form>
+      </div>
     </section>
   );
 };

@@ -2659,6 +2659,7 @@ body footer .upper-row .download-app ul li a p {
   font-size: 12px;
   text-align: end;
   line-height: 18px;
+  margin: 0;
   color: var(--black-color);
 }
 body footer .copy-rights {

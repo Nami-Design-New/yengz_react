@@ -1,18 +1,31 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
 import { IconDeviceMobile } from "@tabler/icons-react";
 import PhoneField from "./../../../ui/form-elements/PhoneField";
 import SubmitButton from "../../../ui/form-elements/SubmitButton";
+import axios from "./../../../utils/axios";
 
 const VerifyStep1 = ({ setStep, formData, setFormData }) => {
-  const { user } = useSelector((state) => state.authedUser);
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setStep(2);
+    setLoading(true);
+    try {
+      const res = await axios.post("/user/sendOtpCode", formData);
+      if (res.data.code === 200) {
+        setStep(2);
+        setFormData({
+          ...formData,
+          hashed_code: res.data.data
+        });
+      }
+    } catch (error) {
+      throw new Error(error.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
