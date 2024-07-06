@@ -1056,6 +1056,10 @@ body main .profile-section .tab-content .services_grid .noDataFound h4 {
   color: var(--LightGray);
   font-weight: 900;
 }
+body main .profile-section .tab-content .services_grid .service-card {
+  flex: 0 1;
+  min-width: calc(33.3333333333% - 11px);
+}
 body main .profile-section .tab-content .services_grid .workCard {
   overflow: hidden;
   flex: 0 1;
@@ -3641,13 +3645,6 @@ body input[type=checkbox] {
   position: relative;
   cursor: pointer;
 }
-body input[type=checkbox].form-check-input {
-  box-shadow: none !important;
-  border: none !important;
-}
-body input[type=checkbox].form-check-input:checked {
-  background: none !important;
-}
 body input[type=checkbox]::after {
   position: absolute;
   left: 50%;
@@ -3760,27 +3757,27 @@ body .newsletter .img {
 body .newsletter .img img {
   max-width: 70%;
 }
-body .newsletter .form {
+body .newsletter .form-news {
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 42px;
 }
-body .newsletter .form form {
+body .newsletter .form-news form {
   display: flex;
 }
-body .newsletter .form h3 {
+body .newsletter .form-news h3 {
   color: var(--black-color);
   font-size: 36px;
 }
 @media (max-width: 768px) {
-  body .newsletter .form h3 {
+  body .newsletter .form-news h3 {
     line-height: 40px;
     font-size: 28px;
   }
 }
-body .newsletter .form .input-field {
+body .newsletter .form-news .input-field {
   width: 90%;
   padding: 16px 24px;
   border-radius: 50px;
@@ -3788,27 +3785,27 @@ body .newsletter .form .input-field {
   justify-content: space-between;
   background: var(--white-color);
 }
-body .newsletter .form .input-field input {
+body .newsletter .form-news .input-field input {
   border: none;
   background: none;
   outline: none;
   color: var(--text-color);
   direction: rtl;
 }
-body .newsletter .form .input-field button {
+body .newsletter .form-news .input-field button {
   border: none;
   background: none;
   outline: none;
   color: var(--main-color);
 }
 @media (max-width: 768px) {
-  body .newsletter .form {
+  body .newsletter .form-news {
     gap: 24px;
   }
-  body .newsletter .form .input-field {
+  body .newsletter .form-news .input-field {
     width: 95%;
   }
-  body .newsletter .form .input-field input {
+  body .newsletter .form-news .input-field input {
     font-size: 14px;
   }
 }
@@ -4911,7 +4908,7 @@ body .mainSection .mainSlideItem.swiper-slide-active a {
     height: 100px;
   }
 }
-body .newsletter .form .input-field {
+body .newsletter .form-news .input-field {
   background: var(--light-bg);
 }
 @media (max-width: 576px) {
@@ -5287,10 +5284,10 @@ body.en main .login-section .form .input-field textarea,
 body.en main .login-section .form .input-field select {
   direction: ltr !important;
 }
-body.en .newsletter .form h3 {
+body.en .newsletter .form-news h3 {
   font-size: 28px !important;
 }
-body.en .newsletter .form .input-field input {
+body.en .newsletter .form-news .input-field input {
   direction: ltr !important;
 }
 body.en main .row-head a i {
