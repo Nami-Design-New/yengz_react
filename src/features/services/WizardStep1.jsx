@@ -1,16 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import InputField from "./../../ui/form-elements/InputField";
+import TextField from "./../../ui/form-elements/TextField";
+import SelectField from "./../../ui/form-elements/SelectField";
+import useCategoriesList from "../categories/useCategoriesList";
+import useSubCategoriesList from "./../categories/useSubCategoriesList";
 
 const WizardStep1 = ({ formData, setFormData, setStep }) => {
+  const [categoryId, setCategoryId] = useState(null);
+  const [formValid, setFormValid] = useState(false);
   const { t } = useTranslation();
-
-  const renderTooltip = (props) => (
-    <Tooltip id="button-tooltip" {...props}>
-      {props.content}
-    </Tooltip>
-  );
+  const { data: categories } = useCategoriesList();
+  const { data: subCategories } = useSubCategoriesList(categoryId);
 
   const handleChange = (e) => {
     setFormData({
@@ -19,8 +20,22 @@ const WizardStep1 = ({ formData, setFormData, setStep }) => {
     });
   };
 
+  useEffect(() => {
+    if (formData.title && formData.sub_category_id && formData.description) {
+      setFormValid(true);
+    }
+  }, [formData]);
+
+  const handleNext = (e) => {
+    e.preventDefault();
+    if (formValid) {
+      setStep(2);
+    }
+  };
+
   return (
     <>
+      {/* title */}
       <InputField
         label={t("addService.serviceTitle")}
         placeholder={t("addService.serviceTitlePlaceholder")}
@@ -31,55 +46,52 @@ const WizardStep1 = ({ formData, setFormData, setStep }) => {
         onChange={handleChange}
         toolTipContent={t("addService.titleHint")}
       />
-
-      <div className="input-field">
-        <label htmlFor="service-main-type">التصنيف</label>
-        <div className="select-wrap">
-          <select
-            className="form-select form-select-lg mb-3"
-            id="service-main-type"
-          >
-            <option selected>اختر</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </select>
-        </div>
-      </div>
-      
-      <div className="input-field">
-        <label htmlFor="service-secondary-type">التصنيف الفرعي</label>
-        <div className="select-wrap">
-          <select
-            className="form-select form-select-lg mb-3"
-            id="service-secondary-type"
-          >
-            <option selected>اختر</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </select>
-        </div>
-      </div>
-      <div className="input-field">
-        <label htmlFor="service-description">
-          <div className="d-flex justify-content-between align-items-center">
-            <span>وصف الخدمة</span>
-            <OverlayTrigger
-              placement="bottom"
-              overlay={renderTooltip({
-                content:
-                  "اكتب وصفًا مميزًا للخدمة بلغة سليمة خالية من الأخطاء، تشرح خلاله ما سيحصل عليه العميل بالتفصيل عند شراء الخدمة."
-              })}
-            >
-              <i className="info-label fa-light fa-circle-info"></i>
-            </OverlayTrigger>
-          </div>
-        </label>
-        <textarea name="service-description" placeholder="اكتب هنا"></textarea>
-      </div>
-
-      <button className="w-25 mt-4 align-self-end">التالي</button>
+      {/* category */}
+      <SelectField
+        label={t("addService.serviceCategory")}
+        id="category"
+        name="category"
+        disabledOption={t("select")}
+        value={categoryId}
+        onChange={(e) => {
+          setCategoryId(e.target.value);
+        }}
+        options={categories?.data?.map((category) => ({
+          name: category.name,
+          value: category.id
+        }))}
+      />
+      {/* sub_category */}
+      <SelectField
+        label={t("addService.serviceSubCategory")}
+        id="sub_category_id"
+        name="sub_category_id"
+        value={formData.sub_category_id}
+        onChange={handleChange}
+        options={subCategories?.data?.map((subCategory) => ({
+          name: subCategory.name,
+          value: subCategory.id
+        }))}
+        disabledOption={
+          categoryId ? t("select") : t("addService.selectCategoryFirst")
+        }
+      />
+      {/* description */}
+      <TextField
+        label={t("addService.serviceDescription")}
+        placeholder={t("writeHere")}
+        id="description"
+        name="description"
+        value={formData.description}
+        onChange={handleChange}
+        toolTipContent={t("addService.serviceDescriptionHint")}
+      />
+      <button
+        onClick={(e) => handleNext(e)}
+        className={`w-25 mt-4 align-self-end ${formValid ? "" : "disabled"}`}
+      >
+        {t("next")}
+      </button>
     </>
   );
 };

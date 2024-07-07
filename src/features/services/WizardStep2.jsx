@@ -1,87 +1,169 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import galleryIcon from "../../Assets/images/gallery.svg";
+import InputField from "../../ui/form-elements/InputField";
+import { toast } from "react-toastify";
 
-const WizardStep2 = () => {
+const WizardStep2 = ({ formData, setFormData, setStep }) => {
+  const { t } = useTranslation();
+  const [formValid, setFormValid] = useState(false);
+  const renderTooltip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      {props.content}
+    </Tooltip>
+  );
+
+  useEffect(() => {
+    if (
+      formData.images.length > 0 &&
+      formData.price &&
+      formData.days &&
+      formData.price > 0 &&
+      formData.days > 0
+    ) {
+      setFormValid(true);
+    }
+  }, [formData]);
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleNext = (e) => {
+    e.preventDefault();
+    if (formValid) {
+      setStep(3);
+    }
+  };
+
+  const handleImagesChange = (e) => {
+    e.preventDefault();
+    const newImages = Array.from(e.target.files);
+    if (formData.images.length + newImages.length > 10) {
+      toast.warn(t("addService.imageLimitReached"));
+      return;
+    }
+    setFormData((prevState) => ({
+      ...prevState,
+      images: [...prevState.images, ...newImages]
+    }));
+  };
+
+  const handleRemoveImage = (index, image) => {
+    if (image.id) {
+      setFormData((prevState) => ({
+        ...prevState,
+        images: prevState.images.filter((_, i) => i !== index),
+        delete_images: [...prevState.delete_images, image.id]
+      }));
+    } else {
+      setFormData((prevState) => ({
+        ...prevState,
+        images: prevState.images.filter((_, i) => i !== index)
+      }));
+    }
+  };
+
   return (
-    <fieldset>
-      <div className="form-card">
-        <div className="input-field">
-          <label htmlFor="info-htmlFor-customer">
-            <div className="d-flex justify-content-between align-items-center">
-              <span>معرض الخدمة</span>
-              <i
-                className="info-label fa-light fa-circle-info"
-                data-bs-toggle="tooltip"
-                data-bs-placement="bottom"
-                data-bs-title="أضف صورة معبرة عن الخدمة بالإضافة إلى ثلاثة نماذج حصرية على الأقل تعرّف المشتري من خلالها على أسلوبك في العمل ومهاراتك."
-              ></i>
-            </div>
-            <small>
-              القياس: 343x257 بكسل . بنسبة 4:3 . الحجم الأقصى: 5 ميجا. العدد
-              المسموح: 10 ملفات.
-            </small>
-          </label>
-          <label className="img-upload">
-            <img src={fileup1} alt="icon" />
-            <input
-              name="front-id-img"
-              id="img-upload-front"
-              accept="image/*"
-              type="file"
-            />
-          </label>
-        </div>
-        <div className="input-field">
-          <label htmlFor="service-main-type">سعر الخدمة</label>
-          <div className="selcet-wrap">
-            <select
-              className="form-select form-select-lg mb-3"
-              id="service-main-type"
+    <>
+      {/* images */}
+      <div className="input-field">
+        <label htmlFor="info-htmlFor-customer">
+          <div className="d-flex justify-content-between align-items-center">
+            <span>{t("addService.serviceGallery")}</span>
+            <OverlayTrigger
+              placement="bottom"
+              overlay={renderTooltip({
+                content: t("addService.galleryHint")
+              })}
             >
-              <option selected>5.00 $</option>
-              <option value="1">10.00 $</option>
-              <option value="2">20.00 $</option>
-              <option value="3">30.00 $</option>
-            </select>
+              <i className="info-label fa-light fa-circle-info"></i>
+            </OverlayTrigger>
           </div>
-        </div>
-        <div className="input-field">
-          <label htmlFor="service-name">
-            <div className="d-flex justify-content-between align-items-center">
-              <span>مدة التسليم</span>
-              <i
-                className="info-label fa-light fa-circle-info"
-                data-bs-toggle="tooltip"
-                data-bs-placement="bottom"
-                data-bs-title="يحق للمشتري إلغاء الخدمة مباشرة بحال التأخر عن الموعد المحدد."
-              ></i>
-            </div>
-          </label>
-          <div className="selcet-wrap">
-            <select
-              className="form-select form-select-lg mb-3"
-              id="service-main-type"
-            >
-              <option selected>اختر</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </select>
+          <small>{t("addService.imagesHint")}</small>
+        </label>
+        <div className="images_grid_upload">
+          <div className="file_upload">
+            <label htmlFor="file_upload">
+              <input
+                type="file"
+                id="file_upload"
+                accept="image/*"
+                name="images"
+                multiple
+                onChange={handleImagesChange}
+              />
+              <img src={galleryIcon} alt="upload" />
+            </label>
           </div>
+          {formData?.images && (
+            <>
+              {formData?.images?.map((image, index) => (
+                <div className="uploaded_file" key={index}>
+                  <img
+                    src={
+                      image?.type?.startsWith("image/")
+                        ? URL.createObjectURL(image)
+                        : image?.image
+                    }
+                    alt="file"
+                  />
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleRemoveImage(index, image);
+                    }}
+                  >
+                    <i className="fa-light fa-xmark"></i>
+                  </button>
+                </div>
+              ))}
+            </>
+          )}
         </div>
       </div>
-      <input
-        type="button"
-        name="next"
-        className="next action-button"
-        value="التالي"
+      <InputField
+        label={t("addService.servicePrice")}
+        type="number"
+        id="price"
+        name="price"
+        min={0}
+        value={formData.price}
+        onChange={handleChange}
       />
-      <input
-        type="button"
-        name="previous"
-        className="previous action-button-previous"
-        value="السابق"
+      <InputField
+        label={t("addService.serviceDays")}
+        type="number"
+        id="days"
+        name="days"
+        min={0}
+        value={formData.days}
+        onChange={handleChange}
+        toolTipContent={t("addService.daysHint")}
       />
-    </fieldset>
+
+      <div className="d-flex justify-content-between mt-4 w-100">
+        <button
+          className="back_btn"
+          onClick={(e) => {
+            e.preventDefault();
+            setStep(1);
+          }}
+        >
+          {t("back")}
+        </button>
+        <button
+          onClick={(e) => handleNext(e)}
+          className={`w-25 align-self-end ${formValid ? "" : "disabled"}`}
+        >
+          {t("next")}
+        </button>
+      </div>
+    </>
   );
 };
 

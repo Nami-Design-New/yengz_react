@@ -38,7 +38,7 @@ const VerifyStep1 = ({ setStep, formData, setFormData }) => {
         icon={<IconDeviceMobile stroke={2} />}
       />
       <SubmitButton
-        name={t("auth.next")}
+        name={t("next")}
         loading={loading}
         className={"w-25 mt-4 align-self-end"}
       />
