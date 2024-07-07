@@ -4,7 +4,6 @@ import { IconLanguage } from "@tabler/icons-react";
 import { useDispatch, useSelector } from "react-redux";
 import { setLanguage } from "../redux/slices/language";
 import { useTranslation } from "react-i18next";
-import { logout } from "../redux/slices/authedUser";
 import avatar from "../Assets/images/avatar.png";
 import av1 from "../Assets/images/av1.png";
 import av2 from "../Assets/images/av2.png";
@@ -17,16 +16,15 @@ import useOutsideClose from "../hooks/useOutsideClose";
 const Navbar = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.autheduser?.user);
-  const lang = useSelector((state) => state.language.lang);
-  const isLogged = useSelector((state) => state.autheduser?.isLogged);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+  const navigate = useNavigate();
   const searchRef = useRef();
   const profileMenuRef = useRef();
-  const navigate = useNavigate();
+  const user = useSelector((state) => state.authedUser.user);
+  const lang = useSelector((state) => state.language.lang);
+  const isLogged = useSelector((state) => state.authedUser.isLogged);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const [isSmallMediaMenuOpen, setIsSmallMediaMenuOpen] = useState(false);
-  const [avatarError, setAvatarError] = useState(false);
 
   function handleAvatarError() {
     setAvatarError(true);
@@ -82,8 +80,6 @@ const Navbar = () => {
     const searchInput = e.target[0].value;
     navigate(`/search?search=${searchInput}`);
   }
-
-  console.log(user);
 
   return (
     <header>
@@ -370,15 +366,11 @@ const Navbar = () => {
                     onClick={handleToggleProfileMenu}
                     style={{ cursor: "pointer" }}
                   >
-                    {avatarError ? (
-                      <i className="fa-regular fa-user"></i>
-                    ) : (
-                      <img
-                        src={user?.image}
-                        alt="user-avatar"
-                        onError={handleAvatarError}
-                      />
-                    )}
+                    <img
+                      src={user.image || avatar}
+                      alt="user-avatar"
+                      onError={handleAvatarError}
+                    />
                   </span>
                 </li>
                 {isProfileMenuOpen && (
@@ -386,7 +378,7 @@ const Navbar = () => {
                     <li>
                       <Link className="dropdown-item_Link" to="/profile">
                         <i className="fa-solid fa-user"></i>
-                        {user?.name}
+                        {user.name || "user name"}
                       </Link>
                     </li>
                     <li>
@@ -395,7 +387,6 @@ const Navbar = () => {
                         to="/profile/balance"
                       >
                         <i className="fa-sharp fa-solid fa-dollar-sign"></i>
-
                         {t("navbar.balance")}
                       </Link>
                     </li>

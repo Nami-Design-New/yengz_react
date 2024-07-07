@@ -5,15 +5,18 @@ import WizardStep2 from "./WizardStep2";
 import WizardStep3 from "./WizardStep3";
 import { CreateService } from "../../services/apiServices";
 import { useQueryClient } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
+import useServiceDetails from "./useServiceDetails";
 
 const AddServices = () => {
   const totalSteps = 3;
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const { data: service } = useServiceDetails();
+  const [categoryId, setCategoryId] = useState(null);
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState((step / totalSteps) * 100);
@@ -25,8 +28,28 @@ const AddServices = () => {
     price: "",
     instructions: "",
     images: [],
-    developments: []
+    developments: [],
+    delete_images: [],
+    delete_developments: []
   });
+
+  useEffect(() => {
+    if (service) {
+      setCategoryId(service?.category?.id);
+      setFormData({
+        title: service?.title,
+        description: service?.description,
+        days: service?.days,
+        price: service?.price,
+        instructions: service?.instructions,
+        images: service?.images,
+        developments: service?.developments,
+        sub_category_id: service?.sub_category_id,
+        delete_images: [],
+        delete_developments: []
+      });
+    }
+  }, [service]);
 
   useEffect(() => {
     setProgress((step / totalSteps) * 100);
@@ -38,7 +61,7 @@ const AddServices = () => {
     try {
       await CreateService(formData, queryClient);
       toast.success(t("addService.success"));
-      navigate("/profile?tab=services");
+      navigate("/profile");
     } catch (error) {
       throw new Error(error);
     } finally {
@@ -58,6 +81,8 @@ const AddServices = () => {
                   formData={formData}
                   setFormData={setFormData}
                   setStep={setStep}
+                  categoryId={categoryId}
+                  setCategoryId={setCategoryId}
                 />
               )}
               {step === 2 && (

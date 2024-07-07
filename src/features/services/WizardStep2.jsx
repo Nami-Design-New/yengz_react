@@ -57,7 +57,7 @@ const WizardStep2 = ({ formData, setFormData, setStep }) => {
     if (image.id) {
       setFormData((prevState) => ({
         ...prevState,
-        images: prevState.images.filter((_, i) => i !== index),
+        images: prevState?.images.filter((_, i) => i !== index),
         delete_images: [...prevState.delete_images, image.id]
       }));
     } else {
