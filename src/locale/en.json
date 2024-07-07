@@ -184,12 +184,6 @@
     "addAndConfirm": "Add and Confirm",
     "moreDevDurationPlaceholder": "EX: 2 days"
   },
-  "cancel": "Cancel",
-  "homePage": "Home",
-  "writeHere": "Write Here",
-  "select": "Select",
-  "next": "Next",
-  "back": "Back"
   "search": {
     "searchFor": "Search for...",
     "search": "Search",
@@ -201,5 +195,11 @@
     "availabilty": "Available",
     "apply": "Apply",
     "clear": "Clear filter"
-  }
+  },
+  "cancel": "Cancel",
+  "homePage": "Home",
+  "writeHere": "Write Here",
+  "select": "Select",
+  "next": "Next",
+  "back": "Back"
 }
