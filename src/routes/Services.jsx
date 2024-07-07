@@ -1,23 +1,22 @@
-import servicet4 from "../Assets/images/servicet4.mp4";
 import rateowner2 from "../Assets/images/rateowner2.webp";
-import servicet3 from "../Assets/images/servicet3.mp4";
-import servicet2 from "../Assets/images/servicet2.mp4";
 import rateowner1 from "../Assets/images/rateowner1.webp";
 import rateowner3 from "../Assets/images/rateowner3.webp";
 import vector88 from "../Assets/images/vector88.png";
+import avatarPlaceholder from "../Assets/images/avatar-placeholder-2.svg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import { Autoplay, Navigation, Pagination, Scrollbar } from "swiper/modules";
+import "swiper/css/effect-fade";
+import { Autoplay, EffectFade, Pagination, Scrollbar } from "swiper/modules";
 
 import { Link } from "react-router-dom";
 import useServiceDetails from "../features/services/useServiceDetails";
 import { useState } from "react";
 
 const Services = () => {
-  const { data } = useServiceDetails(20);
+  const { data } = useServiceDetails();
   const [avatarError, setAvatarError] = useState(false);
 
   function handleAvatarError() {
@@ -31,45 +30,36 @@ const Services = () => {
       <section className="service-details container">
         <div className="row">
           <div className="service-content col-lg-7 col-12 p-3">
+            {/* service slider */}
             <div className="swiper mySwiper">
-              <div className="swiper-wrapper">
+              <div className="swiper-container mySwiper">
                 <Swiper
                   spaceBetween={600}
                   slidesPerView={1}
-                  scrollbar={{ draggable: true }}
-                  pagination={{ clickable: true }}
-                  navigation
-                  loop={true}
-                  modules={[Autoplay, Pagination, Scrollbar, Navigation]}
                   autoplay={{ delay: 3000, disableOnInteraction: false }}
-                  className="servicesSwiper"
+                  effect="fade"
+                  loop={true}
+                  scrollbar={{ draggable: true }}
+                  pagination={{
+                    clickable: true,
+                  }}
+                  modules={[Pagination, Scrollbar, EffectFade, Autoplay]}
+                  className="mySwiper"
                 >
-                  <SwiperSlide>
-                    <video loop autoPlay width="750" height="500" controls>
-                      <source src={servicet4} type="video/mp4" />
-                    </video>
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <video width="750" height="500" controls>
-                      <source src={servicet2} type="video/mp4" />
-                    </video>
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <video width="750" height="500" controls>
-                      <source src={servicet3} type="video/mp4" />
-                    </video>
-                  </SwiperSlide>
-                  ...
+                  {data?.images?.map((image) => (
+                    <SwiperSlide key={image.image} className="service-slide">
+                      <img src={image.image} alt="service" />
+                    </SwiperSlide>
+                  ))}
+
+                  <div className="swiper-button-next"></div>
+                  <div className="swiper-button-prev"></div>
                 </Swiper>
               </div>
-              {/**/}
-
-              <div className="swiper-button-next"></div>
-              <div className="swiper-button-prev"></div>
-              <div className="swiper-pagination"></div>
             </div>
 
             <div className="content">
+              {/* service owner */}
               <div className="service-owner-card">
                 <div className="d-flex justify-content-between h-100">
                   <div className="owner">
@@ -85,7 +75,7 @@ const Services = () => {
                             onError={handleAvatarError}
                           />
                         ) : (
-                          <i className="fa-regular fa-user"></i>
+                          <img src={avatarPlaceholder} alt="owner" />
                         )}
                       </Link>
                     </div>
@@ -167,59 +157,45 @@ const Services = () => {
                   </div>
                 </div>
               </div>
-              <h4>انشاء متجر الكتروني احترافي على منصة ووردبريس ووكومرس</h4>
+              {/* service details */}
+              <h4>{data?.title}</h4>
               <p>
-                <Link to="#!">برمجة وتطوير</Link> / <span>إنشاء تطبيق</span>
+                <Link to={`/search?categories=${data?.category?.id}`}>
+                  {data?.category?.name}
+                </Link>{" "}
+                /{" "}
+                <Link to={`/search?sub_categories=${data?.sub_category_id}`}>
+                  {data?.sub_category?.name}
+                </Link>
               </p>
-              <p>
-                مرحبا بك. <br />
-                هل تخطط للحصول على متجر إلكتروني إحترافي، متجاوب على منصة
-                ووكومرس؟ إذا كان الأمر كذلك ، انتبه! أخيرًا ، هذه خدمة جديدة
-                ومبتكرة تم إنشاؤها فقط للأشخاص مثلك تمامًا! سأقوم متجر الكتروني
-                احترافي علي المنصة الخاصة بكفي هذه الخدمة سأتولى ببناء متجرك
-                الجديد على منصة ووردبريس ووكومرس بشكل إحترافي جداً مع تصميم عصري
-                وممتاز،ستحصل على كل ما تحتاجه لجعل متجرك مثاليًا، والبدء فورا في
-                بيع كل منتجاتك وتحقيق دخل إضافي لمحفظتك،على ماذا ستحصل في هذه
-                الخدمة ؟ ✓ إنشاء 5 أقسام وإضافتها إلى القائمة الرئيسية، وتعديل 3
-                صفحات/ الرئيسية/ و من نحن /اتصل بنا
-              </p>
-              <div className="more-develop">
-                <h6>
-                  <img src={vector88} alt="icon" /> تطويرات متوفرة لهذه الخدمة
-                </h6>
-                <div className="d-flex input-field align-items-baseline">
-                  <input type="checkbox" id="check-1" />
-                  <div className="label">
-                    <label htmlFor="check-1">لوغو احترافي للمتجر</label>
-                    <p>مقابل 15.00$ إضافية على سعر الخدمة.</p>
-                  </div>
+              <p>{data?.description}</p>
+              {/* service features (more development) */}
+              {data?.developments && data?.developments.length > 0 && (
+                <div className="more-develop">
+                  <h6>
+                    <img src={vector88} alt="icon" /> تطويرات متوفرة لهذه الخدمة
+                  </h6>
+                  {data?.developments.map((development) => (
+                    <div
+                      className="d-flex input-field align-items-baseline"
+                      key={development?.id}
+                    >
+                      <input
+                        type="checkbox"
+                        id="check-1"
+                        checked={development.in_cart}
+                      />
+                      <div className="label">
+                        <label htmlFor="check-1">
+                          {development.description}
+                        </label>
+                        <p>مقابل {development.price}$ إضافية على سعر الخدمة.</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-                <div className="d-flex input-field align-items-baseline">
-                  <input type="checkbox" id="check-2" />
-                  <div className="label">
-                    <label htmlFor="check-2">
-                      خدمة VIP متجر عربي (هوية بصرية لمتجرك+25 منتج رابح مع وصف
-                      إحترافي+ ومقابلة زووم لشرح )
-                    </label>
-                    <p>
-                      مقابل 100.00$ إضافية على سعر الخدمة. سيزيد مدة التنفيذ 7
-                      أيام إضافية.
-                    </p>
-                  </div>
-                </div>
-                <div className="d-flex input-field align-items-baseline">
-                  <input type="checkbox" id="check-3" />
-                  <div className="label">
-                    <label htmlFor="check-3">
-                      ترجمة قالب المتجر الى اللغة العربية
-                    </label>
-                    <p>
-                      مقابل 50.00$ إضافية على سعر الخدمة. سيزيد مدة التنفيذ 3
-                      أيام إضافية.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              )}
+              {/* add to cart */}
               <div className="add-cart">
                 <div className="input-field">
                   <button className="add">
@@ -248,14 +224,19 @@ const Services = () => {
             </div>
           </div>
           <div className="col-lg-5 col-12 p-3">
+            {/* service card */}
             <div className="service-card">
-              <div className="label">
-                <i className="ti ti-md ti-info-hexagon-filled"></i>
-                <p>بطاقة الخدمة</p>
+              <div className="label d-flex align-items-center gap-2">
+                <i className="fa-regular fa-circle-info"></i>
+                <p className="p-0 m-0">بطاقة الخدمة</p>
               </div>
               <ul className="card-ul">
                 <li className="rate d-flex justify-content-between">
-                  <p>التقييمات ( {data?.rates?.length} )</p>
+                  <p>
+                    التقييمات{" "}
+                    {data?.user.customer_count &&
+                      `(${data?.user.customer_count})`}{" "}
+                  </p>
                   <div className="rate">
                     <ul>
                       <li className="star">
@@ -282,18 +263,19 @@ const Services = () => {
                 </li>
                 <li className=" d-flex justify-content-between">
                   <p>طلبات جاري تنفيذها</p>
-                  <span>1</span>
+                  <span>{data?.orders_count}</span>
                 </li>
                 <li className=" d-flex justify-content-between">
                   <p>سعر الخدمة يبدأ من</p>
-                  <span>$35.00</span>
+                  <span>${data?.price}</span>
                 </li>
                 <li className=" d-flex justify-content-between">
                   <p>مدة التسليم</p>
-                  <span>ثلاثة أيام</span>
+                  <span>{data?.days} يوم</span>
                 </li>
               </ul>
             </div>
+            {/* rating cards */}
             <div className="rating-cards-container">
               <div className="rate-card">
                 <div className="rate-owner">

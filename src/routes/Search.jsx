@@ -207,12 +207,14 @@ const Search = () => {
                   value={searchFilterData.rate}
                   onChange={handleChange}
                 />
+                <hr />
                 {/* <SellerFilterBox /> */}
                 <SellerStatusFilterBox
                   user_available={searchFilterData.user_available}
                   user_verification={searchFilterData.user_verification}
                   onChange={handleChange}
                 />
+                <hr />
                 <div className="search-btn">
                   <button onClick={handleApplyFilters}>
                     {t("search.apply")}
