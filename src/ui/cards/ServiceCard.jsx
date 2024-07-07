@@ -9,7 +9,7 @@ const ServiceCard = ({ service, canEdit }) => {
   const { t } = useTranslation();
   return (
     <div className="service-card" data-aos="fade-up">
-      <Link to="/services" className="img">
+      <Link to={`/services?id=${service?.id}`} className="img">
         <img src={service?.image || bann} alt="" />
       </Link>
       <div className="content">

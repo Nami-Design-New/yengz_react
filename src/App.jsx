@@ -24,7 +24,7 @@ import RecievedRequest from "./routes/RecievedRequest";
 import RecievedRequestOrders from "./routes/RecievedRequestOrders";
 import Terms from "./routes/Terms";
 import AddRequest from "./routes/AddRequest";
-import Requests from "./routes/Requests";
+import ServiceOrders from "./routes/ServiceOrders";
 import Services from "./routes/Services";
 import Search from "./routes/Search";
 import Logout from "./features/auth/Logout";
@@ -86,7 +86,7 @@ function App() {
           <Route path="/purchases" element={<Purchases />} />
           <Route path="/order-details" element={<OrderDetails />} />
           <Route path="/recieved-request" element={<RecievedRequest />} />
-          <Route path="/requests" element={<Requests />} />
+          <Route path="/service-orders" element={<ServiceOrders />} />
           <Route path="/request-details" element={<RequestDetails />} />
           <Route path="/request-add" element={<AddRequest />} />
           <Route path="/chat" element={<Chats />} />

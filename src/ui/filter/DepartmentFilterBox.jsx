@@ -1,18 +1,23 @@
+import { useTranslation } from "react-i18next";
 import CheckBoxContainer from "./CheckBoxContainer";
+import useCategorieListWithSub from "../../features/categories/useCategorieListWithSub";
 
 function DepartmentFilterBox({
   categoriesValue,
   sub_categoriesValue,
   onChange,
-  departmentFilter,
 }) {
+  const { t } = useTranslation();
+  const { data } = useCategorieListWithSub();
+
+
   return (
     <div className="departments">
-      {departmentFilter.length > 0 && (
+      {data && data.length > 0 && (
         <>
-          <h6>القسم</h6>
+          <h6>{t("search.category")}</h6>
           <ul className="deps">
-            {departmentFilter.map((item) => (
+            {data.map((item) => (
               <CheckBoxContainer
                 key={item.id}
                 item={item}

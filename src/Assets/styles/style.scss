@@ -1129,13 +1129,24 @@ body {
               display: flex;
               align-items: center;
               gap: 16px;
+
               .img {
-                width: 90px;
-                height: 90px;
                 border-radius: 50%;
+                box-shadow: 0 0 2px 1px #333;
+                height: 100%;
                 overflow: hidden;
-                img {
-                  max-width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                img,
+                a {
+                  height: 100%;
+                  object-fit: cover;
+                  position: relative;
+                  flex: 1 0 0;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
                 }
                 @media (max-width: 576px) {
                   width: 70px;
@@ -4599,7 +4610,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    button {
+    text-align: center;
+    button,
+    span {
+      cursor: pointer;
       width: 100%;
       background: none;
       outline: none;
@@ -4653,5 +4667,14 @@ body {
     main .row-head a i {
       transform: scaleX(-1);
     }
+  }
+}
+.service-slide {
+  position: relative;
+  display: flex;
+
+  img {
+    width: 100%;
+    object-fit: cover;
   }
 }

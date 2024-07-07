@@ -1215,13 +1215,24 @@ body main .service-details .service-content .content .service-owner-card .owner 
   gap: 16px;
 }
 body main .service-details .service-content .content .service-owner-card .owner .img {
-  width: 90px;
-  height: 90px;
   border-radius: 50%;
+  box-shadow: 0 0 2px 1px #333;
+  height: 100%;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-body main .service-details .service-content .content .service-owner-card .owner .img img {
-  max-width: 100%;
+body main .service-details .service-content .content .service-owner-card .owner .img img,
+body main .service-details .service-content .content .service-owner-card .owner .img a {
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  position: relative;
+  flex: 1 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 @media (max-width: 576px) {
   body main .service-details .service-content .content .service-owner-card .owner .img {
@@ -4900,8 +4911,11 @@ body .search-btn {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
 }
-body .search-btn button {
+body .search-btn button,
+body .search-btn span {
+  cursor: pointer;
   width: 100%;
   background: none;
   outline: none;
@@ -4943,4 +4957,14 @@ body.en .newsletter .form-news .input-field input {
 }
 body.en main .row-head a i {
   transform: scaleX(-1);
+}
+
+.service-slide {
+  position: relative;
+  display: flex;
+}
+.service-slide img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }/*# sourceMappingURL=style.css.map */

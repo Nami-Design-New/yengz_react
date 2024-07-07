@@ -190,4 +190,16 @@
   "select": "Select",
   "next": "Next",
   "back": "Back"
+  "search": {
+    "searchFor": "Search for...",
+    "search": "Search",
+    "category": "Category",
+    "rate": "Service Rating",
+    "orHigher": "or higher",
+    "sellerStatus": "Seller status",
+    "verificated": "Verificated Identity",
+    "availabilty": "Available",
+    "apply": "Apply",
+    "clear": "Clear filter"
+  }
 }
