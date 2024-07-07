@@ -184,13 +184,6 @@
     "addAndConfirm": "اضافة وتأكيد",
     "moreDevDurationPlaceholder": "مثال : 2 يوم"
   },
-  "cancel": "الغاء",
-  "homePage": "الرئيسية",
-  "writeHere": "اكتب هنا",
-  "select": "اختر",
-  "next": "التالي",
-  "back": "السابق"
-}
   "search": {
     "searchFor": "ابحث عن...",
     "search": "بحث",
@@ -202,5 +195,11 @@
     "availabilty": "متواجد حاليًا",
     "apply": "تأكيد",
     "clear": "مسح الفلتر"
-  }
+  },
+  "cancel": "الغاء",
+  "homePage": "الرئيسية",
+  "writeHere": "اكتب هنا",
+  "select": "اختر",
+  "next": "التالي",
+  "back": "السابق"
 }
