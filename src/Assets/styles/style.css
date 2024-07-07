@@ -1,4 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@font-face {
+  font-family: "Din";
+  src: url("../webfonts/din-next-lt-w23-regular.ttf");
+}
 :root {
   --white-color: #fff;
   --main-color: #410c9e;
@@ -59,8 +63,15 @@ a {
   text-decoration: none;
 }
 
-[type=tel] {
+input[type=tel] {
   direction: ltr !important;
+}
+
+input[type=number]::-webkit-inner-spin-button {
+  display: none;
+}
+input[type=number]::-webkit-outer-spin-button {
+  display: none;
 }
 
 hr {
@@ -183,14 +194,14 @@ input[type=checkbox]:checked::after {
   box-sizing: border-box;
   scroll-behavior: smooth;
   -webkit-tap-highlight-color: transparent;
-  font-family: "IBM Plex Sans Arabic", sans-serif;
+  font-family: "Din", sans-serif;
 }
 
 body {
   background: var(--white-color);
+  direction: rtl;
   overflow-x: hidden;
   position: relative;
-  direction: rtl;
   /*/////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////
@@ -812,7 +823,6 @@ body main .profile-section .profile-descripe {
   background-color: var(--gray-background);
   padding: 16px;
   border-radius: 16px;
-  max-height: 508px;
   overflow: hidden;
 }
 @media (max-width: 768px) {
@@ -2866,6 +2876,7 @@ body .form .input-field select {
   background: var(--input-bg);
   border: 1px solid var(--LightGray);
   font-size: 14px;
+  box-shadow: none !important;
 }
 body .form .input-field textarea {
   height: 140px;
@@ -2900,6 +2911,10 @@ body .form button {
   outline: none;
   color: #fff;
   background: var(--main-color);
+}
+body .form button.disabled {
+  opacity: 0.7;
+  pointer-events: none;
 }
 body .form .question {
   padding: 0 0 30px;
@@ -3033,10 +3048,10 @@ body .form .line span {
 body .form .pass-group {
   display: flex;
 }
-body .form .pass-group button {
-  border: none;
-  background: none;
-  outline: none;
+body .form .pass-group span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 60px;
   height: 56px;
   border: 1px solid var(--LightGray);
@@ -3171,6 +3186,40 @@ body .form .verify_image_field {
 }
 body .form .verify_image_field input {
   display: none;
+}
+body .form .add-more-devlop {
+  height: 56px;
+  border-radius: 12px;
+  border: 1px dashed var(--main-color);
+  color: var(--main-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+body .form .add-more-model {
+  width: 100%;
+  margin-bottom: 24px;
+  padding: 16px;
+  border-radius: 12px;
+  background: var(--input-bg);
+}
+body .form .add-more-model .delete-model {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+}
+body .form .add-more-model .delete-model i {
+  font-size: 24px;
+  color: var(--main-color);
+  cursor: pointer;
+}
+body .form .add-more-model .input-field {
+  gap: 0;
+}
+body .form .add-more-model .input-field input {
+  background: var(--white-color);
 }
 body .images_grid_upload {
   display: flex;
@@ -4879,6 +4928,7 @@ body .search-btn span {
   transition: var(--main-transation);
 }
 body.en {
+  font-family: "Poppins", sans-serif;
   direction: ltr;
 }
 body.en header .tnavbar .loged-in-minor-menu .link .btns a i {

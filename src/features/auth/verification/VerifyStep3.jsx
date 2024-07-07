@@ -130,10 +130,10 @@ const VerifyStep3 = ({ setStep, formData, setFormData }) => {
             setStep(2);
           }}
         >
-          {t("auth.back")}
+          {t("back")}
         </button>
         <SubmitButton
-          name={t("auth.next")}
+          name={t("next")}
           loading={loading}
           className={"w-25 "}
         />

@@ -19,11 +19,11 @@ const PasswordField = ({ label, ...props }) => {
           required
           {...props}
         />
-        <button onClick={handleInputType}>
+        <span onClick={handleInputType}>
           <i
             className={`fa-regular ${!showPass ? "fa-eye-slash" : "fa-eye"}`}
           />
-        </button>
+        </span>
       </div>
     </div>
   );

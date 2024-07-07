@@ -46,6 +46,7 @@ export async function getServicesByFilter(
 export async function getUserServices(userId) {
   try {
     const req = await axios.post("/user/get_user_services", {
+      id: userId
       id,
     });
     return req.data.data;
@@ -60,6 +61,20 @@ export async function getServiceDetails(id) {
       id,
     });
     return req.data.data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+export async function CreateService(data, queryClient) {
+  try {
+    const req = await axios.post("/user/create_service", data, {
+      headers: {
+        "Content-Type": "multipart/form-data"
+      }
+    });
+    queryClient.invalidateQueries("userServices");
+    return req.data;
   } catch (error) {
     throw new Error(error.message);
   }
