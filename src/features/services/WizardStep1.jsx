@@ -6,8 +6,13 @@ import SelectField from "./../../ui/form-elements/SelectField";
 import useCategoriesList from "../categories/useCategoriesList";
 import useSubCategoriesList from "./../categories/useSubCategoriesList";
 
-const WizardStep1 = ({ formData, setFormData, setStep }) => {
-  const [categoryId, setCategoryId] = useState(null);
+const WizardStep1 = ({
+  formData,
+  setFormData,
+  setStep,
+  categoryId,
+  setCategoryId
+}) => {
   const [formValid, setFormValid] = useState(false);
   const { t } = useTranslation();
   const { data: categories } = useCategoriesList();

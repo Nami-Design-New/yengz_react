@@ -1,4 +1,3 @@
-import { t } from "i18next";
 import axios from "./../utils/axios";
 
 export async function getServicesByFilter(

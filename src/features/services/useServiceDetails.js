@@ -1,15 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import { getServiceDetails } from "../../services/apiServices";
-import { useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 
 function useServiceDetails() {
-  const [searchParams] = useSearchParams();
-  const id = searchParams.get("id");
+  const { id } = useParams();
 
   const { isLoading, data, error } = useQuery({
     queryKey: ["serviceDetails", id],
     queryFn: () => getServiceDetails(id),
-    retry: false,
+    retry: false
   });
   return { isLoading, data, error };
 }

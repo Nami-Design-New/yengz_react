@@ -18,7 +18,7 @@ const Department = ({ department }) => {
         </Link>
       </div>
       <div className="row mb-5">
-        <div className="col-lg-4 col-6 mb-3">
+        <div className="col-lg-3 col-md-4 col-6 p-2">
           <ServiceCard />
         </div>
       </div>

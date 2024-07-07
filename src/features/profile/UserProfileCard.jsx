@@ -11,9 +11,7 @@ const UserProfileCard = ({ user }) => {
     <div className="profile-descripe">
       <div className="banner">
         <div className="user-avatar">
-          <a href="assets/images/avatar.png" data-fancybox="user-avatar">
-            <img src={user?.image || avatar} alt="user-avatar" />
-          </a>
+          <img src={user?.image || avatar} alt="user-avatar" />
           <span className="status"></span>
         </div>
       </div>
