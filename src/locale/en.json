@@ -164,5 +164,17 @@
     "titleHint": "Choose a short and concise title that describes the service, it will be used in the search engine results"
   },
   "cancel": "Cancel",
-  "homePage": "Home"
+  "homePage": "Home",
+  "search": {
+    "searchFor": "Search for...",
+    "search": "Search",
+    "category": "Category",
+    "rate": "Service Rating",
+    "orHigher": "or higher",
+    "sellerStatus": "Seller status",
+    "verificated": "Verificated Identity",
+    "availabilty": "Available",
+    "apply": "Apply",
+    "clear": "Clear filter"
+  }
 }

@@ -1,73 +1,17 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import DepartmentFilterBox from "../ui/filter/DepartmentFilterBox";
 import RatingFilterBox from "../ui/filter/RatingFilterBox";
-import SellerFilterBox from "../ui/filter/SellerFilterBox";
+// import SellerFilterBox from "../ui/filter/SellerFilterBox";
 import SellerStatusFilterBox from "../ui/filter/SellerStatusFilterBox";
 import InputField from "../ui/form-elements/InputField";
 import useSearchServicesList from "../features/services/useSearchServicesList";
 import ServiceCard from "../ui/cards/ServiceCard";
-import { t } from "i18next";
 import { useTranslation } from "react-i18next";
 
-const departmentFilter = [
-  {
-    id: 1,
-    image: "https://ynjez.frmawy.tech/images/place_holder/default.png",
-    deleted_at: null,
-    created_at: null,
-    updated_at: "2024-05-09T18:01:46.000000Z",
-    name: "test",
-    count: 18,
-    sub_categories: [
-      {
-        id: 1,
-        image: "https://ynjez.frmawy.tech/images/place_holder/default.png",
-        category_id: 1,
-        deleted_at: null,
-        created_at: null,
-        updated_at: null,
-        name: "Name Ar",
-        count: 18
-      }
-    ]
-  },
-  {
-    id: 2,
-    image: "https://ynjez.frmawy.tech/images/place_holder/default.png",
-    deleted_at: null,
-    created_at: null,
-    updated_at: "2024-05-09T18:01:46.000000Z",
-    name: "test 2",
-    count: 18,
-    sub_categories: [
-      {
-        id: 2,
-        image: "https://ynjez.frmawy.tech/images/place_holder/default.png",
-        category_id: 1,
-        deleted_at: null,
-        created_at: null,
-        updated_at: null,
-        name: "Name Ar 2",
-        count: 18
-      },
-      {
-        id: 5,
-        image: "https://ynjez.frmawy.tech/images/place_holder/default.png",
-        category_id: 1,
-        deleted_at: null,
-        created_at: null,
-        updated_at: null,
-        name: "Name Ar 3",
-        count: 18
-      }
-    ]
-  }
-];
-
 const Search = () => {
-  const { data } = useSearchServicesList();
   const { t } = useTranslation();
+  const { data } = useSearchServicesList();
   const [searchParams, setSearchParams] = useSearchParams();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [searchFilterData, setSearchFilterData] = useState({
@@ -88,75 +32,82 @@ const Search = () => {
           .split("-")
           .map((subcategory) => Number(subcategory))
       : [],
-    is_old: Number(searchParams.get("is_old")) || 0
+    is_old: Number(searchParams.get("is_old")) || 0,
   });
 
   const handleChange = (e) => {
-    const { name, value, checked } = e.target;
-    const parsedValue = Number(value);
+    const { name, checked, type, value } = e.target;
+    const parsedValue = type === "checkbox" ? (checked ? 1 : 0) : value;
 
-    if (name === "categories" || name === "sub_categories") {
-      setSearchFilterData((prevState) => {
-        const updatedState = {
-          ...prevState,
-          [name]: checked
-            ? [...prevState[name], parsedValue]
-            : prevState[name].filter((item) => item !== parsedValue)
+    setSearchFilterData((prevState) => {
+      const updatedState = { ...prevState, [name]: parsedValue };
+
+      if (name === "categories" || name === "sub_categories") {
+        const updateCategoriesAndSubCategories = (name, value, checked) => {
+          const categoryValue = Number(value);
+
+          const updatedCategoryList = checked
+            ? [...prevState[name], categoryValue]
+            : prevState[name].filter((id) => id !== categoryValue);
+
+          const updatedState = { ...prevState, [name]: updatedCategoryList };
+
+          if (name === "categories") {
+            const relatedSubCategories =
+              departmentFilter
+                .find((category) => category.id === categoryValue)
+                ?.sub_categories.map((subCategory) => subCategory.id) || [];
+
+            if (checked) {
+              updatedState["sub_categories"] = [
+                ...new Set([
+                  ...prevState["sub_categories"],
+                  ...relatedSubCategories,
+                ]),
+              ];
+            } else {
+              updatedState["sub_categories"] = prevState[
+                "sub_categories"
+              ].filter((id) => !relatedSubCategories.includes(id));
+            }
+          } else if (name === "sub_categories") {
+            const parentCategory = departmentFilter.find((category) =>
+              category.sub_categories.some(
+                (subCategory) => subCategory.id === categoryValue
+              )
+            );
+
+            const allChildIds = parentCategory.sub_categories.map(
+              (subCategory) => subCategory.id
+            );
+
+            const areAllChildrenChecked = allChildIds.every((id) =>
+              updatedState["sub_categories"].includes(id)
+            );
+
+            if (areAllChildrenChecked) {
+              updatedState["categories"] = [
+                ...new Set([...prevState["categories"], parentCategory.id]),
+              ];
+            } else {
+              updatedState["categories"] = prevState["categories"].filter(
+                (categoryId) => categoryId !== parentCategory.id
+              );
+            }
+          }
+          return updatedState;
         };
 
-        if (name === "categories") {
-          const relatedSubCategories =
-            departmentFilter
-              .find((category) => category.id === parsedValue)
-              ?.sub_categories.map((sub_category) => sub_category.id) || [];
+        return updateCategoriesAndSubCategories(name, value, checked);
+      }
 
-          if (checked) {
-            updatedState["sub_categories"] = [
-              ...new Set([
-                ...prevState["sub_categories"],
-                ...relatedSubCategories
-              ])
-            ];
-          } else {
-            updatedState["sub_categories"] = prevState["sub_categories"].filter(
-              (subCategoryId) => !relatedSubCategories.includes(subCategoryId)
-            );
-          }
-        } else if (name === "sub_categories") {
-          const parentCategory = departmentFilter.find((category) =>
-            category.sub_categories.some(
-              (sub_category) => sub_category.id === parsedValue
-            )
-          );
-
-          const allChildIds = parentCategory.sub_categories.map(
-            (sub_category) => sub_category.id
-          );
-
-          const areAllChildrenChecked = allChildIds.every((id) =>
-            updatedState["sub_categories"].includes(id)
-          );
-
-          if (areAllChildrenChecked) {
-            updatedState["categories"] = [
-              ...new Set([...prevState["categories"], parentCategory.id])
-            ];
-          } else {
-            updatedState["categories"] = prevState["categories"].filter(
-              (categoryId) => categoryId !== parentCategory.id
-            );
-          }
-        }
-
-        return updatedState;
-      });
-    } else {
-      setSearchFilterData({
-        ...searchFilterData,
-        [name]: value
-      });
-    }
+      return updatedState;
+    });
   };
+
+  function handleClearFilters() {
+    setSearchParams({});
+  }
 
   function handleApplyFilters() {
     if (searchFilterData.page) {
@@ -235,20 +186,21 @@ const Search = () => {
               <div className="colse" onClick={() => setIsFilterOpen(false)}>
                 <i className="fa-light fa-xmark"></i>
               </div>
+
               <form onSubmit={handleSubmit}>
                 <InputField
                   id="aside-search-input"
                   name="search"
-                  className="aside-search-input"
+                  className="aside-search-input search_input"
                   value={searchFilterData.search}
                   onChange={handleChange}
-                  placeholder={t("home.searchPlaceHolder")}
+                  label={t("search.search")}
+                  placeholder={t("search.searchFor")}
                 />
                 <DepartmentFilterBox
                   categoriesValue={searchFilterData.categories}
                   sub_categoriesValue={searchFilterData.sub_categories}
                   onChange={handleChange}
-                  departmentFilter={departmentFilter}
                 />
                 <hr />
                 <RatingFilterBox
@@ -256,15 +208,20 @@ const Search = () => {
                   onChange={handleChange}
                 />
                 <hr />
-                <SellerFilterBox />
-                <hr />
+                {/* <SellerFilterBox /> */}
                 <SellerStatusFilterBox
                   user_available={searchFilterData.user_available}
                   user_verification={searchFilterData.user_verification}
                   onChange={handleChange}
                 />
+                <hr />
                 <div className="search-btn">
-                  <button onClick={handleApplyFilters}>تأكيد</button>
+                  <button onClick={handleApplyFilters}>
+                    {t("search.apply")}
+                  </button>
+                </div>
+                <div className="search-btn">
+                  <span onClick={handleClearFilters}>{t("search.clear")}</span>
                 </div>
               </form>
             </div>

@@ -29,7 +29,7 @@ const CategoriesSection = () => {
           <div className="swiper-wrapper">
             <Swiper
               spaceBetween={30}
-              slidesPerView={4}
+              slidesPerView={3}
               speed={1000}
               loop={true}
               modules={[Autoplay]}
@@ -37,14 +37,14 @@ const CategoriesSection = () => {
               className="mainSliderContainer"
               breakpoints={{
                 992: {
-                  slidesPerView: 4
+                  slidesPerView: 3,
                 },
                 768: {
-                  slidesPerView: 3
+                  slidesPerView: 2,
                 },
                 350: {
-                  slidesPerView: 2
-                }
+                  slidesPerView: 1,
+                },
               }}
               dir="rtl"
             >

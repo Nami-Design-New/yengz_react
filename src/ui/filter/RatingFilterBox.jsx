@@ -1,7 +1,11 @@
+import { useTranslation } from "react-i18next";
+
 function RatingFilterBox({ value, onChange }) {
+  const { t } = useTranslation();
+  
   return (
     <ul className="rate-range">
-      <h6>تقييم الخدمة</h6>
+      <h6>{t("search.rate")}</h6>
       <li>
         <input
           type="radio"

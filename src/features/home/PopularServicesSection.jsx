@@ -13,6 +13,33 @@ const PopularServicesSection = () => {
         {t("home.bestServicesSubTitle")}
       </p>
       <Department />
+      {/* <Swiper
+            spaceBetween={30}
+            slidesPerView={3}
+            speed={1000}
+            loop={true}
+            modules={[Autoplay]}
+            autoplay={{ delay: 3000, disableOnInteraction: false }}
+            className="mainSliderContainer"
+            breakpoints={{
+              992: {
+                slidesPerView: 3,
+              },
+              768: {
+                slidesPerView: 2,
+              },
+              350: {
+                slidesPerView: 1,
+              },
+            }}
+            dir="rtl"
+          >
+            {data?.data?.map((service) => (
+              <SwiperSlide key={service.id}>
+                <Department service={service} />
+              </SwiperSlide>
+            ))}
+          </Swiper> */}
     </section>
   );
 };

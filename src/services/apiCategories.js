@@ -11,9 +11,9 @@ export async function getCategories() {
 
 export async function getGategoriesWithSubcategories() {
   try {
-    const req = await axios.get("/get_categories_with_sub_categories");
+    const req = await axios.get("/get_categories_with_subcategory");
 
-    return req.data;
+    return req.data.data;
   } catch (err) {
     throw new Error(err.message);
   }
