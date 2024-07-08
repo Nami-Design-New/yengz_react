@@ -207,3 +207,23 @@
   "next": "Next",
   "back": "Back"
 }
+  },
+  "services": {
+    "developments": "development",
+    "compare": "compare",
+    "percentageofExtraService": "extra service",
+    "rates": "rates",
+    "buyers": "buyers",
+    "oredersInProgress": "in progress orders",
+    "serviceMinimumPrice": "minimum service price",
+    "deliveryTime": "delivery time",
+    "deliveryOnTime": "delivery on time",
+    "contactAndFollow": "contact and follow",
+    "serviceQuality": "Service Quality",
+    "total": "total",
+    "addToCart": "Add to cart",
+    "serviceCart": "Service cart",
+    "specialSeller": "special seller",
+    "extraService": "extra service"
+  }
+}

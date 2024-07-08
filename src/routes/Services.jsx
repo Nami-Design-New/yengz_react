@@ -3,27 +3,22 @@ import rateowner1 from "../Assets/images/rateowner1.webp";
 import rateowner3 from "../Assets/images/rateowner3.webp";
 import vector88 from "../Assets/images/vector88.png";
 import avatarPlaceholder from "../Assets/images/avatar-placeholder-2.svg";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
-import "swiper/css/effect-fade";
-import { Autoplay, EffectFade, Pagination, Scrollbar } from "swiper/modules";
 
 import { Link } from "react-router-dom";
 import useServiceDetails from "../features/services/useServiceDetails";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import ServiceSlider from "../ui/ServiceSlider";
+import UserServiceCard from "../ui/cards/UserServiceCard";
 
 const Services = () => {
   const { data } = useServiceDetails();
   const [avatarError, setAvatarError] = useState(false);
+  const { t } = useTranslation();
 
   function handleAvatarError() {
     setAvatarError(true);
   }
-
-  console.log(data);
 
   return (
     <main>
@@ -31,33 +26,7 @@ const Services = () => {
         <div className="row">
           <div className="service-content col-lg-7 col-12 p-3">
             {/* service slider */}
-            <div className="swiper mySwiper">
-              <div className="swiper-container mySwiper">
-                <Swiper
-                  spaceBetween={600}
-                  slidesPerView={1}
-                  autoplay={{ delay: 3000, disableOnInteraction: false }}
-                  effect="fade"
-                  loop={true}
-                  scrollbar={{ draggable: true }}
-                  pagination={{
-                    clickable: true,
-                  }}
-                  modules={[Pagination, Scrollbar, EffectFade, Autoplay]}
-                  className="mySwiper"
-                >
-                  {data?.images?.map((image) => (
-                    <SwiperSlide key={image.image} className="service-slide">
-                      <img src={image.image} alt="service" />
-                    </SwiperSlide>
-                  ))}
-
-                  <div className="swiper-button-next"></div>
-                  <div className="swiper-button-prev"></div>
-                </Swiper>
-              </div>
-            </div>
-
+            <ServiceSlider images={data?.images} />
             <div className="content">
               {/* service owner */}
               <div className="service-owner-card">
@@ -75,7 +44,7 @@ const Services = () => {
                             onError={handleAvatarError}
                           />
                         ) : (
-                          <img src={avatarPlaceholder} alt="owner" />
+                          <img src={avatarPlaceholder} alt="specialSeller" />
                         )}
                       </Link>
                     </div>
@@ -83,7 +52,8 @@ const Services = () => {
                       <h6>{data?.user?.name || "خالد عوض"}</h6>
                       {data?.is_favorite && (
                         <span>
-                          <i className="ti ti-md ti-briefcase"></i> بائع مميز
+                          <i className="ti ti-md ti-briefcase"></i>{" "}
+                          {t("services.specialSeller")}
                         </span>
                       )}
                     </div>
@@ -173,7 +143,8 @@ const Services = () => {
               {data?.developments && data?.developments.length > 0 && (
                 <div className="more-develop">
                   <h6>
-                    <img src={vector88} alt="icon" /> تطويرات متوفرة لهذه الخدمة
+                    <img src={vector88} alt="icon" />{" "}
+                    {t("services.specialSeller")}
                   </h6>
                   {data?.developments.map((development) => (
                     <div
@@ -189,7 +160,10 @@ const Services = () => {
                         <label htmlFor="check-1">
                           {development.description}
                         </label>
-                        <p>مقابل {development.price}$ إضافية على سعر الخدمة.</p>
+                        <p>
+                          {t("services.compare")} {development.price}${" "}
+                          {t("services.percentageofExtraService")}
+                        </p>
                       </div>
                     </div>
                   ))}
@@ -208,9 +182,9 @@ const Services = () => {
                 </div>
                 <div className="total d-flex justify-content-between align-items-center">
                   <p>
-                    الإجمالي : <br />
+                    {t("services.total")} : <br />
                     <span>
-                      + <span id="num">1</span> خدمة مضافة
+                      + <span id="num">1</span> {t("services.extraService")}
                     </span>
                   </p>
                   <h6>
@@ -218,63 +192,15 @@ const Services = () => {
                   </h6>
                 </div>
                 <button className="request-order">
-                  <i className="fa-regular fa-cart-plus"></i> اضف الي السلة
+                  <i className="fa-regular fa-cart-plus"></i>{" "}
+                  {t("services.addToCart")}
                 </button>
               </div>
             </div>
           </div>
           <div className="col-lg-5 col-12 p-3">
             {/* service card */}
-            <div className="service-card">
-              <div className="label d-flex align-items-center gap-2">
-                <i className="fa-regular fa-circle-info"></i>
-                <p className="p-0 m-0">بطاقة الخدمة</p>
-              </div>
-              <ul className="card-ul">
-                <li className="rate d-flex justify-content-between">
-                  <p>
-                    التقييمات{" "}
-                    {data?.user.customer_count &&
-                      `(${data?.user.customer_count})`}{" "}
-                  </p>
-                  <div className="rate">
-                    <ul>
-                      <li className="star">
-                        <i className="fa-solid fa-star"></i>
-                      </li>
-                      <li className="star">
-                        <i className="fa-solid fa-star"></i>
-                      </li>
-                      <li className="star">
-                        <i className="fa-solid fa-star"></i>
-                      </li>
-                      <li className="star">
-                        <i className="fa-solid fa-star"></i>
-                      </li>
-                      <li>
-                        <i className="fa-solid fa-star"></i>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-                <li className=" d-flex justify-content-between">
-                  <p>المشترين</p>
-                  <span>135</span>
-                </li>
-                <li className=" d-flex justify-content-between">
-                  <p>طلبات جاري تنفيذها</p>
-                  <span>{data?.orders_count}</span>
-                </li>
-                <li className=" d-flex justify-content-between">
-                  <p>سعر الخدمة يبدأ من</p>
-                  <span>${data?.price}</span>
-                </li>
-                <li className=" d-flex justify-content-between">
-                  <p>مدة التسليم</p>
-                  <span>{data?.days} يوم</span>
-                </li>
-              </ul>
-            </div>
+            <UserServiceCard data={data} />
             {/* rating cards */}
             <div className="rating-cards-container">
               <div className="rate-card">
@@ -297,7 +223,7 @@ const Services = () => {
                     <div className="row">
                       <div className="col-4 p-2">
                         <div className="r-card ">
-                          <h6>التسليم بالموعد </h6>
+                          <h6>{t("services.deliverOnTime")} </h6>
                           <div className="rate">
                             <ul>
                               <li className="star">
@@ -321,7 +247,7 @@ const Services = () => {
                       </div>
                       <div className="col-4 p-2">
                         <div className="r-card ">
-                          <h6>التواصل والمتابعة</h6>
+                          <h6>{t("services.contactAndFollow")}</h6>
                           <div className="rate">
                             <ul>
                               <li className="star">
@@ -345,7 +271,7 @@ const Services = () => {
                       </div>
                       <div className="col-4 p-2">
                         <div className="r-card ">
-                          <h6>جودة الخدمة</h6>
+                          <h6>{t("services.serviceQuality")}</h6>
                           <div className="rate">
                             <ul>
                               <li className="star">

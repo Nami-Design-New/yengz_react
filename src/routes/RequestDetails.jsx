@@ -4,7 +4,7 @@ import av2 from "../Assets/images/av2.png";
 import av1 from "../Assets/images/av1.png";
 import SectionHeader from "../ui/SectionHeader";
 
-const ReaquestDetails = () => {
+const RequestDetails = () => {
   return (
     <>
       <div className="section-head">
@@ -212,4 +212,4 @@ const ReaquestDetails = () => {
   );
 };
 
-export default ReaquestDetails;
+export default RequestDetails;

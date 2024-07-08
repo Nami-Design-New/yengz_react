@@ -3921,6 +3921,11 @@ body .allRequests .allRequestsContainer .lastInteraction {
     align-items: start;
   }
 }
+body .allRequests .allRequestsContainer .requstPost a:has(img),
+body .allRequests .allRequestsContainer .lastInteraction a:has(img) {
+  overflow: hidden;
+  border-radius: 50%;
+}
 body .allRequests .allRequestsContainer .requstPost img,
 body .allRequests .allRequestsContainer .lastInteraction img {
   width: 64px;
@@ -4152,6 +4157,7 @@ body .requestDetails .allComments .userCommented {
 body .requestDetails .allComments .userCommented img {
   width: 64px;
   aspect-ratio: 1/1;
+  border-radius: 50%;
   -o-object-fit: cover;
      object-fit: cover;
 }
