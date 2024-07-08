@@ -1432,6 +1432,7 @@ body {
       }
     }
     .cart-section {
+      padding: 60px 0;
       .service {
         padding-bottom: 32px;
         margin-bottom: 48px;
@@ -1626,6 +1627,11 @@ body {
         @include centerFlex();
       }
       .filter {
+        position: sticky;
+        top: 100px;
+        background: var(--input-bg);
+        padding: 16px;
+        border-radius: 12px;
         .colse {
           display: none;
         }

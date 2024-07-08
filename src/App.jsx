@@ -106,11 +106,13 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/forget-password" element={<ForgetPassword />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/:id
+          " element={<Profile />} />
           <Route path="/edit-profile" element={<EditProfile />} />
           <Route path="/Cart" element={<Cart />} />
           <Route path="/notifications" element={<Notifcations />} />
           <Route
-            path="/recievedRequestOrders"
+            path="/recieved-request-orders"
             element={<RecievedRequestOrders />}
           />
         </Route>

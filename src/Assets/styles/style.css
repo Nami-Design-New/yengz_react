@@ -1553,6 +1553,9 @@ body main .service-details .rating-cards-container {
 body main .service-details .rating-cards-container::-webkit-scrollbar {
   display: none;
 }
+body main .cart-section {
+  padding: 60px 0;
+}
 body main .cart-section .service {
   padding-bottom: 32px;
   margin-bottom: 48px;
@@ -1763,6 +1766,13 @@ body main .cart-section .order-now {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+body main .cart-section .filter {
+  position: sticky;
+  top: 100px;
+  background: var(--input-bg);
+  padding: 16px;
+  border-radius: 12px;
 }
 body main .cart-section .filter .colse {
   display: none;

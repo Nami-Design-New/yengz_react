@@ -9,7 +9,7 @@ const SectionHeader = () => {
         <div className="col-lg-6 col-md-6 col-12">
           <div className="text-wrap" data-aos="fade-up">
             <Link to="/">الرئيسية </Link>
-            <h1>كيف يعمل موقع ينجز</h1>
+            <h1 className="m-0">كيف يعمل موقع ينجز</h1>
           </div>
         </div>
         <div className="col-6 hide-sm">

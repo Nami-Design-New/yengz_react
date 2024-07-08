@@ -6,7 +6,7 @@ function OrderBox({ order }) {
       <div className="row">
         <div className="col-md-8 p-1">
           <div className="requstPost">
-            <Link to="/profile">
+            <Link to={`/profile/${order?.user?.id}`}>
               <img src={order?.user?.image} alt="" />
             </Link>
             <div className="postContent">
@@ -14,7 +14,7 @@ function OrderBox({ order }) {
                 {order?.service?.title}
               </Link>
               <div className="postUser">
-                <Link to="/profile" className="name">
+                <Link to={`/profile/${order?.user?.id}`} className="name">
                   <i className="fa-regular fa-user"></i> {order?.user?.name}
                 </Link>
                 <p className="time m-0">
@@ -28,11 +28,14 @@ function OrderBox({ order }) {
         </div>
         <div className="col-md-4 p-1">
           <div className="lastInteraction">
-            <Link to="/profile">
+            <Link to={`/profile/${order?.service?.user?.id}`}>
               <img src={order?.service?.user?.image} alt="" />
             </Link>
             <div className="lastUser">
-              <Link to="/profile" className="name">
+              <Link
+                to={`/profile/${order?.service?.user?.id}`}
+                className="name"
+              >
                 {order?.service?.user?.name}
               </Link>
               <p className="time">

@@ -4,11 +4,11 @@ function CommentCard({ comment }) {
   return (
     <div className="comment">
       <div className="userCommented">
-        <Link to="/profile">
+        <Link to={`/profile/${comment?.user?.id}`}>
           <img src={comment?.user?.image} alt="صورة المستخدم" />
         </Link>
         <div className="lastUser">
-          <Link to="/profile" className="name">
+          <Link to={`/profile/${comment?.user?.id}`} className="name">
             {comment?.user?.name}
           </Link>
           <p className="time">

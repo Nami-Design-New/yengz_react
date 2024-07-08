@@ -229,6 +229,15 @@
     "whatsapp": "Whatsapp",
     "developmentsAvailable": "developments available for this service"
   },
+  "comments": {
+    "comments": "comments",
+    "addComment": "Add comment",
+    "createSuccess": "Comment created successfully",
+    "commentPlaceholder": "Write your comment here",
+    "readAndAccept": "I have read and accept",
+    "conditionsAndTerms": "Terms and Conditions",
+    "publish": "Publish"
+  },
   "cancel": "Cancel",
   "homePage": "Home",
   "writeHere": "Write Here",
