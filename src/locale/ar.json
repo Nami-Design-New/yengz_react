@@ -156,6 +156,15 @@
     "edit": "تعديل",
     "add": "اضافة"
   },
+  "comments": {
+    "comments": "تعليقات",
+    "addComment": "اضافة تعليق",
+    "createSuccess": "تم انشاء التعليق بنجاح",
+    "commentPlaceholder": "اكتب تعليقك هنا",
+    "readAndAccept": "اقرأ وأوافق على",
+    "conditionsAndTerms": "الشروط والاحكام",
+    "publish": "نشر"
+  },
   "addService": {
     "serviceTitle": "عنوان الخدمة",
     "serviceTitlePlaceholder": "مثال : تصميم وبرمجة مواقع",
