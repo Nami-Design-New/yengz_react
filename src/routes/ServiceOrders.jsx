@@ -22,7 +22,9 @@ const ServiceOrders = () => {
             اضف موضوع جديد
           </Link>
           <div className="allRequestsContainer">
-            <OrderBox />
+            {data &&
+              data?.length > 0 &&
+              data.map((order) => <OrderBox key={order.id} order={order} />)}
           </div>
 
           <button className="btn btn-outline-dark m-auto mt-5">

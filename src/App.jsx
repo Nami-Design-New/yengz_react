@@ -35,6 +35,7 @@ import Notifcations from "./routes/Notifcations";
 import Chats from "./routes/Chats";
 import AuthVerifySteps from "./features/auth/verification/AuthVerifySteps";
 import AddServices from "./features/services/AddServices";
+import ServiceOrdersDetails from "./routes/ServiceOrdersDetails";
 
 function App() {
   const dispatch = useDispatch();
@@ -86,6 +87,10 @@ function App() {
           <Route path="/order-details" element={<OrderDetails />} />
           <Route path="/recieved-request" element={<RecievedRequest />} />
           <Route path="/service-orders" element={<ServiceOrders />} />
+          <Route
+            path="/service-orders/:id"
+            element={<ServiceOrdersDetails />}
+          />
           <Route path="/request-details" element={<RequestDetails />} />
           <Route path="/request-add" element={<AddRequest />} />
           <Route path="/chat" element={<Chats />} />
