@@ -35,7 +35,6 @@ import Notifcations from "./routes/Notifcations";
 import Chats from "./routes/Chats";
 import AuthVerifySteps from "./features/auth/verification/AuthVerifySteps";
 import AddServices from "./features/services/AddServices";
-import AddServices from "./features/services/AddServices";
 import ServiceOrdersDetails from "./routes/ServiceOrdersDetails";
 
 function App() {

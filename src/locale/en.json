@@ -200,14 +200,7 @@
     "apply": "Apply",
     "clear": "Clear filter"
   },
-  "cancel": "Cancel",
-  "homePage": "Home",
-  "writeHere": "Write Here",
-  "select": "Select",
-  "next": "Next",
-  "back": "Back"
-}
-  },
+  "projects": {},
   "services": {
     "developments": "development",
     "compare": "compare",
@@ -225,5 +218,11 @@
     "serviceCart": "Service cart",
     "specialSeller": "special seller",
     "extraService": "extra service"
-  }
+  },
+  "cancel": "Cancel",
+  "homePage": "Home",
+  "writeHere": "Write Here",
+  "select": "Select",
+  "next": "Next",
+  "back": "Back"
 }
