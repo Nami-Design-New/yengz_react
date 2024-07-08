@@ -215,14 +215,29 @@
     "serviceQuality": "Service Quality",
     "total": "total",
     "addToCart": "Add to cart",
-    "serviceCart": "Service cart",
+    "serviceCart": "Service card",
     "specialSeller": "special seller",
-    "extraService": "extra service"
+    "extraService": "extra service",
+    "share": "Share",
+    "orCopyLink": "or copy link",
+    "linkCopied": "Link copied",
+    "facebook": "Facebook",
+    "twitter": "Twitter",
+    "instagram": "Instagram",
+    "snapchat": "Snapchat",
+    "whatsapp": "Whatsapp",
+    "developmentsAvailable": "developments available for this service"
   },
   "cancel": "Cancel",
   "homePage": "Home",
   "writeHere": "Write Here",
   "select": "Select",
   "next": "Next",
-  "back": "Back"
+  "back": "Back",
+  "days": "days",
+  "since": "since",
+  "hours": "hours",
+  "minutes": "minutes",
+  "now": "now",
+  "and": "and"
 }

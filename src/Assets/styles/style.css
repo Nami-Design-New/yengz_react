@@ -1142,22 +1142,27 @@ body main .profile-section .tab-content .statics-list li span {
 body main .profile-section .tab-content .statics-list li span small {
   color: var(--text-color);
 }
+body main .service-details {
+  padding: 48px 0;
+}
 body main .service-details .service-content .swiper {
-  max-height: 500px;
+  width: 100%;
+  aspect-ratio: 6/3.5;
 }
 body main .service-details .service-content .swiper .swiper-slide {
-  max-height: 500px;
+  border-radius: 12px;
+  overflow: hidden;
   background-color: var(--gray-background);
 }
 body main .service-details .service-content .swiper .swiper-slide .img {
-  height: 100%;
+  aspect-ratio: 6/3.5;
   width: 100%;
 }
 body main .service-details .service-content .swiper .swiper-slide .img img,
 body main .service-details .service-content .swiper .swiper-slide .img video {
   height: 100%;
   width: 100%;
-  aspect-ratio: 4/3;
+  border-radius: 12px;
   -o-object-position: center;
      object-position: center;
   -o-object-fit: cover;
@@ -1177,8 +1182,8 @@ body main .service-details .service-content .swiper .swiper-pagination-fraction 
 }
 body main .service-details .service-content .swiper .swiper-button-next,
 body main .service-details .service-content .swiper .swiper-button-prev {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   background: var(--main-color);
   color: #fff;
   border-radius: 50%;
@@ -1187,7 +1192,7 @@ body main .service-details .service-content .swiper .swiper-button-prev {
 }
 body main .service-details .service-content .swiper .swiper-button-next::after,
 body main .service-details .service-content .swiper .swiper-button-prev::after {
-  font-size: 18px;
+  font-size: 16px;
 }
 body main .service-details .service-content .swiper:hover .swiper-button-next,
 body main .service-details .service-content .swiper:hover .swiper-button-prev {
@@ -1216,23 +1221,16 @@ body main .service-details .service-content .content .service-owner-card .owner 
 }
 body main .service-details .service-content .content .service-owner-card .owner .img {
   border-radius: 50%;
-  box-shadow: 0 0 2px 1px #333;
+  width: 92px;
   height: 100%;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 body main .service-details .service-content .content .service-owner-card .owner .img img,
 body main .service-details .service-content .content .service-owner-card .owner .img a {
   height: 100%;
+  width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-  position: relative;
-  flex: 1 0 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 @media (max-width: 576px) {
   body main .service-details .service-content .content .service-owner-card .owner .img {
@@ -1273,7 +1271,7 @@ body main .service-details .service-content .content .service-owner-card .btns {
   align-items: center;
   justify-content: center;
   gap: 18px;
-  padding: 0 16px;
+  padding: 0 8px;
 }
 body main .service-details .service-content .content .service-owner-card .btns .butn {
   width: 40px;
@@ -1288,12 +1286,12 @@ body main .service-details .service-content .content .service-owner-card .btns .
   color: #fff;
 }
 body main .service-details .service-content .content .service-owner-card .btns .butn i {
-  font-size: 20px !important;
+  font-size: 16px !important;
 }
 body main .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu {
   background: var(--white-color);
   border: 1px solid var(--gray-background);
-  padding: 32px;
+  padding: 24px;
 }
 @media (max-width: 576px) {
   body main .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu {
@@ -1301,6 +1299,7 @@ body main .service-details .service-content .content .service-owner-card .btns .
   }
 }
 body main .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu h5 {
+  text-align: start;
   margin-bottom: 20px;
   font-weight: 600;
   font-size: 16px;
@@ -1315,6 +1314,7 @@ body main .service-details .service-content .content .service-owner-card .btns .
   background-color: var(--gray-background);
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 12px;
   border-radius: 16px;
   position: relative;
@@ -1384,6 +1384,7 @@ body main .service-details .service-content .content .service-owner-card .btns .
   flex-direction: column;
   gap: 8px;
   font-size: 14px;
+  white-space: nowrap;
 }
 body main .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu .social li a {
   width: 48px;
@@ -1529,14 +1530,17 @@ body main .service-details .service-card .label {
 }
 body main .service-details .service-card .card-ul {
   margin: 24px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 body main .service-details .service-card .card-ul li {
   color: var(--black-color);
-  margin-bottom: 16px;
+  margin: 0;
   font-weight: 500;
 }
-body main .service-details .service-card .card-ul li:last-child {
-  margin-bottom: 0;
+body main .service-details .service-card .card-ul li p {
+  margin: 0;
 }
 body main .service-details .service-card .card-ul .rate {
   color: var(--main-color);
@@ -3318,6 +3322,8 @@ body .rate-card .rate-owner {
   flex-direction: column;
 }
 body .rate-card .rate-owner .rate-head {
+  justify-content: space-between;
+  align-items: center;
   display: flex;
   gap: 16px;
 }
@@ -4734,25 +4740,6 @@ body .mainSection .mainSlider .mainSliderContainer .swiper-button-prev {
 body .mainSection .mainSlider .mainSliderContainer:hover .swiper-button-next,
 body .mainSection .mainSlider .mainSliderContainer:hover .swiper-button-prev {
   opacity: 1;
-}
-body .mainSection .mainSlider .mainSliderContainer .swiper-pagination {
-  left: 20px !important;
-  transform: translateX(0%);
-}
-body .mainSection .mainSlider .mainSliderContainer .swiper-pagination .swiper-pagination-bullet {
-  background-color: var(--white-color);
-}
-body .mainSection .mainSlider .mainSliderContainer .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: var(--white-color);
-}
-body .mainSection .mainSlideItem.swiper-slide-active .sliderTitle {
-  animation: slideInRight 1s 0s both;
-}
-body .mainSection .mainSlideItem.swiper-slide-active .hint {
-  animation: fadeInUp 1s 1s both;
-}
-body .mainSection .mainSlideItem.swiper-slide-active a {
-  animation: fadeInUp 1s 1.5s both;
 }
 @media (max-width: 576px) {
   body .section-head {

@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
+import StarsList from "../StarsList";
 
-function UserServiceCard({ data }) {
+function UserServiceCard({ service }) {
   const { t } = useTranslation();
 
   return (
@@ -12,44 +13,27 @@ function UserServiceCard({ data }) {
       <ul className="card-ul">
         <li className="rate d-flex justify-content-between">
           <p>
-            التقييمات{" "}
-            {data?.user.customer_count && `(${data?.user.customer_count})`}{" "}
+            {t("services.rates")} {service?.rate || 0}{" "}
           </p>
-          <div className="rate">
-            <ul>
-              <li className="star">
-                <i className="fa-solid fa-star"></i>
-              </li>
-              <li className="star">
-                <i className="fa-solid fa-star"></i>
-              </li>
-              <li className="star">
-                <i className="fa-solid fa-star"></i>
-              </li>
-              <li className="star">
-                <i className="fa-solid fa-star"></i>
-              </li>
-              <li>
-                <i className="fa-solid fa-star"></i>
-              </li>
-            </ul>
-          </div>
+          <StarsList rate={service?.rate || 0} />
         </li>
         <li className=" d-flex justify-content-between">
           <p>{t("services.buyers")}</p>
-          <span>135</span>
+          <span>{service?.orders_count || 0}</span>
         </li>
         <li className=" d-flex justify-content-between">
           <p>{t("services.oredersInProgress")}</p>
-          <span>{data?.orders_count}</span>
+          <span>{service?.current_orders_count || 0}</span>
         </li>
         <li className=" d-flex justify-content-between">
           <p>{t("services.serviceMinimumPrice")}</p>
-          <span>${data?.price}</span>
+          <span>${service?.price}</span>
         </li>
         <li className=" d-flex justify-content-between">
           <p>{t("services.deliveryTime")}</p>
-          <span>{data?.days} يوم</span>
+          <span>
+            {service?.days} {t("day")}
+          </span>
         </li>
       </ul>
     </div>

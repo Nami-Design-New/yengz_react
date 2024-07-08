@@ -203,7 +203,7 @@
   "projects": {},
   "services": {
     "developments": "تطويرات متوفرة لهذه الخدمة",
-    "compare": "مقارنة",
+    "compare": "مقابل",
     "percentageofExtraService": "إضافية على سعر الخدمة.",
     "rates": "التقييمات",
     "buyers": "المشترين",
@@ -218,12 +218,27 @@
     "serviceCart": "بطاقة الخدمة",
     "specialSeller": "بائع مميز",
     "extraService": "خدمة مضافة",
-    "deliverOnTime": "التسليم بالموعد"
+    "deliverOnTime": "التسليم بالموعد",
+    "share": "مشاركة",
+    "orCopyLink": "او نسخ الرابط",
+    "linkCopied": "تم نسخ الرابط",
+    "facebook": "فيس بوك",
+    "instagram": "انستغرام",
+    "twitter": "تويتر",
+    "snapchat": "سناب شات",
+    "whatsapp": "واتساب",
+    "developmentsAvailable": "تطويرات متوفرة لهذه الخدمة"
   },
   "cancel": "الغاء",
   "homePage": "الرئيسية",
   "writeHere": "اكتب هنا",
   "select": "اختر",
   "next": "التالي",
-  "back": "السابق"
+  "back": "السابق",
+  "day": "يوم",
+  "since": "منذ",
+  "minute": "دقيقة",
+  "hour": "ساعة",
+  "now": "الأن",
+  "and": "و"
 }

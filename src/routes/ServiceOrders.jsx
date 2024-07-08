@@ -14,11 +14,10 @@ const ServiceOrders = () => {
       <div className="section-head">
         <SectionHeader />
       </div>
-
       <section className="allRequests">
         <div className="container align-items-end">
           <Link to="/request-add" className="btn btn-success mb-4">
-            <i className="fa-regular fa-hexagon-plus me-2"></i>
+            <i className="fa-regular fa-hexagon-plus me-2"></i> {""}
             اضف موضوع جديد
           </Link>
           <div className="allRequestsContainer">
@@ -26,9 +25,8 @@ const ServiceOrders = () => {
               data?.length > 0 &&
               data.map((order) => <OrderBox key={order.id} order={order} />)}
           </div>
-
           <button className="btn btn-outline-dark m-auto mt-5">
-            عرض المواضيع الاقدم
+            عرض المواضيع الاقدم{" "}
             <i className="fa-regular fa-chevrons-down ms-2"></i>
           </button>
         </div>

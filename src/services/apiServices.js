@@ -103,3 +103,14 @@ export async function deleteService(id, queryClient) {
     throw new Error(error.message);
   }
 }
+
+export async function getRates(id) {
+  try {
+    const req = await axios.post("/get_rates", {
+      id
+    });
+    return req.data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
