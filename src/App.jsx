@@ -10,9 +10,7 @@ import Register from "./features/auth/register/Register";
 import ForgetPassword from "./features/auth/resetPassword/ForgetPassword";
 import Layout from "./ui/Layout";
 import Home from "./routes/Home";
-import BlogDetails from "./routes/BlogDetails";
 import About from "./routes/About";
-import Blogs from "./routes/Blogs";
 import Contact from "./routes/Contact";
 import Categories from "./routes/Categories";
 import Faq from "./routes/Faq";
@@ -36,6 +34,7 @@ import Chats from "./routes/Chats";
 import AuthVerifySteps from "./features/auth/verification/AuthVerifySteps";
 import AddServices from "./features/services/AddServices";
 import ServiceOrdersDetails from "./routes/ServiceOrdersDetails";
+import SimilarServices from "./routes/SimilarServices";
 
 function App() {
   const dispatch = useDispatch();
@@ -82,6 +81,7 @@ function App() {
           <Route path="/service/:id" element={<Services />} />
           <Route path="/add-service" element={<AddServices />} />
           <Route path="/edit-service/:id" element={<AddServices />} />
+          <Route path="/SimilarServices" element={<SimilarServices />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/purchases" element={<Purchases />} />
           <Route path="/order-details" element={<OrderDetails />} />
@@ -99,8 +99,6 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
           <Route path="/terms" element={<Terms />} />
-          <Route path="/blogs" element={<Blogs />} />
-          <Route path="/blog-details" element={<BlogDetails />} />
           <Route path="/how-it-work" element={<HowItWork />} />
           <Route path="/faq" element={<Faq />} />
           <Route path="/login" element={<Login />} />

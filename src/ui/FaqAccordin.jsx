@@ -86,7 +86,6 @@ const FaqAccordin = () => {
 
               <Accordion.Body>
                 <p>
-                  
                   ستتمكن من الإلغاء في حالات محددة يمكنك الاطلاع عليها في مقالة
                   إلغاء الطلب، أو التواصل معنا مباشرة عبر مركز المساعدة.
                 </p>
@@ -155,7 +154,6 @@ const FaqAccordin = () => {
           <Accordion defaultActiveKey="0">
             <Accordion.Item eventKey="0">
               <Accordion.Header>
-                
                 كيف يضمن ينجز استلام ربح الطلب؟
               </Accordion.Header>
               <Accordion.Body>
@@ -252,7 +250,6 @@ const FaqAccordin = () => {
 
             <Accordion.Item eventKey="7">
               <Accordion.Header>
-                
                 أرسلت طلب إستلام ولم يصلني رد من المشتري، كيف أستلم الربح من
                 الطلب؟
               </Accordion.Header>
@@ -284,7 +281,6 @@ const FaqAccordin = () => {
 
             <Accordion.Item eventKey="9">
               <Accordion.Header>
-                
                 هل أستطيع إيقاف استقبال طلبات للخدمة؟
               </Accordion.Header>
 
@@ -337,7 +333,6 @@ const FaqAccordin = () => {
 
             <Accordion.Item eventKey="4">
               <Accordion.Header>
-                
                 لماذا يظهر التوقيت في ينجز مختلفاً عن التوقيت لدي؟
               </Accordion.Header>
 
