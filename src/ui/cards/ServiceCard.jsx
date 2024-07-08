@@ -5,11 +5,11 @@ import bann from "../../Assets/images/bann.webp";
 import useTruncateString from "../../hooks/useTruncateString";
 import StarsList from "../StarsList";
 
-const ServiceCard = ({ service, canEdit }) => {
+const ServiceCard = ({ service, canEdit, handleDelete }) => {
   const { t } = useTranslation();
   return (
     <div className="service-card" data-aos="fade-up">
-      <Link to={`/services/id=${service?.id}`} className="img">
+      <Link to={`/services/${service?.id}`} className="img">
         <img src={service?.image || bann} alt="" />
       </Link>
       <div className="content">
@@ -28,9 +28,14 @@ const ServiceCard = ({ service, canEdit }) => {
           {t("home.startFrom")} : <b>{service?.price || 0} $</b>
         </h6>
         {canEdit && (
-          <Link to={`/edit-service/${service?.id}`} className="editService">
-            <i className="fa-regular fa-file-pen"></i>
-          </Link>
+          <div className="editService">
+            <Link to={`/edit-service/${service?.id}`}>
+              <i className="fa-regular fa-file-pen"></i>
+            </Link>
+            <button onClick={() => handleDelete(service?.id)}>
+              <i className="fa-regular fa-trash-can"></i>
+            </button>
+          </div>
         )}
       </div>
     </div>

@@ -64,12 +64,38 @@ export async function getServiceDetails(id) {
   }
 }
 
-export async function CreateService(data, queryClient) {
+export async function createService(data, queryClient) {
   try {
     const req = await axios.post("/user/create_service", data, {
       headers: {
         "Content-Type": "multipart/form-data"
       }
+    });
+    queryClient.invalidateQueries("userServices");
+    return req.data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+export async function updateService(data, queryClient) {
+  try {
+    const req = await axios.post("/user/update_service", data, {
+      headers: {
+        "Content-Type": "multipart/form-data"
+      }
+    });
+    queryClient.invalidateQueries("userServices");
+    return req.data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+export async function deleteService(id, queryClient) {
+  try {
+    const req = await axios.post("/user/delete_service", {
+      id
     });
     queryClient.invalidateQueries("userServices");
     return req.data;

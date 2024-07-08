@@ -5,7 +5,7 @@ import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import AddMoreDevelopCard from "../../ui/cards/AddMoreDevelopCard";
 import SubmitButton from "./../../ui/form-elements/SubmitButton";
 
-const WizardStep3 = ({ formData, setFormData, setStep, loading }) => {
+const WizardStep3 = ({ formData, setFormData, setStep, loading, isEdit }) => {
   const { t } = useTranslation();
   const developmentInitial = {
     description: "",
@@ -25,11 +25,19 @@ const WizardStep3 = ({ formData, setFormData, setStep, loading }) => {
       developments: [...prev.developments, developmentInitial]
     }));
   };
-  const handleRemoveDev = (index) => {
-    setFormData((prev) => ({
-      ...prev,
-      developments: prev.developments.filter((_, i) => i !== index)
-    }));
+  const handleRemoveDev = (dev, index) => {
+    if (dev.id) {
+      setFormData((prevState) => ({
+        ...prevState,
+        developments: prevState?.developments?.filter((_, i) => i !== index),
+        delete_developments: [...prevState.delete_developments, dev.id]
+      }));
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        developments: prev.developments.filter((_, i) => i !== index)
+      }));
+    }
   };
   const onDevChange = (e, index) => {
     const { name, value } = e.target;
@@ -96,13 +104,17 @@ const WizardStep3 = ({ formData, setFormData, setStep, loading }) => {
           className="back_btn"
           onClick={(e) => {
             e.preventDefault();
-            setStep(1);
+            setStep(2);
           }}
         >
           {t("back")}
         </button>
         <SubmitButton
-          name={t("addService.addAndConfirm")}
+          name={
+            isEdit
+              ? t("addService.updateService")
+              : t("addService.addAndConfirm")
+          }
           className={"w-25 align-self-end"}
           loading={loading}
         />

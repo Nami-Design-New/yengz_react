@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { deleteService } from "../../services/apiServices";
+import { toast } from "react-toastify";
+import { useQueryClient } from "@tanstack/react-query";
 import {
   IconCirclePlus,
   IconPlus,
@@ -16,9 +19,19 @@ import CertificatesTab from "./CertificatesTab";
 import WorksTab from "./WorksTab";
 
 const ProfileTabs = ({ user }) => {
+  const queryClient = useQueryClient();
   const { t } = useTranslation();
   const { data: services } = useUserServices(user?.id);
   const { data: works } = useGetWorks(user?.id);
+
+  const handleDeleteService = async (id) => {
+    try {
+      await deleteService(id, queryClient);
+      toast.success(t("addService.serviceDeleted"));
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
 
   return (
     <>
@@ -58,6 +71,7 @@ const ProfileTabs = ({ user }) => {
                       canEdit={true}
                       key={service.id}
                       service={service}
+                      handleDelete={handleDeleteService}
                     />
                   ))}
                 </>
