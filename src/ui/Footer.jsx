@@ -35,9 +35,7 @@ const Footer = () => {
                   <Link to="/faq">{t("footer.faq")}</Link>
                 </li>
                 <li>
-                  <Link to="/guarantee-of-rights">
-                    {t("footer.rightsReserved")}
-                  </Link>
+                  <Link to="/terms">{t("footer.rightsReserved")}</Link>
                 </li>
                 <li>
                   <Link to="/how-it-work">{t("footer.howYengzWork")}</Link>

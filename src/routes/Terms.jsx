@@ -1,6 +1,11 @@
 import React from "react";
 import SectionHeader from "../ui/SectionHeader";
 import NewsLetter from "../ui/NewsLetter";
+import TermsAccordin from "../ui/TermsAccordin";
+import safety from "../Assets/images/safety.png";
+import refundable from "../Assets/images/refundable.png";
+import support from "../Assets/images/support.png";
+import trusted from "../Assets/images/trusted.png";
 
 const Terms = () => {
   return (
@@ -15,7 +20,7 @@ const Terms = () => {
             <div className="col-lg-6 col-12">
               <div className="p-3 d-flex cardd" data-aos="fade-up">
                 <div className="icon">
-                  <img src="assets/images/safety.svg" alt="icon" />
+                  <img src={safety} alt="icon" />
                 </div>
                 <div className="text">
                   <h6>ينجز يضمن حقك</h6>
@@ -29,7 +34,7 @@ const Terms = () => {
             <div className="col-lg-6 col-12">
               <div className="p-3 d-flex cardd" data-aos="fade-up">
                 <div className="icon">
-                  <img src="assets/images/refundable.svg" alt="icon" />
+                  <img src={refundable} alt="icon" />
                 </div>
                 <div className="text">
                   <h6>أموالك قابلة للاسترداد</h6>
@@ -43,7 +48,7 @@ const Terms = () => {
             <div className="col-lg-6 col-12">
               <div className="p-3 d-flex cardd" data-aos="fade-up">
                 <div className="icon">
-                  <img src="assets/images/support.svg" alt="icon" />
+                  <img src={support} alt="icon" />
                 </div>
                 <div className="text">
                   <h6>دعم فني على مدار 24 ساعة</h6>
@@ -58,7 +63,7 @@ const Terms = () => {
             <div className="col-lg-6 col-12">
               <div className="p-3 d-flex cardd" data-aos="fade-up">
                 <div className="icon">
-                  <img src="assets/images/trusted.svg" alt="icon" />
+                  <img src={trusted} alt="icon" />
                 </div>
                 <div className="text">
                   <h6>هويات موثقة</h6>
