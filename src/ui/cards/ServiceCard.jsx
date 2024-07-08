@@ -7,7 +7,6 @@ import StarsList from "../StarsList";
 
 const ServiceCard = ({ service, canEdit, handleDelete }) => {
   const { t } = useTranslation();
-  console.log(service.rate);
   return (
     <div className="service-card" data-aos="fade-up">
       <Link to={`/service/${service?.id}`} className="img">
