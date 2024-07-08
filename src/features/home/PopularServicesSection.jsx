@@ -1,14 +1,13 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import Department from "./Department";
-import { Link } from "react-router-dom";
 
 const PopularServicesSection = () => {
   const { t } = useTranslation();
   return (
     <section className="popular_departments">
       <h2 className="title" data-aos="fade-up">
-        <Link to="/service-orders">{t("home.bestServices")}</Link>
+        {t("home.bestServices")}
       </h2>
       <p className="sub-title" data-aos="fade-up">
         {t("home.bestServicesSubTitle")}
