@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Orbit3d from "./../../ui/Orbit3d";
 import { useTranslation } from "react-i18next";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
@@ -25,7 +24,9 @@ const HeroSection = () => {
         <div className="row justify-content-center align-items-center">
           {/* orbit */}
           <div className="col-md-4 order-md-2 p-1">
-            <Orbit3d />
+            <div id="globe">
+              <canvas></canvas>
+            </div>
           </div>
           {/* slider & search */}
           <div className="col-md-8 order-md-1 p-1">
