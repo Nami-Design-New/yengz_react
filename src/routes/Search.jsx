@@ -8,10 +8,12 @@ import InputField from "../ui/form-elements/InputField";
 import useSearchServicesList from "../features/services/useSearchServicesList";
 import ServiceCard from "../ui/cards/ServiceCard";
 import { useTranslation } from "react-i18next";
+import useCategorieListWithSub from "../features/categories/useCategorieListWithSub";
 
 const Search = () => {
   const { t } = useTranslation();
-  const { data } = useSearchServicesList();
+  const { data: categoriesWithSubCategories } = useCategorieListWithSub();
+  const { data: searchServicesList } = useSearchServicesList();
   const [searchParams, setSearchParams] = useSearchParams();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [searchFilterData, setSearchFilterData] = useState({
@@ -54,7 +56,7 @@ const Search = () => {
 
           if (name === "categories") {
             const relatedSubCategories =
-              departmentFilter
+              categoriesWithSubCategories
                 .find((category) => category.id === categoryValue)
                 ?.sub_categories.map((subCategory) => subCategory.id) || [];
 
@@ -71,10 +73,11 @@ const Search = () => {
               ].filter((id) => !relatedSubCategories.includes(id));
             }
           } else if (name === "sub_categories") {
-            const parentCategory = departmentFilter.find((category) =>
-              category.sub_categories.some(
-                (subCategory) => subCategory.id === categoryValue
-              )
+            const parentCategory = categoriesWithSubCategories.find(
+              (category) =>
+                category.sub_categories.some(
+                  (subCategory) => subCategory.id === categoryValue
+                )
             );
 
             const allChildIds = parentCategory.sub_categories.map(
@@ -201,6 +204,7 @@ const Search = () => {
                   categoriesValue={searchFilterData.categories}
                   sub_categoriesValue={searchFilterData.sub_categories}
                   onChange={handleChange}
+                  categoriesWithSubCategories={categoriesWithSubCategories}
                 />
                 <hr />
                 <RatingFilterBox
@@ -238,8 +242,8 @@ const Search = () => {
           <div className="col-lg-9 col-12 p-2 results-wrapper">
             <div className="container">
               <div className="row">
-                {data &&
-                  data.data.map((service) => (
+                {searchServicesList &&
+                  searchServicesList.data.map((service) => (
                     <div className="col-lg-4 col-6 p-2" key={service.id}>
                       <ServiceCard service={service} />
                     </div>

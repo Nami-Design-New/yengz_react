@@ -235,7 +235,6 @@
   "writeHere": "اكتب هنا",
   "select": "اختر",
   "next": "التالي",
-<<<<<<< Updated upstream
   "back": "السابق",
   "day": "يوم",
   "since": "منذ",
@@ -244,7 +243,3 @@
   "now": "الأن",
   "and": "و"
 }
-=======
-  "back": "السابق"
-}
->>>>>>> Stashed changes

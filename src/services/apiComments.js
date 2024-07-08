@@ -10,3 +10,12 @@ export async function getComments(id) {
     throw new Error(error.message);
   }
 }
+
+export async function createComment(requestBody) {
+  try {
+    const req = await axios.post("/user/create_comment", requestBody);
+    return req.data.data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}

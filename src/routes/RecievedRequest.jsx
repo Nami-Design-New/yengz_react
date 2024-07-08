@@ -9,8 +9,8 @@ const RecievedRequest = () => {
     <main>
       <section className="cart-section container">
         <div className="row">
-          <div className="col-lg-2">
-            <div className="filter side-menu">
+          <div className="col-lg-2 side-menu">
+            <div className="filter">
               <div className="d-flex justify-content-between">
                 <h6>حالة الطلب</h6>
                 <div className="colse">

@@ -7,8 +7,6 @@ import useServiceOrdersList from "../features/orders/useServiceOrdersList";
 const ServiceOrders = () => {
   const { data } = useServiceOrdersList();
 
-  console.log(data);
-
   return (
     <>
       <div className="section-head">
