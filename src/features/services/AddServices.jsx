@@ -3,9 +3,9 @@ import { ProgressBar } from "react-bootstrap";
 import WizardStep1 from "./WizardStep1";
 import WizardStep2 from "./WizardStep2";
 import WizardStep3 from "./WizardStep3";
-import { CreateService } from "../../services/apiServices";
+import { createService, updateService } from "../../services/apiServices";
 import { useQueryClient } from "@tanstack/react-query";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import useServiceDetails from "./useServiceDetails";
@@ -20,6 +20,7 @@ const AddServices = () => {
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState((step / totalSteps) * 100);
+  const [originalData, setOriginalData] = useState(null);
   const [formData, setFormData] = useState({
     title: "",
     sub_category_id: "",
@@ -36,7 +37,8 @@ const AddServices = () => {
   useEffect(() => {
     if (service) {
       setCategoryId(service?.category?.id);
-      setFormData({
+      const initialData = {
+        id: service?.id,
         title: service?.title,
         description: service?.description,
         days: service?.days,
@@ -47,7 +49,9 @@ const AddServices = () => {
         sub_category_id: service?.sub_category_id,
         delete_images: [],
         delete_developments: []
-      });
+      };
+      setFormData(initialData);
+      setOriginalData(initialData);
     }
   }, [service]);
 
@@ -58,12 +62,34 @@ const AddServices = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+
+    // check if data is changed
+    const isDataChanged =
+      JSON.stringify(formData) !== JSON.stringify(originalData);
+    if (!isDataChanged) {
+      toast.warning(t("addService.noChangesMade"));
+      setLoading(false);
+      return;
+    }
+
+    const dataToSendForUpdate = {
+      ...formData,
+      images: formData.images.filter((image) =>
+        image?.type?.startsWith("image/")
+      )
+    };
+
     try {
-      await CreateService(formData, queryClient);
-      toast.success(t("addService.success"));
+      if (service?.id) {
+        await updateService(dataToSendForUpdate, queryClient);
+        toast.success(t("addService.updateSuccess"));
+      } else {
+        await createService(formData, queryClient);
+        toast.success(t("addService.success"));
+      }
       navigate("/profile");
     } catch (error) {
-      throw new Error(error);
+      toast.error(error.message);
     } finally {
       setLoading(false);
     }
@@ -97,6 +123,7 @@ const AddServices = () => {
                   setStep={setStep}
                   formData={formData}
                   loading={loading}
+                  isEdit={service?.id ? true : false}
                   setFormData={setFormData}
                 />
               )}

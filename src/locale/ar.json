@@ -182,7 +182,11 @@
     "price": "السعر",
     "duration": "المدة",
     "addAndConfirm": "اضافة وتأكيد",
-    "moreDevDurationPlaceholder": "مثال : 2 يوم"
+    "moreDevDurationPlaceholder": "مثال : 2 يوم",
+    "updateService": "تحديث الخدمة",
+    "updateSuccess": "تم تحديث الخدمة بنجاح",
+    "serviceDeleted": "تم حذف الخدمة بنجاح",
+    "noChangesMade": "لم يتم اكتشاف أي تغييرات. يرجى إجراء بعض التحديثات قبل الإرسال."
   },
   "search": {
     "searchFor": "ابحث عن...",

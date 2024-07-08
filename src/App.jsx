@@ -62,7 +62,6 @@ function App() {
           console.log(err);
         });
     } else if (isExpired) {
-      removeCookie("token");
       dispatch(setIsLogged(false));
       delete axios.defaults.headers.common["Authorization"];
     }
@@ -79,7 +78,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="/services" element={<Services />} />
+          <Route path="/services/:id" element={<Services />} />
           <Route path="/add-service" element={<AddServices />} />
           <Route path="/edit-service/:id" element={<AddServices />} />
           <Route path="/categories" element={<Categories />} />

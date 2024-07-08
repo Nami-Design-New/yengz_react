@@ -3644,15 +3644,26 @@ body .service-card .editService {
   position: absolute;
   left: 12px;
   bottom: 12px;
-  width: 36px;
-  height: 36px;
+  display: flex;
+  gap: 8px;
+}
+body .service-card .editService a,
+body .service-card .editService button {
+  border: none;
+  background: none;
+  outline: none;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: var(--main-color);
+  background: var(--input-hint);
   color: var(--white-color);
-  font-size: 16px;
+  font-size: 14px;
+}
+body .service-card .editService button {
+  background: red;
 }
 body .newsletter {
   padding-top: 32px;

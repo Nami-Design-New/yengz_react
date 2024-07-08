@@ -11,7 +11,10 @@ const AddMoreDevelopCard = ({
   const { t } = useTranslation();
   return (
     <div id="0" className="add-more-model">
-      <div className="delete-model" onClick={() => handleRemoveDev(index)}>
+      <div
+        className="delete-model"
+        onClick={() => handleRemoveDev(development, index)}
+      >
         <i className="fa-light fa-circle-xmark" data-card-id="0"></i>
       </div>
       <div className="d-flex flex-column gap-2">

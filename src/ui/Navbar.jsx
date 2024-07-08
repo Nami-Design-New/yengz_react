@@ -81,6 +81,7 @@ const Navbar = () => {
     navigate(`/search?search=${searchInput}`);
   }
 
+
   return (
     <header>
       <nav className="tnavbar">
@@ -142,7 +143,7 @@ const Navbar = () => {
                   <span className="num-count2">2</span>
                 </li>
                 <li className="nav-link">
-                  <Link to="/requests">
+                  <Link to="/service-orders">
                     <i className="far fa-hand-point-up"></i>{" "}
                     {t("navbar.serviceAsYouLike")}
                   </Link>
@@ -384,7 +385,7 @@ const Navbar = () => {
                     <li>
                       <Link
                         className="dropdown-item_Link"
-                        to="/profile/balance"
+                        to="/profile"
                       >
                         <i className="fa-sharp fa-solid fa-dollar-sign"></i>
                         {t("navbar.balance")}
