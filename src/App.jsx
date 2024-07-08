@@ -25,7 +25,7 @@ import RecievedRequestOrders from "./routes/RecievedRequestOrders";
 import Terms from "./routes/Terms";
 import AddRequest from "./routes/AddRequest";
 import ServiceOrders from "./routes/ServiceOrders";
-import Services from "./routes/Services";
+import Services from "./routes/ServiceDetails";
 import Search from "./routes/Search";
 import Logout from "./features/auth/Logout";
 import Cart from "./routes/Cart";
@@ -79,7 +79,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="/services/:id" element={<Services />} />
+          <Route path="/service/:id" element={<Services />} />
           <Route path="/add-service" element={<AddServices />} />
           <Route path="/edit-service/:id" element={<AddServices />} />
           <Route path="/categories" element={<Categories />} />

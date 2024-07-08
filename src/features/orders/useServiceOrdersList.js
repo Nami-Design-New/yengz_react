@@ -5,7 +5,6 @@ function useServiceOrdersList() {
   const { isLoading, data, error } = useQuery({
     queryKey: ["serviceOrdersList"],
     queryFn: getServiceOrders,
-    retry: false,
   });
 
   return { isLoading, data, error };
