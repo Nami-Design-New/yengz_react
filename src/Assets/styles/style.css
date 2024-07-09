@@ -859,13 +859,20 @@ body main .profile-section .profile-descripe .banner .user-avatar img {
 body main .profile-section .profile-descripe .banner .user-avatar .status {
   display: block;
   position: absolute;
-  bottom: 0;
-  left: 8px;
-  width: 20px;
+  bottom: -4px;
+  left: 4px;
+  width: 28px;
   border-radius: 50%;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--white-color);
+}
+body main .profile-section .profile-descripe .banner .user-avatar .status svg {
+  color: #26ba35;
+  width: 20px;
   height: 20px;
-  border: 4px solid var(--white-color);
-  background-color: #1bd00b;
 }
 body main .profile-section .profile-descripe .name-rate {
   margin-top: 75px;
@@ -1223,7 +1230,25 @@ body main .service-details .service-content .content .service-owner-card .owner 
   border-radius: 50%;
   width: 92px;
   height: 100%;
-  overflow: hidden;
+  position: relative;
+}
+body main .service-details .service-content .content .service-owner-card .owner .img .status {
+  display: block;
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  width: 28px;
+  border-radius: 50%;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--white-color);
+}
+body main .service-details .service-content .content .service-owner-card .owner .img .status svg {
+  color: #26ba35;
+  width: 20px;
+  height: 20px;
 }
 body main .service-details .service-content .content .service-owner-card .owner .img img,
 body main .service-details .service-content .content .service-owner-card .owner .img a {
@@ -1231,6 +1256,7 @@ body main .service-details .service-content .content .service-owner-card .owner 
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  border-radius: 50%;
 }
 @media (max-width: 576px) {
   body main .service-details .service-content .content .service-owner-card .owner .img {

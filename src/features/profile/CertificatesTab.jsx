@@ -9,7 +9,7 @@ import CertificateCard from "../../ui/cards/CertificateCard";
 import ConfirmationModal from "../../ui/modals/ConfirmationModal";
 import AddCertificateModal from "../../ui/modals/AddCertificateModal";
 
-const CertificatesTab = ({ user }) => {
+const CertificatesTab = ({ user, isMyAccount }) => {
   const queryClient = useQueryClient();
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [showAddCertificateModal, setShowAddCertificateModal] = useState(false);
@@ -42,12 +42,14 @@ const CertificatesTab = ({ user }) => {
   return (
     <div className="tab-pane ">
       <div className="services-container">
-        <button
-          onClick={() => setShowAddCertificateModal(true)}
-          className="add-service"
-        >
-          <IconCirclePlus stroke={2} /> {t("profile.addCertificate")}
-        </button>
+        {isMyAccount && (
+          <button
+            onClick={() => setShowAddCertificateModal(true)}
+            className="add-service"
+          >
+            <IconCirclePlus stroke={2} /> {t("profile.addCertificate")}
+          </button>
+        )}
         <div className="services_grid">
           {certificates?.length === 0 ? (
             <div className="noDataFound">
@@ -57,7 +59,7 @@ const CertificatesTab = ({ user }) => {
             <>
               {certificates?.map((cer) => (
                 <CertificateCard
-                  canEdit={true}
+                  canEdit={isMyAccount}
                   key={cer.id}
                   certificate={cer}
                   onEditModalShow={onEditModalShow}
@@ -77,7 +79,7 @@ const CertificatesTab = ({ user }) => {
         text={t("profile.areYouSureYouWantToDeleteCertificate")}
       />
       <AddCertificateModal
-      setTargetCertificate={setTargetCertificate}
+        setTargetCertificate={setTargetCertificate}
         targetCertificate={targetCertificate}
         showModal={showAddCertificateModal}
         setShowModal={setShowAddCertificateModal}

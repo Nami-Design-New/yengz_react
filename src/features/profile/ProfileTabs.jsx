@@ -14,11 +14,11 @@ import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import ServiceCard from "../../ui/cards/ServiceCard";
 import useGetWorks from "./useGetWorks";
-import useUserServices from "./../services/useUserServices";
+import useUserServices from "../services/useUserServices";
 import CertificatesTab from "./CertificatesTab";
 import WorksTab from "./WorksTab";
 
-const ProfileTabs = ({ user }) => {
+const ProfileTabs = ({ user, isMyAccount }) => {
   const queryClient = useQueryClient();
   const { t } = useTranslation();
   const { data: services } = useUserServices(user?.id);
@@ -42,9 +42,13 @@ const ProfileTabs = ({ user }) => {
             {user?.about ? (
               <p>{user?.about}</p>
             ) : (
-              <Link to="/edit-profile">
-                <IconPlus stroke={1} /> {t("profile.noAbout")}
-              </Link>
+              <>
+                {isMyAccount && (
+                  <Link to="/edit-profile">
+                    <IconPlus stroke={1} /> {t("profile.noAbout")}
+                  </Link>
+                )}
+              </>
             )}
           </div>
         </Tab>
@@ -56,9 +60,12 @@ const ProfileTabs = ({ user }) => {
           className="tab_item"
         >
           <div className="services-container">
-            <Link to="/add-service" className="add-service">
-              <IconCirclePlus stroke={2} /> {t("profile.addService")}
-            </Link>
+            {isMyAccount && (
+              <Link to="/add-service" className="add-service">
+                <IconCirclePlus stroke={2} /> {t("profile.addService")}
+              </Link>
+            )}
+
             <div className="services_grid">
               {services?.length === 0 ? (
                 <div className="noDataFound">
@@ -68,7 +75,7 @@ const ProfileTabs = ({ user }) => {
                 <>
                   {services?.map((service) => (
                     <ServiceCard
-                      canEdit={true}
+                      canEdit={isMyAccount}
                       key={service.id}
                       service={service}
                       handleDelete={handleDeleteService}
@@ -81,42 +88,51 @@ const ProfileTabs = ({ user }) => {
         </Tab>
 
         {/* verifications */}
-        <Tab
-          eventKey="documentation"
-          title={t("profile.verification")}
-          className="tab_item"
-        >
-          <div className="tab-pane">
-            <ul className="verify-list">
-              <li className="d-flex gap-2">
-                {user?.verified === 1 ? (
+
+        {isMyAccount && (
+          <Tab
+            eventKey="documentation"
+            title={t("profile.verification")}
+            className="tab_item"
+          >
+            <div className="tab-pane">
+              <ul className="verify-list">
+                <li className="d-flex gap-2">
+                  {user?.verified === 1 ? (
+                    <IconRosetteDiscountCheck stroke={2} />
+                  ) : (
+                    <IconBrandXamarin className="tabler-danger" stroke={2} />
+                  )}
+                  {t("profile.personalIdentification")}
+                </li>
+                <li className="d-flex gap-2">
+                  {user?.phone_verified === 1 ? (
+                    <IconRosetteDiscountCheck stroke={2} />
+                  ) : (
+                    <IconBrandXamarin className="tabler-danger" stroke={2} />
+                  )}
+                  {t("profile.phoneNumber")}
+                </li>
+                <li className="d-flex gap-2">
                   <IconRosetteDiscountCheck stroke={2} />
-                ) : (
-                  <IconBrandXamarin className="tabler-danger" stroke={2} />
-                )}
-                {t("profile.personalIdentification")}
-              </li>
-              <li className="d-flex gap-2">
-                {user?.phone_verified === 1 ? (
-                  <IconRosetteDiscountCheck stroke={2} />
-                ) : (
-                  <IconBrandXamarin className="tabler-danger" stroke={2} />
-                )}
-                {t("profile.phoneNumber")}
-              </li>
-              <li className="d-flex gap-2">
-                <IconRosetteDiscountCheck stroke={2} />
-                {t("profile.emailAddress")}
-              </li>
-            </ul>
-            {user?.verified === 0 && (
-              <div className="unverified-box">
-                <h6>{t("profile.notVerified")}</h6>
-                <Link to="/verify-user">{t("profile.verifyAccount")}</Link>
-              </div>
-            )}
-          </div>
-        </Tab>
+                  {t("profile.emailAddress")}
+                </li>
+              </ul>
+              {isMyAccount && (
+                <>
+                  {user?.verified === 0 && (
+                    <div className="unverified-box">
+                      <h6>{t("profile.notVerified")}</h6>
+                      <Link to="/verify-user">
+                        {t("profile.verifyAccount")}
+                      </Link>
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
+          </Tab>
+        )}
 
         {/*  statistics */}
         <Tab
@@ -149,7 +165,7 @@ const ProfileTabs = ({ user }) => {
           title={t("profile.myWorks")}
           className="tab_item"
         >
-          <WorksTab works={works} />
+          <WorksTab works={works} isMyAccount={isMyAccount} />
         </Tab>
 
         {/* my certificates */}
@@ -158,7 +174,7 @@ const ProfileTabs = ({ user }) => {
           title={t("profile.myCertificates")}
           className="tab_item"
         >
-          <CertificatesTab user={user} />
+          <CertificatesTab user={user} isMyAccount={isMyAccount} />
         </Tab>
       </Tabs>
     </>

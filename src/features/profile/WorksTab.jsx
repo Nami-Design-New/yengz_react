@@ -8,7 +8,7 @@ import WorkCard from "../../ui/cards/WorkCard";
 import ConfirmationModal from "../../ui/modals/ConfirmationModal";
 import { deleteWork } from "../../services/apiWorks";
 
-const WorksTab = ({ works }) => {
+const WorksTab = ({ works, isMyAccount }) => {
   const { t } = useTranslation();
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [showAddWorkModal, setShowAddWorkModal] = useState(false);
@@ -42,12 +42,14 @@ const WorksTab = ({ works }) => {
     <>
       <div className="tab-pane ">
         <div className="services-container">
-          <button
-            onClick={() => setShowAddWorkModal(true)}
-            className="add-service"
-          >
-            <IconCirclePlus stroke={2} /> {t("profile.addWork")}
-          </button>
+          {isMyAccount && (
+            <button
+              onClick={() => setShowAddWorkModal(true)}
+              className="add-service"
+            >
+              <IconCirclePlus stroke={2} /> {t("profile.addWork")}
+            </button>
+          )}
           <div className="services_grid">
             {works?.length === 0 ? (
               <div className="noDataFound">
@@ -57,7 +59,7 @@ const WorksTab = ({ works }) => {
               <>
                 {works?.map((work) => (
                   <WorkCard
-                    canEdit={true}
+                    canEdit={isMyAccount}
                     key={work.id}
                     work={work}
                     onEditModalShow={onEditModalShow}
@@ -69,7 +71,6 @@ const WorksTab = ({ works }) => {
           </div>
         </div>
       </div>
-
       <ConfirmationModal
         showModal={showConfirmation}
         setShowModal={setShowConfirmation}
@@ -78,7 +79,6 @@ const WorksTab = ({ works }) => {
         buttonText={t("profile.delete")}
         text={t("profile.areYouSureYouWantToDelete")}
       />
-
       <AddWorkModal
         targetWork={targetWork}
         setTargetWork={setTargetWork}
