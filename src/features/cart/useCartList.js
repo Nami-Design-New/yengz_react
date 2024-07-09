@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getCart } from "../../services/apiCart";
 import { useDispatch, useSelector } from "react-redux";
+import { updateEntireCart } from "../../redux/slices/cart";
 
 function useCartList() {
   const loader = useSelector((state) => state.appLoader.appLoader);
@@ -10,6 +11,7 @@ function useCartList() {
     queryKey: ["cartList", loader],
     queryFn: () => getCart(),
     enabled: !loader,
+    onSuccess: (res) => console.log(res)
   });
 
   return { isLoading, data, error, refetch };
