@@ -114,3 +114,12 @@ export async function getRates(id) {
     throw new Error(error.message);
   }
 }
+
+export async function getHomeServices() {
+  try {
+    const req = await axios.get("/get_home_services");
+    return req.data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}

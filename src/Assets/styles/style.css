@@ -1150,7 +1150,7 @@ body main .profile-section .tab-content .statics-list li span small {
   color: var(--text-color);
 }
 body main .service-details {
-  padding: 48px 0;
+  padding: 48px 8px;
 }
 body main .service-details .service-content .swiper {
   width: 100%;
@@ -1466,6 +1466,7 @@ body main .service-details .service-content .content .add-cart {
   align-items: center;
   flex-direction: column;
   gap: 24px;
+  margin-top: 8px;
 }
 body main .service-details .service-content .content .add-cart .input-field {
   display: flex;
@@ -3417,7 +3418,7 @@ body .rate-card .rating-cards .r-card h6 {
   font-size: 14px;
 }
 body .more-develop {
-  padding: 32px 0 0;
+  padding: 16px 0 0;
 }
 body .more-develop h6 {
   font-weight: 600;
@@ -3427,7 +3428,6 @@ body .more-develop h6 {
 }
 body .more-develop .input-field {
   gap: 16px;
-  margin-bottom: 28px;
 }
 body .more-develop .input-field .label label {
   font-size: 16px;
@@ -4809,10 +4809,6 @@ body main .chat-section .openTaps i {
   font-size: 16px;
 }
 @media (max-width: 576px) {
-  body .rate-card .rate-owner .rate-text {
-    font-size: 10px !important;
-    line-height: 20px;
-  }
   body .rate ul li i {
     font-size: 8px;
   }

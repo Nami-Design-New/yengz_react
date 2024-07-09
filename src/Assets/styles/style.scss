@@ -1065,7 +1065,7 @@ body {
       }
     }
     .service-details {
-      padding: 48px 0;
+      padding: 48px 8px;
       .service-content {
         .swiper {
           width: 100%;
@@ -1347,6 +1347,7 @@ body {
             align-items: center;
             flex-direction: column;
             gap: 24px;
+            margin-top: 8px;
             .input-field {
               display: flex;
               gap: 16px;
@@ -3192,7 +3193,7 @@ body {
     }
   }
   .more-develop {
-    padding: 32px 0 0;
+    padding: 16px 0 0;
     h6 {
       font-weight: 600;
       font-size: 20px;
@@ -3201,7 +3202,6 @@ body {
     }
     .input-field {
       gap: 16px;
-      margin-bottom: 28px;
       .label {
         label {
           font-size: 16px;
@@ -4493,10 +4493,6 @@ body {
     }
   }
   @media (max-width: 576px) {
-    .rate-card .rate-owner .rate-text {
-      font-size: 10px !important;
-      line-height: 20px;
-    }
     .rate ul li i {
       font-size: 8px;
     }

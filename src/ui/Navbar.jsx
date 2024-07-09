@@ -81,7 +81,6 @@ const Navbar = () => {
     navigate(`/search?search=${searchInput}`);
   }
 
-
   return (
     <header>
       <nav className="tnavbar">
@@ -383,10 +382,7 @@ const Navbar = () => {
                       </Link>
                     </li>
                     <li>
-                      <Link
-                        className="dropdown-item_Link"
-                        to="/profile"
-                      >
+                      <Link className="dropdown-item_Link" to="/profile">
                         <i className="fa-sharp fa-solid fa-dollar-sign"></i>
                         {t("navbar.balance")}
                       </Link>
