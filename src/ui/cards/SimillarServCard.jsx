@@ -25,7 +25,6 @@ const SimillarServCard = ({ service }) => {
         <h6 className="start-from">
           {t("home.startFrom")} : <b>{service?.price || 0} $</b>
         </h6>
-
         <Link to={`/edit-service/${service?.id}`} className="editService">
           <i className="fa-regular fa-file-pen"></i>
         </Link>

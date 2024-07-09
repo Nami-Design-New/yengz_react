@@ -2,12 +2,15 @@ import React, { useEffect, useState } from "react";
 import { Dropdown, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import avatarPlaceholder from "../../Assets/images/avatar-placeholder-2.svg";
+import { IconRosetteDiscountCheckFilled } from "@tabler/icons-react";
 
 const ServiceOwnerCard = ({ service }) => {
-  const [showTooltip, setShowTooltip] = useState(false);
   const { t } = useTranslation();
+  const [showTooltip, setShowTooltip] = useState(false);
   const currentPageLink = window.location.href;
+  const authedUser = useSelector((state) => state.authedUser.user);
 
   const renderTooltip = (props) => (
     <Tooltip id="button-tooltip" {...props}>
@@ -41,9 +44,21 @@ const ServiceOwnerCard = ({ service }) => {
   return (
     <div className="service-owner-card">
       <div className="d-flex justify-content-between ps-1 pe-1 h-100">
-        <div className="owner">
+        <Link
+          to={
+            authedUser?.id === service?.user?.id
+              ? "/profile"
+              : `/profile/${service?.user?.id}`
+          }
+          className="owner"
+        >
           <div className="img">
             <img src={service?.user?.image || avatarPlaceholder} alt="owner" />
+            {service?.user?.verified === 1 && (
+              <span className="status">
+                <IconRosetteDiscountCheckFilled />
+              </span>
+            )}
           </div>
           <div className="title">
             <h6>{service?.user?.name || "خالد عوض"}</h6>
@@ -54,7 +69,7 @@ const ServiceOwnerCard = ({ service }) => {
               </span>
             )}
           </div>
-        </div>
+        </Link>
         <div className="btns">
           <Link to="/chat" className="butn">
             <i className="fa-regular fa-message-lines"></i>

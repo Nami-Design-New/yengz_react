@@ -244,6 +244,8 @@
   "select": "Select",
   "next": "Next",
   "back": "Back",
+  "year": "year",
+  "month": "month",
   "days": "days",
   "since": "since",
   "hours": "hours",
