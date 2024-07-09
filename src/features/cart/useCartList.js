@@ -1,21 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 import { getCart } from "../../services/apiCart";
-import { useDispatch } from "react-redux";
-import { updateEntireCart } from "../../redux/slices/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 function useCartList() {
-  const dispatch = useDispatch();
-  const { isLoading, data, error } = useQuery({
-    queryKey: ["cartList"],
-    queryFn: getCart,
-    retry: false,
-
-    onSuccess: () => {
-      dispatch(updateEntireCart(data.data));
-    },
+  const loader = useSelector((state) => state.appLoader.appLoader);
+  const dipatch = useDispatch();
+  console.log(loader);
+  const { isLoading, data, error, refetch } = useQuery({
+    queryKey: ["cartList", loader],
+    queryFn: () => getCart(),
+    enabled: !loader,
   });
 
-  return { isLoading, data, error };
+  return { isLoading, data, error, refetch };
 }
 
 export default useCartList;

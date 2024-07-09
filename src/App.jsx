@@ -35,6 +35,7 @@ import AuthVerifySteps from "./features/auth/verification/AuthVerifySteps";
 import AddServices from "./features/services/AddServices";
 import ServiceOrdersDetails from "./routes/ServiceOrdersDetails";
 import SimilarServices from "./routes/SimilarServices";
+import { setLoader } from "./redux/slices/appLoader";
 
 function App() {
   const dispatch = useDispatch();
@@ -44,27 +45,32 @@ function App() {
   const { decodedToken, isExpired } = useJwt(token || "");
 
   useEffect(() => {
-    if (decodedToken && !isExpired) {
-      const userId = decodedToken.sub;
-      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      const user = axios.get(`/user/get_profile?id=${userId}`);
-      user
-        .then((res) => {
-          if (res.data.code === 200) {
-            dispatch(setUser(res.data.data));
-            dispatch(setIsLogged(true));
-          } else {
-            dispatch(setIsLogged(false));
-            dispatch(setUser({}));
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else if (isExpired) {
-      dispatch(setIsLogged(false));
-      delete axios.defaults.headers.common["Authorization"];
-    }
+    dispatch(setLoader(true));
+    window.addEventListener("load", () => {
+      if (decodedToken && !isExpired) {
+        const userId = decodedToken.sub;
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+        const user = axios.get(`/user/get_profile?id=${userId}`);
+        user
+          .then((res) => {
+            if (res.data.code === 200) {
+              dispatch(setUser(res.data.data));
+              dispatch(setIsLogged(true));
+            } else {
+              dispatch(setIsLogged(false));
+              dispatch(setUser({}));
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else if (isExpired) {
+        removeCookie("token");
+        dispatch(setIsLogged(false));
+        delete axios.defaults.headers.common["Authorization"];
+      }
+      dispatch(setLoader(false));
+    });
   }, [decodedToken, isExpired, dispatch, token, removeCookie]);
 
   useEffect(() => {
