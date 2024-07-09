@@ -81,7 +81,6 @@ const Navbar = () => {
     navigate(`/search?search=${searchInput}`);
   }
 
-
   return (
     <header>
       <nav className="tnavbar">
@@ -226,7 +225,7 @@ const Navbar = () => {
                 <li className="link hide-sm2">
                   <Link to="/cart" className="cart btn">
                     <i className="fa-light fa-cart-shopping"></i>
-                    <span className="num-count">1</span>
+                    <span className="num-count">{user.cart_count}</span>
                   </Link>
                 </li>
                 {/* Message */}
@@ -237,7 +236,7 @@ const Navbar = () => {
                       id="dropdown-basic"
                     >
                       <i className="fa-regular fa-message-lines"></i>
-                      <span className="num-count">1</span>
+                      <span className="num-count">{user.chat_count}</span>
                     </Dropdown.Toggle>
                     <Dropdown.Menu className="drop_Message_Menu">
                       <Dropdown.Item className="drop_Message">
@@ -383,10 +382,7 @@ const Navbar = () => {
                       </Link>
                     </li>
                     <li>
-                      <Link
-                        className="dropdown-item_Link"
-                        to="/profile"
-                      >
+                      <Link className="dropdown-item_Link" to="/profile">
                         <i className="fa-sharp fa-solid fa-dollar-sign"></i>
                         {t("navbar.balance")}
                       </Link>

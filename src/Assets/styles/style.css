@@ -1150,7 +1150,7 @@ body main .profile-section .tab-content .statics-list li span small {
   color: var(--text-color);
 }
 body main .service-details {
-  padding: 48px 0;
+  padding: 48px 8px;
 }
 body main .service-details .service-content .swiper {
   width: 100%;
@@ -1465,21 +1465,22 @@ body main .service-details .service-content .content .add-cart {
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
+  margin-top: 8px;
 }
 body main .service-details .service-content .content .add-cart .input-field {
   display: flex;
-  gap: 16px;
+  gap: 12px;
   width: 100%;
 }
 body main .service-details .service-content .content .add-cart .input-field button {
   border: none;
   background: none;
   outline: none;
-  min-width: 40px;
-  height: 40px;
+  min-width: 48px;
+  height: 48px;
   background: var(--main30-color);
-  border-radius: 16px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1491,11 +1492,12 @@ body main .service-details .service-content .content .add-cart .input-field inpu
   outline: none;
   text-align: center;
   width: 100%;
+  height: 48px;
   border: 1px solid var(--LightGray);
   background: var(--white-color);
   font-weight: 600;
   color: var(--black-color);
-  border-radius: 16px;
+  border-radius: 12px;
 }
 body main .service-details .service-content .content .add-cart .input-field input::-webkit-outer-spin-button {
   -webkit-appearance: none;
@@ -1509,7 +1511,7 @@ body main .service-details .service-content .content .add-cart .total {
   width: 100%;
 }
 body main .service-details .service-content .content .add-cart .total p {
-  margin-top: 0;
+  margin: 0;
   color: var(--black-color);
 }
 body main .service-details .service-content .content .add-cart .total p span {
@@ -1612,7 +1614,8 @@ body main .cart-section .service-head .request-owner-img img {
 }
 body main .cart-section .service-head .img {
   max-width: 150px;
-  max-height: 110px;
+  min-width: 150px;
+  aspect-ratio: 3/2;
   border-radius: 4px;
   overflow: hidden;
 }
@@ -3417,7 +3420,7 @@ body .rate-card .rating-cards .r-card h6 {
   font-size: 14px;
 }
 body .more-develop {
-  padding: 32px 0 0;
+  padding: 16px 0 0;
 }
 body .more-develop h6 {
   font-weight: 600;
@@ -3427,7 +3430,6 @@ body .more-develop h6 {
 }
 body .more-develop .input-field {
   gap: 16px;
-  margin-bottom: 28px;
 }
 body .more-develop .input-field .label label {
   font-size: 16px;
@@ -3445,27 +3447,29 @@ body .more-develop .input-field .label p {
   color: var(--text-color);
 }
 body .add-cart {
-  background: var(--input-bg);
+  width: 100%;
+  background: var(--gray-background);
   border-radius: 14px;
   padding: 24px 16px;
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
+  margin-top: 8px;
 }
 body .add-cart .input-field {
   display: flex;
-  gap: 16px;
+  gap: 12px;
   width: 100%;
 }
 body .add-cart .input-field button {
   border: none;
   background: none;
   outline: none;
-  min-width: 40px;
-  height: 40px;
+  min-width: 48px;
+  height: 48px;
   background: var(--main30-color);
-  border-radius: 16px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3477,11 +3481,12 @@ body .add-cart .input-field input {
   outline: none;
   text-align: center;
   width: 100%;
+  height: 48px;
   border: 1px solid var(--LightGray);
   background: var(--white-color);
   font-weight: 600;
   color: var(--black-color);
-  border-radius: 16px;
+  border-radius: 12px;
 }
 body .add-cart .input-field input::-webkit-outer-spin-button {
   -webkit-appearance: none;
@@ -3494,21 +3499,26 @@ body .add-cart .input-field input::-webkit-inner-spin-button {
 body .add-cart .total {
   width: 100%;
 }
-body .add-cart .total button {
-  border: none;
-  background: none;
-  outline: none;
-}
-body .add-cart .total button i {
-  color: var(--main-color);
-  font-size: 20px;
-}
 body .add-cart .total p {
-  margin-top: 0;
+  margin: 0;
   color: var(--black-color);
 }
 body .add-cart .total p span {
   color: var(--text-color);
+}
+body .add-cart .total .delete_btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: none;
+  outline: none;
+  border-radius: 50%;
+  color: var(--white-color);
+  background: var(--main-color);
+}
+body .add-cart .total .delete_btn svg {
+  width: 16px;
+  height: 16px;
 }
 body .add-cart .total h6 {
   color: var(--main-color);
@@ -4809,10 +4819,6 @@ body main .chat-section .openTaps i {
   font-size: 16px;
 }
 @media (max-width: 576px) {
-  body .rate-card .rate-owner .rate-text {
-    font-size: 10px !important;
-    line-height: 20px;
-  }
   body .rate ul li i {
     font-size: 8px;
   }
