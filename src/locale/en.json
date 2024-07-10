@@ -246,6 +246,13 @@
     "deleteCart": "Delete cart",
     "cartDelted": "Cart deleted successfully"
   },
+  "status": {
+    "all": "all",
+    "new": "new",
+    "progress": "In progress",
+    "completed": "completed",
+    "canceled": "canceled"
+  },
   "cancel": "Cancel",
   "homePage": "Home",
   "writeHere": "Write Here",

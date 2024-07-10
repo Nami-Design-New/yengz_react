@@ -1,53 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import rateowner1 from "../Assets/images/rateowner1.webp";
 import rateowner2 from "../Assets/images/rateowner2.webp";
 import rateowner3 from "../Assets/images/rateowner3.webp";
+import { useTranslation } from "react-i18next";
+import StatusFilter from "../ui/StatusFilter";
 
 const RecievedRequest = () => {
+  const { t } = useTranslation();
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+
+  function handleTogglingFilter() {
+    setIsFilterOpen((open) => !open);
+  }
+
   return (
     <main>
       <section className="cart-section container">
         <div className="row">
-          <div className="col-lg-2 side-menu">
-            <div className="filter">
-              <div className="d-flex justify-content-between">
-                <h6>حالة الطلب</h6>
-                <div className="colse">
-                  <i className="fa-light fa-xmark"></i>
-                </div>
-              </div>
-              <ul className="order-status">
-                <li>
-                  <input type="checkbox" id="all" checked />
-                  <label htmlFor="all">الكل</label>
-                </li>
-                <li>
-                  <input type="checkbox" id="waiting" />
-                  <label htmlFor="waiting">بانتظار التعليمات</label>
-                </li>
-                <li>
-                  <input type="checkbox" id="underway" />
-                  <label htmlFor="underway">جاري تنفيذها</label>
-                </li>
-                <li>
-                  <input type="checkbox" id="waiting-delivery" />
-                  <label htmlFor="waiting-delivery">بانتظار الاستلام</label>
-                </li>
-                <li>
-                  <input type="checkbox" id="delivered" />
-                  <label htmlFor="delivered"> تم تسليمها</label>
-                </li>
-                <li>
-                  <input type="checkbox" id="canceled" />
-                  <label htmlFor="canceled"> ملغية </label>
-                </li>
-              </ul>
-            </div>
+          <div className={`col-lg-2 side-menu`}>
+            <StatusFilter
+              isFilterOpen={isFilterOpen}
+              setIsFilterOpen={setIsFilterOpen}
+            />
           </div>
           <div className="small-filter-header">
             <h6>الطلبات الواردة</h6>
-            <button className="openfilter">
+            <button className="openfilter" onClick={handleTogglingFilter}>
               <i className="fa-light fa-sliders"></i>
             </button>
           </div>

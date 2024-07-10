@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
-import { useSelector } from "react-redux";
 import "swiper/swiper-bundle.css";
+import { useSelector } from "react-redux";
 
 const HeroSection = () => {
   const { t } = useTranslation();
