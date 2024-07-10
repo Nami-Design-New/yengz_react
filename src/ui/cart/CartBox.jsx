@@ -2,13 +2,14 @@ import { IconTrashFilled } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { deleteCart } from "../../services/apiCart";
+import { deleteCart, increaseCartQuantity } from "../../services/apiCart";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
 function CartBox({ item }) {
   const { t } = useTranslation();
   const [totalPrice, setTotalPrice] = useState(0);
+  const [formLoading, setFormLoading] = useState(0);
   const queryClient = useQueryClient();
 
   useEffect(() => {
@@ -27,12 +28,23 @@ function CartBox({ item }) {
     }
   };
 
+  const increaseItemQuantity = async (id) => {
+    try {
+      setFormLoading(true);
+      await increaseCartQuantity(id, queryClient);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setFormLoading(false);
+    }
+  };
+
   return (
     <div className="service container">
       <div className="row">
         <div className="col-lg-7 col-12">
           <div className="service-head">
-            <Link to="/services" className="img">
+            <Link to={`/service/${item?.service?.id}`} className="img">
               <img src={item?.service?.image} alt="service" />
             </Link>
             <div className="title">
@@ -79,7 +91,11 @@ function CartBox({ item }) {
         <div className="col-lg-5 col-12">
           <div className="add-cart">
             <div className="input-field">
-              <button className="add">
+              <button
+                className="add"
+                disabled={formLoading}
+                onClick={() => increaseItemQuantity(item?.id)}
+              >
                 <i className="fa-solid fa-plus"></i>
               </button>
               <input type="number" min={1} readOnly value={item?.quantity} />
@@ -90,16 +106,19 @@ function CartBox({ item }) {
             <div className="total d-flex justify-content-between align-items-center">
               <p>
                 {t("services.total")} : <br />
-                <span>
-                  +{" "}
-                  <span id="num">
-                    {
-                      item?.service?.developments.filter((e) => e.in_cart)
-                        .length
-                    }
-                  </span>{" "}
-                  {t("services.extraService")}
-                </span>
+                {item?.service?.developments?.filter((e) => e.in_cart).length >
+                  0 && (
+                  <span>
+                    +{" "}
+                    <span id="num">
+                      {
+                        item?.service?.developments.filter((e) => e.in_cart)
+                          .length
+                      }
+                    </span>{" "}
+                    {t("services.extraService")}
+                  </span>
+                )}
               </p>
               <div className="d-flex gap-3 align-items-center">
                 <h6 className="mb-0">

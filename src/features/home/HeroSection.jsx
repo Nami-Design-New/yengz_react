@@ -18,15 +18,15 @@ const HeroSection = () => {
     }
   }, [lang]);
 
-  // useEffect(() => {
-  //   const script = document.createElement("script");
-  //   script.src = "custom_orbit.js";
-  //   script.async = true;
-  //   document.body.appendChild(script);
-  //   return () => {
-  //     document.body.removeChild(script);
-  //   };
-  // }, []);
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "custom_orbit.js";
+    script.async = true;
+    document.body.appendChild(script);
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   return (
     <section className="mainSection">

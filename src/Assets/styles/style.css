@@ -1841,6 +1841,9 @@ body main .cart-section .order-now {
   align-items: center;
   justify-content: center;
 }
+body main .cart-section .order-now.delete {
+  background: red;
+}
 body main .cart-section .filter {
   position: sticky;
   top: 100px;
