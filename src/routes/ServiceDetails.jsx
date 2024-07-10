@@ -16,7 +16,7 @@ import UserServiceCard from "./../ui/cards/UserServiceCard";
 import RateCard from "../ui/cards/RateCard";
 import useGetRates from "../features/services/useGetRates";
 import useCartList from "../features/cart/useCartList";
-import { updateEntireCart } from "../redux/slices/cart";
+import { updateEntireCart, updateSpesificItem } from "../redux/slices/cart";
 
 const ServiceDetails = () => {
   const navigate = useNavigate();
@@ -135,6 +135,7 @@ const ServiceDetails = () => {
           prevTotalPrice -
           service?.developments?.find((item) => item?.id === id)?.price
       );
+      dispatch(updateSpesificItem(cartObj));
     } else {
       setCartObj({
         ...cartObj,
@@ -145,6 +146,7 @@ const ServiceDetails = () => {
           prevTotalPrice +
           service?.developments?.find((item) => item?.id === id)?.price
       );
+      dispatch(updateSpesificItem(cartObj));
     }
   };
 
