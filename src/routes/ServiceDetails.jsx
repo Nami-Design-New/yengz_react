@@ -10,6 +10,7 @@ import ServiceOwnerCard from "../ui/cards/ServiceOwnerCard";
 import UserServiceCard from "./../ui/cards/UserServiceCard";
 import RateCard from "../ui/cards/RateCard";
 import useGetRates from "../features/services/useGetRates";
+import { useQueryClient } from "@tanstack/react-query";
 
 const ServiceDetails = () => {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ const ServiceDetails = () => {
   const { data: service } = useServiceDetails();
   const cart = useSelector((state) => state.cart.cartList);
   const isLogged = useSelector((state) => state.authedUser.isLogged);
+  const queryClient = useQueryClient();
 
   const [totalPrice, setTotalPrice] = useState(0);
   const [cartObj, setCartObj] = useState({
@@ -102,7 +104,8 @@ const ServiceDetails = () => {
     if (!isLogged) {
       navigate("/login");
     } else {
-      await addToCart(cartObj);
+      await addToCart(cartObj, queryClient);
+      navigate("/cart");
     }
   };
 
