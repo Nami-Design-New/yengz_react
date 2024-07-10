@@ -239,6 +239,13 @@
     "conditionsAndTerms": "Terms and Conditions",
     "publish": "Publish"
   },
+  "status": {
+    "all": "all",
+    "new": "new",
+    "progress": "In progress",
+    "completed": "completed",
+    "canceled": "canceled"
+  },
   "cancel": "Cancel",
   "homePage": "Home",
   "writeHere": "Write Here",

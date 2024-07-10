@@ -7,11 +7,13 @@ import AddWorkModal from "../../ui/modals/AddWorkModal";
 import WorkCard from "../../ui/cards/WorkCard";
 import ConfirmationModal from "../../ui/modals/ConfirmationModal";
 import { deleteWork } from "../../services/apiWorks";
+import WorkViewModal from "../../ui/modals/WorkViewModal";
 
 const WorksTab = ({ works, isMyAccount }) => {
   const { t } = useTranslation();
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [showAddWorkModal, setShowAddWorkModal] = useState(false);
+  const [showWorkViewModal, setShowWorkViewModal] = useState(false);
   const [targetId, setTargetId] = useState(null);
   const [targetWork, setTargetWork] = useState(null);
   const queryClient = useQueryClient();
@@ -23,6 +25,11 @@ const WorksTab = ({ works, isMyAccount }) => {
 
   const onEditModalShow = (work) => {
     setShowAddWorkModal(true);
+    setTargetWork(work);
+  };
+
+  const onViewModalShow = (work) => {
+    setShowWorkViewModal(true);
     setTargetWork(work);
   };
 
@@ -41,7 +48,10 @@ const WorksTab = ({ works, isMyAccount }) => {
   return (
     <>
       <div className="tab-pane ">
-        <div className="services-container">
+        <div
+          className="services-container"
+          
+        >
           {isMyAccount && (
             <button
               onClick={() => setShowAddWorkModal(true)}
@@ -64,6 +74,7 @@ const WorksTab = ({ works, isMyAccount }) => {
                     work={work}
                     onEditModalShow={onEditModalShow}
                     onDeleteModalShow={onDeleteModalShow}
+                    onViewModalShow={onViewModalShow}
                   />
                 ))}
               </>
@@ -84,6 +95,13 @@ const WorksTab = ({ works, isMyAccount }) => {
         setTargetWork={setTargetWork}
         showModal={showAddWorkModal}
         setShowModal={setShowAddWorkModal}
+      />
+
+      <WorkViewModal
+        showModal={showWorkViewModal}
+        setShowModal={setShowWorkViewModal}
+        targetWork={targetWork}
+        setTargetWork={setTargetWork}
       />
     </>
   );

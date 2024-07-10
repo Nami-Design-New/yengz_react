@@ -102,8 +102,67 @@ const Navbar = () => {
             </Link>
             <div className="userr">
               <h6>{user?.name}</h6>
+              {user?.is_favorite && <span>بائع مميز</span>}
             </div>
           </div>
+          <ul className="nav-links">
+            <li className="nav-link">
+              <Link to="/">
+                <i className="fa-sharp fa-regular fa-house"></i>
+                {t("homePage")}
+              </Link>
+            </li>
+            <li className="nav-link">
+              <Link to="/categories">
+                <i className="far fa-cube"></i> {t("navbar.categories")}
+              </Link>
+            </li>
+            {isLogged && (
+              <>
+                <li className="nav-link">
+                  <Link to="/recieved-request">
+                    <i className="far fa-clipboard-list-check"></i>{" "}
+                    {t("navbar.requestsRecieved")}
+                  </Link>
+                  <span className="num-count2">2</span>
+                </li>
+                <li className="nav-link">
+                  <Link to="/add-service">
+                    <i className="far fa-plus"></i> {t("navbar.addService")}
+                  </Link>
+                </li>
+                <li className="nav-link">
+                  <Link to="/profile">
+                    <i className="fa-regular fa-user"></i>
+                    {t("navbar.myProfile")}
+                  </Link>
+                </li>
+                <li className="nav-link">
+                  <Link to="/chat">
+                    <i className="fa-regular fa-messages"></i>
+                    {t("navbar.messages")}
+                  </Link>
+                </li>
+                <li className="nav-link">
+                  <Link to="/purchases">
+                    <i className="far fa-shopping-bag"></i>{" "}
+                    {t("navbar.purchase")}
+                  </Link>
+                </li>
+                <li className="nav-link">
+                  <Link to="/more">
+                    <i className="fa-regular fa-gear"></i> {t("navbar.more")}
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/logout">
+                    <i className="fa-solid fa-right-from-bracket"></i>
+                    {t("navbar.logout")}
+                  </Link>
+                </li>
+              </>
+            )}
+          </ul>
         </div>
 
         <div className="right-wrapper">
@@ -279,7 +338,7 @@ const Navbar = () => {
                         </Link>
                       </Dropdown.Item>
                       <div className="showall">
-                        <Link to="/notifications">جميع الإشعارات</Link>
+                        <Link to="/chat">جميع الرسائل</Link>
                       </div>
                     </Dropdown.Menu>
                   </Dropdown>

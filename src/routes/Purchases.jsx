@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import bann2 from "../Assets/images/bann2.webp";
 import bann from "../Assets/images/bann.webp";
@@ -10,55 +10,30 @@ import av1 from "../Assets/images/av1.png";
 import servicet1 from "../Assets/images/servicet1.jpg";
 import fin from "../Assets/images/fin.webp";
 import avatar from "../Assets/images/avatar.png";
+import { useTranslation } from "react-i18next";
+import StatusFilter from "../ui/StatusFilter";
 
 const Purchases = () => {
+  const { t } = useTranslation();
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+
+  function handleTogglingFilter() {
+    setIsFilterOpen((open) => !open);
+  }
+
   return (
     <main>
       <section className="cart-section container">
         <div className="row">
-          <div className="col-lg-2">
-            <div className="filter side-menu">
-              <div className="d-flex justify-content-between">
-                <h6>حالة الطلب</h6>
-                <div className="colse">
-                  <i className="fa-light fa-xmark"></i>
-                </div>
-              </div>
-              <ul className="order-status">
-                <li>
-                  <input type="checkbox" id="all" checked />
-                  <label htmlFor="all">الكل</label>
-                </li>
-                <li>
-                  <input type="checkbox" id="waiting" />
-                  <label htmlFor="waiting">بانتظار التعليمات</label>
-                </li>
-                <li>
-                  <input type="checkbox" id="underway" />
-                  <label htmlFor="underway">جاري تنفيذها</label>
-                </li>
-                <li>
-                  <input type="checkbox" id="waiting-delivery" />
-                  <label htmlFor="waiting-delivery">بانتظار الاستلام</label>
-                </li>
-                <li>
-                  <input type="checkbox" id="delivered" />
-                  <label htmlFor="delivered"> تم تسليمها</label>
-                </li>
-                <li>
-                  <input type="checkbox" id="canceled" />
-                  <label htmlFor="canceled"> ملغية </label>
-                </li>
-              </ul>
-            </div>
-            <div className="small-filter-header">
-              <h6>قائمة المشتريات</h6>
-              <button className="openfilter">
-                <i className="fa-light fa-sliders"></i>
-              </button>
-            </div>
+          <div className={`col-lg-2`}>
+            <StatusFilter isFilterOpen={isFilterOpen} setIsFilterOpen={setIsFilterOpen}/>
           </div>
-
+          <div className="small-filter-header">
+            <h6>قائمة المشتريات</h6>
+            <button className="openfilter" onClick={handleTogglingFilter}>
+              <i className="fa-light fa-sliders"></i>
+            </button>
+          </div>
           <div className="col-lg-10 co-12">
             <div className="service container">
               <div className="row">

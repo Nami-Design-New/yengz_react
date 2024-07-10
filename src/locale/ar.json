@@ -67,12 +67,15 @@
     "searchFor": "ابحث عن...",
     "login": "تسجيل الدخول",
     "newAccount": "حساب جديد",
+    "myProfile": "حسابي",
     "balance": "الرصيد",
     "editProfile": "تعديل الملف الشخصي",
     "support": "المساعدة",
     "report": "الابلاغ عن مشكلة",
     "deleteAccount": "حذف الحساب",
-    "logout": "تسجيل الخروج"
+    "logout": "تسجيل الخروج",
+    "messages": "الرسائل",
+    "more": "المزيد"
   },
   "home": {
     "searchFor": "ابحث عن...",
@@ -156,15 +159,6 @@
     "edit": "تعديل",
     "add": "اضافة"
   },
-  "comments": {
-    "comments": "تعليقات",
-    "addComment": "اضافة تعليق",
-    "createSuccess": "تم انشاء التعليق بنجاح",
-    "commentPlaceholder": "اكتب تعليقك هنا",
-    "readAndAccept": "اقرأ وأوافق على",
-    "conditionsAndTerms": "الشروط والاحكام",
-    "publish": "نشر"
-  },
   "addService": {
     "serviceTitle": "عنوان الخدمة",
     "serviceTitlePlaceholder": "مثال : تصميم وبرمجة مواقع",
@@ -239,6 +233,22 @@
     "whatsapp": "واتساب",
     "developmentsAvailable": "تطويرات متوفرة لهذه الخدمة",
     "orderNow": "طلب الان"
+  },
+  "comments": {
+    "comments": "تعليقات",
+    "addComment": "اضافة تعليق",
+    "createSuccess": "تم انشاء التعليق بنجاح",
+    "commentPlaceholder": "اكتب تعليقك هنا",
+    "readAndAccept": "اقرأ وأوافق على",
+    "conditionsAndTerms": "الشروط والاحكام",
+    "publish": "نشر"
+  },
+  "status": {
+    "all": "الكل",
+    "new": "جديدة",
+    "progress": "جاري تنفيذها",
+    "completed": "مكتملة",
+    "canceled": "ملغية"
   },
   "cancel": "الغاء",
   "homePage": "الرئيسية",
