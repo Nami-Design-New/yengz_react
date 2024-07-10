@@ -156,6 +156,15 @@
     "edit": "Edit",
     "add": "Add"
   },
+  "comments": {
+    "comments": "comments",
+    "addComment": "Add comment",
+    "createSuccess": "Comment created successfully",
+    "commentPlaceholder": "Write your comment here",
+    "readAndAccept": "I have read and accept",
+    "conditionsAndTerms": "Terms and Conditions",
+    "publish": "Publish"
+  },
   "addService": {
     "serviceTitle": "Service Title",
     "serviceTitlePlaceholder": "Example: Web Development",
@@ -230,14 +239,12 @@
     "developmentsAvailable": "developments available for this service",
     "orderNow": "Order Now"
   },
-  "comments": {
-    "comments": "comments",
-    "addComment": "Add comment",
-    "createSuccess": "Comment created successfully",
-    "commentPlaceholder": "Write your comment here",
-    "readAndAccept": "I have read and accept",
-    "conditionsAndTerms": "Terms and Conditions",
-    "publish": "Publish"
+  "cart": {
+    "empty": "There are no services in the basket currently. Add a service to your basket",
+    "exploreServices": "Explore services",
+    "deleteSuccess": "Successfully removed from cart",
+    "deleteCart": "Delete cart",
+    "cartDelted": "Cart deleted successfully"
   },
   "status": {
     "all": "all",

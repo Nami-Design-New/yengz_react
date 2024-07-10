@@ -17,3 +17,21 @@ export async function addToCart(data, querClient) {
     throw new Error(error.response?.data?.message || error.message);
   }
 }
+
+export async function deleteCart(querClient) {
+  try {
+    await axios.post("/user/delete_cart");
+    querClient.invalidateQueries("cartList");
+  } catch (error) {
+    throw new Error(error.response?.data?.message || error.message);
+  }
+}
+
+export async function increaseCartQuantity(id, queryClient) {
+  try {
+    await axios.post("/user/increase_cart", { id });
+    queryClient.invalidateQueries("cartList");
+  } catch (error) {
+    throw new Error(error.response?.data?.message || error.message);
+  }
+}

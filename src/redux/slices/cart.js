@@ -10,7 +10,7 @@ export const cart = createSlice({
       state.cartList = action.payload;
     },
     updateEntireCart: (state, action) => {
-      state.cart = action.payload;
+      state.cartList = action.payload;
     }
   }
 });

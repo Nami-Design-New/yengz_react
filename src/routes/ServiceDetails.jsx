@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../services/apiCart";
+import { useQueryClient } from "@tanstack/react-query";
 import vector88 from "../Assets/images/vector88.png";
 import useServiceDetails from "../features/services/useServiceDetails";
 import ServiceSlider from "../ui/ServiceSlider";
@@ -10,14 +11,35 @@ import ServiceOwnerCard from "../ui/cards/ServiceOwnerCard";
 import UserServiceCard from "./../ui/cards/UserServiceCard";
 import RateCard from "../ui/cards/RateCard";
 import useGetRates from "../features/services/useGetRates";
+import useCartList from "../features/cart/useCartList";
+import { updateEntireCart } from "../redux/slices/cart";
 
 const ServiceDetails = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { data: rates } = useGetRates();
   const { data: service } = useServiceDetails();
+  const [inCart, setInCart] = useState(false);
   const cart = useSelector((state) => state.cart.cartList);
   const isLogged = useSelector((state) => state.authedUser.isLogged);
+  const queryClient = useQueryClient();
+  const { data: cartQuery } = useCartList();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(
+      updateEntireCart(
+        cartQuery?.data?.map((item) => ({
+          id: item.id,
+          service_id: item.service?.id,
+          quantity: item.quantity,
+          developments: item?.service?.developments?.map(
+            (dev) => dev.in_cart && dev.id
+          )
+        }))
+      )
+    );
+  }, [cartQuery]);
 
   const [totalPrice, setTotalPrice] = useState(0);
   const [cartObj, setCartObj] = useState({
@@ -40,6 +62,7 @@ const ServiceDetails = () => {
           },
           0
         );
+        setInCart(true);
       }
       setCartObj({
         service_id: service.id,
@@ -49,8 +72,9 @@ const ServiceDetails = () => {
           : []
       });
       setTotalPrice(
-        (itemFromCart ? itemFromCart.quantity * service.price : service.price) +
-          developmentsTotalPrice
+        (itemFromCart
+          ? itemFromCart?.quantity * service.price
+          : service?.price) + developmentsTotalPrice
       );
     }
   }, [cart, service]);
@@ -79,7 +103,6 @@ const ServiceDetails = () => {
         ...cartObj,
         developments: cartObj.developments.filter((item) => item !== id)
       });
-      console.log(service?.developments);
       setTotalPrice(
         (prevTotalPrice) =>
           prevTotalPrice -
@@ -102,7 +125,8 @@ const ServiceDetails = () => {
     if (!isLogged) {
       navigate("/login");
     } else {
-      await addToCart(cartObj);
+      await addToCart(cartObj, queryClient);
+      navigate("/cart");
     }
   };
 
@@ -142,7 +166,13 @@ const ServiceDetails = () => {
                         type="checkbox"
                         id={`check-${development.id}`}
                         name={`check-${development.id}`}
-                        checked={cartObj.developments.includes(development.id)}
+                        checked={
+                          cartObj.developments?.find(
+                            (id) => id === development.id
+                          )
+                            ? true
+                            : false
+                        }
                         onChange={() => handleCheckboxChange(development.id)}
                       />
                       <div className="label">
@@ -196,11 +226,12 @@ const ServiceDetails = () => {
                     <i className="fa-solid fa-dollar-sign"></i>
                   </h6>
                 </div>
-
-                <button className="request-order" onClick={handleAddToCart}>
-                  <i className="fa-regular fa-cart-plus"></i>{" "}
-                  {t("services.addToCart")}
-                </button>
+                {!inCart && (
+                  <button className="request-order" onClick={handleAddToCart}>
+                    <i className="fa-regular fa-cart-plus"></i>{" "}
+                    {t("services.addToCart")}
+                  </button>
+                )}
               </div>
             </div>
           </div>
