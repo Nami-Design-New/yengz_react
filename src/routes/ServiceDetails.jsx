@@ -166,7 +166,13 @@ const ServiceDetails = () => {
                         type="checkbox"
                         id={`check-${development.id}`}
                         name={`check-${development.id}`}
-                        checked={cartObj.developments?.find((id) => id === development.id) ? true : false}
+                        checked={
+                          cartObj.developments?.find(
+                            (id) => id === development.id
+                          )
+                            ? true
+                            : false
+                        }
                         onChange={() => handleCheckboxChange(development.id)}
                       />
                       <div className="label">
