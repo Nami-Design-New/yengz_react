@@ -255,6 +255,13 @@
     "completed": "مكتملة",
     "canceled": "ملغية"
   },
+  "cart": {
+    "empty": "لا يوجد اي خدمات في السلة حاليا , قم باضافة خدمة الي سلتك",
+    "exploreServices": "استكشف الخدمات",
+    "deleteSuccess": "تم الحذف من السلة بنجاح",
+    "deleteCart": "حذف السلة",
+    "cartDelted": "تم حذف السلة"
+  },
   "cancel": "الغاء",
   "homePage": "الرئيسية",
   "writeHere": "اكتب هنا",
