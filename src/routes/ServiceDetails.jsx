@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../services/apiCart";
+import {
+  addToCart,
+  decreaseCartQuantity,
+  increaseCartQuantity
+} from "../services/apiCart";
 import { useQueryClient } from "@tanstack/react-query";
 import vector88 from "../Assets/images/vector88.png";
 import useServiceDetails from "../features/services/useServiceDetails";
@@ -26,6 +30,7 @@ const ServiceDetails = () => {
   const { data: cartQuery } = useCartList();
   const dispatch = useDispatch();
 
+  // dispatch from api cart
   useEffect(() => {
     dispatch(
       updateEntireCart(
@@ -41,6 +46,7 @@ const ServiceDetails = () => {
     );
   }, [cartQuery]);
 
+  const [formLoading, setFormLoading] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
   const [cartObj, setCartObj] = useState({
     service_id: service?.id,
@@ -48,6 +54,7 @@ const ServiceDetails = () => {
     developments: []
   });
 
+  // check if service is in cart
   useEffect(() => {
     if (cart && service) {
       const itemFromCart = cart.find((item) => item.service_id === service.id);
@@ -65,11 +72,10 @@ const ServiceDetails = () => {
         setInCart(true);
       }
       setCartObj({
+        id: itemFromCart?.id,
         service_id: service.id,
         quantity: itemFromCart ? itemFromCart.quantity : 1,
-        developments: itemFromCart
-          ? itemFromCart.developments.map((dev) => dev.id)
-          : []
+        developments: itemFromCart ? itemFromCart.developments : []
       });
       setTotalPrice(
         (itemFromCart
@@ -79,15 +85,36 @@ const ServiceDetails = () => {
     }
   }, [cart, service]);
 
-  const handleIncreaseQuantity = () => {
-    setCartObj((prevCartObj) => ({
-      ...prevCartObj,
-      quantity: prevCartObj.quantity + 1
-    }));
+  const handleIncreaseQuantity = async () => {
+    if (inCart) {
+      try {
+        setFormLoading(true);
+        await increaseCartQuantity(cartObj?.id, queryClient);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setFormLoading(false);
+      }
+    } else {
+      setCartObj((prevCartObj) => ({
+        ...prevCartObj,
+        quantity: prevCartObj.quantity + 1
+      }));
+    }
     setTotalPrice((prevTotalPrice) => prevTotalPrice + service?.price);
   };
 
-  const handleDecreaseQuantity = () => {
+  const handleDecreaseQuantity = async () => {
+    if (inCart) {
+      try {
+        setFormLoading(true);
+        await decreaseCartQuantity(cartObj?.id, queryClient);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setFormLoading(false);
+      }
+    }
     if (cartObj.quantity > 1) {
       setCartObj((prevCartObj) => ({
         ...prevCartObj,
@@ -192,7 +219,11 @@ const ServiceDetails = () => {
               {/* add to cart */}
               <div className="add-cart">
                 <div className="input-field">
-                  <button className="add" onClick={handleIncreaseQuantity}>
+                  <button
+                    className="add"
+                    disabled={formLoading}
+                    onClick={handleIncreaseQuantity}
+                  >
                     <i className="fa-regular fa-plus"></i>
                   </button>
 

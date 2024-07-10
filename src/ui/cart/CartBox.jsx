@@ -6,7 +6,7 @@ import {
   decreaseCartQuantity,
   deleteCart,
   deleteCartItem,
-  increaseCartQuantity,
+  increaseCartQuantity
 } from "../../services/apiCart";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
