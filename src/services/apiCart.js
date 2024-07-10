@@ -35,3 +35,21 @@ export async function increaseCartQuantity(id, queryClient) {
     throw new Error(error.response?.data?.message || error.message);
   }
 }
+
+export async function decreaseCartQuantity(id, queryClient) {
+  try {
+    await axios.post("/user/decrease_cart", { id });
+    queryClient.invalidateQueries("cartList");
+  } catch (error) {
+    throw new Error(error.response?.data?.message || error.message);
+  }
+}
+
+export async function deleteCartItem(id, quantity, queryClient) {
+  try {
+    await axios.post("/user/decrease_cart", { id, quantity: 0 });
+    queryClient.invalidateQueries("cartList");
+  } catch (error) {
+    throw new Error(error.response?.data?.message || error.message);
+  }
+}

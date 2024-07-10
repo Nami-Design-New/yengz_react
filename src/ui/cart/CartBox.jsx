@@ -2,7 +2,12 @@ import { IconTrashFilled } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { deleteCart, increaseCartQuantity } from "../../services/apiCart";
+import {
+  decreaseCartQuantity,
+  deleteCart,
+  deleteCartItem,
+  increaseCartQuantity,
+} from "../../services/apiCart";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
@@ -28,10 +33,30 @@ function CartBox({ item }) {
     }
   };
 
+  const handleDeleteBox = async (id) => {
+    try {
+      await deleteCartItem(id, queryClient);
+      toast.success(t("cart.deleteSuccess"));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const increaseItemQuantity = async (id) => {
     try {
       setFormLoading(true);
       await increaseCartQuantity(id, queryClient);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setFormLoading(false);
+    }
+  };
+
+  const decreaseItemQuantity = async (id) => {
+    try {
+      setFormLoading(true);
+      await decreaseCartQuantity(id, queryClient);
     } catch (error) {
       console.error(error);
     } finally {
@@ -99,7 +124,11 @@ function CartBox({ item }) {
                 <i className="fa-solid fa-plus"></i>
               </button>
               <input type="number" min={1} readOnly value={item?.quantity} />
-              <button className="minus">
+              <button
+                className="minus"
+                disabled={formLoading}
+                onClick={() => decreaseItemQuantity(item?.id)}
+              >
                 <i className="fa-solid fa-minus"></i>
               </button>
             </div>
@@ -127,7 +156,8 @@ function CartBox({ item }) {
                 </h6>
                 <button
                   className="delete_btn"
-                  onClick={() => handleDeleteItem(item?.id)}
+                  onClick={() => handleDeleteBox(item?.id)}
+                  disabled={formLoading}
                 >
                   <IconTrashFilled />
                 </button>
