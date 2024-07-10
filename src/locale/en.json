@@ -241,7 +241,10 @@
   },
   "cart": {
     "empty": "There are no services in the basket currently. Add a service to your basket",
-    "exploreServices": "Explore services"
+    "exploreServices": "Explore services",
+    "deleteSuccess": "Successfully removed from cart",
+    "deleteCart": "Delete cart",
+    "cartDelted": "Cart deleted successfully"
   },
   "cancel": "Cancel",
   "homePage": "Home",

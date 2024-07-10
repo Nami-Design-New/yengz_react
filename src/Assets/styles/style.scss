@@ -1692,6 +1692,9 @@ body {
         color: #fff;
         border-radius: 16px;
         @include centerFlex();
+        &.delete {
+          background: red;
+        }
       }
       .filter {
         position: sticky;
