@@ -240,6 +240,11 @@
     "developmentsAvailable": "تطويرات متوفرة لهذه الخدمة",
     "orderNow": "طلب الان"
   },
+  "cart": {
+    "empty": "لا يوجد اي خدمات في السلة حاليا , قم باضافة خدمة الي سلتك",
+    "exploreServices": "استكشف الخدمات",
+    "deleteSuccess": "تم الحذف من السلة بنجاح"
+  },
   "cancel": "الغاء",
   "homePage": "الرئيسية",
   "writeHere": "اكتب هنا",

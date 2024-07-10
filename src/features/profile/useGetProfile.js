@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { getProfile } from "../../services/apiGetProfile";
 
-function useGetProfile() {
+function useGetProfile(id) {
   return useQuery({
-    queryKey: ["profile"],
-    queryFn: getProfile,
-    retry: false
+    queryKey: ["profile", id],
+    queryFn: () => getProfile(id),
+    retry: false,
   });
 }
 

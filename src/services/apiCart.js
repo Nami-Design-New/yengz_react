@@ -17,3 +17,12 @@ export async function addToCart(data, querClient) {
     throw new Error(error.response?.data?.message || error.message);
   }
 }
+
+export async function deleteCart(id, querClient) {
+  try {
+    await axios.post("/user/delete_cart", { id });
+    querClient.invalidateQueries("cartList");
+  } catch (error) {
+    throw new Error(error.response?.data?.message || error.message);
+  }
+}

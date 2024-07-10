@@ -2,10 +2,14 @@ import { IconTrashFilled } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import { deleteCart } from "../../services/apiCart";
+import { useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 function CartBox({ item }) {
   const { t } = useTranslation();
   const [totalPrice, setTotalPrice] = useState(0);
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     const developmentsPrice = item?.service?.developments
@@ -13,6 +17,15 @@ function CartBox({ item }) {
       .reduce((acc, dev) => acc + dev.price, 0);
     setTotalPrice(item?.quantity * item?.service?.price + developmentsPrice);
   }, [item]);
+
+  const handleDeleteItem = async (id) => {
+    try {
+      await deleteCart(id, queryClient);
+      toast.success(t("cart.deleteSuccess"));
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className="service container">
@@ -93,7 +106,10 @@ function CartBox({ item }) {
                   {totalPrice}
                   <i className="fa-solid fa-dollar-sign"></i>
                 </h6>
-                <button className="delete_btn">
+                <button
+                  className="delete_btn"
+                  onClick={() => handleDeleteItem(item?.id)}
+                >
                   <IconTrashFilled />
                 </button>
               </div>

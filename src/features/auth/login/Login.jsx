@@ -46,6 +46,11 @@ const Login = () => {
           secure: true,
           sameSite: "Strict"
         });
+        setCookie("id", res.data.data.id, {
+          path: "/",
+          secure: true,
+          sameSite: "Strict"
+        });
         axios.defaults.headers.common[
           "Authorization"
         ] = `Bearer ${res.data.data.token}`;

@@ -225,7 +225,7 @@ const Navbar = () => {
                 <li className="link hide-sm2">
                   <Link to="/cart" className="cart btn">
                     <i className="fa-light fa-cart-shopping"></i>
-                    <span className="num-count">{user.cart_count}</span>
+                    <span className="num-count">{user?.cart_count}</span>
                   </Link>
                 </li>
                 {/* Message */}
@@ -236,7 +236,7 @@ const Navbar = () => {
                       id="dropdown-basic"
                     >
                       <i className="fa-regular fa-message-lines"></i>
-                      <span className="num-count">{user.chat_count}</span>
+                      <span className="num-count">{user?.chat_count}</span>
                     </Dropdown.Toggle>
                     <Dropdown.Menu className="drop_Message_Menu">
                       <Dropdown.Item className="drop_Message">
@@ -367,7 +367,7 @@ const Navbar = () => {
                     style={{ cursor: "pointer" }}
                   >
                     <img
-                      src={user.image || avatar}
+                      src={user?.image || avatar}
                       alt="user-avatar"
                       onError={handleAvatarError}
                     />
@@ -378,7 +378,7 @@ const Navbar = () => {
                     <li>
                       <Link className="dropdown-item_Link" to="/profile">
                         <i className="fa-solid fa-user"></i>
-                        {user.name || "user name"}
+                        {user?.name || "user name"}
                       </Link>
                     </li>
                     <li>

@@ -1,5 +1,5 @@
 import axios from "./utils/axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { useDispatch, useSelector } from "react-redux";
@@ -35,43 +35,66 @@ import AuthVerifySteps from "./features/auth/verification/AuthVerifySteps";
 import AddServices from "./features/services/AddServices";
 import ServiceOrdersDetails from "./routes/ServiceOrdersDetails";
 import SimilarServices from "./routes/SimilarServices";
-import { setLoader } from "./redux/slices/appLoader";
+import Loader from "./ui/Loader";
 
 function App() {
   const dispatch = useDispatch();
   const lang = useSelector((state) => state.language.lang);
-  const [cookies, , removeCookie] = useCookies(["token"]);
+  const [cookies] = useCookies(["token", "id"]);
   const token = cookies?.token;
+  const id = cookies?.id;
+  const [loading, setLoading] = useState(true);
   const { decodedToken, isExpired } = useJwt(token || "");
 
-  useEffect(() => {
-    dispatch(setLoader(true));
-    window.addEventListener("load", () => {
-      if (decodedToken && !isExpired) {
-        const userId = decodedToken.sub;
+  const getProfile = async (user_id) => {
+    try {
+      const res = await axios.get(`/user/get_profile?id=${user_id}`);
+      if (res.data.code === 200) {
+        dispatch(setUser(res.data.data));
+        dispatch(setIsLogged(true));
+      } else {
+        dispatch(setIsLogged(false));
+        dispatch(setUser({}));
+      }
+    } catch (error) {
+      console.error(
+        "Error fetching profile:",
+        error.response?.data?.message || error.message
+      );
+    }
+  };
+
+  const initializeAuth = async () => {
+    setLoading(true);
+    try {
+      const stringId = String(id);
+      if (
+        decodedToken &&
+        typeof decodedToken.sub === "string" &&
+        decodedToken.sub === stringId
+      ) {
+        console.log("try", decodedToken);
         axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-        const user = axios.get(`/user/get_profile?id=${userId}`);
-        user
-          .then((res) => {
-            if (res.data.code === 200) {
-              dispatch(setUser(res.data.data));
-              dispatch(setIsLogged(true));
-            } else {
-              dispatch(setIsLogged(false));
-              dispatch(setUser({}));
-            }
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        await getProfile(stringId);
       } else if (isExpired) {
-        removeCookie("token");
         dispatch(setIsLogged(false));
         delete axios.defaults.headers.common["Authorization"];
+      } else {
+        console.log(decodedToken);
+        console.log(
+          "No valid token found or mismatch in decodedToken.sub and id."
+        );
       }
-      dispatch(setLoader(false));
-    });
-  }, [decodedToken, isExpired, dispatch, token, removeCookie]);
+    } catch (error) {
+      console.error("Error during initialization:", error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    initializeAuth();
+  }, [decodedToken, isExpired, token, id]);
 
   useEffect(() => {
     sessionStorage.setItem("lang", lang);
@@ -79,10 +102,12 @@ function App() {
     lang === "en" ? body.classList.add("en") : body.classList.remove("en");
   }, [lang]);
 
+  if (loading) return <Loader />;
+
   return (
     <div className="App">
-      <Routes>
-        <Route path="/" element={<Layout />}>
+      <Layout loading={loading}>
+        <Routes>
           <Route index element={<Home />} />
           <Route path="/service/:id" element={<Services />} />
           <Route path="/add-service" element={<AddServices />} />
@@ -120,8 +145,8 @@ function App() {
             path="/recieved-request-orders"
             element={<RecievedRequestOrders />}
           />
-        </Route>
-      </Routes>
+        </Routes>
+      </Layout>
     </div>
   );
 }
