@@ -3,6 +3,7 @@ import rateowner1 from "../../Assets/images/avatar-placeholder-2.svg";
 import StarsList from "../StarsList";
 import { formatTimeDifference, getTimeDifference } from "./../../utils/helpers";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 const RateCard = ({ rate }) => {
   const { t } = useTranslation();
@@ -21,13 +22,13 @@ const RateCard = ({ rate }) => {
       <div className="rate-owner">
         <div className="rate-head">
           <div className="d-flex align-items-center gap-3">
-            <div className="img">
+            <Link to={`/profile/${rate?.user?.id}`} className="img">
               <img src={rate?.user?.image || rateowner1} alt="icon" />
-            </div>
-            <div className="name-time">
+            </Link>
+            <Link to={`/profile/${rate?.user?.id}`} className="name-time">
               <h5>{rate?.user?.name}</h5>
               <span>{formattedTime}</span>
-            </div>
+            </Link>
           </div>
           <StarsList rate={rate.rate} />
         </div>

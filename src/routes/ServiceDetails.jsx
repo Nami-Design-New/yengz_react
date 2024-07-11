@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -8,6 +8,7 @@ import {
   increaseCartQuantity
 } from "../services/apiCart";
 import { useQueryClient } from "@tanstack/react-query";
+import { updateEntireCart } from "../redux/slices/cart";
 import vector88 from "../Assets/images/vector88.png";
 import useServiceDetails from "../features/services/useServiceDetails";
 import ServiceSlider from "../ui/ServiceSlider";
@@ -16,36 +17,22 @@ import UserServiceCard from "./../ui/cards/UserServiceCard";
 import RateCard from "../ui/cards/RateCard";
 import useGetRates from "../features/services/useGetRates";
 import useCartList from "../features/cart/useCartList";
-import { updateEntireCart, updateSpesificItem } from "../redux/slices/cart";
+import DataLoader from "./../ui/DataLoader";
 
 const ServiceDetails = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const queryClient = useQueryClient();
+
   const { data: rates } = useGetRates();
-  const { data: service } = useServiceDetails();
-  const [inCart, setInCart] = useState(false);
+  const { data: service, isLoading } = useServiceDetails();
+  const { data: cartQuery } = useCartList();
+
   const cart = useSelector((state) => state.cart.cartList);
   const isLogged = useSelector((state) => state.authedUser.isLogged);
-  const queryClient = useQueryClient();
-  const { data: cartQuery } = useCartList();
-  const dispatch = useDispatch();
 
-  // dispatch from api cart
-  useEffect(() => {
-    dispatch(
-      updateEntireCart(
-        cartQuery?.data?.map((item) => ({
-          id: item.id,
-          service_id: item.service?.id,
-          quantity: item.quantity,
-          developments: item?.service?.developments?.map(
-            (dev) => dev.in_cart && dev.id
-          )
-        }))
-      )
-    );
-  }, [cartQuery]);
-
+  const [inCart, setInCart] = useState(false);
   const [formLoading, setFormLoading] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
   const [cartObj, setCartObj] = useState({
@@ -54,7 +41,23 @@ const ServiceDetails = () => {
     developments: []
   });
 
-  // check if service is in cart
+  useEffect(() => {
+    if (cartQuery) {
+      dispatch(
+        updateEntireCart(
+          cartQuery?.data?.map((item) => ({
+            id: item.id,
+            service_id: item.service?.id,
+            quantity: item.quantity,
+            developments: item?.service?.developments?.map(
+              (dev) => dev.in_cart && dev.id
+            )
+          }))
+        )
+      );
+    }
+  }, [cartQuery]);
+
   useEffect(() => {
     if (cart && service) {
       const itemFromCart = cart.find((item) => item.service_id === service.id);
@@ -83,6 +86,7 @@ const ServiceDetails = () => {
           : service?.price) + developmentsTotalPrice
       );
     }
+    console.log("is_my_service", service?.is_my_service);
   }, [cart, service]);
 
   const handleIncreaseQuantity = async () => {
@@ -125,29 +129,20 @@ const ServiceDetails = () => {
   };
 
   const handleCheckboxChange = (id) => {
-    if (cartObj.developments.includes(id)) {
-      setCartObj({
-        ...cartObj,
-        developments: cartObj.developments.filter((item) => item !== id)
-      });
-      setTotalPrice(
-        (prevTotalPrice) =>
-          prevTotalPrice -
+    const isChecked = cartObj.developments.includes(id);
+    setCartObj((prevCartObj) => ({
+      ...prevCartObj,
+      developments: isChecked
+        ? prevCartObj.developments.filter((item) => item !== id)
+        : [...prevCartObj.developments, id]
+    }));
+    setTotalPrice((prevTotalPrice) =>
+      isChecked
+        ? prevTotalPrice -
           service?.developments?.find((item) => item?.id === id)?.price
-      );
-      dispatch(updateSpesificItem(cartObj));
-    } else {
-      setCartObj({
-        ...cartObj,
-        developments: [...cartObj.developments, id]
-      });
-      setTotalPrice(
-        (prevTotalPrice) =>
-          prevTotalPrice +
+        : prevTotalPrice +
           service?.developments?.find((item) => item?.id === id)?.price
-      );
-      dispatch(updateSpesificItem(cartObj));
-    }
+    );
   };
 
   const handleAddToCart = async () => {
@@ -160,125 +155,144 @@ const ServiceDetails = () => {
   };
 
   return (
-    <section className="service-details container">
-      <div className="row">
-        <div className="col-lg-7 col-12 p-2">
-          <div className="service-content">
-            <ServiceSlider images={service?.images} />
-            <div className="content">
-              <ServiceOwnerCard service={service} />
-              <h4>{service?.title}</h4>
-              <p>
-                <Link to={`/search?categories=${service?.category?.id}`}>
-                  {service?.category?.name}
-                </Link>{" "}
-                /{" "}
-                <Link to={`/search?sub_categories=${service?.sub_category_id}`}>
-                  {service?.sub_category?.name}
-                </Link>
-              </p>
-              <p>{service?.description}</p>
-
-              {/* developments */}
-              {service?.developments && service?.developments.length > 0 && (
-                <div className="more-develop">
-                  <h6>
-                    <img src={vector88} alt="icon" />{" "}
-                    {t("services.developmentsAvailable")}
-                  </h6>
-                  {service?.developments.map((development) => (
-                    <div
-                      className="d-flex input-field align-items-baseline"
-                      key={development?.id}
-                    >
-                      <input
-                        type="checkbox"
-                        id={`check-${development.id}`}
-                        name={`check-${development.id}`}
-                        checked={
-                          cartObj.developments?.find(
-                            (id) => id === development.id
-                          )
-                            ? true
-                            : false
-                        }
-                        onChange={() => handleCheckboxChange(development.id)}
-                      />
-                      <div className="label">
-                        <label htmlFor={`check-${development.id}`}>
-                          {development.description}
-                        </label>
-                        <p>
-                          {t("services.compare")} {development.price}${" "}
-                          {t("services.percentageofExtraService")}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {/* add to cart */}
-              <div className="add-cart">
-                <div className="input-field">
-                  <button
-                    className="add"
-                    disabled={formLoading}
-                    onClick={handleIncreaseQuantity}
-                  >
-                    <i className="fa-regular fa-plus"></i>
-                  </button>
-
-                  <input
-                    type="number"
-                    min={1}
-                    readOnly
-                    value={cartObj.quantity}
-                    onChange={(e) =>
-                      setCartObj({ ...cartObj, quantity: e.target.value })
-                    }
-                  />
-
-                  <button className="minus" onClick={handleDecreaseQuantity}>
-                    <i className="fa-regular fa-minus"></i>
-                  </button>
-                </div>
-
-                <div className="total d-flex justify-content-between align-items-center">
+    <>
+      {isLoading ? (
+        <DataLoader />
+      ) : (
+        <section className="service-details container">
+          <div className="row">
+            <div className="col-lg-7 col-12 p-2">
+              <div className="service-content">
+                <ServiceSlider images={service?.images} />
+                <div className="content">
+                  <ServiceOwnerCard service={service} />
+                  <h4>{service?.title}</h4>
                   <p>
-                    {t("services.total")} : <br />
-                    {cartObj.developments.length > 0 && (
-                      <span>
-                        + <span id="num">{cartObj.developments.length}</span>{" "}
-                        {t("services.extraService")}
-                      </span>
-                    )}
+                    <Link to={`/search?categories=${service?.category?.id}`}>
+                      {service?.category?.name}
+                    </Link>{" "}
+                    /{" "}
+                    <Link
+                      to={`/search?sub_categories=${service?.sub_category_id}`}
+                    >
+                      {service?.sub_category?.name}
+                    </Link>
                   </p>
-                  <h6>
-                    {totalPrice}
-                    <i className="fa-solid fa-dollar-sign"></i>
-                  </h6>
+                  <p>{service?.description}</p>
+                  {service?.is_my_service === false && (
+                    <>
+                      {service?.developments &&
+                        service?.developments.length > 0 && (
+                          <div className="more-develop">
+                            <h6>
+                              <img src={vector88} alt="icon" />{" "}
+                              {t("services.developmentsAvailable")}
+                            </h6>
+                            {service?.developments.map((development) => (
+                              <div
+                                className="d-flex input-field align-items-baseline"
+                                key={development?.id}
+                              >
+                                <input
+                                  type="checkbox"
+                                  id={`check-${development.id}`}
+                                  name={`check-${development.id}`}
+                                  checked={cartObj.developments.includes(
+                                    development.id
+                                  )}
+                                  onChange={() =>
+                                    handleCheckboxChange(development.id)
+                                  }
+                                />
+                                <div className="label">
+                                  <label htmlFor={`check-${development.id}`}>
+                                    {development.description}
+                                  </label>
+                                  <p>
+                                    {t("services.compare")} {development.price}{" "}
+                                    {t("services.percentageofExtraService")}
+                                  </p>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      <div className="add-cart">
+                        <div className="input-field">
+                          <button
+                            className="add"
+                            disabled={formLoading}
+                            onClick={handleIncreaseQuantity}
+                          >
+                            <i className="fa-regular fa-plus"></i>
+                          </button>
+
+                          <input
+                            type="number"
+                            min={1}
+                            readOnly
+                            value={cartObj.quantity}
+                            onChange={(e) =>
+                              setCartObj({
+                                ...cartObj,
+                                quantity: e.target.value
+                              })
+                            }
+                          />
+
+                          <button
+                            className="minus"
+                            onClick={handleDecreaseQuantity}
+                          >
+                            <i className="fa-regular fa-minus"></i>
+                          </button>
+                        </div>
+
+                        <div className="total d-flex justify-content-between align-items-center">
+                          <p>
+                            {t("services.total")} : <br />
+                            {cartObj.developments.length > 0 && (
+                              <span>
+                                +{" "}
+                                <span id="num">
+                                  {cartObj.developments.length}
+                                </span>{" "}
+                                {t("services.extraService")}
+                              </span>
+                            )}
+                          </p>
+                          <h6>
+                            {totalPrice}
+                            <i className="fa-solid fa-dollar-sign"></i>
+                          </h6>
+                        </div>
+                        {!inCart && (
+                          <button
+                            className="request-order"
+                            onClick={handleAddToCart}
+                          >
+                            <i className="fa-regular fa-cart-plus"></i>{" "}
+                            {t("services.addToCart")}
+                          </button>
+                        )}
+                      </div>
+                    </>
+                  )}
                 </div>
-                {!inCart && (
-                  <button className="request-order" onClick={handleAddToCart}>
-                    <i className="fa-regular fa-cart-plus"></i>{" "}
-                    {t("services.addToCart")}
-                  </button>
-                )}
+              </div>
+            </div>
+            <div className="col-lg-5 col-12 p-2">
+              <UserServiceCard service={service} />
+              <div className="rating-cards-container">
+                {rates?.data?.map((rate) => (
+                  <RateCard key={rate?.id} rate={rate} />
+                ))}
               </div>
             </div>
           </div>
-        </div>
-        <div className="col-lg-5 col-12 p-2">
-          <UserServiceCard service={service} />
-          <div className="rating-cards-container">
-            {rates?.data?.map((rate) => (
-              <RateCard key={rate?.id} rate={rate} />
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
+        </section>
+      )}
+    </>
   );
 };
 

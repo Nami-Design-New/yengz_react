@@ -73,14 +73,12 @@ function App() {
         typeof decodedToken.sub === "string" &&
         decodedToken.sub === stringId
       ) {
-        console.log("try", decodedToken);
         axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         await getProfile(stringId);
       } else if (isExpired) {
         dispatch(setIsLogged(false));
         delete axios.defaults.headers.common["Authorization"];
       } else {
-        console.log(decodedToken);
         console.log(
           "No valid token found or mismatch in decodedToken.sub and id."
         );
@@ -102,9 +100,9 @@ function App() {
     lang === "en" ? body.classList.add("en") : body.classList.remove("en");
   }, [lang]);
 
-  if (loading) return <Loader />;
-
-  return (
+  return loading ? (
+    <Loader />
+  ) : (
     <div className="App">
       <Layout loading={loading}>
         <Routes>

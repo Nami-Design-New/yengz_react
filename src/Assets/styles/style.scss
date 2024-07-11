@@ -202,6 +202,18 @@ input[type="checkbox"] {
     left: initial;
   }
 }
+.tableLoader {
+  @include centerFlex();
+  flex-direction: column;
+  .loader--style8 {
+    width: 80px;
+    height: 80px;
+  }
+  svg path,
+  svg rect {
+    fill: var(--main-color);
+  }
+}
 #globe {
   display: flex;
   justify-content: center;
@@ -1046,6 +1058,7 @@ body {
             }
             h4 {
               padding: 12px 8px;
+              margin: 0;
               font-size: 18px;
               color: var(--black-color);
             }
