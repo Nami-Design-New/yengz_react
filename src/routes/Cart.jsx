@@ -9,9 +9,10 @@ import { updateEntireCart } from "../redux/slices/cart";
 import { deleteCart } from "../services/apiCart";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import DataLoader from "../ui/DataLoader";
 
 const Cart = () => {
-  const { data: cart } = useCartList();
+  const { data: cart, isLoading } = useCartList();
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
@@ -38,42 +39,44 @@ const Cart = () => {
     }
   };
 
-  return (
-    <main>
-      <section className="cart-section container">
-        <div className="row">
-          {cart?.data && cart?.data?.length === 0 ? (
-            <div className="col-12 p-2">
-              <div className="empty_cart">
-                <img src={emptyCart} alt="empty-cart" />
-                <h3>{t("cart.empty")}</h3>
-                <Link to="/search">{t("cart.exploreServices")}</Link>
-              </div>
-            </div>
-          ) : (
-            <div className="col-12 p-2">
-              {cart?.data?.map((item) => (
-                <CartBox item={item} key={item.id} />
-              ))}
-              <div className="container">
-                <div className="row justify-content-center">
-                  <div className="col-lg-6 col-md-6 col-12">
-                    <Link className="order-now" to="/checkout">
-                      {t("services.orderNow")}
-                    </Link>
-                  </div>
-                  <div className="col-lg-6 col-md-6 col-12">
-                    <button onClick={handleDelete} className="order-now delete">
-                      {t("cart.deleteCart")}
-                    </button>
-                  </div>
+  console.log(isLoading);
+
+  return isLoading ? (
+    <DataLoader />
+  ) : (
+    <section className="cart-section container">
+      <div className="row">
+        {cart?.data && cart?.data?.length > 0 ? (
+          <div className="col-12 p-2">
+            {cart?.data?.map((item) => (
+              <CartBox item={item} key={item.id} />
+            ))}
+            <div className="container">
+              <div className="row justify-content-center">
+                <div className="col-lg-6 col-md-6 col-12">
+                  <Link className="order-now" to="/checkout">
+                    {t("services.orderNow")}
+                  </Link>
+                </div>
+                <div className="col-lg-6 col-md-6 col-12">
+                  <button onClick={handleDelete} className="order-now delete">
+                    {t("cart.deleteCart")}
+                  </button>
                 </div>
               </div>
             </div>
-          )}
-        </div>
-      </section>
-    </main>
+          </div>
+        ) : (
+          <div className="col-12 p-2">
+            <div className="empty_cart">
+              <img src={emptyCart} alt="empty-cart" />
+              <h3>{t("cart.empty")}</h3>
+              <Link to="/search">{t("cart.exploreServices")}</Link>
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
   );
 };
 

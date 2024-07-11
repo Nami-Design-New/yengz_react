@@ -204,6 +204,21 @@ input[type=checkbox]:checked::after {
     left: initial;
   }
 }
+.tableLoader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.tableLoader .loader--style8 {
+  width: 80px;
+  height: 80px;
+}
+.tableLoader svg path,
+.tableLoader svg rect {
+  fill: var(--main-color);
+}
+
 #globe {
   display: flex;
   justify-content: center;
@@ -1133,6 +1148,7 @@ body main .profile-section .tab-content .services_grid .workCard .img .icons but
 }
 body main .profile-section .tab-content .services_grid .workCard h4 {
   padding: 12px 8px;
+  margin: 0;
   font-size: 18px;
   color: var(--black-color);
 }
