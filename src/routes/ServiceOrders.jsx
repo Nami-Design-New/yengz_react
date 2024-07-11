@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import SectionHeader from "../ui/SectionHeader";
-import OrderBox from "../ui/OrderBox";
+import OrderBox from "../ui/cards/OrderBox";
 import useServiceOrdersList from "../features/orders/useServiceOrdersList";
 
 const ServiceOrders = () => {

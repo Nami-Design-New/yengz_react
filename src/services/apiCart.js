@@ -45,9 +45,18 @@ export async function decreaseCartQuantity(id, queryClient) {
   }
 }
 
-export async function deleteCartItem(id, quantity, queryClient) {
+export async function deleteCartItem(id, queryClient) {
   try {
     await axios.post("/user/decrease_cart", { id, quantity: 0 });
+    queryClient.invalidateQueries("cartList");
+  } catch (error) {
+    throw new Error(error.response?.data?.message || error.message);
+  }
+}
+
+export async function updateDevelopmentsInCart(data, queryClient) {
+  try {
+    await axios.post("/user/update_development_cart", { data });
     queryClient.invalidateQueries("cartList");
   } catch (error) {
     throw new Error(error.response?.data?.message || error.message);

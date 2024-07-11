@@ -34,7 +34,6 @@ import Chats from "./routes/Chats";
 import AuthVerifySteps from "./features/auth/verification/AuthVerifySteps";
 import AddServices from "./features/services/AddServices";
 import ServiceOrdersDetails from "./routes/ServiceOrdersDetails";
-import SimilarServices from "./routes/SimilarServices";
 import Loader from "./ui/Loader";
 
 function App() {
@@ -110,7 +109,6 @@ function App() {
           <Route path="/service/:id" element={<Services />} />
           <Route path="/add-service" element={<AddServices />} />
           <Route path="/edit-service/:id" element={<AddServices />} />
-          <Route path="/SimilarServices" element={<SimilarServices />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/purchases" element={<Purchases />} />
           <Route path="/order-details" element={<OrderDetails />} />

@@ -6,7 +6,8 @@ import {
   decreaseCartQuantity,
   deleteCart,
   deleteCartItem,
-  increaseCartQuantity
+  increaseCartQuantity,
+  updateDevelopmentsInCart
 } from "../../services/apiCart";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
@@ -23,15 +24,6 @@ function CartBox({ item }) {
       .reduce((acc, dev) => acc + dev.price, 0);
     setTotalPrice(item?.quantity * item?.service?.price + developmentsPrice);
   }, [item]);
-
-  const handleDeleteItem = async (id) => {
-    try {
-      await deleteCart(id, queryClient);
-      toast.success(t("cart.deleteSuccess"));
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   const handleDeleteBox = async (id) => {
     try {
@@ -64,6 +56,20 @@ function CartBox({ item }) {
     }
   };
 
+  const handleCheckboxChange = async (dev_id, cart_id) => {
+    try {
+      await updateDevelopmentsInCart(
+        {
+          cart_id: cart_id,
+          development_id: dev_id
+        },
+        queryClient
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="service container">
       <div className="row">
@@ -76,9 +82,9 @@ function CartBox({ item }) {
               <h5>{item?.service?.title}</h5>
               <div className="owner">
                 <div className="owner-avatar">
-                  {/* <img src={item?.user.image} alt="owner" /> */}
+                  <img src={item?.service?.user?.image} alt="owner" />
                 </div>
-                {/* <span>{item?.user.name}</span> */}
+                <span>{item?.service?.user?.name}</span>
               </div>
             </div>
           </div>
@@ -96,7 +102,9 @@ function CartBox({ item }) {
                         id={`check-${development.id}`}
                         name={`check-${development.id}`}
                         checked={development?.in_cart}
-                        // onChange={() => handleCheckboxChange(development.id)}
+                        onChange={() =>
+                          handleCheckboxChange(development.id, item?.id)
+                        }
                       />
                       <div className="label">
                         <label htmlFor={`check-${development.id}`}>
