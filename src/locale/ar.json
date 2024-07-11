@@ -91,7 +91,9 @@
     "startFrom": "تبدأ من",
     "newsletterTitle": "ابقَ على اتصال مع عالمنا المليء بالإبداع",
     "emailAddress": "البريد الالكتروني",
-    "send": "ارسال"
+    "send": "ارسال",
+    "latestProjects": "احدث المشاريع",
+    "latestProjectsSubTitle": "احدث المشاريع الأكثر مشاهدة في السوق"
   },
   "footer": {
     "importantLinks": "روابط مهمة",

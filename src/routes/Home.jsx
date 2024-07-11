@@ -4,6 +4,7 @@ import NewsLetter from "../ui/NewsLetter";
 import HeroSection from "../features/home/HeroSection";
 import CategoriesSection from "../features/home/CategoriesSection";
 import PopularServicesSection from "../features/home/PopularServicesSection";
+import LatestProjects from "../features/home/LatestProjects";
 
 const Home = () => {
   function handleSubmitSearch(e) {
@@ -17,6 +18,7 @@ const Home = () => {
       <HeroSection />
       <CategoriesSection />
       <PopularServicesSection />
+      <LatestProjects />
       <NewsLetter />
     </>
   );

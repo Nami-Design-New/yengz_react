@@ -15,7 +15,7 @@ const NewsLetter = () => {
           </div>
           <div className="col-lg-6 col-md-6 col-12">
             <div className="form-news" data-aos="fade-up">
-              <h3>{t("home.newsletterTitle")}</h3>
+              <h3 className="text-center">{t("home.newsletterTitle")}</h3>
               <form>
                 <div className="input-field">
                   <input type="email" placeholder={t("home.emailAddress")} />
