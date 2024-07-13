@@ -13,8 +13,16 @@ function StatusFilter({ isFilterOpen, setIsFilterOpen }) {
   );
 
   function handleApplyFilters() {
+    searchFilterData.filter((filter) => filter !== "all").join("-");
     if (searchFilterData.length > 0) {
-      searchParams.set("status", searchFilterData.join("-"));
+      if (searchFilterData.includes("all")) {
+        searchParams.delete("status");
+      } else {
+        searchParams.set(
+          "status",
+          searchFilterData.filter((filter) => filter !== "all").join("-")
+        );
+      }
       setSearchParams(searchParams);
     }
   }

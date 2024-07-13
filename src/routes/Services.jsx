@@ -14,7 +14,6 @@ import SimilarServices from "./SimilarServices";
 const Services = () => {
   const { data } = useServiceDetails();
 
-  console.log(data?.similar_services);
 
   const [avatarError, setAvatarError] = useState(false);
   const { t } = useTranslation();
@@ -157,14 +156,14 @@ const Services = () => {
                       <input
                         type="checkbox"
                         id="check-1"
-                        checked={development.in_cart}
+                        checked={development?.in_cart}
                       />
                       <div className="label">
                         <label htmlFor="check-1">
-                          {development.description}
+                          {development?.description}
                         </label>
                         <p>
-                          {t("services.compare")} {development.price}${" "}
+                          {t("services.compare")} {development?.price}${" "}
                           {t("services.percentageofExtraService")}
                         </p>
                       </div>

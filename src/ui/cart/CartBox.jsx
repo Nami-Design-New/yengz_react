@@ -6,16 +6,27 @@ import {
   decreaseCartQuantity,
   deleteCart,
   deleteCartItem,
-  increaseCartQuantity
+  increaseCartQuantity,
 } from "../../services/apiCart";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
-function CartBox({ item }) {
+function CartBox({ item, cartObjList }) {
   const { t } = useTranslation();
   const [totalPrice, setTotalPrice] = useState(0);
   const [formLoading, setFormLoading] = useState(0);
   const queryClient = useQueryClient();
+  const [boxDevs, setBoxDevs] = useState([]);
+
+  useEffect(() => {
+    if (cartObjList && item) {
+      setBoxDevs(
+        cartObjList.filter((i) => {
+          return i.service_id === item.service_id;
+        })
+      );
+    }
+  }, [item, cartObjList]);
 
   useEffect(() => {
     const developmentsPrice = item?.service?.developments
@@ -86,24 +97,24 @@ function CartBox({ item }) {
             {item?.service?.developments &&
               item?.service?.developments.length > 0 && (
                 <div className="more-develop">
-                  {item?.service?.developments.map((development) => (
+                  {item?.service?.developments.map((dev) => (
                     <div
                       className="d-flex input-field align-items-baseline"
-                      key={development?.id}
+                      key={dev?.id}
                     >
                       <input
                         type="checkbox"
-                        id={`check-${development.id}`}
-                        name={`check-${development.id}`}
-                        checked={development?.in_cart}
-                        // onChange={() => handleCheckboxChange(development.id)}
+                        id={`check-${dev.id}`}
+                        name={`check-${dev.id}`}
+                        checked={boxDevs[0]?.developments?.includes(dev.id)}
+                        onChange={() => handleCheckboxChange(dev.id)}
                       />
                       <div className="label">
-                        <label htmlFor={`check-${development.id}`}>
-                          {development.description}
+                        <label htmlFor={`check-${dev.id}`}>
+                          {dev.description}
                         </label>
                         <p>
-                          {t("services.compare")} {development.price}${" "}
+                          {t("services.compare")} {dev.price}${" "}
                           {t("services.percentageofExtraService")}
                         </p>
                       </div>

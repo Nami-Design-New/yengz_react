@@ -4802,14 +4802,21 @@ body {
   width: 100%;
   height: 100vh;
 
+  .add-work {
+    display: flex;
+    gap: 24px !important;
+    flex-direction: column !important;
+  }
+
   .modal-dialog {
     height: 100% !important;
     position: relative !important;
+    margin: 16px auto !important;
   }
 
   .modal-body {
     padding: 0 !important;
-    max-height: 100% !important;
+    height: 100% !important;
     position: relative;
   }
   .modal-content {
@@ -4822,17 +4829,41 @@ body {
   }
 
   .swiper {
-    height: 100% !important;
+    padding: 0 !important;
+    width: 100%;
+    height: unset !important;
+    flex: 1 0 0;
   }
 
   .swiper-slide {
-    height: 100%;
+    height: 100% !important;
     position: relative;
   }
   .work-modal-img-box {
-    height: 100%;
+    width: 100% !important;
     position: relative;
     display: flex;
+    padding: 0 !important;
+  }
+
+  .work-modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    width: 100%;
+
+    h3,
+    p {
+      text-align: center;
+      text-wrap: balance;
+    }
+
+    h3 {
+      font-size: 36px;
+      font-weight: 600;
+      text-transform: capitalize;
+    }
   }
 
   img {
