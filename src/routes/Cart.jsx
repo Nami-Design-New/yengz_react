@@ -84,8 +84,6 @@ const Cart = () => {
     );
   };
 
-  console.log(isLoading);
-
   return isLoading ? (
     <DataLoader />
   ) : (

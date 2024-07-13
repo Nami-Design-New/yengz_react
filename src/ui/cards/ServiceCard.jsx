@@ -7,15 +7,14 @@ import StarsList from "../StarsList";
 
 const ServiceCard = ({ service, canEdit, handleDelete }) => {
   const { t } = useTranslation();
+  const truncate = useTruncateString(service?.title);
   return (
     <div className="service-card" data-aos="fade-up">
       <Link to={`/service/${service?.id}`} className="img">
         <img src={service?.image || bann} alt="" />
       </Link>
       <div className="content">
-        <h6>
-          {service?.title || "اصنع لك تطبيق متجر الكتروني باستخدام flutter..."}
-        </h6>
+        <h6>{truncate}</h6>
         <p>
           <span>{service?.category?.name || "برمجة وتطوير"}</span> /{" "}
           <span>{service?.subCategory?.name || "تطبيقات"}</span>

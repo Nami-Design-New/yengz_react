@@ -15,8 +15,6 @@ function OrderCard({ order }) {
     t
   );
 
-  console.log(order);
-
   return (
     <div className="service container">
       <div className="row">

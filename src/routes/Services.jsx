@@ -14,7 +14,6 @@ import SimilarServices from "./SimilarServices";
 const Services = () => {
   const { data } = useServiceDetails();
 
-
   const [avatarError, setAvatarError] = useState(false);
   const { t } = useTranslation();
 

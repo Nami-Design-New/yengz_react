@@ -698,6 +698,9 @@ body main .row-head a {
   align-items: center;
   gap: 4px;
 }
+body main .mainSliderContainer .swiper-slide .info {
+  max-width: 600px !important;
+}
 body main .hero_section {
   height: calc(100vh - 80px);
   position: relative;
@@ -1724,7 +1727,12 @@ body main .cart-section .service-head .title .owner .owner-avatar {
   overflow: hidden;
 }
 body main .cart-section .service-head .title .owner .owner-avatar img {
-  max-width: 100%;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
 }
 @media (max-width: 576px) {
   body main .cart-section .service-head .title .owner .owner-avatar {
@@ -3803,6 +3811,94 @@ body .service-card .editService button {
 body .service-card .editService button {
   background: red;
 }
+body .singleRequst {
+  background-color: var(--gray-background);
+  padding: 12px;
+  display: block;
+  border-radius: 12px;
+  position: relative;
+}
+body .singleRequst p {
+  color: var(--black-color);
+}
+body .singleRequst .requstPost,
+body .singleRequst .lastInteraction {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+@media (max-width: 768px) {
+  body .singleRequst .requstPost,
+  body .singleRequst .lastInteraction {
+    align-items: start;
+  }
+}
+body .singleRequst .requstPost a,
+body .singleRequst .lastInteraction a {
+  color: var(--black-color);
+}
+body .singleRequst .requstPost a:has(img),
+body .singleRequst .lastInteraction a:has(img) {
+  overflow: hidden;
+  border-radius: 50%;
+}
+body .singleRequst .requstPost img,
+body .singleRequst .lastInteraction img {
+  width: 64px;
+  aspect-ratio: 1/1;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+body .singleRequst .requstPost .postContent,
+body .singleRequst .lastInteraction .postContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+body .singleRequst .requstPost .postUser,
+body .singleRequst .lastInteraction .postUser {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  row-gap: 2px;
+  flex-wrap: wrap;
+}
+body .singleRequst .requstPost .postUser .time,
+body .singleRequst .requstPost .postUser .name,
+body .singleRequst .lastInteraction .postUser .time,
+body .singleRequst .lastInteraction .postUser .name {
+  color: var(--black-color);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+body .singleRequst .requstPost .postUser .time i,
+body .singleRequst .requstPost .postUser .name i,
+body .singleRequst .lastInteraction .postUser .time i,
+body .singleRequst .lastInteraction .postUser .name i {
+  font-size: 12px;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body .singleRequst .requstPost .postTitle,
+body .singleRequst .lastInteraction .postTitle {
+  font-weight: bold;
+}
+@media (max-width: 768px) {
+  body .singleRequst .lastInteraction img {
+    width: 32px !important;
+  }
+  body .singleRequst .lastInteraction .lastUser {
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
+  }
+}
 body .newsletter {
   padding-top: 32px;
   background: var(--main1010-color);
@@ -3831,6 +3927,7 @@ body .newsletter .form-news {
 }
 body .newsletter .form-news form {
   display: flex;
+  justify-content: center;
 }
 body .newsletter .form-news h3 {
   color: var(--black-color);
@@ -4032,136 +4129,6 @@ body .allRequests .allRequestsContainer {
 @media (max-width: 768px) {
   body .allRequests .allRequestsContainer {
     padding: 8px;
-  }
-}
-body .allRequests .allRequestsContainer .singleRequst {
-  background-color: var(--white-color);
-  padding: 12px;
-  border-radius: 12px;
-  position: relative;
-}
-body .allRequests .allRequestsContainer a {
-  color: var(--black-color);
-  transition: all 0.3s ease-in-out;
-}
-body .allRequests .allRequestsContainer a:hover {
-  color: var(--main-color);
-}
-body .allRequests .allRequestsContainer .requstPost,
-body .allRequests .allRequestsContainer .lastInteraction {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-@media (max-width: 768px) {
-  body .allRequests .allRequestsContainer .requstPost,
-  body .allRequests .allRequestsContainer .lastInteraction {
-    align-items: start;
-  }
-}
-body .allRequests .allRequestsContainer .requstPost a:has(img),
-body .allRequests .allRequestsContainer .lastInteraction a:has(img) {
-  overflow: hidden;
-  border-radius: 50%;
-}
-body .allRequests .allRequestsContainer .requstPost img,
-body .allRequests .allRequestsContainer .lastInteraction img {
-  width: 64px;
-  aspect-ratio: 1/1;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-body .allRequests .allRequestsContainer .requstPost .postContent,
-body .allRequests .allRequestsContainer .lastInteraction .postContent {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-body .allRequests .allRequestsContainer .requstPost .postUser,
-body .allRequests .allRequestsContainer .lastInteraction .postUser {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  row-gap: 2px;
-  flex-wrap: wrap;
-}
-body .allRequests .allRequestsContainer .requstPost .postUser .time,
-body .allRequests .allRequestsContainer .requstPost .postUser .name,
-body .allRequests .allRequestsContainer .lastInteraction .postUser .time,
-body .allRequests .allRequestsContainer .lastInteraction .postUser .name {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 12px;
-  white-space: nowrap;
-}
-body .allRequests .allRequestsContainer .requstPost .postUser .time i,
-body .allRequests .allRequestsContainer .requstPost .postUser .name i,
-body .allRequests .allRequestsContainer .lastInteraction .postUser .time i,
-body .allRequests .allRequestsContainer .lastInteraction .postUser .name i {
-  font-size: 12px;
-  width: 16px;
-  height: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-body .allRequests .allRequestsContainer .requstPost .postTitle,
-body .allRequests .allRequestsContainer .lastInteraction .postTitle {
-  font-weight: bold;
-}
-body .allRequests .allRequestsContainer .requstPost .status,
-body .allRequests .allRequestsContainer .lastInteraction .status {
-  padding: 4px 12px 6px;
-  background-color: var(--main-color);
-  border-radius: 0 8px 0 8px;
-  font-size: 12px;
-  color: var(--white-color);
-  width: -moz-fit-content;
-  width: fit-content;
-  position: absolute;
-  right: 0;
-  top: 0;
-  line-height: normal;
-}
-body .allRequests .allRequestsContainer .requstPost .status.new,
-body .allRequests .allRequestsContainer .lastInteraction .status.new {
-  background-color: #00af49;
-}
-body .allRequests .allRequestsContainer .requstPost .lastUser,
-body .allRequests .allRequestsContainer .lastInteraction .lastUser {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-}
-body .allRequests .allRequestsContainer .requstPost .lastUser .name,
-body .allRequests .allRequestsContainer .lastInteraction .lastUser .name {
-  font-size: 14px;
-}
-body .allRequests .allRequestsContainer .requstPost .lastUser .time,
-body .allRequests .allRequestsContainer .lastInteraction .lastUser .time {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 12px;
-}
-body .allRequests .allRequestsContainer .requstPost .lastUser .time i,
-body .allRequests .allRequestsContainer .lastInteraction .lastUser .time i {
-  font-size: 12px;
-  width: 16px;
-  height: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-@media (max-width: 768px) {
-  body .allRequests .allRequestsContainer .lastInteraction img {
-    width: 32px !important;
-  }
-  body .allRequests .allRequestsContainer .lastInteraction .lastUser {
-    flex-direction: row;
-    gap: 12px;
-    align-items: center;
   }
 }
 body .addRequest {
@@ -5065,6 +5032,13 @@ body.en {
 }
 body.en header .tnavbar .loged-in-minor-menu .link .btns a i {
   transform: scaleX(-1);
+}
+body.en main .mainSliderContainer .swiper-slide {
+  display: flex;
+  justify-content: end;
+}
+body.en main .mainSliderContainer .swiper-slide .info {
+  text-align: left !important;
 }
 body.en main .form .pass-group input {
   border-radius: 12px 0 0 12px !important;

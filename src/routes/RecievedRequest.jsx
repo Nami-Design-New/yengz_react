@@ -22,8 +22,6 @@ const RecievedRequest = () => {
     setIsFilterOpen((open) => !open);
   }
 
-  console.log(serviceOrders);
-
   return (
     <main>
       <section className="cart-section container search-section">

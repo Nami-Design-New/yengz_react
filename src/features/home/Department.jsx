@@ -2,6 +2,9 @@ import React from "react";
 import ServiceCard from "../../ui/cards/ServiceCard";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
+import "swiper/swiper-bundle.css";
 
 const Department = ({ category }) => {
   const { t } = useTranslation();
@@ -15,11 +18,33 @@ const Department = ({ category }) => {
         </Link>
       </div>
       <div className="row mb-5">
-        {category?.services?.map((service) => (
-          <div className="col-lg-3 col-md-4 col-6 p-2" key={service?.id}>
-            <ServiceCard service={service} />
-          </div>
-        ))}
+        <Swiper
+          spaceBetween={30}
+          slidesPerView={4}
+          speed={1000}
+          loop={true}
+          modules={[Autoplay]}
+          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          className="mainSliderContainer"
+          breakpoints={{
+            992: {
+              slidesPerView: 4
+            },
+            768: {
+              slidesPerView: 3
+            },
+            350: {
+              slidesPerView: 2
+            }
+          }}
+          dir="rtl"
+        >
+          {category?.services?.map((service) => (
+            <SwiperSlide key={service.id}>
+              <ServiceCard service={service} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
     </div>
   );

@@ -5,13 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { setLanguage } from "../redux/slices/language";
 import { useTranslation } from "react-i18next";
 import avatar from "../Assets/images/avatar.png";
-import av1 from "../Assets/images/av1.png";
-import av2 from "../Assets/images/av2.png";
 import logo from "../Assets/images/logo.svg";
 import Dropdown from "react-bootstrap/Dropdown";
 import i18next from "i18next";
 import "../Assets/styles/dropdownes.css";
 import useOutsideClose from "../hooks/useOutsideClose";
+import useServiceOrdersList from "../features/orders/useServiceOrdersList";
 
 const Navbar = () => {
   const { t } = useTranslation();
@@ -25,6 +24,7 @@ const Navbar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const [isSmallMediaMenuOpen, setIsSmallMediaMenuOpen] = useState(false);
+  const { data: serviceOrders } = useServiceOrdersList();
 
   function handleAvatarError() {
     setAvatarError(true);
@@ -44,6 +44,10 @@ const Navbar = () => {
 
   function closeProfileMenu() {
     setIsProfileMenuOpen(false);
+  }
+
+  function closeSmallMediaMenu() {
+    setIsSmallMediaMenuOpen(false);
   }
 
   function handleToggleSearchInput() {
@@ -97,7 +101,7 @@ const Navbar = () => {
           className={`small-media-menu  ${isSmallMediaMenuOpen ? "show" : ""}`}
         >
           <div className="user">
-            <Link to="/profile" className="avatar">
+            <Link to="/profile" className="avatar" onClick={closeProfileMenu}>
               <img src={user?.image} alt="" />
             </Link>
             <div className="userr">
@@ -106,55 +110,58 @@ const Navbar = () => {
             </div>
           </div>
           <ul className="nav-links">
-            <li className="nav-link">
+            <li className="nav-link" onClick={closeSmallMediaMenu}>
               <Link to="/">
                 <i className="fa-sharp fa-regular fa-house"></i>
                 {t("homePage")}
               </Link>
             </li>
-            <li className="nav-link">
+            <li className="nav-link" onClick={closeSmallMediaMenu}>
               <Link to="/categories">
                 <i className="far fa-cube"></i> {t("navbar.categories")}
               </Link>
             </li>
             {isLogged && (
               <>
-                <li className="nav-link">
+                <li className="nav-link" onClick={closeSmallMediaMenu}>
                   <Link to="/recieved-request">
                     <i className="far fa-clipboard-list-check"></i>{" "}
                     {t("navbar.requestsRecieved")}
                   </Link>
-                  <span className="num-count2">2</span>
+
+                  {serviceOrders && serviceOrders?.length > 0 && (
+                    <span className="num-count2">{serviceOrders?.length}</span>
+                  )}
                 </li>
-                <li className="nav-link">
+                <li className="nav-link" onClick={closeSmallMediaMenu}>
                   <Link to="/add-service">
                     <i className="far fa-plus"></i> {t("navbar.addService")}
                   </Link>
                 </li>
-                <li className="nav-link">
+                <li className="nav-link" onClick={closeSmallMediaMenu}>
                   <Link to="/profile">
                     <i className="fa-regular fa-user"></i>
                     {t("navbar.myProfile")}
                   </Link>
                 </li>
-                <li className="nav-link">
+                <li className="nav-link" onClick={closeSmallMediaMenu}>
                   <Link to="/chat">
                     <i className="fa-regular fa-messages"></i>
                     {t("navbar.messages")}
                   </Link>
                 </li>
-                <li className="nav-link">
+                <li className="nav-link" onClick={closeSmallMediaMenu}>
                   <Link to="/purchases">
                     <i className="far fa-shopping-bag"></i>{" "}
                     {t("navbar.purchase")}
                   </Link>
                 </li>
-                <li className="nav-link">
+                <li className="nav-link" onClick={closeSmallMediaMenu}>
                   <Link to="/more">
                     <i className="fa-regular fa-gear"></i> {t("navbar.more")}
                   </Link>
                 </li>
-                <li>
+                <li className="nav-link" onClick={closeSmallMediaMenu}>
                   <Link to="/logout">
                     <i className="fa-solid fa-right-from-bracket"></i>
                     {t("navbar.logout")}
@@ -174,36 +181,53 @@ const Navbar = () => {
           <ul className="nav-links">
             {isLogged && (
               <li className="nav-link">
-                <Link to="/add-service">
+                <Link
+                  to="/add-service"
+                  className="d-flex align-items-center gap-1"
+                >
                   <i className="far fa-plus"></i> {t("navbar.addService")}
                 </Link>
               </li>
             )}
             <li className="nav-link">
-              <Link to="/categories">
+              <Link
+                to="/categories"
+                className="d-flex align-items-center gap-1"
+              >
                 <i className="far fa-cube"></i> {t("navbar.categories")}
               </Link>
             </li>
             {isLogged && (
               <>
                 <li className="nav-link">
-                  <Link to="/purchases">
+                  <Link
+                    to="/purchases"
+                    className="d-flex align-items-center gap-1"
+                  >
                     <i className="far fa-shopping-bag"></i>{" "}
                     {t("navbar.purchase")}
                   </Link>
                   <span className="num-count2">3</span>
                 </li>
                 <li className="nav-link">
-                  <Link to="/recieved-request">
+                  <Link
+                    to="/recieved-request"
+                    className="d-flex align-items-center gap-1"
+                  >
                     <i className="far fa-clipboard-list-check"></i>{" "}
                     {t("navbar.requestsRecieved")}
                   </Link>
-                  <span className="num-count2">2</span>
+                  {serviceOrders && serviceOrders?.length > 0 && (
+                    <span className="num-count2">{serviceOrders?.length}</span>
+                  )}
                 </li>
                 <li className="nav-link">
-                  <Link to="/service-orders">
-                    <i className="far fa-hand-point-up"></i>{" "}
-                    {t("navbar.serviceAsYouLike")}
+                  <Link
+                    to="/projects"
+                    className="d-flex align-items-center gap-1"
+                  >
+                    <i className="fa-regular fa-file-invoice"></i>
+                    {t("navbar.projects")}
                   </Link>
                 </li>
               </>
@@ -289,59 +313,12 @@ const Navbar = () => {
                 </li>
                 {/* Message */}
                 <li className="link hide-sm2">
-                  <Dropdown style={{ position: "relative" }}>
-                    <Dropdown.Toggle
-                      style={{ backgroundColor: "#f4f4f4" }}
-                      id="dropdown-basic"
-                    >
+                  <li className="link hide-sm2">
+                    <Link to="/chat" className="cart btn">
                       <i className="fa-regular fa-message-lines"></i>
                       <span className="num-count">{user?.chat_count}</span>
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu className="drop_Message_Menu">
-                      <Dropdown.Item className="drop_Message">
-                        <Link to="/chat" style={{ display: "flex" }}>
-                          <div className="image-wrap">
-                            <img src={av1} alt="user" />
-                          </div>
-                          <div className="text-wrap">
-                            <div className="d-flex justify-content-between">
-                              <h6>خالد عوض</h6>
-                              <span className="time">20 / 10 / 2024</span>
-                            </div>
-                            <p>
-                              انشاء متجر الكتروني احترافي على منصة ووردبريس
-                              ووكومرس
-                            </p>
-                            <div className="w-100 d-flex justify-content-between align-items-center">
-                              <h5 className="me">100 دولار ان شاء الله</h5>
-                              <span className="message-number">2</span>
-                            </div>
-                          </div>
-                        </Link>
-                      </Dropdown.Item>
-                      <Dropdown.Item className="drop_Message">
-                        <Link to="/chat" style={{ display: "flex" }}>
-                          <div className="image-wrap">
-                            <img src={av2} alt="user" />
-                          </div>
-                          <div className="text-wrap">
-                            <div className="d-flex justify-content-between">
-                              <h6>خالد عوض</h6>
-                              <span className="time">18 / 10 / 2024</span>
-                            </div>
-                            <p>نظام الكتروني لعيادة طبية</p>
-                            <div className="w-100 d-flex justify-content-between align-items-center">
-                              <h5 className="me">150 دولار ان شاء الله</h5>
-                              <span className="message-number">2</span>
-                            </div>
-                          </div>
-                        </Link>
-                      </Dropdown.Item>
-                      <div className="showall">
-                        <Link to="/chat">جميع الرسائل</Link>
-                      </div>
-                    </Dropdown.Menu>
-                  </Dropdown>
+                    </Link>
+                  </li>
                 </li>
 
                 {/* Notifications */}
@@ -434,45 +411,45 @@ const Navbar = () => {
                 </li>
                 {isProfileMenuOpen && (
                   <ul className="profile-menu" ref={profileMenuRef}>
-                    <li>
+                    <li onClick={closeProfileMenu}>
                       <Link className="dropdown-item_Link" to="/profile">
                         <i className="fa-solid fa-user"></i>
                         {user?.name || "user name"}
                       </Link>
                     </li>
-                    <li>
+                    <li onClick={closeProfileMenu}>
                       <Link className="dropdown-item_Link" to="/profile">
                         <i className="fa-sharp fa-solid fa-dollar-sign"></i>
                         {t("navbar.balance")}
                       </Link>
                     </li>
                     <hr />
-                    <li>
+                    <li onClick={closeProfileMenu}>
                       <Link className="dropdown-item_Link" to="/edit-profile">
                         <i className="fa-sharp fa-solid fa-pen-to-square"></i>
                         {t("navbar.editProfile")}
                       </Link>
                     </li>
-                    <li>
+                    <li onClick={closeProfileMenu}>
                       <Link className="dropdown-item_Link" to="/support">
                         <i className="fa-solid fa-file"></i>
                         {t("navbar.support")}
                       </Link>
                     </li>
-                    <li>
+                    <li onClick={closeProfileMenu}>
                       <Link className="dropdown-item_Link" to="/report">
                         <i className="fa-solid fa-circle-info"></i>
                         {t("navbar.report")}
                       </Link>
                     </li>
-                    <li>
+                    <li onClick={closeProfileMenu}>
                       <Link className="dropdown-item_Link" to="/login">
                         <i className="fa-solid fa-trash"></i>
                         {t("navbar.deleteAccount")}
                       </Link>
                     </li>
                     <hr />
-                    <li>
+                    <li onClick={closeProfileMenu}>
                       <Link className="dropdown-item_Link" to="/logout">
                         <i className="fa-solid fa-right-from-bracket"></i>
                         {t("navbar.logout")}

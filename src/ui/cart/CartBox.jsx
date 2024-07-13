@@ -7,6 +7,7 @@ import {
   deleteCart,
   deleteCartItem,
   increaseCartQuantity,
+  updateDevelopmentsInCart,
 } from "../../services/apiCart";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
@@ -34,15 +35,6 @@ function CartBox({ item, cartObjList }) {
       .reduce((acc, dev) => acc + dev.price, 0);
     setTotalPrice(item?.quantity * item?.service?.price + developmentsPrice);
   }, [item]);
-
-  const handleDeleteItem = async (id) => {
-    try {
-      await deleteCart(id, queryClient);
-      toast.success(t("cart.deleteSuccess"));
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   const handleDeleteBox = async (id) => {
     try {
@@ -75,6 +67,20 @@ function CartBox({ item, cartObjList }) {
     }
   };
 
+  const handleCheckboxChange = async (dev_id, cart_id) => {
+    try {
+      await updateDevelopmentsInCart(
+        {
+          cart_id: cart_id,
+          development_id: dev_id
+        },
+        queryClient
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="service container">
       <div className="row">
@@ -87,9 +93,9 @@ function CartBox({ item, cartObjList }) {
               <h5>{item?.service?.title}</h5>
               <div className="owner">
                 <div className="owner-avatar">
-                  {/* <img src={item?.user.image} alt="owner" /> */}
+                  <img src={item?.service?.user?.image} alt="owner" />
                 </div>
-                {/* <span>{item?.user.name}</span> */}
+                <span>{item?.service?.user?.name}</span>
               </div>
             </div>
           </div>

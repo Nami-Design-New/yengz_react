@@ -6,8 +6,6 @@ import { useTranslation } from "react-i18next";
 const SimillarServCard = ({ service }) => {
   const { t } = useTranslation();
 
-  console.log(service);
-
   return (
     <div className="service-card" data-aos="fade-up">
       <Link to={`/services/${service?.id}`} className="img">

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function OrderBox({ order }) {
   return (
-    <Link to={`/service-orders/${order.id}`} className="singleRequst">
+    <Link to={`/projects/${order.id}`} className="singleRequst">
       <div className="row">
         <div className="col-md-8 p-1">
           <div className="requstPost">

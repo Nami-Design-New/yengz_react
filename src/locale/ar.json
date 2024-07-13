@@ -1,4 +1,34 @@
 {
+  "routes": {
+    "service": "خدمة",
+    "add-service": "اضافة خدمة",
+    "edit-service": "تعديل خدمة",
+    "similar-services": "خدمات مشابهة",
+    "categories": "الأقسام",
+    "purchases": "المشتريات",
+    "order-details": "تفاصيل الطلب",
+    "recieved-request": "طلبات مستلمة",
+    "projects": "المشاريع",
+    "request-details": "تفاصيل الطلب",
+    "request-add": "اضافة طلب",
+    "chat": "دردشة",
+    "verify-user": "تفعيل الحساب",
+    "search": "بحث",
+    "contact": "اتصل بنا",
+    "about": "من نحن",
+    "terms":"الاحكام",
+    "how-it-work": "كيف يعمل",
+    "faq":"الأسئلة الشائعة",
+    "login":"تسجيل الدخول",
+    "logout":"تسجيل الخروج",
+    "register": "تسجيل حساب",
+    "forget-password": "نسيت كلمة المرور",
+    "profile": "الملف الشخصي",
+    "edit-profile": "تعديل الملف الشخصي",
+    "cart": "السلة",
+    "notifications": "الاشعارات",
+    "recieved-request-orders": "طلبات مستلمة"
+  },
   "auth": {
     "loginPageTitle": "تسجيل الدخول",
     "loginPageSubTitle": " اهلا بك ...! ادخل بياناتك المسجلة لإتمام عملية الدخول",
@@ -64,6 +94,7 @@
     "purchase": "المشتريات",
     "requestsRecieved": " الطلبات الواردة",
     "serviceAsYouLike": " اطلب خدمة علي زوقك",
+    "projects": "المشاريع",
     "searchFor": "ابحث عن...",
     "login": "تسجيل الدخول",
     "newAccount": "حساب جديد",
@@ -91,7 +122,9 @@
     "startFrom": "تبدأ من",
     "newsletterTitle": "ابقَ على اتصال مع عالمنا المليء بالإبداع",
     "emailAddress": "البريد الالكتروني",
-    "send": "ارسال"
+    "send": "ارسال",
+    "latestProjects": "احدث المشاريع",
+    "latestProjectsSubTitle": "احدث المشاريع الأكثر مشاهدة في السوق"
   },
   "footer": {
     "importantLinks": "روابط مهمة",

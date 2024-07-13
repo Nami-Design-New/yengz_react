@@ -7,7 +7,7 @@ import "swiper/swiper-bundle.css";
 
 function WorkViewModal({ showModal, setShowModal, targetWork, setTargetWork }) {
   const { t } = useTranslation();
-  console.log(targetWork);
+
   return (
     <Modal
       show={showModal}

@@ -5,9 +5,6 @@ function useGetProfile() {
   return useMutation({
     mutationFn: (id) => getProfile(id),
     retry: false,
-    onSuccess: (data) => {
-      console.log(data);
-    },
   });
 }
 

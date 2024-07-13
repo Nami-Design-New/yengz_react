@@ -8,7 +8,7 @@ import useCategoriesList from "./../categories/useCategoriesList";
 
 const CategoriesSection = () => {
   const { t } = useTranslation();
-  const { isLoading, data } = useCategoriesList();
+  const { data } = useCategoriesList();
 
   return (
     <section className="categories ">
@@ -24,38 +24,33 @@ const CategoriesSection = () => {
             <i className="fa-regular fa-angle-left"></i>
           </Link>
         </div>
-
-        <div className="swiper categories-swiper">
-          <div className="swiper-wrapper">
-            <Swiper
-              spaceBetween={30}
-              slidesPerView={4}
-              speed={1000}
-              loop={true}
-              modules={[Autoplay]}
-              autoplay={{ delay: 3000, disableOnInteraction: false }}
-              className="mainSliderContainer"
-              breakpoints={{
-                992: {
-                  slidesPerView: 4
-                },
-                768: {
-                  slidesPerView: 3
-                },
-                350: {
-                  slidesPerView: 2
-                }
-              }}
-              dir="rtl"
-            >
-              {data?.data?.map((category) => (
-                <SwiperSlide key={category.id}>
-                  <CategoryCard category={category} />
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
-        </div>
+        <Swiper
+          spaceBetween={30}
+          slidesPerView={4}
+          speed={1000}
+          loop={true}
+          modules={[Autoplay]}
+          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          className="mainSliderContainer"
+          breakpoints={{
+            992: {
+              slidesPerView: 4
+            },
+            768: {
+              slidesPerView: 3
+            },
+            350: {
+              slidesPerView: 2
+            }
+          }}
+          dir="rtl"
+        >
+          {data?.data?.map((category) => (
+            <SwiperSlide key={category.id}>
+              <CategoryCard category={category} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
     </section>
   );
