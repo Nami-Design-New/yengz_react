@@ -6,7 +6,7 @@ import {
   addToCart,
   decreaseCartQuantity,
   increaseCartQuantity,
-  updateDevelopmentsInCart
+  updateDevelopmentsInCart,
 } from "../services/apiCart";
 import { useQueryClient } from "@tanstack/react-query";
 import vector88 from "../Assets/images/vector88.png";
@@ -130,7 +130,7 @@ const ServiceDetails = () => {
       } else {
         setCartObj((prevCartObj) => ({
           ...prevCartObj,
-          quantity: prevCartObj.quantity - 1
+          quantity: prevCartObj.quantity - 1,
         }));
         setTotalPrice((prevTotalPrice) => prevTotalPrice - service?.price);
       }
@@ -143,7 +143,7 @@ const ServiceDetails = () => {
         await updateDevelopmentsInCart(
           {
             cart_id: cartObj?.id,
-            development_id: id
+            development_id: id,
           },
           queryClient
         );
@@ -156,7 +156,7 @@ const ServiceDetails = () => {
         ...prevCartObj,
         developments: isChecked
           ? prevCartObj.developments.filter((item) => item !== id)
-          : [...prevCartObj.developments, id]
+          : [...prevCartObj.developments, id],
       }));
       setTotalPrice((prevTotalPrice) =>
         isChecked
@@ -168,38 +168,36 @@ const ServiceDetails = () => {
     }
   };
 
-  const handleCheckboxChange = (id) => {
-    setCartObj((prevCartObj) => {
-      const newDevelopments = prevCartObj.developments.includes(id)
-        ? prevCartObj.developments.filter((devId) => devId !== id)
-        : [...prevCartObj.developments, id];
+  // const handleCheckboxChange = (id) => {
+  //   setCartObj((prevCartObj) => {
+  //     const newDevelopments = prevCartObj.developments.includes(id)
+  //       ? prevCartObj.developments.filter((devId) => devId !== id)
+  //       : [...prevCartObj.developments, id];
 
-      const developmentPrice =
-        service?.developments?.find((dev) => dev.id === id)?.price || 0;
+  //     const developmentPrice =
+  //       service?.developments?.find((dev) => dev.id === id)?.price || 0;
 
-      const newTotalPrice = prevCartObj.developments.includes(id)
-        ? totalPrice - developmentPrice
-        : totalPrice + developmentPrice;
+  //     const newTotalPrice = prevCartObj.developments.includes(id)
+  //       ? totalPrice - developmentPrice
+  //       : totalPrice + developmentPrice;
 
-      setTotalPrice(newTotalPrice);
+  //     setTotalPrice(newTotalPrice);
 
-      return {
-        ...prevCartObj,
-        developments: newDevelopments,
-      };
-    });
+  //     return {
+  //       ...prevCartObj,
+  //       developments: newDevelopments,
+  //     };
+  //   });
 
-    dispatch(
-      updateSpesificItem({
-        ...cartObj,
-        developments: cartObj.developments.includes(id)
-          ? cartObj.developments.filter((devId) => devId !== id)
-          : [...cartObj.developments, id],
-      })
-    );
-  };
-
-
+  //   dispatch(
+  //     updateSpesificItem({
+  //       ...cartObj,
+  //       developments: cartObj.developments.includes(id)
+  //         ? cartObj.developments.filter((devId) => devId !== id)
+  //         : [...cartObj.developments, id],
+  //     })
+  //   );
+  // };
 
   const handleAddToCart = async () => {
     if (!isLogged) {
@@ -297,7 +295,7 @@ const ServiceDetails = () => {
                               onChange={(e) =>
                                 setCartObj({
                                   ...cartObj,
-                                  quantity: e.target.value
+                                  quantity: e.target.value,
                                 })
                               }
                             />

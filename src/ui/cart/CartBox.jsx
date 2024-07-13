@@ -72,7 +72,7 @@ function CartBox({ item, cartObjList }) {
       await updateDevelopmentsInCart(
         {
           cart_id: cart_id,
-          development_id: dev_id
+          development_id: dev_id,
         },
         queryClient
       );
