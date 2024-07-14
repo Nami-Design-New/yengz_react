@@ -10,6 +10,7 @@ import useCategorieListWithSub from "../features/categories/useCategorieListWith
 import useProjectsList from "../features/projects/useProjectsList";
 import EmptyData from "../ui/EmptyData";
 import DataLoader from "../ui/DataLoader";
+import CustomPagination from "../ui/CustomPagination";
 
 function Projects() {
   const { t } = useTranslation();
@@ -247,8 +248,8 @@ function Projects() {
           <div className="col-lg-9 col-12 p-2 results-wrapper">
             <div className="container">
               <div className="row">
-                {projectsList && projectsList.length > 0 ? (
-                  projectsList?.map((project) => (
+                {projectsList?.data && projectsList?.data?.length > 0 ? (
+                  projectsList?.data?.map((project) => (
                     <div className="col-lg-4 col-6 p-2" key={project.id}>
                       <ServiceCard service={project} />
                     </div>
@@ -257,6 +258,9 @@ function Projects() {
                   <EmptyData>{t("projects.emptyProjects")}</EmptyData>
                 )}
               </div>
+              {projectsList && (
+                <CustomPagination count={projectsList?.total} pageSize={10} />
+              )}
             </div>
           </div>
         </div>
