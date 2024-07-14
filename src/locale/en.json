@@ -282,6 +282,11 @@
     "deleteCart": "Delete cart",
     "cartDelted": "Cart deleted successfully"
   },
+  "recievedOrders": {
+    "title": "Recieved orders",
+    "noOrders": "There is no orders right now",
+    "emptyOrders": "There is no orders with this status, please try something else..."
+  },
   "status": {
     "all": "all",
     "new": "new",

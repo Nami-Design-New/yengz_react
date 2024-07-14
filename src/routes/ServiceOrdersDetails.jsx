@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import av2 from "../Assets/images/av2.png";
-import av1 from "../Assets/images/av1.png";
 import SectionHeader from "../ui/SectionHeader";
 import CommentCard from "../ui/cards/CommentCard";
 import useCommentsList from "../features/comments/useCommentsList";
@@ -43,7 +41,6 @@ function ServiceOrdersDetails() {
     } catch (error) {
       throw new Error(error.message);
     }
-    // setIsConfirmToComment(false);
   }
 
   return (

@@ -6,10 +6,11 @@ function useServiceOrdersList() {
   const [searchParams] = useSearchParams();
   const status =
     searchParams.get("status") && searchParams.get("status").split("-");
+  const page = Number(searchParams.get("page")) || 1;
 
   const { isLoading, data, error } = useQuery({
-    queryKey: ["serviceOrdersList", status],
-    queryFn: () => getServiceOrders(status),
+    queryKey: ["serviceOrdersList", status, page],
+    queryFn: () => getServiceOrders({ page, status }),
     retry: false,
   });
 

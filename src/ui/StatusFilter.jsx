@@ -7,10 +7,18 @@ function StatusFilter({ isFilterOpen, setIsFilterOpen }) {
   const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
   const statusParam = searchParams.get("status") || "";
+  const page = Number(searchParams.get("page"));
 
   const [searchFilterData, setSearchFilterData] = useState(
     statusParam ? statusParam.split("-") : []
   );
+
+  useEffect(() => {
+    if (!searchParams.get("page")) {
+      searchParams.append("page", 1);
+      setSearchParams(searchParams);
+    }
+  }, [searchParams, setSearchParams]);
 
   function handleApplyFilters() {
     searchFilterData.filter((filter) => filter !== "all").join("-");

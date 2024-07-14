@@ -18,7 +18,7 @@ const WorkCard = ({
       }}
     >
       <div className="img">
-        <img src={work?.images[0]?.image || Rect} alt="" />
+        <img src={work?.images?.[0]?.image || Rect} alt="" />
         {canEdit && (
           <div className="icons">
             <button
