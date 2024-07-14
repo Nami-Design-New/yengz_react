@@ -18,8 +18,7 @@ import HowItWork from "./routes/HowItWork";
 import OrderDetails from "./routes/OrderDetails";
 import Purchases from "./routes/Purchases";
 import RequestDetails from "./routes/RequestDetails";
-import RecievedRequest from "./routes/RecievedRequest";
-import RecievedRequestOrders from "./routes/RecievedRequestOrders";
+import RecievedOrders from "./routes/RecievedOrders";
 import Terms from "./routes/Terms";
 import AddRequest from "./routes/AddRequest";
 import ServiceOrders from "./routes/ServiceOrders";
@@ -35,6 +34,7 @@ import AuthVerifySteps from "./features/auth/verification/AuthVerifySteps";
 import AddServices from "./features/services/AddServices";
 import ServiceOrdersDetails from "./routes/ServiceOrdersDetails";
 import Loader from "./ui/Loader";
+import Projects from "./routes/Projects";
 
 function App() {
   const dispatch = useDispatch();
@@ -111,15 +111,16 @@ function App() {
           <Route path="/edit-service/:id" element={<AddServices />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/purchases" element={<Purchases />} />
-          <Route path="/order-details" element={<OrderDetails />} />
-          <Route path="/recieved-request" element={<RecievedRequest />} />
+          <Route path="/recieved-orders" element={<RecievedOrders />} />
           <Route path="/service-orders" element={<ServiceOrders />} />
+          <Route path="/recieved-orders/:id" element={<OrderDetails />} />
           <Route
             path="/service-orders/:id"
             element={<ServiceOrdersDetails />}
           />
           <Route path="/request-details" element={<RequestDetails />} />
           <Route path="/request-add" element={<AddRequest />} />
+          <Route path="/projects" element={<Projects />} />
           <Route path="/chat" element={<Chats />} />
           <Route path="/verify-user" element={<AuthVerifySteps />} />
           <Route path="/search" element={<Search />} />
@@ -137,10 +138,6 @@ function App() {
           <Route path="/edit-profile" element={<EditProfile />} />
           <Route path="/Cart" element={<Cart />} />
           <Route path="/notifications" element={<Notifcations />} />
-          <Route
-            path="/recieved-request-orders"
-            element={<RecievedRequestOrders />}
-          />
         </Routes>
       </Layout>
     </div>

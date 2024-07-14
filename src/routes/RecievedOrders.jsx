@@ -1,28 +1,25 @@
-import React, { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
-import { useTranslation } from "react-i18next";
+import React, { useState } from "react";
 import StatusFilter from "../ui/StatusFilter";
-import InputField from "../ui/form-elements/InputField";
-import DepartmentFilterBox from "../ui/filter/DepartmentFilterBox";
-import RatingFilterBox from "../ui/filter/RatingFilterBox";
-import SellerStatusFilterBox from "../ui/filter/SellerStatusFilterBox";
 import OrderCard from "../ui/cards/OrderCard";
 import useServiceOrdersList from "../features/orders/useServiceOrdersList";
+import { useTranslation } from "react-i18next";
+import EmptyData from "../ui/EmptyData";
+import DataLoader from "../ui/DataLoader";
 
 const RecievedRequest = () => {
   const { t } = useTranslation();
-  const { data: serviceOrders } = useServiceOrdersList();
+  const { isLoading, data: serviceOrders } = useServiceOrdersList();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-  function handleSubmit(e) {
-    e.preventDefault();
-  }
+  console.log(serviceOrders);
 
   function handleTogglingFilter() {
     setIsFilterOpen((open) => !open);
   }
 
-  return (
+  return isLoading ? (
+    <DataLoader />
+  ) : (
     <main>
       <section className="cart-section container search-section">
         <div className="row">
@@ -33,17 +30,19 @@ const RecievedRequest = () => {
             />
           </div>
           <div className="small-filter-header">
-            <h6>قائمة المشتريات</h6>
+            <h6>{t("recievedRequest.title")}</h6>
             <button className="openfilter" onClick={handleTogglingFilter}>
               <i className="fa-light fa-sliders"></i>
             </button>
           </div>
           <div className="col-lg-9 co-12">
-            {serviceOrders &&
-              serviceOrders?.length > 0 &&
+            {serviceOrders && serviceOrders?.length > 0 ? (
               serviceOrders?.map((order) => (
                 <OrderCard order={order} key={order.id} />
-              ))}
+              ))
+            ) : (
+              <EmptyData>{t("recievedOrders.emptyOrders")}</EmptyData>
+            )}
           </div>
         </div>
       </section>

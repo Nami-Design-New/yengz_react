@@ -124,7 +124,9 @@
     "emailAddress": "البريد الالكتروني",
     "send": "ارسال",
     "latestProjects": "احدث المشاريع",
-    "latestProjectsSubTitle": "احدث المشاريع الأكثر مشاهدة في السوق"
+    "latestProjectsSubTitle": "احدث المشاريع الأكثر مشاهدة في السوق",
+    "parteners": "الشركاء",
+    "partenersSubTitle": "شركائنا في النجاح والتطوير"
   },
   "footer": {
     "importantLinks": "روابط مهمة",
@@ -137,7 +139,7 @@
     "howYengzWork": "كيف يعمل ينجز",
     "copyright": "حقوق النشر",
     "allRightsReserved": "جميع الحقوق محفوظة لدى ينجز",
-    "paymentMethods": "طرق الدفع"
+    "acceptPaymentsBy": "نقبل الدفع بـ"
   },
   "profile": {
     "editProfile": "تعديل الملف الشخصي",
@@ -297,6 +299,15 @@
     "valueWillbediscountedfromyourballance": "سوف يتم خصم مبلغ: ",
     "fromYourWallet": "من محفظتك",
     "orderSuccess": "تم الطلب بنجاح"
+  },
+  "recievedOrders": {
+    "title": "الطلبات المستلمة",
+    "noOrders": "لا يوجد طلبات مستلمة حاليا",
+    "emptyOrders": "لا يوجد طلبات بهذه الحالة، يرجى المحاولة بشيء اخر..."
+  },
+  "prjects": {
+    "title": "المشاريع",
+    "emptyProjects": "لا يوجد مشاريع بهذه التفاصيل، يرجى المحاولة بشيء اخر..."
   },
   "cancel": "الغاء",
   "homePage": "الرئيسية",

@@ -10,7 +10,6 @@ import Dropdown from "react-bootstrap/Dropdown";
 import i18next from "i18next";
 import "../Assets/styles/dropdownes.css";
 import useOutsideClose from "../hooks/useOutsideClose";
-import useServiceOrdersList from "../features/orders/useServiceOrdersList";
 
 const Navbar = () => {
   const { t } = useTranslation();
@@ -24,7 +23,6 @@ const Navbar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const [isSmallMediaMenuOpen, setIsSmallMediaMenuOpen] = useState(false);
-  const { data: serviceOrders } = useServiceOrdersList();
 
   function handleAvatarError() {
     setAvatarError(true);
@@ -124,14 +122,14 @@ const Navbar = () => {
             {isLogged && (
               <>
                 <li className="nav-link" onClick={closeSmallMediaMenu}>
-                  <Link to="/recieved-request">
+                  <Link to="/recieved-orders">
                     <i className="far fa-clipboard-list-check"></i>{" "}
                     {t("navbar.requestsRecieved")}
                   </Link>
 
-                  {serviceOrders && serviceOrders?.length > 0 && (
-                    <span className="num-count2">{serviceOrders?.length}</span>
-                  )}
+                  <span className="num-count2">
+                    {user?.service_orders_count}
+                  </span>
                 </li>
                 <li className="nav-link" onClick={closeSmallMediaMenu}>
                   <Link to="/add-service">
@@ -211,15 +209,15 @@ const Navbar = () => {
                 </li>
                 <li className="nav-link">
                   <Link
-                    to="/recieved-request"
+                    to="/recieved-orders"
                     className="d-flex align-items-center gap-1"
                   >
                     <i className="far fa-clipboard-list-check"></i>{" "}
                     {t("navbar.requestsRecieved")}
                   </Link>
-                  {serviceOrders && serviceOrders?.length > 0 && (
-                    <span className="num-count2">{serviceOrders?.length}</span>
-                  )}
+                  <span className="num-count2">
+                    {user?.service_orders_count}
+                  </span>
                 </li>
                 <li className="nav-link">
                   <Link
@@ -229,6 +227,10 @@ const Navbar = () => {
                     <i className="fa-regular fa-file-invoice"></i>
                     {t("navbar.projects")}
                   </Link>
+
+                  <span className="num-count2">
+                    {user?.project_order_count || 0}
+                  </span>
                 </li>
               </>
             )}

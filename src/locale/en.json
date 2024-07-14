@@ -121,7 +121,9 @@
     "emailAddress": "Email Address",
     "send": "Send",
     "latestProjects": "Latest Projects",
-    "latestProjectsSubTitle": "The most viewed projects ever"
+    "latestProjectsSubTitle": "The most viewed projects ever",
+    "parteners": "Parteners",
+    "partenersSubTitle": "Our success and development partners"
   },
   "footer": {
     "importantLinks": "Important Links",
@@ -134,7 +136,7 @@
     "howYengzWork": "How Yengz works",
     "copyright": "Copyright",
     "allRightsReserved": "All rights reserved for Yengz",
-    "paymentMethods": "Payment Methods"
+    "acceptPaymentsBy": "Accept payments by"
   },
   "profile": {
     "editProfile": "Edit Profile",
@@ -286,6 +288,15 @@
     "valueWillbediscountedfromyourballance": "An amount will be deducted:",
     "fromYourWallet": "from your wallet",
     "orderSuccess": "Order successfully placed"
+  },
+  "recievedOrders": {
+    "title": "Recieved orders",
+    "noOrders": "There is no orders right now",
+    "emptyOrders": "There is no orders with this status, please try something else..."
+  },
+  "prjects": {
+    "title": "Projects",
+    "emptyProjects": "There are no projects with this filter, please try something else..."
   },
   "status": {
     "all": "all",

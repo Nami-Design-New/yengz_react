@@ -1,6 +1,6 @@
 import axios from "./../utils/axios";
 
-export async function getProjectsByFilter(
+export async function getProjectsByFilter({
   search,
   page,
   rate,
@@ -8,8 +8,8 @@ export async function getProjectsByFilter(
   user_available,
   categories,
   sub_categories,
-  is_old
-) {
+  is_old,
+}) {
   const requestBody = {};
 
   if (page) requestBody.page = page;
@@ -36,7 +36,7 @@ export async function getProjectsByFilter(
   try {
     const req = await axios.post("/get_projects", requestBody);
 
-    return req.data;
+    return req.data.data;
   } catch (err) {
     throw new Error(err.message);
   }

@@ -36,7 +36,7 @@ function useProjectsList() {
       is_old,
     ],
     queryFn: () =>
-      getProjectsByFilter(
+      getProjectsByFilter({
         search,
         page,
         rate,
@@ -44,12 +44,12 @@ function useProjectsList() {
         user_available,
         categories,
         sub_categories,
-        is_old
-      ),
+        is_old,
+      }),
     retry: false,
   });
 
   return { isLoading, data, error };
 }
 
-export default useProjectsList
+export default useProjectsList;

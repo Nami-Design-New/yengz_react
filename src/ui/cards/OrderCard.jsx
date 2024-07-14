@@ -47,7 +47,7 @@ function OrderCard({ order }) {
                   ></div>
                 </div>
               </div>
-              <Link to="/recieved-request-orders" className="details">
+              <Link to={`/recieved-orders/${order.id}`} className="details">
                 التفاصيل
               </Link>
             </div>

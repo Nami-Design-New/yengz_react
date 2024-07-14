@@ -2,18 +2,21 @@ import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import DepartmentFilterBox from "../ui/filter/DepartmentFilterBox";
 import RatingFilterBox from "../ui/filter/RatingFilterBox";
-// import SellerFilterBox from "../ui/filter/SellerFilterBox";
 import SellerStatusFilterBox from "../ui/filter/SellerStatusFilterBox";
 import InputField from "../ui/form-elements/InputField";
-import useSearchServicesList from "../features/services/useSearchServicesList";
 import ServiceCard from "../ui/cards/ServiceCard";
 import { useTranslation } from "react-i18next";
 import useCategorieListWithSub from "../features/categories/useCategorieListWithSub";
+import useProjectsList from "../features/projects/useProjectsList";
+import EmptyData from "../ui/EmptyData";
+import DataLoader from "../ui/DataLoader";
 
-const Search = () => {
+function Projects() {
   const { t } = useTranslation();
-  const { isLoading: categoriesIsLoading, data: categoriesWithSubCategories } = useCategorieListWithSub();
-  const { isLoading: searchIsLoading, data: searchServicesList } = useSearchServicesList();
+  const { isLoading: categoriesIsLoading, data: categoriesWithSubCategories } =
+    useCategorieListWithSub();
+  const { isLoading: projectsIsLoading, data: projectsList } =
+    useProjectsList();
   const [searchParams, setSearchParams] = useSearchParams();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [searchFilterData, setSearchFilterData] = useState({
@@ -178,9 +181,9 @@ const Search = () => {
     }
   }, [searchParams, setSearchParams]);
 
-  return searchIsLoading || categoriesIsLoading ? (
+  return projectsIsLoading || categoriesIsLoading ? (
     <DataLoader />
-  ) :  (
+  ) : (
     <section className="search-section">
       <div className="container">
         <div className="row">
@@ -233,7 +236,7 @@ const Search = () => {
             </div>
           </aside>
           <div className="small-filter-header">
-            <h6>نتائج البحث</h6>
+            <h6>{t("projects.title")}</h6>
             <button
               className="openfilter"
               onClick={() => setIsFilterOpen(true)}
@@ -244,12 +247,15 @@ const Search = () => {
           <div className="col-lg-9 col-12 p-2 results-wrapper">
             <div className="container">
               <div className="row">
-                {searchServicesList &&
-                  searchServicesList.data.map((service) => (
-                    <div className="col-lg-4 col-6 p-2" key={service.id}>
-                      <ServiceCard service={service} />
+                {projectsList && projectsList.length > 0 ? (
+                  projectsList?.map((project) => (
+                    <div className="col-lg-4 col-6 p-2" key={project.id}>
+                      <ServiceCard service={project} />
                     </div>
-                  ))}
+                  ))
+                ) : (
+                  <EmptyData>{t("projects.emptyProjects")}</EmptyData>
+                )}
               </div>
             </div>
           </div>
@@ -257,6 +263,6 @@ const Search = () => {
       </div>
     </section>
   );
-};
+}
 
-export default Search;
+export default Projects;
