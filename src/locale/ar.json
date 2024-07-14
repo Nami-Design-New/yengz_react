@@ -16,11 +16,11 @@
     "search": "بحث",
     "contact": "اتصل بنا",
     "about": "من نحن",
-    "terms":"الاحكام",
+    "terms": "الاحكام",
     "how-it-work": "كيف يعمل",
-    "faq":"الأسئلة الشائعة",
-    "login":"تسجيل الدخول",
-    "logout":"تسجيل الخروج",
+    "faq": "الأسئلة الشائعة",
+    "login": "تسجيل الدخول",
+    "logout": "تسجيل الخروج",
     "register": "تسجيل حساب",
     "forget-password": "نسيت كلمة المرور",
     "profile": "الملف الشخصي",
@@ -224,7 +224,8 @@
     "updateSuccess": "تم تحديث الخدمة بنجاح",
     "serviceDeleted": "تم حذف الخدمة بنجاح",
     "noChangesMade": "لم يتم اكتشاف أي تغييرات. يرجى إجراء بعض التحديثات قبل الإرسال.",
-    "SimilarServices": "خدمات مماثلة "
+    "SimilarServices": "خدمات مماثلة ",
+    "yourDuesAfterfees": "المستحقات بعد الرسوم"
   },
   "search": {
     "searchFor": "ابحث عن...",
@@ -289,7 +290,13 @@
     "exploreServices": "استكشف الخدمات",
     "deleteSuccess": "تم الحذف من السلة بنجاح",
     "deleteCart": "حذف السلة",
-    "cartDelted": "تم حذف السلة"
+    "cartDelted": "تم حذف السلة",
+    "totalCart": "اجمالى السلة",
+    "orderNow": "طلب الان",
+    "currentBallance": "الرصيد الحالى",
+    "valueWillbediscountedfromyourballance": "سوف يتم خصم مبلغ: ",
+    "fromYourWallet": "من محفظتك",
+    "orderSuccess": "تم الطلب بنجاح"
   },
   "cancel": "الغاء",
   "homePage": "الرئيسية",

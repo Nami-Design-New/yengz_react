@@ -6,12 +6,13 @@ import VerifyStep2 from "./VerifyStep2";
 import VerifyStep3 from "./VerifyStep3";
 import VerifyStep4 from "./VerifyStep4";
 import { useSelector } from "react-redux";
+import Instructions from "./Instructions";
 
 const AuthVerifySteps = () => {
   const { t } = useTranslation();
   const [step, setStep] = useState(1);
   const { user } = useSelector((state) => state.authedUser);
-  const totalSteps = 4;
+  const totalSteps = 5;
   const [progress, setProgress] = useState((step / totalSteps) * 100);
   const [formData, setFormData] = useState({
     phone: "",
@@ -40,28 +41,29 @@ const AuthVerifySteps = () => {
       <div className="row justify-content-center">
         <div className="col-lg-8 col-12 p-2">
           <ProgressBar striped animated now={progress} />
-          {step === 1 && (
+          {step === 1 && <Instructions setStep={setStep} />}
+          {step === 2 && (
             <VerifyStep1
               setStep={setStep}
               formData={formData}
               setFormData={setFormData}
             />
           )}
-          {step === 2 && (
+          {step === 3 && (
             <VerifyStep2
               setStep={setStep}
               formData={formData}
               setFormData={setFormData}
             />
           )}
-          {step === 3 && (
+          {step === 4 && (
             <VerifyStep3
               setStep={setStep}
               formData={formData}
               setFormData={setFormData}
             />
           )}
-          {step === 4 && <VerifyStep4 setStep={setStep} />}
+          {step === 5 && <VerifyStep4 setStep={setStep} />}
         </div>
       </div>
     </section>

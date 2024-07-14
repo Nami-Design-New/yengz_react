@@ -124,8 +124,8 @@ const Footer = () => {
         </div>
         <div className="row">
           <div className="col-12 d-flex justify-content-between align-items-center">
-            <div className="flex-grow-1 flex-shrink-0 flex-basis-0 copy-rights d-flex justify-content-center">
-              <p>
+            <div className="flex-grow-1 flex-shrink-0 flex-basis-0 copy-rights d-flex">
+              <p className="mb-0">
                 {t("footer.copyright")} © {new Date().getFullYear()}{" "}
                 {t("footer.allRightsReserved")}
               </p>
@@ -142,7 +142,7 @@ const Footer = () => {
                       style={{
                         width: "50px",
                         objectFit: "cover",
-                        cursor: "pointer",
+                        cursor: "pointer"
                       }}
                     />
                   ))}

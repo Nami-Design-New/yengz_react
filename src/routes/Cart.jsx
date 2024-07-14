@@ -10,13 +10,19 @@ import { deleteCart } from "../services/apiCart";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import DataLoader from "../ui/DataLoader";
+import SubmitButton from "./../ui/form-elements/SubmitButton";
+import ConfirmationModal from "../ui/modals/ConfirmationModal";
+import OrderModal from "./../ui/modals/OrderModal";
 
 const Cart = () => {
   const { data: cartQuery, isLoading } = useCartList();
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const cart = useSelector((state) => state.cart.cartList);
   const [cartObjList, setCartObjList] = useState([]);
+  const [totalCartPrice, setTotalCartPrice] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [showConfirmPayModel, setShowConfirmPayModel] = useState(false);
+  const user = useSelector((state) => state.authedUser.user);
 
   useEffect(() => {
     if (cartQuery?.data?.length > 0) {
@@ -25,10 +31,14 @@ const Cart = () => {
         quantity: item?.quantity,
         developments: item?.service?.developments
           ?.filter((dev) => dev.in_cart !== false)
-          .map((dev) => dev.id),
+          .map((dev) => dev.id)
       }));
-
       setCartObjList(newCartObjList);
+      setTotalCartPrice(
+        cartQuery?.data?.reduce((acc, item) => {
+          return acc + item?.total;
+        }, 0)
+      );
     }
   }, [cartQuery]);
 
@@ -42,7 +52,7 @@ const Cart = () => {
             quantity: item.quantity,
             developments: item?.service?.developments?.map(
               (dev) => dev.in_cart === false && dev.id
-            ),
+            )
           }))
         )
       );
@@ -55,33 +65,14 @@ const Cart = () => {
   const queryClient = useQueryClient();
   const handleDelete = async () => {
     try {
+      setLoading(true);
       await deleteCart(queryClient);
       toast.success(t("cart.cartDelted"));
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
     }
-  };
-
-  const handleCheckboxChange = (id) => {
-    // setCartObjList((prevCartObj) => {
-    //   const newDevelopments = prevCartObj.developments.includes(id)
-    //     ? prevCartObj.developments.filter((devId) => devId !== id)
-    //     : [...prevCartObj.developments, id];
-
-    //   return {
-    //     ...prevCartObj,
-    //     developments: newDevelopments,
-    //   };
-    // });
-
-    dispatch(
-      updateSpesificItem({
-        ...cartObjList,
-        developments: cartObjList.developments.includes(id)
-          ? cartObjList.developments.filter((devId) => devId !== id)
-          : [...cartObjList.developments, id],
-      })
-    );
   };
 
   return isLoading ? (
@@ -92,19 +83,40 @@ const Cart = () => {
         {cartQuery?.data && cartQuery?.data?.length > 0 ? (
           <div className="col-12 p-2">
             {cartQuery?.data?.map((item) => (
-              <CartBox item={item} key={item.id} cartObjList={cartObjList} />
+              <CartBox
+                item={item}
+                key={item.id}
+                cartObjList={cartObjList}
+                setTotalCartPrice={setTotalCartPrice}
+                totalCartPrice={totalCartPrice}
+              />
             ))}
+            <div className="col-lg-5 col-12 p-2">
+              <div className="cartTotalPrice">
+                <p>{t("cart.totalCart")}:</p>
+                <h6 className="mb-0">
+                  {totalCartPrice}
+                  <i className="fa-solid fa-dollar-sign"></i>
+                </h6>
+              </div>
+            </div>
             <div className="container">
               <div className="row justify-content-center">
                 <div className="col-lg-6 col-md-6 col-12">
-                  <Link className="order-now" to="/checkout">
+                  <button
+                    className="order-now"
+                    onClick={() => setShowConfirmPayModel(true)}
+                  >
                     {t("services.orderNow")}
-                  </Link>
+                  </button>
                 </div>
                 <div className="col-lg-6 col-md-6 col-12">
-                  <button onClick={handleDelete} className="order-now delete">
-                    {t("cart.deleteCart")}
-                  </button>
+                  <SubmitButton
+                    className="order-now delete"
+                    name={t("cart.deleteCart")}
+                    onClick={handleDelete}
+                    loading={loading}
+                  />
                 </div>
               </div>
             </div>
@@ -119,6 +131,12 @@ const Cart = () => {
           </div>
         )}
       </div>
+      <OrderModal
+        setShowModal={setShowConfirmPayModel}
+        showModal={showConfirmPayModel}
+        ballance={user?.wallet}
+        cartTotalPrice={totalCartPrice}
+      />
     </section>
   );
 };
