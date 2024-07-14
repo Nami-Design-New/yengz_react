@@ -318,5 +318,7 @@
   "hours": "hours",
   "minutes": "minutes",
   "now": "now",
-  "and": "and"
+  "and": "and",
+  "details": "Details",
+  "emptyPurchases": "You don't have any purchases yet"
 }

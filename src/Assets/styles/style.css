@@ -1674,7 +1674,7 @@ body main .cart-section .cartTotalPrice h6 i {
   color: var(--text-color);
 }
 body main .cart-section .service {
-  padding-bottom: 32px;
+  padding-bottom: 16px;
   margin-bottom: 16px;
   border-bottom: 1px dashed var(--text-color);
 }
@@ -1832,6 +1832,9 @@ body main .cart-section .progress-card .time-price {
   justify-content: space-between;
 }
 body main .cart-section .progress-card .time-price span {
+  display: flex;
+  gap: 4px;
+  align-items: center;
   color: var(--black-color);
 }
 body main .cart-section .progress-card .time-price span i {

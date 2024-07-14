@@ -1544,7 +1544,7 @@ body {
         }
       }
       .service {
-        padding-bottom: 32px;
+        padding-bottom: 16px;
         margin-bottom: 16px;
         border-bottom: 1px dashed var(--text-color);
         &:last-child {
@@ -1684,6 +1684,9 @@ body {
         .time-price {
           @include space-between();
           span {
+            display: flex;
+            gap: 4px;
+            align-items: center;
             color: var(--black-color);
             i {
               color: var(--text-color);

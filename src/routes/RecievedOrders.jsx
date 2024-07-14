@@ -12,8 +12,6 @@ const RecievedRequest = () => {
   const { isLoading, data: serviceOrders } = useServiceOrdersList();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-  console.log(serviceOrders);
-
   function handleTogglingFilter() {
     setIsFilterOpen((open) => !open);
   }
@@ -37,17 +35,22 @@ const RecievedRequest = () => {
             </button>
           </div>
           <div className="col-lg-9 co-12">
-            {serviceOrders && serviceOrders?.length > 0 ? (
+            {serviceOrders && serviceOrders?.data?.length > 0 ? (
               <>
                 <div className="row">
-                  {serviceOrders?.map((order) => (
+                  {serviceOrders?.data?.map((order) => (
                     <OrderCard order={order} key={order.id} />
                   ))}
                 </div>
-                <CustomPagination count={serviceOrders?.total} pageSize={10} />
+                {serviceOrders?.total > 10 && (
+                  <CustomPagination
+                    count={serviceOrders?.total}
+                    pageSize={10}
+                  />
+                )}
               </>
             ) : (
-              <EmptyData>{t("recievedOrders.emptyOrders")}</EmptyData>
+              <EmptyData>{serviceOrders?.total === 0 ?  t("recievedOrders.emptyOrders") : t("recievedOrders.noOrders")}</EmptyData>
             )}
           </div>
         </div>
