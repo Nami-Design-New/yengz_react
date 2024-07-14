@@ -14,7 +14,7 @@ const PopularServicesSection = () => {
       <p className="sub-title" data-aos="fade-up">
         {t("home.bestServicesSubTitle")}
       </p>
-      {homeServices?.data?.map((category) => (
+      {homeServices?.map((category) => (
         <Department key={category?.id} category={category} />
       ))}
     </section>

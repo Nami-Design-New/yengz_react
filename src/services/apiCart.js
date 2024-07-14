@@ -56,7 +56,7 @@ export async function deleteCartItem(id, queryClient) {
 
 export async function updateDevelopmentsInCart(data, queryClient) {
   try {
-    await axios.post("/user/update_development_cart", { data });
+    await axios.post("/user/update_development_cart", { ...data });
     queryClient.invalidateQueries("cartList");
   } catch (error) {
     throw new Error(error.response?.data?.message || error.message);

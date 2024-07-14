@@ -879,6 +879,9 @@ body main .login-section .otp-small h1,
 body main .login-section .otp-small p {
   align-self: center !important;
 }
+body main .login-section .instructions {
+  padding: 32px 0 0;
+}
 body main .add-service {
   padding: 48px 0;
 }
@@ -1651,9 +1654,28 @@ body main .service-details .rating-cards-container::-webkit-scrollbar {
 body main .cart-section {
   padding: 60px 0;
 }
+body main .cart-section .cartTotalPrice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+body main .cart-section .cartTotalPrice p {
+  margin: 0;
+  font-size: 18px;
+}
+body main .cart-section .cartTotalPrice h6 {
+  color: var(--main-color);
+  font-weight: bold;
+  font-size: 22px;
+}
+body main .cart-section .cartTotalPrice h6 i {
+  margin: 0 4px;
+  color: var(--text-color);
+}
 body main .cart-section .service {
   padding-bottom: 32px;
-  margin-bottom: 48px;
+  margin-bottom: 16px;
   border-bottom: 1px dashed var(--text-color);
 }
 body main .cart-section .service:last-child {
@@ -1867,6 +1889,7 @@ body main .cart-section .order-now {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 4px;
 }
 body main .cart-section .order-now.delete {
   background: red;
@@ -4401,6 +4424,54 @@ body .confirm-delete .delete-btn {
   border-radius: 8px;
   border: 0;
   outline: none;
+}
+body .confirm-delete.other .delete-btn {
+  background: var(--main-color);
+}
+body .pay_modal .cancel-btn {
+  border: 1px solid var(--black-color);
+  color: var(--black-color);
+  width: 100%;
+  outline: none;
+  background: none;
+  padding: 8px;
+  border-radius: 8px;
+}
+body .pay_modal .order-now {
+  width: 100%;
+  padding: 8px;
+  background: var(--main-color);
+  color: var(--white-color);
+  border-radius: 8px;
+  border: 0;
+  outline: none;
+}
+body .pay_modal .current_ballance {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+body .pay_modal .current_ballance div {
+  margin: 0 !important;
+}
+body .pay_modal h3 {
+  color: var(--black-color);
+  font-weight: bold;
+  text-align: center;
+  font-size: 16px;
+}
+body .pay_modal h3 span {
+  font-size: 24px;
+  color: var(--main-color);
+}
+body .pay_modal h3 i {
+  color: var(--text-color);
+}
+@media (max-width: 576px) {
+  body .pay_modal h3 {
+    font-size: 16px;
+  }
 }
 body .dropdown-toggle::after {
   display: none;
