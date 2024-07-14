@@ -280,7 +280,12 @@
     "deleteSuccess": "Successfully removed from cart",
     "deleteCart": "Delete cart",
     "cartDelted": "Cart deleted successfully",
-    "totalCart": "Cart total"
+    "totalCart": "Cart total",
+    "orderNow": "Order Now",
+    "currentBallance": "Current ballance",
+    "valueWillbediscountedfromyourballance": "An amount will be deducted:",
+    "fromYourWallet": "from your wallet",
+    "orderSuccess": "Order successfully placed"
   },
   "status": {
     "all": "all",

@@ -4,12 +4,15 @@ import { useTranslation } from "react-i18next";
 import CartBox from "../ui/cart/CartBox";
 import useCartList from "../features/cart/useCartList";
 import emptyCart from "../Assets/images/emptyCart.svg";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateEntireCart } from "../redux/slices/cart";
 import { deleteCart } from "../services/apiCart";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import DataLoader from "../ui/DataLoader";
+import SubmitButton from "./../ui/form-elements/SubmitButton";
+import ConfirmationModal from "../ui/modals/ConfirmationModal";
+import OrderModal from "./../ui/modals/OrderModal";
 
 const Cart = () => {
   const { data: cartQuery, isLoading } = useCartList();
@@ -17,6 +20,9 @@ const Cart = () => {
   const dispatch = useDispatch();
   const [cartObjList, setCartObjList] = useState([]);
   const [totalCartPrice, setTotalCartPrice] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [showConfirmPayModel, setShowConfirmPayModel] = useState(false);
+  const user = useSelector((state) => state.authedUser.user);
 
   useEffect(() => {
     if (cartQuery?.data?.length > 0) {
@@ -59,10 +65,13 @@ const Cart = () => {
   const queryClient = useQueryClient();
   const handleDelete = async () => {
     try {
+      setLoading(true);
       await deleteCart(queryClient);
       toast.success(t("cart.cartDelted"));
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -94,14 +103,20 @@ const Cart = () => {
             <div className="container">
               <div className="row justify-content-center">
                 <div className="col-lg-6 col-md-6 col-12">
-                  <Link className="order-now" to="/checkout">
+                  <button
+                    className="order-now"
+                    onClick={() => setShowConfirmPayModel(true)}
+                  >
                     {t("services.orderNow")}
-                  </Link>
+                  </button>
                 </div>
                 <div className="col-lg-6 col-md-6 col-12">
-                  <button onClick={handleDelete} className="order-now delete">
-                    {t("cart.deleteCart")}
-                  </button>
+                  <SubmitButton
+                    className="order-now delete"
+                    name={t("cart.deleteCart")}
+                    onClick={handleDelete}
+                    loading={loading}
+                  />
                 </div>
               </div>
             </div>
@@ -116,6 +131,12 @@ const Cart = () => {
           </div>
         )}
       </div>
+      <OrderModal
+        setShowModal={setShowConfirmPayModel}
+        showModal={showConfirmPayModel}
+        ballance={user?.wallet}
+        cartTotalPrice={totalCartPrice}
+      />
     </section>
   );
 };

@@ -291,7 +291,12 @@
     "deleteSuccess": "تم الحذف من السلة بنجاح",
     "deleteCart": "حذف السلة",
     "cartDelted": "تم حذف السلة",
-    "totalCart": "اجمالى السلة"
+    "totalCart": "اجمالى السلة",
+    "orderNow": "طلب الان",
+    "currentBallance": "الرصيد الحالى",
+    "valueWillbediscountedfromyourballance": "سوف يتم خصم مبلغ: ",
+    "fromYourWallet": "من محفظتك",
+    "orderSuccess": "تم الطلب بنجاح"
   },
   "cancel": "الغاء",
   "homePage": "الرئيسية",

@@ -107,7 +107,15 @@ const ServiceDetails = () => {
         quantity: prevCartObj.quantity + 1
       }));
     }
-    setTotalPrice((prevTotalPrice) => prevTotalPrice + (service?.price || 0));
+    const newQuantity = cartObj.quantity + 1;
+    const developmentsTotalPrice =
+      cartObj.developments.reduce((acc, devId) => {
+        const development = service?.developments?.find(
+          (dev) => dev.id === devId
+        );
+        return acc + (development?.price || 0);
+      }, 0) * newQuantity;
+    setTotalPrice((service?.price || 0) * newQuantity + developmentsTotalPrice);
   };
 
   const handleDecreaseQuantity = async () => {
@@ -126,10 +134,18 @@ const ServiceDetails = () => {
           ...prevCartObj,
           quantity: prevCartObj.quantity - 1
         }));
-        setTotalPrice(
-          (prevTotalPrice) => prevTotalPrice - (service?.price || 0)
-        );
       }
+      const newQuantity = cartObj.quantity - 1;
+      const developmentsTotalPrice =
+        cartObj.developments.reduce((acc, devId) => {
+          const development = service?.developments?.find(
+            (dev) => dev.id === devId
+          );
+          return acc + (development?.price || 0);
+        }, 0) * newQuantity;
+      setTotalPrice(
+        (service?.price || 0) * newQuantity + developmentsTotalPrice
+      );
     } else return;
   };
 
@@ -158,9 +174,11 @@ const ServiceDetails = () => {
     setTotalPrice((prevTotalPrice) =>
       isChecked
         ? prevTotalPrice -
-          (service?.developments?.find((item) => item?.id === id)?.price || 0)
+          (service?.developments?.find((item) => item?.id === id)?.price *
+            cartObj?.quantity || 0)
         : prevTotalPrice +
-          (service?.developments?.find((item) => item?.id === id)?.price || 0)
+          (service?.developments?.find((item) => item?.id === id)?.price *
+            cartObj?.quantity || 0)
     );
   };
 
