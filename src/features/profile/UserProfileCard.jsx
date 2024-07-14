@@ -9,7 +9,6 @@ import {
 
 const UserProfileCard = ({ user, isMyAccount }) => {
   const { t } = useTranslation();
-  console.log(isMyAccount);
 
   return (
     <div className="profile-descripe">

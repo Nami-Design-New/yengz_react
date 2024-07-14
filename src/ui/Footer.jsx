@@ -2,9 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import logo from "../Assets/images/logo.svg";
+import usePaymentMethodsList from "../features/payments/usePaymentMethodsList";
 
 const Footer = () => {
+  const { data: payments } = usePaymentMethodsList();
   const { t } = useTranslation();
+
   return (
     <footer>
       <div className="container">
@@ -120,13 +123,32 @@ const Footer = () => {
           </div>
         </div>
         <div className="row">
-          <div className="col-12">
-            <div className="copy-rights d-flex justify-content-around">
+          <div className="col-12 d-flex justify-content-between align-items-center">
+            <div className="flex-grow-1 flex-shrink-0 flex-basis-0 copy-rights d-flex justify-content-center">
               <p>
                 {t("footer.copyright")} © {new Date().getFullYear()}{" "}
                 {t("footer.allRightsReserved")}
               </p>
             </div>
+            {payments && payments?.length > 0 && (
+              <div className="footer-payment d-flex align-items-center h-full gap-2">
+                <span>{t("footer.paymentMethods")}:</span>
+                <div className="d-flex align-items-center gap-2">
+                  {payments?.map((payment) => (
+                    <img
+                      src={payment.image}
+                      key={payment.id}
+                      alt={`payment ${payment.id}`}
+                      style={{
+                        width: "50px",
+                        objectFit: "cover",
+                        cursor: "pointer",
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

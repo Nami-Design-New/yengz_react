@@ -115,8 +115,6 @@ const About = () => {
                 <Swiper
                   spaceBetween={32}
                   slidesPerView={3}
-                  onSlideChange={() => console.log("slide change")}
-                  onSwiper={(swiper) => console.log(swiper)}
                 >
                   <SwiperSlide>
                     <div className="swiper-slide">

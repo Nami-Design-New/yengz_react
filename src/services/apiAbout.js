@@ -4,7 +4,6 @@ import axios from "./../utils/axios";
 export async function getAbout() {
   try {
     const req = await axios.get("/get_about_app");
-    // console.log(req.data, "1");
 
     return req.data.data;
   } catch (err) {
@@ -16,7 +15,6 @@ export async function getAbout() {
 export async function getAboutCategory(id) {
   try {
     const req = await axios.post("/get_about_app_categories", { id });
-    // console.log(req.data, "2");
 
     return req.data.data;
   } catch (err) {
@@ -28,7 +26,6 @@ export async function getAboutCategory(id) {
 export async function getAboutData(id) {
   try {
     const req = await axios.post("/get_about_app_data", { id });
-    // console.log(req.data, "3");
 
     return req.data.data;
   } catch (err) {
@@ -41,8 +38,6 @@ export async function getAboutData(id) {
 export async function getOurPartner() {
   try {
     const req = await axios.get("/get_partners");
-
-    // console.log(req.data, "4");
 
     return req.data.data;
   } catch (err) {

@@ -27,10 +27,6 @@ function useInitializeAuth() {
         ) {
           axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
           getProfile(stringId, {
-            onSuccess: (data) => {
-              console.log(data);
-              // Handle success (e.g., store profile data in Redux)
-            },
             onError: (error) => {
               console.error("Error fetching profile:", error.message);
               // Handle error (e.g., remove invalid cookies, dispatch logout)

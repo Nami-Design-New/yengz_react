@@ -1,4 +1,34 @@
 {
+  "routes": {
+    "service": "Service",
+    "add-service": "Add Service",
+    "edit-service": "Edit Service",
+    "similar-services": "Similar Services",
+    "categories": "Categories",
+    "purchases": "Purchases",
+    "order-details": "Order Details",
+    "recieved-request": "Recieved Requests",
+    "projects": "Projects",
+    "request-details": "Request Details",
+    "request-add": "Add Request",
+    "chat": "Chat",
+    "verify-user": "Verify User",
+    "search": "Search",
+    "contact": "Contact Us",
+    "about": "About Us",
+    "terms": "Terms",
+    "how-it-work": "How It Work",
+    "faq": "FAQ",
+    "login": "Login",
+    "logout": "Logout",
+    "register": "Register",
+    "forget-password": "Forget Password",
+    "profile": "Profile",
+    "edit-profile": "Edit Profile",
+    "cart": "Cart",
+    "notifications": "Notifications",
+    "recieved-request-orders": "Recieved Request Orders"
+  },
   "auth": {
     "loginPageTitle": "Login",
     "loginPageSubTitle": "Hey, you ...! Enter your registered data to complete the login process",
@@ -64,6 +94,7 @@
     "purchase": "Purchase",
     "requestsRecieved": "Requests Recieved",
     "serviceAsYouLike": " Service As You Like",
+    "projects": "Projects",
     "searchFor": "Search For...",
     "login": "Login",
     "newAccount": "New Account",
@@ -102,7 +133,8 @@
     "rightsReserved": "Guarantee of rights",
     "howYengzWork": "How Yengz works",
     "copyright": "Copyright",
-    "allRightsReserved": "All rights reserved for Yengz"
+    "allRightsReserved": "All rights reserved for Yengz",
+    "paymentMethods": "Payment Methods"
   },
   "profile": {
     "editProfile": "Edit Profile",
