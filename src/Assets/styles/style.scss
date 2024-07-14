@@ -1523,9 +1523,26 @@ body {
     }
     .cart-section {
       padding: 60px 0;
+      .cartTotalPrice {
+        @include space-between();
+        margin-bottom: 32px;
+        p {
+          margin: 0;
+          font-size: 18px;
+        }
+        h6 {
+          color: var(--main-color);
+          font-weight: bold;
+          font-size: 22px;
+          i {
+            margin: 0 4px;
+            color: var(--text-color);
+          }
+        }
+      }
       .service {
         padding-bottom: 32px;
-        margin-bottom: 48px;
+        margin-bottom: 16px;
         border-bottom: 1px dashed var(--text-color);
         &:last-child {
           border-bottom: 0 !important;

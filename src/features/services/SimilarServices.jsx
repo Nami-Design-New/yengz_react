@@ -8,7 +8,7 @@ import ServiceCard from "./../../ui/cards/ServiceCard";
 const SimilarServices = ({ services }) => {
   const { t } = useTranslation();
   return (
-    <section className="service-details container pt-0">
+    <section className="mb-5 container pt-0">
       <div className="container">
         {/* section head */}
         <div className="row-head" data-aos="fade-up">

@@ -278,7 +278,8 @@
     "exploreServices": "Explore services",
     "deleteSuccess": "Successfully removed from cart",
     "deleteCart": "Delete cart",
-    "cartDelted": "Cart deleted successfully"
+    "cartDelted": "Cart deleted successfully",
+    "totalCart": "Cart total"
   },
   "status": {
     "all": "all",

@@ -1651,9 +1651,28 @@ body main .service-details .rating-cards-container::-webkit-scrollbar {
 body main .cart-section {
   padding: 60px 0;
 }
+body main .cart-section .cartTotalPrice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+body main .cart-section .cartTotalPrice p {
+  margin: 0;
+  font-size: 18px;
+}
+body main .cart-section .cartTotalPrice h6 {
+  color: var(--main-color);
+  font-weight: bold;
+  font-size: 22px;
+}
+body main .cart-section .cartTotalPrice h6 i {
+  margin: 0 4px;
+  color: var(--text-color);
+}
 body main .cart-section .service {
   padding-bottom: 32px;
-  margin-bottom: 48px;
+  margin-bottom: 16px;
   border-bottom: 1px dashed var(--text-color);
 }
 body main .cart-section .service:last-child {

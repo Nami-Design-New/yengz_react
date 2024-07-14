@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import CartBox from "../ui/cart/CartBox";
 import useCartList from "../features/cart/useCartList";
 import emptyCart from "../Assets/images/emptyCart.svg";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { updateEntireCart } from "../redux/slices/cart";
 import { deleteCart } from "../services/apiCart";
 import { useQueryClient } from "@tanstack/react-query";
@@ -15,8 +15,8 @@ const Cart = () => {
   const { data: cartQuery, isLoading } = useCartList();
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const cart = useSelector((state) => state.cart.cartList);
   const [cartObjList, setCartObjList] = useState([]);
+  const [totalCartPrice, setTotalCartPrice] = useState(0);
 
   useEffect(() => {
     if (cartQuery?.data?.length > 0) {
@@ -25,10 +25,14 @@ const Cart = () => {
         quantity: item?.quantity,
         developments: item?.service?.developments
           ?.filter((dev) => dev.in_cart !== false)
-          .map((dev) => dev.id),
+          .map((dev) => dev.id)
       }));
-
       setCartObjList(newCartObjList);
+      setTotalCartPrice(
+        cartQuery?.data?.reduce((acc, item) => {
+          return acc + item?.total;
+        }, 0)
+      );
     }
   }, [cartQuery]);
 
@@ -42,7 +46,7 @@ const Cart = () => {
             quantity: item.quantity,
             developments: item?.service?.developments?.map(
               (dev) => dev.in_cart === false && dev.id
-            ),
+            )
           }))
         )
       );
@@ -62,28 +66,6 @@ const Cart = () => {
     }
   };
 
-  const handleCheckboxChange = (id) => {
-    // setCartObjList((prevCartObj) => {
-    //   const newDevelopments = prevCartObj.developments.includes(id)
-    //     ? prevCartObj.developments.filter((devId) => devId !== id)
-    //     : [...prevCartObj.developments, id];
-
-    //   return {
-    //     ...prevCartObj,
-    //     developments: newDevelopments,
-    //   };
-    // });
-
-    dispatch(
-      updateSpesificItem({
-        ...cartObjList,
-        developments: cartObjList.developments.includes(id)
-          ? cartObjList.developments.filter((devId) => devId !== id)
-          : [...cartObjList.developments, id],
-      })
-    );
-  };
-
   return isLoading ? (
     <DataLoader />
   ) : (
@@ -92,8 +74,23 @@ const Cart = () => {
         {cartQuery?.data && cartQuery?.data?.length > 0 ? (
           <div className="col-12 p-2">
             {cartQuery?.data?.map((item) => (
-              <CartBox item={item} key={item.id} cartObjList={cartObjList} />
+              <CartBox
+                item={item}
+                key={item.id}
+                cartObjList={cartObjList}
+                setTotalCartPrice={setTotalCartPrice}
+                totalCartPrice={totalCartPrice}
+              />
             ))}
+            <div className="col-lg-5 col-12 p-2">
+              <div className="cartTotalPrice">
+                <p>{t("cart.totalCart")}:</p>
+                <h6 className="mb-0">
+                  {totalCartPrice}
+                  <i className="fa-solid fa-dollar-sign"></i>
+                </h6>
+              </div>
+            </div>
             <div className="container">
               <div className="row justify-content-center">
                 <div className="col-lg-6 col-md-6 col-12">

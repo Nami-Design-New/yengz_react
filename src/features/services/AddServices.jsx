@@ -76,8 +76,16 @@ const AddServices = () => {
       ...formData,
       images: formData.images.filter((image) =>
         image?.type?.startsWith("image/")
-      )
+      ),
+      developments: formData?.developments?.map((dev) => ({
+        id: dev?.id || null,
+        description: dev?.description,
+        price: dev?.price,
+        duration: dev?.duration
+      }))
     };
+
+    console.log(dataToSendForUpdate);
 
     try {
       if (service?.id) {
