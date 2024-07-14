@@ -287,6 +287,10 @@
     "noOrders": "There is no orders right now",
     "emptyOrders": "There is no orders with this status, please try something else..."
   },
+  "prjects": {
+    "title": "Projects",
+    "emptyProjects": "There are no projects with this filter, please try something else..."
+  },
   "status": {
     "all": "all",
     "new": "new",

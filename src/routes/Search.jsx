@@ -12,8 +12,8 @@ import useCategorieListWithSub from "../features/categories/useCategorieListWith
 
 const Search = () => {
   const { t } = useTranslation();
-  const { data: categoriesWithSubCategories } = useCategorieListWithSub();
-  const { data: searchServicesList } = useSearchServicesList();
+  const { isLoading: categoriesIsLoading, data: categoriesWithSubCategories } = useCategorieListWithSub();
+  const { isLoading: searchIsLoading, data: searchServicesList } = useSearchServicesList();
   const [searchParams, setSearchParams] = useSearchParams();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [searchFilterData, setSearchFilterData] = useState({
@@ -178,7 +178,9 @@ const Search = () => {
     }
   }, [searchParams, setSearchParams]);
 
-  return (
+  return searchIsLoading || categoriesIsLoading ? (
+    <DataLoader />
+  ) :  (
     <section className="search-section">
       <div className="container">
         <div className="row">

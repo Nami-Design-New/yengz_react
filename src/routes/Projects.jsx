@@ -8,11 +8,15 @@ import ServiceCard from "../ui/cards/ServiceCard";
 import { useTranslation } from "react-i18next";
 import useCategorieListWithSub from "../features/categories/useCategorieListWithSub";
 import useProjectsList from "../features/projects/useProjectsList";
+import EmptyData from "../ui/EmptyData";
+import DataLoader from "../ui/DataLoader";
 
 function Projects() {
   const { t } = useTranslation();
-  const { data: categoriesWithSubCategories } = useCategorieListWithSub();
-  const { data: projectsList } = useProjectsList();
+  const { isLoading: categoriesIsLoading, data: categoriesWithSubCategories } =
+    useCategorieListWithSub();
+  const { isLoading: projectsIsLoading, data: projectsList } =
+    useProjectsList();
   const [searchParams, setSearchParams] = useSearchParams();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [searchFilterData, setSearchFilterData] = useState({
@@ -177,7 +181,9 @@ function Projects() {
     }
   }, [searchParams, setSearchParams]);
 
-  return (
+  return projectsIsLoading || categoriesIsLoading ? (
+    <DataLoader />
+  ) : (
     <section className="search-section">
       <div className="container">
         <div className="row">
@@ -230,7 +236,7 @@ function Projects() {
             </div>
           </aside>
           <div className="small-filter-header">
-            <h6>نتائج البحث</h6>
+            <h6>{t("projects.title")}</h6>
             <button
               className="openfilter"
               onClick={() => setIsFilterOpen(true)}
@@ -241,13 +247,15 @@ function Projects() {
           <div className="col-lg-9 col-12 p-2 results-wrapper">
             <div className="container">
               <div className="row">
-                {projectsList &&
-                  projectsList.length > 0 &&
+                {projectsList && projectsList.length > 0 ? (
                   projectsList?.map((project) => (
                     <div className="col-lg-4 col-6 p-2" key={project.id}>
                       <ServiceCard service={project} />
                     </div>
-                  ))}
+                  ))
+                ) : (
+                  <EmptyData>{t("projects.emptyProjects")}</EmptyData>
+                )}
               </div>
             </div>
           </div>

@@ -4,10 +4,11 @@ import OrderCard from "../ui/cards/OrderCard";
 import useServiceOrdersList from "../features/orders/useServiceOrdersList";
 import { useTranslation } from "react-i18next";
 import EmptyData from "../ui/EmptyData";
+import DataLoader from "../ui/DataLoader";
 
 const RecievedRequest = () => {
   const { t } = useTranslation();
-  const { data: serviceOrders } = useServiceOrdersList();
+  const { isLoading, data: serviceOrders } = useServiceOrdersList();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   console.log(serviceOrders);
@@ -16,7 +17,9 @@ const RecievedRequest = () => {
     setIsFilterOpen((open) => !open);
   }
 
-  return (
+  return isLoading ? (
+    <DataLoader />
+  ) : (
     <main>
       <section className="cart-section container search-section">
         <div className="row">
