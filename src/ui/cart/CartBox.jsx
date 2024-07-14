@@ -32,7 +32,9 @@ function CartBox({ item, cartObjList }) {
     const developmentsPrice = item?.service?.developments
       ?.filter((dev) => dev.in_cart)
       .reduce((acc, dev) => acc + dev.price, 0);
-    setTotalPrice(item?.quantity * item?.service?.price + developmentsPrice);
+    setTotalPrice(
+      item?.quantity * item?.service?.price + developmentsPrice * item?.quantity
+    );
   }, [item]);
 
   const handleDeleteBox = async (id) => {

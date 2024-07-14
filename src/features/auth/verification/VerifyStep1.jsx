@@ -15,7 +15,7 @@ const VerifyStep1 = ({ setStep, formData, setFormData }) => {
     try {
       const res = await axios.post("/user/sendOtpCode", formData);
       if (res.data.code === 200) {
-        setStep(2);
+        setStep(3);
         setFormData({
           ...formData,
           hashed_code: res.data.data
@@ -37,11 +37,18 @@ const VerifyStep1 = ({ setStep, formData, setFormData }) => {
         id="phone"
         icon={<IconDeviceMobile stroke={2} />}
       />
-      <SubmitButton
-        name={t("next")}
-        loading={loading}
-        className={"w-25 mt-4 align-self-end"}
-      />
+      <div className="d-flex justify-content-between mt-4 w-100">
+        <button
+          className="back_btn"
+          onClick={(e) => {
+            e.preventDefault();
+            setStep(1);
+          }}
+        >
+          {t("back")}
+        </button>
+        <SubmitButton name={t("next")} loading={loading} className={"w-25 "} />
+      </div>
     </form>
   );
 };

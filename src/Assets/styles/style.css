@@ -879,6 +879,9 @@ body main .login-section .otp-small h1,
 body main .login-section .otp-small p {
   align-self: center !important;
 }
+body main .login-section .instructions {
+  padding: 32px 0 0;
+}
 body main .add-service {
   padding: 48px 0;
 }

@@ -81,7 +81,10 @@ const ServiceDetails = () => {
         quantity: itemFromCart ? itemFromCart.quantity : 1,
         developments: itemFromCart ? itemFromCart.developments : []
       });
-      setTotalPrice(servicePrice + developmentsTotalPrice);
+      setTotalPrice(
+        (servicePrice || 0) +
+          (developmentsTotalPrice || 0) * (itemFromCart?.quantity || 1)
+      );
       if (itemFromCart?.id) {
         setInCart(true);
       }
@@ -104,7 +107,7 @@ const ServiceDetails = () => {
         quantity: prevCartObj.quantity + 1
       }));
     }
-    setTotalPrice((prevTotalPrice) => prevTotalPrice + service?.price);
+    setTotalPrice((prevTotalPrice) => prevTotalPrice + (service?.price || 0));
   };
 
   const handleDecreaseQuantity = async () => {
@@ -123,7 +126,9 @@ const ServiceDetails = () => {
           ...prevCartObj,
           quantity: prevCartObj.quantity - 1
         }));
-        setTotalPrice((prevTotalPrice) => prevTotalPrice - service?.price);
+        setTotalPrice(
+          (prevTotalPrice) => prevTotalPrice - (service?.price || 0)
+        );
       }
     } else return;
   };
@@ -282,7 +287,7 @@ const ServiceDetails = () => {
                               )}
                             </p>
                             <h6>
-                              {totalPrice}
+                              {totalPrice || 0}
                               <i className="fa-solid fa-dollar-sign"></i>
                             </h6>
                           </div>

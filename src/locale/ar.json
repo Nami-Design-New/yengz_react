@@ -224,7 +224,8 @@
     "updateSuccess": "تم تحديث الخدمة بنجاح",
     "serviceDeleted": "تم حذف الخدمة بنجاح",
     "noChangesMade": "لم يتم اكتشاف أي تغييرات. يرجى إجراء بعض التحديثات قبل الإرسال.",
-    "SimilarServices": "خدمات مماثلة "
+    "SimilarServices": "خدمات مماثلة ",
+    "yourDuesAfterfees": "المستحقات بعد الرسوم"
   },
   "search": {
     "searchFor": "ابحث عن...",

@@ -15,7 +15,7 @@ const VerifyStep2 = ({ setStep, formData, setFormData }) => {
     try {
       const res = await axios.post("/user/verify_phone", formData);
       if (res.data.code === 200) {
-        setStep(3);
+        setStep(4);
       }
     } catch (error) {
       throw new Error(error.message);
@@ -42,7 +42,7 @@ const VerifyStep2 = ({ setStep, formData, setFormData }) => {
           className="back_btn"
           onClick={(e) => {
             e.preventDefault();
-            setStep(1);
+            setStep(2);
           }}
         >
           {t("back")}
