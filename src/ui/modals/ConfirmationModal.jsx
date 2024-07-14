@@ -16,7 +16,7 @@ const ConfirmationModal = ({
     <Modal show={showModal} onHide={() => setShowModal(false)} centered>
       <Modal.Header className="pb-0" closeButton />
       <Modal.Body
-        className={`${type === "delete" ? "confirm-delete" : "other"}`}
+        className={`confirm-delete ${type === "delete" ? "" : "other"}`}
       >
         <p>
           {text} <span>{target}</span>

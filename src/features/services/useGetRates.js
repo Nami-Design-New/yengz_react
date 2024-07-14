@@ -1,4 +1,3 @@
-
 import { useQuery } from "@tanstack/react-query";
 import { getRates } from "../../services/apiServices";
 import { useParams } from "react-router-dom";

@@ -4,9 +4,11 @@ import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import galleryIcon from "../../Assets/images/gallery.svg";
 import InputField from "../../ui/form-elements/InputField";
 import { toast } from "react-toastify";
+import useGetSettings from "../settings/useGetSettings";
 
 const WizardStep2 = ({ formData, setFormData, setStep }) => {
   const { t } = useTranslation();
+  const { data: settings } = useGetSettings();
   const [formValid, setFormValid] = useState(false);
   const renderTooltip = (props) => (
     <Tooltip id="button-tooltip" {...props}>
@@ -126,15 +128,35 @@ const WizardStep2 = ({ formData, setFormData, setStep }) => {
           )}
         </div>
       </div>
-      <InputField
-        label={t("addService.servicePrice")}
-        type="number"
-        id="price"
-        name="price"
-        min={0}
-        value={formData.price}
-        onChange={handleChange}
-      />
+      <div className="d-flex gap-2 w-100">
+        <InputField
+          label={t("addService.servicePrice")}
+          type="number"
+          id="price"
+          name="price"
+          min={0}
+          placeHolder={"00"}
+          value={formData.price}
+          onChange={handleChange}
+        />
+        <InputField
+          label={
+            t("addService.yourDuesAfterfees") +
+            "  (" +
+            settings?.data?.service_percentage +
+            "%)"
+          }
+          type="number"
+          id="price"
+          reedonly
+          name="price"
+          min={0}
+          style={{ userSelect: "none" }}
+          value={
+            (formData.price * (100 - settings?.data?.service_percentage)) / 100
+          }
+        />
+      </div>
       <InputField
         label={t("addService.serviceDays")}
         type="number"

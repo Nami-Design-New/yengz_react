@@ -28,7 +28,7 @@ const VerifyStep3 = ({ setStep, formData, setFormData }) => {
         }
       );
       if (res?.data?.code === 200) {
-        setStep(4);
+        setStep(5);
       }
     } catch (error) {
       throw new Error(error.message);
@@ -127,16 +127,12 @@ const VerifyStep3 = ({ setStep, formData, setFormData }) => {
           className="back_btn"
           onClick={(e) => {
             e.preventDefault();
-            setStep(2);
+            setStep(3);
           }}
         >
           {t("back")}
         </button>
-        <SubmitButton
-          name={t("next")}
-          loading={loading}
-          className={"w-25 "}
-        />
+        <SubmitButton name={t("next")} loading={loading} className={"w-25 "} />
       </div>
     </form>
   );
