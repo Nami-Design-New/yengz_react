@@ -36,7 +36,7 @@ export async function getProjectsByFilter({
   try {
     const req = await axios.post("/get_projects", requestBody);
 
-    return req.data.data;
+    return req.data;
   } catch (err) {
     throw new Error(err.message);
   }

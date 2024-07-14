@@ -9,11 +9,15 @@ import useSearchServicesList from "../features/services/useSearchServicesList";
 import ServiceCard from "../ui/cards/ServiceCard";
 import { useTranslation } from "react-i18next";
 import useCategorieListWithSub from "../features/categories/useCategorieListWithSub";
+import DataLoader from "../ui/DataLoader";
+import CustomPagination from "../ui/CustomPagination";
 
 const Search = () => {
   const { t } = useTranslation();
-  const { isLoading: categoriesIsLoading, data: categoriesWithSubCategories } = useCategorieListWithSub();
-  const { isLoading: searchIsLoading, data: searchServicesList } = useSearchServicesList();
+  const { isLoading: categoriesIsLoading, data: categoriesWithSubCategories } =
+    useCategorieListWithSub();
+  const { isLoading: searchIsLoading, data: searchServicesList } =
+    useSearchServicesList();
   const [searchParams, setSearchParams] = useSearchParams();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [searchFilterData, setSearchFilterData] = useState({
@@ -180,7 +184,7 @@ const Search = () => {
 
   return searchIsLoading || categoriesIsLoading ? (
     <DataLoader />
-  ) :  (
+  ) : (
     <section className="search-section">
       <div className="container">
         <div className="row">
@@ -251,6 +255,12 @@ const Search = () => {
                     </div>
                   ))}
               </div>
+              {searchServicesList && (
+                <CustomPagination
+                  count={searchServicesList?.total}
+                  pageSize={10}
+                />
+              )}
             </div>
           </div>
         </div>

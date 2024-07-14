@@ -5,6 +5,7 @@ import useServiceOrdersList from "../features/orders/useServiceOrdersList";
 import { useTranslation } from "react-i18next";
 import EmptyData from "../ui/EmptyData";
 import DataLoader from "../ui/DataLoader";
+import CustomPagination from "../ui/CustomPagination";
 
 const RecievedRequest = () => {
   const { t } = useTranslation();
@@ -37,9 +38,14 @@ const RecievedRequest = () => {
           </div>
           <div className="col-lg-9 co-12">
             {serviceOrders && serviceOrders?.length > 0 ? (
-              serviceOrders?.map((order) => (
-                <OrderCard order={order} key={order.id} />
-              ))
+              <>
+                <div className="row">
+                  {serviceOrders?.map((order) => (
+                    <OrderCard order={order} key={order.id} />
+                  ))}
+                </div>
+                <CustomPagination count={serviceOrders?.total} pageSize={10} />
+              </>
             ) : (
               <EmptyData>{t("recievedOrders.emptyOrders")}</EmptyData>
             )}
