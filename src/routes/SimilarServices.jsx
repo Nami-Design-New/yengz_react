@@ -6,13 +6,9 @@ import { Link } from "react-router-dom";
 import SimillarServCard from "../ui/cards/SimillarServCard";
 
 const SimilarServices = ({ similar_services }) => {
-
   const { t } = useTranslation();
 
-  console.log(similar_services);
-
   return (
-
     <section className="SimilarServices">
       <div className="container">
         {/* section head */}
@@ -58,7 +54,6 @@ const SimilarServices = ({ similar_services }) => {
         </div>
       </div>
     </section>
-
   );
 };
 

@@ -5147,4 +5147,17 @@ body.en main .row-head a i {
   -o-object-fit: cover;
      object-fit: cover;
   width: 100% !important;
+}
+
+.partener-slide {
+  flex: 1 0 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.partener-slide img {
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }/*# sourceMappingURL=style.css.map */

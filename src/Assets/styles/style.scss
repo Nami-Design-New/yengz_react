@@ -4855,3 +4855,15 @@ body {
     width: 100% !important;
   }
 }
+.partener-slide {
+  flex: 1 0 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    height: 100%;
+    object-fit: cover;
+  }
+}

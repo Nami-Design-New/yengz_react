@@ -132,7 +132,7 @@ const Footer = () => {
             </div>
             {payments && payments?.length > 0 && (
               <div className="footer-payment d-flex align-items-center h-full gap-2">
-                <span>{t("footer.paymentMethods")}:</span>
+                <span>{t("footer.acceptPaymentsBy")}:</span>
                 <div className="d-flex align-items-center gap-2">
                   {payments?.map((payment) => (
                     <img

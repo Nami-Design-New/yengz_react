@@ -16,11 +16,11 @@
     "search": "بحث",
     "contact": "اتصل بنا",
     "about": "من نحن",
-    "terms":"الاحكام",
+    "terms": "الاحكام",
     "how-it-work": "كيف يعمل",
-    "faq":"الأسئلة الشائعة",
-    "login":"تسجيل الدخول",
-    "logout":"تسجيل الخروج",
+    "faq": "الأسئلة الشائعة",
+    "login": "تسجيل الدخول",
+    "logout": "تسجيل الخروج",
     "register": "تسجيل حساب",
     "forget-password": "نسيت كلمة المرور",
     "profile": "الملف الشخصي",
@@ -124,7 +124,9 @@
     "emailAddress": "البريد الالكتروني",
     "send": "ارسال",
     "latestProjects": "احدث المشاريع",
-    "latestProjectsSubTitle": "احدث المشاريع الأكثر مشاهدة في السوق"
+    "latestProjectsSubTitle": "احدث المشاريع الأكثر مشاهدة في السوق",
+    "parteners": "الشركاء",
+    "partenersSubTitle": "شركائنا في النجاح والتطوير"
   },
   "footer": {
     "importantLinks": "روابط مهمة",
@@ -137,7 +139,7 @@
     "howYengzWork": "كيف يعمل ينجز",
     "copyright": "حقوق النشر",
     "allRightsReserved": "جميع الحقوق محفوظة لدى ينجز",
-    "paymentMethods": "طرق الدفع"
+    "acceptPaymentsBy": "نقبل الدفع بـ"
   },
   "profile": {
     "editProfile": "تعديل الملف الشخصي",
