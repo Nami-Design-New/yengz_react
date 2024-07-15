@@ -4873,6 +4873,7 @@ body {
   }
 
   .modal-body {
+    min-width: 300px;
     width: 50%;
     flex: 1 0 0;
     padding: 0 !important;
@@ -4880,8 +4881,13 @@ body {
     position: relative;
     display: flex;
     flex-direction: row-reverse !important;
+
+    @media (max-width: 992px) {
+      width: 100%;
+    }
   }
   .modal-header {
+    min-width: 300px;
     flex: 1 0 0;
     display: flex;
     flex-direction: column-reverse;
@@ -4904,6 +4910,12 @@ body {
     overflow-y: auto;
     border-radius: 16px;
 
+    @media (max-width: 992px) {
+      flex-direction: column;
+      height: unset;
+      gap: 16px;
+      top: 20px;
+    }
   }
 
   .swiper {
@@ -4925,13 +4937,14 @@ body {
   }
 
   .work-modal-content {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 16px;
     flex: 1 0 0;
 
     .modal-info-item {
       width: 100%;
+      margin: 8px 0;
       display: flex;
       align-items: center;
       flex-wrap: wrap;
@@ -4939,7 +4952,11 @@ body {
       position: relative;
       border-radius: 12px;
       padding: 12px;
-      
+
+      &:first-of-type {
+        margin-top: 24px;
+      }
+
       &:not(.description) {
         box-shadow: 0 0 2px 1px #efefef;
       }
@@ -4956,8 +4973,6 @@ body {
 
     h3,
     h5 {
-      width: 100%;
-      text-align: center;
       text-wrap: balance;
     }
 

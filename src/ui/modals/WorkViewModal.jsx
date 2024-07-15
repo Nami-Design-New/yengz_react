@@ -24,20 +24,22 @@ function WorkViewModal({ showModal, setShowModal, targetWork, setTargetWork }) {
         {" "}
         <div className="work-modal-content">
           <h3>{targetWork?.title}</h3>
-          <div className="modal-info-item description">
-            <h5 className="m-0">{targetWork?.description}</h5>
-          </div>
+          <h5 className="m-0">{targetWork?.description}</h5>
           <div className="modal-info-item">
-            <span className="item-label">{t("profile.projectLink")}: </span>
+            <i class="fa-solid fa-clipboard"></i>
             <p className="m-0 item-value">{targetWork?.link}</p>
           </div>
           <div className="modal-info-item">
-            <span className="item-label">{t("profile.from")}: </span>
-            <p className="m-0 item-value">{targetWork?.start_date}</p>
+            <i class="fa-solid fa-calendar-days"></i>
+            <p className="m-0 item-value">
+              {new Date(targetWork?.start_date).toLocaleString()}
+            </p>
           </div>
           <div className="modal-info-item">
-            <span className="item-label">{t("profile.to")}: </span>
-            <p className="m-0 item-value">{targetWork?.end_date}</p>
+            <i class="fa-solid fa-calendar-days"></i>
+            <p className="m-0 item-value">
+              {new Date(targetWork?.end_date).toLocaleString()}
+            </p>
           </div>
         </div>
       </Modal.Header>
