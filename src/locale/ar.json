@@ -239,9 +239,9 @@
     "verificated": "هوية موثقة",
     "availabilty": "متواجد حاليًا",
     "apply": "تأكيد",
-    "clear": "مسح الفلتر"
+    "clear": "مسح الفلتر",
+    "searchFilter":"نتائج البحث"
   },
-  "projects": {},
   "services": {
     "developments": "تطويرات متوفرة لهذه الخدمة",
     "compare": "مقابل",
@@ -281,11 +281,14 @@
     "publish": "نشر"
   },
   "status": {
+    "orderStatus": "حالة الطلب",
     "all": "الكل",
-    "new": "جديدة",
-    "progress": "جاري تنفيذها",
-    "completed": "مكتملة",
-    "canceled": "ملغية"
+    "new": "جديد",
+    "in_progress": "جاري تنفيذه",
+    "ready": "جاهز للمراجعة",
+    "received": "تم تسليمه",
+    "completed": "مكتمل",
+    "canceled": "ملغي"
   },
   "cart": {
     "empty": "لا يوجد اي خدمات في السلة حاليا , قم باضافة خدمة الي سلتك",
@@ -305,9 +308,15 @@
     "noOrders": "لا يوجد طلبات حاليا",
     "emptyOrders": "لا يوجد طلبات بهذه الحالة، يرجى المحاولة بشيء اخر...",
     "emptyPurchases": "لا يوجد مشتريات حتى الان",
-    "emptyPurchasesWithThisState": "لا يوجد مشتريات بهذه الحالة، يرجى المحاولة بشيء اخر..."
+    "emptyPurchasesWithThisState": "لا يوجد مشتريات بهذه الحالة، يرجى المحاولة بشيء اخر...",
+    "cancleOrder": "الغاء الطلب",
+    "reportProblem": "ابلاغ عن مشكلة",
+    "orderNumber": "رقم الطلب",
+    "orderValue": "قيمة الطلب",
+    "orderDate": "تاريخ الطلب",
+    "expectedDeliveryDate": "تاريخ التسليم المتوقع"
   },
-  "prjects": {
+  "projects": {
     "title": "المشاريع",
     "emptyProjects": "لا يوجد مشاريع بهذه التفاصيل، يرجى المحاولة بشيء اخر..."
   },
@@ -325,5 +334,5 @@
   "hour": "ساعة",
   "now": "الأن",
   "and": "و",
-  "details": "تفاصيل"
+  "details": "التفاصيل"
 }

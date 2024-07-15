@@ -1,11 +1,11 @@
-import { useMutation } from "@tanstack/react-query";
-import { getProfile } from "../../services/apiGetProfile";
+import { useQuery } from "@tanstack/react-query";
+import getProfile from './../../services/apiProfile';
 
-function useGetProfile() {
-  return useMutation({
-    mutationFn: (id) => getProfile(id),
-    retry: false,
+export default function useGetProfile(id) {
+  const { isLoading, data, error } = useQuery({
+    queryKey: ["profile", id],
+    queryFn: () => getProfile(id),
+    staleTime: 1000
   });
+  return { isLoading, data, error };
 }
-
-export default useGetProfile;

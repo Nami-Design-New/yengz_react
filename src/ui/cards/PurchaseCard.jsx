@@ -4,8 +4,15 @@ import bann from "../../Assets/images/bann.webp";
 import rateowner1 from "../../Assets/images/rateowner1.webp";
 import { Link } from "react-router-dom";
 import { formatTimeDifference, getTimeDifference } from "../../utils/helpers";
+import {
+  ORDER_STATUS_AR,
+  ORDER_STATUS_EN,
+  ORDER_STATUS_PERSENTAGE
+} from "../../utils/constants";
+import { useSelector } from "react-redux";
 
 const PurchaseCard = ({ purchase }) => {
+  const lang = useSelector((state) => state.language.lang);
   const { t } = useTranslation();
   const timeDifference = getTimeDifference(purchase?.created_at);
   const formattedTime = formatTimeDifference(
@@ -47,19 +54,27 @@ const PurchaseCard = ({ purchase }) => {
             <div className="progress-card">
               <div className="progress-details">
                 <div className="pro-container">
-                  <p className="status">{purchase?.status}</p>
+                  <p className="status">
+                    {lang === "ar"
+                      ? ORDER_STATUS_AR[purchase?.status]
+                      : ORDER_STATUS_EN[purchase?.status]}
+                  </p>
                   <div className="progress">
                     <div
-                      className="progress-bar sucses"
+                      className={`progress-bar ${
+                        purchase?.status === "canceled" ? "" : "sucses"
+                      }`}
                       role="progressbar"
-                      style={{ width: "50%" }}
-                      aria-valuenow="50"
+                      style={{
+                        width: `${ORDER_STATUS_PERSENTAGE[purchase?.status]}%`
+                      }}
+                      aria-valuenow={ORDER_STATUS_PERSENTAGE[purchase?.status]}
                       aria-valuemin="0"
                       aria-valuemax="100"
                     ></div>
                   </div>
                 </div>
-                <Link to="/order-details" className="details">
+                <Link to={`/purchases/${purchase?.id}`} className="details">
                   {t("details")}
                 </Link>
               </div>

@@ -70,7 +70,7 @@ function StatusFilter({ isFilterOpen, setIsFilterOpen }) {
   return (
     <div className={`filter side-menu ${isFilterOpen ? "active" : ""}`}>
       <div className="d-flex justify-content-between">
-        <h6>حالة الطلب</h6>
+        <h6>{t("status.orderStatus")}</h6>
         <div className="colse" onClick={() => setIsFilterOpen(false)}>
           <i className="fa-light fa-xmark"></i>
         </div>

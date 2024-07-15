@@ -278,7 +278,7 @@ body header {
   height: 80px;
   width: 100%;
   background: var(--gray-background);
-  z-index: 99;
+  z-index: 9;
 }
 body header .tnavbar {
   height: 80px;
@@ -1699,7 +1699,8 @@ body main .cart-section .service-head .request-owner-img {
   overflow: hidden;
 }
 body main .cart-section .service-head .request-owner-img img {
-  max-width: 100%;
+  width: 100%;
+  height: 100%;
 }
 body main .cart-section .service-head .img {
   max-width: 150px;
@@ -1774,7 +1775,7 @@ body main .cart-section .progress-card {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 12px;
 }
 body main .cart-section .progress-card.order-d {
   margin-bottom: 48px;
@@ -1822,7 +1823,7 @@ body main .cart-section .progress-card .progress-details .pro-container .sucses 
   background: #26ba35 !important;
 }
 body main .cart-section .progress-card .progress-details .pro-container .status {
-  font-size: 12px;
+  font-size: 16px;
   margin-bottom: 4px;
   color: var(--text-color);
 }
@@ -1962,6 +1963,7 @@ body main .cart-section .empty_cart img {
 body main .cart-section .empty_cart h3 {
   font-size: 24px;
   text-align: center;
+  margin-bottom: 20px;
 }
 body main .cart-section .empty_cart a {
   color: var(--white-color);

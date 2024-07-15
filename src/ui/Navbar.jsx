@@ -24,10 +24,6 @@ const Navbar = () => {
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const [isSmallMediaMenuOpen, setIsSmallMediaMenuOpen] = useState(false);
 
-  function handleAvatarError() {
-    setAvatarError(true);
-  }
-
   function handleToggleSearchInput() {
     setIsSearchOpen((open) => !open);
   }
@@ -94,7 +90,6 @@ const Navbar = () => {
           <span></span>
           <span></span>
         </div>
-
         <div
           className={`small-media-menu  ${isSmallMediaMenuOpen ? "show" : ""}`}
         >
@@ -104,7 +99,6 @@ const Navbar = () => {
             </Link>
             <div className="userr">
               <h6>{user?.name}</h6>
-              {user?.is_favorite && <span>بائع مميز</span>}
             </div>
           </div>
           <ul className="nav-links">
@@ -126,10 +120,6 @@ const Navbar = () => {
                     <i className="far fa-clipboard-list-check"></i>{" "}
                     {t("navbar.requestsRecieved")}
                   </Link>
-
-                  <span className="num-count2">
-                    {user?.service_orders_count}
-                  </span>
                 </li>
                 <li className="nav-link" onClick={closeSmallMediaMenu}>
                   <Link to="/add-service">
@@ -205,7 +195,6 @@ const Navbar = () => {
                     <i className="far fa-shopping-bag"></i>{" "}
                     {t("navbar.purchase")}
                   </Link>
-                  <span className="num-count2">3</span>
                 </li>
                 <li className="nav-link">
                   <Link
@@ -216,7 +205,7 @@ const Navbar = () => {
                     {t("navbar.requestsRecieved")}
                   </Link>
                   <span className="num-count2">
-                    {user?.service_orders_count}
+                    {user?.service_orders_count || 0}
                   </span>
                 </li>
                 <li className="nav-link">
@@ -227,10 +216,6 @@ const Navbar = () => {
                     <i className="fa-regular fa-file-invoice"></i>
                     {t("navbar.projects")}
                   </Link>
-
-                  <span className="num-count2">
-                    {user?.project_order_count || 0}
-                  </span>
                 </li>
               </>
             )}
@@ -404,11 +389,7 @@ const Navbar = () => {
                     onClick={handleToggleProfileMenu}
                     style={{ cursor: "pointer" }}
                   >
-                    <img
-                      src={user?.image || avatar}
-                      alt="user-avatar"
-                      onError={handleAvatarError}
-                    />
+                    <img src={user?.image || avatar} alt="user-avatar" />
                   </span>
                 </li>
                 {isProfileMenuOpen && (

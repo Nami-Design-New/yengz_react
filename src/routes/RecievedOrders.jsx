@@ -16,9 +16,7 @@ const RecievedRequest = () => {
     setIsFilterOpen((open) => !open);
   }
 
-  return isLoading ? (
-    <DataLoader />
-  ) : (
+  return (
     <main>
       <section className="cart-section container search-section">
         <div className="row">
@@ -29,28 +27,38 @@ const RecievedRequest = () => {
             />
           </div>
           <div className="small-filter-header">
-            <h6>{t("recievedRequest.title")}</h6>
+            <h6>{t("navbar.requestsRecieved")}</h6>
             <button className="openfilter" onClick={handleTogglingFilter}>
               <i className="fa-light fa-sliders"></i>
             </button>
           </div>
-          <div className="col-lg-9 co-12">
-            {serviceOrders && serviceOrders?.data?.length > 0 ? (
+          <div className="col-lg-10 co-12">
+            {isLoading ? (
+              <DataLoader />
+            ) : (
               <>
-                <div className="row">
-                  {serviceOrders?.data?.map((order) => (
-                    <OrderCard order={order} key={order.id} />
-                  ))}
-                </div>
-                {serviceOrders?.total > 10 && (
-                  <CustomPagination
-                    count={serviceOrders?.total}
-                    pageSize={10}
-                  />
+                {serviceOrders && serviceOrders?.data?.length > 0 ? (
+                  <>
+                    <div className="row">
+                      {serviceOrders?.data?.map((order) => (
+                        <OrderCard order={order} key={order.id} />
+                      ))}
+                    </div>
+                    {serviceOrders?.total > 10 && (
+                      <CustomPagination
+                        count={serviceOrders?.total}
+                        pageSize={10}
+                      />
+                    )}
+                  </>
+                ) : (
+                  <EmptyData>
+                    {serviceOrders?.total === 0
+                      ? t("recievedOrders.emptyOrders")
+                      : t("recievedOrders.noOrders")}
+                  </EmptyData>
                 )}
               </>
-            ) : (
-              <EmptyData>{serviceOrders?.total === 0 ?  t("recievedOrders.emptyOrders") : t("recievedOrders.noOrders")}</EmptyData>
             )}
           </div>
         </div>

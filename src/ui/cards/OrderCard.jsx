@@ -1,9 +1,15 @@
 import { useTranslation } from "react-i18next";
 import { formatTimeDifference, getTimeDifference } from "../../utils/helpers";
 import { Link } from "react-router-dom";
-import rateowner1 from "../../Assets/images/rateowner1.webp";
+import { useSelector } from "react-redux";
+import {
+  ORDER_STATUS_AR,
+  ORDER_STATUS_EN,
+  ORDER_STATUS_PERSENTAGE
+} from "../../utils/constants";
 
 function OrderCard({ order }) {
+  const lang = useSelector((state) => state.language.lang);
   const { t } = useTranslation();
   const timeDifference = getTimeDifference(order.created_at);
   const formattedTime = formatTimeDifference(
@@ -17,7 +23,7 @@ function OrderCard({ order }) {
 
   return (
     <div className="service container">
-      <div className="row">
+      <div className="row gap-lg-0 gap-3">
         <div className="col-lg-7 col-12">
           <div className="service-head h-100">
             <Link to={`/services/${order.id}`} className="request-owner-img">
@@ -35,27 +41,35 @@ function OrderCard({ order }) {
           <div className="progress-card">
             <div className="progress-details">
               <div className="pro-container">
-                <p className="status">{order?.status}</p>
+                <p className="status">
+                  {lang === "ar"
+                    ? ORDER_STATUS_AR[order?.status]
+                    : ORDER_STATUS_EN[order?.status]}
+                </p>
                 <div className="progress">
                   <div
-                    className="progress-bar sucses"
+                    className={`progress-bar ${
+                      order?.status === "canceled" ? "" : "sucses"
+                    }`}
                     role="progressbar"
-                    style={{ width: "25%" }}
-                    aria-valuenow="25"
+                    style={{
+                      width: `${ORDER_STATUS_PERSENTAGE[order?.status]}%`
+                    }}
+                    aria-valuenow={ORDER_STATUS_PERSENTAGE[order?.status]}
                     aria-valuemin="0"
                     aria-valuemax="100"
                   ></div>
                 </div>
               </div>
               <Link to={`/recieved-orders/${order.id}`} className="details">
-                التفاصيل
+                {t("details")}
               </Link>
             </div>
             <div className="time-price">
               <span className="d-flex align-items-center gap-2">
                 <i className="fa-sharp fa-light fa-clock"></i> {formattedTime}
               </span>
-              <h5>
+              <h5 className="mb-0">
                 {order?.price} <i className="fa-regular fa-dollar-sign"></i>
               </h5>
             </div>

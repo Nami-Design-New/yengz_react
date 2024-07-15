@@ -16,6 +16,7 @@ const Logout = () => {
     const performLogout = async () => {
       try {
         deleteCookie("token");
+        deleteCookie("id");
         const deleteToken = await axios.post("/user/logout", { token: token });
         if (deleteToken.data.code === 200) {
           delete axios.defaults.headers.common["Authorization"];

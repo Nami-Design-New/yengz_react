@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import DepartmentFilterBox from "../ui/filter/DepartmentFilterBox";
 import RatingFilterBox from "../ui/filter/RatingFilterBox";
-// import SellerFilterBox from "../ui/filter/SellerFilterBox";
 import SellerStatusFilterBox from "../ui/filter/SellerStatusFilterBox";
 import InputField from "../ui/form-elements/InputField";
 import useSearchServicesList from "../features/services/useSearchServicesList";
@@ -38,7 +37,7 @@ const Search = () => {
           .split("-")
           .map((subcategory) => Number(subcategory))
       : [],
-    is_old: Number(searchParams.get("is_old")) || 0,
+    is_old: Number(searchParams.get("is_old")) || 0
   });
 
   const handleChange = (e) => {
@@ -68,8 +67,8 @@ const Search = () => {
               updatedState["sub_categories"] = [
                 ...new Set([
                   ...prevState["sub_categories"],
-                  ...relatedSubCategories,
-                ]),
+                  ...relatedSubCategories
+                ])
               ];
             } else {
               updatedState["sub_categories"] = prevState[
@@ -94,7 +93,7 @@ const Search = () => {
 
             if (areAllChildrenChecked) {
               updatedState["categories"] = [
-                ...new Set([...prevState["categories"], parentCategory.id]),
+                ...new Set([...prevState["categories"], parentCategory.id])
               ];
             } else {
               updatedState["categories"] = prevState["categories"].filter(
@@ -182,9 +181,7 @@ const Search = () => {
     }
   }, [searchParams, setSearchParams]);
 
-  return searchIsLoading || categoriesIsLoading ? (
-    <DataLoader />
-  ) : (
+  return (
     <section className="search-section">
       <div className="container">
         <div className="row">
@@ -237,7 +234,7 @@ const Search = () => {
             </div>
           </aside>
           <div className="small-filter-header">
-            <h6>نتائج البحث</h6>
+            <h6>{t("search.searchFilter")}</h6>
             <button
               className="openfilter"
               onClick={() => setIsFilterOpen(true)}
@@ -245,24 +242,28 @@ const Search = () => {
               <i className="fa-light fa-sliders"></i>
             </button>
           </div>
-          <div className="col-lg-9 col-12 p-2 results-wrapper">
-            <div className="container">
-              <div className="row">
-                {searchServicesList &&
-                  searchServicesList.data.map((service) => (
-                    <div className="col-lg-4 col-6 p-2" key={service.id}>
-                      <ServiceCard service={service} />
-                    </div>
-                  ))}
+          {searchIsLoading || categoriesIsLoading ? (
+            <DataLoader />
+          ) : (
+            <div className="col-lg-9 col-12 p-2 results-wrapper">
+              <div className="container">
+                <div className="row">
+                  {searchServicesList &&
+                    searchServicesList.data.map((service) => (
+                      <div className="col-lg-4 col-6 p-2" key={service.id}>
+                        <ServiceCard service={service} />
+                      </div>
+                    ))}
+                </div>
+                {searchServicesList && (
+                  <CustomPagination
+                    count={searchServicesList?.total}
+                    pageSize={10}
+                  />
+                )}
               </div>
-              {searchServicesList && (
-                <CustomPagination
-                  count={searchServicesList?.total}
-                  pageSize={10}
-                />
-              )}
             </div>
-          </div>
+          )}
         </div>
       </div>
     </section>

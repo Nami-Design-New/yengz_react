@@ -1,10 +1,10 @@
-import axios from "./utils/axios";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { useDispatch, useSelector } from "react-redux";
 import { useJwt } from "react-jwt";
 import { setIsLogged, setUser } from "./redux/slices/authedUser";
+import axios from "./utils/axios";
 import Login from "./features/auth/login/Login";
 import Register from "./features/auth/register/Register";
 import ForgetPassword from "./features/auth/resetPassword/ForgetPassword";
@@ -35,6 +35,7 @@ import AddServices from "./features/services/AddServices";
 import ServiceOrdersDetails from "./routes/ServiceOrdersDetails";
 import Loader from "./ui/Loader";
 import Projects from "./routes/Projects";
+import useGetProfile from "./features/profile/useGetProfile";
 
 function App() {
   const dispatch = useDispatch();
@@ -44,43 +45,33 @@ function App() {
   const id = cookies?.id;
   const [loading, setLoading] = useState(true);
   const { decodedToken, isExpired } = useJwt(token || "");
+  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  const { data: profile, isLoading, isError } = useGetProfile(id);
 
-  const getProfile = async (user_id) => {
-    try {
-      const res = await axios.get(`/user/get_profile?id=${user_id}`);
-      if (res.data.code === 200) {
-        dispatch(setUser(res.data.data));
-        dispatch(setIsLogged(true));
-      } else {
-        dispatch(setIsLogged(false));
-        dispatch(setUser({}));
-      }
-    } catch (error) {
-      console.error(
-        "Error fetching profile:",
-        error.response?.data?.message || error.message
-      );
+  useEffect(() => {
+    if (profile) {
+      console.log(profile);
+      dispatch(setUser(profile));
+      dispatch(setIsLogged(true));
+    } else if (isError) {
+      dispatch(setIsLogged(false));
+      dispatch(setUser({}));
     }
-  };
+  }, [profile, isError]);
 
   const initializeAuth = async () => {
     setLoading(true);
     try {
       const stringId = String(id);
       if (
-        decodedToken &&
-        typeof decodedToken.sub === "string" &&
-        decodedToken.sub === stringId
+        !decodedToken ||
+        typeof decodedToken.sub !== "string" ||
+        decodedToken.sub !== stringId ||
+        isExpired
       ) {
-        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-        await getProfile(stringId);
-      } else if (isExpired) {
         dispatch(setIsLogged(false));
+        dispatch(setUser({}));
         delete axios.defaults.headers.common["Authorization"];
-      } else {
-        console.log(
-          "No valid token found or mismatch in decodedToken.sub and id."
-        );
       }
     } catch (error) {
       console.error("Error during initialization:", error.message);
@@ -99,9 +90,11 @@ function App() {
     lang === "en" ? body.classList.add("en") : body.classList.remove("en");
   }, [lang]);
 
-  return loading ? (
-    <Loader />
-  ) : (
+  if (loading || isLoading) {
+    return <Loader />;
+  }
+
+  return (
     <div className="App">
       <Layout loading={loading}>
         <Routes>
@@ -111,6 +104,7 @@ function App() {
           <Route path="/edit-service/:id" element={<AddServices />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/purchases" element={<Purchases />} />
+          <Route path="/purchases/:id" element={<OrderDetails />} />
           <Route path="/recieved-orders" element={<RecievedOrders />} />
           <Route path="/service-orders" element={<ServiceOrders />} />
           <Route path="/recieved-orders/:id" element={<OrderDetails />} />

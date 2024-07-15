@@ -69,3 +69,12 @@ export const formatTimeDifference = (
   }
   return formatted || t("now");
 };
+
+export const calculateExpectedEndDate = (createdAt, days) => {
+  const createdDate = new Date(createdAt);
+  createdDate.setDate(createdDate.getDate() + days);
+  const dd = String(createdDate.getDate()).padStart(2, "0");
+  const mm = String(createdDate.getMonth() + 1).padStart(2, "0"); // January is 0
+  const yyyy = createdDate.getFullYear();
+  return `${dd} / ${mm} / ${yyyy}`;
+};

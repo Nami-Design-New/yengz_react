@@ -5,10 +5,11 @@ import PurchaseCard from "../ui/cards/PurchaseCard";
 import useGetPurchases from "./../features/purchases/useGetPurchases";
 import CustomPagination from "../ui/CustomPagination";
 import EmptyData from "../ui/EmptyData";
+import DataLoader from "./../ui/DataLoader";
 
 const Purchases = () => {
   const { t } = useTranslation();
-  const { data: purchases } = useGetPurchases();
+  const { data: purchases, isLoading } = useGetPurchases();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   function handleTogglingFilter() {
@@ -31,21 +32,30 @@ const Purchases = () => {
             </button>
           </div>
           <div className="col-lg-10 co-12">
-            {purchases?.data?.length === 0 ? (
-              <EmptyData>
-                {purchases?.total === 0
-                  ? t("recievedOrders.emptyPurchases")
-                  : t("recievedOrders.noOrders")}
-              </EmptyData>
+            {isLoading ? (
+              <DataLoader />
             ) : (
               <>
-                <div>
-                  {purchases?.data?.map((purchase) => (
-                    <PurchaseCard key={purchase.id} purchase={purchase} />
-                  ))}
-                </div>
-                {purchases?.total > 10 && (
-                  <CustomPagination count={purchases?.total} pageSize={10} />
+                {purchases?.data?.length === 0 ? (
+                  <EmptyData>
+                    {purchases?.total === 0
+                      ? t("recievedOrders.emptyPurchasesWithThisState")
+                      : t("recievedOrders.emptyPurchases")}
+                  </EmptyData>
+                ) : (
+                  <>
+                    <div>
+                      {purchases?.data?.map((purchase) => (
+                        <PurchaseCard key={purchase.id} purchase={purchase} />
+                      ))}
+                    </div>
+                    {purchases?.total > 10 && (
+                      <CustomPagination
+                        count={purchases?.total}
+                        pageSize={10}
+                      />
+                    )}
+                  </>
                 )}
               </>
             )}

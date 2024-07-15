@@ -23,3 +23,14 @@ export async function createOrder(queryClient) {
     throw new Error(err.message);
   }
 }
+
+export async function getOrder(id) {
+  try {
+    const req = await axios.post("user/get_service_order_details", {
+      id: id
+    });
+    return req.data.data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
