@@ -317,7 +317,8 @@
     "expectedDeliveryDate": "تاريخ التسليم المتوقع",
     "acceptOrder": "قبول الطلب",
     "readyForDelevier": "جاهز للتسليم",
-    "recieveAndRate": "إستلام وتقييم"
+    "recieve": "إستلام",
+    "RateService": "تقييم الخدمة"
   },
   "projects": {
     "title": "المشاريع",

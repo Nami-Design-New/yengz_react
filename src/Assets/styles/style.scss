@@ -2546,6 +2546,21 @@ body {
       }
     }
   }
+  .star-rating-service {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 4px;
+    label {
+      cursor: pointer;
+      color: var(--LightGray);
+      &.active {
+        color: gold;
+      }
+    }
+    input {
+      appearance: none;
+    }
+  }
   footer {
     background: var(--input-bg);
     padding-top: 60px;
