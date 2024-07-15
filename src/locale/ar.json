@@ -240,7 +240,7 @@
     "availabilty": "متواجد حاليًا",
     "apply": "تأكيد",
     "clear": "مسح الفلتر",
-    "searchFilter":"نتائج البحث"
+    "searchFilter": "نتائج البحث"
   },
   "services": {
     "developments": "تطويرات متوفرة لهذه الخدمة",
@@ -314,7 +314,10 @@
     "orderNumber": "رقم الطلب",
     "orderValue": "قيمة الطلب",
     "orderDate": "تاريخ الطلب",
-    "expectedDeliveryDate": "تاريخ التسليم المتوقع"
+    "expectedDeliveryDate": "تاريخ التسليم المتوقع",
+    "acceptOrder": "قبول الطلب",
+    "readyForDelevier": "جاهز للتسليم",
+    "recieveAndRate": "إستلام وتقييم"
   },
   "projects": {
     "title": "المشاريع",

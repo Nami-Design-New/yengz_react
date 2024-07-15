@@ -1,6 +1,6 @@
 import React from "react";
 
-const SubmitButton = ({ loading, name, className, onClick }) => {
+const SubmitButton = ({ loading, name, className, onClick, icon }) => {
   return (
     <button
       style={{ opacity: loading ? 0.7 : 1 }}
@@ -9,7 +9,8 @@ const SubmitButton = ({ loading, name, className, onClick }) => {
       onClick={onClick}
       className={`save ${className}`}
     >
-      {name} <i className={loading ? "fa-solid fa-spinner fa-spin" : ""} />
+      {icon && icon} {name}{" "}
+      <i className={loading ? "fa-solid fa-spinner fa-spin" : ""} />
     </button>
   );
 };

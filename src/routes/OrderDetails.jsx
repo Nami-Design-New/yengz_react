@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import rateowner1 from "../Assets/images/rateowner1.webp";
@@ -12,13 +12,21 @@ import {
   ORDER_STATUS_PERSENTAGE
 } from "../utils/constants";
 import { formatTimeDifference, getTimeDifference } from "../utils/helpers";
-import { calculateExpectedEndDate } from './../utils/helpers';
+import { calculateExpectedEndDate } from "./../utils/helpers";
+import { updateOrder } from "../services/apiOrders";
+import { useQueryClient } from "@tanstack/react-query";
+import SubmitButton from "./../ui/form-elements/SubmitButton";
 
 function OrderDetails() {
   const { id } = useParams();
   const { t } = useTranslation();
-  const lang = useSelector((state) => state.language.lang);
   const { data: order, isLoading } = useGetOrder(id);
+  const [userType, setUserType] = useState(null);
+  const [btn1Loading, setBtn1Loading] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const quryClient = useQueryClient();
+  const user = useSelector((state) => state.authedUser.user);
+  const lang = useSelector((state) => state.language.lang);
 
   const timeDifference = getTimeDifference(order?.created_at);
   const startTime = formatTimeDifference(
@@ -34,6 +42,28 @@ function OrderDetails() {
     order?.created_at,
     order?.days
   );
+
+  useEffect(() => {
+    if (user?.id && order?.user?.id) {
+      if (user?.id === order?.user?.id) {
+        setUserType("seller");
+      } else {
+        setUserType("buyer");
+      }
+    }
+  }, [user?.id, order?.user?.id]);
+
+  const handleupdateOrder = async (status) => {
+    try {
+      status === "canceled" ? setBtn1Loading(true) : setLoading(true);
+      await updateOrder(order?.id, status, quryClient);
+    } catch (error) {
+      throw new Error(error.message);
+    } finally {
+      setLoading(false);
+      setBtn1Loading(false);
+    }
+  };
 
   return isLoading ? (
     <DataLoader />
@@ -124,14 +154,51 @@ function OrderDetails() {
                 </div>
               </div>
               <div className="col-lg-9 order-buttons">
-                <button className="report-order">
-                  <i className="fa-light fa-circle-info"></i>{" "}
-                  {t("recievedOrders.reportProblem")}
-                </button>
-                <button className="cancle-order">
-                  <i className="fa-sharp fa-light fa-circle-xmark"></i>{" "}
-                  {t("recievedOrders.cancleOrder")}
-                </button>
+                {userType === "buyer" && order?.status === "new" && (
+                  <SubmitButton
+                    loading={loading}
+                    className="report-order"
+                    name={t("recievedOrders.acceptOrder")}
+                    icon={<i class="fa-light fa-circle-check"></i>}
+                    onClick={() => handleupdateOrder("in_progress")}
+                  />
+                )}
+                {userType === "buyer" && order?.status === "in_progress" && (
+                  <SubmitButton
+                    loading={loading}
+                    className="report-order"
+                    name={t("recievedOrders.readyForDelevier")}
+                    icon={<i class="fa-light fa-circle-check"></i>}
+                    onClick={() => handleupdateOrder("ready")}
+                  />
+                )}
+                {userType === "buyer" && order?.status !== "canceled" && (
+                  <SubmitButton
+                    className="cancle-order"
+                    loading={btn1Loading}
+                    onClick={() => handleupdateOrder("canceled")}
+                    name={t("recievedOrders.cancleOrder")}
+                    icon={<i className="fa-sharp fa-light fa-circle-xmark"></i>}
+                  />
+                )}
+                {userType === "seller" && order?.status === "ready" && (
+                  <SubmitButton
+                    loading={loading}
+                    className="report-order"
+                    name={t("recievedOrders.recieveAndRate")}
+                    icon={<i class="fa-light fa-circle-check"></i>}
+                    onClick={() => handleupdateOrder("recieved")}
+                  />
+                )}
+                {userType === "seller" && order?.status === "new" && (
+                  <SubmitButton
+                    className="cancle-order"
+                    loading={btn1Loading}
+                    onClick={() => handleupdateOrder("canceled")}
+                    name={t("recievedOrders.cancleOrder")}
+                    icon={<i className="fa-sharp fa-light fa-circle-xmark"></i>}
+                  />
+                )}
               </div>
             </div>
           </div>
