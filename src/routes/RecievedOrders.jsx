@@ -1,8 +1,8 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import StatusFilter from "../ui/StatusFilter";
 import OrderCard from "../ui/cards/OrderCard";
 import useServiceOrdersList from "../features/orders/useServiceOrdersList";
-import { useTranslation } from "react-i18next";
 import EmptyData from "../ui/EmptyData";
 import DataLoader from "../ui/DataLoader";
 import CustomPagination from "../ui/CustomPagination";

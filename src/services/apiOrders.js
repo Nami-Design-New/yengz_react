@@ -17,7 +17,7 @@ export async function getServiceOrders({ page, status }) {
 
 export async function createOrder(queryClient) {
   try {
-    const req = await axios.post("user/create_service_order");
+    const req = await axios.post("/user/create_service_order");
     queryClient.invalidateQueries("cartList");
   } catch (err) {
     throw new Error(err.message);
@@ -26,10 +26,22 @@ export async function createOrder(queryClient) {
 
 export async function getOrder(id) {
   try {
-    const req = await axios.post("user/get_service_order_details", {
+    const req = await axios.post("/user/get_service_order_details", {
       id: id
     });
     return req.data.data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+export async function updateOrder(id, status, queryClient) {
+  try {
+    await axios.post("/user/update_service_order", {
+      id: id,
+      status: status
+    });
+    queryClient.invalidateQueries("order", "serviceOrdersList");
   } catch (error) {
     throw new Error(error.message);
   }
