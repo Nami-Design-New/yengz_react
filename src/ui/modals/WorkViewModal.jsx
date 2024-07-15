@@ -21,14 +21,29 @@ function WorkViewModal({ showModal, setShowModal, targetWork, setTargetWork }) {
       className="add-work-modal"
     >
       <Modal.Header className="pb-0" closeButton>
-        <Modal.Title></Modal.Title>
+        {" "}
+        <div className="work-modal-content">
+          <h3>{targetWork?.title}</h3>
+          <h5 className="m-0">{targetWork?.description}</h5>
+          <div className="modal-info-item">
+            <i class="fa-solid fa-clipboard"></i>
+            <p className="m-0 item-value">{targetWork?.link}</p>
+          </div>
+          <div className="modal-info-item">
+            <i class="fa-solid fa-calendar-days"></i>
+            <p className="m-0 item-value">
+              {new Date(targetWork?.start_date).toLocaleString()}
+            </p>
+          </div>
+          <div className="modal-info-item">
+            <i class="fa-solid fa-calendar-days"></i>
+            <p className="m-0 item-value">
+              {new Date(targetWork?.end_date).toLocaleString()}
+            </p>
+          </div>
+        </div>
       </Modal.Header>
       <Modal.Body className="add-work col-12">
-        <div className="work-modal-content col-6">
-          <h3>{targetWork?.title}</h3>
-          <p className="m-0">{targetWork?.description}</p>
-          <p className="m-0">{targetWork?.link}</p>
-        </div>
         <Swiper
           spaceBetween={0}
           slidesPerView={1}
@@ -36,7 +51,7 @@ function WorkViewModal({ showModal, setShowModal, targetWork, setTargetWork }) {
           loop={true}
           modules={[Autoplay]}
           dir="rtl"
-          className="worksViewModalSwiper col-6"
+          className="worksViewModalSwiper"
           autoplay={{ delay: 3000, disableOnInteraction: false }}
         >
           {targetWork?.images &&
