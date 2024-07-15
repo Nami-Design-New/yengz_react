@@ -195,6 +195,9 @@ const Navbar = () => {
                     <i className="far fa-shopping-bag"></i>{" "}
                     {t("navbar.purchase")}
                   </Link>
+                  <span className="num-count2">
+                    {user?.service_purchase_count || 0}
+                  </span>
                 </li>
                 <li className="nav-link">
                   <Link

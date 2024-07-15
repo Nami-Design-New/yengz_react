@@ -9,7 +9,7 @@ function useGetPurchases() {
   const page = Number(searchParams.get("page")) || 1;
 
   const { isLoading, data, error } = useQuery({
-    queryKey: ["serviceOrdersList", status, page],
+    queryKey: ["purchacesList", status, page],
     queryFn: () => getPurchasesOrders({ page, status }),
     retry: false
   });
