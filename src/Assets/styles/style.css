@@ -5258,6 +5258,7 @@ body.en main .row-head a i {
   display: flex;
   flex-direction: column;
   flex: 1 0 0;
+  padding: 0 16px;
 }
 .add-work-modal .work-modal-content .modal-info-item {
   width: 100%;
