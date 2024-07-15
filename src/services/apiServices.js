@@ -114,6 +114,17 @@ export async function getRates(id) {
   }
 }
 
+export async function createRate(data) {
+  try {
+    const req = await axios.post("/user/create_rate", {
+      ...data
+    });
+    return req.data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
 export async function getHomeServices() {
   try {
     const req = await axios.get("/get_home_services");

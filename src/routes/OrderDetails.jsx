@@ -16,6 +16,7 @@ import { calculateExpectedEndDate } from "./../utils/helpers";
 import { updateOrder } from "../services/apiOrders";
 import { useQueryClient } from "@tanstack/react-query";
 import SubmitButton from "./../ui/form-elements/SubmitButton";
+import AddRateModal from "../ui/modals/AddRateModal";
 
 function OrderDetails() {
   const { id } = useParams();
@@ -23,6 +24,7 @@ function OrderDetails() {
   const { data: order, isLoading } = useGetOrder(id);
   const [userType, setUserType] = useState(null);
   const [btn1Loading, setBtn1Loading] = useState(false);
+  const [showRateModal, setShowRateModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const quryClient = useQueryClient();
   const user = useSelector((state) => state.authedUser.user);
@@ -75,7 +77,7 @@ function OrderDetails() {
             <div className="row justify-content-center">
               <div className="col-lg-9 col-12 mb-5">
                 <div className="service-head">
-                  <Link to="/services" className="img">
+                  <Link to={`/service/${order?.service?.id}`} className="img">
                     <img src={order?.service?.image || bann} alt="service" />
                   </Link>
                   <div className="title">
@@ -154,6 +156,7 @@ function OrderDetails() {
                 </div>
               </div>
               <div className="col-lg-9 order-buttons">
+                {/* buyer */}
                 {userType === "buyer" && order?.status === "new" && (
                   <SubmitButton
                     loading={loading}
@@ -172,22 +175,27 @@ function OrderDetails() {
                     onClick={() => handleupdateOrder("ready")}
                   />
                 )}
-                {userType === "buyer" && order?.status !== "canceled" && (
-                  <SubmitButton
-                    className="cancle-order"
-                    loading={btn1Loading}
-                    onClick={() => handleupdateOrder("canceled")}
-                    name={t("recievedOrders.cancleOrder")}
-                    icon={<i className="fa-sharp fa-light fa-circle-xmark"></i>}
-                  />
-                )}
+                {userType === "buyer" &&
+                  order?.status !== "canceled" &&
+                  order?.status !== "received" && (
+                    <SubmitButton
+                      className="cancle-order"
+                      loading={btn1Loading}
+                      onClick={() => handleupdateOrder("canceled")}
+                      name={t("recievedOrders.cancleOrder")}
+                      icon={
+                        <i className="fa-sharp fa-light fa-circle-xmark"></i>
+                      }
+                    />
+                  )}
+                {/* seller */}
                 {userType === "seller" && order?.status === "ready" && (
                   <SubmitButton
                     loading={loading}
                     className="report-order"
-                    name={t("recievedOrders.recieveAndRate")}
+                    name={t("recievedOrders.recieve")}
                     icon={<i class="fa-light fa-circle-check"></i>}
-                    onClick={() => handleupdateOrder("recieved")}
+                    onClick={() => handleupdateOrder("received")}
                   />
                 )}
                 {userType === "seller" && order?.status === "new" && (
@@ -199,11 +207,23 @@ function OrderDetails() {
                     icon={<i className="fa-sharp fa-light fa-circle-xmark"></i>}
                   />
                 )}
+                {userType === "seller" && !order?.service?.is_rated && (
+                  <SubmitButton
+                    className="report-order"
+                    name={t("recievedOrders.RateService")}
+                    onClick={() => setShowRateModal(true)}
+                  />
+                )}
               </div>
             </div>
           </div>
         </div>
       </div>
+      <AddRateModal
+        order={order}
+        showModal={showRateModal}
+        setShowModal={setShowRateModal}
+      />
     </section>
   );
 }

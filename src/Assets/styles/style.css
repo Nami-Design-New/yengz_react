@@ -2728,6 +2728,23 @@ body main .terms .row h6 {
   font-size: 18px;
   color: var(--black-color);
 }
+body .star-rating-service {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 4px;
+}
+body .star-rating-service label {
+  cursor: pointer;
+  color: var(--LightGray);
+}
+body .star-rating-service label.active {
+  color: gold;
+}
+body .star-rating-service input {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
 body footer {
   background: var(--input-bg);
   padding-top: 60px;
