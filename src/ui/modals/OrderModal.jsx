@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import walletLottie from "../../Assets/lotties/wallet.json";
 import Lottie from "react-lottie";
 import { createOrder } from "../../services/apiOrders";
 import { toast } from "react-toastify";
@@ -18,7 +17,7 @@ const OrderModal = ({ showModal, setShowModal, ballance, cartTotalPrice }) => {
   const defaultOptions = {
     loop: true,
     autoplay: true,
-    animationData: walletLottie,
+    animationData: require("../../Assets/lotties/wallet.json"),
     rendererSettings: {
       preserveAspectRatio: "xMidYMid slice"
     }

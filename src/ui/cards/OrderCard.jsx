@@ -26,7 +26,10 @@ function OrderCard({ order }) {
       <div className="row gap-lg-0 gap-3">
         <div className="col-lg-7 col-12">
           <div className="service-head h-100">
-            <Link to={`/services/${order.id}`} className="request-owner-img">
+            <Link
+              to={`/profile/${order?.user?.id}`}
+              className="request-owner-img"
+            >
               <img src={order?.user?.image} alt="service" />
             </Link>
             <div className="title requester-title">

@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Dropdown, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import avatarPlaceholder from "../../Assets/images/avatar-placeholder-2.svg";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { IconRosetteDiscountCheckFilled } from "@tabler/icons-react";
+import { requestChatRoom } from "../../redux/slices/requctRoom";
 
 const ServiceOwnerCard = ({ service }) => {
+  const dispatch = useDispatch();
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [showTooltip, setShowTooltip] = useState(false);
   const currentPageLink = window.location.href;
   const authedUser = useSelector((state) => state.authedUser.user);
@@ -22,6 +24,18 @@ const ServiceOwnerCard = ({ service }) => {
     e.stopPropagation();
     navigator.clipboard.writeText(currentPageLink);
     setShowTooltip(true);
+  };
+
+  const handleCreateRoom = () => {
+    dispatch(
+      requestChatRoom({
+        request_type: "service",
+        request_id: service?.id,
+        owner_id: service?.user?.id,
+        applied_id: authedUser?.id
+      })
+    );
+    navigate(`/chat`);
   };
 
   useEffect(() => {
@@ -71,9 +85,9 @@ const ServiceOwnerCard = ({ service }) => {
           </div>
         </Link>
         <div className="btns">
-          <Link to="/chat" className="butn">
+          <button className="butn" onClick={handleCreateRoom}>
             <i className="fa-regular fa-message-lines"></i>
-          </Link>
+          </button>
           <Dropdown>
             <Dropdown.Toggle className="butn" id="dropdown-basic">
               <i className="fa-regular fa-share-nodes"></i>

@@ -24,9 +24,7 @@
 .chat-section {
   display: flex;
   padding: 30px 0;
-  height: 80vh;
   gap: 16px;
-  min-height: 800px;
   @media (max-width: 768px) {
     flex-direction: column;
   }
@@ -76,9 +74,10 @@
     }
     .nav-link {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       gap: 8px;
       padding: 12px;
+      width: 100%;
       border-radius: 16px;
       flex-wrap: wrap;
       text-align: start;
@@ -111,6 +110,12 @@
           margin-bottom: 0;
           font-size: 14px;
           line-height: 22px;
+          .read {
+            color: var(--black-color);
+            &.unread {
+              color: var(--main-color);
+            }
+          }
           .unreadNumber {
             background-color: var(--main-color);
             color: #ffffff;
@@ -175,7 +180,6 @@
     background: linear-gradient(#f3f3f3e8, #f3f3f3e8),
       url(https://www.shutterstock.com/image-vector/social-media-sketch-vector-seamless-600nw-1660950727.jpg);
     border-radius: 16px;
-
     .chat-head {
       border-radius: 14px 14px 0 0;
       display: flex;
@@ -271,6 +275,8 @@
       padding: 20px 0;
       overflow-y: scroll;
       flex: 1;
+      max-height: 420px;
+      min-height: 420px;
       &::-webkit-scrollbar {
         display: none;
       }
@@ -278,6 +284,7 @@
         width: 100%;
         display: flex;
         padding: 0 16px;
+        margin-bottom: 6px;
         .time {
           color: #777;
           font-size: 12px;
@@ -308,6 +315,18 @@
               color: #fff;
               margin: 0;
             }
+          }
+        }
+        span {
+          font-size: 12px;
+          color: var(--input-hint);
+          line-height: 22px;
+          display: block;
+          &.sen {
+            text-align: end;
+          }
+          &.rec {
+            text-align: start;
           }
         }
       }
@@ -380,4 +399,11 @@
       }
     }
   }
+}
+.lottie_player_holder {
+  padding: 40px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

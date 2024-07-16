@@ -28,9 +28,7 @@
 .chat-section {
   display: flex;
   padding: 30px 0;
-  height: 80vh;
   gap: 16px;
-  min-height: 800px;
 }
 @media (max-width: 768px) {
   .chat-section {
@@ -87,9 +85,10 @@
 }
 .chat-section .side-menu .nav-link {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 8px;
   padding: 12px;
+  width: 100%;
   border-radius: 16px;
   flex-wrap: wrap;
   text-align: start;
@@ -125,6 +124,12 @@
   margin-bottom: 0;
   font-size: 14px;
   line-height: 22px;
+}
+.chat-section .side-menu .nav-link .text-wrap .lastMessage .read {
+  color: var(--black-color);
+}
+.chat-section .side-menu .nav-link .text-wrap .lastMessage .read.unread {
+  color: var(--main-color);
 }
 .chat-section .side-menu .nav-link .text-wrap .lastMessage .unreadNumber {
   background-color: var(--main-color);
@@ -283,6 +288,8 @@
   padding: 20px 0;
   overflow-y: scroll;
   flex: 1;
+  max-height: 420px;
+  min-height: 420px;
 }
 .chat-section .chat-container .inner-container::-webkit-scrollbar {
   display: none;
@@ -291,6 +298,7 @@
   width: 100%;
   display: flex;
   padding: 0 16px;
+  margin-bottom: 6px;
 }
 .chat-section .chat-container .inner-container .message .time {
   color: #777;
@@ -323,6 +331,18 @@
 .chat-section .chat-container .inner-container .message.recieved-message .message-content p {
   color: #fff;
   margin: 0;
+}
+.chat-section .chat-container .inner-container .message span {
+  font-size: 12px;
+  color: var(--input-hint);
+  line-height: 22px;
+  display: block;
+}
+.chat-section .chat-container .inner-container .message span.sen {
+  text-align: end;
+}
+.chat-section .chat-container .inner-container .message span.rec {
+  text-align: start;
 }
 .chat-section .chat-container .inner-container .image {
   background: rgba(50, 119, 83, 0.1019607843);
@@ -390,4 +410,12 @@
 .chat-section .chat-container .chat-send form button svg {
   height: 24px;
   stroke: #fff;
+}
+
+.lottie_player_holder {
+  padding: 40px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }/*# sourceMappingURL=Chat.css.map */

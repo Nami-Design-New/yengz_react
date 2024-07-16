@@ -1,14 +1,50 @@
 import ChatRoom from "../features/chat/ChatRoom";
-import "../Assets/styles/Chat.css";
-import ChatSideBar from "../features/chat/ChatSideBar";
 import { IconBrandWechat } from "@tabler/icons-react";
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import "../Assets/styles/Chat.css";
+import ChatSideBar from "../features/chat/ChatSideBar";
+import useGetChats from "../features/chat/useGetChats";
+import Lottie from "react-lottie";
+import DataLoader from "./../ui/DataLoader";
+import useGetChat from "../features/chat/useGetChat";
+import { useDispatch, useSelector } from "react-redux";
 
 const Chats = () => {
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: require("../Assets/lotties/chat.json"),
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice"
+    }
+  };
+
+  const dispatch = useDispatch();
+  const targetRoom = useSelector((state) => state.requestRoom.requestRoom);
   const { t } = useTranslation();
   const [showChatsMenu, setShowChatsMenu] = useState(false);
-  return (
+  const [targetChat, setTargetChat] = useState(null);
+  const { data: chats, isLoading } = useGetChats();
+
+  const { data: chat, isLoading: isChatLoading } = useGetChat({
+    request_type: targetChat?.request_type,
+    owner_id: targetChat?.owner_id,
+    applied_id: targetChat?.applied_id,
+    request_id: targetChat?.request_id
+  });
+
+  useEffect(() => {
+    if (targetRoom?.owner_id) {
+      setTargetChat(targetRoom);
+    } else {
+      setTargetChat(null);
+    }
+  }, [targetRoom]);
+
+  return isLoading ? (
+    <DataLoader />
+  ) : (
     <section className="chat-section">
       <div className="container d-block">
         <button className="openTaps" onClick={() => setShowChatsMenu(true)}>
@@ -18,12 +54,21 @@ const Chats = () => {
         <div className="row">
           <div className="col-lg-4 col-12 p-2">
             <ChatSideBar
-              setShowChatsMenu={setShowChatsMenu}
+              chats={chats}
+              setTargetChat={setTargetChat}
+              targetChat={targetChat}
               showChatsMenu={showChatsMenu}
+              setShowChatsMenu={setShowChatsMenu}
             />
           </div>
           <div className="col-lg-8 col-12 p-2">
-            <ChatRoom />
+            {targetChat ? (
+              <>{isChatLoading ? <DataLoader /> : <ChatRoom chat={chat} />}</>
+            ) : (
+              <div className="lottie_player_holder">
+                <Lottie options={defaultOptions} height={250} width={250} />
+              </div>
+            )}
           </div>
         </div>
       </div>
