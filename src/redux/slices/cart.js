@@ -11,17 +11,9 @@ export const cart = createSlice({
     },
     updateEntireCart: (state, action) => {
       state.cartList = action.payload;
-    },
-    updateSpesificItem: (state, action) => {
-      state.cartList = state.cartList.map((item) => {
-        if (item.id === action.payload.id) {
-          return action.payload;
-        }
-        return item;
-      });
     }
   }
 });
 
-export const { addToCart, updateEntireCart, updateSpesificItem } = cart.actions;
+export const { addToCart, updateEntireCart } = cart.actions;
 export default cart.reducer;

@@ -5,7 +5,7 @@ import rateowner1 from "../Assets/images/rateowner1.webp";
 import bann from "../Assets/images/bann.webp";
 import useGetOrder from "../features/orders/useGetOrder";
 import DataLoader from "../ui/DataLoader";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   ORDER_STATUS_AR,
   ORDER_STATUS_EN,
@@ -17,10 +17,12 @@ import { updateOrder } from "../services/apiOrders";
 import { useQueryClient } from "@tanstack/react-query";
 import SubmitButton from "./../ui/form-elements/SubmitButton";
 import AddRateModal from "../ui/modals/AddRateModal";
+import { requestChatRoom } from "../redux/slices/requctRoom";
 
 function OrderDetails() {
   const { id } = useParams();
   const { t } = useTranslation();
+  const dispatch = useDispatch();
   const { data: order, isLoading } = useGetOrder(id);
   const [userType, setUserType] = useState(null);
   const [btn1Loading, setBtn1Loading] = useState(false);
@@ -65,6 +67,17 @@ function OrderDetails() {
       setLoading(false);
       setBtn1Loading(false);
     }
+  };
+
+  const handleRequestRoom = () => {
+    dispatch(
+      requestChatRoom({
+        request_type: "service",
+        request_id: order?.service?.id,
+        owner_id: userType === "seller" ? order?.user?.id : user?.id,
+        applied_id: userType === "seller" ? user?.id : order?.user?.id
+      })
+    );
   };
 
   return isLoading ? (
@@ -149,7 +162,11 @@ function OrderDetails() {
                         ></div>
                       </div>
                     </div>
-                    <Link to="/chat" className="chat">
+                    <Link
+                      to="/chat"
+                      className="chat"
+                      onClick={handleRequestRoom}
+                    >
                       <i className="fa-light fa-message-lines"></i>
                     </Link>
                   </div>
@@ -207,13 +224,15 @@ function OrderDetails() {
                     icon={<i className="fa-sharp fa-light fa-circle-xmark"></i>}
                   />
                 )}
-                {userType === "seller" && !order?.service?.is_rated && (
-                  <SubmitButton
-                    className="report-order"
-                    name={t("recievedOrders.RateService")}
-                    onClick={() => setShowRateModal(true)}
-                  />
-                )}
+                {userType === "seller" &&
+                  !order?.service?.is_rated &&
+                  order?.status === "received" && (
+                    <SubmitButton
+                      className="report-order"
+                      name={t("recievedOrders.RateService")}
+                      onClick={() => setShowRateModal(true)}
+                    />
+                  )}
               </div>
             </div>
           </div>
