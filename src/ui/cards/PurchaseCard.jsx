@@ -30,7 +30,7 @@ const PurchaseCard = ({ purchase }) => {
         <div className="row">
           <div className="col-lg-7 col-12">
             <div className="service-head">
-              <Link to={`/service/${purchase?.service?.id}`} className="img">
+              <Link to={`/services/${purchase?.service?.id}`} className="img">
                 <img src={purchase?.service?.image || bann} alt="service" />
               </Link>
               <div className="title">

@@ -76,7 +76,8 @@ const Navbar = () => {
   function handleSubmitSearch(e) {
     e.preventDefault();
     const searchInput = e.target[0].value;
-    navigate(`/search?search=${searchInput}`);
+    navigate(`/services?search=${searchInput}`);
+    closeSearchInput();
   }
 
   return (
@@ -237,7 +238,7 @@ const Navbar = () => {
             </li>
             {isSearchOpen && (
               <form
-                action="/search"
+                action="/services"
                 aria-labelledby="searchForm"
                 className="nav-search"
                 ref={searchRef}

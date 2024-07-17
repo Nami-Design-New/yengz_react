@@ -210,12 +210,12 @@ const ServiceDetails = () => {
                     <ServiceOwnerCard service={service} />
                     <h4>{service?.title}</h4>
                     <p>
-                      <Link to={`/search?categories=${service?.category?.id}`}>
+                      <Link to={`/services?categories=${service?.category?.id}`}>
                         {service?.category?.name}
                       </Link>{" "}
                       /{" "}
                       <Link
-                        to={`/search?sub_categories=${service?.sub_category_id}`}
+                        to={`/services?sub_categories=${service?.sub_category_id}`}
                       >
                         {service?.sub_category?.name}
                       </Link>
@@ -269,7 +269,6 @@ const ServiceDetails = () => {
                             >
                               <i className="fa-regular fa-plus"></i>
                             </button>
-
                             <input
                               type="number"
                               min={1}

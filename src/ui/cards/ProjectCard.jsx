@@ -3,7 +3,7 @@ import { formatTimeDifference, getTimeDifference } from "../../utils/helpers";
 import { useTranslation } from "react-i18next";
 import useTruncateString from "../../hooks/useTruncateString";
 
-function OrderBox({ order }) {
+function ProjectCard({ order }) {
   const { t } = useTranslation();
   const timeDifference = getTimeDifference(order.created_at);
   const formattedTime = formatTimeDifference(
@@ -16,7 +16,7 @@ function OrderBox({ order }) {
   );
   const truncatedText = useTruncateString(order?.description);
   return (
-    <Link to={`/service-orders/${order?.id}`} className="singleRequst">
+    <Link to={`/projects/${order?.id}`} className="singleRequst">
       <div className="row">
         <div className="col-12 p-0">
           <div className="requstPost">
@@ -24,7 +24,7 @@ function OrderBox({ order }) {
               <img src={order?.user?.image} alt="" />
             </Link>
             <div className="postContent">
-              <Link to="/reaquest-details" className="postTitle">
+              <Link to={`/projects/${order?.id}`} className="postTitle">
                 {order?.title}
               </Link>
               <div className="postUser">
@@ -45,4 +45,4 @@ function OrderBox({ order }) {
   );
 }
 
-export default OrderBox;
+export default ProjectCard;

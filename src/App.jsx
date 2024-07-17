@@ -17,13 +17,8 @@ import Faq from "./routes/Faq";
 import HowItWork from "./routes/HowItWork";
 import OrderDetails from "./routes/OrderDetails";
 import Purchases from "./routes/Purchases";
-import RequestDetails from "./routes/RequestDetails";
 import RecievedOrders from "./routes/RecievedOrders";
 import Terms from "./routes/Terms";
-import AddRequest from "./routes/AddRequest";
-import ServiceOrders from "./routes/ServiceOrders";
-import Services from "./routes/ServiceDetails";
-import Search from "./routes/Search";
 import Logout from "./features/auth/Logout";
 import Cart from "./routes/Cart";
 import Profile from "./features/profile/Profile";
@@ -32,10 +27,13 @@ import Notifcations from "./routes/Notifcations";
 import Chats from "./routes/Chats";
 import AuthVerifySteps from "./features/auth/verification/AuthVerifySteps";
 import AddServices from "./features/services/AddServices";
-import ServiceOrdersDetails from "./routes/ServiceOrdersDetails";
 import Loader from "./ui/Loader";
 import Projects from "./routes/Projects";
 import useGetProfile from "./features/profile/useGetProfile";
+import ServiceDetails from "./routes/ServiceDetails";
+import Services from "./routes/Services";
+import ProjectDetails from "./routes/ProjectDetails";
+import AddProject from "./routes/AddProject";
 
 function App() {
   const dispatch = useDispatch();
@@ -99,39 +97,43 @@ function App() {
       <Layout loading={loading}>
         <Routes>
           <Route index element={<Home />} />
-          <Route path="/service/:id" element={<Services />} />
+          <Route path="/categories" element={<Categories />} />
+
+          {/* services routes */}
+          <Route path="/services" element={<Services />} />
+          <Route path="/services/:id" element={<ServiceDetails />} />
           <Route path="/add-service" element={<AddServices />} />
           <Route path="/edit-service/:id" element={<AddServices />} />
-          <Route path="/categories" element={<Categories />} />
+          <Route path="/Cart" element={<Cart />} />
           <Route path="/purchases" element={<Purchases />} />
           <Route path="/purchases/:id" element={<OrderDetails />} />
           <Route path="/recieved-orders" element={<RecievedOrders />} />
-          <Route path="/service-orders" element={<ServiceOrders />} />
           <Route path="/recieved-orders/:id" element={<OrderDetails />} />
-          <Route
-            path="/service-orders/:id"
-            element={<ServiceOrdersDetails />}
-          />
-          <Route path="/request-details" element={<RequestDetails />} />
-          <Route path="/request-add" element={<AddRequest />} />
+
+          {/* projects routes */}
           <Route path="/projects" element={<Projects />} />
-          <Route path="/chat" element={<Chats />} />
+          <Route path="/projects/:id" element={<ProjectDetails />} />
+          <Route path="/add-project" element={<AddProject />} />
+
+          {/* profile routes */}
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/:id" element={<Profile />} />
+          <Route path="/edit-profile" element={<EditProfile />} />
           <Route path="/verify-user" element={<AuthVerifySteps />} />
-          <Route path="/search" element={<Search />} />
+          <Route path="/chat" element={<Chats />} />
+          <Route path="/notifications" element={<Notifcations />} />
+
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/how-it-work" element={<HowItWork />} />
           <Route path="/faq" element={<Faq />} />
+
+          {/* auth routes */}
           <Route path="/login" element={<Login />} />
-          <Route path="/logout" element={<Logout />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/logout" element={<Logout />} />
           <Route path="/forget-password" element={<ForgetPassword />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/profile/:id" element={<Profile />} />
-          <Route path="/edit-profile" element={<EditProfile />} />
-          <Route path="/Cart" element={<Cart />} />
-          <Route path="/notifications" element={<Notifcations />} />
         </Routes>
       </Layout>
     </div>

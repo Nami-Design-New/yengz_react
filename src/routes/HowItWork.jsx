@@ -5,10 +5,7 @@ import SectionHeader from "../ui/SectionHeader";
 const HowItWork = () => {
   return (
     <>
-      <div className="section-head">
-        <SectionHeader />
-      </div>
-
+      <SectionHeader />
       <section className="terms" data-aos="fade-up">
         <div className="container">
           <div className="row">

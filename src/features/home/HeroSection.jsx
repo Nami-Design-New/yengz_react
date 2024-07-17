@@ -1,11 +1,19 @@
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/swiper-bundle.css";
 
 const HeroSection = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  function handleSubmitSearch(e) {
+    e.preventDefault();
+    const searchInput = e.target[0].value;
+    navigate(`/services?search=${searchInput}`);
+  }
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -50,7 +58,7 @@ const HeroSection = () => {
               </Swiper>
             </div>
             <div className="hero_content">
-              <form action="">
+              <form onSubmit={handleSubmitSearch}>
                 <div className="input-fileld">
                   <i className="fa-sharp fa-regular fa-magnifying-glass"></i>
                   <input

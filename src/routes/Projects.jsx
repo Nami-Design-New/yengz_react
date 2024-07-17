@@ -11,6 +11,7 @@ import useProjectsList from "../features/projects/useProjectsList";
 import EmptyData from "../ui/EmptyData";
 import DataLoader from "../ui/DataLoader";
 import CustomPagination from "../ui/CustomPagination";
+import ProjectCard from "../ui/cards/ProjectCard";
 
 function Projects() {
   const { t } = useTranslation();
@@ -38,7 +39,7 @@ function Projects() {
           .split("-")
           .map((subcategory) => Number(subcategory))
       : [],
-    is_old: Number(searchParams.get("is_old")) || 0,
+    is_old: Number(searchParams.get("is_old")) || 0
   });
 
   const handleChange = (e) => {
@@ -68,8 +69,8 @@ function Projects() {
               updatedState["sub_categories"] = [
                 ...new Set([
                   ...prevState["sub_categories"],
-                  ...relatedSubCategories,
-                ]),
+                  ...relatedSubCategories
+                ])
               ];
             } else {
               updatedState["sub_categories"] = prevState[
@@ -94,7 +95,7 @@ function Projects() {
 
             if (areAllChildrenChecked) {
               updatedState["categories"] = [
-                ...new Set([...prevState["categories"], parentCategory.id]),
+                ...new Set([...prevState["categories"], parentCategory.id])
               ];
             } else {
               updatedState["categories"] = prevState["categories"].filter(
@@ -182,60 +183,60 @@ function Projects() {
     }
   }, [searchParams, setSearchParams]);
 
-  return projectsIsLoading || categoriesIsLoading ? (
-    <DataLoader />
-  ) : (
+  return (
     <section className="search-section">
       <div className="container">
         <div className="row">
-          <aside
-            className={`col-lg-3 side-menu ${isFilterOpen ? "active" : ""}`}
-          >
-            <div className="filter-wrap">
-              <div className="colse" onClick={() => setIsFilterOpen(false)}>
-                <i className="fa-light fa-xmark"></i>
+          <div className="col-lg-3 p-2">
+            <aside className={`side-menu ${isFilterOpen ? "active" : ""}`}>
+              <div className="filter-wrap">
+                <div className="colse" onClick={() => setIsFilterOpen(false)}>
+                  <i className="fa-light fa-xmark"></i>
+                </div>
+                <form onSubmit={handleSubmit}>
+                  <InputField
+                    id="aside-search-input"
+                    name="search"
+                    className="aside-search-input search_input"
+                    value={searchFilterData.search}
+                    onChange={handleChange}
+                    label={t("search.search")}
+                    placeholder={t("search.searchFor")}
+                  />
+                  <DepartmentFilterBox
+                    categoriesValue={searchFilterData.categories}
+                    sub_categoriesValue={searchFilterData.sub_categories}
+                    onChange={handleChange}
+                    categoriesWithSubCategories={categoriesWithSubCategories}
+                  />
+                  <hr />
+                  <RatingFilterBox
+                    value={searchFilterData.rate}
+                    onChange={handleChange}
+                  />
+                  <hr />
+                  {/* <SellerFilterBox /> */}
+                  <SellerStatusFilterBox
+                    user_available={searchFilterData.user_available}
+                    user_verification={searchFilterData.user_verification}
+                    onChange={handleChange}
+                  />
+                  <hr />
+                  <div className="search-btn">
+                    <button onClick={handleApplyFilters}>
+                      {t("search.apply")}
+                    </button>
+                  </div>
+                  <div className="search-btn">
+                    <span onClick={handleClearFilters}>
+                      {t("search.clear")}
+                    </span>
+                  </div>
+                </form>
               </div>
+            </aside>
+          </div>
 
-              <form onSubmit={handleSubmit}>
-                <InputField
-                  id="aside-search-input"
-                  name="search"
-                  className="aside-search-input search_input"
-                  value={searchFilterData.search}
-                  onChange={handleChange}
-                  label={t("search.search")}
-                  placeholder={t("search.searchFor")}
-                />
-                <DepartmentFilterBox
-                  categoriesValue={searchFilterData.categories}
-                  sub_categoriesValue={searchFilterData.sub_categories}
-                  onChange={handleChange}
-                  categoriesWithSubCategories={categoriesWithSubCategories}
-                />
-                <hr />
-                <RatingFilterBox
-                  value={searchFilterData.rate}
-                  onChange={handleChange}
-                />
-                <hr />
-                {/* <SellerFilterBox /> */}
-                <SellerStatusFilterBox
-                  user_available={searchFilterData.user_available}
-                  user_verification={searchFilterData.user_verification}
-                  onChange={handleChange}
-                />
-                <hr />
-                <div className="search-btn">
-                  <button onClick={handleApplyFilters}>
-                    {t("search.apply")}
-                  </button>
-                </div>
-                <div className="search-btn">
-                  <span onClick={handleClearFilters}>{t("search.clear")}</span>
-                </div>
-              </form>
-            </div>
-          </aside>
           <div className="small-filter-header">
             <h6>{t("projects.title")}</h6>
             <button
@@ -245,23 +246,34 @@ function Projects() {
               <i className="fa-light fa-sliders"></i>
             </button>
           </div>
+
           <div className="col-lg-9 col-12 p-2 results-wrapper">
-            <div className="container">
-              <div className="row">
-                {projectsList?.data && projectsList?.data?.length > 0 ? (
-                  projectsList?.data?.map((project) => (
-                    <div className="col-lg-4 col-6 p-2" key={project.id}>
-                      <ServiceCard service={project} />
-                    </div>
-                  ))
-                ) : (
-                  <EmptyData>{t("projects.emptyProjects")}</EmptyData>
+            {projectsIsLoading || categoriesIsLoading ? (
+              <DataLoader />
+            ) : (
+              <div className="container">
+                <div className="row">
+                  <div className="col-12 p-2 pt-0 d-flex justify-content-end">
+                    <Link to="/add-project" className="btn btn-success">
+                      <i className="fa-regular fa-hexagon-plus me-2"></i> {""}
+                      {t("projects.addProject")}
+                    </Link>
+                  </div>
+                  {projectsList?.data && projectsList?.data?.length > 0 ? (
+                    projectsList?.data?.map((project) => (
+                      <div className="col-12 p-2" key={project.id}>
+                        <ProjectCard order={project} />
+                      </div>
+                    ))
+                  ) : (
+                    <EmptyData>{t("projects.emptyProjects")}</EmptyData>
+                  )}
+                </div>
+                {projectsList.total > 10 && (
+                  <CustomPagination count={projectsList?.total} pageSize={10} />
                 )}
               </div>
-              {projectsList && (
-                <CustomPagination count={projectsList?.total} pageSize={10} />
-              )}
-            </div>
+            )}
           </div>
         </div>
       </div>

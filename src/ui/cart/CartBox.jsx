@@ -87,7 +87,7 @@ function CartBox({ item, cartObjList }) {
       <div className="row">
         <div className="col-lg-7 col-12">
           <div className="service-head">
-            <Link to={`/service/${item?.service?.id}`} className="img">
+            <Link to={`/services/${item?.service?.id}`} className="img">
               <img src={item?.service?.image} alt="service" />
             </Link>
             <div className="title">

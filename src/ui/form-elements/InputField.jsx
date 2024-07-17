@@ -1,7 +1,7 @@
 import { Form } from "react-bootstrap";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
-export default function InputField({ label, toolTipContent, ...props }) {
+export default function InputField({ label, toolTipContent, span, ...props }) {
   const renderTooltip = (props) => (
     <Tooltip id="button-tooltip" {...props}>
       {props.content}
@@ -26,6 +26,7 @@ export default function InputField({ label, toolTipContent, ...props }) {
         </div>
       </label>
       <Form.Control className="form-control" {...props} />
+      {span && <span className="input-span">{span}</span>}
     </div>
   );
 }

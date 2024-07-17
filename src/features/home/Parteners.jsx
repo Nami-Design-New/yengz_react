@@ -2,9 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import OrderBox from "../../ui/cards/OrderBox";
 import "swiper/swiper-bundle.css";
-import { Link } from "react-router-dom";
 import usePartenersList from "./usePartenersList";
 
 function Parteners() {

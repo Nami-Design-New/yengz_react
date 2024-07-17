@@ -10,10 +10,7 @@ import trusted from "../Assets/images/trusted.png";
 const Terms = () => {
   return (
     <>
-      <div className="section-head">
-        <SectionHeader />
-      </div>
-
+      <SectionHeader />
       <section className="faqs">
         <div className="container">
           <div className="row cards-4 m-5">

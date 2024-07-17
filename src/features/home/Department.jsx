@@ -12,7 +12,7 @@ const Department = ({ category }) => {
     <div className="container">
       <div className="row-head" data-aos="fade-up">
         <h6>{category?.name || "برمجة وتطوير"}</h6>
-        <Link to="/search?categories=1">
+        <Link to="/services?categories=1">
           {t("home.viewAll")}
           <i className="fa-regular fa-angle-left"></i>
         </Link>

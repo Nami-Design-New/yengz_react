@@ -35,7 +35,10 @@ export async function getServicesByFilter(
 
   try {
     const req = await axios.post("/get_services", requestBody);
-    return req.data;
+    return {
+      data: req.data.data,
+      total: req.data.total
+    }
   } catch (err) {
     throw new Error(err.message);
   }

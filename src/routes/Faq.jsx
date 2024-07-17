@@ -6,9 +6,7 @@ import FaqAccordin from "../ui/FaqAccordin";
 const Faq = () => {
   return (
     <>
-      <div className="section-head">
-        <SectionHeader />
-      </div>
+      <SectionHeader />
       <section className="faqs">
         <FaqAccordin />
       </section>
