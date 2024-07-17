@@ -94,7 +94,7 @@ const ChatRoom = ({ chat }) => {
       </div>
 
       {chat?.service && (
-        <Link to={`/service/${chat?.service?.id}`} className="adItem">
+        <Link to={`/services/${chat?.service?.id}`} className="adItem">
           <img src={chat?.service?.image || service} alt="" />
           <p> {chat?.service?.title} </p>
         </Link>

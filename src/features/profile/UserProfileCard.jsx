@@ -37,7 +37,7 @@ const UserProfileCard = ({ user, isMyAccount }) => {
                 <a href="#!">{t("profile.withdraw")}</a>
               </div>
             </div>
-            <div className="col-4 p-2">
+            <div className="col-6 p-2">
               <div className="cash-info">
                 <span>{t("profile.totalBalance")}</span>
                 <h6>
@@ -46,7 +46,7 @@ const UserProfileCard = ({ user, isMyAccount }) => {
                 </h6>
               </div>
             </div>
-            <div className="col-4 p-2">
+            <div className="col-6 p-2">
               <div className="cash-info">
                 <span> {t("profile.pendingBalance")} </span>
                 <h6>
@@ -55,11 +55,20 @@ const UserProfileCard = ({ user, isMyAccount }) => {
                 </h6>
               </div>
             </div>
-            <div className="col-4 p-2">
+            <div className="col-6 p-2">
               <div className="cash-info">
                 <span> {t("profile.availableBalance")} </span>
                 <h6>
                   {user?.available_balance}{" "}
+                  <i className="fa-solid fa-dollar-sign"></i>
+                </h6>
+              </div>
+            </div>
+            <div className="col-6 p-2">
+              <div className="cash-info">
+                <span> {t("profile.wallet")} </span>
+                <h6>
+                  {user?.wallet}{" "}
                   <i className="fa-solid fa-dollar-sign"></i>
                 </h6>
               </div>

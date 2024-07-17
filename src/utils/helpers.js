@@ -37,44 +37,45 @@ export const formatTimeDifference = (
 ) => {
   let formatted = "";
   if (years > 0) {
-    formatted += `${years} ${t("year")}`;
-  }
-  if (months > 0) {
-    if (formatted) {
+    formatted = `${years} ${t("year")}`;
+    if (months > 0) {
       formatted += ` ${t("and")} ${months} ${t("month")}`;
-    } else {
-      formatted += `${t("since")} ${months} ${t("month")}`;
     }
-  }
-  if (days > 0) {
-    if (formatted) {
+  } else if (months > 0) {
+    formatted = `${months} ${t("month")}`;
+    if (days > 0) {
       formatted += ` ${t("and")} ${days} ${t("day")}`;
-    } else {
-      formatted += `${t("since")} ${days} ${t("day")}`;
     }
-  }
-  if (hours > 0) {
-    if (formatted) {
+  } else if (days > 0) {
+    formatted = `${days} ${t("day")}`;
+    if (hours > 0) {
       formatted += ` ${t("and")} ${hours} ${t("hour")}`;
-    } else {
-      formatted += `${t("since")} ${hours} ${t("hour")}`;
     }
-  }
-  if (minutes > 0) {
-    if (formatted) {
+  } else if (hours > 0) {
+    formatted = `${hours} ${t("hour")}`;
+    if (minutes > 0) {
       formatted += ` ${t("and")} ${minutes} ${t("minute")}`;
-    } else {
-      formatted += `${t("since")} ${minutes} ${t("minute")}`;
     }
+  } else {
+    formatted = `${minutes} ${t("minute")}`;
   }
-  return formatted || t("now");
+
+  return t("since") + " " + formatted || t("now");
 };
 
 export const calculateExpectedEndDate = (createdAt, days) => {
   const createdDate = new Date(createdAt);
   createdDate.setDate(createdDate.getDate() + days);
   const dd = String(createdDate.getDate()).padStart(2, "0");
-  const mm = String(createdDate.getMonth() + 1).padStart(2, "0"); // January is 0
+  const mm = String(createdDate.getMonth() + 1).padStart(2, "0");
+  const yyyy = createdDate.getFullYear();
+  return `${dd} / ${mm} / ${yyyy}`;
+};
+
+export const calculateDate = (createdAt) => {
+  const createdDate = new Date(createdAt);
+  const dd = String(createdDate.getDate()).padStart(2, "0");
+  const mm = String(createdDate.getMonth() + 1).padStart(2, "0");
   const yyyy = createdDate.getFullYear();
   return `${dd} / ${mm} / ${yyyy}`;
 };

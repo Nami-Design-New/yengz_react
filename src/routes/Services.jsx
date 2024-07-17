@@ -1,502 +1,274 @@
-import rateowner2 from "../Assets/images/rateowner2.webp";
-import rateowner1 from "../Assets/images/rateowner1.webp";
-import rateowner3 from "../Assets/images/rateowner3.webp";
-import vector88 from "../Assets/images/vector88.png";
-import avatarPlaceholder from "../Assets/images/avatar-placeholder-2.svg";
-import { Link } from "react-router-dom";
-import useServiceDetails from "../features/services/useServiceDetails";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import DepartmentFilterBox from "../ui/filter/DepartmentFilterBox";
+import RatingFilterBox from "../ui/filter/RatingFilterBox";
+import SellerStatusFilterBox from "../ui/filter/SellerStatusFilterBox";
+import InputField from "../ui/form-elements/InputField";
+import useSearchServicesList from "../features/services/useSearchServicesList";
+import ServiceCard from "../ui/cards/ServiceCard";
 import { useTranslation } from "react-i18next";
-import ServiceSlider from "../ui/ServiceSlider";
-import UserServiceCard from "../ui/cards/UserServiceCard";
-import SimilarServices from "./SimilarServices";
+import useCategorieListWithSub from "../features/categories/useCategorieListWithSub";
+import DataLoader from "../ui/DataLoader";
+import CustomPagination from "../ui/CustomPagination";
+import EmptyData from "./../ui/EmptyData";
 
 const Services = () => {
-  const { data } = useServiceDetails();
-
-  const [avatarError, setAvatarError] = useState(false);
   const { t } = useTranslation();
+  const { isLoading: categoriesIsLoading, data: categoriesWithSubCategories } =
+    useCategorieListWithSub();
+  const { isLoading: searchIsLoading, data: searchServicesList } =
+    useSearchServicesList();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [searchFilterData, setSearchFilterData] = useState({
+    search: searchParams.get("search") || "",
+    page: Number(searchParams.get("page")) || 1,
+    rate: Number(searchParams.get("rate")) || 1,
+    user_verification: Number(searchParams.get("user_verification")) || 0,
+    user_available: Number(searchParams.get("user_available")) || 0,
+    categories: searchParams.get("categories")
+      ? searchParams
+          .get("categories")
+          .split("-")
+          .map((category) => Number(category))
+      : [],
+    sub_categories: searchParams.get("sub_categories")
+      ? searchParams
+          .get("sub_categories")
+          .split("-")
+          .map((subcategory) => Number(subcategory))
+      : [],
+    is_old: Number(searchParams.get("is_old")) || 0
+  });
 
-  function handleAvatarError() {
-    setAvatarError(true);
+  const handleChange = (e) => {
+    const { name, checked, type, value } = e.target;
+    const parsedValue = type === "checkbox" ? (checked ? 1 : 0) : value;
+
+    setSearchFilterData((prevState) => {
+      const updatedState = { ...prevState, [name]: parsedValue };
+
+      if (name === "categories" || name === "sub_categories") {
+        const updateCategoriesAndSubCategories = (name, value, checked) => {
+          const categoryValue = Number(value);
+
+          const updatedCategoryList = checked
+            ? [...prevState[name], categoryValue]
+            : prevState[name].filter((id) => id !== categoryValue);
+
+          const updatedState = { ...prevState, [name]: updatedCategoryList };
+
+          if (name === "categories") {
+            const relatedSubCategories =
+              categoriesWithSubCategories
+                .find((category) => category.id === categoryValue)
+                ?.sub_categories.map((subCategory) => subCategory.id) || [];
+
+            if (checked) {
+              updatedState["sub_categories"] = [
+                ...new Set([
+                  ...prevState["sub_categories"],
+                  ...relatedSubCategories
+                ])
+              ];
+            } else {
+              updatedState["sub_categories"] = prevState[
+                "sub_categories"
+              ].filter((id) => !relatedSubCategories.includes(id));
+            }
+          } else if (name === "sub_categories") {
+            const parentCategory = categoriesWithSubCategories.find(
+              (category) =>
+                category.sub_categories.some(
+                  (subCategory) => subCategory.id === categoryValue
+                )
+            );
+
+            const allChildIds = parentCategory.sub_categories.map(
+              (subCategory) => subCategory.id
+            );
+
+            const areAllChildrenChecked = allChildIds.every((id) =>
+              updatedState["sub_categories"].includes(id)
+            );
+
+            if (areAllChildrenChecked) {
+              updatedState["categories"] = [
+                ...new Set([...prevState["categories"], parentCategory.id])
+              ];
+            } else {
+              updatedState["categories"] = prevState["categories"].filter(
+                (categoryId) => categoryId !== parentCategory.id
+              );
+            }
+          }
+          return updatedState;
+        };
+
+        return updateCategoriesAndSubCategories(name, value, checked);
+      }
+
+      return updatedState;
+    });
+  };
+
+  function handleClearFilters() {
+    setSearchParams({});
   }
 
+  function handleApplyFilters() {
+    if (searchFilterData.page) {
+      searchParams.set("page", searchFilterData.page);
+      setSearchParams(searchParams);
+    }
+    if (String(searchFilterData.search).trim()) {
+      searchParams.set("search", searchFilterData.search);
+      setSearchParams(searchParams);
+    }
+    if (
+      searchFilterData.rate !== undefined &&
+      searchFilterData.rate !== null &&
+      searchFilterData.rate !== ""
+    ) {
+      searchParams.set("rate", searchFilterData.rate);
+      setSearchParams(searchParams);
+    }
+    if (
+      searchFilterData.user_verification !== undefined &&
+      searchFilterData.user_verification !== null &&
+      searchFilterData.user_verification !== ""
+    ) {
+      searchParams.set("user_verification", searchFilterData.user_verification);
+      setSearchParams(searchParams);
+    }
+    if (
+      searchFilterData.user_available !== undefined &&
+      searchFilterData.user_available !== null &&
+      searchFilterData.user_available !== ""
+    ) {
+      searchParams.set("user_available", searchFilterData.user_available);
+      setSearchParams(searchParams);
+    }
+    if (searchFilterData.categories?.length > 0) {
+      searchParams.set("categories", searchFilterData.categories.join("-"));
+      setSearchParams(searchParams);
+    }
+    if (searchFilterData.sub_categories?.length > 0) {
+      searchParams.set(
+        "sub_categories",
+        searchFilterData.sub_categories.join("-")
+      );
+      setSearchParams(searchParams);
+    }
+    if (
+      searchFilterData.is_old !== undefined &&
+      searchFilterData.is_old !== null &&
+      searchFilterData.is_old !== ""
+    ) {
+      searchParams.set("is_old", searchFilterData.is_old);
+      setSearchParams(searchParams);
+    }
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    handleApplyFilters();
+  }
+
+  useEffect(() => {
+    if (!searchParams.get("page")) {
+      searchParams.append("page", 1);
+      setSearchParams(searchParams);
+    }
+  }, [searchParams, setSearchParams]);
+
   return (
-    <main>
-      <section className="service-details container">
+    <section className="search-section">
+      <div className="container">
         <div className="row">
-          <div className="service-content col-lg-7 col-12 p-3">
-            {/* service slider */}
-            <ServiceSlider images={data?.images} />
-            <div className="content">
-              {/* service owner */}
-              <div className="service-owner-card">
-                <div className="d-flex justify-content-between h-100">
-                  <div className="owner">
-                    <div className="img">
-                      <Link
-                        to="assets/images/rate-owner2.jpg"
-                        data-fancybox="owner"
-                      >
-                        {avatarError ? (
-                          <img
-                            src={data?.user.image}
-                            alt="owner"
-                            onError={handleAvatarError}
-                          />
-                        ) : (
-                          <img src={avatarPlaceholder} alt="specialSeller" />
-                        )}
-                      </Link>
-                    </div>
-                    <div className="title">
-                      <h6>{data?.user?.name || "خالد عوض"}</h6>
-                      {data?.is_favorite && (
-                        <span>
-                          <i className="ti ti-md ti-briefcase"></i>{" "}
-                          {t("services.specialSeller")}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                  <div className="btns">
-                    <Link to="/chat" className="butn">
-                      <i className="fa-regular fa-message-lines"></i>
-                    </Link>
-                    <div className="dropdown">
-                      <button
-                        className="butn dropdown-toggle"
-                        type="button"
-                        id="dropdownMenuButton1"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                      >
-                        <i className="fa-regular fa-share-nodes"></i>
-                      </button>
-                      <div
-                        className="dropdown-menu"
-                        aria-labelledby="dropdownMenuButton1"
-                      >
-                        <h5>مشاركة</h5>
-                        <ul className="social">
-                          <li>
-                            <Link to="#">
-                              <i className="fa-brands fa-facebook-f"></i>
-                            </Link>
-                            facebook
-                          </li>
-                          <li>
-                            <Link to="#">
-                              <i className="fa-brands fa-instagram"></i>
-                            </Link>
-                            Instagram
-                          </li>
-                          <li>
-                            <Link to="#">
-                              <i className="fa-brands fa-twitter"></i>
-                            </Link>
-                            Twitter
-                          </li>
-                          <li>
-                            <Link to="#">
-                              <i className="fa-brands fa-snapchat"></i>
-                            </Link>
-                            Snapchat
-                          </li>
-                          <li>
-                            <Link to="#">
-                              <i className="fa-light fa-share-nodes"></i>
-                            </Link>
-                            More
-                          </li>
-                        </ul>
-                        <p className="text-center">او نسخ الرابط</p>
-                        <div className="link">
-                          <button onClick={`copyToClipboard('#url',event)`}>
-                            <i className="fa-sharp fa-regular fa-copy"></i>
-                          </button>
-                          <span
-                            onClick={`copyToClipboard('#url',event)`}
-                            id="url"
-                          >
-                            https://www.link.com/file/NlfVhYygR9mAQasassdsada/
-                            <div className="alert copied">تم نسخ الرابط</div>
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+          <aside
+            className={`col-lg-3 side-menu ${isFilterOpen ? "active" : ""}`}
+          >
+            <div className="filter-wrap">
+              <div className="colse" onClick={() => setIsFilterOpen(false)}>
+                <i className="fa-light fa-xmark"></i>
               </div>
-              {/* service details */}
-              <h4>{data?.title}</h4>
-              <p>
-                <Link to={`/search?categories=${data?.category?.id}`}>
-                  {data?.category?.name}
-                </Link>{" "}
-                /{" "}
-                <Link to={`/search?sub_categories=${data?.sub_category_id}`}>
-                  {data?.sub_category?.name}
-                </Link>
-              </p>
-              <p>{data?.description}</p>
-              {/* service features (more development) */}
-              {data?.developments && data?.developments.length > 0 && (
-                <div className="more-develop">
-                  <h6>
-                    <img src={vector88} alt="icon" />{" "}
-                    {t("services.specialSeller")}
-                  </h6>
-                  {data?.developments.map((development) => (
-                    <div
-                      className="d-flex input-field align-items-baseline"
-                      key={development?.id}
-                    >
-                      <input
-                        type="checkbox"
-                        id="check-1"
-                        checked={development?.in_cart}
-                      />
-                      <div className="label">
-                        <label htmlFor="check-1">
-                          {development?.description}
-                        </label>
-                        <p>
-                          {t("services.compare")} {development?.price}${" "}
-                          {t("services.percentageofExtraService")}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-              {/* add to cart */}
-              <div className="add-cart">
-                <div className="input-field">
-                  <button className="add">
-                    <i className="fa-regular fa-plus"></i>
-                  </button>
-                  <input type="number" />
-                  <button className="minus">
-                    <i className="fa-regular fa-minus"></i>
+
+              <form onSubmit={handleSubmit}>
+                <InputField
+                  id="aside-search-input"
+                  name="search"
+                  className="aside-search-input search_input"
+                  value={searchFilterData.search}
+                  onChange={handleChange}
+                  label={t("search.search")}
+                  placeholder={t("search.searchFor")}
+                />
+                <DepartmentFilterBox
+                  categoriesValue={searchFilterData.categories}
+                  sub_categoriesValue={searchFilterData.sub_categories}
+                  onChange={handleChange}
+                  categoriesWithSubCategories={categoriesWithSubCategories}
+                />
+                <hr />
+                <RatingFilterBox
+                  value={searchFilterData.rate}
+                  onChange={handleChange}
+                />
+                <hr />
+                {/* <SellerFilterBox /> */}
+                <SellerStatusFilterBox
+                  user_available={searchFilterData.user_available}
+                  user_verification={searchFilterData.user_verification}
+                  onChange={handleChange}
+                />
+                <hr />
+                <div className="search-btn">
+                  <button onClick={handleApplyFilters}>
+                    {t("search.apply")}
                   </button>
                 </div>
-                <div className="total d-flex justify-content-between align-items-center">
-                  <p>
-                    {t("services.total")} : <br />
-                    <span>
-                      + <span id="num">1</span> {t("services.extraService")}
-                    </span>
-                  </p>
-                  <h6>
-                    40.00<i className="fa-solid fa-dollar-sign"></i>
-                  </h6>
+                <div className="search-btn">
+                  <span onClick={handleClearFilters}>{t("search.clear")}</span>
                 </div>
-                <button className="request-order">
-                  <i className="fa-regular fa-cart-plus"></i>{" "}
-                  {t("services.addToCart")}
-                </button>
-              </div>
+              </form>
             </div>
+          </aside>
+          <div className="small-filter-header">
+            <h6>{t("search.searchFilter")}</h6>
+            <button
+              className="openfilter"
+              onClick={() => setIsFilterOpen(true)}
+            >
+              <i className="fa-light fa-sliders"></i>
+            </button>
           </div>
-          <div className="col-lg-5 col-12 p-3">
-            {/* service card */}
-            <UserServiceCard data={data} />
-            {/* rating cards */}
-            <div className="rating-cards-container">
-              <div className="rate-card">
-                <div className="rate-owner">
-                  <div className="rate-head d-flex">
-                    <div className="img">
-                      <img src={rateowner1} alt="icon" />
-                    </div>
-                    <div className="name-time">
-                      <h5>احمد محسن</h5>
-                      <span>منذ 9 أيام و18 ساعة</span>
-                    </div>
-                  </div>
-                  <p className="rate-text">
-                    انصح به وبقوة لن تجدون مثل خدمته وابداعه واخلاقه قد يفوتكم
-                    عمركم اذا لم تتعملو معه لانه جدا بعد خدمته تقولون فعلا يستحق
-                    التتعامل معه
-                  </p>
-                  <div className="rating-cards container">
-                    <div className="row">
-                      <div className="col-4 p-2">
-                        <div className="r-card ">
-                          <h6>{t("services.deliverOnTime")} </h6>
-                          <div className="rate">
-                            <ul>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li>
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
+          {searchIsLoading || categoriesIsLoading ? (
+            <DataLoader />
+          ) : (
+            <div className="col-lg-9 col-12 p-2 results-wrapper">
+              <div className="container">
+                <div className="row">
+                  {searchServicesList?.data &&
+                  searchServicesList?.data.length > 0 ? (
+                    searchServicesList.data.map((service) => (
+                      <div className="col-lg-4 col-6 p-2" key={service.id}>
+                        <ServiceCard service={service} />
                       </div>
-                      <div className="col-4 p-2">
-                        <div className="r-card ">
-                          <h6>{t("services.contactAndFollow")}</h6>
-                          <div className="rate">
-                            <ul>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-4 p-2">
-                        <div className="r-card ">
-                          <h6>{t("services.serviceQuality")}</h6>
-                          <div className="rate">
-                            <ul>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li>
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li>
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                    ))
+                  ) : (
+                    <EmptyData>{t("search.noData")}</EmptyData>
+                  )}
                 </div>
-              </div>
-              <div className="rate-card">
-                <div className="rate-owner">
-                  <div className="rate-head d-flex">
-                    <div className="img">
-                      <img src={rateowner3} alt="rater" />
-                    </div>
-                    <div className="name-time">
-                      <h5>خالد عوض</h5>
-                      <span>منذ 10 أيام و19 ساعة</span>
-                    </div>
-                  </div>
-                  <p className="rate-text">
-                    رقي في التعامل ومتعاون جدا وانصح الجميع بالتعامل معه
-                  </p>
-                  <div className="rating-cards container">
-                    <div className="row">
-                      <div className="col-4 p-2">
-                        <div className="r-card ">
-                          <h6>التسليم بالموعد</h6>
-                          <div className="rate">
-                            <ul>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li>
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-4 p-2">
-                        <div className="r-card ">
-                          <h6>التواصل والمتابعة</h6>
-                          <div className="rate">
-                            <ul>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-4 p-2">
-                        <div className="r-card ">
-                          <h6>جودة الخدمة</h6>
-                          <div className="rate">
-                            <ul>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li>
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li>
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="rate-card">
-                <div className="rate-owner">
-                  <div className="rate-head d-flex">
-                    <div className="img">
-                      <img src={rateowner2} alt="rater" />
-                    </div>
-                    <div className="name-time">
-                      <h5>يوسف الشربيني</h5>
-                      <span>منذ 17 يوم و15 ساعة</span>
-                    </div>
-                  </div>
-                  <p className="rate-text">
-                    تجربة جدا رائعة مع الاخ رشيد محترف جدا في التصميم وتم
-                    التسليم بالموعد بالاضافة لكونه شخص راقي جدا بالتعامل سررت
-                    بمعرفتك وجزاك الله كل خير وبالتأكيد لن يكون اخر تعامل
-                    شكرا،شكرا اخي رشيد
-                  </p>
-                  <div className="rating-cards container">
-                    <div className="row">
-                      <div className="col-4 p-2">
-                        <div className="r-card ">
-                          <h6>التسليم بالموعد</h6>
-                          <div className="rate">
-                            <ul>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li>
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-4 p-2">
-                        <div className="r-card ">
-                          <h6>التواصل والمتابعة</h6>
-                          <div className="rate">
-                            <ul>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-4 p-2">
-                        <div className="r-card ">
-                          <h6>جودة الخدمة</h6>
-                          <div className="rate">
-                            <ul>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li className="star">
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li>
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                              <li>
-                                <i className="fa-solid fa-star"></i>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          {data?.similar_services && data?.similar_services.length > 0 && (
-            <div>
-              <div className="p-4">
-                <SimilarServices similar_services={data?.similar_services} />
+                {searchServicesList?.total > 10 && (
+                  <CustomPagination count={searchServicesList?.total} />
+                )}
               </div>
             </div>
           )}
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
   );
 };
 

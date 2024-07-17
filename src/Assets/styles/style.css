@@ -278,7 +278,7 @@ body header {
   height: 80px;
   width: 100%;
   background: var(--gray-background);
-  z-index: 9;
+  z-index: 99;
 }
 body header .tnavbar {
   height: 80px;
@@ -3033,6 +3033,7 @@ body .form .input-field {
   display: flex;
   width: 100%;
   flex-direction: column;
+  position: relative;
   gap: 8px;
 }
 body .form .input-field label {
@@ -3062,6 +3063,12 @@ body .form .input-field select {
 }
 body .form .input-field textarea {
   height: 140px;
+}
+body .form .input-field .input-span {
+  position: absolute;
+  color: var(--main-color);
+  left: 12px;
+  top: 46px;
 }
 body .form .forgetpass {
   align-self: flex-end;
@@ -4018,7 +4025,7 @@ body .newsletter .form-news .input-field button {
 }
 body .section-head {
   width: 100%;
-  height: 200px;
+  height: 150px;
   background: var(--gray-background);
   padding: 24px 0;
 }
@@ -4055,7 +4062,7 @@ body .section-head .img {
   width: 100%;
 }
 body .section-head .img img {
-  max-height: 200px;
+  max-height: 150px;
   position: absolute;
   top: 0;
   left: 0;
@@ -4180,43 +4187,29 @@ body .addRequest {
   padding: 40px 0;
 }
 body .addRequest form {
-  width: min(100% - 32px, 650px);
-  margin: auto;
-  background-color: var(--input-bg);
-  padding: 12px;
+  padding: 24px;
+  width: 100%;
   border-radius: 16px;
+  background-color: var(--input-bg);
   border: var(--gray-background) 1px solid;
 }
-body .addRequest .input-field {
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  gap: 10px;
-}
-body .addRequest .input-field label {
-  color: var(--black-color);
-}
-body .addRequest .input-field label i {
-  color: var(--main-color);
+body .addRequest form button {
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 0 42px;
 }
 body .addRequest .input-field a {
   color: var(--main-color);
 }
 body .addRequest .input-field input,
 body .addRequest .input-field textarea {
-  color: var(--black-color);
-  direction: rtl;
-  height: 56px;
-  width: 100%;
-  border: none;
-  outline: none;
-  padding: 10px 16px;
-  border-radius: 16px;
   background: var(--white-color);
-  font-size: 14px;
 }
 body .addRequest .input-field textarea {
   height: 230px;
+}
+body .addRequest .input-field .input-span {
+  top: 52px !important;
 }
 body .requestDetails {
   padding: 40px 0;
@@ -4224,66 +4217,77 @@ body .requestDetails {
 body .requestDetails .postDetails {
   position: relative;
   padding: 24px;
-  border-radius: 16px;
-  background-color: #f0f0f0;
+  border-radius: 11px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  background-color: var(--light-bg);
 }
-body .requestDetails .postDetails a {
-  color: var(--black-color);
-  transition: all 0.3s ease-in-out;
+body .requestDetails .postDetails p {
+  margin: 0;
 }
-body .requestDetails .postDetails a:hover {
+body .requestDetails .postDetails h5 {
   color: var(--main-color);
+  font-size: 18px;
+  font-weight: bold;
 }
-body .requestDetails .postDetails .postUser {
+body .requestDetails .aboutProjectCard {
+  width: 100%;
+  border-radius: 16px;
+  background: var(--input-bg);
+  padding: 16px;
+  margin-bottom: 24px;
+  height: auto;
+}
+body .requestDetails .aboutProjectCard .label {
+  padding: 8px;
+  width: 160px;
+  border-radius: 16px;
+  background: var(--white-color);
   display: flex;
   align-items: center;
-  gap: 12px;
-  row-gap: 2px;
-  flex-wrap: wrap;
-}
-body .requestDetails .postDetails .postUser .time,
-body .requestDetails .postDetails .postUser .name {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 12px;
-  white-space: nowrap;
-}
-body .requestDetails .postDetails .postUser .time i,
-body .requestDetails .postDetails .postUser .name i {
-  font-size: 12px;
-  width: 16px;
-  height: 16px;
-  display: flex;
   justify-content: center;
-  align-items: center;
+  color: var(--text-color);
+  gap: 4px;
 }
-body .requestDetails .postDetails .status {
-  padding: 4px 12px 6px;
-  background-color: var(--main-color);
-  border-radius: 0 8px 0 8px;
-  font-size: 12px;
+body .requestDetails .aboutProjectCard .card-ul {
+  margin: 24px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+body .requestDetails .aboutProjectCard .card-ul li {
+  color: var(--black-color);
+  margin: 0;
+  font-weight: 500;
+}
+body .requestDetails .aboutProjectCard .card-ul li p {
+  margin: 0;
+}
+body .requestDetails .aboutProjectCard .card-ul li .status {
+  padding: 0 16px;
   color: var(--white-color);
-  width: -moz-fit-content;
-  width: fit-content;
-  line-height: normal;
+  border-radius: 40px;
+  background: #26ba35;
 }
-body .requestDetails .postDetails .status.new {
-  background-color: #00af49;
+body .requestDetails .aboutProjectCard .card-ul li h6 {
+  color: var(--main-color);
+  font-weight: 600;
+}
+body .requestDetails .aboutProjectCard .card-ul h6 {
+  font-size: 16px;
+  color: var(--black-color);
 }
 body .requestDetails .allComments {
-  padding: 16px;
+  position: relative;
+  padding: 24px;
+  border-radius: 11px;
   display: flex;
   flex-direction: column;
-  background-color: #f4f4f4;
-  gap: 12px;
-  margin: 20px 0;
-  border-radius: 16px;
+  background-color: var(--light-bg);
 }
-body .requestDetails .allComments .title * {
+body .requestDetails .allComments h5 {
+  color: var(--main-color);
+  font-size: 18px;
   font-weight: bold;
 }
 body .requestDetails .allComments .comment {
@@ -4293,6 +4297,88 @@ body .requestDetails .allComments .comment {
   flex-direction: column;
   gap: 12px;
   background-color: var(--white-color);
+}
+body .requestDetails .allComments .comment .about_offer {
+  padding: 24px 12px;
+  background: var(--input-bg);
+  border-radius: 8px;
+  display: flex;
+  gap: 12px;
+}
+body .requestDetails .allComments .comment .about_offer .block {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+body .requestDetails .allComments .comment .about_offer .block p {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--main-color);
+}
+body .requestDetails .allComments .comment .about_offer .block h6 {
+  margin: 0;
+}
+body .requestDetails .allComments .butn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--input-bg);
+  border-radius: 50%;
+  color: var(--black-color);
+}
+body .requestDetails .allComments .butn i {
+  font-size: 16px !important;
+}
+body .requestDetails .allComments .setting .dropdown-toggle {
+  height: 36px;
+  width: 36px;
+  border-radius: 100px;
+  background-color: var(--input-bg);
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body .requestDetails .allComments .setting .dropdown-toggle svg {
+  height: 20px;
+}
+body .requestDetails .allComments .setting .dropdown-toggle img {
+  width: 16px;
+  height: 16px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+body .requestDetails .allComments .setting .dropdown-toggle::after {
+  display: none;
+}
+body .requestDetails .allComments .setting .dropdown-menu {
+  inset: unset !important;
+  transform: unset !important;
+  right: -60px !important;
+  top: 46px !important;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+  width: 120px;
+}
+body .requestDetails .allComments .setting .dropdown-menu li {
+  padding: 0 12px;
+}
+body .requestDetails .allComments .setting .dropdown-menu li button {
+  padding: 4px 0;
+  background: none !important;
+  text-align: start;
+}
+body .requestDetails .allComments .setting .dropdown-menu li button svg {
+  height: 16px;
 }
 body .requestDetails .allComments .userCommented {
   display: flex;
@@ -4304,7 +4390,7 @@ body .requestDetails .allComments .userCommented {
     align-items: start;
   }
 }
-body .requestDetails .allComments .userCommented img {
+body .requestDetails .allComments .userCommented .userImg {
   width: 64px;
   aspect-ratio: 1/1;
   border-radius: 50%;
@@ -4324,6 +4410,7 @@ body .requestDetails .allComments .userCommented .lastUser a:hover {
   color: var(--main-color);
 }
 body .requestDetails .allComments .userCommented .lastUser .name {
+  font-weight: 600;
   font-size: 14px;
 }
 body .requestDetails .allComments .userCommented .lastUser .time {
@@ -4331,6 +4418,7 @@ body .requestDetails .allComments .userCommented .lastUser .time {
   align-items: center;
   gap: 4px;
   font-size: 12px;
+  margin: 0;
 }
 body .requestDetails .allComments .userCommented .lastUser .time i {
   font-size: 12px;
@@ -4344,46 +4432,34 @@ body .requestDetails .allComments .text {
   font-size: 14px;
 }
 body .requestDetails .addComment {
-  padding: 16px;
+  position: relative;
+  padding: 24px;
+  border-radius: 11px;
   display: flex;
   flex-direction: column;
-  background-color: #f0f0f0;
-  gap: 12px;
-  border-radius: 16px;
+  background-color: var(--light-bg);
 }
-body .requestDetails .addComment .title * {
+body .requestDetails .addComment h5 {
+  color: var(--main-color);
+  font-size: 18px;
   font-weight: bold;
 }
-body .requestDetails .addComment .input-field {
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  gap: 10px;
+body .requestDetails .addComment .form {
+  margin-top: 16px;
 }
-body .requestDetails .addComment .input-field label {
-  color: var(--black-color);
+body .requestDetails .addComment .form input {
+  height: 48px;
+  padding: 0 12px;
 }
-body .requestDetails .addComment .input-field label i {
-  color: var(--main-color);
-}
-body .requestDetails .addComment .input-field a {
-  color: var(--main-color);
-}
-body .requestDetails .addComment .input-field input,
-body .requestDetails .addComment .input-field textarea {
-  color: var(--black-color);
-  direction: rtl;
-  height: 56px;
-  width: 100%;
-  border: none;
-  outline: none;
-  padding: 10px 16px;
-  border-radius: 16px;
+body .requestDetails .addComment .form input,
+body .requestDetails .addComment .form textarea {
   background: var(--white-color);
-  font-size: 14px;
 }
-body .requestDetails .addComment .input-field textarea {
-  height: 230px;
+body .requestDetails .addComment .form button {
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 0 42px;
+  height: 48px;
 }
 body .requestDetails .lastPosts {
   padding: 16px;
@@ -4778,10 +4854,14 @@ body .section-head .text-wrap a {
   font-size: 16px;
   color: var(--main-color);
 }
-body .section-head .text-wrap h1 {
+body .section-head .text-wrap h6 {
   color: var(--input-hint);
   font-size: 16px;
   font-weight: 400;
+}
+body .section-head h1 {
+  color: var(--black-color);
+  font-size: 26px;
 }
 body .service-card .content {
   position: relative;
@@ -5132,6 +5212,10 @@ body.en main .form .input-field input,
 body.en main .form .input-field textarea,
 body.en main .form .input-field select {
   direction: ltr !important;
+}
+body.en main .form .input-field .input-span {
+  right: 12px;
+  left: 0;
 }
 body.en .newsletter .form-news h3 {
   font-size: 28px !important;

@@ -8,12 +8,6 @@ import LatestProjects from "../features/home/LatestProjects";
 import Parteners from "../features/home/Parteners";
 
 const Home = () => {
-  function handleSubmitSearch(e) {
-    e.preventDefault();
-    const searchInput = e.target[0].value;
-    navigate(`/search?search=${searchInput}`);
-  }
-
   return (
     <>
       <HeroSection />

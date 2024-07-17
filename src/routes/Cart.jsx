@@ -126,7 +126,7 @@ const Cart = () => {
             <div className="empty_cart">
               <img src={emptyCart} alt="empty-cart" />
               <h3>{t("cart.empty")}</h3>
-              <Link to="/search">{t("cart.exploreServices")}</Link>
+              <Link to="/services">{t("cart.exploreServices")}</Link>
             </div>
           </div>
         )}

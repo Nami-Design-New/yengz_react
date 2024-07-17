@@ -51,19 +51,19 @@ const Footer = () => {
               <h4>الاقسام</h4>
               <ul>
                 <li>
-                  <Link to="/search">برمجة وتطوير</Link>
+                  <Link to="/services">برمجة وتطوير</Link>
                 </li>
                 <li>
-                  <Link to="/search">تصميم فيديو</Link>
+                  <Link to="/services">تصميم فيديو</Link>
                 </li>
                 <li>
-                  <Link to="/search">تعليم عن بعد</Link>
+                  <Link to="/services">تعليم عن بعد</Link>
                 </li>
                 <li>
-                  <Link to="/search">كتابة و ترجمة</Link>
+                  <Link to="/services">كتابة و ترجمة</Link>
                 </li>
                 <li>
-                  <Link to="/search">التسويق الإلكتروني</Link>
+                  <Link to="/services">التسويق الإلكتروني</Link>
                 </li>
               </ul>
             </div>

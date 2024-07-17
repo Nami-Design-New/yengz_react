@@ -1,5 +1,6 @@
 {
   "routes": {
+    "home": "الرئيسية",
     "service": "خدمة",
     "add-service": "اضافة خدمة",
     "edit-service": "تعديل خدمة",
@@ -27,7 +28,8 @@
     "edit-profile": "تعديل الملف الشخصي",
     "cart": "السلة",
     "notifications": "الاشعارات",
-    "recieved-request-orders": "طلبات مستلمة"
+    "recieved-request-orders": "طلبات مستلمة",
+    "add-project": "اضف مشروع"
   },
   "auth": {
     "loginPageTitle": "تسجيل الدخول",
@@ -193,7 +195,8 @@
     "imageGallery": "معرض الصور",
     "workUpdatedSuccessfully": "تم تحديث المشروع بنجاح",
     "edit": "تعديل",
-    "add": "اضافة"
+    "add": "اضافة",
+    "wallet": "المحفظة"
   },
   "addService": {
     "serviceTitle": "عنوان الخدمة",
@@ -240,7 +243,8 @@
     "availabilty": "متواجد حاليًا",
     "apply": "تأكيد",
     "clear": "مسح الفلتر",
-    "searchFilter": "نتائج البحث"
+    "searchFilter": "نتائج البحث",
+    "noData": "لا يوجد خدمات بهذه التفاصيل، يرجى المحاولة بشيء اخر..."
   },
   "services": {
     "developments": "تطويرات متوفرة لهذه الخدمة",
@@ -322,7 +326,35 @@
   },
   "projects": {
     "title": "المشاريع",
-    "emptyProjects": "لا يوجد مشاريع بهذه التفاصيل، يرجى المحاولة بشيء اخر..."
+    "emptyProjects": "لا يوجد مشاريع بهذه التفاصيل، يرجى المحاولة بشيء اخر...",
+    "addProject": "اضف المشروع",
+    "projectDetails": "تفاصيل المشروع",
+    "projectCard": "بطاقة المشروع",
+    "status": "حالة المشروع",
+    "publishTime": "تاريخ النشر",
+    "budget": "الميزانية",
+    "deliveryTime": "مدة التنفيذ",
+    "days": "ايام",
+    "averageOffers": "متوسط العروض",
+    "offers": "عدد العروض",
+    "projectOwner": "صاحب المشروع",
+    "signUpDate": "تاريخ التسجيل",
+    "employmentRate": "معدل التوظيف",
+    "openProjects": "المشاريع المفتوحة",
+    "inProgressProjects": "المشاريع قيد التنفيذ",
+    "addOffer": "أضف عرضك الآن",
+    "oferrDescription": "تفاصيل العرض",
+    "price": "السعر",
+    "yourDuesAfterfees": "المستحقات بعد الرسوم",
+    "send": "ارسال",
+    "offerAddedSuccessfully": "تم اضافة عرضك بنجاح",
+    "offersMade": "العروض المقدمة",
+    "editOffer": "تعديل العرض",
+    "acceptOffer": "قبول العرض",
+    "refuseOffer": "رفض العرض",
+    "projectTitle": "عنوان المشروع",
+    "projectDescription": "وصف المشروع",
+    "publish": "نشر"
   },
   "chat": {
     "block": "حظر",

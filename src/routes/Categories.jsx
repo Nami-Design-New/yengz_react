@@ -8,9 +8,7 @@ const Categories = () => {
 
   return (
     <>
-      <div className="section-head">
-        <SectionHeader />
-      </div>
+      <SectionHeader />
       <section className="department">
         <div className="container">
           <div className="row">

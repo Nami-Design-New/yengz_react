@@ -90,7 +90,7 @@ function OrderDetails() {
             <div className="row justify-content-center">
               <div className="col-lg-9 col-12 mb-5">
                 <div className="service-head">
-                  <Link to={`/service/${order?.service?.id}`} className="img">
+                  <Link to={`/services/${order?.service?.id}`} className="img">
                     <img src={order?.service?.image || bann} alt="service" />
                   </Link>
                   <div className="title">

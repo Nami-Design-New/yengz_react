@@ -8,7 +8,7 @@ export async function getProjectsByFilter({
   user_available,
   categories,
   sub_categories,
-  is_old,
+  is_old
 }) {
   const requestBody = {};
 
@@ -35,8 +35,10 @@ export async function getProjectsByFilter({
 
   try {
     const req = await axios.post("/get_projects", requestBody);
-
-    return req.data;
+    return {
+      data: req.data.data,
+      total: req.data.total
+    };
   } catch (err) {
     throw new Error(err.message);
   }
@@ -45,9 +47,43 @@ export async function getProjectsByFilter({
 export async function getLatestProjects() {
   try {
     const req = await axios.post("/get_projects", {
-      page: 1,
+      page: 1
     });
     return req.data.data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+export async function getProjectById(id) {
+  try {
+    const req = await axios.post("/get_project_details", {
+      id
+    });
+    return req.data.data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+export async function getProjectRequests(id, type) {
+  try {
+    const req = await axios.post(
+      `${type === "global" ? "" : "/user"}/get_project_request`,
+      {
+        id
+      }
+    );
+    return req.data.data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+export async function addProjectRequest(data, querClinet) {
+  try {
+    await axios.post("/user/create_request", data);
+    querClinet.invalidateQueries(["projectRequests"]);
   } catch (error) {
     throw new Error(error.message);
   }

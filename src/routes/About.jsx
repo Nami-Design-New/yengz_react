@@ -15,11 +15,7 @@ import NewsLetter from "../ui/NewsLetter";
 const About = () => {
   return (
     <>
-
-      <div className="section-head">
-        <SectionHeader />
-      </div>
-      
+      <SectionHeader />
 
       <section className="about-section">
         <div className="about_wrap">
@@ -52,7 +48,7 @@ const About = () => {
                       مثيل لها للوظائف البعيدة والمختلطة والمرنة
                     </li>
                   </ul>
-                  <Link to="/search">ابحث الان</Link>
+                  <Link to="/services">ابحث الان</Link>
                 </div>
               </div>
 
@@ -112,10 +108,7 @@ const About = () => {
                 <h3 data-aos="fade-up">
                   أصوات النجاح: شهادات من عملائنا المميزين
                 </h3>
-                <Swiper
-                  spaceBetween={32}
-                  slidesPerView={3}
-                >
+                <Swiper spaceBetween={32} slidesPerView={3}>
                   <SwiperSlide>
                     <div className="swiper-slide">
                       <div className="testmional-card">
@@ -364,7 +357,6 @@ const About = () => {
           <NewsLetter />
         </div>
       </section>
-
     </>
   );
 };
