@@ -16,7 +16,7 @@ const Login = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [, setCookie] = useCookies(["token"]);
+  const [, setCookie] = useCookies(["token", "id"]);
 
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
