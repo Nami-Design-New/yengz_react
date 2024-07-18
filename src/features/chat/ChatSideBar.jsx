@@ -52,7 +52,7 @@ const ChatSideBar = ({
               {truncate(chat?.last_message?.message)}
               {chat?.last_message?.from_id === user?.id && (
                 <span className="read">
-                  <i class="fa-regular fa-check"></i>
+                  <i className="fa-regular fa-check"></i>
                 </span>
               )}
             </p>

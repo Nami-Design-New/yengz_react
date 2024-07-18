@@ -367,7 +367,10 @@
     "areYouSureYouWantToDelete": " هل انت متاكد من انك تريد حذف هذا المشروع؟",
     "projectDeleted": "تم حذف المشروع بنجاح",
     "projectEditedSuccessfully": "تم تحديث المشروع بنجاح",
-    "update": "تحديث"
+    "update": "تحديث",
+    "attachments": "المرفقات",
+    "requestRefused": "تم رفض الطلب",
+    "requestAccepted": "تم قبول الطلب"
   },
   "chat": {
     "block": "حظر",

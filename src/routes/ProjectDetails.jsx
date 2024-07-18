@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import SectionHeader from "../ui/SectionHeader";
 import useGetProject from "./../features/projects/useGetProject";
@@ -28,16 +28,34 @@ function ProjectDetails() {
               {/* post details */}
               <div className="postDetails w-100">
                 <h5>
-                  <i class="fa-light fa-file"></i>{" "}
+                  <i className="fa-light fa-file"></i>{" "}
                   {t("projects.projectDetails")}
                 </h5>
                 <p>{project?.description}</p>
+                {project?.files?.length > 0 && (
+                  <>
+                    <h6>{t("projects.attachments")}</h6>
+                    <ul>
+                      {project?.files?.map((file) => (
+                        <li key={file?.id}>
+                          <Link
+                            to={file?.file}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <i className="fa-regular fa-link"></i> {file?.file}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                )}
               </div>
               {/* piddings */}
               {requests && requests.length > 0 && (
                 <div className="allComments">
                   <h5 className="mb-4">
-                    <i class="fa-light fa-comment"></i>{" "}
+                    <i className="fa-light fa-comment"></i>{" "}
                     {t("projects.offersMade")}{" "}
                   </h5>
                   <div className="d-flex flex-column gap-3">

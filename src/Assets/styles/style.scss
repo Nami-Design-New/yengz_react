@@ -4062,6 +4062,17 @@ body {
         font-size: 18px;
         font-weight: bold;
       }
+      h6 {
+        margin-top: 24px;
+        font-size: 16px;
+      }
+      a {
+        font-size: 14px;
+        color: var(--black-color);
+        i {
+          color: var(--main-color);
+        }
+      }
     }
     .aboutProjectCard {
       width: 100%;

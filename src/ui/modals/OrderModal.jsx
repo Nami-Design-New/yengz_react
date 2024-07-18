@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { Modal } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import Lottie from "react-lottie";
-import { createOrder } from "../../services/apiOrders";
-import { toast } from "react-toastify";
 import SubmitButton from "../form-elements/SubmitButton";
-import { useNavigate } from "react-router-dom";
-import { useQueryClient } from "@tanstack/react-query";
 
-const OrderModal = ({ showModal, setShowModal, ballance, cartTotalPrice }) => {
-  const queryClient = useQueryClient();
+const OrderModal = ({
+  showModal,
+  setShowModal,
+  ballance,
+  cartTotalPrice,
+  eventFunction,
+  loading
+}) => {
   const { t } = useTranslation();
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
 
   const defaultOptions = {
     loop: true,
@@ -23,19 +23,6 @@ const OrderModal = ({ showModal, setShowModal, ballance, cartTotalPrice }) => {
     }
   };
 
-  const handlePlaceOrder = async () => {
-    try {
-      setLoading(true);
-      await createOrder(queryClient);
-      toast.success(t("cart.orderSuccess"));
-      setShowModal(false);
-      navigate("/purchases");
-    } catch (error) {
-      throw new Error(error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
   return (
     <Modal show={showModal} onHide={() => setShowModal(false)} centered>
       <Modal.Header className="pb-0" closeButton />
@@ -70,7 +57,7 @@ const OrderModal = ({ showModal, setShowModal, ballance, cartTotalPrice }) => {
           <SubmitButton
             name={t("services.orderNow")}
             loading={loading}
-            onClick={handlePlaceOrder}
+            onClick={eventFunction}
             className={"order-now"}
           />
         </div>

@@ -1,16 +1,26 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { formatTimeDifference, getTimeDifference } from "../../utils/helpers";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { IconDotsVertical, IconPencil, IconTrash } from "@tabler/icons-react";
 import { useState } from "react";
+import { requestChatRoom } from "../../redux/slices/requctRoom";
 import StarsList from "./../StarsList";
 import EditProjectOfferModal from "../modals/EditProjectOfferModal";
+import OrderModal from "../modals/OrderModal";
+import { useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
+import { updateRequestStatus } from "../../services/apiProjects";
 
 function OfferCard({ request, isMyProject }) {
   const { t } = useTranslation();
+  const queryClient = useQueryClient();
   const [showEditModal, setShowEditModal] = useState(false);
+  const [showConfirmPayModel, setShowConfirmPayModel] = useState(false);
   const { user } = useSelector((state) => state.authedUser);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const timeDifference = getTimeDifference(request?.created_at);
   const formattedTime = formatTimeDifference(
     timeDifference.years,
@@ -30,6 +40,40 @@ function OfferCard({ request, isMyProject }) {
     }
     return truncateStringResult;
   }
+
+  const handleCreateRoom = () => {
+    dispatch(
+      requestChatRoom({
+        request_type: "project",
+        request_id: request?.project_id,
+        owner_id: user?.id,
+        applied_id: request?.user?.id
+      })
+    );
+    navigate(`/chat`);
+  };
+
+  const handleRefuseOffer = async () => {
+    try {
+      await updateRequestStatus(request?.id, "refused", queryClient);
+      toast.success(t("projects.requestRefused"));
+    } catch (error) {
+      console.log(error?.message);
+    }
+  };
+
+  const handleAcceptOffer = async () => {
+    try {
+      setLoading(true);
+      await updateRequestStatus(request?.id, "accepted", queryClient);
+      toast.success(t("projects.requestAccepted"));
+      setShowConfirmPayModel(false);
+    } catch (error) {
+      console.log(error?.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="comment">
@@ -51,14 +95,14 @@ function OfferCard({ request, isMyProject }) {
             </p>
           </div>
         </div>
-        {isMyProject ||
-          (user?.id === request?.user?.id && (
-            <div className="d-flex gap-3">
-              {isMyProject && (
-                <button className="butn">
-                  <i className="fa-regular fa-message-lines"></i>
-                </button>
-              )}
+        {(isMyProject || user?.id === request?.user?.id) && (
+          <div className="d-flex gap-3">
+            {isMyProject && (
+              <button className="butn" onClick={handleCreateRoom}>
+                <i className="fa-regular fa-message-lines"></i>
+              </button>
+            )}
+            {request?.status === "in_progress" && (
               <div className="dropdown setting">
                 <button
                   className="btn dropdown-toggle"
@@ -69,58 +113,57 @@ function OfferCard({ request, isMyProject }) {
                   <IconDotsVertical stroke={2} />
                 </button>
                 <ul className="dropdown-menu">
-                  {user?.id === request?.user?.id && (
+                  {user?.id === request?.user?.id ? (
                     <>
-                      {isMyProject ? (
-                        <>
-                          <li>
-                            <button className="dropdown-item">
-                              <IconPencil stroke={2} />{" "}
-                              {t("projects.acceptOffer")}
-                            </button>
-                          </li>
-                          <li>
-                            <button className="dropdown-item">
-                              <IconTrash stroke={2} />{" "}
-                              {t("projects.refuseOffer")}
-                            </button>
-                          </li>
-                        </>
-                      ) : (
-                        <>
-                          <li>
-                            <button
-                              className="dropdown-item"
-                              onClick={() => setShowEditModal(true)}
-                            >
-                              <IconPencil stroke={2} />{" "}
-                              {t("projects.editOffer")}
-                            </button>
-                          </li>
-                        </>
-                      )}
+                      <li>
+                        <button
+                          className="dropdown-item"
+                          onClick={() => setShowEditModal(true)}
+                        >
+                          <IconPencil stroke={2} /> {t("projects.editOffer")}
+                        </button>
+                      </li>
+                    </>
+                  ) : (
+                    <>
+                      <li>
+                        <button
+                          className="dropdown-item"
+                          onClick={() => setShowConfirmPayModel(true)}
+                        >
+                          {t("projects.acceptOffer")}
+                        </button>
+                      </li>
+                      <li>
+                        <button
+                          className="dropdown-item"
+                          onClick={handleRefuseOffer}
+                        >
+                          {t("projects.refuseOffer")}
+                        </button>
+                      </li>
                     </>
                   )}
                 </ul>
               </div>
-            </div>
-          ))}
-      </div>
-      {isMyProject ||
-        (user?.id === request?.user?.id && (
-          <div className="about_offer">
-            <div className="block">
-              <h6>{t("projects.price")}:</h6>
-              <p>${request?.price}</p>
-            </div>
-            <div className="block">
-              <h6>{t("projects.deliveryTime")}:</h6>
-              <p>
-                {request?.days} {t("projects.days")}
-              </p>
-            </div>
+            )}
           </div>
-        ))}
+        )}
+      </div>
+      {(isMyProject || user?.id === request?.user?.id) && (
+        <div className="about_offer">
+          <div className="block">
+            <h6>{t("projects.price")}:</h6>
+            <p>${request?.price}</p>
+          </div>
+          <div className="block">
+            <h6>{t("projects.deliveryTime")}:</h6>
+            <p>
+              {request?.days} {t("projects.days")}
+            </p>
+          </div>
+        </div>
+      )}
 
       <p className="text">
         {isMyProject || user?.id === request?.user?.id
@@ -132,6 +175,15 @@ function OfferCard({ request, isMyProject }) {
         request={request}
         showModal={showEditModal}
         setShowModal={setShowEditModal}
+      />
+
+      <OrderModal
+        setShowModal={setShowConfirmPayModel}
+        loading={loading}
+        showModal={showConfirmPayModel}
+        ballance={user?.wallet}
+        cartTotalPrice={request?.price}
+        eventFunction={handleAcceptOffer}
       />
     </div>
   );
