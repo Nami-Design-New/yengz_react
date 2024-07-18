@@ -76,8 +76,8 @@ const Navbar = () => {
   function handleSubmitSearch(e) {
     e.preventDefault();
     const searchInput = e.target[0].value;
-    navigate(`/services?search=${searchInput}`);
     closeSearchInput();
+    navigate(`/services?search=${searchInput}`);
   }
 
   return (
@@ -94,14 +94,16 @@ const Navbar = () => {
         <div
           className={`small-media-menu  ${isSmallMediaMenuOpen ? "show" : ""}`}
         >
-          <div className="user">
-            <Link to="/profile" className="avatar" onClick={closeProfileMenu}>
-              <img src={user?.image} alt="" />
-            </Link>
-            <div className="userr">
-              <h6>{user?.name}</h6>
+          {isLogged && (
+            <div className="user">
+              <Link to="/profile" className="avatar" onClick={closeProfileMenu}>
+                <img src={user?.image} alt="" />
+              </Link>
+              <div className="userr">
+                <h6>{user?.name}</h6>
+              </div>
             </div>
-          </div>
+          )}
           <ul className="nav-links">
             <li className="nav-link" onClick={closeSmallMediaMenu}>
               <Link to="/">
@@ -112,6 +114,12 @@ const Navbar = () => {
             <li className="nav-link" onClick={closeSmallMediaMenu}>
               <Link to="/categories">
                 <i className="far fa-cube"></i> {t("navbar.categories")}
+              </Link>
+            </li>
+            <li className="nav-link" onClick={closeSmallMediaMenu}>
+              <Link to="/login">
+                <i className="fa-regular fa-right-to-bracket"></i>
+                {t("navbar.login")}
               </Link>
             </li>
             {isLogged && (
@@ -152,7 +160,7 @@ const Navbar = () => {
                 </li>
                 <li className="nav-link" onClick={closeSmallMediaMenu}>
                   <Link to="/logout">
-                    <i className="fa-solid fa-right-from-bracket"></i>
+                    <i className="fa-regular fa-right-from-bracket"></i>
                     {t("navbar.logout")}
                   </Link>
                 </li>

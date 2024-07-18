@@ -22,10 +22,10 @@ const Services = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [searchFilterData, setSearchFilterData] = useState({
     search: searchParams.get("search") || "",
-    page: Number(searchParams.get("page")) || 1,
-    rate: Number(searchParams.get("rate")) || 1,
-    user_verification: Number(searchParams.get("user_verification")) || 0,
-    user_available: Number(searchParams.get("user_available")) || 0,
+    page: Number(searchParams.get("page")) || null,
+    rate: Number(searchParams.get("rate")) || null,
+    user_verification: Number(searchParams.get("user_verification")) || null,
+    user_available: Number(searchParams.get("user_available")) || null,
     categories: searchParams.get("categories")
       ? searchParams
           .get("categories")
@@ -38,7 +38,7 @@ const Services = () => {
           .split("-")
           .map((subcategory) => Number(subcategory))
       : [],
-    is_old: Number(searchParams.get("is_old")) || 0
+    is_old: Number(searchParams.get("is_old")) || null,
   });
 
   const handleChange = (e) => {
@@ -68,8 +68,8 @@ const Services = () => {
               updatedState["sub_categories"] = [
                 ...new Set([
                   ...prevState["sub_categories"],
-                  ...relatedSubCategories
-                ])
+                  ...relatedSubCategories,
+                ]),
               ];
             } else {
               updatedState["sub_categories"] = prevState[
@@ -94,7 +94,7 @@ const Services = () => {
 
             if (areAllChildrenChecked) {
               updatedState["categories"] = [
-                ...new Set([...prevState["categories"], parentCategory.id])
+                ...new Set([...prevState["categories"], parentCategory.id]),
               ];
             } else {
               updatedState["categories"] = prevState["categories"].filter(
@@ -107,7 +107,6 @@ const Services = () => {
 
         return updateCategoriesAndSubCategories(name, value, checked);
       }
-
       return updatedState;
     });
   };
@@ -121,8 +120,12 @@ const Services = () => {
       searchParams.set("page", searchFilterData.page);
       setSearchParams(searchParams);
     }
+    console.log(String(searchFilterData.search).trim());
     if (String(searchFilterData.search).trim()) {
       searchParams.set("search", searchFilterData.search);
+      setSearchParams(searchParams);
+    } else {
+      searchParams.delete("search");
       setSearchParams(searchParams);
     }
     if (
@@ -245,26 +248,30 @@ const Services = () => {
           </div>
           {searchIsLoading || categoriesIsLoading ? (
             <DataLoader />
-          ) : (
+          ) : searchServicesList && searchServicesList?.data.length > 0 ? (
             <div className="col-lg-9 col-12 p-2 results-wrapper">
               <div className="container">
                 <div className="row">
-                  {searchServicesList?.data &&
-                  searchServicesList?.data.length > 0 ? (
-                    searchServicesList.data.map((service) => (
-                      <div className="col-lg-4 col-6 p-2" key={service.id}>
-                        <ServiceCard service={service} />
-                      </div>
-                    ))
-                  ) : (
-                    <EmptyData>{t("search.noData")}</EmptyData>
-                  )}
+                  {searchServicesList.data.map((service) => (
+                    <div className="col-lg-4 col-6 p-2" key={service.id}>
+                      <ServiceCard service={service} />
+                    </div>
+                  ))}
                 </div>
                 {searchServicesList?.total > 10 && (
-                  <CustomPagination count={searchServicesList?.total} />
+                  <CustomPagination
+                    count={searchServicesList?.total}
+                    pageSize={10}
+                  />
                 )}
               </div>
             </div>
+          ) : (
+            <EmptyData>
+              {searchServicesList?.total === 0
+                ? t("recievedOrders.emptyOrders")
+                : t("recievedOrders.noOrders")}
+            </EmptyData>
           )}
         </div>
       </div>

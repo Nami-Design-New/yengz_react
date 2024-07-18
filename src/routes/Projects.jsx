@@ -248,32 +248,22 @@ function Projects() {
           </div>
 
           <div className="col-lg-9 col-12 p-2 results-wrapper">
-            {projectsIsLoading || categoriesIsLoading ? (
-              <DataLoader />
-            ) : (
-              <div className="container">
-                <div className="row">
-                  <div className="col-12 p-2 pt-0 d-flex justify-content-end">
-                    <Link to="/add-project" className="btn btn-success">
-                      <i className="fa-regular fa-hexagon-plus me-2"></i> {""}
-                      {t("projects.addProject")}
-                    </Link>
-                  </div>
-                  {projectsList?.data && projectsList?.data?.length > 0 ? (
-                    projectsList?.data?.map((project) => (
-                      <div className="col-12 p-2" key={project.id}>
-                        <ProjectCard project={project} />
-                      </div>
-                    ))
-                  ) : (
-                    <EmptyData>{t("projects.emptyProjects")}</EmptyData>
-                  )}
-                </div>
-                {projectsList.total > 10 && (
-                  <CustomPagination count={projectsList?.total} pageSize={10} />
+            <div className="container">
+              <div className="row">
+                {projectsList?.data && projectsList?.data?.length > 0 ? (
+                  projectsList?.data?.map((project) => (
+                    <div className="col-lg-4 col-6 p-2" key={project.id}>
+                      <ServiceCard service={project} />
+                    </div>
+                  ))
+                ) : (
+                  <EmptyData>{t("projects.emptyProjects")}</EmptyData>
                 )}
               </div>
-            )}
+              {projectsList && projectsList?.total > 10 && (
+                <CustomPagination count={projectsList?.total} pageSize={10} />
+              )}
+            </div>
           </div>
         </div>
       </div>

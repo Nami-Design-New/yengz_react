@@ -4890,6 +4890,7 @@ body {
     gap: 16px;
     justify-content: space-between;
     padding: 8px 16px;
+    z-index: 10000;
     input {
       flex: 1 0 0;
       border: none;
