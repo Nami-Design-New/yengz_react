@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useCookies } from "react-cookie";
 import { useNavigate, useParams } from "react-router-dom";
-import ProfileTabs from "./ProfileTabs";
-import UserProfileCard from "./UserProfileCard";
-import axios from "./../../utils/axios";
+import ProfileTabs from "../features/profile/ProfileTabs";
+import UserProfileCard from "../features/profile/UserProfileCard";
+import axios from "../utils/axios";
 
 const Profile = () => {
   const authedUser = useSelector((state) => state.authedUser.user);
@@ -44,10 +44,10 @@ const Profile = () => {
   return (
     <section className="profile-section container">
       <div className="row">
-        <div className="col-lg-5 col-12 p-2">
+        <div className="col-lg-4 col-12 p-2">
           <UserProfileCard isMyAccount={isMyAccount} user={user} />
         </div>
-        <div className="col-lg-7 col-12 p-2">
+        <div className="col-lg-8 col-12 p-2">
           <ProfileTabs isMyAccount={isMyAccount} user={user} />
         </div>
       </div>

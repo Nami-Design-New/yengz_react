@@ -881,6 +881,7 @@ body {
             font-size: 22px;
             color: var(--black-color);
             font-weight: bold;
+            text-align: center;
           }
           span {
             color: var(--text-color);
@@ -1006,6 +1007,23 @@ body {
           &:hover {
             background: var(--main-color);
             color: #fff;
+          }
+        }
+        .projects_wrapper {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          .noDataFound {
+            display: flex;
+            margin: 0 auto;
+            padding: 120px 0;
+            justify-content: center;
+            align-items: center;
+            h4 {
+              font-size: 42px;
+              color: var(--LightGray);
+              font-weight: 900;
+            }
           }
         }
         .services_grid {
@@ -3674,6 +3692,41 @@ body {
         }
       }
     }
+    .requstPost {
+      justify-content: space-between;
+      width: 100%;
+      .status_action {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        .status {
+          background: var(--white-color);
+          color: var(--main-color);
+          padding: 0 16px;
+          @include centerFlex();
+          border-radius: 8px;
+          height: 36px;
+        }
+        button,
+        a {
+          @include clearInput();
+          @include centerFlex();
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          background: var(--white-color);
+          svg {
+            height: 16px;
+            stroke: red;
+          }
+        }
+        a {
+          svg {
+            stroke: var(--main-color);
+          }
+        }
+      }
+    }
   }
   .newsletter {
     padding-top: 32px;
@@ -3896,7 +3949,7 @@ body {
       border-radius: 16px;
       background-color: var(--input-bg);
       border: var(--gray-background) 1px solid;
-      button{
+      button {
         width: fit-content;
         padding: 0 42px;
       }
@@ -3906,14 +3959,89 @@ body {
         color: var(--main-color);
       }
       input,
-      textarea {
+      textarea,
+      select {
         background: var(--white-color);
-      }
-      textarea {
-        height: 230px;
+        border: var(--gray-background) 1px solid;
       }
       .input-span {
         top: 52px !important;
+      }
+    }
+    .upload_attachments {
+      padding: 12px;
+      width: 100%;
+      border-radius: 12px;
+      background: var(--white-color);
+      border: var(--gray-background) 1px solid;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      .icon {
+        background: var(--input-bg);
+        border-radius: 8px;
+        @include centerFlex();
+        padding: 12px;
+      }
+      .content {
+        h6 {
+          margin: 0;
+          font-size: 20px;
+        }
+      }
+      input {
+        display: none;
+      }
+    }
+    .attachments {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      .attachment {
+        border-radius: 12px;
+        background: var(--white-color);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 12px;
+        .icon {
+          width: 42px;
+          @include centerFlex();
+          img {
+            aspect-ratio: 1 / 1;
+            max-width: 42px;
+            object-fit: contain;
+          }
+        }
+        .delete {
+          padding: 0;
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          background: none;
+          cursor: pointer;
+          @include centerFlex();
+          svg {
+            stroke: red;
+            height: 16px;
+          }
+        }
+        .content {
+          h6 {
+            margin: 0;
+            font-size: 14px;
+            color: var(--black-color);
+            a {
+              color: var(--black-color);
+            }
+          }
+          p {
+            margin: 0;
+            font-size: 12px;
+          }
+        }
       }
     }
   }

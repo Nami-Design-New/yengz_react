@@ -119,7 +119,7 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
         value={formData.name}
         onChange={(e) => handleChange(e)}
       />
-      <div className="d-flex gap-2 flex-lg-row flex-column">
+      <div className="d-flex gap-2 flex-lg-row flex-column w-100">
         <InputField
           label={t("auth.email")}
           placeholder="example@example.com"

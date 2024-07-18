@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 
-function useTruncateString(inputString) {
+function useTruncateString(inputString, chars = 100) {
   const [truncatedString, setTruncatedString] = useState("");
 
   useEffect(() => {
-    if (inputString.length > 150) {
-      setTruncatedString(inputString.substring(0, 100) + "...");
+    if (inputString?.length > 150) {
+      setTruncatedString(inputString.substring(0, chars) + "...");
     } else {
       setTruncatedString(inputString);
     }

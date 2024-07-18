@@ -85,8 +85,6 @@ const AddServices = () => {
       }))
     };
 
-    console.log(dataToSendForUpdate);
-
     try {
       if (service?.id) {
         await updateService(dataToSendForUpdate, queryClient);

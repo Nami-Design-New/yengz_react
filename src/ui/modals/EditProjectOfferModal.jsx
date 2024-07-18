@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
+import { editProjectRequest } from "../../services/apiProjects";
 import { useTranslation } from "react-i18next";
 import useGetSettings from "../../features/settings/useGetSettings";
 import InputField from "../form-elements/InputField";
 import TextField from "../form-elements/TextField";
 import SubmitButton from "../form-elements/SubmitButton";
+import { useQueryClient } from "@tanstack/react-query";
 
 const EditProjectOfferModal = ({ showModal, setShowModal, request }) => {
   const { data: settings } = useGetSettings();
+  const queryClient = useQueryClient();
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
 
@@ -16,11 +19,25 @@ const EditProjectOfferModal = ({ showModal, setShowModal, request }) => {
   };
 
   const [formData, setFormData] = useState({
-    project_id: request?.project_id,
+    id: request?.id,
     price: request?.price,
     description: request?.description,
     days: request?.days
   });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      await editProjectRequest(formData, queryClient);
+      toast.success(t("projects.offerUpdatedSuccessfully"));
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+      setShowModal(false);
+    }
+  };
 
   return (
     <Modal
@@ -33,7 +50,7 @@ const EditProjectOfferModal = ({ showModal, setShowModal, request }) => {
         <Modal.Title>{t("projects.editOffer")}</Modal.Title>
       </Modal.Header>
       <Modal.Body className="add-work">
-        <form className="form">
+        <form className="form" onSubmit={handleSubmit}>
           <div className="row m-0">
             <div className="col-lg-4 col-12 p-1">
               <InputField
@@ -83,7 +100,7 @@ const EditProjectOfferModal = ({ showModal, setShowModal, request }) => {
               />
             </div>
             <div className="col-12 p-1 mt-2 d-flex justify-content-end">
-              <SubmitButton name={t("projects.send")} loading={loading} />
+              <SubmitButton name={t("projects.confirm")} loading={loading} />
             </div>
           </div>
         </form>

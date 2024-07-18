@@ -44,11 +44,11 @@ const AboutProjectCard = ({ project }) => {
         </li>
         <li className=" d-flex justify-content-between">
           <p>{t("projects.averageOffers")}</p>
-          <span>{project?.request_average} $</span>
+          <span>{project?.request_average || 0} $</span>
         </li>
         <li className=" d-flex justify-content-between">
           <p>{t("projects.offers")}</p>
-          <span>{project?.requests_count}</span>
+          <span>{project?.requests_count || 0}</span>
         </li>
         <hr />
         <h6>{t("projects.projectOwner")}</h6>

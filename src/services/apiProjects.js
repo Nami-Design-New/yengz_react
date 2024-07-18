@@ -44,6 +44,54 @@ export async function getProjectsByFilter({
   }
 }
 
+export async function getUserProjects(id) {
+  try {
+    const req = await axios.post("/user/get_my_projects", {
+      user_id: id
+    });
+    return req.data.data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+export const createProject = async (data, queryClient) => {
+  try {
+    await axios.post("/user/create_project", data, {
+      headers: {
+        "Content-Type": "multipart/form-data"
+      }
+    });
+    queryClient.invalidateQueries(["userProjects"]);
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+export const editProject = async (data, queryClient) => {
+  try {
+    await axios.post("/user/update_project", data, {
+      headers: {
+        "Content-Type": "multipart/form-data"
+      }
+    });
+    queryClient.invalidateQueries(["userProjects"]);
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+export async function deleteProject(id, queryClient) {
+  try {
+    await axios.post("/user/delete_project", {
+      id
+    });
+    queryClient.invalidateQueries(["userProjects"]);
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
 export async function getLatestProjects() {
   try {
     const req = await axios.post("/get_projects", {
@@ -83,6 +131,15 @@ export async function getProjectRequests(id, type) {
 export async function addProjectRequest(data, querClinet) {
   try {
     await axios.post("/user/create_request", data);
+    querClinet.invalidateQueries(["projectRequests"]);
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+export async function editProjectRequest(data, querClinet) {
+  try {
+    await axios.post("/user/update_request", data);
     querClinet.invalidateQueries(["projectRequests"]);
   } catch (error) {
     throw new Error(error.message);

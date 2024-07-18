@@ -955,6 +955,7 @@ body main .profile-section .profile-descripe .name-rate h6 {
   font-size: 22px;
   color: var(--black-color);
   font-weight: bold;
+  text-align: center;
 }
 body main .profile-section .profile-descripe .name-rate span {
   color: var(--text-color);
@@ -1088,6 +1089,23 @@ body main .profile-section .tab-content .add-service i {
 body main .profile-section .tab-content .add-service:hover {
   background: var(--main-color);
   color: #fff;
+}
+body main .profile-section .tab-content .projects_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+body main .profile-section .tab-content .projects_wrapper .noDataFound {
+  display: flex;
+  margin: 0 auto;
+  padding: 120px 0;
+  justify-content: center;
+  align-items: center;
+}
+body main .profile-section .tab-content .projects_wrapper .noDataFound h4 {
+  font-size: 42px;
+  color: var(--LightGray);
+  font-weight: 900;
 }
 body main .profile-section .tab-content .services_grid {
   display: flex;
@@ -3951,6 +3969,46 @@ body .singleRequst .lastInteraction .postTitle {
     align-items: center;
   }
 }
+body .singleRequst .requstPost {
+  justify-content: space-between;
+  width: 100%;
+}
+body .singleRequst .requstPost .status_action {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+body .singleRequst .requstPost .status_action .status {
+  background: var(--white-color);
+  color: var(--main-color);
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  height: 36px;
+}
+body .singleRequst .requstPost .status_action button,
+body .singleRequst .requstPost .status_action a {
+  border: none;
+  background: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--white-color);
+}
+body .singleRequst .requstPost .status_action button svg,
+body .singleRequst .requstPost .status_action a svg {
+  height: 16px;
+  stroke: red;
+}
+body .singleRequst .requstPost .status_action a svg {
+  stroke: var(--main-color);
+}
 body .newsletter {
   padding-top: 32px;
   background: var(--main1010-color);
@@ -4202,14 +4260,92 @@ body .addRequest .input-field a {
   color: var(--main-color);
 }
 body .addRequest .input-field input,
-body .addRequest .input-field textarea {
+body .addRequest .input-field textarea,
+body .addRequest .input-field select {
   background: var(--white-color);
-}
-body .addRequest .input-field textarea {
-  height: 230px;
+  border: var(--gray-background) 1px solid;
 }
 body .addRequest .input-field .input-span {
   top: 52px !important;
+}
+body .addRequest .upload_attachments {
+  padding: 12px;
+  width: 100%;
+  border-radius: 12px;
+  background: var(--white-color);
+  border: var(--gray-background) 1px solid;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+body .addRequest .upload_attachments .icon {
+  background: var(--input-bg);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+}
+body .addRequest .upload_attachments .content h6 {
+  margin: 0;
+  font-size: 20px;
+}
+body .addRequest .upload_attachments input {
+  display: none;
+}
+body .addRequest .attachments {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+body .addRequest .attachments .attachment {
+  border-radius: 12px;
+  background: var(--white-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+}
+body .addRequest .attachments .attachment .icon {
+  width: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body .addRequest .attachments .attachment .icon img {
+  aspect-ratio: 1/1;
+  max-width: 42px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+body .addRequest .attachments .attachment .delete {
+  padding: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body .addRequest .attachments .attachment .delete svg {
+  stroke: red;
+  height: 16px;
+}
+body .addRequest .attachments .attachment .content h6 {
+  margin: 0;
+  font-size: 14px;
+  color: var(--black-color);
+}
+body .addRequest .attachments .attachment .content h6 a {
+  color: var(--black-color);
+}
+body .addRequest .attachments .attachment .content p {
+  margin: 0;
+  font-size: 12px;
 }
 body .requestDetails {
   padding: 40px 0;

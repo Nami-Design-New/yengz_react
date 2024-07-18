@@ -1,6 +1,7 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
+import SubmitButton from "../form-elements/SubmitButton";
 
 const ConfirmationModal = ({
   showModal,
@@ -9,7 +10,8 @@ const ConfirmationModal = ({
   target,
   eventFun,
   buttonText,
-  type = "delete"
+  type = "delete",
+  loading
 }) => {
   const { t } = useTranslation();
   return (
@@ -25,9 +27,12 @@ const ConfirmationModal = ({
           <button onClick={() => setShowModal(false)} className="cancel-btn">
             {t("cancel")}
           </button>
-          <button className="delete-btn" onClick={eventFun}>
-            {buttonText}
-          </button>
+          <SubmitButton
+            className={"delete-btn"}
+            name={buttonText}
+            onClick={eventFun}
+            loading={loading}
+          />
         </div>
       </Modal.Body>
     </Modal>
