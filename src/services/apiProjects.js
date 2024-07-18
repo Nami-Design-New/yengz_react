@@ -145,3 +145,15 @@ export async function editProjectRequest(data, querClinet) {
     throw new Error(error.message);
   }
 }
+
+export async function updateRequestStatus(id, status, querClinet) {
+  try {
+    await axios.post("/user/change_request_status", {
+      id,
+      status
+    });
+    querClinet.invalidateQueries(["projectRequests"]);
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}

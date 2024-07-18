@@ -26,17 +26,17 @@ function WorkViewModal({ showModal, setShowModal, targetWork, setTargetWork }) {
           <h3>{targetWork?.title}</h3>
           <h5 className="m-0">{targetWork?.description}</h5>
           <div className="modal-info-item">
-            <i class="fa-solid fa-clipboard"></i>
+            <i className="fa-solid fa-clipboard"></i>
             <p className="m-0 item-value">{targetWork?.link}</p>
           </div>
           <div className="modal-info-item">
-            <i class="fa-solid fa-calendar-days"></i>
+            <i className="fa-solid fa-calendar-days"></i>
             <p className="m-0 item-value">
               {new Date(targetWork?.start_date).toLocaleString()}
             </p>
           </div>
           <div className="modal-info-item">
-            <i class="fa-solid fa-calendar-days"></i>
+            <i className="fa-solid fa-calendar-days"></i>
             <p className="m-0 item-value">
               {new Date(targetWork?.end_date).toLocaleString()}
             </p>

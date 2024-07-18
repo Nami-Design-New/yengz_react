@@ -4366,6 +4366,17 @@ body .requestDetails .postDetails h5 {
   font-size: 18px;
   font-weight: bold;
 }
+body .requestDetails .postDetails h6 {
+  margin-top: 24px;
+  font-size: 16px;
+}
+body .requestDetails .postDetails a {
+  font-size: 14px;
+  color: var(--black-color);
+}
+body .requestDetails .postDetails a i {
+  color: var(--main-color);
+}
 body .requestDetails .aboutProjectCard {
   width: 100%;
   border-radius: 16px;

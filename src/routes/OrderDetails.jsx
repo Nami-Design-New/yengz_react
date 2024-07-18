@@ -179,7 +179,7 @@ function OrderDetails() {
                     loading={loading}
                     className="report-order"
                     name={t("recievedOrders.acceptOrder")}
-                    icon={<i class="fa-light fa-circle-check"></i>}
+                    icon={<i className="fa-light fa-circle-check"></i>}
                     onClick={() => handleupdateOrder("in_progress")}
                   />
                 )}
@@ -188,7 +188,7 @@ function OrderDetails() {
                     loading={loading}
                     className="report-order"
                     name={t("recievedOrders.readyForDelevier")}
-                    icon={<i class="fa-light fa-circle-check"></i>}
+                    icon={<i className="fa-light fa-circle-check"></i>}
                     onClick={() => handleupdateOrder("ready")}
                   />
                 )}
@@ -211,7 +211,7 @@ function OrderDetails() {
                     loading={loading}
                     className="report-order"
                     name={t("recievedOrders.recieve")}
-                    icon={<i class="fa-light fa-circle-check"></i>}
+                    icon={<i className="fa-light fa-circle-check"></i>}
                     onClick={() => handleupdateOrder("received")}
                   />
                 )}

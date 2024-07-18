@@ -40,7 +40,7 @@ const AddOffer = ({ id }) => {
   return (
     <div className="addComment">
       <h5>
-        <i class="fa-light fa-plus"></i> {t("projects.addOffer")}{" "}
+        <i className="fa-light fa-plus"></i> {t("projects.addOffer")}{" "}
       </h5>
       <form className="form" onSubmit={handleSubmit}>
         <div className="row m-0">

@@ -1,26 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import CartBox from "../ui/cart/CartBox";
-import useCartList from "../features/cart/useCartList";
-import emptyCart from "../Assets/images/emptyCart.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { updateEntireCart } from "../redux/slices/cart";
 import { deleteCart } from "../services/apiCart";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import { createOrder } from "../services/apiOrders";
+import CartBox from "../ui/cart/CartBox";
+import useCartList from "../features/cart/useCartList";
+import emptyCart from "../Assets/images/emptyCart.svg";
 import DataLoader from "../ui/DataLoader";
 import SubmitButton from "./../ui/form-elements/SubmitButton";
-import ConfirmationModal from "../ui/modals/ConfirmationModal";
 import OrderModal from "./../ui/modals/OrderModal";
 
 const Cart = () => {
   const { data: cartQuery, isLoading } = useCartList();
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [cartObjList, setCartObjList] = useState([]);
   const [totalCartPrice, setTotalCartPrice] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [payLoading, setPayLoading] = useState(false);
   const [showConfirmPayModel, setShowConfirmPayModel] = useState(false);
   const user = useSelector((state) => state.authedUser.user);
 
@@ -72,6 +74,20 @@ const Cart = () => {
       console.error(error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handlePlaceOrder = async () => {
+    try {
+      setPayLoading(true);
+      await createOrder(queryClient);
+      toast.success(t("cart.orderSuccess"));
+      setShowConfirmPayModel(false);
+      navigate("/purchases");
+    } catch (error) {
+      throw new Error(error.message);
+    } finally {
+      setPayLoading(false);
     }
   };
 
@@ -136,6 +152,8 @@ const Cart = () => {
         showModal={showConfirmPayModel}
         ballance={user?.wallet}
         cartTotalPrice={totalCartPrice}
+        eventFunction={handlePlaceOrder}
+        loading={payLoading}
       />
     </section>
   );
