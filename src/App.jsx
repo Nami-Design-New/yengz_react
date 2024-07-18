@@ -21,7 +21,6 @@ import RecievedOrders from "./routes/RecievedOrders";
 import Terms from "./routes/Terms";
 import Logout from "./features/auth/Logout";
 import Cart from "./routes/Cart";
-import Profile from "./features/profile/Profile";
 import EditProfile from "./features/profile/EditProfile";
 import Notifcations from "./routes/Notifcations";
 import Chats from "./routes/Chats";
@@ -34,6 +33,7 @@ import ServiceDetails from "./routes/ServiceDetails";
 import Services from "./routes/Services";
 import ProjectDetails from "./routes/ProjectDetails";
 import AddProject from "./routes/AddProject";
+import Profile from "./routes/Profile";
 
 function App() {
   const dispatch = useDispatch();
@@ -113,6 +113,7 @@ function App() {
           <Route path="/projects" element={<Projects />} />
           <Route path="/projects/:id" element={<ProjectDetails />} />
           <Route path="/add-project" element={<AddProject />} />
+          <Route path="/edit-project/:id" element={<AddProject />} />
 
           {/* profile routes */}
           <Route path="/profile" element={<Profile />} />

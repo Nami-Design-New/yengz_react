@@ -29,7 +29,8 @@
     "cart": "السلة",
     "notifications": "الاشعارات",
     "recieved-request-orders": "طلبات مستلمة",
-    "add-project": "اضف مشروع"
+    "add-project": "اضف مشروع",
+    "edit-project": "تعديل مشروع"
   },
   "auth": {
     "loginPageTitle": "تسجيل الدخول",
@@ -196,7 +197,9 @@
     "workUpdatedSuccessfully": "تم تحديث المشروع بنجاح",
     "edit": "تعديل",
     "add": "اضافة",
-    "wallet": "المحفظة"
+    "wallet": "المحفظة",
+    "projects": "المشاريع",
+    "noProjects": "لا يوجد مشاريع لعرضها"
   },
   "addService": {
     "serviceTitle": "عنوان الخدمة",
@@ -354,7 +357,17 @@
     "refuseOffer": "رفض العرض",
     "projectTitle": "عنوان المشروع",
     "projectDescription": "وصف المشروع",
-    "publish": "نشر"
+    "publish": "نشر",
+    "offerUpdatedSuccessfully": "تم تحديث العرض بنجاح",
+    "confirm": "تأكيد",
+    "category": "القسم",
+    "addattachments": "اضف ملفات توضيحية",
+    "projectCreatedSuccessfully": "تم انشاء المشروع بنجاح. المشروع قيد المراجعة الأن",
+    "deleteProject": "حذف المشروع",
+    "areYouSureYouWantToDelete": " هل انت متاكد من انك تريد حذف هذا المشروع؟",
+    "projectDeleted": "تم حذف المشروع بنجاح",
+    "projectEditedSuccessfully": "تم تحديث المشروع بنجاح",
+    "update": "تحديث"
   },
   "chat": {
     "block": "حظر",

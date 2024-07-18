@@ -17,11 +17,15 @@ import useGetWorks from "./useGetWorks";
 import useUserServices from "../services/useUserServices";
 import CertificatesTab from "./CertificatesTab";
 import WorksTab from "./WorksTab";
+import useGetUserProjects from "./../projects/useGetUserProjects";
+import ProjectCard from "../../ui/cards/ProjectCard";
+import DataLoader from "../../ui/DataLoader";
 
 const ProfileTabs = ({ user, isMyAccount }) => {
   const queryClient = useQueryClient();
   const { t } = useTranslation();
   const { data: services } = useUserServices(user?.id);
+  const { data: myProjects, isLoading } = useGetUserProjects(user?.id);
   const { data: works } = useGetWorks(user?.id);
 
   const handleDeleteService = async (id) => {
@@ -87,52 +91,79 @@ const ProfileTabs = ({ user, isMyAccount }) => {
           </div>
         </Tab>
 
-        {/* verifications */}
+        {/* projects */}
+        <Tab
+          eventKey="projects"
+          title={t("profile.projects")}
+          className="tab_item"
+        >
+          <div className="services-container">
+            {isMyAccount && (
+              <Link to="/add-project" className="add-service mb-3">
+                <IconCirclePlus stroke={2} /> {t("routes.add-project")}
+              </Link>
+            )}
+            {isLoading ? (
+              <DataLoader />
+            ) : (
+              <div className="projects_wrapper">
+                {myProjects?.length === 0 ? (
+                  <div className="noDataFound">
+                    <h4>{t("profile.noProjects")}</h4>
+                  </div>
+                ) : (
+                  <>
+                    {myProjects?.map((project) => (
+                      <ProjectCard key={project?.id} project={project} />
+                    ))}
+                  </>
+                )}
+              </div>
+            )}
+          </div>
+        </Tab>
 
-        {isMyAccount && (
-          <Tab
-            eventKey="documentation"
-            title={t("profile.verification")}
-            className="tab_item"
-          >
-            <div className="tab-pane">
-              <ul className="verify-list">
-                <li className="d-flex gap-2">
-                  {user?.verified === 1 ? (
-                    <IconRosetteDiscountCheck stroke={2} />
-                  ) : (
-                    <IconBrandXamarin className="tabler-danger" stroke={2} />
-                  )}
-                  {t("profile.personalIdentification")}
-                </li>
-                <li className="d-flex gap-2">
-                  {user?.phone_verified === 1 ? (
-                    <IconRosetteDiscountCheck stroke={2} />
-                  ) : (
-                    <IconBrandXamarin className="tabler-danger" stroke={2} />
-                  )}
-                  {t("profile.phoneNumber")}
-                </li>
-                <li className="d-flex gap-2">
+        {/* verifications */}
+        <Tab
+          eventKey="documentation"
+          title={t("profile.verification")}
+          className="tab_item"
+        >
+          <div className="tab-pane">
+            <ul className="verify-list">
+              <li className="d-flex gap-2">
+                {user?.verified === 1 ? (
                   <IconRosetteDiscountCheck stroke={2} />
-                  {t("profile.emailAddress")}
-                </li>
-              </ul>
-              {isMyAccount && (
-                <>
-                  {user?.verified === 0 && (
-                    <div className="unverified-box">
-                      <h6>{t("profile.notVerified")}</h6>
-                      <Link to="/verify-user">
-                        {t("profile.verifyAccount")}
-                      </Link>
-                    </div>
-                  )}
-                </>
-              )}
-            </div>
-          </Tab>
-        )}
+                ) : (
+                  <IconBrandXamarin className="tabler-danger" stroke={2} />
+                )}
+                {t("profile.personalIdentification")}
+              </li>
+              <li className="d-flex gap-2">
+                {user?.phone_verified === 1 ? (
+                  <IconRosetteDiscountCheck stroke={2} />
+                ) : (
+                  <IconBrandXamarin className="tabler-danger" stroke={2} />
+                )}
+                {t("profile.phoneNumber")}
+              </li>
+              <li className="d-flex gap-2">
+                <IconRosetteDiscountCheck stroke={2} />
+                {t("profile.emailAddress")}
+              </li>
+            </ul>
+            {isMyAccount && (
+              <>
+                {user?.verified === 0 && (
+                  <div className="unverified-box">
+                    <h6>{t("profile.notVerified")}</h6>
+                    <Link to="/verify-user">{t("profile.verifyAccount")}</Link>
+                  </div>
+                )}
+              </>
+            )}
+          </div>
+        </Tab>
 
         {/*  statistics */}
         <Tab

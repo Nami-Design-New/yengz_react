@@ -1,11 +1,22 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { formatTimeDifference, getTimeDifference } from "../../utils/helpers";
 import { useTranslation } from "react-i18next";
+import { IconEdit, IconTrash } from "@tabler/icons-react";
+import { useSelector } from "react-redux";
 import useTruncateString from "../../hooks/useTruncateString";
+import ConfirmationModal from "../modals/ConfirmationModal";
+import { deleteProject } from "../../services/apiProjects";
+import { useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
-function ProjectCard({ order }) {
+function ProjectCard({ project }) {
   const { t } = useTranslation();
-  const timeDifference = getTimeDifference(order.created_at);
+  const queryClient = useQueryClient();
+  const user = useSelector((state) => state.authedUser.user);
+  const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const timeDifference = getTimeDifference(project?.created_at);
   const formattedTime = formatTimeDifference(
     timeDifference.years,
     timeDifference.months,
@@ -14,34 +25,79 @@ function ProjectCard({ order }) {
     timeDifference.minutes,
     t
   );
-  const truncatedText = useTruncateString(order?.description);
+  const truncatedText = useTruncateString(project?.description, 200);
+  const delteProject = async () => {
+    setLoading(true);
+    try {
+      await deleteProject(project?.id, queryClient);
+      setShowModal(false);
+      toast.success(t("projects.projectDeleted"));
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <Link to={`/projects/${order?.id}`} className="singleRequst">
+    <div className="singleRequst">
       <div className="row">
         <div className="col-12 p-0">
           <div className="requstPost">
-            <Link to={`/profile/${order?.user?.id}`}>
-              <img src={order?.user?.image} alt="" />
-            </Link>
-            <div className="postContent">
-              <Link to={`/projects/${order?.id}`} className="postTitle">
-                {order?.title}
+            <div className="d-flex gap-3">
+              <Link
+                to={`/profile/${project?.user?.id}`}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <img src={project?.user?.image} alt="" />
               </Link>
-              <div className="postUser">
-                <Link to={`/profile/${order?.user?.id}`} className="name">
-                  <i className="fa-regular fa-user"></i> {order?.user?.name}
+              <div className="postContent">
+                <Link
+                  to={`/projects/${project?.id}`}
+                  className="postTitle"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  {project?.title}
                 </Link>
-                <p className="time m-0">
-                  <i className="fa-regular fa-timer"></i>
-                  {formattedTime}
-                </p>
+                <div className="postUser">
+                  <Link
+                    to={`/profile/${project?.user?.id}`}
+                    className="name"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <i className="fa-regular fa-user"></i> {project?.user?.name}
+                  </Link>
+                  <p className="time m-0">
+                    <i className="fa-regular fa-timer"></i>
+                    {formattedTime}
+                  </p>
+                </div>
               </div>
             </div>
+            {user?.id === project?.user?.id && (
+              <div className="status_action">
+                <span className="status">{project?.status_name}</span>
+                <Link to={`/edit-project/${project?.id}`}>
+                  <IconEdit stroke={2} />
+                </Link>
+                <button onClick={() => setShowModal(true)}>
+                  <IconTrash stroke={2} />
+                </button>
+              </div>
+            )}
           </div>
           <p className="m-0 mt-3">{truncatedText}</p>
         </div>
       </div>
-    </Link>
+      <ConfirmationModal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        buttonText={t("projects.deleteProject")}
+        text={t("projects.areYouSureYouWantToDelete")}
+        eventFun={delteProject}
+        loading={loading}
+      />
+    </div>
   );
 }
 
