@@ -49,7 +49,7 @@ const Purchases = () => {
                         <PurchaseCard key={purchase.id} purchase={purchase} />
                       ))}
                     </div>
-                    {purchases?.total > 10 && (
+                    {purchases && purchases?.total > 10 && (
                       <CustomPagination
                         count={purchases?.total}
                         pageSize={10}

@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import logo from "../Assets/images/logo.svg";
 import usePaymentMethodsList from "../features/payments/usePaymentMethodsList";
+import useGetAbout from "../features/About/useGetAbout";
 
 const Footer = () => {
   const { data: payments } = usePaymentMethodsList();
   const { t } = useTranslation();
+  const { data: footerCategoriesList } = useGetAbout();
 
   return (
     <footer>
@@ -24,28 +26,20 @@ const Footer = () => {
               </p>
             </div>
           </div>
-          <div className="col-lg-3 col-6">
-            <div className="links pa-24">
-              <h4>{t("footer.importantLinks")}</h4>
-              <ul>
-                <li>
-                  <Link to="/about">{t("footer.aboutYengz")}</Link>
-                </li>
-                <li>
-                  <Link to="/contact">{t("footer.contactUs")}</Link>
-                </li>
-                <li>
-                  <Link to="/faq">{t("footer.faq")}</Link>
-                </li>
-                <li>
-                  <Link to="/terms">{t("footer.rightsReserved")}</Link>
-                </li>
-                <li>
-                  <Link to="/how-it-work">{t("footer.howYengzWork")}</Link>
-                </li>
-              </ul>
+          {footerCategoriesList && footerCategoriesList?.length > 0 && (
+            <div className="col-lg-3 col-6">
+              <div className="links pa-24">
+                <h4>{t("footer.importantLinks")}</h4>
+                <ul>
+                  {footerCategoriesList.map((category) => (
+                    <li key={category.id}>
+                      <Link to={`/about/${category.id}`}>{category.name}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
-          </div>
+          )}
           <div className="col-lg-3 col-6">
             <div className="links pa-24">
               <h4>الاقسام</h4>
@@ -142,7 +136,7 @@ const Footer = () => {
                       style={{
                         width: "50px",
                         objectFit: "cover",
-                        cursor: "pointer"
+                        cursor: "pointer",
                       }}
                     />
                   ))}

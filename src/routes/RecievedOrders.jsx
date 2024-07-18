@@ -44,7 +44,7 @@ const RecievedRequest = () => {
                         <OrderCard order={order} key={order.id} />
                       ))}
                     </div>
-                    {serviceOrders?.total > 10 && (
+                    {serviceOrders && serviceOrders?.total > 10 && (
                       <CustomPagination
                         count={serviceOrders?.total}
                         pageSize={10}

@@ -124,7 +124,7 @@ function App() {
           <Route path="/notifications" element={<Notifcations />} />
 
           <Route path="/contact" element={<Contact />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/about/:id" element={<About />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/how-it-work" element={<HowItWork />} />
           <Route path="/faq" element={<Faq />} />
