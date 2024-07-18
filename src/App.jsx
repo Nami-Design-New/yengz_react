@@ -44,18 +44,17 @@ function App() {
   const [loading, setLoading] = useState(true);
   const { decodedToken, isExpired } = useJwt(token || "");
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-  const { data: profile, isLoading, isError } = useGetProfile(id);
+  const { data: profile, isLoading, error } = useGetProfile(id);
 
   useEffect(() => {
     if (profile) {
-      console.log(profile);
       dispatch(setUser(profile));
       dispatch(setIsLogged(true));
-    } else if (isError) {
+    } else if (error) {
       dispatch(setIsLogged(false));
       dispatch(setUser({}));
     }
-  }, [profile, isError]);
+  }, [profile, error, dispatch]);
 
   const initializeAuth = async () => {
     setLoading(true);
