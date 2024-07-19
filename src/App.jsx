@@ -3,83 +3,62 @@ import { Route, Routes } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { useDispatch, useSelector } from "react-redux";
 import { useJwt } from "react-jwt";
-import { setIsLogged, setUser } from "./redux/slices/authedUser";
 import axios from "./utils/axios";
-import Login from "./features/auth/login/Login";
-import Register from "./features/auth/register/Register";
-import ForgetPassword from "./features/auth/resetPassword/ForgetPassword";
 import Layout from "./ui/Layout";
 import Home from "./routes/Home";
 import About from "./routes/About";
 import Contact from "./routes/Contact";
-import Categories from "./routes/Categories";
 import Faq from "./routes/Faq";
+import Chats from "./routes/Chats";
+import Cart from "./routes/Cart";
+import Profile from "./routes/Profile";
+import EditProfile from "./features/profile/EditProfile";
+import AddProject from "./routes/AddProject";
+import ProjectDetails from "./routes/ProjectDetails";
+import Purchases from "./routes/Purchases";
+import Categories from "./routes/Categories";
+import Logout from "./features/auth/Logout";
+import Login from "./features/auth/login/Login";
+import Register from "./features/auth/register/Register";
+import ForgetPassword from "./features/auth/resetPassword/ForgetPassword";
+import AuthVerifySteps from "./features/auth/verification/AuthVerifySteps";
 import HowItWork from "./routes/HowItWork";
 import OrderDetails from "./routes/OrderDetails";
-import Purchases from "./routes/Purchases";
 import RecievedOrders from "./routes/RecievedOrders";
 import Terms from "./routes/Terms";
-import Logout from "./features/auth/Logout";
-import Cart from "./routes/Cart";
-import EditProfile from "./features/profile/EditProfile";
 import Notifcations from "./routes/Notifcations";
-import Chats from "./routes/Chats";
-import AuthVerifySteps from "./features/auth/verification/AuthVerifySteps";
 import AddServices from "./features/services/AddServices";
-import Loader from "./ui/Loader";
 import Projects from "./routes/Projects";
 import useGetProfile from "./features/profile/useGetProfile";
 import ServiceDetails from "./routes/ServiceDetails";
 import Services from "./routes/Services";
-import ProjectDetails from "./routes/ProjectDetails";
-import AddProject from "./routes/AddProject";
-import Profile from "./routes/Profile";
+import { setIsLogged, setUser } from "./redux/slices/authedUser";
+import Loader from "./ui/Loader";
 
 function App() {
   const dispatch = useDispatch();
   const lang = useSelector((state) => state.language.lang);
+
   const [cookies] = useCookies(["token", "id"]);
   const token = cookies?.token;
   const id = cookies?.id;
-  const [loading, setLoading] = useState(true);
-  const { decodedToken, isExpired } = useJwt(token || "");
+
+  const { decodedToken, isExpired } = useJwt(token);
+
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-  const { data: profile, isLoading, error } = useGetProfile(id);
+  const { data: profile, isLoading } = useGetProfile(id);
 
   useEffect(() => {
-    if (profile) {
-      dispatch(setUser(profile));
+    if (Number(decodedToken?.sub) === id && !isExpired) {
       dispatch(setIsLogged(true));
-    } else if (error) {
+      dispatch(setUser(profile));
+    } else {
       dispatch(setIsLogged(false));
       dispatch(setUser({}));
+      delete axios.defaults.headers.common["Authorization"];
+      console.log("Token is invalid and id matches");
     }
-  }, [profile, error, dispatch]);
-
-  const initializeAuth = async () => {
-    setLoading(true);
-    try {
-      const stringId = String(id);
-      if (
-        !decodedToken ||
-        typeof decodedToken.sub !== "string" ||
-        decodedToken.sub !== stringId ||
-        isExpired
-      ) {
-        dispatch(setIsLogged(false));
-        dispatch(setUser({}));
-        delete axios.defaults.headers.common["Authorization"];
-      }
-    } catch (error) {
-      console.error("Error during initialization:", error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    initializeAuth();
-  }, [decodedToken, isExpired, token, id]);
+  }, [decodedToken?.sub, id, isExpired, profile]);
 
   useEffect(() => {
     sessionStorage.setItem("lang", lang);
@@ -87,13 +66,11 @@ function App() {
     lang === "en" ? body.classList.add("en") : body.classList.remove("en");
   }, [lang]);
 
-  if (loading || isLoading) {
-    return <Loader />;
-  }
-
-  return (
+  return isLoading ? (
+    <Loader />
+  ) : (
     <div className="App">
-      <Layout loading={loading}>
+      <Layout>
         <Routes>
           <Route index element={<Home />} />
           <Route path="/categories" element={<Categories />} />
