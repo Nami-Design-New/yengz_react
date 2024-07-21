@@ -8,7 +8,7 @@ function useServiceDetails() {
   const { isLoading, data, error } = useQuery({
     queryKey: ["serviceDetails", id],
     queryFn: () => getServiceDetails(id),
-    retry: false
+    retry: false,
   });
   return { isLoading, data, error };
 }

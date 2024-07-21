@@ -105,7 +105,8 @@
     "support": "Support",
     "report": "Report",
     "deleteAccount": "Delete Account",
-    "logout": "Logout"
+    "logout": "Logout",
+    "cart": "Cart"
   },
   "home": {
     "searchFor": "Search For...",

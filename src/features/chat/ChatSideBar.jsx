@@ -8,7 +8,7 @@ const ChatSideBar = ({
   showChatsMenu,
   chats,
   targetChat,
-  setTargetChat
+  setTargetChat,
 }) => {
   const { user } = useSelector((state) => state.authedUser);
 
@@ -31,7 +31,10 @@ const ChatSideBar = ({
         <button
           className={`nav-link ${targetChat?.id === chat?.id ? "active" : ""}`}
           key={chat?.id}
-          onClick={() => setTargetChat(chat)}
+          onClick={() => {
+            setTargetChat(chat);
+            setShowChatsMenu(false);
+          }}
         >
           <img
             className="userImg"

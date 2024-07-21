@@ -255,7 +255,7 @@ function Projects() {
                 ) : projectsList?.data && projectsList?.data?.length > 0 ? (
                   projectsList?.data?.map((project) => (
                     <div className="col-lg-4 col-6 p-2" key={project.id}>
-                      <ServiceCard service={project} />
+                      <ServiceCard service={project} type="project" />
                     </div>
                   ))
                 ) : (

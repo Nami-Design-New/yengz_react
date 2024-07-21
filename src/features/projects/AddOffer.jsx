@@ -7,6 +7,8 @@ import { addProjectRequest } from "../../services/apiProjects";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import SubmitButton from "./../../ui/form-elements/SubmitButton";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const AddOffer = ({ id }) => {
   const { t } = useTranslation();
@@ -17,8 +19,10 @@ const AddOffer = ({ id }) => {
     project_id: id,
     price: "",
     description: "",
-    days: ""
+    days: "",
   });
+  const isLogged = useSelector((state) => state.authedUser.isLogged);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -26,14 +30,18 @@ const AddOffer = ({ id }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    try {
-      await addProjectRequest(formData, queryClient);
-      toast.success(t("projects.offerAddedSuccessfully"));
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
+    if (isLogged) {
+      setLoading(true);
+      try {
+        await addProjectRequest(formData, queryClient);
+        toast.success(t("projects.offerAddedSuccessfully"));
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    } else {
+      navigate("/login");
     }
   };
 

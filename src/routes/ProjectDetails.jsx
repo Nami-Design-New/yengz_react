@@ -23,7 +23,7 @@ function ProjectDetails() {
       <SectionHeader title={project?.title} />
       <section className="requestDetails">
         <div className="container">
-          <div className="row">
+          <div className="row ">
             <div className="col-lg-8 col-12 p-2 d-flex flex-column gap-3">
               {/* post details */}
               <div className="postDetails w-100">

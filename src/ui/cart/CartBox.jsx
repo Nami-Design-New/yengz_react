@@ -6,7 +6,7 @@ import {
   decreaseCartQuantity,
   deleteCartItem,
   increaseCartQuantity,
-  updateDevelopmentsInCart
+  updateDevelopmentsInCart,
 } from "../../services/apiCart";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
@@ -73,7 +73,7 @@ function CartBox({ item, cartObjList }) {
       await updateDevelopmentsInCart(
         {
           cart_id: cart_id,
-          development_id: dev_id
+          development_id: dev_id,
         },
         queryClient
       );

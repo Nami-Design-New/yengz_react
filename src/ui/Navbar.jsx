@@ -119,12 +119,6 @@ const Navbar = () => {
                 <i className="far fa-cube"></i> {t("navbar.categories")}
               </Link>
             </li>
-            <li className="nav-link" onClick={closeSmallMediaMenu}>
-              <Link to="/login">
-                <i className="fa-regular fa-right-to-bracket"></i>
-                {t("navbar.login")}
-              </Link>
-            </li>
             {isLogged && (
               <>
                 <li className="nav-link" onClick={closeSmallMediaMenu}>
@@ -151,6 +145,12 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li className="nav-link" onClick={closeSmallMediaMenu}>
+                  <Link to="/cart">
+                    <i className="fa-light fa-cart-shopping"></i>
+                    {t("navbar.cart")}
+                  </Link>
+                </li>
+                <li className="nav-link" onClick={closeSmallMediaMenu}>
                   <Link to="/purchases">
                     <i className="far fa-shopping-bag"></i>{" "}
                     {t("navbar.purchase")}
@@ -173,13 +173,22 @@ const Navbar = () => {
                     <i className="fa-regular fa-gear"></i> {t("navbar.more")}
                   </Link>
                 </li>
-                <li className="nav-link" onClick={closeSmallMediaMenu}>
-                  <Link to="/logout">
-                    <i className="fa-regular fa-right-from-bracket"></i>
-                    {t("navbar.logout")}
-                  </Link>
-                </li>
               </>
+            )}
+            {isLogged ? (
+              <li className="nav-link" onClick={closeSmallMediaMenu}>
+                <Link to="/logout">
+                  <i className="fa-regular fa-right-from-bracket"></i>
+                  {t("navbar.logout")}
+                </Link>
+              </li>
+            ) : (
+              <li className="nav-link" onClick={closeSmallMediaMenu}>
+                <Link to="/login">
+                  <i className="fa-regular fa-right-to-bracket"></i>
+                  {t("navbar.login")}
+                </Link>
+              </li>
             )}
           </ul>
         </div>
@@ -335,7 +344,7 @@ const Navbar = () => {
                 <li className="link hide-sm2">
                   <Link to="/cart" className="cart btn">
                     <i className="fa-light fa-cart-shopping"></i>
-                    <span className="num-count">{user?.cart_count}</span>
+                    <span className="num-count">{user?.cart_count || 0}</span>
                   </Link>
                 </li>
                 {/* Message */}
@@ -343,7 +352,7 @@ const Navbar = () => {
                   <li className="link hide-sm2">
                     <Link to="/chat" className="cart btn">
                       <i className="fa-regular fa-message-lines"></i>
-                      <span className="num-count">{user?.chat_count}</span>
+                      <span className="num-count">{user?.chat_count || 0}</span>
                     </Link>
                   </li>
                 </li>

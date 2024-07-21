@@ -185,7 +185,9 @@ const Services = () => {
     }
   }, [searchParams, setSearchParams]);
 
-  return (
+  return categoriesIsLoading || searchIsLoading ? (
+    <DataLoader />
+  ) : (
     <section className="search-section">
       <div className="container">
         <div className="row">
@@ -246,9 +248,7 @@ const Services = () => {
               <i className="fa-light fa-sliders"></i>
             </button>
           </div>
-          {searchIsLoading || categoriesIsLoading ? (
-            <DataLoader />
-          ) : searchServicesList && searchServicesList?.data.length > 0 ? (
+          {searchServicesList && searchServicesList?.data.length > 0 ? (
             <div className="col-lg-9 col-12 p-2 results-wrapper">
               <div className="container">
                 <div className="row">

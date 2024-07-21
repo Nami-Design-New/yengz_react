@@ -33,7 +33,7 @@ const Cart = () => {
         quantity: item?.quantity,
         developments: item?.service?.developments
           ?.filter((dev) => dev.in_cart !== false)
-          .map((dev) => dev.id)
+          .map((dev) => dev.id),
       }));
       setCartObjList(newCartObjList);
       setTotalCartPrice(
@@ -54,7 +54,7 @@ const Cart = () => {
             quantity: item.quantity,
             developments: item?.service?.developments?.map(
               (dev) => dev.in_cart === false && dev.id
-            )
+            ),
           }))
         )
       );
@@ -117,7 +117,7 @@ const Cart = () => {
               </div>
             </div>
             <div className="container">
-              <div className="row justify-content-center">
+              <div className="row justify-content-center responsive-gap">
                 <div className="col-lg-6 col-md-6 col-12">
                   <button
                     className="order-now"

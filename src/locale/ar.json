@@ -111,7 +111,8 @@
     "deleteAccount": "حذف الحساب",
     "logout": "تسجيل الخروج",
     "messages": "الرسائل",
-    "more": "المزيد"
+    "more": "المزيد",
+    "cart": "السلة"
   },
   "home": {
     "searchFor": "ابحث عن...",
