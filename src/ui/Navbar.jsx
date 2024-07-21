@@ -10,6 +10,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import i18next from "i18next";
 import "../Assets/styles/dropdownes.css";
 import useOutsideClose from "../hooks/useOutsideClose";
+import useProjectsList from "../features/projects/useProjectsList";
 
 const Navbar = () => {
   const { t } = useTranslation();
@@ -23,6 +24,8 @@ const Navbar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const [isSmallMediaMenuOpen, setIsSmallMediaMenuOpen] = useState(false);
+
+  const { data: projectsList } = useProjectsList();
 
   function handleToggleSearchInput() {
     setIsSearchOpen((open) => !open);
@@ -154,6 +157,18 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li className="nav-link" onClick={closeSmallMediaMenu}>
+                  <Link to="/projects">
+                    <i className="fa-regular fa-file-invoice"></i>
+                    {t("navbar.projects")}
+                  </Link>
+                </li>
+                <li className="nav-link" onClick={closeSmallMediaMenu}>
+                  <Link to="/projects-orders">
+                    <i className="fa-regular fa-hourglass-half"></i>
+                    {t("navbar.projectsOrders")}
+                  </Link>
+                </li>
+                <li className="nav-link" onClick={closeSmallMediaMenu}>
                   <Link to="/more">
                     <i className="fa-regular fa-gear"></i> {t("navbar.more")}
                   </Link>
@@ -228,6 +243,19 @@ const Navbar = () => {
                     <i className="fa-regular fa-file-invoice"></i>
                     {t("navbar.projects")}
                   </Link>
+                  <span className="num-count2">{projectsList?.total || 0}</span>
+                </li>
+                <li className="nav-link">
+                  <Link
+                    to="/projects-orders"
+                    className="d-flex align-items-center gap-1"
+                  >
+                    <i className="fa-regular fa-hourglass-half"></i>
+                    {t("navbar.projectsOrders")}
+                  </Link>
+                  <span className="num-count2">
+                    {user?.projects_order_count || 0}
+                  </span>
                 </li>
               </>
             )}

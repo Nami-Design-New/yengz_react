@@ -12,7 +12,7 @@ import OfferCard from "../ui/cards/OfferCard";
 function ProjectDetails() {
   const { t } = useTranslation();
   const { id } = useParams();
-  const { data: project, isLoading } = useGetProject(id);
+  const { data: project, isLoading } = useGetProject();
   const { data: requests, isLoading: isLoadingRequests } =
     useGetProjectRequests(id, "global");
 

@@ -27,7 +27,8 @@
     "edit-profile": "Edit Profile",
     "cart": "Cart",
     "notifications": "Notifications",
-    "recieved-request-orders": "Recieved Request Orders"
+    "recieved-request-orders": "Recieved Request Orders",
+    "projects-orders": "Projects Orders"
   },
   "auth": {
     "loginPageTitle": "Login",
@@ -95,6 +96,7 @@
     "requestsRecieved": "Requests Recieved",
     "serviceAsYouLike": " Service As You Like",
     "projects": "Projects",
+    "projectsOrders": "In progress",
     "searchFor": "Search For...",
     "login": "Login",
     "newAccount": "New Account",
@@ -304,6 +306,12 @@
     "progress": "In progress",
     "completed": "completed",
     "canceled": "canceled"
+  },
+  "chat": {
+    "block": "Block",
+    "report": "Report",
+    "writeHere": "Write Here...",
+    "chats": "Chats"
   },
   "cancel": "Cancel",
   "homePage": "Home",

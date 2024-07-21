@@ -34,6 +34,8 @@ import ServiceDetails from "./routes/ServiceDetails";
 import Services from "./routes/Services";
 import { setIsLogged, setUser } from "./redux/slices/authedUser";
 import Loader from "./ui/Loader";
+import ProjectsOrders from "./routes/ProjectsOrders";
+import ProtectedRoute from "./routes/ProtectedRoute";
 
 function App() {
   const dispatch = useDispatch();
@@ -78,27 +80,162 @@ function App() {
           {/* services routes */}
           <Route path="/services" element={<Services />} />
           <Route path="/services/:id" element={<ServiceDetails />} />
-          <Route path="/add-service" element={<AddServices />} />
-          <Route path="/edit-service/:id" element={<AddServices />} />
-          <Route path="/Cart" element={<Cart />} />
-          <Route path="/purchases" element={<Purchases />} />
-          <Route path="/purchases/:id" element={<OrderDetails />} />
-          <Route path="/recieved-orders" element={<RecievedOrders />} />
-          <Route path="/recieved-orders/:id" element={<OrderDetails />} />
+          <Route
+            path="/add-service"
+            element={
+              <ProtectedRoute>
+                <AddServices />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/edit-service/:id"
+            element={
+              <ProtectedRoute>
+                <AddServices />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/cart"
+            element={
+              <ProtectedRoute>
+                <Cart />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/purchases"
+            element={
+              <ProtectedRoute>
+                <Purchases />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/purchases/:id"
+            element={
+              <ProtectedRoute>
+                <OrderDetails />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/recieved-orders"
+            element={
+              <ProtectedRoute>
+                <RecievedOrders />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/recieved-orders/:id"
+            element={
+              <ProtectedRoute>
+                <OrderDetails />
+              </ProtectedRoute>
+            }
+          />
 
           {/* projects routes */}
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/projects/:id" element={<ProjectDetails />} />
-          <Route path="/add-project" element={<AddProject />} />
-          <Route path="/edit-project/:id" element={<AddProject />} />
+          <Route
+            path="/projects"
+            element={
+              <ProtectedRoute>
+                <Projects />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/projects/:id"
+            element={
+              <ProtectedRoute>
+                <ProjectDetails />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/add-project"
+            element={
+              <ProtectedRoute>
+                <AddProject />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/edit-project/:id"
+            element={
+              <ProtectedRoute>
+                <AddProject />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/projects-orders"
+            element={
+              <ProtectedRoute>
+                <ProjectsOrders />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/projects-orders/:id"
+            element={
+              <ProtectedRoute>
+                <ProjectDetails />
+              </ProtectedRoute>
+            }
+          />
 
           {/* profile routes */}
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/profile/:id" element={<Profile />} />
-          <Route path="/edit-profile" element={<EditProfile />} />
-          <Route path="/verify-user" element={<AuthVerifySteps />} />
-          <Route path="/chat" element={<Chats />} />
-          <Route path="/notifications" element={<Notifcations />} />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile/:id"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/edit-profile"
+            element={
+              <ProtectedRoute>
+                <EditProfile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/verify-user"
+            element={
+              <ProtectedRoute>
+                <AuthVerifySteps />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/chat"
+            element={
+              <ProtectedRoute>
+                <Chats />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/notifications"
+            element={
+              <ProtectedRoute>
+                <Notifcations />
+              </ProtectedRoute>
+            }
+          />
 
           <Route path="/contact" element={<Contact />} />
           <Route path="/about/:id" element={<About />} />

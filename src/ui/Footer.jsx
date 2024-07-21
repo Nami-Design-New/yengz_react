@@ -4,11 +4,13 @@ import { useTranslation } from "react-i18next";
 import logo from "../Assets/images/logo.svg";
 import usePaymentMethodsList from "../features/payments/usePaymentMethodsList";
 import useGetAbout from "../features/About/useGetAbout";
+import usePopularCategories from "../features/categories/usePopularCategories";
 
 const Footer = () => {
   const { data: payments } = usePaymentMethodsList();
   const { t } = useTranslation();
   const { data: footerCategoriesList } = useGetAbout();
+  const { data: popularCategoriesList } = usePopularCategories();
 
   return (
     <footer>
@@ -40,28 +42,22 @@ const Footer = () => {
               </div>
             </div>
           )}
-          <div className="col-lg-3 col-6">
-            <div className="links pa-24">
-              <h4>الاقسام</h4>
-              <ul>
-                <li>
-                  <Link to="/services">برمجة وتطوير</Link>
-                </li>
-                <li>
-                  <Link to="/services">تصميم فيديو</Link>
-                </li>
-                <li>
-                  <Link to="/services">تعليم عن بعد</Link>
-                </li>
-                <li>
-                  <Link to="/services">كتابة و ترجمة</Link>
-                </li>
-                <li>
-                  <Link to="/services">التسويق الإلكتروني</Link>
-                </li>
-              </ul>
+          {popularCategoriesList && popularCategoriesList?.length > 0 && (
+            <div className="col-lg-3 col-6">
+              <div className="links pa-24">
+                <h4>الاقسام</h4>
+                <ul>
+                  {popularCategoriesList.map((category) => (
+                    <li key={category.id}>
+                      <Link to={`/services?categories=${category.category_id}`}>
+                        {category.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
-          </div>
+          )}
           <div className="col-lg-3 col-md-6 col-12">
             <div className="d-flex flex-column gap-lg-5 gap-4 pa-24">
               <div className="download-app">

@@ -32,20 +32,20 @@ const LatestProjects = () => {
             className="mainSliderContainer"
             breakpoints={{
               992: {
-                slidesPerView: 3
+                slidesPerView: 3,
               },
               768: {
-                slidesPerView: 2
+                slidesPerView: 2,
               },
               350: {
-                slidesPerView: 1
-              }
+                slidesPerView: 1,
+              },
             }}
             dir="rtl"
           >
-            {projects?.map((pro) => (
-              <SwiperSlide key={pro.id}>
-                <ProjectCard order={pro} />
+            {projects?.map((project) => (
+              <SwiperSlide key={project.id}>
+                <ProjectCard project={project} />
               </SwiperSlide>
             ))}
           </Swiper>

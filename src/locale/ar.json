@@ -30,7 +30,8 @@
     "notifications": "الاشعارات",
     "recieved-request-orders": "طلبات مستلمة",
     "add-project": "اضف مشروع",
-    "edit-project": "تعديل مشروع"
+    "edit-project": "تعديل مشروع",
+    "projects-orders": "طلبات المشاريع"
   },
   "auth": {
     "loginPageTitle": "تسجيل الدخول",
@@ -98,6 +99,7 @@
     "requestsRecieved": " الطلبات الواردة",
     "serviceAsYouLike": " اطلب خدمة علي زوقك",
     "projects": "المشاريع",
+    "projectsOrders": "قيد التنفيذ",
     "searchFor": "ابحث عن...",
     "login": "تسجيل الدخول",
     "newAccount": "حساب جديد",

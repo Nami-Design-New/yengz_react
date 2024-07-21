@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { IconTrash } from "@tabler/icons-react";
 import { createProject, editProject } from "../services/apiProjects";
 import { useQueryClient } from "@tanstack/react-query";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import SectionHeader from "../ui/SectionHeader";
 import InputField from "../ui/form-elements/InputField";
@@ -18,13 +18,12 @@ import doc from "../Assets/images/doc.svg";
 
 function AddProject() {
   const { t } = useTranslation();
-  const { id } = useParams();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const [categoryId, setCategoryId] = useState("");
   const [loading, setLoading] = useState(false);
   const { data: categories } = useCategoriesList();
-  const { data: projectDetails } = useGetProject(id);
+  const { data: projectDetails } = useGetProject();
   const { data: subCategories } = useSubCategoriesList(categoryId);
 
   const [formData, setFormData] = useState({
@@ -34,7 +33,7 @@ function AddProject() {
     days: "",
     description: "",
     project_files: [],
-    delete_files: []
+    delete_files: [],
   });
 
   useEffect(() => {
@@ -48,7 +47,7 @@ function AddProject() {
         days: projectDetails?.days,
         description: projectDetails?.description,
         project_files: projectDetails?.files,
-        delete_files: []
+        delete_files: [],
       };
       setFormData(initialData);
     }
@@ -62,7 +61,7 @@ function AddProject() {
     const filesArray = Array.from(e.target.files);
     setFormData((prev) => ({
       ...prev,
-      project_files: [...prev.project_files, ...filesArray]
+      project_files: [...prev.project_files, ...filesArray],
     }));
   };
 
@@ -77,7 +76,7 @@ function AddProject() {
       return {
         ...prevState,
         project_files: updatedFiles,
-        delete_files: updatedDeleteFiles
+        delete_files: updatedDeleteFiles,
       };
     });
   };
@@ -86,7 +85,7 @@ function AddProject() {
     ...formData,
     project_files: formData.project_files.filter((file) =>
       file?.type?.startsWith("image/")
-    )
+    ),
   };
 
   const handleSubmit = async (e) => {
@@ -166,7 +165,7 @@ function AddProject() {
                       }}
                       options={categories?.data?.map((category) => ({
                         name: category.name,
-                        value: category.id
+                        value: category.id,
                       }))}
                     />
                   </div>
@@ -179,7 +178,7 @@ function AddProject() {
                       onChange={handleChange}
                       options={subCategories?.data?.map((subCategory) => ({
                         name: subCategory.name,
-                        value: subCategory.id
+                        value: subCategory.id,
                       }))}
                       disabledOption={
                         categoryId

@@ -17,7 +17,7 @@ function Projects() {
   const { t } = useTranslation();
   const { isLoading: categoriesIsLoading, data: categoriesWithSubCategories } =
     useCategorieListWithSub();
-  const { isLoading: projectsIsLoading, data: projectsList } =
+  const { isLoading: projectsListIsLoading, data: projectsList } =
     useProjectsList();
   const [searchParams, setSearchParams] = useSearchParams();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -39,7 +39,7 @@ function Projects() {
           .split("-")
           .map((subcategory) => Number(subcategory))
       : [],
-    is_old: Number(searchParams.get("is_old")) || 0
+    is_old: Number(searchParams.get("is_old")) || 0,
   });
 
   const handleChange = (e) => {
@@ -69,8 +69,8 @@ function Projects() {
               updatedState["sub_categories"] = [
                 ...new Set([
                   ...prevState["sub_categories"],
-                  ...relatedSubCategories
-                ])
+                  ...relatedSubCategories,
+                ]),
               ];
             } else {
               updatedState["sub_categories"] = prevState[
@@ -95,7 +95,7 @@ function Projects() {
 
             if (areAllChildrenChecked) {
               updatedState["categories"] = [
-                ...new Set([...prevState["categories"], parentCategory.id])
+                ...new Set([...prevState["categories"], parentCategory.id]),
               ];
             } else {
               updatedState["categories"] = prevState["categories"].filter(
@@ -250,7 +250,9 @@ function Projects() {
           <div className="col-lg-9 col-12 p-2 results-wrapper">
             <div className="container">
               <div className="row">
-                {projectsList?.data && projectsList?.data?.length > 0 ? (
+                {projectsListIsLoading ? (
+                  <DataLoader />
+                ) : projectsList?.data && projectsList?.data?.length > 0 ? (
                   projectsList?.data?.map((project) => (
                     <div className="col-lg-4 col-6 p-2" key={project.id}>
                       <ServiceCard service={project} />
