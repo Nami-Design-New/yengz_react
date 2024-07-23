@@ -191,7 +191,7 @@
 @media screen and (max-width: 768px) {
   .chat-section .chat-container {
     max-height: calc(80vh - 100px);
-    min-height: 700px;
+    min-height: 570px;
   }
 }
 .chat-section .chat-container .chat-head {
