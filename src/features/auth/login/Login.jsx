@@ -21,13 +21,13 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
-    password: ""
+    password: "",
   });
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -44,16 +44,16 @@ const Login = () => {
         setCookie("token", res.data.data.token, {
           path: "/",
           secure: true,
-          sameSite: "Strict"
+          sameSite: "Strict",
         });
         setCookie("id", res.data.data.id, {
           path: "/",
           secure: true,
-          sameSite: "Strict"
+          sameSite: "Strict",
         });
         axios.defaults.headers.common[
           "Authorization"
-        ] = `Bearer ${res.data.data.token}`;
+        ] = `${res.data.data.token}`;
       } else {
         toast.error(t("auth.emailOrPasswordWrong"));
       }

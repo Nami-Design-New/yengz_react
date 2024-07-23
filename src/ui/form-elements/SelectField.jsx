@@ -5,7 +5,7 @@ export default function SelectField({ options, disabledOption, ...props }) {
     <div className="input-field">
       {props.label && <label>{props.label}</label>}
       <Form.Select {...props}>
-        <option selected value={""} disabled>
+        <option value={""} disabled>
           {disabledOption}
         </option>
         {options?.map((option, index) => (

@@ -5,12 +5,15 @@ import bann from "../../Assets/images/bann.webp";
 import useTruncateString from "../../hooks/useTruncateString";
 import StarsList from "../StarsList";
 
-const ServiceCard = ({ service, canEdit, handleDelete }) => {
+const ServiceCard = ({ service, canEdit, handleDelete, type }) => {
   const { t } = useTranslation();
   const truncate = useTruncateString(service?.title);
   return (
     <div className="service-card" data-aos="fade-up">
-      <Link to={`/services/${service?.id}`} className="img">
+      <Link
+        to={`/${type === "project" ? "projects" : "services"}/${service?.id}`}
+        className="img"
+      >
         <img src={service?.image || bann} alt="" />
       </Link>
       <div className="content">

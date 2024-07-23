@@ -46,7 +46,7 @@ const EditProfile = () => {
   // set options of multi select
   useEffect(() => {
     if (categories) {
-      const options = categories.data.map((category) => ({
+      const options = categories.data?.map((category) => ({
         value: category.id,
         label: category.name
       }));
@@ -56,8 +56,8 @@ const EditProfile = () => {
 
   // set selected options of multi select
   useEffect(() => {
-    if (options.length > 0 && formData.categories.length > 0) {
-      const selectedOptions = formData.categories.map((categoryId) => {
+    if (options?.length > 0 && formData.categories?.length > 0) {
+      const selectedOptions = formData.categories?.map((categoryId) => {
         const option = options.find((opt) => opt.value === categoryId);
         return {
           value: option?.value,
@@ -72,7 +72,7 @@ const EditProfile = () => {
   const handleSelect = (selectedItems) => {
     setSelectedOptions(selectedItems);
     const selectedValues = selectedItems
-      ? selectedItems.map((option) => option.value)
+      ? selectedItems?.map((option) => option.value)
       : [];
     setFormData({
       ...formData,

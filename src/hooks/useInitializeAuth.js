@@ -25,7 +25,7 @@ function useInitializeAuth() {
           typeof decodedToken.sub === "string" &&
           decodedToken.sub === stringId
         ) {
-          axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+          axios.defaults.headers.common["Authorization"] = `${token}`;
           getProfile(stringId, {
             onError: (error) => {
               console.error("Error fetching profile:", error.message);
@@ -35,7 +35,7 @@ function useInitializeAuth() {
               dispatch(setUser({}));
               dispatch(setIsLogged(false));
               delete axios.defaults.headers.common["Authorization"];
-            }
+            },
           });
         } else if (isExpired) {
           dispatch(setIsLogged(false));

@@ -92,7 +92,7 @@ hr {
 }
 .loader {
   width: 100%;
-  height: 100vh;
+  height: 100dvh;
   position: fixed;
   z-index: 999999;
   top: 0;
@@ -269,7 +269,7 @@ body {
       @include space-between();
       .small-media-menu {
         width: 100%;
-        height: calc(100vh - 80px);
+        height: calc(100dvh - 80px);
         background: var(--white-color);
         overflow: hidden;
         position: fixed;
@@ -277,6 +277,13 @@ body {
         top: 80px;
         transition: var(--main-transation);
         padding: 24px;
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+          width: 0;
+          height: 0;
+        }
+
         .user {
           width: 100%;
           padding: 10px;
@@ -629,7 +636,7 @@ body {
     }
   }
   main {
-    min-height: calc(100vh - 489px);
+    min-height: calc(100dvh - 489px);
     .row-head {
       display: flex;
       align-items: center;
@@ -654,7 +661,7 @@ body {
       }
     }
     .hero_section {
-      height: calc(100vh - 80px);
+      height: calc(100dvh - 80px);
       position: relative;
       isolation: isolate;
       .hero_content {
@@ -1046,11 +1053,20 @@ body {
           .service-card {
             flex: 0 1;
             min-width: calc(100% / 3 - 11px);
+
+            @media screen and (max-width: 576px) {
+              flex: 1 0;
+            }
           }
           .workCard {
             overflow: hidden;
             flex: 0 1;
             min-width: calc(100% / 3 - 11px);
+
+            @media screen and (max-width: 576px) {
+              flex: 1 0;
+            }
+
             .img {
               position: relative;
               aspect-ratio: 3 / 2;
@@ -1544,6 +1560,31 @@ body {
     }
     .cart-section {
       padding: 60px 0;
+      .cart-header {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 16px;
+
+        .add-to-collection-btn {
+          cursor: pointer;
+          outline: none;
+          padding: 8px 16px;
+          border: none;
+          font-size: 14px;
+          color: var(--white-color);
+          border-radius: 12px;
+          background: var(--main-color);
+          transition: var(--main-transation);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-width: 140px;
+          font-size: 16px;
+          white-space: nowrap;
+        }
+      }
       .cartTotalPrice {
         @include space-between();
         margin-bottom: 32px;
@@ -1578,8 +1619,8 @@ body {
           gap: 18px;
         }
         .request-owner-img {
-          max-width: 80px;
-          max-height: 80px;
+          width: 80px;
+          height: 80px;
           border-radius: 50%;
           overflow: hidden;
           img {
@@ -1795,7 +1836,7 @@ body {
             background: var(--white-color);
             left: -100%;
             transition: var(--main-transation);
-            height: calc(100vh - 80px);
+            height: calc(100dvh - 80px);
             padding: 32px 24px;
           }
           &.active {
@@ -2149,7 +2190,7 @@ body {
         }
       }
       aside {
-        @media (max-width: 768px) {
+        @media (max-width: 991px) {
           display: none;
           .colse {
             margin-bottom: 32px;
@@ -2169,7 +2210,7 @@ body {
             background: var(--white-color);
             left: -100%;
             transition: var(--main-transation);
-            height: calc(100vh - 80px);
+            height: calc(100dvh - 80px);
             padding: 32px 24px;
           }
           &.active {
@@ -3633,6 +3674,7 @@ body {
       align-items: flex-start;
       gap: 16px;
       @media (max-width: 768px) {
+        flex-direction: column-reverse;
         align-items: start;
       }
       a {
@@ -3640,11 +3682,14 @@ body {
         &:has(img) {
           overflow: hidden;
           border-radius: 50%;
+          width: 64px !important;
+          height: 64px !important;
+          display: flex;
+          position: relative;
         }
       }
       img {
-        width: 64px;
-        aspect-ratio: 1/1;
+        width: 100%;
         object-fit: cover;
       }
       .postContent {
@@ -3699,6 +3744,10 @@ body {
         display: flex;
         align-items: center;
         gap: 8px;
+        @media (max-width: 768px) {
+          width: 100%;
+          justify-content: flex-end;
+        }
         .status {
           background: var(--white-color);
           color: var(--main-color);
@@ -3862,6 +3911,9 @@ body {
       background: var(--input-bg);
       padding: 8px;
       border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       h6 {
         color: var(--black-color);
       }
@@ -3870,7 +3922,7 @@ body {
         color: var(--black-color);
       }
     }
-    @media (max-width: 768px) {
+    @media (max-width: 991px) {
       display: flex;
     }
   }
@@ -4047,6 +4099,7 @@ body {
   }
   .requestDetails {
     padding: 40px 0;
+
     .postDetails {
       position: relative;
       padding: 24px;
@@ -4069,6 +4122,7 @@ body {
       a {
         font-size: 14px;
         color: var(--black-color);
+        word-break: break-word;
         i {
           color: var(--main-color);
         }
@@ -5081,7 +5135,7 @@ body {
 
 .add-work-modal {
   width: 100%;
-  height: 100vh;
+  height: 100dvh;
 
   .add-work {
     display: flex;
@@ -5126,7 +5180,7 @@ body {
     }
   }
   .modal-content {
-    height: 80vh;
+    height: 80dvh;
     position: relative;
     display: flex !important;
     flex-direction: row-reverse;
@@ -5331,4 +5385,39 @@ body {
       }
     }
   }
+}
+.responsive-gap {
+  @media screen and (max-width: 576px) {
+    gap: 16px;
+  }
+}
+.delete-btn {
+  height: 50px;
+  width: 100%;
+  font-size: 16px;
+  border: none;
+  background: none;
+  outline: none;
+  color: #fff;
+  border-radius: 16px;
+  @include centerFlex();
+  gap: 4px;
+  background: red;
+}
+.add-new-collection-btn {
+  cursor: pointer;
+  outline: none;
+  padding: 6px 14px;
+  border: none;
+  color: var(--white-color);
+  border-radius: 12px;
+  background: var(--main-color);
+  transition: var(--main-transation);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 140px;
+  font-size: 14px;
+  white-space: nowrap;
 }

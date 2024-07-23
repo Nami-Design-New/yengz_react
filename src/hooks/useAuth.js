@@ -31,11 +31,11 @@ const useAuth = () => {
   };
 
   useEffect(() => {
-    window.addEventListener("load" ,)
+    window.addEventListener("load");
     if (token && id) {
       setLoading(true);
       if (decodedToken && decodedToken?.sub === id) {
-        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+        axios.defaults.headers.common["Authorization"] = `${token}`;
         getProfile(id).finally(() => setLoading(false));
       } else if (isExpired) {
         removeCookie("token", { path: "/" });

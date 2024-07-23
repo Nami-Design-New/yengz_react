@@ -13,6 +13,7 @@ import emptyCart from "../Assets/images/emptyCart.svg";
 import DataLoader from "../ui/DataLoader";
 import SubmitButton from "./../ui/form-elements/SubmitButton";
 import OrderModal from "./../ui/modals/OrderModal";
+import CollectionModal from "../ui/modals/CollectionModal";
 
 const Cart = () => {
   const { data: cartQuery, isLoading } = useCartList();
@@ -24,6 +25,7 @@ const Cart = () => {
   const [loading, setLoading] = useState(false);
   const [payLoading, setPayLoading] = useState(false);
   const [showConfirmPayModel, setShowConfirmPayModel] = useState(false);
+  const [showCollectionModel, setShowCollectionModel] = useState(false);
   const user = useSelector((state) => state.authedUser.user);
 
   useEffect(() => {
@@ -33,7 +35,7 @@ const Cart = () => {
         quantity: item?.quantity,
         developments: item?.service?.developments
           ?.filter((dev) => dev.in_cart !== false)
-          .map((dev) => dev.id)
+          .map((dev) => dev.id),
       }));
       setCartObjList(newCartObjList);
       setTotalCartPrice(
@@ -54,7 +56,7 @@ const Cart = () => {
             quantity: item.quantity,
             developments: item?.service?.developments?.map(
               (dev) => dev.in_cart === false && dev.id
-            )
+            ),
           }))
         )
       );
@@ -97,46 +99,56 @@ const Cart = () => {
     <section className="cart-section container">
       <div className="row">
         {cartQuery?.data && cartQuery?.data?.length > 0 ? (
-          <div className="col-12 p-2">
-            {cartQuery?.data?.map((item) => (
-              <CartBox
-                item={item}
-                key={item.id}
-                cartObjList={cartObjList}
-                setTotalCartPrice={setTotalCartPrice}
-                totalCartPrice={totalCartPrice}
-              />
-            ))}
-            <div className="col-lg-5 col-12 p-2">
-              <div className="cartTotalPrice">
-                <p>{t("cart.totalCart")}:</p>
-                <h6 className="mb-0">
-                  {totalCartPrice}
-                  <i className="fa-solid fa-dollar-sign"></i>
-                </h6>
-              </div>
+          <>
+            <div className="cart-header col-12 p-2">
+              <span
+                className="add-to-collection-btn mx-2"
+                onClick={() => setShowCollectionModel(true)}
+              >
+                {t("cart.addToCollection")}
+              </span>
             </div>
-            <div className="container">
-              <div className="row justify-content-center">
-                <div className="col-lg-6 col-md-6 col-12">
-                  <button
-                    className="order-now"
-                    onClick={() => setShowConfirmPayModel(true)}
-                  >
-                    {t("services.orderNow")}
-                  </button>
-                </div>
-                <div className="col-lg-6 col-md-6 col-12">
-                  <SubmitButton
-                    className="order-now delete"
-                    name={t("cart.deleteCart")}
-                    onClick={handleDelete}
-                    loading={loading}
-                  />
+            <div className="col-12 p-2">
+              {cartQuery?.data?.map((item) => (
+                <CartBox
+                  item={item}
+                  key={item.id}
+                  cartObjList={cartObjList}
+                  setTotalCartPrice={setTotalCartPrice}
+                  totalCartPrice={totalCartPrice}
+                />
+              ))}
+              <div className="col-lg-5 col-12 p-2">
+                <div className="cartTotalPrice">
+                  <p>{t("cart.totalCart")}:</p>
+                  <h6 className="mb-0">
+                    {totalCartPrice}
+                    <i className="fa-solid fa-dollar-sign"></i>
+                  </h6>
                 </div>
               </div>
+              <div className="container">
+                <div className="row justify-content-center responsive-gap">
+                  <div className="col-lg-6 col-md-6 col-12">
+                    <button
+                      className="order-now"
+                      onClick={() => setShowConfirmPayModel(true)}
+                    >
+                      {t("services.orderNow")}
+                    </button>
+                  </div>
+                  <div className="col-lg-6 col-md-6 col-12">
+                    <SubmitButton
+                      className="order-now delete"
+                      name={t("cart.deleteCart")}
+                      onClick={handleDelete}
+                      loading={loading}
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
+          </>
         ) : (
           <div className="col-12 p-2">
             <div className="empty_cart">
@@ -154,6 +166,11 @@ const Cart = () => {
         cartTotalPrice={totalCartPrice}
         eventFunction={handlePlaceOrder}
         loading={payLoading}
+      />
+
+      <CollectionModal
+        setShowModal={setShowCollectionModel}
+        showModal={showCollectionModel}
       />
     </section>
   );

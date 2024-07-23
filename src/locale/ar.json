@@ -30,7 +30,8 @@
     "notifications": "الاشعارات",
     "recieved-request-orders": "طلبات مستلمة",
     "add-project": "اضف مشروع",
-    "edit-project": "تعديل مشروع"
+    "edit-project": "تعديل مشروع",
+    "projects-orders": "طلبات المشاريع"
   },
   "auth": {
     "loginPageTitle": "تسجيل الدخول",
@@ -42,6 +43,7 @@
     "googleAccount": "حساب جوجل",
     "facebookAccount": "حساب فيسبوك",
     "don'tHaveAccount": "ليس لديك حساب؟",
+    "alreadyHaveAccount": "لديك حساب بالفعل؟",
     "createAccount": "انشاء حساب",
     "login": "تسجيل الدخول",
     "loginSuccess": "تم تسجيل الدخول بنجاح",
@@ -70,6 +72,7 @@
     "otpSubTitle": "من فضلك ادخل الرمز المرسل الي البريد ",
     "resendCode": "اعادة ارسال الرمز",
     "confirm": "تاكيد",
+    "areYouSureYouWantToDelete": " هل انت متاكد من انك تريد حذف هذا المشروع؟",
     "newPasswordTitle": "ادخل كلمة المرور الجديدة",
     "newPasswordSubTitle": "من فضلك ادخل كلمة المرور الجديدة تكون قوية ويسهل تذكرها .",
     "newPassword": "كلمة المرور الجديدة",
@@ -98,6 +101,7 @@
     "requestsRecieved": " الطلبات الواردة",
     "serviceAsYouLike": " اطلب خدمة علي زوقك",
     "projects": "المشاريع",
+    "projectsOrders": "قيد التنفيذ",
     "searchFor": "ابحث عن...",
     "login": "تسجيل الدخول",
     "newAccount": "حساب جديد",
@@ -109,7 +113,8 @@
     "deleteAccount": "حذف الحساب",
     "logout": "تسجيل الخروج",
     "messages": "الرسائل",
-    "more": "المزيد"
+    "more": "المزيد",
+    "cart": "السلة"
   },
   "home": {
     "searchFor": "ابحث عن...",
@@ -308,7 +313,18 @@
     "currentBallance": "الرصيد الحالى",
     "valueWillbediscountedfromyourballance": "سوف يتم خصم مبلغ: ",
     "fromYourWallet": "من محفظتك",
-    "orderSuccess": "تم الطلب بنجاح"
+    "orderSuccess": "تم الطلب بنجاح",
+    "addToCollection": "اضف الى مجموعة",
+    "collection": "المجموعة",
+    "add": "اضافة",
+    "addNewCollection": "اضافة مجموعة جديدة",
+    "addToExistingCollection": "اضافة الى مجموعة موجودة",
+    "deleteCollectionFromCart": "حذف المجموعة من السلة بعد حفظها",
+    "selectCollectionToSubmit": "أختر مجموعة لتتم عمليه الاضافة",
+    "fillAllFieldsToSubmit": "أملىء جميع الحقول لتتم عمليه الاضافة",
+    "addToCollectionSuccess": "تم الاضافة بنجاح للمجموعة",
+    "collectionTitle": "عنوان المجموعة",
+    "collectionDescription": "وصف المجموعة"
   },
   "recievedOrders": {
     "title": "الطلبات المستلمة",

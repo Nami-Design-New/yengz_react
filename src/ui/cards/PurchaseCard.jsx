@@ -7,7 +7,7 @@ import { formatTimeDifference, getTimeDifference } from "../../utils/helpers";
 import {
   ORDER_STATUS_AR,
   ORDER_STATUS_EN,
-  ORDER_STATUS_PERSENTAGE
+  ORDER_STATUS_PERSENTAGE,
 } from "../../utils/constants";
 import { useSelector } from "react-redux";
 
@@ -27,7 +27,7 @@ const PurchaseCard = ({ purchase }) => {
   return (
     <>
       <div className="service container">
-        <div className="row">
+        <div className="row responsive-gap">
           <div className="col-lg-7 col-12">
             <div className="service-head">
               <Link to={`/services/${purchase?.service?.id}`} className="img">
@@ -66,7 +66,7 @@ const PurchaseCard = ({ purchase }) => {
                       }`}
                       role="progressbar"
                       style={{
-                        width: `${ORDER_STATUS_PERSENTAGE[purchase?.status]}%`
+                        width: `${ORDER_STATUS_PERSENTAGE[purchase?.status]}%`,
                       }}
                       aria-valuenow={ORDER_STATUS_PERSENTAGE[purchase?.status]}
                       aria-valuemin="0"

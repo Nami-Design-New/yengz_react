@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import DepartmentFilterBox from "../ui/filter/DepartmentFilterBox";
 import RatingFilterBox from "../ui/filter/RatingFilterBox";
 import SellerStatusFilterBox from "../ui/filter/SellerStatusFilterBox";
 import InputField from "../ui/form-elements/InputField";
-import ServiceCard from "../ui/cards/ServiceCard";
-import { useTranslation } from "react-i18next";
 import useCategorieListWithSub from "../features/categories/useCategorieListWithSub";
 import useProjectsList from "../features/projects/useProjectsList";
 import EmptyData from "../ui/EmptyData";
@@ -39,7 +38,7 @@ function Projects() {
           .split("-")
           .map((subcategory) => Number(subcategory))
       : [],
-    is_old: Number(searchParams.get("is_old")) || 0
+    is_old: Number(searchParams.get("is_old")) || 0,
   });
 
   const handleChange = (e) => {
@@ -69,8 +68,8 @@ function Projects() {
               updatedState["sub_categories"] = [
                 ...new Set([
                   ...prevState["sub_categories"],
-                  ...relatedSubCategories
-                ])
+                  ...relatedSubCategories,
+                ]),
               ];
             } else {
               updatedState["sub_categories"] = prevState[
@@ -95,7 +94,7 @@ function Projects() {
 
             if (areAllChildrenChecked) {
               updatedState["categories"] = [
-                ...new Set([...prevState["categories"], parentCategory.id])
+                ...new Set([...prevState["categories"], parentCategory.id]),
               ];
             } else {
               updatedState["categories"] = prevState["categories"].filter(
@@ -248,22 +247,32 @@ function Projects() {
           </div>
 
           <div className="col-lg-9 col-12 p-2 results-wrapper">
-            <div className="container">
-              <div className="row">
-                {projectsList?.data && projectsList?.data?.length > 0 ? (
-                  projectsList?.data?.map((project) => (
-                    <div className="col-lg-4 col-6 p-2" key={project.id}>
-                      <ServiceCard service={project} />
-                    </div>
-                  ))
-                ) : (
-                  <EmptyData>{t("projects.emptyProjects")}</EmptyData>
+            {projectsIsLoading || categoriesIsLoading ? (
+              <DataLoader />
+            ) : (
+              <div className="container">
+                <div className="row">
+                  <div className="col-12 p-2 pt-0 d-flex justify-content-end">
+                    <Link to="/add-project" className="btn btn-success">
+                      <i className="fa-regular fa-hexagon-plus me-2"></i> {""}
+                      {t("projects.addProject")}
+                    </Link>
+                  </div>
+                  {projectsList?.data && projectsList?.data?.length > 0 ? (
+                    projectsList?.data?.map((project) => (
+                      <div className="col-12 p-2" key={project.id}>
+                        <ProjectCard project={project} />
+                      </div>
+                    ))
+                  ) : (
+                    <EmptyData>{t("projects.emptyProjects")}</EmptyData>
+                  )}
+                </div>
+                {projectsList.total > 10 && (
+                  <CustomPagination count={projectsList?.total} pageSize={10} />
                 )}
               </div>
-              {projectsList && projectsList?.total > 10 && (
-                <CustomPagination count={projectsList?.total} pageSize={10} />
-              )}
-            </div>
+            )}
           </div>
         </div>
       </div>

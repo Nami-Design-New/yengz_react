@@ -12,7 +12,7 @@ import OfferCard from "../ui/cards/OfferCard";
 function ProjectDetails() {
   const { t } = useTranslation();
   const { id } = useParams();
-  const { data: project, isLoading } = useGetProject(id);
+  const { data: project, isLoading } = useGetProject();
   const { data: requests, isLoading: isLoadingRequests } =
     useGetProjectRequests(id, "global");
 
@@ -23,7 +23,7 @@ function ProjectDetails() {
       <SectionHeader title={project?.title} />
       <section className="requestDetails">
         <div className="container">
-          <div className="row">
+          <div className="row ">
             <div className="col-lg-8 col-12 p-2 d-flex flex-column gap-3">
               {/* post details */}
               <div className="postDetails w-100">

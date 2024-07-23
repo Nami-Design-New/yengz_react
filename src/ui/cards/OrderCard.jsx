@@ -5,10 +5,10 @@ import { useSelector } from "react-redux";
 import {
   ORDER_STATUS_AR,
   ORDER_STATUS_EN,
-  ORDER_STATUS_PERSENTAGE
+  ORDER_STATUS_PERSENTAGE,
 } from "../../utils/constants";
 
-function OrderCard({ order }) {
+function OrderCard({ order, type }) {
   const lang = useSelector((state) => state.language.lang);
   const { t } = useTranslation();
   const timeDifference = getTimeDifference(order.created_at);
@@ -56,7 +56,7 @@ function OrderCard({ order }) {
                     }`}
                     role="progressbar"
                     style={{
-                      width: `${ORDER_STATUS_PERSENTAGE[order?.status]}%`
+                      width: `${ORDER_STATUS_PERSENTAGE[order?.status]}%`,
                     }}
                     aria-valuenow={ORDER_STATUS_PERSENTAGE[order?.status]}
                     aria-valuemin="0"
@@ -64,7 +64,12 @@ function OrderCard({ order }) {
                   ></div>
                 </div>
               </div>
-              <Link to={`/recieved-orders/${order.id}`} className="details">
+              <Link
+                to={`/${
+                  type === "project" ? "projects-orders" : "recieved-orders"
+                }/${order.id}`}
+                className="details"
+              >
                 {t("details")}
               </Link>
             </div>

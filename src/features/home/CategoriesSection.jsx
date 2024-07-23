@@ -34,18 +34,18 @@ const CategoriesSection = () => {
           className="mainSliderContainer"
           breakpoints={{
             992: {
-              slidesPerView: 4
+              slidesPerView: 4,
             },
             768: {
-              slidesPerView: 3
+              slidesPerView: 3,
             },
             350: {
-              slidesPerView: 2
-            }
+              slidesPerView: 2,
+            },
           }}
           dir="rtl"
         >
-          {data?.data?.map((category) => (
+          {data?.map((category) => (
             <SwiperSlide key={category.id}>
               <CategoryCard category={category} />
             </SwiperSlide>

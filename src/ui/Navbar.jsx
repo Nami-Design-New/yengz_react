@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { IconLanguage } from "@tabler/icons-react";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,6 +10,10 @@ import Dropdown from "react-bootstrap/Dropdown";
 import i18next from "i18next";
 import "../Assets/styles/dropdownes.css";
 import useOutsideClose from "../hooks/useOutsideClose";
+import DeleteAcountModal from "./modals/DeleteAcountModal";
+import { deleteAccount } from "../services/apiAuth";
+import { logout, setIsLogged, setUser } from "../redux/slices/authedUser";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const { t } = useTranslation();
@@ -23,6 +27,13 @@ const Navbar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const [isSmallMediaMenuOpen, setIsSmallMediaMenuOpen] = useState(false);
+  const [isDeleteAccountModalOpen, setIsDeleteAccountModalOpen] =
+    useState(false);
+  const [deleteLoading, setDeleteLoading] = useState(false);
+
+  function handleShowDeleteAccountModal() {
+    setIsDeleteAccountModalOpen(true);
+  }
 
   function handleToggleSearchInput() {
     setIsSearchOpen((open) => !open);
@@ -80,6 +91,29 @@ const Navbar = () => {
     navigate(`/services?search=${searchInput}`);
   }
 
+  const handleDeleteAccount = async () => {
+    try {
+      setDeleteLoading(true);
+      const res = await deleteAccount();
+      if (res.data.code === 200) {
+        delete axios.defaults.headers.common["Authorization"];
+        toast.success(t("cart.orderSuccess"));
+        dispatch(setUser({}));
+        dispatch(setIsLogged(false));
+        dispatch(logout());
+        navigate("/");
+      } else {
+        toast.error(res.message);
+        console.error(res.message);
+      }
+    } catch (error) {
+      console.error(error.message);
+    } finally {
+      setDeleteLoading(false);
+      setIsDeleteAccountModalOpen(false);
+    }
+  };
+
   return (
     <header>
       <nav className="tnavbar">
@@ -116,12 +150,6 @@ const Navbar = () => {
                 <i className="far fa-cube"></i> {t("navbar.categories")}
               </Link>
             </li>
-            <li className="nav-link" onClick={closeSmallMediaMenu}>
-              <Link to="/login">
-                <i className="fa-regular fa-right-to-bracket"></i>
-                {t("navbar.login")}
-              </Link>
-            </li>
             {isLogged && (
               <>
                 <li className="nav-link" onClick={closeSmallMediaMenu}>
@@ -148,14 +176,42 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li className="nav-link" onClick={closeSmallMediaMenu}>
+                  <Link to="/cart">
+                    <i className="fa-light fa-cart-shopping"></i>
+                    {t("navbar.cart")}
+                  </Link>
+                </li>
+                <li className="nav-link" onClick={closeSmallMediaMenu}>
                   <Link to="/purchases">
                     <i className="far fa-shopping-bag"></i>{" "}
                     {t("navbar.purchase")}
                   </Link>
                 </li>
                 <li className="nav-link" onClick={closeSmallMediaMenu}>
+                  <Link to="/projects">
+                    <i className="fa-regular fa-file-invoice"></i>
+                    {t("navbar.projects")}
+                  </Link>
+                </li>
+                <li className="nav-link" onClick={closeSmallMediaMenu}>
+                  <Link to="/projects-orders">
+                    <i className="fa-regular fa-hourglass-half"></i>
+                    {t("navbar.projectsOrders")}
+                  </Link>
+                </li>
+                <li className="nav-link" onClick={closeSmallMediaMenu}>
                   <Link to="/more">
                     <i className="fa-regular fa-gear"></i> {t("navbar.more")}
+                  </Link>
+                </li>
+              </>
+            )}
+            {isLogged ? (
+              <>
+                <li className="nav-link" onClick={closeSmallMediaMenu}>
+                  <Link>
+                    <i className="fa-solid fa-trash"></i>
+                    {t("navbar.deleteAccount")}
                   </Link>
                 </li>
                 <li className="nav-link" onClick={closeSmallMediaMenu}>
@@ -165,6 +221,13 @@ const Navbar = () => {
                   </Link>
                 </li>
               </>
+            ) : (
+              <li className="nav-link" onClick={closeSmallMediaMenu}>
+                <Link to="/login">
+                  <i className="fa-regular fa-right-to-bracket"></i>
+                  {t("navbar.login")}
+                </Link>
+              </li>
             )}
           </ul>
         </div>
@@ -228,6 +291,18 @@ const Navbar = () => {
                     <i className="fa-regular fa-file-invoice"></i>
                     {t("navbar.projects")}
                   </Link>
+                </li>
+                <li className="nav-link">
+                  <Link
+                    to="/projects-orders"
+                    className="d-flex align-items-center gap-1"
+                  >
+                    <i className="fa-regular fa-hourglass-half"></i>
+                    {t("navbar.projectsOrders")}
+                  </Link>
+                  <span className="num-count2">
+                    {user?.projects_order_count || 0}
+                  </span>
                 </li>
               </>
             )}
@@ -307,7 +382,7 @@ const Navbar = () => {
                 <li className="link hide-sm2">
                   <Link to="/cart" className="cart btn">
                     <i className="fa-light fa-cart-shopping"></i>
-                    <span className="num-count">{user?.cart_count}</span>
+                    <span className="num-count">{user?.cart_count || 0}</span>
                   </Link>
                 </li>
                 {/* Message */}
@@ -315,7 +390,7 @@ const Navbar = () => {
                   <li className="link hide-sm2">
                     <Link to="/chat" className="cart btn">
                       <i className="fa-regular fa-message-lines"></i>
-                      <span className="num-count">{user?.chat_count}</span>
+                      <span className="num-count">{user?.chat_count || 0}</span>
                     </Link>
                   </li>
                 </li>
@@ -328,7 +403,9 @@ const Navbar = () => {
                       id="dropdown-basic"
                     >
                       <i className="fa-regular fa-bell"></i>
-                      <span className="num-count">1</span>
+                      <span className="num-count">
+                        {user?.receive_notification || 0}
+                      </span>
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu className="drop_Message_Menu">
@@ -438,7 +515,10 @@ const Navbar = () => {
                       </Link>
                     </li>
                     <li onClick={closeProfileMenu}>
-                      <Link className="dropdown-item_Link" to="/login">
+                      <Link
+                        className="dropdown-item_Link"
+                        onClick={handleShowDeleteAccountModal}
+                      >
                         <i className="fa-solid fa-trash"></i>
                         {t("navbar.deleteAccount")}
                       </Link>
@@ -457,6 +537,12 @@ const Navbar = () => {
           </ul>
         </div>
       </nav>
+      <DeleteAcountModal
+        showModal={isDeleteAccountModalOpen}
+        setShowModal={setIsDeleteAccountModalOpen}
+        loading={deleteLoading}
+        eventFunction={handleDeleteAccount}
+      />
     </header>
   );
 };

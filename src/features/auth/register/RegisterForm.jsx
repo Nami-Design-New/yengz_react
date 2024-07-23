@@ -24,7 +24,7 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
 
   useEffect(() => {
     if (categories) {
-      const options = categories.data.map((category) => ({
+      const options = categories?.map((category) => ({
         value: category.id,
         label: category.name,
       }));
@@ -182,6 +182,9 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
           <img src={Facebook} alt="google" /> {t("auth.facebookAccount")}
         </button>
       </div>
+      <Link to="/register" className="noAccount">
+        {t("auth.alreadyHaveAccount")} <span>{t("auth.login")}</span>
+      </Link>
     </form>
   );
 };
