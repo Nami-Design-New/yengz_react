@@ -54,7 +54,7 @@ const ConfirmOtp = ({ otpData, setOtpData, formData }) => {
           });
           axios.defaults.headers.common[
             "Authorization"
-          ] = `Bearer ${login.data.data.token}`;
+          ] = `${login.data.data.token}`;
         } else {
           toast.error(login.data.message);
         }

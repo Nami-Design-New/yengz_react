@@ -40,6 +40,7 @@
     "googleAccount": "Google Account",
     "facebookAccount": "Facebook Account",
     "don'tHaveAccount": "Don't have an account?",
+    "alreadyHaveAccount": "Already Have An Account",
     "createAccount": "Create Account",
     "login": "Login",
     "loginSuccess": "Login Successful",
@@ -290,7 +291,18 @@
     "currentBallance": "Current ballance",
     "valueWillbediscountedfromyourballance": "An amount will be deducted:",
     "fromYourWallet": "from your wallet",
-    "orderSuccess": "Order successfully placed"
+    "orderSuccess": "Order successfully placed",
+    "addToCollection": "Add to collection",
+    "collection": "Collection",
+    "add": "Add",
+    "addNewCollection": "Add new collection",
+    "addToExistingCollection": "Add to existing collection",
+    "deleteCollectionFromCart": "Delete collection from cart after saving",
+    "selectCollectionToSubmit": "Select collection to add",
+    "fillAllFieldsToSubmit": "Fill all fields to add",
+    "addToCollectionSuccess": "Added to collection successfully",
+    "collectionTitle": "Collection title",
+    "collectionDescription": "Collection description"
   },
   "recievedOrders": {
     "title": "Recieved orders",

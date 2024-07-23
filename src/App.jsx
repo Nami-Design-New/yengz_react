@@ -36,6 +36,7 @@ import { setIsLogged, setUser } from "./redux/slices/authedUser";
 import Loader from "./ui/Loader";
 import ProjectsOrders from "./routes/ProjectsOrders";
 import ProtectedRoute from "./routes/ProtectedRoute";
+import ProjectsOrdersDetails from "./routes/ProjectsOrdersDetails";
 
 function App() {
   const dispatch = useDispatch();
@@ -47,7 +48,7 @@ function App() {
 
   const { decodedToken, isExpired } = useJwt(token);
 
-  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  axios.defaults.headers.common["Authorization"] = `${token}`;
   const { data: profile, isLoading } = useGetProfile(id);
 
   useEffect(() => {
@@ -168,7 +169,7 @@ function App() {
             path="/projects-orders/:id"
             element={
               <ProtectedRoute>
-                <ProjectDetails />
+                <ProjectsOrdersDetails />
               </ProtectedRoute>
             }
           />

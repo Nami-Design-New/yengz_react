@@ -10,8 +10,6 @@ const CategoriesSection = () => {
   const { t } = useTranslation();
   const { data } = useCategoriesList();
 
-  console.log(data);
-
   return (
     <section className="categories ">
       <div className="container">

@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { IconTrash } from "@tabler/icons-react";
 import { createProject, editProject } from "../services/apiProjects";
 import { useQueryClient } from "@tanstack/react-query";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import SectionHeader from "../ui/SectionHeader";
 import InputField from "../ui/form-elements/InputField";
@@ -17,6 +17,7 @@ import ImageUpload from "../Assets/images/img-upload.svg";
 import doc from "../Assets/images/doc.svg";
 
 function AddProject() {
+  const { id } = useParams();
   const { t } = useTranslation();
   const queryClient = useQueryClient();
   const navigate = useNavigate();

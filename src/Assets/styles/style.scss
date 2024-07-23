@@ -1560,6 +1560,31 @@ body {
     }
     .cart-section {
       padding: 60px 0;
+      .cart-header {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 16px;
+
+        .add-to-collection-btn {
+          cursor: pointer;
+          outline: none;
+          padding: 8px 16px;
+          border: none;
+          font-size: 14px;
+          color: var(--white-color);
+          border-radius: 12px;
+          background: var(--main-color);
+          transition: var(--main-transation);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-width: 140px;
+          font-size: 16px;
+          white-space: nowrap;
+        }
+      }
       .cartTotalPrice {
         @include space-between();
         margin-bottom: 32px;
@@ -3649,6 +3674,7 @@ body {
       align-items: flex-start;
       gap: 16px;
       @media (max-width: 768px) {
+        flex-direction: column-reverse;
         align-items: start;
       }
       a {
@@ -3656,8 +3682,8 @@ body {
         &:has(img) {
           overflow: hidden;
           border-radius: 50%;
-          width: 64px;
-          height: 64px;
+          width: 64px !important;
+          height: 64px !important;
           display: flex;
           position: relative;
         }
@@ -3718,6 +3744,10 @@ body {
         display: flex;
         align-items: center;
         gap: 8px;
+        @media (max-width: 768px) {
+          width: 100%;
+          justify-content: flex-end;
+        }
         .status {
           background: var(--white-color);
           color: var(--main-color);
@@ -5360,4 +5390,34 @@ body {
   @media screen and (max-width: 576px) {
     gap: 16px;
   }
+}
+.delete-btn {
+  height: 50px;
+  width: 100%;
+  font-size: 16px;
+  border: none;
+  background: none;
+  outline: none;
+  color: #fff;
+  border-radius: 16px;
+  @include centerFlex();
+  gap: 4px;
+  background: red;
+}
+.add-new-collection-btn {
+  cursor: pointer;
+  outline: none;
+  padding: 6px 14px;
+  border: none;
+  color: var(--white-color);
+  border-radius: 12px;
+  background: var(--main-color);
+  transition: var(--main-transation);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 140px;
+  font-size: 14px;
+  white-space: nowrap;
 }

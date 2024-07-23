@@ -10,7 +10,7 @@ function useProjectsOrdersList() {
   const page = Number(searchParams.get("page")) || 1;
 
   const { isLoading, data, error } = useQuery({
-    queryKey: ["serviceOrdersList", status, page],
+    queryKey: ["projectsOrdersList", status, page],
     queryFn: () => getProjectsOrders({ page, status }),
     retry: false
   });

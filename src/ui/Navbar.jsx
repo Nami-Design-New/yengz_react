@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { IconLanguage } from "@tabler/icons-react";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,7 +10,10 @@ import Dropdown from "react-bootstrap/Dropdown";
 import i18next from "i18next";
 import "../Assets/styles/dropdownes.css";
 import useOutsideClose from "../hooks/useOutsideClose";
-import useProjectsList from "../features/projects/useProjectsList";
+import DeleteAcountModal from "./modals/DeleteAcountModal";
+import { deleteAccount } from "../services/apiAuth";
+import { logout, setIsLogged, setUser } from "../redux/slices/authedUser";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const { t } = useTranslation();
@@ -24,8 +27,13 @@ const Navbar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const [isSmallMediaMenuOpen, setIsSmallMediaMenuOpen] = useState(false);
+  const [isDeleteAccountModalOpen, setIsDeleteAccountModalOpen] =
+    useState(false);
+  const [deleteLoading, setDeleteLoading] = useState(false);
 
-  const { data: projectsList } = useProjectsList();
+  function handleShowDeleteAccountModal() {
+    setIsDeleteAccountModalOpen(true);
+  }
 
   function handleToggleSearchInput() {
     setIsSearchOpen((open) => !open);
@@ -82,6 +90,29 @@ const Navbar = () => {
     closeSearchInput();
     navigate(`/services?search=${searchInput}`);
   }
+
+  const handleDeleteAccount = async () => {
+    try {
+      setDeleteLoading(true);
+      const res = await deleteAccount();
+      if (res.data.code === 200) {
+        delete axios.defaults.headers.common["Authorization"];
+        toast.success(t("cart.orderSuccess"));
+        dispatch(setUser({}));
+        dispatch(setIsLogged(false));
+        dispatch(logout());
+        navigate("/");
+      } else {
+        toast.error(res.message);
+        console.error(res.message);
+      }
+    } catch (error) {
+      console.error(error.message);
+    } finally {
+      setDeleteLoading(false);
+      setIsDeleteAccountModalOpen(false);
+    }
+  };
 
   return (
     <header>
@@ -176,12 +207,20 @@ const Navbar = () => {
               </>
             )}
             {isLogged ? (
-              <li className="nav-link" onClick={closeSmallMediaMenu}>
-                <Link to="/logout">
-                  <i className="fa-regular fa-right-from-bracket"></i>
-                  {t("navbar.logout")}
-                </Link>
-              </li>
+              <>
+                <li className="nav-link" onClick={closeSmallMediaMenu}>
+                  <Link>
+                    <i className="fa-solid fa-trash"></i>
+                    {t("navbar.deleteAccount")}
+                  </Link>
+                </li>
+                <li className="nav-link" onClick={closeSmallMediaMenu}>
+                  <Link to="/logout">
+                    <i className="fa-regular fa-right-from-bracket"></i>
+                    {t("navbar.logout")}
+                  </Link>
+                </li>
+              </>
             ) : (
               <li className="nav-link" onClick={closeSmallMediaMenu}>
                 <Link to="/login">
@@ -252,7 +291,6 @@ const Navbar = () => {
                     <i className="fa-regular fa-file-invoice"></i>
                     {t("navbar.projects")}
                   </Link>
-                  <span className="num-count2">{projectsList?.total || 0}</span>
                 </li>
                 <li className="nav-link">
                   <Link
@@ -365,7 +403,9 @@ const Navbar = () => {
                       id="dropdown-basic"
                     >
                       <i className="fa-regular fa-bell"></i>
-                      <span className="num-count">1</span>
+                      <span className="num-count">
+                        {user?.receive_notification || 0}
+                      </span>
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu className="drop_Message_Menu">
@@ -475,7 +515,10 @@ const Navbar = () => {
                       </Link>
                     </li>
                     <li onClick={closeProfileMenu}>
-                      <Link className="dropdown-item_Link" to="/login">
+                      <Link
+                        className="dropdown-item_Link"
+                        onClick={handleShowDeleteAccountModal}
+                      >
                         <i className="fa-solid fa-trash"></i>
                         {t("navbar.deleteAccount")}
                       </Link>
@@ -494,6 +537,12 @@ const Navbar = () => {
           </ul>
         </div>
       </nav>
+      <DeleteAcountModal
+        showModal={isDeleteAccountModalOpen}
+        setShowModal={setIsDeleteAccountModalOpen}
+        loading={deleteLoading}
+        eventFunction={handleDeleteAccount}
+      />
     </header>
   );
 };

@@ -25,7 +25,11 @@ const AddOffer = ({ id }) => {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    if (isLogged) {
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+    } else {
+      navigate("/login");
+    }
   };
 
   const handleSubmit = async (e) => {

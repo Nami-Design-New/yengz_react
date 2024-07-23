@@ -1687,6 +1687,30 @@ body main .service-details .rating-cards-container::-webkit-scrollbar {
 body main .cart-section {
   padding: 60px 0;
 }
+body main .cart-section .cart-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+}
+body main .cart-section .cart-header .add-to-collection-btn {
+  cursor: pointer;
+  outline: none;
+  padding: 8px 16px;
+  border: none;
+  font-size: 14px;
+  color: var(--white-color);
+  border-radius: 12px;
+  background: var(--main-color);
+  transition: var(--main-transation);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 140px;
+  font-size: 16px;
+  white-space: nowrap;
+}
 body main .cart-section .cartTotalPrice {
   display: flex;
   align-items: center;
@@ -3915,6 +3939,7 @@ body .singleRequst .lastInteraction {
 @media (max-width: 768px) {
   body .singleRequst .requstPost,
   body .singleRequst .lastInteraction {
+    flex-direction: column-reverse;
     align-items: start;
   }
 }
@@ -3926,8 +3951,8 @@ body .singleRequst .requstPost a:has(img),
 body .singleRequst .lastInteraction a:has(img) {
   overflow: hidden;
   border-radius: 50%;
-  width: 64px;
-  height: 64px;
+  width: 64px !important;
+  height: 64px !important;
   display: flex;
   position: relative;
 }
@@ -3995,6 +4020,12 @@ body .singleRequst .requstPost .status_action {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+@media (max-width: 768px) {
+  body .singleRequst .requstPost .status_action {
+    width: 100%;
+    justify-content: flex-end;
+  }
 }
 body .singleRequst .requstPost .status_action .status {
   background: var(--white-color);
@@ -5666,4 +5697,38 @@ body.en main .row-head a i {
   .responsive-gap {
     gap: 16px;
   }
+}
+
+.delete-btn {
+  height: 50px;
+  width: 100%;
+  font-size: 16px;
+  border: none;
+  background: none;
+  outline: none;
+  color: #fff;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: red;
+}
+
+.add-new-collection-btn {
+  cursor: pointer;
+  outline: none;
+  padding: 6px 14px;
+  border: none;
+  color: var(--white-color);
+  border-radius: 12px;
+  background: var(--main-color);
+  transition: var(--main-transation);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 140px;
+  font-size: 14px;
+  white-space: nowrap;
 }/*# sourceMappingURL=style.css.map */
