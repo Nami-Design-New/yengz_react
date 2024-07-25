@@ -37,6 +37,7 @@ import Loader from "./ui/Loader";
 import ProjectsOrders from "./routes/ProjectsOrders";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import ProjectsOrdersDetails from "./routes/ProjectsOrdersDetails";
+import Privacy from "./routes/Privacy";
 
 function App() {
   const dispatch = useDispatch();
@@ -226,9 +227,8 @@ function App() {
 
           <Route path="/contact" element={<Contact />} />
           <Route path="/about/:id" element={<About />} />
-          <Route path="/terms" element={<Terms />} />
-          <Route path="/how-it-work" element={<HowItWork />} />
-          <Route path="/faq" element={<Faq />} />
+          <Route path="/privacy-policy" element={<Privacy />} />
+          <Route path="/terms-conditions" element={<Terms />} />
 
           {/* auth routes */}
           <Route path="/login" element={<Login />} />

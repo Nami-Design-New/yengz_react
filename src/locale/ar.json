@@ -31,7 +31,9 @@
     "recieved-request-orders": "طلبات مستلمة",
     "add-project": "اضف مشروع",
     "edit-project": "تعديل مشروع",
-    "projects-orders": "طلبات المشاريع"
+    "projects-orders": "طلبات المشاريع",
+    "terms-conditions": " الشروط والاحكام",
+    "privacy-policy": "سياسة الخصوصية"
   },
   "auth": {
     "loginPageTitle": "تسجيل الدخول",
@@ -147,7 +149,9 @@
     "howYengzWork": "كيف يعمل ينجز",
     "copyright": "حقوق النشر",
     "allRightsReserved": "جميع الحقوق محفوظة لدى ينجز",
-    "acceptPaymentsBy": "نقبل الدفع بـ"
+    "acceptPaymentsBy": "نقبل الدفع بـ",
+    "terms": "الشروط والاحكام",
+    "privacy": "سياسة الخصوصية"
   },
   "profile": {
     "editProfile": "تعديل الملف الشخصي",
