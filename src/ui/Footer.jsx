@@ -38,6 +38,12 @@ const Footer = () => {
                       <Link to={`/about/${category.id}`}>{category.name}</Link>
                     </li>
                   ))}
+                  <li>
+                    <Link to="/terms-conditions">{t("footer.terms")}</Link>
+                  </li>
+                  <li>
+                    <Link to="/privacy-policy">{t("footer.privacy")}</Link>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -132,7 +138,7 @@ const Footer = () => {
                       style={{
                         width: "50px",
                         objectFit: "cover",
-                        cursor: "pointer",
+                        cursor: "pointer"
                       }}
                     />
                   ))}
