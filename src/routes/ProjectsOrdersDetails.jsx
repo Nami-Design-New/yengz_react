@@ -161,9 +161,7 @@ function ProjectsOrdersDetails() {
                       </p>
                       <div className="progress">
                         <div
-                          className={`progress-bar ${
-                            project?.status === "canceled" ? "" : "sucses"
-                          }`}
+                          className={`progress-bar ${order?.status}`}
                           role="progressbar"
                           style={{
                             width: `${

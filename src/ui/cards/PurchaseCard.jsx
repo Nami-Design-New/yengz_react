@@ -61,9 +61,7 @@ const PurchaseCard = ({ purchase }) => {
                   </p>
                   <div className="progress">
                     <div
-                      className={`progress-bar ${
-                        purchase?.status === "canceled" ? "" : "sucses"
-                      }`}
+                      className={`progress-bar ${purchase?.status}`}
                       role="progressbar"
                       style={{
                         width: `${ORDER_STATUS_PERSENTAGE[purchase?.status]}%`,

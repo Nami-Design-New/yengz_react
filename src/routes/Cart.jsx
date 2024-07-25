@@ -171,6 +171,7 @@ const Cart = () => {
       <CollectionModal
         setShowModal={setShowCollectionModel}
         showModal={showCollectionModel}
+        showDeleteFromCart={true}
       />
     </section>
   );

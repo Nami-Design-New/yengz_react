@@ -133,6 +133,8 @@ const Footer = () => {
                         width: "50px",
                         objectFit: "cover",
                         cursor: "pointer",
+                        cursor: "pointer",
+                        cursor: "pointer"
                       }}
                     />
                   ))}

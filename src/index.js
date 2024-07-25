@@ -6,9 +6,10 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import { ToastContainer } from "react-toastify";
 import { BrowserRouter } from "react-router-dom";
-import ToTopOnNavigation from "./utils/ToTopOnNavigation";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import ToTopOnNavigation from "./utils/ToTopOnNavigation";
 
 /*---------- fontawesome ----------*/
 import "./Assets/styles/all.min.css";
@@ -33,7 +34,13 @@ root.render(
         <ToastContainer />
         <BrowserRouter>
           <ToTopOnNavigation />
-          <App />
+          <GoogleOAuthProvider
+            clientId={
+              "173015148505-c4uiu6vn4p2dkq3eoj7ea2ie1rgkplb7.apps.googleusercontent.com"
+            }
+          >
+            <App />
+          </GoogleOAuthProvider>
           <ReactQueryDevtools initialIsOpen={false} />
         </BrowserRouter>
       </Provider>

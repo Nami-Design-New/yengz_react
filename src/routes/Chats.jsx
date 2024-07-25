@@ -16,8 +16,8 @@ const Chats = () => {
     autoplay: true,
     animationData: require("../Assets/lotties/chat.json"),
     rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice"
-    }
+      preserveAspectRatio: "xMidYMid slice",
+    },
   };
 
   const dispatch = useDispatch();
@@ -31,7 +31,7 @@ const Chats = () => {
     request_type: targetChat?.request_type,
     owner_id: targetChat?.owner_id,
     applied_id: targetChat?.applied_id,
-    request_id: targetChat?.request_id
+    request_id: targetChat?.request_id,
   });
 
   useEffect(() => {

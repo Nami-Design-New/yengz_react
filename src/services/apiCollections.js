@@ -10,9 +10,10 @@ export async function getCollections() {
   }
 }
 
-export async function addToCollection(requestBody) {
+export async function addToCollection(requestBody, querClient) {
   try {
     const req = await axios.post("/user/add_to_collection", requestBody);
+    querClient.invalidateQueries("cartList");
 
     return req.data;
   } catch (error) {

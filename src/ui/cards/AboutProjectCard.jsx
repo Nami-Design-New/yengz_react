@@ -3,8 +3,9 @@ import { useTranslation } from "react-i18next";
 import {
   calculateDate,
   formatTimeDifference,
-  getTimeDifference
+  getTimeDifference,
 } from "../../utils/helpers";
+import { Link } from "react-router-dom";
 
 const AboutProjectCard = ({ project }) => {
   const { t } = useTranslation();
@@ -53,7 +54,13 @@ const AboutProjectCard = ({ project }) => {
         <hr />
         <h6>{t("projects.projectOwner")}</h6>
         <li className=" d-flex justify-content-between">
-          <h6 className="m-0">{project?.user?.name}</h6>
+          <Link
+            to={`/profile/${project?.user?.id}`}
+            className="m-0"
+            style={{ color: "#410c9e" }}
+          >
+            {project?.user?.name}
+          </Link>
         </li>
         <li className=" d-flex justify-content-between">
           <p>{t("projects.signUpDate")}</p>

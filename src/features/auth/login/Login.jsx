@@ -7,10 +7,13 @@ import { setIsLogged, setUser } from "../../../redux/slices/authedUser";
 import { useTranslation } from "react-i18next";
 import Google from "../../../Assets/images/Google.svg";
 import Facebook from "../../../Assets/images/facebook.svg";
+import Apple from "../../../Assets/images/Apple.svg";
 import InputField from "../../../ui/form-elements/InputField";
 import PasswordField from "../../../ui/form-elements/PasswordField";
 import axios from "../../../utils/axios";
 import SubmitButton from "../../../ui/form-elements/SubmitButton";
+import { useGoogleLogin } from "@react-oauth/google";
+import AppleLogin from "react-apple-login";
 
 const Login = () => {
   const { t } = useTranslation();
@@ -29,6 +32,81 @@ const Login = () => {
       ...formData,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const handleGoogleLogin = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      console.log("Google Login Success:", tokenResponse);
+      try {
+        const res = await axios.post("/user/social_login", {
+          login_from: "google",
+          token: tokenResponse.access_token,
+        });
+
+        if (res.data.code === 200) {
+          toast.success(t("auth.loginSuccess"));
+          dispatch(setUser(res.data.data));
+          dispatch(setIsLogged(true));
+          navigate("/");
+          setCookie("token", res.data.data.token, {
+            path: "/",
+            secure: true,
+            sameSite: "Strict",
+          });
+          setCookie("id", res.data.data.id, {
+            path: "/",
+            secure: true,
+            sameSite: "Strict",
+          });
+          axios.defaults.headers.common[
+            "Authorization"
+          ] = `${res.data.data.token}`;
+        } else {
+          toast.error(t("auth.emailOrPasswordWrong"));
+        }
+      } catch (error) {
+        toast.error(t("auth.loginErorr"));
+        throw new Error(error.message);
+      }
+    },
+    onError: (error) => {
+      console.log("Google Login Error:", error);
+      toast.error(t("auth.googleLoginError"));
+    },
+  });
+
+  const handleAppleLogin = async (response) => {
+    try {
+      const res = await axios.post("/user/social_login", {
+        login_from: "apple",
+        token: response.code,
+      });
+
+      if (res.data.code === 200) {
+        toast.success(t("auth.loginSuccess"));
+        dispatch(setUser(res.data.data));
+        dispatch(setIsLogged(true));
+        navigate("/");
+        setCookie("token", res.data.data.token, {
+          path: "/",
+          secure: true,
+          sameSite: "Strict",
+        });
+        setCookie("id", res.data.data.id, {
+          path: "/",
+          secure: true,
+          sameSite: "Strict",
+        });
+        axios.defaults.headers.common[
+          "Authorization"
+        ] = `${res.data.data.token}`;
+      } else {
+        toast.error(t("auth.emailOrPasswordWrong"));
+      }
+    } catch (error) {
+      toast.error(t("auth.loginErorr"));
+      throw new Error(error.message);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -65,6 +143,9 @@ const Login = () => {
     }
   };
 
+  console.log("Apple Client ID:", process.env.REACT_APP_APPLE_CLIENT_ID);
+  console.log("Apple Redirect URI:", process.env.REACT_APP_APPLE_REDIRECT_URI);
+
   return (
     <section className="login-section container">
       <h1 className="text-center">{t("auth.loginPageTitle")}</h1>
@@ -93,7 +174,6 @@ const Login = () => {
                 onChange={handleChange}
               />
             </div>
-
             <Link to="/forget-password" className="forgetpass">
               {t("auth.forgetPassword")}
             </Link>
@@ -102,12 +182,38 @@ const Login = () => {
               <span>{t("auth.orLoginWith")}</span>
             </div>
             <div className="d-flex gap-2 w-100">
-              <button className="google-login">
+              <button
+                type="button"
+                className="google-login"
+                onClick={() => handleGoogleLogin()}
+              >
                 <img src={Google} alt="google" /> {t("auth.googleAccount")}
               </button>
               <button className="google-login">
                 <img src={Facebook} alt="google" /> {t("auth.facebookAccount")}
               </button>
+              <AppleLogin
+                clientId={"process.env.REACT_APP_APPLE_CLIENT_ID"}
+                redirectURI={"process.env.REACT_APP_APPLE_REDIRECT_URI"}
+                responseType="code"
+                responseMode="form_post"
+                scope="name email"
+                usePopup={true}
+                onSuccess={handleAppleLogin}
+                onError={(error) => {
+                  console.error("Apple Login Error:", error);
+                  toast.error(t("auth.appleLoginError"));
+                }}
+                render={(renderProps) => (
+                  <button
+                    onClick={renderProps.onClick}
+                    disabled={renderProps.disabled}
+                    className="apple-login"
+                  >
+                    <img src={Apple} alt="apple" /> {t("auth.appleAccount")}
+                  </button>
+                )}
+              />
             </div>
             <Link to="/register" className="noAccount">
               {t("auth.don'tHaveAccount")}{" "}

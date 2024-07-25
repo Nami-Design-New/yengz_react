@@ -9,10 +9,12 @@ import InputField from "../form-elements/InputField";
 import TextField from "../form-elements/TextField";
 import { addToCollection } from "../../services/apiCollections";
 import { toast } from "react-toastify";
+import { useQueryClient } from "@tanstack/react-query";
 
-function CollectionModal({ showModal, setShowModal }) {
+function CollectionModal({ showModal, setShowModal, showDeleteFromCart }) {
   const { t } = useTranslation();
   const { data: collections } = useCollectionsList();
+  const queryClient = useQueryClient();
   const [formType, setFormType] = useState("existing");
   const [formData, setFormData] = useState({
     id: "",
@@ -63,8 +65,10 @@ function CollectionModal({ showModal, setShowModal }) {
       if (formType === "new") {
         requestBody["title"] = formData.title;
         requestBody["description"] = formData.description;
-        requestBody["delete_collection_from_cart"] =
-          formData.delete_collection_from_cart;
+        if (showDeleteFromCart) {
+          requestBody["delete_collection_from_cart"] =
+            formData.delete_collection_from_cart;
+        }
 
         if (!requestBody["title"] || !requestBody["description"]) {
           toast.error(t("cart.fillAllFieldsToSubmit"));
@@ -72,15 +76,17 @@ function CollectionModal({ showModal, setShowModal }) {
         }
       } else if (formType === "existing") {
         requestBody["id"] = Number(formData.id);
-        requestBody["delete_collection_from_cart"] =
-          formData.delete_collection_from_cart;
+        if (showDeleteFromCart) {
+          requestBody["delete_collection_from_cart"] =
+            formData.delete_collection_from_cart;
+        }
 
         if (!requestBody["id"]) {
           toast.error(t("cart.selectCollectionToSubmit"));
           return;
         }
       }
-      await addToCollection(requestBody);
+      await addToCollection(requestBody, queryClient);
       toast.success(t("cart.addToCollectionSuccess"));
       handleCloseModal();
     } catch (error) {
@@ -108,7 +114,7 @@ function CollectionModal({ showModal, setShowModal }) {
           className="form"
         >
           <div className="d-flex flex-column gap-3 w-100">
-            <div className="d-flex align-items-center justify-content-end p-2 ">
+            <div className="d-flex align-items-center justify-content-end px-2 py-0">
               <span
                 className="add-new-collection-btn"
                 onClick={() =>
@@ -160,18 +166,20 @@ function CollectionModal({ showModal, setShowModal }) {
                 />
               </>
             )}
-            <div className="d-flex align-items-center gap-2">
-              <input
-                type="checkbox"
-                name="delete_collection_from_cart"
-                id="delete_collection_from_cart"
-                checked={formData.delete_collection_from_cart}
-                onChange={handleChange}
-              />
-              <label htmlFor="delete_collection_from_cart">
-                {t("cart.deleteCollectionFromCart")}
-              </label>
-            </div>
+            {showDeleteFromCart && (
+              <div className="d-flex align-items-center gap-2">
+                <input
+                  type="checkbox"
+                  name="delete_collection_from_cart"
+                  id="delete_collection_from_cart"
+                  checked={formData.delete_collection_from_cart}
+                  onChange={handleChange}
+                />
+                <label htmlFor="delete_collection_from_cart">
+                  {t("cart.deleteCollectionFromCart")}
+                </label>
+              </div>
+            )}
             <div className="d-flex justify-content-end gap-3 mt-2">
               <button
                 onClick={() => setShowModal(false)}

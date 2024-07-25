@@ -64,6 +64,7 @@ function ProjectDetails() {
                         request={request}
                         key={request.id}
                         isMyProject={project?.is_my_project}
+                        project={project}
                       />
                     ))}
                   </div>
