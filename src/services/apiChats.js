@@ -23,7 +23,11 @@ export async function getTargetChat(data) {
 
 export const createMessage = async (data, queryClient) => {
   try {
-    const res = await axios.post("/user/create_message", data);
+    const res = await axios.post("/user/create_message", data, {
+      headers: {
+        "Content-Type": "multipart/form-data"
+      }
+    });
     if (res.data.code === 200) {
       queryClient.invalidateQueries(["chats", "chat-object"]);
     }
