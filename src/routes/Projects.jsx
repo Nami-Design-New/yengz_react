@@ -22,10 +22,10 @@ function Projects() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [searchFilterData, setSearchFilterData] = useState({
     search: searchParams.get("search") || "",
-    page: Number(searchParams.get("page")) || 1,
-    rate: Number(searchParams.get("rate")) || 1,
-    user_verification: Number(searchParams.get("user_verification")) || 0,
-    user_available: Number(searchParams.get("user_available")) || 0,
+    page: Number(searchParams.get("page")) || null,
+    rate: Number(searchParams.get("rate")) || null,
+    user_verification: Number(searchParams.get("user_verification")) || null,
+    user_available: Number(searchParams.get("user_available")) || null,
     categories: searchParams.get("categories")
       ? searchParams
           .get("categories")
@@ -38,7 +38,7 @@ function Projects() {
           .split("-")
           .map((subcategory) => Number(subcategory))
       : [],
-    is_old: Number(searchParams.get("is_old")) || 0,
+    is_old: Number(searchParams.get("is_old")) || null,
   });
 
   const handleChange = (e) => {
@@ -107,7 +107,6 @@ function Projects() {
 
         return updateCategoriesAndSubCategories(name, value, checked);
       }
-
       return updatedState;
     });
   };
@@ -121,8 +120,12 @@ function Projects() {
       searchParams.set("page", searchFilterData.page);
       setSearchParams(searchParams);
     }
+    console.log(String(searchFilterData.search).trim());
     if (String(searchFilterData.search).trim()) {
       searchParams.set("search", searchFilterData.search);
+      setSearchParams(searchParams);
+    } else {
+      searchParams.delete("search");
       setSearchParams(searchParams);
     }
     if (

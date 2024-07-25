@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   ORDER_STATUS_AR,
   ORDER_STATUS_EN,
-  ORDER_STATUS_PERSENTAGE
+  ORDER_STATUS_PERSENTAGE,
 } from "../utils/constants";
 import { formatTimeDifference, getTimeDifference } from "../utils/helpers";
 import { calculateExpectedEndDate } from "./../utils/helpers";
@@ -75,7 +75,7 @@ function OrderDetails() {
         request_type: "service",
         request_id: order?.service?.id,
         owner_id: userType === "seller" ? order?.user?.id : user?.id,
-        applied_id: userType === "seller" ? user?.id : order?.user?.id
+        applied_id: userType === "seller" ? user?.id : order?.user?.id,
       })
     );
   };
@@ -149,12 +149,10 @@ function OrderDetails() {
                       </p>
                       <div className="progress">
                         <div
-                          className={`progress-bar ${
-                            order?.status === "canceled" ? "" : "sucses"
-                          }`}
+                          className={`progress-bar ${order?.status}`}
                           role="progressbar"
                           style={{
-                            width: `${ORDER_STATUS_PERSENTAGE[order?.status]}%`
+                            width: `${ORDER_STATUS_PERSENTAGE[order?.status]}%`,
                           }}
                           aria-valuenow={ORDER_STATUS_PERSENTAGE[order?.status]}
                           aria-valuemin="0"

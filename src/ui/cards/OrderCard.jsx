@@ -36,7 +36,9 @@ function OrderCard({ order, type }) {
               <Link to={`/profile/${order?.user?.id}`} className="owner">
                 <span>{order?.user?.name}</span>
               </Link>
-              <h5>{order?.service?.title}</h5>
+              <h5>
+                {type === "project" ? order?.title : order?.service?.title}
+              </h5>
             </div>
           </div>
         </div>
@@ -51,9 +53,7 @@ function OrderCard({ order, type }) {
                 </p>
                 <div className="progress">
                   <div
-                    className={`progress-bar ${
-                      order?.status === "canceled" ? "" : "sucses"
-                    }`}
+                    className={`progress-bar ${order?.status}`}
                     role="progressbar"
                     style={{
                       width: `${ORDER_STATUS_PERSENTAGE[order?.status]}%`,

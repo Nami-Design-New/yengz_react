@@ -1710,6 +1710,7 @@ body main .cart-section .cart-header .add-to-collection-btn {
   min-width: 140px;
   font-size: 16px;
   white-space: nowrap;
+  gap: 8px;
 }
 body main .cart-section .cartTotalPrice {
   display: flex;
@@ -1876,8 +1877,23 @@ body main .cart-section .progress-card .progress-details .pro-container {
 body main .cart-section .progress-card .progress-details .pro-container .progress {
   background: var(--white-color) !important;
 }
-body main .cart-section .progress-card .progress-details .pro-container .sucses {
-  background: #26ba35 !important;
+body main .cart-section .progress-card .progress-details .pro-container .new {
+  background-color: #5bc0de;
+}
+body main .cart-section .progress-card .progress-details .pro-container .in_progress {
+  background-color: #f0ad4e;
+}
+body main .cart-section .progress-card .progress-details .pro-container .ready {
+  background-color: #5bc0de;
+}
+body main .cart-section .progress-card .progress-details .pro-container .received {
+  background-color: #5cb85c;
+}
+body main .cart-section .progress-card .progress-details .pro-container .complete {
+  background-color: #0275d8;
+}
+body main .cart-section .progress-card .progress-details .pro-container .canceled {
+  background-color: #d9534f;
 }
 body main .cart-section .progress-card .progress-details .pro-container .status {
   font-size: 16px;
@@ -3269,6 +3285,24 @@ body .form .google-login {
   color: var(--black-color);
   gap: 16px;
 }
+body .form .apple-login {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--input-hint);
+  color: var(--black-color);
+  background-color: unset !important;
+  gap: 16px;
+  margin-top: 24px;
+  width: 100%;
+  height: 48px;
+}
+body .form .apple-login img {
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
 body .form .line {
   width: 100%;
   height: 1px;
@@ -3742,6 +3776,26 @@ body .add-cart .request-order {
   background: var(--main-color);
   color: #fff;
   border-radius: 16px;
+}
+body .add-cart .add-to-collection-btn {
+  height: 50px;
+  width: 100%;
+  cursor: pointer;
+  outline: none;
+  padding: 8px 16px;
+  border: none;
+  font-size: 14px;
+  color: var(--white-color);
+  border-radius: 12px;
+  background: var(--main-color);
+  transition: var(--main-transation);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 140px;
+  font-size: 16px;
+  white-space: nowrap;
+  gap: 8px;
 }
 body .products-card {
   margin-bottom: 24px;
@@ -5731,4 +5785,115 @@ body.en main .row-head a i {
   min-width: 140px;
   font-size: 14px;
   white-space: nowrap;
+}
+
+.collection_modal button {
+  height: unset !important;
+}
+
+.offer-card .progress-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.offer-card .progress-card .progress-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.offer-card .progress-card .progress-details .details {
+  height: 60px;
+  font-size: 14px;
+  min-width: 100px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--main-color);
+  background: var(--check-color);
+}
+.offer-card .progress-card .progress-details .chat {
+  height: 60px;
+  font-size: 20px;
+  min-width: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--main-color);
+  background: var(--check-color);
+}
+.offer-card .progress-card .progress-details .pro-container {
+  height: 60px;
+  padding: 8px 12px;
+  width: 100%;
+  background: var(--input-bg);
+  border: 1px solid var(--gray-background);
+  border-radius: 16px;
+}
+.offer-card .progress-card .progress-details .pro-container .progress {
+  background: var(--white-color) !important;
+}
+.offer-card .progress-card .progress-details .pro-container .sucses {
+  background: #26ba35 !important;
+}
+.offer-card .progress-card .progress-details .pro-container .status {
+  font-size: 16px;
+  margin-bottom: 4px;
+  color: var(--text-color);
+}
+.offer-card .progress-card .time-price {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.offer-card .progress-card .time-price span {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  color: var(--black-color);
+}
+.offer-card .progress-card .time-price span i {
+  color: var(--text-color);
+}
+.offer-card .progress-card .time-price h5 {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--black-color);
+}
+.offer-card .progress-card .time-price h5 i {
+  font-size: 18px;
+  color: var(--main-color);
+}
+.offer-card .order-buttons {
+  display: flex;
+  gap: 24px;
+  margin-top: 20px;
+}
+.offer-card .order-buttons button {
+  border: none;
+  background: none;
+  outline: none;
+  width: 100%;
+  height: 45px;
+  border-radius: 14px;
+}
+.offer-card .order-buttons .deliver {
+  background: #26ba35;
+  color: #fff;
+}
+.offer-card .order-buttons .cancle-order {
+  background: var(--black-color);
+  color: var(--white-color);
+}
+.offer-card .order-buttons .report-order {
+  border: 1px solid var(--main-color);
+  color: var(--main-color);
+  transition: var(--main-transation);
+}
+.offer-card .order-buttons .report-order:hover {
+  background: var(--main-color);
+  color: #fff;
 }/*# sourceMappingURL=style.css.map */

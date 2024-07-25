@@ -32,6 +32,9 @@ function StatusFilter({ isFilterOpen, setIsFilterOpen }) {
         );
       }
       setSearchParams(searchParams);
+    } else {
+      searchParams.delete("status");
+      setSearchParams(searchParams);
     }
   }
 

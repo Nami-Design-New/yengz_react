@@ -150,6 +150,12 @@ const Navbar = () => {
                 <i className="far fa-cube"></i> {t("navbar.categories")}
               </Link>
             </li>
+            <li className="nav-link" onClick={closeSmallMediaMenu}>
+              <Link to="/logout">
+                <i className="fa-solid fa-left-to-bracket"></i>
+                {t("navbar.login")}
+              </Link>
+            </li>
             {isLogged && (
               <>
                 <li className="nav-link" onClick={closeSmallMediaMenu}>
