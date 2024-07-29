@@ -31,7 +31,7 @@ const MobileNav = () => {
           </Link>
         </li>
         <li>
-          <Link to="/recieved-requests">
+          <Link to="/recieved-orders">
             <i className="fa-sharp fa-solid fa-cubes"></i>
             <span>الطلبات</span>
           </Link>
