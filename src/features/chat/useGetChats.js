@@ -5,7 +5,10 @@ export default function useGetChats() {
   const { isLoading, data, error } = useQuery({
     queryKey: ["chats"],
     queryFn: getChats,
-    retry: false
+    retry: false,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false
   });
   return { isLoading, data, error };
 }

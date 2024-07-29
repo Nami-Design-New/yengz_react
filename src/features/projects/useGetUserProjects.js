@@ -5,7 +5,10 @@ export default function useGetUserProjects(id) {
   const { isLoading, data, error } = useQuery({
     queryKey: ["userProjects", id],
     queryFn: () => getUserProjects(id),
-    retry: false
+    retry: false,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false
   });
   return { isLoading, data, error };
 }

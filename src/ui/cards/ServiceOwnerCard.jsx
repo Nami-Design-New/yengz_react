@@ -33,7 +33,7 @@ const ServiceOwnerCard = ({ service }) => {
         request_type: "service",
         request_id: service?.id,
         owner_id: service?.user?.id,
-        applied_id: authedUser?.id,
+        applied_id: authedUser?.id
       })
     );
     navigate(`/chat`);
@@ -53,7 +53,7 @@ const ServiceOwnerCard = ({ service }) => {
     instagram: `https://www.instagram.com/?url=${currentPageLink}`,
     twitter: `https://twitter.com/intent/tweet?url=${currentPageLink}`,
     snapchat: `https://www.snapchat.com/share?url=${currentPageLink}`,
-    whatsapp: `https://wa.me/?text=${currentPageLink}`,
+    whatsapp: `https://wa.me/?text=${currentPageLink}`
   };
 
   return (
@@ -86,9 +86,11 @@ const ServiceOwnerCard = ({ service }) => {
           </div>
         </Link>
         <div className="btns">
-          <button className="butn" onClick={handleCreateRoom}>
-            <i className="fa-regular fa-message-lines"></i>
-          </button>
+          {!service?.is_my_service && (
+            <button className="butn" onClick={handleCreateRoom}>
+              <i className="fa-regular fa-message-lines"></i>
+            </button>
+          )}
           <Dropdown>
             <Dropdown.Toggle className="butn" id="dropdown-basic">
               <i className="fa-regular fa-share-nodes"></i>
@@ -157,7 +159,7 @@ const ServiceOwnerCard = ({ service }) => {
                     placement="bottom"
                     show={showTooltip}
                     overlay={renderTooltip({
-                      content: t("services.linkCopied"),
+                      content: t("services.linkCopied")
                     })}
                   >
                     <span>{currentPageLink}</span>

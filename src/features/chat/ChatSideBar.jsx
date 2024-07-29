@@ -1,20 +1,22 @@
 import React from "react";
 import rateowner2 from "../../Assets/images/rateowner2.webp";
-import { IconX } from "@tabler/icons-react";
+import { IconPaperclip, IconX } from "@tabler/icons-react";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 const ChatSideBar = ({
   setShowChatsMenu,
   showChatsMenu,
   chats,
   targetChat,
-  setTargetChat,
+  setTargetChat
 }) => {
+  const { t } = useTranslation();
   const { user } = useSelector((state) => state.authedUser);
 
   function truncate(inputString) {
     let truncateStringResult;
-    if (inputString.length > 60) {
+    if (inputString.length > 35) {
       truncateStringResult = inputString.substring(0, 35) + "...";
     } else {
       truncateStringResult = inputString;
@@ -52,7 +54,14 @@ const ChatSideBar = ({
                 : chat?.apply?.name}
             </h6>
             <p className="lastMessage unread">
-              {truncate(chat?.last_message?.message)}
+              {chat?.last_message?.type !== "text" ? (
+                <div className="icon">
+                  <IconPaperclip stroke={2} />
+                  <span>{t("chat.attachment")}</span>
+                </div>
+              ) : (
+                truncate(chat?.last_message?.message)
+              )}
               {chat?.last_message?.from_id === user?.id && (
                 <span className="read">
                   <i className="fa-regular fa-check"></i>

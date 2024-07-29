@@ -51,6 +51,10 @@ function ProjectDetails() {
                   </>
                 )}
               </div>
+              {/* add offer */}
+              {!project?.is_my_project && !project?.added_request && (
+                <>{!project?.added_request && <AddOffer id={project?.id} />}</>
+              )}
               {/* piddings */}
               {requests && requests.length > 0 && (
                 <div className="allComments">
@@ -69,9 +73,6 @@ function ProjectDetails() {
                     ))}
                   </div>
                 </div>
-              )}
-              {!project?.is_my_project && (
-                <>{!project?.added_request && <AddOffer id={project?.id} />}</>
               )}
             </div>
             <div className="col-lg-4 col-12 p-2">

@@ -8,6 +8,9 @@ function useGetAboutData() {
     queryKey: ["getAboutData"],
     queryFn: getAboutData(id),
     retry: false,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false
   });
 
   return { isLoading, data, error };

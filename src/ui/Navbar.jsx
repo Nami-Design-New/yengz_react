@@ -509,7 +509,7 @@ const Navbar = () => {
                       </Link>
                     </li>
                     <li onClick={closeProfileMenu}>
-                      <Link className="dropdown-item_Link" to="/support">
+                      <Link className="dropdown-item_Link" to="/contact">
                         <i className="fa-solid fa-file"></i>
                         {t("navbar.support")}
                       </Link>

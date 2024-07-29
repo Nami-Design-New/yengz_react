@@ -1,10 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-
 @font-face {
   font-family: "Din";
   src: url("../webfonts/din-next-lt-w23-regular.ttf");
 }
-
 @mixin centerFlex {
   display: flex;
   align-items: center;
@@ -278,12 +276,10 @@ body {
         transition: var(--main-transation);
         padding: 24px;
         overflow-y: auto;
-
         &::-webkit-scrollbar {
           width: 0;
           height: 0;
         }
-
         .user {
           width: 100%;
           padding: 10px;
@@ -788,6 +784,7 @@ body {
         p {
           font-size: 14px;
           align-self: flex-start;
+          text-align: center;
           margin-bottom: 24px;
           span {
             color: var(--main-color);
@@ -1053,7 +1050,6 @@ body {
           .service-card {
             flex: 0 1;
             min-width: calc(100% / 3 - 11px);
-
             @media screen and (max-width: 576px) {
               flex: 1 0;
             }
@@ -1062,11 +1058,9 @@ body {
             overflow: hidden;
             flex: 0 1;
             min-width: calc(100% / 3 - 11px);
-
             @media screen and (max-width: 576px) {
               flex: 1 0;
             }
-
             .img {
               position: relative;
               aspect-ratio: 3 / 2;
@@ -1508,9 +1502,13 @@ body {
               width: 100%;
               font-size: 16px;
               @include clearInput();
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 6px;
               background: var(--main-color);
               color: #fff;
-              border-radius: 16px;
+              border-radius: 12px;
             }
           }
         }
@@ -1566,7 +1564,6 @@ body {
         align-items: center;
         justify-content: flex-end;
         gap: 16px;
-
         .add-to-collection-btn {
           cursor: pointer;
           outline: none;
@@ -1627,6 +1624,7 @@ body {
           img {
             width: 100%;
             height: 100%;
+            object-fit: cover;
           }
         }
         .img {
@@ -1686,7 +1684,7 @@ body {
               font-weight: 400;
             }
             .owner span {
-              margin-bottom: 10px;
+              margin-bottom: 8px;
               font-weight: 600;
               font-size: 18px;
             }
@@ -1735,27 +1733,21 @@ body {
             .new {
               background-color: #5bc0de;
             }
-
             .in_progress {
               background-color: #f0ad4e;
             }
-
             .ready {
               background-color: #5bc0de;
             }
-
             .received {
               background-color: #5cb85c;
             }
-
             .complete {
               background-color: #0275d8;
             }
-
             .canceled {
               background-color: #d9534f;
             }
-
             .status {
               font-size: 16px;
               margin-bottom: 4px;
@@ -2105,12 +2097,10 @@ body {
                 flex-direction: column;
                 gap: 10px;
                 align-items: flex-start !important;
-
                 input {
                   width: 20px;
                 }
                 @include space-between();
-
                 .department-header {
                   width: 100%;
                   display: flex;
@@ -2124,7 +2114,6 @@ body {
                     gap: 10px;
                   }
                 }
-
                 .accordion-button {
                   @include clearInput();
                   width: 12px;
@@ -2155,7 +2144,6 @@ body {
                     }
                   }
                 }
-
                 .accordion-collapse {
                   width: 100%;
                   padding: 16px;
@@ -2260,13 +2248,21 @@ body {
         background: var(--white-color);
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
         border-radius: 12px;
-        padding: 24px 0;
+        padding: 24px 12px 12px;
+        h1 {
+          font-size: 32px;
+          margin-bottom: 12px;
+          color: var(--main-color);
+        }
+        p {
+          font-size: 14px;
+          color: var(--text-color);
+          margin-bottom: 12px;
+        }
         .container {
           height: 100%;
         }
         .input-filed {
-          padding: 0 16px;
-          margin-bottom: 28px;
           input {
             height: 60px;
             padding: 16px;
@@ -2897,8 +2893,12 @@ body {
       display: flex;
       padding: 10px 0 0;
       justify-content: space-between;
-      a {
+      .resend_link {
         color: var(--main-color);
+        cursor: pointer;
+        &.disabled {
+          pointer-events: none;
+        }
       }
       .timer span {
         color: var(--text-color);
@@ -3078,30 +3078,15 @@ body {
         }
       }
     }
-    .google-login {
-      margin-top: 24px;
+    .auth_social_btn {
       @include clearInput();
       width: 100%;
       height: 48px;
       border: 1px solid var(--input-hint);
       color: var(--black-color);
       gap: 16px;
-    }
-    .apple-login {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid var(--input-hint);
-      color: var(--black-color);
-      background-color: unset !important;
-      gap: 16px;
-      margin-top: 24px;
-      width: 100%;
-      height: 48px;
       img {
-        height: 100%;
-        object-fit: cover;
+        height: 28px;
       }
     }
     .line {
@@ -4158,7 +4143,6 @@ body {
   }
   .requestDetails {
     padding: 40px 0;
-
     .postDetails {
       position: relative;
       padding: 24px;
@@ -5179,35 +5163,27 @@ body {
     object-fit: cover;
   }
 }
-
-// Modal Works Style => abdelghany
 .workCard {
   border-radius: 12px;
-
   cursor: pointer;
   box-shadow: 0 0 2px 1px #ececec;
-
   h4 {
     text-align: center;
   }
 }
-
 .add-work-modal {
   width: 100%;
   height: 100dvh;
-
   .add-work {
     display: flex;
     gap: 24px !important;
     flex-direction: column !important;
   }
-
   .modal-dialog {
     height: 100% !important;
     position: relative !important;
     margin: 16px auto !important;
   }
-
   .modal-body {
     min-width: 300px;
     width: 50%;
@@ -5217,71 +5193,40 @@ body {
     position: relative;
     display: flex;
     flex-direction: row-reverse !important;
-
     @media (max-width: 992px) {
       width: 100%;
     }
   }
-  .modal-header {
-    min-width: 300px;
-    flex: 1 0 0;
-    display: flex;
-    flex-direction: column-reverse;
-    gap: 16px;
-    margin: 0;
-    height: 100%;
-    overflow-y: auto;
-    justify-content: flex-end;
-
-    &::-webkit-scrollbar {
-      width: 0;
-      height: 0;
-    }
-  }
-  .modal-content {
-    height: 80dvh;
-    position: relative;
-    display: flex !important;
-    flex-direction: row-reverse;
-    overflow-y: auto;
-    border-radius: 16px;
-
-    @media (max-width: 992px) {
-      flex-direction: column;
-      height: unset;
-      gap: 16px;
-      top: 20px;
-    }
-  }
-
+}
+.work-view-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
   .swiper {
-    padding: 0 !important;
     width: 100%;
-    height: unset !important;
-    flex: 1 0 0;
+    .work-modal-img-box {
+      display: flex;
+      img {
+        aspect-ratio: 5 / 2;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
   }
-
-  .swiper-slide {
-    height: 100% !important;
-    position: relative;
-  }
-  .work-modal-img-box {
-    width: 100% !important;
-    position: relative;
-    display: flex;
-    padding: 0 !important;
-  }
-
   .work-modal-content {
     width: 100%;
     display: flex;
     flex-direction: column;
-    flex: 1 0 0;
     padding: 0 16px;
-
+    .modal-info-items {
+      display: flex;
+      gap: 12px;
+    }
     .modal-info-item {
       width: 100%;
-      margin: 8px 0;
+      margin: 4px 0;
       display: flex;
       align-items: center;
       flex-wrap: wrap;
@@ -5289,41 +5234,36 @@ body {
       position: relative;
       border-radius: 12px;
       padding: 12px;
-
-      &:first-of-type {
-        margin-top: 24px;
-      }
-
       &:not(.description) {
         box-shadow: 0 0 2px 1px #efefef;
       }
-
-      p {
+      a {
+        color: var(--main-color);
         flex: 1 0 0;
         white-space: nowrap;
       }
-
       span {
         white-space: nowrap;
       }
     }
-
-    h3,
     h5 {
       text-wrap: balance;
+      font-size: 14px;
+      color: var(--text-color);
+      margin-bottom: 16px;
     }
-
     h3 {
-      font-size: 36px;
+      font-size: 32px;
       font-weight: 600;
       text-transform: capitalize;
     }
   }
-
-  img {
-    object-fit: cover;
-    width: 100% !important;
-  }
+}
+.certificate-view-modal img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 3 / 2;
 }
 .partener-slide {
   flex: 1 0 0;
@@ -5331,7 +5271,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-
   img {
     height: 100%;
     object-fit: cover;
@@ -5346,7 +5285,6 @@ body {
   justify-content: center;
   flex-direction: column;
   gap: 16px;
-
   h2 {
     margin: 0;
     text-align: center;

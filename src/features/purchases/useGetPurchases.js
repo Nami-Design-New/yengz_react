@@ -11,7 +11,10 @@ function useGetPurchases() {
   const { isLoading, data, error } = useQuery({
     queryKey: ["purchacesList", status, page],
     queryFn: () => getPurchasesOrders({ page, status }),
-    retry: false
+    retry: false,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false
   });
 
   return { isLoading, data, error };

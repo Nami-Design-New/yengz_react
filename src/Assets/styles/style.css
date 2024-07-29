@@ -855,6 +855,7 @@ body main .login-section .forgetpasswordForm h1 {
 body main .login-section .forgetpasswordForm p {
   font-size: 14px;
   align-self: flex-start;
+  text-align: center;
   margin-bottom: 24px;
 }
 body main .login-section .forgetpasswordForm p span {
@@ -1636,9 +1637,13 @@ body main .service-details .service-content .content .add-cart .request-order {
   border: none;
   background: none;
   outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   background: var(--main-color);
   color: #fff;
-  border-radius: 16px;
+  border-radius: 12px;
 }
 body main .service-details .service-card {
   width: 100%;
@@ -1759,6 +1764,8 @@ body main .cart-section .service-head .request-owner-img {
 body main .cart-section .service-head .request-owner-img img {
   width: 100%;
   height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 body main .cart-section .service-head .img {
   max-width: 150px;
@@ -1825,7 +1832,7 @@ body main .cart-section .service-head .title.requester-title h5 {
   font-weight: 400;
 }
 body main .cart-section .service-head .title.requester-title .owner span {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   font-weight: 600;
   font-size: 18px;
 }
@@ -2428,14 +2435,20 @@ body main .contact-section .col-12 .shaded-card {
   background: var(--white-color);
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   border-radius: 12px;
-  padding: 24px 0;
+  padding: 24px 12px 12px;
+}
+body main .contact-section .col-12 .shaded-card h1 {
+  font-size: 32px;
+  margin-bottom: 12px;
+  color: var(--main-color);
+}
+body main .contact-section .col-12 .shaded-card p {
+  font-size: 14px;
+  color: var(--text-color);
+  margin-bottom: 12px;
 }
 body main .contact-section .col-12 .shaded-card .container {
   height: 100%;
-}
-body main .contact-section .col-12 .shaded-card .input-filed {
-  padding: 0 16px;
-  margin-bottom: 28px;
 }
 body main .contact-section .col-12 .shaded-card .input-filed input {
   height: 60px;
@@ -3081,8 +3094,12 @@ body .form .resend-code {
   padding: 10px 0 0;
   justify-content: space-between;
 }
-body .form .resend-code a {
+body .form .resend-code .resend_link {
   color: var(--main-color);
+  cursor: pointer;
+}
+body .form .resend-code .resend_link.disabled {
+  pointer-events: none;
 }
 body .form .resend-code .timer span {
   color: var(--text-color);
@@ -3274,8 +3291,7 @@ body .form .image-change-wrapper .upload .plus i {
   font-size: 14px;
   color: #fff;
 }
-body .form .google-login {
-  margin-top: 24px;
+body .form .auth_social_btn {
   border: none;
   background: none;
   outline: none;
@@ -3285,23 +3301,8 @@ body .form .google-login {
   color: var(--black-color);
   gap: 16px;
 }
-body .form .apple-login {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--input-hint);
-  color: var(--black-color);
-  background-color: unset !important;
-  gap: 16px;
-  margin-top: 24px;
-  width: 100%;
-  height: 48px;
-}
-body .form .apple-login img {
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+body .form .auth_social_btn img {
+  height: 28px;
 }
 body .form .line {
   width: 100%;
@@ -5530,63 +5531,40 @@ body.en main .row-head a i {
     width: 100%;
   }
 }
-.add-work-modal .modal-header {
-  min-width: 300px;
-  flex: 1 0 0;
+
+.work-view-modal {
   display: flex;
-  flex-direction: column-reverse;
-  gap: 16px;
-  margin: 0;
-  height: 100%;
-  overflow-y: auto;
-  justify-content: flex-end;
+  flex-direction: column;
+  gap: 32px;
 }
-.add-work-modal .modal-header::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-}
-.add-work-modal .modal-content {
-  height: 80dvh;
-  position: relative;
-  display: flex !important;
-  flex-direction: row-reverse;
-  overflow-y: auto;
-  border-radius: 16px;
-}
-@media (max-width: 992px) {
-  .add-work-modal .modal-content {
-    flex-direction: column;
-    height: unset;
-    gap: 16px;
-    top: 20px;
-  }
-}
-.add-work-modal .swiper {
-  padding: 0 !important;
+.work-view-modal .swiper {
   width: 100%;
-  height: unset !important;
-  flex: 1 0 0;
 }
-.add-work-modal .swiper-slide {
-  height: 100% !important;
-  position: relative;
-}
-.add-work-modal .work-modal-img-box {
-  width: 100% !important;
-  position: relative;
+.work-view-modal .swiper .work-modal-img-box {
   display: flex;
-  padding: 0 !important;
 }
-.add-work-modal .work-modal-content {
+.work-view-modal .swiper .work-modal-img-box img {
+  aspect-ratio: 5/2;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+.work-view-modal .work-modal-content {
   width: 100%;
   display: flex;
   flex-direction: column;
-  flex: 1 0 0;
   padding: 0 16px;
 }
-.add-work-modal .work-modal-content .modal-info-item {
+.work-view-modal .work-modal-content .modal-info-items {
+  display: flex;
+  gap: 12px;
+}
+.work-view-modal .work-modal-content .modal-info-item {
   width: 100%;
-  margin: 8px 0;
+  margin: 4px 0;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -5595,32 +5573,35 @@ body.en main .row-head a i {
   border-radius: 12px;
   padding: 12px;
 }
-.add-work-modal .work-modal-content .modal-info-item:first-of-type {
-  margin-top: 24px;
-}
-.add-work-modal .work-modal-content .modal-info-item:not(.description) {
+.work-view-modal .work-modal-content .modal-info-item:not(.description) {
   box-shadow: 0 0 2px 1px #efefef;
 }
-.add-work-modal .work-modal-content .modal-info-item p {
+.work-view-modal .work-modal-content .modal-info-item a {
+  color: var(--main-color);
   flex: 1 0 0;
   white-space: nowrap;
 }
-.add-work-modal .work-modal-content .modal-info-item span {
+.work-view-modal .work-modal-content .modal-info-item span {
   white-space: nowrap;
 }
-.add-work-modal .work-modal-content h3,
-.add-work-modal .work-modal-content h5 {
+.work-view-modal .work-modal-content h5 {
   text-wrap: balance;
+  font-size: 14px;
+  color: var(--text-color);
+  margin-bottom: 16px;
 }
-.add-work-modal .work-modal-content h3 {
-  font-size: 36px;
+.work-view-modal .work-modal-content h3 {
+  font-size: 32px;
   font-weight: 600;
   text-transform: capitalize;
 }
-.add-work-modal img {
+
+.certificate-view-modal img {
+  width: 100%;
+  height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-  width: 100% !important;
+  aspect-ratio: 3/2;
 }
 
 .partener-slide {

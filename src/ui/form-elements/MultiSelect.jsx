@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 const animatedComponents = makeAnimated();
@@ -10,6 +11,7 @@ const MultiSelect = ({
   handleChange,
   ...props
 }) => {
+  const { t } = useTranslation();
   return (
     <div className="input-field">
       <label htmlFor={props.id}>{label}</label>
@@ -20,6 +22,7 @@ const MultiSelect = ({
         options={options}
         value={selectedOptions}
         onChange={handleChange}
+        placeholder={t("choose")}
         {...props}
       />
     </div>

@@ -8,6 +8,9 @@ function useGetAboutAppCategory() {
     queryKey: ["useGetAboutAppCategory"],
     queryFn: () => getAboutCategory(id),
     retry: false,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false
   });
 
   return { isLoading, data, error };

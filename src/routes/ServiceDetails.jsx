@@ -6,7 +6,7 @@ import {
   addToCart,
   decreaseCartQuantity,
   increaseCartQuantity,
-  updateDevelopmentsInCart,
+  updateDevelopmentsInCart
 } from "../services/apiCart";
 import { useQueryClient } from "@tanstack/react-query";
 import { updateEntireCart } from "../redux/slices/cart";
@@ -23,8 +23,8 @@ import SimilarServices from "./../features/services/SimilarServices";
 import CollectionModal from "../ui/modals/CollectionModal";
 
 const ServiceDetails = () => {
-  const navigate = useNavigate();
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
   const [showCollectionModel, setShowCollectionModel] = useState(false);
@@ -39,10 +39,11 @@ const ServiceDetails = () => {
   const [inCart, setInCart] = useState(false);
   const [formLoading, setFormLoading] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
+
   const [cartObj, setCartObj] = useState({
     service_id: service?.id,
     quantity: 1,
-    developments: [],
+    developments: []
   });
 
   useEffect(() => {
@@ -55,7 +56,7 @@ const ServiceDetails = () => {
             quantity: item.quantity,
             developments: item?.service?.developments
               ?.filter((dev) => dev.in_cart)
-              .map((dev) => dev.id),
+              .map((dev) => dev.id)
           }))
         )
       );
@@ -81,7 +82,7 @@ const ServiceDetails = () => {
         id: itemFromCart?.id,
         service_id: service.id,
         quantity: itemFromCart ? itemFromCart.quantity : 1,
-        developments: itemFromCart ? itemFromCart.developments : [],
+        developments: itemFromCart ? itemFromCart.developments : []
       });
       setTotalPrice(
         (servicePrice || 0) +
@@ -93,6 +94,7 @@ const ServiceDetails = () => {
     }
   }, [cart, service]);
 
+  // increase quantity
   const handleIncreaseQuantity = async () => {
     if (inCart) {
       try {
@@ -106,7 +108,7 @@ const ServiceDetails = () => {
     } else {
       setCartObj((prevCartObj) => ({
         ...prevCartObj,
-        quantity: prevCartObj.quantity + 1,
+        quantity: prevCartObj.quantity + 1
       }));
     }
     const newQuantity = cartObj.quantity + 1;
@@ -119,7 +121,7 @@ const ServiceDetails = () => {
       }, 0) * newQuantity;
     setTotalPrice((service?.price || 0) * newQuantity + developmentsTotalPrice);
   };
-
+  // decrease quantity
   const handleDecreaseQuantity = async () => {
     if (cartObj.quantity > 1) {
       if (inCart) {
@@ -134,7 +136,7 @@ const ServiceDetails = () => {
       } else {
         setCartObj((prevCartObj) => ({
           ...prevCartObj,
-          quantity: prevCartObj.quantity - 1,
+          quantity: prevCartObj.quantity - 1
         }));
       }
       const newQuantity = cartObj.quantity - 1;
@@ -150,7 +152,7 @@ const ServiceDetails = () => {
       );
     } else return;
   };
-
+  // developments
   const handleCheckboxChange = async (id) => {
     const isChecked = cartObj.developments.includes(id);
     if (inCart) {
@@ -158,7 +160,7 @@ const ServiceDetails = () => {
         await updateDevelopmentsInCart(
           {
             cart_id: cartObj?.id,
-            development_id: id,
+            development_id: id
           },
           queryClient
         );
@@ -170,7 +172,7 @@ const ServiceDetails = () => {
         ...prevCartObj,
         developments: isChecked
           ? prevCartObj.developments.filter((item) => item !== id)
-          : [...prevCartObj.developments, id],
+          : [...prevCartObj.developments, id]
       }));
     }
     setTotalPrice((prevTotalPrice) =>
@@ -183,7 +185,7 @@ const ServiceDetails = () => {
             cartObj?.quantity || 0)
     );
   };
-
+  // add to cart
   const handleAddToCart = async () => {
     if (!isLogged) {
       navigate("/login");
@@ -225,7 +227,7 @@ const ServiceDetails = () => {
                       </Link>
                     </p>
                     <p>{service?.description}</p>
-                    {service?.is_my_service === false && (
+                    {service.is_my_service === false && (
                       <>
                         {service?.developments &&
                           service?.developments.length > 0 && (
@@ -281,11 +283,10 @@ const ServiceDetails = () => {
                               onChange={(e) =>
                                 setCartObj({
                                   ...cartObj,
-                                  quantity: e.target.value,
+                                  quantity: e.target.value
                                 })
                               }
                             />
-
                             <button
                               className="minus"
                               onClick={handleDecreaseQuantity}
@@ -293,7 +294,6 @@ const ServiceDetails = () => {
                               <i className="fa-regular fa-minus"></i>
                             </button>
                           </div>
-
                           <div className="total d-flex justify-content-between align-items-center">
                             <p>
                               {t("services.total")} : <br />
@@ -312,18 +312,18 @@ const ServiceDetails = () => {
                               <i className="fa-solid fa-dollar-sign"></i>
                             </h6>
                           </div>
-                          {!inCart && (
+                          <div className="d-flex w-100 gap-2">
+                            {!inCart && (
+                              <button
+                                className="request-order"
+                                onClick={handleAddToCart}
+                              >
+                                <i className="fa-regular fa-cart-plus"></i>{" "}
+                                {t("services.addToCart")}
+                              </button>
+                            )}
                             <button
                               className="request-order"
-                              onClick={handleAddToCart}
-                            >
-                              <i className="fa-regular fa-cart-plus"></i>{" "}
-                              {t("services.addToCart")}
-                            </button>
-                          )}
-                          <div className="col-12 p-0">
-                            <span
-                              className="add-to-collection-btn"
                               onClick={() => {
                                 if (!isLogged) {
                                   navigate("/login");
@@ -334,7 +334,7 @@ const ServiceDetails = () => {
                             >
                               <i className="fa-light fa-plus"></i>
                               {t("cart.addToCollection")}
-                            </span>
+                            </button>
                           </div>
                         </div>
                       </>

@@ -34,7 +34,7 @@ function AddProject() {
     days: "",
     description: "",
     project_files: [],
-    delete_files: [],
+    delete_files: []
   });
 
   useEffect(() => {
@@ -48,7 +48,7 @@ function AddProject() {
         days: projectDetails?.days,
         description: projectDetails?.description,
         project_files: projectDetails?.files,
-        delete_files: [],
+        delete_files: []
       };
       setFormData(initialData);
     }
@@ -62,7 +62,7 @@ function AddProject() {
     const filesArray = Array.from(e.target.files);
     setFormData((prev) => ({
       ...prev,
-      project_files: [...prev.project_files, ...filesArray],
+      project_files: [...prev.project_files, ...filesArray]
     }));
   };
 
@@ -77,7 +77,7 @@ function AddProject() {
       return {
         ...prevState,
         project_files: updatedFiles,
-        delete_files: updatedDeleteFiles,
+        delete_files: updatedDeleteFiles
       };
     });
   };
@@ -86,7 +86,7 @@ function AddProject() {
     ...formData,
     project_files: formData.project_files.filter((file) =>
       file?.type?.startsWith("image/")
-    ),
+    )
   };
 
   const handleSubmit = async (e) => {
@@ -164,9 +164,9 @@ function AddProject() {
                       onChange={(e) => {
                         setCategoryId(e.target.value);
                       }}
-                      options={categories?.data?.map((category) => ({
+                      options={categories?.map((category) => ({
                         name: category.name,
-                        value: category.id,
+                        value: category.id
                       }))}
                     />
                   </div>
@@ -177,9 +177,9 @@ function AddProject() {
                       name="sub_category_id"
                       value={formData.sub_category_id}
                       onChange={handleChange}
-                      options={subCategories?.data?.map((subCategory) => ({
+                      options={subCategories?.map((subCategory) => ({
                         name: subCategory.name,
-                        value: subCategory.id,
+                        value: subCategory.id
                       }))}
                       disabledOption={
                         categoryId

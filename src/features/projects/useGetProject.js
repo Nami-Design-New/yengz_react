@@ -7,7 +7,10 @@ export default function useGetProject() {
   const { isLoading, data, error } = useQuery({
     queryKey: ["project", id],
     queryFn: () => getProjectById(id),
-    retry: false
+    retry: false,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false
   });
   return { isLoading, data, error };
 }

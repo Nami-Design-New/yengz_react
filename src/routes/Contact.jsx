@@ -1,9 +1,11 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import contact from "../Assets/images/contact.webp";
 import SectionHeader from "../ui/SectionHeader";
 import NewsLetter from "../ui/NewsLetter";
 
 const Contact = () => {
+  const { t } = useTranslation();
   return (
     <>
       <SectionHeader />
@@ -14,7 +16,11 @@ const Contact = () => {
               <div className="shaded-card" data-aos="fade-up">
                 <form className="container" action="">
                   <div className="row">
-                    <div className="col-12 input-filed">
+                    <div className="col-12 p-2">
+                      <h1>{t("contact.title")}</h1>
+                      <p>{t("contact.description")}</p>
+                    </div>
+                    <div className="col-12 p-2 input-filed">
                       <input
                         type="text"
                         name="name"
@@ -22,7 +28,7 @@ const Contact = () => {
                         placeholder="الاسم بالكامل"
                       />
                     </div>
-                    <div className="col-12 input-filed">
+                    <div className="col-12 p-2 input-filed">
                       <input
                         type="email"
                         name="email"
@@ -30,7 +36,7 @@ const Contact = () => {
                         placeholder="البريد الالكترونى"
                       />
                     </div>
-                    <div className="col-12 input-filed">
+                    <div className="col-12 p-2 input-filed">
                       <input
                         type="tel"
                         name="tel"
@@ -38,14 +44,14 @@ const Contact = () => {
                         placeholder="رقم الجوال"
                       />
                     </div>
-                    <div className="col-12 input-filed">
+                    <div className="col-12 p-2 input-filed">
                       <textarea
                         name="message"
                         id="message"
                         placeholder="رسالتك"
                       ></textarea>
                     </div>
-                    <div className="col-12">
+                    <div className="col-12 p-2">
                       <button type="submit">ارسال</button>
                     </div>
                   </div>
@@ -59,7 +65,6 @@ const Contact = () => {
             </div>
           </div>
         </div>
-
         <div className="Newsletter">
           <NewsLetter />
         </div>

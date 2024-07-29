@@ -6,6 +6,9 @@ function useCategoriesList() {
     queryKey: ["categoryList"],
     queryFn: getCategories,
     retry: false,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false
   });
 
   return { isLoading, data, error };

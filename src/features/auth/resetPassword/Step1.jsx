@@ -43,7 +43,7 @@ const Step1 = ({ setStep, setOtpData, formData, setFormData, setUserId }) => {
       <p className="title">{t("auth.forgetPasswordSubTitle")}</p>
       <InputField
         label={t("auth.email")}
-        placeholder={t("example@example.com")}
+        placeholder="example@example.com"
         name="email"
         type="email"
         id="email"

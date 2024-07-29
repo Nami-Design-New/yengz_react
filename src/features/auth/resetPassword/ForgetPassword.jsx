@@ -29,6 +29,7 @@ const ForgetPassword = () => {
               setOtpData={setOtpData}
               otpData={otpData}
               email={formData.email}
+              setUserId={setUserId}
             />
           )}
           {step === 3 && <Step3 userId={userId} />}

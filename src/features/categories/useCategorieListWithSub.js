@@ -6,6 +6,9 @@ function useCategorieListWithSub() {
     queryKey: ["categoryListWithSub"],
     queryFn: getGategoriesWithSubcategories,
     retry: false,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false
   });
 
   return { isLoading, data, error };

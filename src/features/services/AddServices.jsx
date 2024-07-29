@@ -16,7 +16,7 @@ const AddServices = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { data: service } = useServiceDetails();
-  const [categoryId, setCategoryId] = useState(null);
+  const [categoryId, setCategoryId] = useState("");
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState((step / totalSteps) * 100);

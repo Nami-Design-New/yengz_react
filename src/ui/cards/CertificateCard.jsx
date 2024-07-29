@@ -6,10 +6,11 @@ const CertificateCard = ({
   certificate,
   canEdit,
   onDeleteModalShow,
-  onEditModalShow
+  onEditModalShow,
+  onClick
 }) => {
   return (
-    <div className="workCard">
+    <div className="workCard" onClick={() => onClick(certificate)}>
       <div className="img">
         <img src={certificate?.image || Rect} alt={certificate?.title} />
         {canEdit && (
@@ -23,7 +24,7 @@ const CertificateCard = ({
           </div>
         )}
       </div>
-      <h4>{certificate?.title || "مشروع"}</h4>
+      <h4>{certificate?.title}</h4>
     </div>
   );
 };

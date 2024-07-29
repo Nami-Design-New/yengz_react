@@ -5,7 +5,10 @@ function useSubCategoriesList(id) {
   const { isLoading, data, error } = useQuery({
     queryKey: ["categoryList"],
     queryFn: () => getSubCategories(id),
-    retry: false
+    retry: false,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false
   });
 
   return { isLoading, data, error };

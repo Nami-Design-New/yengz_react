@@ -7,7 +7,10 @@ function useGetRates() {
   const { isLoading, data, error } = useQuery({
     queryKey: ["serviceRates", id],
     queryFn: () => getRates(id),
-    retry: false
+    retry: false,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false
   });
   return { isLoading, data, error };
 }

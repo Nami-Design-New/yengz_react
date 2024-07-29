@@ -52,7 +52,9 @@ const AddWorkModal = ({
     setLoading(true);
     const dataToSendForUpdate = {
       ...formData,
-      images: formData.images.filter((image) => image?.type?.startsWith("image/"))
+      images: formData.images.filter((image) =>
+        image?.type?.startsWith("image/")
+      )
     };
     try {
       if (targetWork?.id) {
@@ -134,7 +136,7 @@ const AddWorkModal = ({
               {/* images */}
               <div className="col-12 p-2">
                 <label htmlFor="certificate-image" className="mb-2">
-                  {t("profile.certificateImage")}
+                  {t("profile.images")}
                 </label>
                 <div className="images_grid_upload">
                   <div className="file_upload">

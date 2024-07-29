@@ -5,7 +5,10 @@ export default function useGetCertificates(id) {
   const { isLoading, data, error } = useQuery({
     queryKey: ["userCertificates", id],
     queryFn: () => getCertificates(id),
-    retry: false
+    retry: false,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false
   });
   return { isLoading, data, error };
 }

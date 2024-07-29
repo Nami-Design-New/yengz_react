@@ -7,7 +7,10 @@ function useCartList() {
   const { isLoading, data, error } = useQuery({
     queryKey: ["cartList"],
     queryFn: getCart,
-    retry: false
+    retry: false,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false
   });
 
   return { isLoading, data, error };

@@ -147,6 +147,9 @@
 .chat-section .side-menu .nav-link .text-wrap .lastMessage.unread {
   color: var(--main-color);
 }
+.chat-section .side-menu .nav-link .text-wrap .lastMessage .icon svg {
+  height: 16px;
+}
 .chat-section .side-menu .nav-link .text-wrap .time {
   color: #777;
   font-size: 12px;
@@ -185,6 +188,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   background: linear-gradient(rgba(243, 243, 243, 0.9098039216), rgba(243, 243, 243, 0.9098039216)), url(https://www.shutterstock.com/image-vector/social-media-sketch-vector-seamless-600nw-1660950727.jpg);
   border-radius: 16px;
 }
@@ -318,17 +322,17 @@
 .chat-section .chat-container .inner-container .message.sent-message .message-content p {
   margin: 0;
 }
-.chat-section .chat-container .inner-container .message.recieved-message {
+.chat-section .chat-container .inner-container .message.received-message {
   justify-content: flex-start;
 }
-.chat-section .chat-container .inner-container .message.recieved-message .message-content {
-  background: var(--main-color);
+.chat-section .chat-container .inner-container .message.received-message .message-content {
+  background: var(--main-color) !important;
   padding: 10px 16px;
   border-radius: 12px;
   border-bottom-right-radius: 0;
   position: relative;
 }
-.chat-section .chat-container .inner-container .message.recieved-message .message-content p {
+.chat-section .chat-container .inner-container .message.received-message .message-content p {
   color: #fff;
   margin: 0;
 }
@@ -343,6 +347,16 @@
 }
 .chat-section .chat-container .inner-container .message span.rec {
   text-align: start;
+}
+.chat-section .chat-container .inner-container .message .doc_message {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--black-color);
+}
+.chat-section .chat-container .inner-container .message .doc_message .icon svg {
+  fill: var(--input-hint);
+  height: 32px;
 }
 .chat-section .chat-container .inner-container .image {
   background: rgba(50, 119, 83, 0.1019607843);
@@ -400,7 +414,7 @@
   background: none;
   outline: none;
   border-radius: 16px;
-  width: 70px;
+  min-width: 70px;
   height: 56px;
   background: var(--main-color);
   display: flex;
@@ -410,6 +424,9 @@
 .chat-section .chat-container .chat-send form button svg {
   height: 24px;
   stroke: #fff;
+}
+.chat-section .chat-container .chat-send form button i {
+  color: #fff;
 }
 
 .lottie_player_holder {
