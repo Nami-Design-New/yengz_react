@@ -161,7 +161,7 @@ function ProjectsOrdersDetails() {
                       </p>
                       <div className="progress">
                         <div
-                          className={`progress-bar ${order?.status}`}
+                          className={`progress-bar ${project?.status}`}
                           role="progressbar"
                           style={{
                             width: `${
