@@ -1,13 +1,16 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import Otpcontainer from "../../../ui/form-elements/OtpContainer";
 import SubmitButton from "../../../ui/form-elements/SubmitButton";
-import axios from './../../../utils/axios';
+import axios from "./../../../utils/axios";
+import { useQueryClient } from "@tanstack/react-query";
 
 const VerifyStep2 = ({ setStep, formData, setFormData }) => {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
+  const [timer, setTimer] = useState(60);
+  const [resendDisabled, setResendDisabled] = useState(true);
+  const queryClient = useQueryClient();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,11 +19,37 @@ const VerifyStep2 = ({ setStep, formData, setFormData }) => {
       const res = await axios.post("/user/verify_phone", formData);
       if (res.data.code === 200) {
         setStep(4);
+        queryClient.invalidateQueries(["profile"]);
       }
     } catch (error) {
       throw new Error(error.message);
     } finally {
       setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (timer > 0) {
+      const countdown = setTimeout(() => setTimer(timer - 1), 1000);
+      return () => clearTimeout(countdown);
+    } else {
+      setResendDisabled(false);
+    }
+  }, [timer]);
+
+  const handleResend = async () => {
+    setResendDisabled(true);
+    setTimer(60);
+    try {
+      const res = await axios.post("/user/sendOtpCode", formData);
+      if (res.data.code === 200) {
+        setFormData({
+          ...formData,
+          hashed_code: res.data.data
+        });
+      }
+    } catch (error) {
+      throw new Error(error.message);
     }
   };
 
@@ -32,9 +61,19 @@ const VerifyStep2 = ({ setStep, formData, setFormData }) => {
       </div>
       <Otpcontainer formData={formData} setFormData={setFormData} />
       <div className="resend-code">
-        <Link to="#!">{t("auth.resendCode")}</Link>
+        <span
+          onClick={handleResend}
+          className={`resend_link ${resendDisabled ? "disabled" : ""}`}
+        >
+          {t("auth.resendCode")}
+        </span>
         <div className="timer">
-          <span>48</span> :<span>00</span>
+          <span>
+            {Math.floor(timer / 60)
+              .toString()
+              .padStart(2, "0")}
+          </span>
+          :<span>{(timer % 60).toString().padStart(2, "0")}</span>
         </div>
       </div>
       <div className="d-flex justify-content-between mt-4 w-100">
@@ -47,11 +86,7 @@ const VerifyStep2 = ({ setStep, formData, setFormData }) => {
         >
           {t("back")}
         </button>
-        <SubmitButton
-          name={t("next")}
-          loading={loading}
-          className={"w-25 "}
-        />
+        <SubmitButton name={t("next")} loading={loading} className={"w-25 "} />
       </div>
     </form>
   );

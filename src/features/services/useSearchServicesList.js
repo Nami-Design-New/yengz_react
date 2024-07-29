@@ -48,6 +48,9 @@ function useSearchServicesList() {
         is_old
       ),
     retry: false,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false
   });
 
   return { isLoading, data, error };

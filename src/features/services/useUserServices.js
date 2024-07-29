@@ -5,7 +5,10 @@ export default function useUserServices(id) {
   const { isLoading, data, error } = useQuery({
     queryKey: ["userServices", id],
     queryFn: () => getUserServices(id),
-    retry: false
+    retry: false,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false
   });
   return { isLoading, data, error };
 }

@@ -8,13 +8,17 @@ import useGetCertificates from "./useGetCertificates";
 import CertificateCard from "../../ui/cards/CertificateCard";
 import ConfirmationModal from "../../ui/modals/ConfirmationModal";
 import AddCertificateModal from "../../ui/modals/AddCertificateModal";
+import CertificateViewModal from "../../ui/modals/CertificateViewModal";
 
 const CertificatesTab = ({ user, isMyAccount }) => {
   const queryClient = useQueryClient();
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [showAddCertificateModal, setShowAddCertificateModal] = useState(false);
+  const [viewImgTarget, setViewImgTarget] = useState(null);
   const [targetId, setTargetId] = useState(null);
   const [targetCertificate, setTargetCertificate] = useState(null);
+  const [showCertificateViewModal, setShowCertificateViewModal] =
+    useState(false);
   const { t } = useTranslation();
   const { data: certificates } = useGetCertificates(user?.id);
 
@@ -37,6 +41,11 @@ const CertificatesTab = ({ user, isMyAccount }) => {
     } finally {
       setShowConfirmation(false);
     }
+  };
+
+  const viewCertificate = (targetCertificate) => {
+    setShowCertificateViewModal(true);
+    setViewImgTarget(targetCertificate);
   };
 
   return (
@@ -62,6 +71,7 @@ const CertificatesTab = ({ user, isMyAccount }) => {
                   canEdit={isMyAccount}
                   key={cer.id}
                   certificate={cer}
+                  onClick={viewCertificate}
                   onEditModalShow={onEditModalShow}
                   onDeleteModalShow={onDeleteModalShow}
                 />
@@ -83,6 +93,11 @@ const CertificatesTab = ({ user, isMyAccount }) => {
         targetCertificate={targetCertificate}
         showModal={showAddCertificateModal}
         setShowModal={setShowAddCertificateModal}
+      />
+      <CertificateViewModal
+        targetCertificate={viewImgTarget}
+        showModal={showCertificateViewModal}
+        setShowModal={setShowCertificateViewModal}
       />
     </div>
   );

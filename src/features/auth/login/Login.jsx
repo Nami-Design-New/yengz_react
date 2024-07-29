@@ -24,13 +24,13 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
-    password: "",
+    password: ""
   });
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
@@ -40,7 +40,7 @@ const Login = () => {
       try {
         const res = await axios.post("/user/social_login", {
           login_from: "google",
-          token: tokenResponse.access_token,
+          token: tokenResponse.access_token
         });
 
         if (res.data.code === 200) {
@@ -51,12 +51,12 @@ const Login = () => {
           setCookie("token", res.data.data.token, {
             path: "/",
             secure: true,
-            sameSite: "Strict",
+            sameSite: "Strict"
           });
           setCookie("id", res.data.data.id, {
             path: "/",
             secure: true,
-            sameSite: "Strict",
+            sameSite: "Strict"
           });
           axios.defaults.headers.common[
             "Authorization"
@@ -72,14 +72,14 @@ const Login = () => {
     onError: (error) => {
       console.log("Google Login Error:", error);
       toast.error(t("auth.googleLoginError"));
-    },
+    }
   });
 
   const handleAppleLogin = async (response) => {
     try {
       const res = await axios.post("/user/social_login", {
         login_from: "apple",
-        token: response.code,
+        token: response.code
       });
 
       if (res.data.code === 200) {
@@ -90,12 +90,12 @@ const Login = () => {
         setCookie("token", res.data.data.token, {
           path: "/",
           secure: true,
-          sameSite: "Strict",
+          sameSite: "Strict"
         });
         setCookie("id", res.data.data.id, {
           path: "/",
           secure: true,
-          sameSite: "Strict",
+          sameSite: "Strict"
         });
         axios.defaults.headers.common[
           "Authorization"
@@ -122,12 +122,12 @@ const Login = () => {
         setCookie("token", res.data.data.token, {
           path: "/",
           secure: true,
-          sameSite: "Strict",
+          sameSite: "Strict"
         });
         setCookie("id", res.data.data.id, {
           path: "/",
           secure: true,
-          sameSite: "Strict",
+          sameSite: "Strict"
         });
         axios.defaults.headers.common[
           "Authorization"
@@ -142,9 +142,6 @@ const Login = () => {
       setLoading(false);
     }
   };
-
-  console.log("Apple Client ID:", process.env.REACT_APP_APPLE_CLIENT_ID);
-  console.log("Apple Redirect URI:", process.env.REACT_APP_APPLE_REDIRECT_URI);
 
   return (
     <section className="login-section container">
@@ -181,15 +178,15 @@ const Login = () => {
             <div className="line">
               <span>{t("auth.orLoginWith")}</span>
             </div>
-            <div className="d-flex gap-2 w-100">
+            <div className="d-flex gap-2 flex-lg-row mt-3 flex-column w-100">
               <button
                 type="button"
-                className="google-login"
+                className="auth_social_btn"
                 onClick={() => handleGoogleLogin()}
               >
                 <img src={Google} alt="google" /> {t("auth.googleAccount")}
               </button>
-              <button className="google-login">
+              <button className="auth_social_btn">
                 <img src={Facebook} alt="google" /> {t("auth.facebookAccount")}
               </button>
               <AppleLogin
@@ -208,7 +205,7 @@ const Login = () => {
                   <button
                     onClick={renderProps.onClick}
                     disabled={renderProps.disabled}
-                    className="apple-login"
+                    className="auth_social_btn"
                   >
                     <img src={Apple} alt="apple" /> {t("auth.appleAccount")}
                   </button>

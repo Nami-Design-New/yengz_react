@@ -9,6 +9,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import {
   IconCircleOff,
   IconDotsVertical,
+  IconFileFilled,
   IconInfoCircle,
   IconMicrophone,
   IconPaperclip,
@@ -49,7 +50,8 @@ const ChatRoom = ({ chat }) => {
     };
   }, []);
 
-  const handleSendMessage = async () => {
+  const handleSendMessage = async (e) => {
+    e.preventDefault();
     try {
       setLoading(true);
       await createMessage(message, queryClient);
@@ -59,12 +61,8 @@ const ChatRoom = ({ chat }) => {
       console.error("Error sending message:", error);
     } finally {
       setLoading(false);
+      setRecordingTime(0);
     }
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    await handleSendMessage();
   };
 
   const startRecording = async () => {
@@ -74,7 +72,9 @@ const ChatRoom = ({ chat }) => {
 
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      const mediaRecorderInstance = new MediaRecorder(stream);
+      const mediaRecorderInstance = new MediaRecorder(stream, {
+        mimeType: "audio/webm"
+      });
 
       mediaRecorderInstance.ondataavailable = (event) => {
         if (event.data.size > 0) {
@@ -83,7 +83,7 @@ const ChatRoom = ({ chat }) => {
       };
 
       mediaRecorderInstance.onstop = async () => {
-        const audioBlob = new Blob(audioChunks, { type: "audio/mp3" });
+        const audioBlob = new Blob(audioChunks, { type: "audio/m4a" });
 
         console.log("Audio blob:", audioBlob.type);
         console.log("Audio blob:", audioBlob.size);
@@ -99,7 +99,6 @@ const ChatRoom = ({ chat }) => {
           track.stop();
         });
 
-        setRecordingTime(0);
         setIsRecording(false);
         clearInterval(recordingIntervalRef.current);
       };
@@ -130,6 +129,24 @@ const ChatRoom = ({ chat }) => {
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
     return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+  };
+
+  const extractTextAfterMessages = (url) => {
+    const regex = /_messages\.(.*)/;
+    const match = url.match(regex);
+    return match ? match[1] : "";
+  };
+
+  const formatMessageTime = (timestamp) => {
+    const date = new Date(timestamp);
+    let hours = date.getHours();
+    const minutes = date.getMinutes();
+    const ampm = hours >= 12 ? "PM" : "AM";
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    const minutesStr = minutes < 10 ? "0" + minutes : minutes;
+    const timeStr = `${hours}:${minutesStr}${ampm}`;
+    return timeStr;
   };
 
   return (
@@ -211,9 +228,19 @@ const ChatRoom = ({ chat }) => {
                       alt=""
                     />
                   )}
+                  {message?.type === "file" && (
+                    <Link to={message?.message} target="_blank">
+                      <div className="doc_message">
+                        <p>{extractTextAfterMessages(message?.message)}</p>
+                        <div className="icon">
+                          <IconFileFilled />
+                        </div>
+                      </div>
+                    </Link>
+                  )}
                 </div>
                 <span className={message?.from_id === user?.id ? "sen" : "rec"}>
-                  10:00AM
+                  {formatMessageTime(message?.created_at)}
                 </span>
               </div>
             </div>
@@ -221,7 +248,7 @@ const ChatRoom = ({ chat }) => {
       </div>
 
       <div className="chat-send">
-        <form onSubmit={handleSubmit} ref={formRef}>
+        <form onSubmit={handleSendMessage} ref={formRef}>
           <div className="input-field">
             <input
               type="text"
@@ -250,7 +277,6 @@ const ChatRoom = ({ chat }) => {
                 type="file"
                 name="userImage"
                 id="img-upload"
-                accept="image/*"
               />
             </label>
             {isRecording ? (
@@ -269,7 +295,11 @@ const ChatRoom = ({ chat }) => {
             )}
           </div>
           <button type="submit" disabled={loading}>
-            <IconSend stroke={2} />
+            {loading ? (
+              <i className="fa-solid fa-spinner fa-spin" />
+            ) : (
+              <IconSend stroke={2} />
+            )}
           </button>
         </form>
       </div>

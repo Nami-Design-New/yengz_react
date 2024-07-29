@@ -6,6 +6,9 @@ function usePartenersList() {
     queryKey: ["partenersList"],
     queryFn: getParteners,
     retry: false,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false
   });
   return { isLoading, data, error };
 }

@@ -40,7 +40,7 @@ function ProjectCard({ project }) {
   };
 
   return (
-    <div className="singleRequst">
+    <Link to={`/projects/${project?.id}`} className="singleRequst">
       <div className="row">
         <div className="col-12 p-0">
           <div className="requstPost">
@@ -97,7 +97,7 @@ function ProjectCard({ project }) {
         eventFun={delteProject}
         loading={loading}
       />
-    </div>
+    </Link>
   );
 }
 

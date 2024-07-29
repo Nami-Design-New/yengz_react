@@ -12,7 +12,10 @@ function useProjectsOrdersList() {
   const { isLoading, data, error } = useQuery({
     queryKey: ["projectsOrdersList", status, page],
     queryFn: () => getProjectsOrders({ page, status }),
-    retry: false
+    retry: false,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false
   });
 
   return { isLoading, data, error };

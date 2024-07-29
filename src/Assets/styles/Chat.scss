@@ -132,6 +132,11 @@
           &.unread {
             color: var(--main-color);
           }
+          .icon {
+            svg {
+              height: 16px;
+            }
+          }
         }
         .time {
           color: #777;
@@ -177,6 +182,7 @@
     }
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     background: linear-gradient(#f3f3f3e8, #f3f3f3e8),
       url(https://www.shutterstock.com/image-vector/social-media-sketch-vector-seamless-600nw-1660950727.jpg);
     border-radius: 16px;
@@ -250,7 +256,6 @@
         }
       }
     }
-
     .adItem {
       display: flex;
       align-items: center;
@@ -268,7 +273,6 @@
         border-radius: 8px;
       }
     }
-
     .inner-container {
       display: flex;
       flex-direction: column;
@@ -303,10 +307,10 @@
             }
           }
         }
-        &.recieved-message {
+        &.received-message {
           justify-content: flex-start;
           .message-content {
-            background: var(--main-color);
+            background: var(--main-color) !important;
             padding: 10px 16px;
             border-radius: 12px;
             border-bottom-right-radius: 0;
@@ -329,6 +333,16 @@
             text-align: start;
           }
         }
+        .doc_message {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          .icon svg {
+            fill: var(--input-hint);
+            height: 32px;
+          }
+          color: var(--black-color);
+        }
       }
       .image {
         background: #3277531a;
@@ -338,7 +352,6 @@
         padding: 1px 3px;
       }
     }
-
     .chat-send {
       width: 100%;
       display: flex;
@@ -385,7 +398,7 @@
           background: none;
           outline: none;
           border-radius: 16px;
-          width: 70px;
+          min-width: 70px;
           height: 56px;
           background: var(--main-color);
           display: flex;
@@ -394,6 +407,9 @@
           svg {
             height: 24px;
             stroke: #fff;
+          }
+          i {
+            color: #fff;
           }
         }
       }

@@ -1,43 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useCookies } from "react-cookie";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ProfileTabs from "../features/profile/ProfileTabs";
 import UserProfileCard from "../features/profile/UserProfileCard";
-import axios from "../utils/axios";
+import useGetProfile from "../features/profile/useGetProfile";
 
 const Profile = () => {
   const authedUser = useSelector((state) => state.authedUser.user);
-  const [user, setUser] = useState(null);
-  const [cookies] = useCookies(["token"]);
-  const token = cookies?.token;
-  const navigate = useNavigate();
+  const [user, setUser] = useState({});
   const { id } = useParams();
-
+  const { data: profile } = useGetProfile(id);
   const isMyAccount = !id || id === String(authedUser?.id);
-
-  const getProfile = async () => {
-    try {
-      const res = await axios.get(`/user/get_profile?id=${id}`);
-      if (res.data.code === 200) {
-        setUser(res.data.data);
-      }
-    } catch (error) {
-      console.error("Error fetching profile:", error.message);
-    }
-  };
-
-  useEffect(() => {
-    if (!token) {
-      navigate("/login");
-    }
-  }, [token, navigate]);
 
   useEffect(() => {
     if (isMyAccount) {
       setUser(authedUser);
     } else if (id) {
-      getProfile();
+      setUser(profile);
     }
   }, [isMyAccount, authedUser, id]);
 

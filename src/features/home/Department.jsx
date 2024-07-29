@@ -19,7 +19,7 @@ const Department = ({ category }) => {
       </div>
       <div className="row mb-5">
         <Swiper
-          spaceBetween={30}
+          spaceBetween={12}
           slidesPerView={4}
           speed={1000}
           loop={true}

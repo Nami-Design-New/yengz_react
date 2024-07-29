@@ -34,7 +34,7 @@ const UserProfileCard = ({ user, isMyAccount }) => {
                 <h4>
                   <IconInfoCircle stroke={2} /> {t("profile.balance")}
                 </h4>
-                <a href="#!">{t("profile.withdraw")}</a>
+                {/* <a href="#!">{t("profile.withdraw")}</a> */}
               </div>
             </div>
             <div className="col-6 p-2">

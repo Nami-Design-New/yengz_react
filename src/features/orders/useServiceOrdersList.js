@@ -11,7 +11,10 @@ function useServiceOrdersList() {
   const { isLoading, data, error } = useQuery({
     queryKey: ["serviceOrdersList", status, page],
     queryFn: () => getServiceOrders({ page, status }),
-    retry: false
+    retry: false,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false
   });
 
   return { isLoading, data, error };

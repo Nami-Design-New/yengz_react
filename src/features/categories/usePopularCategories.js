@@ -7,6 +7,9 @@ function usePopularCategories() {
     queryKey: ["popularCategoriesList"],
     queryFn: getPopularCategories,
     retry: false,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false
   });
 
   return { isLoading, data, error };

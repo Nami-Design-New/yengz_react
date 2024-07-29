@@ -6,6 +6,9 @@ export default function useGetAbout() {
     queryKey: ["getAbout"],
     queryFn: getAbout,
     retry: false,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false
   });
 
   return { isLoading, data, error };

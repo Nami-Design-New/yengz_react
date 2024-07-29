@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import {
   calculateDate,
   formatTimeDifference,
-  getTimeDifference,
+  getTimeDifference
 } from "../../utils/helpers";
 import { Link } from "react-router-dom";
 
@@ -66,7 +66,7 @@ const AboutProjectCard = ({ project }) => {
           <p>{t("projects.signUpDate")}</p>
           <span>{calculateDate(project?.user?.created_at)}</span>
         </li>
-        <li className=" d-flex justify-content-between">
+        {/* <li className=" d-flex justify-content-between">
           <p>{t("projects.employmentRate")}</p>
         </li>
         <li className=" d-flex justify-content-between">
@@ -74,7 +74,7 @@ const AboutProjectCard = ({ project }) => {
         </li>
         <li className=" d-flex justify-content-between">
           <p>{t("projects.inProgressProjects")}</p>
-        </li>
+        </li> */}
       </ul>
     </div>
   );

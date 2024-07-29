@@ -91,7 +91,7 @@ const Footer = () => {
                   </li>
                 </ul>
               </div>
-              <div className="follow">
+              {/* <div className="follow">
                 <ul>
                   <li>
                     <Link to="#">
@@ -114,7 +114,7 @@ const Footer = () => {
                     </Link>
                   </li>
                 </ul>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

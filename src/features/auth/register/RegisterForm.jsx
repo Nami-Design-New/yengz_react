@@ -3,8 +3,11 @@ import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
+import { useGoogleLogin } from "@react-oauth/google";
+import AppleLogin from "react-apple-login";
 import axios from "./../../../utils/axios";
 import Google from "../../../Assets/images/Google.svg";
+import Apple from "../../../Assets/images/Apple.svg";
 import Facebook from "../../../Assets/images/facebook.svg";
 import InputField from "../../../ui/form-elements/InputField";
 import ImageUpload from "../../../ui/form-elements/ImageUpload";
@@ -26,7 +29,7 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
     if (categories) {
       const options = categories?.map((category) => ({
         value: category.id,
-        label: category.name,
+        label: category.name
       }));
       setOptions(options);
     }
@@ -38,7 +41,7 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
         const option = options.find((opt) => opt.value === categoryId);
         return {
           value: option?.value,
-          label: option?.label,
+          label: option?.label
         };
       });
       setSelectedOptions(selectedOptions);
@@ -52,29 +55,29 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
       : [];
     setFormData({
       ...formData,
-      categories: selectedValues,
+      categories: selectedValues
     });
   };
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
   const headers = {
     Accept: "application/json",
-    "Content-Type": "multipart/form-data",
+    "Content-Type": "multipart/form-data"
   };
   const request = {
     method: "POST",
     headers: headers,
     data: {
       ...formData,
-      is_freelance: formData.is_freelance ? 1 : 0,
+      is_freelance: formData.is_freelance ? 1 : 0
     },
-    url: "/user/can_register",
+    url: "/user/can_register"
   };
 
   const handleSubmit = async (e) => {
@@ -86,7 +89,7 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
         setShowOtp(true);
         setOtpData((prev) => ({
           ...prev,
-          hashed_code: res.data.data,
+          hashed_code: res.data.data
         }));
       } else {
         toast.error(res.data.message);
@@ -96,6 +99,81 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
       throw new Error(error.message);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleGoogleLogin = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      console.log("Google Login Success:", tokenResponse);
+      try {
+        const res = await axios.post("/user/social_login", {
+          login_from: "google",
+          token: tokenResponse.access_token
+        });
+
+        if (res.data.code === 200) {
+          toast.success(t("auth.loginSuccess"));
+          dispatch(setUser(res.data.data));
+          dispatch(setIsLogged(true));
+          navigate("/");
+          setCookie("token", res.data.data.token, {
+            path: "/",
+            secure: true,
+            sameSite: "Strict"
+          });
+          setCookie("id", res.data.data.id, {
+            path: "/",
+            secure: true,
+            sameSite: "Strict"
+          });
+          axios.defaults.headers.common[
+            "Authorization"
+          ] = `${res.data.data.token}`;
+        } else {
+          toast.error(t("auth.emailOrPasswordWrong"));
+        }
+      } catch (error) {
+        toast.error(t("auth.loginErorr"));
+        throw new Error(error.message);
+      }
+    },
+    onError: (error) => {
+      console.log("Google Login Error:", error);
+      toast.error(t("auth.googleLoginError"));
+    }
+  });
+
+  const handleAppleLogin = async (response) => {
+    try {
+      const res = await axios.post("/user/social_login", {
+        login_from: "apple",
+        token: response.code
+      });
+
+      if (res.data.code === 200) {
+        toast.success(t("auth.loginSuccess"));
+        dispatch(setUser(res.data.data));
+        dispatch(setIsLogged(true));
+        navigate("/");
+        setCookie("token", res.data.data.token, {
+          path: "/",
+          secure: true,
+          sameSite: "Strict"
+        });
+        setCookie("id", res.data.data.id, {
+          path: "/",
+          secure: true,
+          sameSite: "Strict"
+        });
+        axios.defaults.headers.common[
+          "Authorization"
+        ] = `${res.data.data.token}`;
+      } else {
+        toast.error(t("auth.emailOrPasswordWrong"));
+      }
+    } catch (error) {
+      toast.error(t("auth.loginErorr"));
+      throw new Error(error.message);
     }
   };
 
@@ -160,29 +238,58 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
           onChange={() =>
             setFormData({
               ...formData,
-              is_freelance: formData.is_freelance === 1 ? 0 : 1,
+              is_freelance: formData.is_freelance === 1 ? 0 : 1
             })
           }
         />
       </div>
       <p>
-        {t("auth.byContinoung")} <Link to="#">{t("auth.terms")} </Link>{" "}
-        {t("auth.and")} <Link to="#">{t("auth.privacyPolicy")}</Link>{" "}
+        {t("auth.byContinoung")}{" "}
+        <Link to="/terms-conditions">{t("auth.terms")} </Link> {t("auth.and")}{" "}
+        <Link to="/privacy-policy">{t("auth.privacyPolicy")}</Link>{" "}
         {t("auth.ownbyus")}
       </p>
       <SubmitButton loading={loading} name={t("auth.createAccount")} />
       <div className="line">
         <span>{t("auth.orRegisterWith")}</span>
       </div>
-      <div className="d-flex gap-2 w-100">
-        <button className="google-login">
+
+      {/* social sign up btns */}
+      <div className="d-flex gap-2 flex-lg-row flex-column w-100 mt-4">
+        <button
+          type="button"
+          className="auth_social_btn"
+          onClick={() => handleGoogleLogin()}
+        >
           <img src={Google} alt="google" /> {t("auth.googleAccount")}
         </button>
-        <button className="google-login">
+        <button className="auth_social_btn">
           <img src={Facebook} alt="google" /> {t("auth.facebookAccount")}
         </button>
+        <AppleLogin
+          clientId={"process.env.REACT_APP_APPLE_CLIENT_ID"}
+          redirectURI={"process.env.REACT_APP_APPLE_REDIRECT_URI"}
+          responseType="code"
+          responseMode="form_post"
+          scope="name email"
+          usePopup={true}
+          onSuccess={handleAppleLogin}
+          onError={(error) => {
+            console.error("Apple Login Error:", error);
+            toast.error(t("auth.appleLoginError"));
+          }}
+          render={(renderProps) => (
+            <button
+              onClick={renderProps.onClick}
+              disabled={renderProps.disabled}
+              className="auth_social_btn"
+            >
+              <img src={Apple} alt="apple" /> {t("auth.appleAccount")}
+            </button>
+          )}
+        />
       </div>
-      <Link to="/register" className="noAccount">
+      <Link to="/login" className="noAccount">
         {t("auth.alreadyHaveAccount")} <span>{t("auth.login")}</span>
       </Link>
     </form>

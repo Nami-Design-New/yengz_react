@@ -17,6 +17,7 @@ const AddCertificateModal = ({
   targetCertificate,
   setTargetCertificate
 }) => {
+  console.log(targetCertificate);
   const { t } = useTranslation();
   const queryClient = useQueryClient();
   const imgRef = useRef(null);

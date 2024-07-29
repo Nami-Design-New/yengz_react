@@ -61,7 +61,7 @@ const WizardStep1 = ({
         onChange={(e) => {
           setCategoryId(e.target.value);
         }}
-        options={categories?.data?.map((category) => ({
+        options={categories?.map((category) => ({
           name: category.name,
           value: category.id
         }))}
@@ -73,7 +73,7 @@ const WizardStep1 = ({
         name="sub_category_id"
         value={formData.sub_category_id}
         onChange={handleChange}
-        options={subCategories?.data?.map((subCategory) => ({
+        options={subCategories?.map((subCategory) => ({
           name: subCategory.name,
           value: subCategory.id
         }))}

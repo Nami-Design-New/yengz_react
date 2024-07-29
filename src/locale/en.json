@@ -309,10 +309,6 @@
     "noOrders": "There is no orders right now",
     "emptyOrders": "There is no orders with this status, please try something else..."
   },
-  "prjects": {
-    "title": "Projects",
-    "emptyProjects": "There are no projects with this filter, please try something else..."
-  },
   "status": {
     "all": "all",
     "new": "new",
@@ -341,5 +337,6 @@
   "now": "now",
   "and": "and",
   "details": "Details",
-  "emptyPurchases": "You don't have any purchases yet"
+  "emptyPurchases": "You don't have any purchases yet",
+  "choose": "Choose"
 }

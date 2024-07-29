@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { setIsLogged, setUser } from "./redux/slices/authedUser";
 import { Route, Routes } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,12 +9,10 @@ import Layout from "./ui/Layout";
 import Home from "./routes/Home";
 import About from "./routes/About";
 import Contact from "./routes/Contact";
-import Faq from "./routes/Faq";
 import Chats from "./routes/Chats";
 import Cart from "./routes/Cart";
 import Profile from "./routes/Profile";
 import EditProfile from "./features/profile/EditProfile";
-import AddProject from "./routes/AddProject";
 import ProjectDetails from "./routes/ProjectDetails";
 import Purchases from "./routes/Purchases";
 import Categories from "./routes/Categories";
@@ -22,7 +21,6 @@ import Login from "./features/auth/login/Login";
 import Register from "./features/auth/register/Register";
 import ForgetPassword from "./features/auth/resetPassword/ForgetPassword";
 import AuthVerifySteps from "./features/auth/verification/AuthVerifySteps";
-import HowItWork from "./routes/HowItWork";
 import OrderDetails from "./routes/OrderDetails";
 import RecievedOrders from "./routes/RecievedOrders";
 import Terms from "./routes/Terms";
@@ -32,12 +30,12 @@ import Projects from "./routes/Projects";
 import useGetProfile from "./features/profile/useGetProfile";
 import ServiceDetails from "./routes/ServiceDetails";
 import Services from "./routes/Services";
-import { setIsLogged, setUser } from "./redux/slices/authedUser";
 import Loader from "./ui/Loader";
 import ProjectsOrders from "./routes/ProjectsOrders";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import ProjectsOrdersDetails from "./routes/ProjectsOrdersDetails";
 import Privacy from "./routes/Privacy";
+import AddProject from "./routes/AddProject";
 
 function App() {
   const dispatch = useDispatch();
@@ -60,7 +58,6 @@ function App() {
       dispatch(setIsLogged(false));
       dispatch(setUser({}));
       delete axios.defaults.headers.common["Authorization"];
-      console.log("Token is invalid and id matches");
     }
   }, [decodedToken?.sub, id, isExpired, profile]);
 
@@ -82,6 +79,7 @@ function App() {
           {/* services routes */}
           <Route path="/services" element={<Services />} />
           <Route path="/services/:id" element={<ServiceDetails />} />
+
           <Route
             path="/add-service"
             element={
@@ -142,6 +140,7 @@ function App() {
           {/* projects routes */}
           <Route path="/projects" element={<Projects />} />
           <Route path="/projects/:id" element={<ProjectDetails />} />
+
           <Route
             path="/add-project"
             element={

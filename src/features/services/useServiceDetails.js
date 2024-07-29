@@ -9,6 +9,9 @@ function useServiceDetails() {
     queryKey: ["serviceDetails", id],
     queryFn: () => getServiceDetails(id),
     retry: false,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false
   });
   return { isLoading, data, error };
 }

@@ -6,6 +6,9 @@ export default function useGetOurPartner() {
     queryKey: ["getOurPartner"],
     queryFn: getOurPartner,
     retry: false,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false
   });
 
   return { isLoading, data, error };
