@@ -1,10 +1,10 @@
-import { getSubCategories } from "../../services/apiCategories";
 import { useQuery } from "@tanstack/react-query";
+import { getCategory } from "../../services/apiCategories";
 
-function useSubCategoriesList(id) {
+function useGetCategoryById(id) {
   const { isLoading, data, error } = useQuery({
-    queryKey: ["subCategoriesList", id],
-    queryFn: () => getSubCategories(id),
+    queryKey: ["category", id],
+    queryFn: () => getCategory(id),
     retry: false,
     refetchOnWindowFocus: false,
     refetchOnMount: false,
@@ -14,4 +14,4 @@ function useSubCategoriesList(id) {
   return { isLoading, data, error };
 }
 
-export default useSubCategoriesList;
+export default useGetCategoryById;

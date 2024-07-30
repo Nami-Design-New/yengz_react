@@ -14,6 +14,8 @@ import DeleteAcountModal from "./modals/DeleteAcountModal";
 import { deleteAccount } from "../services/apiAuth";
 import { logout, setIsLogged, setUser } from "../redux/slices/authedUser";
 import { toast } from "react-toastify";
+import useGetNotifications from "../features/profile/useGetNotifications";
+import { calculateDate } from "../utils/helpers";
 
 const Navbar = () => {
   const { t } = useTranslation();
@@ -30,6 +32,7 @@ const Navbar = () => {
   const [isDeleteAccountModalOpen, setIsDeleteAccountModalOpen] =
     useState(false);
   const [deleteLoading, setDeleteLoading] = useState(false);
+  const { data: notifications } = useGetNotifications();
 
   function handleShowDeleteAccountModal() {
     setIsDeleteAccountModalOpen(true);
@@ -413,41 +416,29 @@ const Navbar = () => {
                         {user?.receive_notification || 0}
                       </span>
                     </Dropdown.Toggle>
-
                     <Dropdown.Menu className="drop_Message_Menu">
-                      <Dropdown.Item className="drop_Message">
-                        <Link to="/chat" style={{ display: "flex" }}>
-                          <div className="text-wrap">
-                            <div className="d-flex justify-content-between">
-                              <h6>اشعار جديد</h6>
-                              <span className="time">20 / 10 / 2024</span>
-                            </div>
-                            <p>
-                              انشاء متجر الكتروني احترافي على منصة ووردبريس
-                              ووكومرس
-                            </p>
-                          </div>
-                        </Link>
-                      </Dropdown.Item>
-
-                      <hr />
-
-                      <Dropdown.Item className="drop_Message">
-                        <Link to="/chat" style={{ display: "flex" }}>
-                          <div className="text-wrap">
-                            <div className="d-flex justify-content-between">
-                              <h6>اشعار جديد</h6>
-                              <span className="time">18 / 10 / 2024</span>
-                            </div>
-                            <p>نظام الكتروني لعيادة طبية</p>
-                          </div>
-                        </Link>
-                      </Dropdown.Item>
-
-                      <hr />
-
+                      {notifications?.map((notification) => (
+                        <>
+                          <Dropdown.Item className="drop_Message">
+                            <Link to="/chat" style={{ display: "flex" }}>
+                              <div className="text-wrap">
+                                <div className="d-flex justify-content-between">
+                                  <h6>{notification?.title}</h6>
+                                  <span className="time">
+                                    {calculateDate(notification?.created_at)}
+                                  </span>
+                                </div>
+                                <p>{notification?.description}</p>
+                              </div>
+                            </Link>
+                          </Dropdown.Item>
+                          <hr />
+                        </>
+                      ))}
                       <div className="showall">
-                        <Link to="/notifications">جميع الإشعارات</Link>
+                        <Link to="/notifications">
+                          {t("navbar.allNotifications")}
+                        </Link>
                       </div>
                     </Dropdown.Menu>
                   </Dropdown>
@@ -515,7 +506,10 @@ const Navbar = () => {
                       </Link>
                     </li>
                     <li onClick={closeProfileMenu}>
-                      <Link className="dropdown-item_Link" to="/report">
+                      <Link
+                        className="dropdown-item_Link"
+                        to="/complaints-suggestions"
+                      >
                         <i className="fa-solid fa-circle-info"></i>
                         {t("navbar.report")}
                       </Link>

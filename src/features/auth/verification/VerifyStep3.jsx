@@ -1,16 +1,19 @@
 import React, { useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import id from "../../../Assets/images/id.svg";
 import fileup1 from "../../../Assets/images/fileup1.svg";
-import { useTranslation } from "react-i18next";
 import SubmitButton from "../../../ui/form-elements/SubmitButton";
 import axios from "./../../../utils/axios";
 
-const VerifyStep3 = ({ setStep, formData, setFormData }) => {
+const VerifyStep3 = ({ setStep }) => {
   const { t } = useTranslation();
-  const [loading, setLoading] = useState(false);
   const frontIdImage = useRef(null);
   const backIdImage = useRef(null);
   const selfieImage = useRef(null);
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    images: []
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,7 +31,7 @@ const VerifyStep3 = ({ setStep, formData, setFormData }) => {
         }
       );
       if (res?.data?.code === 200) {
-        setStep(5);
+        setStep(3);
       }
     } catch (error) {
       throw new Error(error.message);
@@ -127,7 +130,7 @@ const VerifyStep3 = ({ setStep, formData, setFormData }) => {
           className="back_btn"
           onClick={(e) => {
             e.preventDefault();
-            setStep(3);
+            setStep(1);
           }}
         >
           {t("back")}

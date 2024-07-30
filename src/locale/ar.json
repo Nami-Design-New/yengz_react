@@ -33,7 +33,8 @@
     "edit-project": "تعديل مشروع",
     "projects-orders": "طلبات المشاريع",
     "terms-conditions": " الشروط والاحكام",
-    "privacy-policy": "سياسة الخصوصية"
+    "privacy-policy": "سياسة الخصوصية",
+    "complaints-suggestions": "الشكاوي والمقترحات"
   },
   "auth": {
     "loginPageTitle": "تسجيل الدخول",
@@ -95,7 +96,8 @@
     "advice2": "موضوعة داخل الإطار وغير مقصوصة",
     "idBack": "صورة الجهة الخلفية للهوية الوطنية",
     "idSelfie": "صورتك مع الهوية الوطنية",
-    "verificationSuccess": "تم ارسال بياناتك بنجاح وجاري مراجعتها حالياً , سيتم اخطارك علي البريد الالكتروني المسجل لدينا"
+    "verificationSuccess": "تم ارسال بياناتك بنجاح وجاري مراجعتها حالياً , سيتم اخطارك علي البريد الالكتروني المسجل لدينا",
+    "doYouWantChangePassword": "هل تريد تغيير كلمة المرور؟"
   },
   "navbar": {
     "addService": "اضف خدمة",
@@ -117,7 +119,8 @@
     "logout": "تسجيل الخروج",
     "messages": "الرسائل",
     "more": "المزيد",
-    "cart": "السلة"
+    "cart": "السلة",
+    "allNotifications": "كل الاشعارات"
   },
   "home": {
     "searchFor": "ابحث عن...",
@@ -210,7 +213,9 @@
     "wallet": "المحفظة",
     "projects": "المشاريع",
     "noProjects": "لا يوجد مشاريع لعرضها",
-    "images": "معرض الصور"
+    "images": "معرض الصور",
+    "verifyYourIdentity": "توثيق هويتك",
+    "verifyPhone": "توثيق رقم الجوال"
   },
   "addService": {
     "serviceTitle": "عنوان الخدمة",
@@ -287,7 +292,8 @@
     "snapchat": "سناب شات",
     "whatsapp": "واتساب",
     "developmentsAvailable": "تطويرات متوفرة لهذه الخدمة",
-    "orderNow": "طلب الان"
+    "orderNow": "طلب الان",
+    "instructions": "تعليمات للمشتري"
   },
   "comments": {
     "comments": "تعليقات",
@@ -420,5 +426,9 @@
   "now": "الأن",
   "and": "و",
   "details": "التفاصيل",
-  "choose": "اختر"
+  "choose": "اختر",
+  "continueSearchIn": "اكمل بحث في",
+  "projectsLink": "المشاريع",
+  "servicesLink": "الخدمات",
+  "notifications": "الاشعارات"
 }

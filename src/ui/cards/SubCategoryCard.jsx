@@ -3,11 +3,16 @@ import category1 from "../../Assets/images/category1.webp";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
-const CategoryCard = ({ category }) => {
+const SubCategoryCard = ({ category, onClick }) => {
   const { t } = useTranslation();
   return (
-    <div className="category-card" data-aos="fade-up">
-      <Link to={`/categories/${category.id}`} className="inner-card">
+    <div
+      className="category-card"
+      data-aos="fade-up"
+      onClick={onClick}
+      style={{ cursor: "pointer" }}
+    >
+      <div className="inner-card">
         <div className="category-img">
           <img src={category?.image || category1} alt="" />
         </div>
@@ -19,9 +24,9 @@ const CategoryCard = ({ category }) => {
             <h5 className="text">{category?.name || "تصميم وابداع"}</h5>
           </div>
         </div>
-      </Link>
+      </div>
     </div>
   );
 };
 
-export default CategoryCard;
+export default SubCategoryCard;

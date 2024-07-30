@@ -1,17 +1,14 @@
-import { getSubCategories } from "../../services/apiCategories";
 import { useQuery } from "@tanstack/react-query";
+import { getNotifications } from "../../services/apiNotifications";
 
-function useSubCategoriesList(id) {
+export default function useGetNotifications() {
   const { isLoading, data, error } = useQuery({
-    queryKey: ["subCategoriesList", id],
-    queryFn: () => getSubCategories(id),
+    queryKey: ["notifications"],
+    queryFn: getNotifications,
     retry: false,
     refetchOnWindowFocus: false,
     refetchOnMount: false,
     refetchOnReconnect: false
   });
-
   return { isLoading, data, error };
 }
-
-export default useSubCategoriesList;

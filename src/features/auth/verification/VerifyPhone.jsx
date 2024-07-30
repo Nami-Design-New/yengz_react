@@ -1,24 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { ProgressBar } from "react-bootstrap";
-import VerifyStep1 from "./VerifyStep1";
-import VerifyStep2 from "./VerifyStep2";
-import VerifyStep3 from "./VerifyStep3";
-import VerifyStep4 from "./VerifyStep4";
 import { useSelector } from "react-redux";
 import Instructions from "./Instructions";
+import VerifyStep1 from "./VerifyStep1";
+import VerifyStep2 from "./VerifyStep2";
 
-const AuthVerifySteps = () => {
+const VerifyPhone = () => {
+  const totalSteps = 3;
   const { t } = useTranslation();
-  const [step, setStep] = useState(1);
   const { user } = useSelector((state) => state.authedUser);
-  const totalSteps = 5;
+  const [step, setStep] = useState(1);
   const [progress, setProgress] = useState((step / totalSteps) * 100);
   const [formData, setFormData] = useState({
     phone: "",
     hashed_code: "",
-    code: "",
-    images: []
+    code: ""
   });
 
   useEffect(() => {
@@ -56,18 +53,10 @@ const AuthVerifySteps = () => {
               setFormData={setFormData}
             />
           )}
-          {step === 4 && (
-            <VerifyStep3
-              setStep={setStep}
-              formData={formData}
-              setFormData={setFormData}
-            />
-          )}
-          {step === 5 && <VerifyStep4 setStep={setStep} />}
         </div>
       </div>
     </section>
   );
 };
 
-export default AuthVerifySteps;
+export default VerifyPhone;

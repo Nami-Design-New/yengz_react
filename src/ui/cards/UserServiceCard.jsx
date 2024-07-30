@@ -36,6 +36,15 @@ function UserServiceCard({ service }) {
           </span>
         </li>
       </ul>
+      {service?.instructions && (
+        <>
+          <div className="label d-flex align-items-center gap-2 mt-3">
+            <i className="fa-regular fa-circle-info"></i>
+            <p className="p-0 m-0">{t("services.instructions")}</p>
+          </div>
+          <p>{service?.instructions}</p>
+        </>
+      )}
     </div>
   );
 }

@@ -1,14 +1,19 @@
 import React from "react";
 import useGetSettings from "../../settings/useGetSettings";
 import { useTranslation } from "react-i18next";
+import DataLoader from "../../../ui/DataLoader";
 
 const Instructions = ({ setStep }) => {
   const { t } = useTranslation();
-  const { data: settings } = useGetSettings();
+  const { data: settings, isLoading } = useGetSettings();
   console.log(settings);
   return (
     <div className="instructions form">
-      <p>{settings?.data?.verification_description}</p>
+      {isLoading ? (
+        <DataLoader />
+      ) : (
+        <p>{settings?.data?.verification_description}</p>
+      )}
       <div className="d-flex justify-content-end w-100">
         <button
           onClick={() => setStep(2)}
