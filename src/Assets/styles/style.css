@@ -792,6 +792,56 @@ body main .hero_section .hero_content form .input-fileld button {
     font-size: 14px;
   }
 }
+body main .notifications_section {
+  padding: 60px 0;
+}
+body main .notifications_section .notify {
+  padding: 16px;
+  background: var(--input-bg);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+body main .notifications_section .notify .notify_info {
+  gap: 12px;
+  display: flex;
+  align-items: center;
+}
+body main .notifications_section .notify .notify_info .img {
+  min-width: 60px;
+  max-width: 60px;
+  height: 60px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+body main .notifications_section .notify .notify_info .img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+body main .notifications_section .notify .notify_info .content h6 {
+  font-size: 12px;
+  color: var(--text-color);
+}
+body main .notifications_section .notify .notify_info .content p {
+  margin-top: 4px;
+  color: var(--black-color);
+  font-size: 12px;
+  line-height: 20px;
+}
+body main .notifications_section .notify .date_time {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+body main .notifications_section .notify .date_time span {
+  white-space: nowrap;
+  color: var(--text-color);
+  font-size: 12px;
+  line-height: 20px;
+}
 body main .categories {
   padding: 40px 16px;
 }
@@ -2486,8 +2536,8 @@ body main .contact-section .col-12 .shaded-card button {
   color: #fff;
   border-radius: 4px;
 }
-body main .about-section .mb-64 {
-  margin-bottom: 80px;
+body main .about-section {
+  padding: 60px 0;
 }
 body main .about-section .about_wrap {
   padding-top: 60px;
@@ -2666,42 +2716,20 @@ body main .about-section .about_wrap .testmonials .swiper .testimonialsSwiperPag
   background: var(--main-color);
 }
 body main .faqs {
-  padding: 40px 16px;
+  padding: 60px 12px;
 }
-body main .faqs .cards-4 {
-  padding: 24px 12px;
-  margin-bottom: 48px;
-  border-radius: 16px;
-  background: var(--input-bg);
-}
-body main .faqs .cards-4 .cardd {
-  gap: 16px;
-}
-body main .faqs .cards-4 .cardd .icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-body main .faqs .cards-4 .cardd .icon img {
-  max-height: 60px;
-}
-body main .faqs .cards-4 .cardd .text {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  gap: 8px;
-}
-body main .faqs .cards-4 .cardd .text h6 {
-  font-size: 16px;
-  color: var(--black-color);
-}
-body main .faqs .cards-4 .cardd .text p {
-  color: var(--text-color);
-  font-size: 14px;
-  line-height: 24px;
+@media (max-width: 576px) {
+  body main .faqs {
+    padding: 40px 12px;
+  }
 }
 body main .faqs .nav-pills {
   border-bottom: 2px solid #d7d7d7;
+  display: flex;
+  align-items: center;
+}
+body main .faqs .nav-pills .nav-item {
+  flex: 1;
 }
 body main .faqs .nav-pills .nav-link {
   color: var(--text-color);
@@ -2710,6 +2738,7 @@ body main .faqs .nav-pills .nav-link {
   font-weight: 500;
   width: 100%;
   font-size: 18px;
+  text-align: center;
 }
 @media (max-width: 576px) {
   body main .faqs .nav-pills .nav-link {
@@ -2735,54 +2764,24 @@ body main .faqs .nav-pills .nav-link.active::after {
   width: 100%;
   opacity: 1;
 }
-body main .faqs .tab-content {
+body main .faqs .about_links {
   width: 100%;
+  padding: 24px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
-body main .faqs .tab-content .accordion {
-  width: 100%;
-}
-body main .faqs .tab-content .accordion-button {
-  text-align: inherit;
-}
-body main .faqs .tab-content .accordion-button,
-body main .faqs .tab-content .accordion-body {
-  padding: 16px 0 !important;
-  background: none !important;
-}
-body main .faqs .tab-content .accordion-button:not(.collapsed) {
-  background: none !important;
-}
-body main .faqs .tab-content .accordion-button::after {
-  margin-right: auto !important;
-  margin-left: initial;
-}
-body main .faqs .tab-content .accordion-button:focus {
-  outline: none !important;
-  border: none !important;
-  box-shadow: none !important;
-}
-body main .faqs .tab-content .accordion-item {
-  border-top: 0 !important;
-  border-right: 0 !important;
-  border-left: 0 !important;
-  border-bottom: 1px solid var(--id-confirm) !important;
-  border-radius: 0 !important;
-  background: none !important;
-}
-body main .faqs .tab-content .accordion-item p,
-body main .faqs .tab-content .accordion-item ul li {
-  font-size: 14px;
-  color: var(--text-color);
-}
-body main .faqs .tab-content .accordion-button:not(.collapsed) {
-  box-shadow: none !important;
-}
-body main .faqs .tab-content .accordion-button {
-  font-size: 14px !important;
+body main .faqs .about_links a {
+  background: var(--input-bg);
+  border-radius: 12px;
+  padding: 8px 12px;
   color: var(--black-color);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
 }
-body main .faqs .tab-content .accordion-button:not(.collapsed) {
-  color: var(--main-color);
+body main .faqs .about_links a i {
+  margin-inline-start: auto;
 }
 body main .faqs .nav-pills .nav-link.active,
 body main .faqs .nav-pills .show > .nav-link {
@@ -2864,14 +2863,14 @@ body footer .upper-row .about .logo img {
   max-height: 64px;
 }
 body footer .upper-row .about p {
-  font-size: 14px;
-  line-height: 24px;
+  font-size: 16px;
+  line-height: 28px;
   color: var(--black-color);
 }
 body footer .upper-row .links {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
 }
 body footer .upper-row .links ul li {
   margin-bottom: 8px;
@@ -5009,86 +5008,6 @@ body .rate_field h6 {
 body .modal-content {
   background-color: var(--white-color);
 }
-body .notifications_section .notify {
-  padding: 16px;
-  background: var(--input-bg);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-body .notifications_section .notify .notify_info {
-  gap: 12px;
-  display: flex;
-  align-items: center;
-}
-body .notifications_section .notify .notify_info .img {
-  min-width: 60px;
-  max-width: 60px;
-  height: 60px;
-  overflow: hidden;
-  border-radius: 50%;
-}
-body .notifications_section .notify .notify_info .img img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-body .notifications_section .notify .notify_info .content h6 {
-  font-size: 12px;
-  color: var(--text-color);
-}
-body .notifications_section .notify .notify_info .content p {
-  margin-top: 4px;
-  color: var(--black-color);
-  font-size: 12px;
-  line-height: 20px;
-}
-body .notifications_section .notify .date_time {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-}
-body .notifications_section .notify .date_time span {
-  white-space: nowrap;
-  color: var(--text-color);
-  font-size: 12px;
-  line-height: 20px;
-}
-body .notifications_section .pagination {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-}
-body .notifications_section .pagination .prevBtn,
-body .notifications_section .pagination .nextBtn {
-  border: none;
-  background: none;
-  outline: none;
-  font-weight: 600;
-  color: var(--black-color);
-  font-size: 12px;
-}
-body .notifications_section .pagination .dots {
-  display: flex;
-  gap: 8px;
-}
-body .notifications_section .pagination .dots .dot {
-  width: 20px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  border: none;
-  background: none;
-  outline: none;
-  border-radius: 50%;
-  background-color: var(--main-color);
-  color: var(--white-color);
-}
 body .service-content {
   height: -moz-fit-content;
   height: fit-content;
@@ -5877,4 +5796,13 @@ body.en main .row-head a i {
 .offer-card .order-buttons .report-order:hover {
   background: var(--main-color);
   color: #fff;
+}
+
+.pathLink {
+  padding: 8px 12px;
+  width: 100%;
+  text-align: center;
+  border-radius: 12px;
+  background: var(--main-color);
+  color: var(--white-color);
 }/*# sourceMappingURL=style.css.map */

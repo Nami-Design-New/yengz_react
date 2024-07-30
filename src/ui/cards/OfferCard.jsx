@@ -15,7 +15,7 @@ import SubmitButton from "../form-elements/SubmitButton";
 import {
   ORDER_STATUS_AR,
   ORDER_STATUS_EN,
-  ORDER_STATUS_PERSENTAGE,
+  ORDER_STATUS_PERSENTAGE
 } from "../../utils/constants";
 
 function OfferCard({ request, isMyProject, project }) {
@@ -55,7 +55,7 @@ function OfferCard({ request, isMyProject, project }) {
         request_type: "project",
         request_id: request?.project_id,
         owner_id: user?.id,
-        applied_id: request?.user?.id,
+        applied_id: request?.user?.id
       })
     );
     navigate(`/chat`);
@@ -76,7 +76,7 @@ function OfferCard({ request, isMyProject, project }) {
         request_type: "service",
         request_id: order?.service?.id,
         owner_id: userType === "seller" ? order?.user?.id : user?.id,
-        applied_id: userType === "seller" ? user?.id : order?.user?.id,
+        applied_id: userType === "seller" ? user?.id : order?.user?.id
       })
     );
   };
@@ -201,50 +201,6 @@ function OfferCard({ request, isMyProject, project }) {
           ? request?.description
           : truncate(request?.description)}
       </p>
-
-      {project?.user_id === user?.id && (
-        <>
-          <div className="progress-card order-d">
-            <div className="progress-details">
-              <div className="pro-container">
-                <p className="status">
-                  {lang === "ar"
-                    ? ORDER_STATUS_AR[project?.status]
-                    : ORDER_STATUS_EN[project?.status]}
-                </p>
-                <div className="progress">
-                  <div
-                    className={`progress-bar ${
-                      project?.status === "canceled" ? "" : "sucses"
-                    }`}
-                    role="progressbar"
-                    style={{
-                      width: `${ORDER_STATUS_PERSENTAGE[project?.status]}%`,
-                    }}
-                    aria-valuenow={ORDER_STATUS_PERSENTAGE[project?.status]}
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  ></div>
-                </div>
-              </div>
-              <Link to="/chat" className="chat" onClick={handleRequestRoom}>
-                <i className="fa-light fa-message-lines"></i>
-              </Link>
-            </div>
-          </div>
-          {project?.status === "ready" && (
-            <div className="order-buttons">
-              <SubmitButton
-                loading={btn1Loading}
-                className="report-order"
-                name={t("recievedOrders.recieve")}
-                icon={<i className="fa-light fa-circle-check"></i>}
-                onClick={() => handleupdateProject("received")}
-              />
-            </div>
-          )}
-        </>
-      )}
 
       <EditProjectOfferModal
         request={request}

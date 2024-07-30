@@ -28,6 +28,7 @@ const EditProfile = () => {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({});
   const [options, setOptions] = useState([]);
+  const [wantChangePassword, setWantChangePassword] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState([]);
 
   useEffect(() => {
@@ -37,16 +38,21 @@ const EditProfile = () => {
       email: user?.email || "",
       phone: user?.phone || "",
       about: user?.about || "",
-      password: "",
       is_freelance: user?.is_freelance || 0,
       categories: user?.categories?.map((category) => category?.id) || []
     });
-  }, [user]);
+    if (wantChangePassword) {
+      setFormData((prev) => ({
+        ...prev,
+        password: ""
+      }));
+    }
+  }, [user, wantChangePassword]);
 
   // set options of multi select
   useEffect(() => {
     if (categories) {
-      const options = categories.data?.map((category) => ({
+      const options = categories?.map((category) => ({
         value: category.id,
         label: category.name
       }));
@@ -187,14 +193,6 @@ const EditProfile = () => {
               label={t("auth.aboutUser")}
               placeholder={t("auth.aboutPlaceHolder")}
             />
-            <PasswordField
-              label={t("auth.password")}
-              name={"password"}
-              id={"password"}
-              minLength={6}
-              value={formData?.password}
-              onChange={handleChange}
-            />
             <MultiSelect
               label={t("auth.interestes")}
               id="interest"
@@ -203,7 +201,7 @@ const EditProfile = () => {
               selectedOptions={selectedOptions}
               handleChange={handleSelect}
             />
-            <div className="question">
+            <div className="question p-0">
               <label htmlFor="isFreelancer" className="quest">
                 <img src={Vector} alt="isSeller" />
                 {t("auth.areYouSeller")}
@@ -220,7 +218,33 @@ const EditProfile = () => {
                 }
               />
             </div>
-            <SubmitButton loading={loading} name={t("auth.edit")} />
+            <div className="question p-0 pt-2">
+              <label htmlFor="wantChangePassword" className="quest">
+                <img src={Vector} alt="isSeller" />
+                {t("auth.doYouWantChangePassword")}
+              </label>
+              <Form.Switch
+                id="wantChangePassword"
+                name="wantChangePassword"
+                checked={wantChangePassword}
+                onChange={() => setWantChangePassword(!wantChangePassword)}
+              />
+            </div>
+            {wantChangePassword && (
+              <PasswordField
+                label={t("auth.newPassword")}
+                name={"password"}
+                id={"password"}
+                minLength={6}
+                value={formData?.password}
+                onChange={handleChange}
+              />
+            )}
+            <SubmitButton
+              loading={loading}
+              name={t("auth.edit")}
+              className={"mt-3"}
+            />
           </form>
         </div>
       </div>

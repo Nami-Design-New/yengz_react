@@ -5,8 +5,8 @@ function useGetAboutData() {
   const { id } = useParams();
 
   const { isLoading, data, error } = useQuery({
-    queryKey: ["getAboutData"],
-    queryFn: getAboutData(id),
+    queryKey: ["getAboutData", id],
+    queryFn: () => getAboutData(id),
     retry: false,
     refetchOnWindowFocus: false,
     refetchOnMount: false,

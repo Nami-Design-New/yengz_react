@@ -154,12 +154,25 @@ const ProfileTabs = ({ user, isMyAccount }) => {
             </ul>
             {isMyAccount && (
               <>
-                {user?.verified === 0 && (
-                  <div className="unverified-box">
+                {(user?.verified === 0 || user?.phone_verified === 0) && (
+                  <div className="unverified-box mb-3 d-block">
                     <h6>{t("profile.notVerified")}</h6>
-                    <Link to="/verify-user">{t("profile.verifyAccount")}</Link>
                   </div>
                 )}
+                <div className="d-flex gap-2">
+                  {user?.phone_verified === 0 && (
+                    <div className="unverified-box">
+                      <Link to="/verify-phone">{t("profile.verifyPhone")}</Link>
+                    </div>
+                  )}
+                  {user?.verified === 0 && (
+                    <div className="unverified-box">
+                      <Link to="/verify-identity">
+                        {t("profile.verifyYourIdentity")}
+                      </Link>
+                    </div>
+                  )}
+                </div>
               </>
             )}
           </div>

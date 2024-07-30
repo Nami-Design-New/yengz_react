@@ -1,26 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 import { setIsLogged, setUser } from "./redux/slices/authedUser";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { useDispatch, useSelector } from "react-redux";
 import { useJwt } from "react-jwt";
 import axios from "./utils/axios";
 import Layout from "./ui/Layout";
+import Loader from "./ui/Loader";
 import Home from "./routes/Home";
 import About from "./routes/About";
 import Contact from "./routes/Contact";
 import Chats from "./routes/Chats";
 import Cart from "./routes/Cart";
 import Profile from "./routes/Profile";
-import EditProfile from "./features/profile/EditProfile";
 import ProjectDetails from "./routes/ProjectDetails";
 import Purchases from "./routes/Purchases";
 import Categories from "./routes/Categories";
+import EditProfile from "./features/profile/EditProfile";
 import Logout from "./features/auth/Logout";
 import Login from "./features/auth/login/Login";
 import Register from "./features/auth/register/Register";
 import ForgetPassword from "./features/auth/resetPassword/ForgetPassword";
-import AuthVerifySteps from "./features/auth/verification/AuthVerifySteps";
+import VerifyIdentity from "./features/auth/verification/VerifyIdentity";
 import OrderDetails from "./routes/OrderDetails";
 import RecievedOrders from "./routes/RecievedOrders";
 import Terms from "./routes/Terms";
@@ -30,16 +32,21 @@ import Projects from "./routes/Projects";
 import useGetProfile from "./features/profile/useGetProfile";
 import ServiceDetails from "./routes/ServiceDetails";
 import Services from "./routes/Services";
-import Loader from "./ui/Loader";
 import ProjectsOrders from "./routes/ProjectsOrders";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import ProjectsOrdersDetails from "./routes/ProjectsOrdersDetails";
 import Privacy from "./routes/Privacy";
 import AddProject from "./routes/AddProject";
+import AboutPreview from "./routes/AboutPreview";
+import VerifyPhone from "./features/auth/verification/VerifyPhone";
+import SubCategories from "./routes/SubCategories";
+import Complaints from "./routes/Complaints";
 
 function App() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const lang = useSelector((state) => state.language.lang);
+  const queryClient = useQueryClient();
 
   const [cookies] = useCookies(["token", "id"]);
   const token = cookies?.token;
@@ -52,9 +59,10 @@ function App() {
 
   useEffect(() => {
     if (Number(decodedToken?.sub) === id && !isExpired) {
+      queryClient.invalidateQueries(["profile"]);
       dispatch(setIsLogged(true));
       dispatch(setUser(profile));
-    } else {
+    }  else {
       dispatch(setIsLogged(false));
       dispatch(setUser({}));
       delete axios.defaults.headers.common["Authorization"];
@@ -75,6 +83,7 @@ function App() {
         <Routes>
           <Route index element={<Home />} />
           <Route path="/categories" element={<Categories />} />
+          <Route path="/categories/:id" element={<SubCategories />} />
 
           {/* services routes */}
           <Route path="/services" element={<Services />} />
@@ -200,10 +209,18 @@ function App() {
             }
           />
           <Route
-            path="/verify-user"
+            path="/verify-identity"
             element={
               <ProtectedRoute>
-                <AuthVerifySteps />
+                <VerifyIdentity />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/verify-phone"
+            element={
+              <ProtectedRoute>
+                <VerifyPhone />
               </ProtectedRoute>
             }
           />
@@ -224,8 +241,18 @@ function App() {
             }
           />
 
+          <Route
+            path="/complaints-suggestions"
+            element={
+              <ProtectedRoute>
+                <Complaints />
+              </ProtectedRoute>
+            }
+          />
+
           <Route path="/contact" element={<Contact />} />
           <Route path="/about/:id" element={<About />} />
+          <Route path="/about/preview/:id" element={<AboutPreview />} />
           <Route path="/privacy-policy" element={<Privacy />} />
           <Route path="/terms-conditions" element={<Terms />} />
 

@@ -4,6 +4,7 @@ import Otpcontainer from "../../../ui/form-elements/OtpContainer";
 import SubmitButton from "../../../ui/form-elements/SubmitButton";
 import axios from "./../../../utils/axios";
 import { useQueryClient } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 
 const VerifyStep2 = ({ setStep, formData, setFormData }) => {
   const { t } = useTranslation();
@@ -11,6 +12,7 @@ const VerifyStep2 = ({ setStep, formData, setFormData }) => {
   const [timer, setTimer] = useState(60);
   const [resendDisabled, setResendDisabled] = useState(true);
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,8 +20,8 @@ const VerifyStep2 = ({ setStep, formData, setFormData }) => {
     try {
       const res = await axios.post("/user/verify_phone", formData);
       if (res.data.code === 200) {
-        setStep(4);
         queryClient.invalidateQueries(["profile"]);
+        navigate("/profile");
       }
     } catch (error) {
       throw new Error(error.message);
