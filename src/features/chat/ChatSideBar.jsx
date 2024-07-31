@@ -1,8 +1,10 @@
 import React from "react";
-import rateowner2 from "../../Assets/images/rateowner2.webp";
+import avatar from "../../Assets/images/avatar.jpg";
+import deletedAccount from "../../Assets/images/deleted-account.jpg";
 import { IconPaperclip, IconX } from "@tabler/icons-react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
+import { formatMessageTime } from "../../utils/helpers";
 
 const ChatSideBar = ({
   setShowChatsMenu,
@@ -41,17 +43,21 @@ const ChatSideBar = ({
           <img
             className="userImg"
             src={
-              chat?.apply?.id === user?.id
-                ? chat?.owner?.image
-                : chat?.apply?.image || rateowner2
+              chat?.apply
+                ? chat?.apply?.id === user?.id
+                  ? chat?.owner?.image
+                  : chat?.apply?.image || avatar
+                : deletedAccount
             }
             alt="user"
           />
           <div className="text-wrap">
             <h6 className="name">
-              {chat?.apply?.id === user?.id
-                ? chat?.owner?.name
-                : chat?.apply?.name}
+              {chat?.apply
+                ? chat?.apply?.id === user?.id
+                  ? chat?.owner?.name
+                  : chat?.apply?.name
+                : t("chat.deletedAccount")}
             </h6>
             <p className="lastMessage unread">
               {chat?.last_message?.type !== "text" ? (
@@ -64,11 +70,20 @@ const ChatSideBar = ({
               )}
               {chat?.last_message?.from_id === user?.id && (
                 <span className="read">
-                  <i className="fa-regular fa-check"></i>
+                  {(chat?.apply?.id === user?.id &&
+                    chat?.last_message?.is_read_owner === 1) ||
+                  (chat?.apply?.id !== user?.id &&
+                    chat?.last_message?.is_read_apply === 1) ? (
+                    <i class="fa-regular fa-check-double"></i>
+                  ) : (
+                    <i className="fa-regular fa-check"></i>
+                  )}
                 </span>
               )}
             </p>
-            <span className="time"> 10:00 AM </span>
+            <span className="time" dir="ltr">
+              {formatMessageTime(chat?.last_message?.created_at)}
+            </span>
           </div>
         </button>
       ))}

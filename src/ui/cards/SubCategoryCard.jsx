@@ -1,7 +1,5 @@
 import React from "react";
-import category1 from "../../Assets/images/category1.webp";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
 
 const SubCategoryCard = ({ category, onClick }) => {
   const { t } = useTranslation();
@@ -14,7 +12,7 @@ const SubCategoryCard = ({ category, onClick }) => {
     >
       <div className="inner-card">
         <div className="category-img">
-          <img src={category?.image || category1} alt="" />
+          <img src={category?.image} alt="" />
         </div>
         <div className="category-content">
           <div className="top-area">

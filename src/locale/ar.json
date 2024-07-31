@@ -34,7 +34,8 @@
     "projects-orders": "طلبات المشاريع",
     "terms-conditions": " الشروط والاحكام",
     "privacy-policy": "سياسة الخصوصية",
-    "complaints-suggestions": "الشكاوي والمقترحات"
+    "complaints-suggestions": "الشكاوي والمقترحات",
+    "my-collections": "مجموعاتي"
   },
   "auth": {
     "loginPageTitle": "تسجيل الدخول",
@@ -120,7 +121,8 @@
     "messages": "الرسائل",
     "more": "المزيد",
     "cart": "السلة",
-    "allNotifications": "كل الاشعارات"
+    "allNotifications": "كل الاشعارات",
+    "myCollections": "مجموعاتي"
   },
   "home": {
     "searchFor": "ابحث عن...",
@@ -336,7 +338,13 @@
     "fillAllFieldsToSubmit": "أملىء جميع الحقول لتتم عمليه الاضافة",
     "addToCollectionSuccess": "تم الاضافة بنجاح للمجموعة",
     "collectionTitle": "عنوان المجموعة",
-    "collectionDescription": "وصف المجموعة"
+    "collectionDescription": "وصف المجموعة",
+    "deleteCollection": "حذف المجموعة",
+    "areYouSureYouWantToDeleteThisCollection": "هل انت متاكد من حذف هذه المجموعة؟",
+    "collectionDeletedSuccessfully": "تم حذف المجموعة بنجاح",
+    "editCollection": "تعديل المجموعة",
+    "edit": "تعديل",
+    "collectionUpdated": "تم تعديل المجموعة بنجاح"
   },
   "recievedOrders": {
     "title": "الطلبات المستلمة",
@@ -405,11 +413,23 @@
     "report": "ابلاغ",
     "writeHere": "اكتب هنا...",
     "chats": "المحادثات",
-    "attachment": "مرفق"
+    "attachment": "مرفق",
+    "deletedAccount": "حساب محذوف"
   },
   "contact": {
     "title": "نحن نحب أن نسمع منك!",
     "description": "سواء كان لديك سؤال حول خدماتنا، تحتاج إلى مساعدة، أو تريد فقط مشاركة ملاحظاتك، نحن هنا لمساعدتك."
+  },
+  "complaints": {
+    "title": "العنوان",
+    "message": "الرسالة",
+    "submit": "ارسال",
+    "type": "نوع الرسالة",
+    "type1": "شكوى",
+    "type2": "إقتراح",
+    "choose": "اختر",
+    "pageTitle": "نحن هنا لسماع آرائكم والعمل على تحسين خدماتنا",
+    "complaintSentSuccessfully": "تم ارسال الشكوى بنجاح"
   },
   "cancel": "الغاء",
   "homePage": "الرئيسية",
@@ -430,5 +450,7 @@
   "continueSearchIn": "اكمل بحث في",
   "projectsLink": "المشاريع",
   "servicesLink": "الخدمات",
-  "notifications": "الاشعارات"
+  "notifications": "الاشعارات",
+  "collectionsEmpty": "لا يوجد مجموعات",
+  "emptyCollection": "هذه المجموعة فارغة"
 }
