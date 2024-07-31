@@ -35,7 +35,8 @@
     "terms-conditions": " الشروط والاحكام",
     "privacy-policy": "سياسة الخصوصية",
     "complaints-suggestions": "الشكاوي والمقترحات",
-    "my-collections": "مجموعاتي"
+    "my-collections": "مجموعاتي",
+    "best-freelancers": "افضل الموثقين"
   },
   "auth": {
     "loginPageTitle": "تسجيل الدخول",
@@ -122,7 +123,8 @@
     "more": "المزيد",
     "cart": "السلة",
     "allNotifications": "كل الاشعارات",
-    "myCollections": "مجموعاتي"
+    "myCollections": "مجموعاتي",
+    "bestFreelancers": "افضل الموثقين"
   },
   "home": {
     "searchFor": "ابحث عن...",
@@ -431,6 +433,7 @@
     "pageTitle": "نحن هنا لسماع آرائكم والعمل على تحسين خدماتنا",
     "complaintSentSuccessfully": "تم ارسال الشكوى بنجاح"
   },
+  "password": "ادخل كلمة المرور ",
   "cancel": "الغاء",
   "homePage": "الرئيسية",
   "writeHere": "اكتب هنا",
@@ -452,5 +455,6 @@
   "servicesLink": "الخدمات",
   "notifications": "الاشعارات",
   "collectionsEmpty": "لا يوجد مجموعات",
-  "emptyCollection": "هذه المجموعة فارغة"
+  "emptyCollection": "هذه المجموعة فارغة",
+  "servicesCount": "الخدمات المعروضة"
 }

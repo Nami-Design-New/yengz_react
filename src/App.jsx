@@ -4,8 +4,8 @@ import { useSelector } from "react-redux";
 import Layout from "./ui/Layout";
 import Loader from "./ui/Loader";
 import ProtectedRoute from "./routes/ProtectedRoute";
-import routesConfig from "./routes/config";
 import useAuth from "./hooks/useAuth";
+import routesConfig from "./routerConfig";
 
 function App() {
   const lang = useSelector((state) => state.language.lang);

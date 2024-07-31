@@ -154,11 +154,18 @@ const Navbar = () => {
               </Link>
             </li>
             <li className="nav-link" onClick={closeSmallMediaMenu}>
-              <Link to="/logout">
-                <i className="fa-solid fa-left-to-bracket"></i>
-                {t("navbar.login")}
+              <Link to="/best-freelancers">
+                <i class="fa-solid fa-stars"></i> {t("navbar.bestFreelancers")}
               </Link>
             </li>
+            {!isLogged && (
+              <li className="nav-link" onClick={closeSmallMediaMenu}>
+                <Link to="/login">
+                  <i class="fa-regular fa-arrow-right-from-bracket"></i>
+                  {t("navbar.login")}
+                </Link>
+              </li>
+            )}
             {isLogged && (
               <>
                 <li className="nav-link" onClick={closeSmallMediaMenu}>
@@ -208,11 +215,6 @@ const Navbar = () => {
                     {t("navbar.projectsOrders")}
                   </Link>
                 </li>
-                <li className="nav-link" onClick={closeSmallMediaMenu}>
-                  <Link to="/more">
-                    <i className="fa-regular fa-gear"></i> {t("navbar.more")}
-                  </Link>
-                </li>
               </>
             )}
             {isLogged ? (
@@ -240,7 +242,6 @@ const Navbar = () => {
             )}
           </ul>
         </div>
-
         <div className="right-wrapper">
           <div className="logo d-block">
             <Link to="/">
@@ -264,6 +265,14 @@ const Navbar = () => {
                 className="d-flex align-items-center gap-1"
               >
                 <i className="far fa-cube"></i> {t("navbar.categories")}
+              </Link>
+            </li>
+            <li className="nav-link">
+              <Link
+                to="/best-freelancers"
+                className="d-flex align-items-center gap-1"
+              >
+                <i class="fa-solid fa-stars"></i> {t("navbar.bestFreelancers")}
               </Link>
             </li>
             {isLogged && (
