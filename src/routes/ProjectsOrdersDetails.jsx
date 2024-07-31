@@ -11,8 +11,6 @@ import {
 import { requestChatRoom } from "../redux/slices/requctRoom";
 import DataLoader from "../ui/DataLoader";
 import { Link } from "react-router-dom";
-import rateowner1 from "../Assets/images/rateowner1.webp";
-import bann from "../Assets/images/bann.webp";
 import {
   ORDER_STATUS_AR,
   ORDER_STATUS_EN,

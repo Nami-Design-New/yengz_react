@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { IconRosetteDiscountCheckFilled } from "@tabler/icons-react";
 import { requestChatRoom } from "../../redux/slices/requctRoom";
-import avatar from "../../Assets/images/avatar.png";
+import avatar from "../../Assets/images/avatar.jpg";
 
 const ServiceOwnerCard = ({ service }) => {
   const dispatch = useDispatch();

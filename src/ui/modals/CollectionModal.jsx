@@ -1,15 +1,14 @@
-import { t } from "i18next";
 import React, { useState } from "react";
-import { Modal } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
+import { Modal } from "react-bootstrap";
+import { addToCollection } from "../../services/apiCollections";
+import { toast } from "react-toastify";
+import { useQueryClient } from "@tanstack/react-query";
 import SelectField from "./../../ui/form-elements/SelectField";
 import useCollectionsList from "../../features/collections/useCollectionsList";
 import SubmitButton from "../form-elements/SubmitButton";
 import InputField from "../form-elements/InputField";
 import TextField from "../form-elements/TextField";
-import { addToCollection } from "../../services/apiCollections";
-import { toast } from "react-toastify";
-import { useQueryClient } from "@tanstack/react-query";
 
 function CollectionModal({ showModal, setShowModal, showDeleteFromCart }) {
   const { t } = useTranslation();
@@ -20,30 +19,21 @@ function CollectionModal({ showModal, setShowModal, showDeleteFromCart }) {
     id: "",
     delete_collection_from_cart: 0,
     title: "",
-    description: "",
+    description: ""
   });
   const [loading, setLoading] = useState(false);
 
   const collectionOptions =
     collections?.map((collection) => ({
       name: collection.title,
-      value: collection.id,
+      value: collection.id
     })) || [];
 
   const handleChange = (e) => {
-    console.log({
-      ...formData,
-      [e.target.name]:
-        e.target.type === "checkbox"
-          ? Number(e.target.checked)
-          : e.target.value,
-    });
     setFormData({
       ...formData,
       [e.target.name]:
-        e.target.type === "checkbox"
-          ? Number(e.target.checked)
-          : e.target.value,
+        e.target.type === "checkbox" ? Number(e.target.checked) : e.target.value
     });
   };
 
@@ -54,7 +44,7 @@ function CollectionModal({ showModal, setShowModal, showDeleteFromCart }) {
       id: "",
       delete_collection_from_cart: 0,
       title: "",
-      description: "",
+      description: ""
     });
   }
 

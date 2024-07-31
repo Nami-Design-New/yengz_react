@@ -78,41 +78,6 @@ hr {
   margin: 0.5rem 0;
 }
 
-.loader {
-  width: 100%;
-  height: 100dvh;
-  position: fixed;
-  z-index: 999999;
-  top: 0;
-  left: 0;
-  background: var(--white-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 16px;
-}
-.loader img {
-  height: 70px;
-}
-.loader span {
-  width: 120px;
-  height: 2px;
-  background: var(--input-bg);
-  position: relative;
-  overflow: hidden;
-}
-.loader span::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 24px;
-  background: var(--main-color);
-  height: 100%;
-  animation: loading 0.5s linear infinite alternate;
-}
-
 @keyframes loading {
   0% {
     transform: translateX(0);
@@ -219,6 +184,41 @@ input[type=checkbox]:checked::after {
   fill: var(--main-color);
 }
 
+.loader {
+  width: 100%;
+  height: 100dvh;
+  position: fixed;
+  z-index: 999999;
+  top: 0;
+  left: 0;
+  background: var(--white-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 16px;
+}
+.loader img {
+  height: 70px;
+}
+.loader span {
+  width: 120px;
+  height: 2px;
+  background: var(--input-bg);
+  position: relative;
+  overflow: hidden;
+}
+.loader span::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 24px;
+  background: var(--main-color);
+  height: 100%;
+  animation: loading 0.5s linear infinite alternate;
+}
+
 #globe {
   display: flex;
   justify-content: center;
@@ -251,6 +251,7 @@ input[type=checkbox]:checked::after {
   line-height: 28px;
   box-sizing: border-box;
   scroll-behavior: smooth;
+  scrollbar-width: none;
   -webkit-tap-highlight-color: transparent;
   font-family: "Din", sans-serif;
 }
@@ -791,6 +792,58 @@ body main .hero_section .hero_content form .input-fileld button {
     padding: 6px 16px;
     font-size: 14px;
   }
+}
+body main .myCollections {
+  padding: 60px 0;
+}
+body main .myCollections .empty-section {
+  min-height: calc(100dvh - 350px);
+}
+body main .myCollections .collectionCard {
+  padding: 16px 24px;
+  border-radius: 12px;
+  background: var(--input-bg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+body main .myCollections .collectionCard .info h6 {
+  font-size: 22px;
+  margin-bottom: 0;
+}
+body main .myCollections .collectionCard .info h6 a {
+  color: var(--black-color);
+}
+body main .myCollections .collectionCard .info ul {
+  display: flex;
+  gap: 12px;
+}
+body main .myCollections .collectionCard .info ul li {
+  font-size: 12px;
+  color: var(--input-hint);
+}
+body main .myCollections .collectionCard .actions {
+  display: flex;
+  gap: 12px;
+}
+body main .myCollections .collectionCard .actions button {
+  border: none;
+  background: none;
+  outline: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--input-hint);
+  color: var(--input-hint);
+}
+body main .myCollections .collectionCard .actions button svg {
+  height: 16px;
+}
+body main .myCollections .collectionCard .actions button:nth-child(2) {
+  border-color: red;
+}
+body main .myCollections .collectionCard .actions button:nth-child(2) svg {
+  stroke: red;
 }
 body main .notifications_section {
   padding: 60px 0;
@@ -5022,7 +5075,7 @@ body .section-head .text-wrap {
   flex-direction: row;
   align-items: center;
   gap: 10px;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 body .section-head .text-wrap a {
   font-size: 16px;

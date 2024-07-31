@@ -1,6 +1,5 @@
 import React from "react";
 import { IconEdit, IconTrash } from "@tabler/icons-react";
-import Rect from "../../Assets/images/Rect.png";
 
 const CertificateCard = ({
   certificate,
@@ -12,7 +11,7 @@ const CertificateCard = ({
   return (
     <div className="workCard" onClick={() => onClick(certificate)}>
       <div className="img">
-        <img src={certificate?.image || Rect} alt={certificate?.title} />
+        <img src={certificate?.image} alt={certificate?.title} />
         {canEdit && (
           <div className="icons">
             <button onClick={() => onEditModalShow(certificate)}>

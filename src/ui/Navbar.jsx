@@ -4,7 +4,7 @@ import { IconLanguage } from "@tabler/icons-react";
 import { useDispatch, useSelector } from "react-redux";
 import { setLanguage } from "../redux/slices/language";
 import { useTranslation } from "react-i18next";
-import avatar from "../Assets/images/avatar.png";
+import avatar from "../Assets/images/avatar.jpg";
 import logo from "../Assets/images/logo.svg";
 import Dropdown from "react-bootstrap/Dropdown";
 import i18next from "i18next";
@@ -503,6 +503,12 @@ const Navbar = () => {
                       <Link className="dropdown-item_Link" to="/contact">
                         <i className="fa-solid fa-file"></i>
                         {t("navbar.support")}
+                      </Link>
+                    </li>
+                    <li onClick={closeProfileMenu}>
+                      <Link className="dropdown-item_Link" to="/my-collections">
+                        <i class="fa-solid fa-chart-tree-map"></i>
+                        {t("navbar.myCollections")}
                       </Link>
                     </li>
                     <li onClick={closeProfileMenu}>

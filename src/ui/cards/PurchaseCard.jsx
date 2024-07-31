@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import bann from "../../Assets/images/bann.webp";
-import rateowner1 from "../../Assets/images/rateowner1.webp";
+import avatar from "../../Assets/images/avatar.jpg";
 import { Link } from "react-router-dom";
 import { formatTimeDifference, getTimeDifference } from "../../utils/helpers";
 import {
@@ -41,7 +41,7 @@ const PurchaseCard = ({ purchase }) => {
                 >
                   <div className="owner-avatar">
                     <img
-                      src={purchase?.service?.user?.image || rateowner1}
+                      src={purchase?.service?.user?.image || avatar}
                       alt="owner"
                     />
                   </div>

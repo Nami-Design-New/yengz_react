@@ -48,6 +48,9 @@
   max-height: 624px;
   overflow-y: scroll;
 }
+.chat-section .side-menu::-webkit-scrollbar {
+  width: 0;
+}
 @media (max-width: 768px) {
   .chat-section .side-menu {
     display: block;
@@ -343,10 +346,10 @@
   display: block;
 }
 .chat-section .chat-container .inner-container .message span.sen {
-  text-align: end;
+  text-align: start;
 }
 .chat-section .chat-container .inner-container .message span.rec {
-  text-align: start;
+  text-align: end;
 }
 .chat-section .chat-container .inner-container .message .doc_message {
   display: flex;
@@ -376,6 +379,12 @@
   display: flex;
   gap: 8px;
 }
+.chat-section .chat-container .chat-send form .file_place {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
 .chat-section .chat-container .chat-send form .input-field {
   width: 100%;
   border-radius: 16px;
@@ -384,6 +393,7 @@
   display: flex;
   gap: 8px;
   align-items: center;
+  height: 68px;
   justify-content: space-between;
 }
 .chat-section .chat-container .chat-send form .input-field input {
@@ -415,7 +425,7 @@
   outline: none;
   border-radius: 16px;
   min-width: 70px;
-  height: 56px;
+  height: 68px;
   background: var(--main-color);
   display: flex;
   justify-content: center;

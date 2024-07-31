@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import rateowner1 from "../Assets/images/rateowner1.webp";
+import avatar from "../Assets/images/avatar.jpg";
 import bann from "../Assets/images/bann.webp";
 import useGetOrder from "../features/orders/useGetOrder";
 import DataLoader from "../ui/DataLoader";
@@ -98,7 +98,7 @@ function OrderDetails() {
                     <div className="owner">
                       <div className="owner-avatar">
                         <img
-                          src={order?.user?.image || rateowner1}
+                          src={order?.user?.image || avatar}
                           alt="owner"
                         />
                       </div>

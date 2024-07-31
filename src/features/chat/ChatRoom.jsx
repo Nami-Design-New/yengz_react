@@ -1,21 +1,21 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import rateowner3 from "../../Assets/images/rateowner3.webp";
-import service from "../../Assets/images/bann.webp";
 import { useSelector } from "react-redux";
 import { createMessage } from "../../services/apiChats";
 import { useQueryClient } from "@tanstack/react-query";
 import {
-  IconCircleOff,
-  IconDotsVertical,
   IconFileFilled,
-  IconInfoCircle,
   IconMicrophone,
   IconPaperclip,
   IconPlayerPause,
-  IconSend
+  IconSend,
+  IconTrash
 } from "@tabler/icons-react";
+import avatar from "../../Assets/images/avatar.jpg";
+import deletedAccount from "../../Assets/images/deleted-account.jpg";
+import service from "../../Assets/images/bann.webp";
+import { formatMessageTime } from "../../utils/helpers";
 
 const ChatRoom = ({ chat }) => {
   const queryClient = useQueryClient();
@@ -137,37 +137,29 @@ const ChatRoom = ({ chat }) => {
     return match ? match[1] : "";
   };
 
-  const formatMessageTime = (timestamp) => {
-    const date = new Date(timestamp);
-    let hours = date.getHours();
-    const minutes = date.getMinutes();
-    const ampm = hours >= 12 ? "PM" : "AM";
-    hours = hours % 12;
-    hours = hours ? hours : 12;
-    const minutesStr = minutes < 10 ? "0" + minutes : minutes;
-    const timeStr = `${hours}:${minutesStr}${ampm}`;
-    return timeStr;
-  };
-
   return (
     <div className="chat-container">
       <div className="chat-head">
         <div className="user">
           <img
             src={
-              user?.id === chat?.apply?.id
-                ? chat?.owner?.image
-                : chat?.apply?.image || rateowner3
+              chat?.apply
+                ? user?.id === chat?.apply?.id
+                  ? chat?.owner?.image
+                  : chat?.apply?.image || avatar
+                : deletedAccount
             }
             alt="user"
           />
           <h6 className="name">
-            {user?.id === chat?.apply?.id
-              ? chat?.owner?.name
-              : chat?.apply?.name}
+            {chat?.apply
+              ? user?.id === chat?.apply?.id
+                ? chat?.owner?.name
+                : chat?.apply?.name
+              : t("chat.deletedAccount")}
           </h6>
         </div>
-        <div className="dropdown setting">
+        {/* <div className="dropdown setting">
           <button
             className="btn dropdown-toggle"
             type="button"
@@ -188,13 +180,19 @@ const ChatRoom = ({ chat }) => {
               </button>
             </li>
           </ul>
-        </div>
+        </div> */}
       </div>
 
       {chat?.service && (
         <Link to={`/services/${chat?.service?.id}`} className="adItem">
           <img src={chat?.service?.image || service} alt="" />
           <p>{chat?.service?.title}</p>
+        </Link>
+      )}
+
+      {chat?.project && (
+        <Link to={`/projects/${chat?.project?.id}`} className="adItem">
+          <p>{chat?.project?.title}</p>
         </Link>
       )}
 
@@ -239,7 +237,10 @@ const ChatRoom = ({ chat }) => {
                     </Link>
                   )}
                 </div>
-                <span className={message?.from_id === user?.id ? "sen" : "rec"}>
+                <span
+                  dir="ltr"
+                  className={message?.from_id === user?.id ? "sen" : "rec"}
+                >
                   {formatMessageTime(message?.created_at)}
                 </span>
               </div>
@@ -250,30 +251,54 @@ const ChatRoom = ({ chat }) => {
       <div className="chat-send">
         <form onSubmit={handleSendMessage} ref={formRef}>
           <div className="input-field">
-            <input
-              type="text"
-              placeholder={t("chat.writeHere")}
-              value={message?.type === "text" ? message?.message : ""}
-              onChange={(e) =>
-                setMessage({
-                  ...message,
-                  message: e.target.value,
-                  type: "text"
-                })
-              }
-            />
-            <label className="files-input">
-              <IconPaperclip stroke={2} />
+            {message?.type === "text" || message?.type === "" ? (
               <input
+                type="text"
+                placeholder={t("chat.writeHere")}
+                value={message?.type === "text" ? message?.message : ""}
                 onChange={(e) =>
                   setMessage({
                     ...message,
-                    message: e.target.files[0],
-                    type: e.target.files[0].type.startsWith("image/")
-                      ? "image"
-                      : "file"
+                    message: e.target.value,
+                    type: "text"
                   })
                 }
+              />
+            ) : (
+              <div className="file_place">
+                <IconTrash
+                  style={{ cursor: "pointer" }}
+                  stroke={1}
+                  onClick={() => {
+                    setMessage({ ...message, message: "", type: "" });
+                    setRecordingTime(0);
+                  }}
+                />
+                {message.type === "audio" ? (
+                  <audio controls src={URL.createObjectURL(message?.message)} />
+                ) : (
+                  <p className="m-0">
+                    {message?.message?.name || message?.message}
+                  </p>
+                )}
+              </div>
+            )}
+
+            <label className="files-input">
+              <IconPaperclip stroke={2} />
+              <input
+                onChange={(e) => {
+                  const file = e.target.files[0];
+                  setMessage({
+                    ...message,
+                    message: file,
+                    type: file.type.startsWith("image/")
+                      ? "image"
+                      : file.type.startsWith("audio/")
+                      ? "audio"
+                      : "file"
+                  });
+                }}
                 type="file"
                 name="userImage"
                 id="img-upload"
@@ -294,6 +319,7 @@ const ChatRoom = ({ chat }) => {
               <span>{formatRecordingTime(recordingTime)}</span>
             )}
           </div>
+
           <button type="submit" disabled={loading}>
             {loading ? (
               <i className="fa-solid fa-spinner fa-spin" />

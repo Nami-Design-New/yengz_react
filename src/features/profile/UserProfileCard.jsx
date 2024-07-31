@@ -1,5 +1,5 @@
 import React from "react";
-import avatar from "../../Assets/images/avatar.png";
+import avatar from "../../Assets/images/avatar.jpg";
 import StarsList from "../../ui/StarsList";
 import { useTranslation } from "react-i18next";
 import {
