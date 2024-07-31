@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 
 const PasswordField = ({ label, ...props }) => {
+  const { t } = useTranslation();
   const [showPass, setShowPass] = useState(false);
   const handleInputType = (e) => {
     e.preventDefault();
@@ -14,7 +16,7 @@ const PasswordField = ({ label, ...props }) => {
       <div className="pass-group">
         <Form.Control
           className="form-control"
-          placeholder="•••••••••••••••••"
+          placeholder={t("password")}
           type={showPass ? "text" : "password"}
           required
           {...props}

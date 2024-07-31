@@ -368,6 +368,11 @@
   background-color: var(--main-color);
   padding: 1px 3px;
 }
+@media screen and (max-width: 576px) {
+  .chat-section .chat-container .inner-container {
+    min-height: 360px;
+  }
+}
 .chat-section .chat-container .chat-send {
   width: 100%;
   display: flex;
@@ -419,6 +424,11 @@
 .chat-section .chat-container .chat-send form .input-field .files-input input {
   display: none;
 }
+@media screen and (max-width: 576px) {
+  .chat-section .chat-container .chat-send form .input-field {
+    height: 50px;
+  }
+}
 .chat-section .chat-container .chat-send form button {
   border: none;
   background: none;
@@ -437,6 +447,12 @@
 }
 .chat-section .chat-container .chat-send form button i {
   color: #fff;
+}
+@media screen and (max-width: 576px) {
+  .chat-section .chat-container .chat-send form button {
+    height: 50px;
+    min-width: 50px;
+  }
 }
 
 .lottie_player_holder {

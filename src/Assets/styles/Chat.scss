@@ -354,6 +354,9 @@
         background-color: var(--main-color);
         padding: 1px 3px;
       }
+      @media screen and (max-width: 576px) {
+        min-height: 360px;
+      }
     }
     .chat-send {
       width: 100%;
@@ -364,7 +367,7 @@
       form {
         display: flex;
         gap: 8px;
-        .file_place{
+        .file_place {
           display: flex;
           align-items: center;
           gap: 8px;
@@ -402,6 +405,9 @@
               display: none;
             }
           }
+          @media screen and (max-width: 576px) {
+            height: 50px;
+          }
         }
         button {
           border: none;
@@ -420,6 +426,10 @@
           }
           i {
             color: #fff;
+          }
+          @media screen and (max-width: 576px) {
+            height: 50px;
+            min-width: 50px;
           }
         }
       }
