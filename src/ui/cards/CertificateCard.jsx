@@ -9,7 +9,7 @@ const CertificateCard = ({
   onClick
 }) => {
   return (
-    <div className="workCard" onClick={() => onClick(certificate)}>
+    <div className="workCard">
       <div className="img">
         <img src={certificate?.image} alt={certificate?.title} />
         {canEdit && (
@@ -23,7 +23,7 @@ const CertificateCard = ({
           </div>
         )}
       </div>
-      <h4>{certificate?.title}</h4>
+      <h4 onClick={() => onClick(certificate)}>{certificate?.title}</h4>
     </div>
   );
 };
