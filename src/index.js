@@ -27,6 +27,8 @@ import "./Assets/styles/style.css";
 const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+console.log(console.log(process.env.REACT_APP_GOOGLE_CLIENT_ID));
+
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
@@ -35,7 +37,7 @@ root.render(
         <BrowserRouter>
           <ToTopOnNavigation />
           <GoogleOAuthProvider
-            clientId={`MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQgpRDb0v1wHiRED+EZbUm4bj88A8oR9nHTcyjFnZesUNGgCgYIKoZIzj0DAQehRANCAATzontuR9eRN+XkauA5a3aVW4GDJbFGxry8pe3LGsowY4x8n62gruZ8AqNqMwTxGELZCg1UOv8t2gDSbxFEPf3+`}
+            clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
           >
             <App />
           </GoogleOAuthProvider>
