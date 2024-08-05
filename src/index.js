@@ -35,9 +35,7 @@ root.render(
         <BrowserRouter>
           <ToTopOnNavigation />
           <GoogleOAuthProvider
-            clientId={
-              "173015148505-c4uiu6vn4p2dkq3eoj7ea2ie1rgkplb7.apps.googleusercontent.com"
-            }
+            clientId={`MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQgpRDb0v1wHiRED+EZbUm4bj88A8oR9nHTcyjFnZesUNGgCgYIKoZIzj0DAQehRANCAATzontuR9eRN+XkauA5a3aVW4GDJbFGxry8pe3LGsowY4x8n62gruZ8AqNqMwTxGELZCg1UOv8t2gDSbxFEPf3+`}
           >
             <App />
           </GoogleOAuthProvider>
