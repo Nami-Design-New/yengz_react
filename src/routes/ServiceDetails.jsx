@@ -352,7 +352,9 @@ const ServiceDetails = () => {
               </div>
             </div>
           </section>
-          <SimilarServices services={service?.similar_services} />
+          {service?.similar_services?.length > 0 && (
+            <SimilarServices services={service?.similar_services} />
+          )}
           <CollectionModal
             setShowModal={setShowCollectionModel}
             showModal={showCollectionModel}

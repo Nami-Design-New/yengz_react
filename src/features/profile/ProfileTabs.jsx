@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { deleteService } from "../../services/apiServices";
@@ -20,20 +20,33 @@ import WorksTab from "./WorksTab";
 import useGetUserProjects from "./../projects/useGetUserProjects";
 import ProjectCard from "../../ui/cards/ProjectCard";
 import DataLoader from "../../ui/DataLoader";
+import ConfirmationModal from "../../ui/modals/ConfirmationModal";
 
 const ProfileTabs = ({ user, isMyAccount }) => {
   const queryClient = useQueryClient();
   const { t } = useTranslation();
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [serviceId, setServiceId] = useState(null);
+  const [loading, setLoading] = useState(false);
   const { data: services } = useUserServices(user?.id);
   const { data: myProjects, isLoading } = useGetUserProjects(user?.id);
   const { data: works } = useGetWorks(user?.id);
 
-  const handleDeleteService = async (id) => {
+  const handleDelete = (id) => {
+    setShowConfirmation(true);
+    setServiceId(id);
+  };
+
+  const handleDeleteService = async () => {
+    setLoading(true);
     try {
-      await deleteService(id, queryClient);
+      await deleteService(serviceId, queryClient);
       toast.success(t("addService.serviceDeleted"));
     } catch (error) {
       toast.error(error.message);
+    } finally {
+      setLoading(false);
+      setShowConfirmation(false);
     }
   };
 
@@ -82,7 +95,8 @@ const ProfileTabs = ({ user, isMyAccount }) => {
                       canEdit={isMyAccount}
                       key={service.id}
                       service={service}
-                      handleDelete={handleDeleteService}
+                      handleDelete={handleDelete}
+                      showPending={true}
                     />
                   ))}
                 </>
@@ -221,6 +235,14 @@ const ProfileTabs = ({ user, isMyAccount }) => {
           <CertificatesTab user={user} isMyAccount={isMyAccount} />
         </Tab>
       </Tabs>
+      <ConfirmationModal
+        eventFun={handleDeleteService}
+        showModal={showConfirmation}
+        setShowModal={setShowConfirmation}
+        loading={loading}
+        text={t("profile.areYouSureWantToDeleteThisService")}
+        buttonText={t("profile.deleteService")}
+      />
     </>
   );
 };
