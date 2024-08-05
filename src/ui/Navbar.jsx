@@ -155,13 +155,13 @@ const Navbar = () => {
             </li>
             <li className="nav-link" onClick={closeSmallMediaMenu}>
               <Link to="/best-freelancers">
-                <i class="fa-solid fa-stars"></i> {t("navbar.bestFreelancers")}
+                <i className="fa-solid fa-stars"></i> {t("navbar.bestFreelancers")}
               </Link>
             </li>
             {!isLogged && (
               <li className="nav-link" onClick={closeSmallMediaMenu}>
                 <Link to="/login">
-                  <i class="fa-regular fa-arrow-right-from-bracket"></i>
+                  <i className="fa-regular fa-arrow-right-from-bracket"></i>
                   {t("navbar.login")}
                 </Link>
               </li>
@@ -272,7 +272,7 @@ const Navbar = () => {
                 to="/best-freelancers"
                 className="d-flex align-items-center gap-1"
               >
-                <i class="fa-solid fa-stars"></i> {t("navbar.bestFreelancers")}
+                <i className="fa-solid fa-stars"></i> {t("navbar.bestFreelancers")}
               </Link>
             </li>
             {isLogged && (
@@ -516,7 +516,7 @@ const Navbar = () => {
                     </li>
                     <li onClick={closeProfileMenu}>
                       <Link className="dropdown-item_Link" to="/my-collections">
-                        <i class="fa-solid fa-chart-tree-map"></i>
+                        <i className="fa-solid fa-chart-tree-map"></i>
                         {t("navbar.myCollections")}
                       </Link>
                     </li>

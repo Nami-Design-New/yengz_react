@@ -53,10 +53,10 @@ const CollectionCard = ({ collection }) => {
           </h6>
           <ul>
             <li>
-              <i class="fa-regular fa-cubes"></i> <span>{}</span>
+              <i className="fa-regular fa-cubes"></i> <span>{}</span>
             </li>
             <li>
-              <i class="fa-light fa-clock"></i> <span>{startTime}</span>
+              <i className="fa-light fa-clock"></i> <span>{startTime}</span>
             </li>
           </ul>
         </div>
