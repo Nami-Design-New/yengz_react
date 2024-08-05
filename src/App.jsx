@@ -27,7 +27,7 @@ function App() {
     data: profile,
     isLoading,
     isFetched,
-    refetch
+    refetch,
   } = useGetProfile(id, Boolean(token && id && !isExpired));
 
   useEffect(() => {

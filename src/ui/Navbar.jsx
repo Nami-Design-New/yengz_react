@@ -423,7 +423,10 @@ const Navbar = () => {
                     <Dropdown.Menu className="drop_Message_Menu">
                       {notifications?.map((notification) => (
                         <>
-                          <Dropdown.Item className="drop_Message">
+                          <Dropdown.Item
+                            className="drop_Message"
+                            key={notification?.title}
+                          >
                             <Link to="/chat" style={{ display: "flex" }}>
                               <div className="text-wrap">
                                 <div className="d-flex justify-content-between">

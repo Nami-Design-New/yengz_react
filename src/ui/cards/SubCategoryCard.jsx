@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-const SubCategoryCard = ({ category, onClick }) => {
+const SubCategoryCard = ({ subCategory, onClick }) => {
   const { t } = useTranslation();
   return (
     <div
@@ -12,14 +12,14 @@ const SubCategoryCard = ({ category, onClick }) => {
     >
       <div className="inner-card">
         <div className="category-img">
-          <img src={category?.image} alt="" />
+          <img src={subCategory?.image} alt="" />
         </div>
         <div className="category-content">
           <div className="top-area">
             <h6 className="title mb-1">
-              {category?.count || "1.853"} {t("home.service")}
+              {subCategory?.count || "1.853"} {t("home.service")}
             </h6>
-            <h5 className="text">{category?.name || "تصميم وابداع"}</h5>
+            <h5 className="text">{subCategory?.name || "تصميم وابداع"}</h5>
           </div>
         </div>
       </div>

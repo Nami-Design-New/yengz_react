@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 const ChooseCategoryPath = ({ showModal, setShowModal, subCategory }) => {
   const { t } = useTranslation();
+
   return (
     <Modal show={showModal} onHide={() => setShowModal(false)} centered>
       <Modal.Header className="pb-0" closeButton>
