@@ -49,7 +49,7 @@ const About = () => {
                 ?.sub_categories?.map((subcategory) => (
                   <Link to={`/about/preview/${subcategory?.id}`}>
                     {subcategory?.name}
-                    <i class="fa-light fa-angle-left"></i>
+                    <i className="fa-light fa-angle-left"></i>
                   </Link>
                 ))}
             </div>

@@ -74,7 +74,7 @@ const ChatSideBar = ({
                     chat?.last_message?.is_read_owner === 1) ||
                   (chat?.apply?.id !== user?.id &&
                     chat?.last_message?.is_read_apply === 1) ? (
-                    <i class="fa-regular fa-check-double"></i>
+                    <i className="fa-regular fa-check-double"></i>
                   ) : (
                     <i className="fa-regular fa-check"></i>
                   )}
