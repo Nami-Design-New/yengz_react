@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import { setIsLogged, setUser } from "../../../redux/slices/authedUser";
 import { useTranslation } from "react-i18next";
 import Google from "../../../Assets/images/Google.svg";
-import Facebook from "../../../Assets/images/facebook.svg";
 import Apple from "../../../Assets/images/Apple.svg";
 import InputField from "../../../ui/form-elements/InputField";
 import PasswordField from "../../../ui/form-elements/PasswordField";
@@ -185,9 +184,6 @@ const Login = () => {
                 onClick={() => handleGoogleLogin()}
               >
                 <img src={Google} alt="google" /> {t("auth.googleAccount")}
-              </button>
-              <button className="auth_social_btn">
-                <img src={Facebook} alt="google" /> {t("auth.facebookAccount")}
               </button>
               <AppleLogin
                 clientId={"process.env.REACT_APP_APPLE_CLIENT_ID"}

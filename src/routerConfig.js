@@ -60,7 +60,7 @@ const routesConfig = [
   { path: "/my-collections", element: <MyCollections />, protected: true },
   { path: "/my-collections/:id", element: <MyCollection />, protected: true },
   { path: "/profile", element: <Profile />, protected: true },
-  { path: "/profile/:id", element: <Profile />, protected: true },
+  { path: "/profile/:id", element: <Profile /> },
   { path: "/edit-profile", element: <EditProfile />, protected: true },
   { path: "/verify-identity", element: <VerifyIdentity />, protected: true },
   { path: "/verify-phone", element: <VerifyPhone />, protected: true },

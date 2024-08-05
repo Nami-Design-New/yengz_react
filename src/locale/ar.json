@@ -219,7 +219,9 @@
     "noProjects": "لا يوجد مشاريع لعرضها",
     "images": "معرض الصور",
     "verifyYourIdentity": "توثيق هويتك",
-    "verifyPhone": "توثيق رقم الجوال"
+    "verifyPhone": "توثيق رقم الجوال",
+    "areYouSureWantToDeleteThisService": "هل انت متاكد من حذف هذا الخدمة؟",
+    "deleteService": "حذف"
   },
   "addService": {
     "serviceTitle": "عنوان الخدمة",
@@ -297,7 +299,8 @@
     "whatsapp": "واتساب",
     "developmentsAvailable": "تطويرات متوفرة لهذه الخدمة",
     "orderNow": "طلب الان",
-    "instructions": "تعليمات للمشتري"
+    "instructions": "تعليمات للمشتري",
+    "inReview": "في المراجعة"
   },
   "comments": {
     "comments": "تعليقات",

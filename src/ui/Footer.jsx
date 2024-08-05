@@ -52,7 +52,7 @@ const Footer = () => {
             <div className="col-lg-3 col-6">
               <div className="links pa-24">
                 <h4>الاقسام</h4>
-                <ul>
+                <ul className="categories_links">
                   {popularCategoriesList.map((category) => (
                     <li key={category.id}>
                       <Link to={`/services?categories=${category.category_id}`}>
@@ -119,7 +119,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="row">
-          <div className="col-12 d-flex justify-content-between align-items-center">
+          <div className="col-12 d-flex justify-content-between align-items-center flex-lg-row flex-column mb-60">
             <div className="flex-grow-1 flex-shrink-0 flex-basis-0 copy-rights d-flex">
               <p className="mb-0">
                 {t("footer.copyright")} © {new Date().getFullYear()}{" "}

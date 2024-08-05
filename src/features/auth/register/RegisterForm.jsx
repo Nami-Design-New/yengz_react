@@ -8,7 +8,6 @@ import AppleLogin from "react-apple-login";
 import axios from "./../../../utils/axios";
 import Google from "../../../Assets/images/Google.svg";
 import Apple from "../../../Assets/images/Apple.svg";
-import Facebook from "../../../Assets/images/facebook.svg";
 import InputField from "../../../ui/form-elements/InputField";
 import ImageUpload from "../../../ui/form-elements/ImageUpload";
 import PasswordField from "./../../../ui/form-elements/PasswordField";
@@ -262,9 +261,6 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
           onClick={() => handleGoogleLogin()}
         >
           <img src={Google} alt="google" /> {t("auth.googleAccount")}
-        </button>
-        <button className="auth_social_btn">
-          <img src={Facebook} alt="google" /> {t("auth.facebookAccount")}
         </button>
         <AppleLogin
           clientId={"process.env.REACT_APP_APPLE_CLIENT_ID"}

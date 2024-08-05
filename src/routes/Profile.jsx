@@ -4,23 +4,26 @@ import { useParams } from "react-router-dom";
 import ProfileTabs from "../features/profile/ProfileTabs";
 import UserProfileCard from "../features/profile/UserProfileCard";
 import useGetProfile from "../features/profile/useGetProfile";
+import DataLoader from "../ui/DataLoader";
 
 const Profile = () => {
   const authedUser = useSelector((state) => state.authedUser.user);
   const [user, setUser] = useState({});
   const { id } = useParams();
-  const { data: profile } = useGetProfile(id);
+  const { data: profile, isLoading } = useGetProfile(id);
   const isMyAccount = !id || id === String(authedUser?.id);
 
   useEffect(() => {
     if (isMyAccount) {
       setUser(authedUser);
-    } else if (id) {
+    } else if (id && profile) {
       setUser(profile);
     }
-  }, [isMyAccount, authedUser, id]);
+  }, [isMyAccount, authedUser, profile, id]);
 
-  return (
+  return isLoading ? (
+    <DataLoader />
+  ) : (
     <section className="profile-section container">
       <div className="row">
         <div className="col-lg-4 col-12 p-2">

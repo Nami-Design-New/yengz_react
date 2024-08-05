@@ -155,7 +155,8 @@ const Navbar = () => {
             </li>
             <li className="nav-link" onClick={closeSmallMediaMenu}>
               <Link to="/best-freelancers">
-                <i className="fa-solid fa-stars"></i> {t("navbar.bestFreelancers")}
+                <i className="fa-solid fa-stars"></i>{" "}
+                {t("navbar.bestFreelancers")}
               </Link>
             </li>
             {!isLogged && (
@@ -217,7 +218,7 @@ const Navbar = () => {
                 </li>
               </>
             )}
-            {isLogged ? (
+            {isLogged && (
               <>
                 <li className="nav-link" onClick={closeSmallMediaMenu}>
                   <Link>
@@ -232,13 +233,6 @@ const Navbar = () => {
                   </Link>
                 </li>
               </>
-            ) : (
-              <li className="nav-link" onClick={closeSmallMediaMenu}>
-                <Link to="/login">
-                  <i className="fa-regular fa-right-to-bracket"></i>
-                  {t("navbar.login")}
-                </Link>
-              </li>
             )}
           </ul>
         </div>
@@ -272,7 +266,8 @@ const Navbar = () => {
                 to="/best-freelancers"
                 className="d-flex align-items-center gap-1"
               >
-                <i className="fa-solid fa-stars"></i> {t("navbar.bestFreelancers")}
+                <i className="fa-solid fa-stars"></i>{" "}
+                {t("navbar.bestFreelancers")}
               </Link>
             </li>
             {isLogged && (
