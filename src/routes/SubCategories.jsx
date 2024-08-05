@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import SectionHeader from "../ui/SectionHeader";
@@ -16,6 +16,8 @@ const SubCategories = () => {
   const { data: category } = useGetCategoryById(id);
   const { data, isLoading } = useSubCategoriesList(id);
   const [showModal, setShowModal] = React.useState(false);
+  const [targetedSubCategory, setTargetedSubCategory] = useState("");
+
   return (
     <>
       <SectionHeader title={category?.name} />
@@ -25,11 +27,15 @@ const SubCategories = () => {
             {isLoading ? (
               <DataLoader />
             ) : data && data?.length > 0 ? (
-              data.map((category) => (
-                <div className="col-lg-3 col-6 p-2" key={category.id}>
+              data.map((subCategory) => (
+                <div className="col-lg-3 col-6 p-2" key={subCategory.id}>
                   <SubCategoryCard
-                    category={category}
-                    onClick={() => setShowModal(true)}
+                    key={subCategory.id}
+                    subCategory={subCategory}
+                    onClick={() => {
+                      setShowModal(true);
+                      setTargetedSubCategory(subCategory);
+                    }}
                   />
                 </div>
               ))
@@ -40,9 +46,9 @@ const SubCategories = () => {
         </div>
       </section>
       <ChooseCategoryPath
+        subCategory={targetedSubCategory}
         showModal={showModal}
         setShowModal={setShowModal}
-        subCategory={category}
       />
     </>
   );
