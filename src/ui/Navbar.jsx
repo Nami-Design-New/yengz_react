@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { IconLanguage } from "@tabler/icons-react";
 import { useDispatch, useSelector } from "react-redux";
@@ -422,11 +422,8 @@ const Navbar = () => {
                     </Dropdown.Toggle>
                     <Dropdown.Menu className="drop_Message_Menu">
                       {notifications?.map((notification) => (
-                        <>
-                          <Dropdown.Item
-                            className="drop_Message"
-                            key={notification?.title}
-                          >
+                        <Fragment key={notification?.title}>
+                          <Dropdown.Item className="drop_Message">
                             <Link to="/chat" style={{ display: "flex" }}>
                               <div className="text-wrap">
                                 <div className="d-flex justify-content-between">
@@ -440,7 +437,7 @@ const Navbar = () => {
                             </Link>
                           </Dropdown.Item>
                           <hr />
-                        </>
+                        </Fragment>
                       ))}
                       <div className="showall">
                         <Link to="/notifications">
