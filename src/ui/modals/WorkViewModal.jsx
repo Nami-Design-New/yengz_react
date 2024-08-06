@@ -3,8 +3,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import { calculateDate } from "../../utils/helpers";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function WorkViewModal({ showModal, setShowModal, targetWork }) {
+  const lang = useSelector((state) => state.language.lang);
   return (
     <Modal
       show={showModal}
@@ -23,7 +25,7 @@ function WorkViewModal({ showModal, setShowModal, targetWork }) {
             speed={1000}
             loop={true}
             modules={[Autoplay]}
-            dir="rtl"
+            dir={lang === "ar" ? "rtl" : "ltr"}
             className="worksViewModalSwiper"
             autoplay={{ delay: 3000, disableOnInteraction: false }}
           >
