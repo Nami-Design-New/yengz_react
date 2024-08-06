@@ -32,9 +32,11 @@ import Complaints from "./routes/Complaints";
 import MyCollections from "./routes/MyCollections";
 import MyCollection from "./routes/MyCollection";
 import BestFreeLancers from "./routes/BestFreeLancers";
+import ErrorPage from "./routes/ErrorPage";
 
 const routesConfig = [
   { path: "/", element: <Home />, index: true },
+  { path: "*", element: <ErrorPage /> },
   { path: "/categories", element: <Categories /> },
   { path: "/categories/:id", element: <SubCategories /> },
   { path: "/services", element: <Services /> },
@@ -55,7 +57,7 @@ const routesConfig = [
   {
     path: "/projects-orders/:id",
     element: <ProjectsOrdersDetails />,
-    protected: true
+    protected: true,
   },
   { path: "/my-collections", element: <MyCollections />, protected: true },
   { path: "/my-collections/:id", element: <MyCollection />, protected: true },
@@ -75,7 +77,7 @@ const routesConfig = [
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
   { path: "/logout", element: <Logout /> },
-  { path: "/forget-password", element: <ForgetPassword /> }
+  { path: "/forget-password", element: <ForgetPassword /> },
 ];
 
 export default routesConfig;

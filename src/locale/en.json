@@ -442,6 +442,10 @@
     "pageTitle": "We are here to listen to your feedback and work on improving our services",
     "complaintSentSuccessfully": "Complaint sent successfully"
   },
+  "error": {
+    "pageNotFound": "Page Not Found",
+    "goHome": "Go Home"
+  },
   "password": "Enter Password",
   "cancel": "Cancel",
   "homePage": "Home",
