@@ -27,7 +27,6 @@ import "./Assets/styles/style.css";
 const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-console.log(console.log(process.env.REACT_APP_GOOGLE_CLIENT_ID));
 
 root.render(
   <React.StrictMode>
