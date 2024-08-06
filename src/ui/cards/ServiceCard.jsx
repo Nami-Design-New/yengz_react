@@ -23,8 +23,12 @@ const ServiceCard = ({ service, canEdit, handleDelete, type, showPending }) => {
       <div className="content">
         <h6>{truncate}</h6>
         <p>
-          <span>{service?.category?.name || "برمجة وتطوير"}</span> /{" "}
-          <span>{service?.subCategory?.name || "تطبيقات"}</span>
+          <span>{service?.category?.name || "برمجة وتطوير"}</span>
+          {service?.subCategory?.name && (
+            <>
+              / <span>{service?.subCategory?.name}</span>
+            </>
+          )}
         </p>
         <div className="d-flex gap-3 align-items-center">
           <StarsList rate={service?.rate || 0} />

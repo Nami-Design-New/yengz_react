@@ -31,6 +31,8 @@ const EditProfile = () => {
   const [wantChangePassword, setWantChangePassword] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState([]);
 
+  console.log(user);
+
   useEffect(() => {
     setFormData({
       image: "",
@@ -38,13 +40,14 @@ const EditProfile = () => {
       email: user?.email || "",
       phone: user?.phone || "",
       about: user?.about || "",
+      age: user?.age || "",
       is_freelance: user?.is_freelance || 0,
-      categories: user?.categories?.map((category) => category?.id) || []
+      categories: user?.categories?.map((category) => category?.id) || [],
     });
     if (wantChangePassword) {
       setFormData((prev) => ({
         ...prev,
-        password: ""
+        password: "",
       }));
     }
   }, [user, wantChangePassword]);
@@ -54,7 +57,7 @@ const EditProfile = () => {
     if (categories) {
       const options = categories?.map((category) => ({
         value: category.id,
-        label: category.name
+        label: category.name,
       }));
       setOptions(options);
     }
@@ -67,7 +70,7 @@ const EditProfile = () => {
         const option = options.find((opt) => opt.value === categoryId);
         return {
           value: option?.value,
-          label: option?.label
+          label: option?.label,
         };
       });
       setSelectedOptions(selectedOptions);
@@ -82,7 +85,7 @@ const EditProfile = () => {
       : [];
     setFormData({
       ...formData,
-      categories: selectedValues
+      categories: selectedValues,
     });
   };
 
@@ -95,19 +98,19 @@ const EditProfile = () => {
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const headers = {
     Accept: "application/json",
-    "Content-Type": "multipart/form-data"
+    "Content-Type": "multipart/form-data",
   };
   const request = {
     method: "POST",
     headers: headers,
     data: formData,
-    url: "/user/update_profile"
+    url: "/user/update_profile",
   };
 
   const handleSubmit = async (e) => {
@@ -213,7 +216,7 @@ const EditProfile = () => {
                 onChange={() =>
                   setFormData({
                     ...formData,
-                    is_freelance: formData?.is_freelance === 1 ? 0 : 1
+                    is_freelance: formData?.is_freelance === 1 ? 0 : 1,
                   })
                 }
               />

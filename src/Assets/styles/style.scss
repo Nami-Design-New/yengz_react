@@ -1061,6 +1061,32 @@ body {
           display: flex;
           flex-direction: column;
           align-items: center;
+          .info-label {
+            &svg,
+            &i {
+              stroke: var(--main-color);
+              width: 16px;
+              height: 16px;
+            }
+          }
+          .deposit-link {
+            width: 100%;
+            border: 1px solid var(--main-color);
+            color: var(--main-color);
+            @include centerFlex();
+            padding: 8px 0;
+            transition: var(--main-transation);
+            border-radius: 12px;
+            gap: 4px;
+            background: none;
+            i {
+              margin: 0 4px;
+            }
+            &:hover {
+              background: var(--main-color);
+              color: #fff;
+            }
+          }
           .head {
             @include space-between();
             width: 100%;
@@ -3407,12 +3433,27 @@ body {
       height: 150px;
       label {
         height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
         input {
           display: none;
         }
         @include centerFlex();
         img {
           height: 60px;
+        }
+        .file_upload_dimensions {
+          color: var(--LightGray);
+          font-weight: 600;
+          font-size: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
         }
       }
     }
@@ -5269,11 +5310,10 @@ body {
     .work-modal-img-box {
       display: flex;
       img {
-        aspect-ratio: 5 / 2;
+        aspect-ratio: 16 / 9;
         width: 100%;
-        height: 100%;
         object-fit: cover;
-        object-position: center;
+        object-position: top;
       }
     }
   }
