@@ -1,0 +1,607 @@
+{
+	"info": {
+		"_postman_id": "bb97531b-6e7b-47b5-9083-02496c6f7860",
+		"name": "Nuaris",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36816912"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "signup",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "X-CSRFToken",
+								"value": "os4AnQpSfLuMO1Z5ooKnxzVvvOKnw5UtPVUuHK4pNEjKcruCbHenOB8hzVeB3eKR"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"first_name\": \"Mohammad\",\n  \"last_name\": \"Hyari\",\n  \"mobile_number\": \"+96274536234\",\n  \"email\": \"hyari11@hyari.com\",\n  \"password\": \"sd#dr234k\",\n  \"username\": \"hyari11\",\n  \"country\": \"AF\",\n  \"city\": \"Amman\",\n  \"role\": \"host\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{testing}}user/signup",
+							"host": [
+								"{{testing}}user"
+							],
+							"path": [
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "hyari11",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "sd#dr234k",
+									"type": "text"
+								},
+								{
+									"key": "role",
+									"value": "host",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "hyari2@hyari.com",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{testing}}web_login",
+							"host": [
+								"{{testing}}web_login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{testing}}web_refresh",
+							"host": [
+								"{{testing}}web_refresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIxMTQ4MTA5LCJpYXQiOjE3MjExNDQ1MDksImp0aSI6ImEwMTU1YjE3Yzk2OTRkMGJiYjM2MjNlNWMzNTI3MDg3IiwidXNlcl9pZCI6MTYyfQ.CCSB0zwJ4Yvq2EUxTzJb6aYhmmsj1fz-WIzUnZNl5JY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{testing}}web_logout/logout",
+							"host": [
+								"{{testing}}web_logout"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "yacht",
+			"item": [
+				{
+					"name": "get_polices",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIxMzM5ODM4LCJpYXQiOjE3MjEzMzYyMzgsImp0aSI6IjRlODVjNTQzNThmZDQ1NjNiNzJhNjU1MDVmZmVhZTg3IiwidXNlcl9pZCI6MTYyfQ.V9kIIfw3_xVx1HdTCZ_g0HE1dQ0KYJdKpb4jnz2J_sA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{testing}}yacht/get_policies?yacht_id=22&paeg_size=20&page=2",
+							"host": [
+								"{{testing}}yacht"
+							],
+							"path": [
+								"get_policies"
+							],
+							"query": [
+								{
+									"key": "yacht_id",
+									"value": "22"
+								},
+								{
+									"key": "paeg_size",
+									"value": "20"
+								},
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "next",
+									"value": "{\n",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_policy_with_cancel_policies",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIxMzM5ODM4LCJpYXQiOjE3MjEzMzYyMzgsImp0aSI6IjRlODVjNTQzNThmZDQ1NjNiNzJhNjU1MDVmZmVhZTg3IiwidXNlcl9pZCI6MTYyfQ.V9kIIfw3_xVx1HdTCZ_g0HE1dQ0KYJdKpb4jnz2J_sA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US,en;q=0.8"
+							},
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIxMTYwMTQ0LCJpYXQiOjE3MjExNTY1NDQsImp0aSI6Ijg0ZTI0MzhjZDY0ZTQ1YTY4MzA1OGQ5MjkxYmM2YjQ5IiwidXNlcl9pZCI6MTYyfQ.QMiOHsDdd_pOVQwl2CXxynCvtIWQ5ZBL9bNthCL_cG4"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "origin",
+								"value": "https://nuaris.vercel.app"
+							},
+							{
+								"key": "priority",
+								"value": "u=1, i"
+							},
+							{
+								"key": "referer",
+								"value": "https://nuaris.vercel.app/"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Brave\";v=\"126\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Linux\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "cross-site"
+							},
+							{
+								"key": "sec-gpc",
+								"value": "1"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"policy\": {\n        \"yacht_id\": 22,\n        \"cancellation_policy\": [\n            {\n                \"cancel_before\": 10,\n                \"percentage\": 100,\n                \"type\": \"select\"\n            },\n            {\n                \"cancel_before\": 10,\n                \"percentage\": 50,\n                \"type\": \"select\",\n                \"cancel_before_end\": 20\n            },\n            {\n                \"cancel_before\": 20,\n                \"percentage\": 10,\n                \"type\": \"select\",\n                \"cancel_before_end\": 30\n            }\n        ],\n        \"weather_restrictions\": \"{\\\"blocks\\\":[{\\\"key\\\":\\\"1q0e0\\\",\\\"text\\\":\\\"Hyari Exception Test Weather Restriction\\\",\\\"type\\\":\\\"unstyled\\\",\\\"depth\\\":0,\\\"inlineStyleRanges\\\":[{\\\"offset\\\":5,\\\"length\\\":19,\\\"style\\\":\\\"color-rgb(13,13,13)\\\"},{\\\"offset\\\":5,\\\"length\\\":19,\\\"style\\\":\\\"bgcolor-rgb(255,255,255)\\\"},{\\\"offset\\\":5,\\\"length\\\":19,\\\"style\\\":\\\"fontsize-16\\\"},{\\\"offset\\\":5,\\\"length\\\":19,\\\"style\\\":\\\"fontfamily-Outfit, sans-serif\\\"}],\\\"entityRanges\\\":[],\\\"data\\\":{}}],\\\"entityMap\\\":{}}\",\n        \"rules_and_instructions\": \"{\\\"blocks\\\":[{\\\"key\\\":\\\"cuur0\\\",\\\"text\\\":\\\"Test Rules and instructions\\\",\\\"type\\\":\\\"unstyled\\\",\\\"depth\\\":0,\\\"inlineStyleRanges\\\":[{\\\"offset\\\":0,\\\"length\\\":5,\\\"style\\\":\\\"color-rgb(33,37,41)\\\"},{\\\"offset\\\":0,\\\"length\\\":5,\\\"style\\\":\\\"bgcolor-rgb(248,248,248)\\\"},{\\\"offset\\\":0,\\\"length\\\":27,\\\"style\\\":\\\"fontsize-16\\\"},{\\\"offset\\\":0,\\\"length\\\":27,\\\"style\\\":\\\"fontfamily-Outfit, sans-serif\\\"},{\\\"offset\\\":5,\\\"length\\\":22,\\\"style\\\":\\\"color-rgb(13,13,13)\\\"},{\\\"offset\\\":5,\\\"length\\\":22,\\\"style\\\":\\\"bgcolor-rgb(255,255,255)\\\"}],\\\"entityRanges\\\":[],\\\"data\\\":{}}],\\\"entityMap\\\":{}}\",\n        \"allowed_and_not_allowed_items\": \"{\\\"blocks\\\":[{\\\"key\\\":\\\"522vb\\\",\\\"text\\\":\\\"Allowed and not allowed items on board\\\",\\\"type\\\":\\\"unstyled\\\",\\\"depth\\\":0,\\\"inlineStyleRanges\\\":[{\\\"offset\\\":0,\\\"length\\\":38,\\\"style\\\":\\\"color-rgb(13,13,13)\\\"},{\\\"offset\\\":0,\\\"length\\\":38,\\\"style\\\":\\\"bgcolor-rgb(255,255,255)\\\"},{\\\"offset\\\":0,\\\"length\\\":38,\\\"style\\\":\\\"fontsize-16\\\"},{\\\"offset\\\":0,\\\"length\\\":38,\\\"style\\\":\\\"fontfamily-Outfit, sans-serif\\\"}],\\\"entityRanges\\\":[],\\\"data\\\":{}}],\\\"entityMap\\\":{}}\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{testing}}yacht/create_policy_with_cancel_policies",
+							"host": [
+								"{{testing}}yacht"
+							],
+							"path": [
+								"create_policy_with_cancel_policies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_categories",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIxMzM5ODM4LCJpYXQiOjE3MjEzMzYyMzgsImp0aSI6IjRlODVjNTQzNThmZDQ1NjNiNzJhNjU1MDVmZmVhZTg3IiwidXNlcl9pZCI6MTYyfQ.V9kIIfw3_xVx1HdTCZ_g0HE1dQ0KYJdKpb4jnz2J_sA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{testing}}yacht/get_categories",
+							"host": [
+								"{{testing}}yacht"
+							],
+							"path": [
+								"get_categories"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "trip_package",
+			"item": [
+				{
+					"name": "create_policy_with_cancel_policies",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIxMzE1MjY5LCJpYXQiOjE3MjEyODIzMjcsImp0aSI6IjEwZjYyZjdlYzgwNjRiNmNhMjhiY2JkYTBlMWMyNGE5IiwidXNlcl9pZCI6MTYyfQ.0AACB_sZqlT-i5vP63EzHSURIOSvNnv9znofGARqMdk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US,en;q=0.8"
+							},
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIxMTYwMTQ0LCJpYXQiOjE3MjExNTY1NDQsImp0aSI6Ijg0ZTI0MzhjZDY0ZTQ1YTY4MzA1OGQ5MjkxYmM2YjQ5IiwidXNlcl9pZCI6MTYyfQ.QMiOHsDdd_pOVQwl2CXxynCvtIWQ5ZBL9bNthCL_cG4"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "origin",
+								"value": "https://nuaris.vercel.app"
+							},
+							{
+								"key": "priority",
+								"value": "u=1, i"
+							},
+							{
+								"key": "referer",
+								"value": "https://nuaris.vercel.app/"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Brave\";v=\"126\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Linux\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "cross-site"
+							},
+							{
+								"key": "sec-gpc",
+								"value": "1"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"policy\": {\n        \"trip_package_id\": 13,\n        \"cancellation_policy\": [\n            {\n                \"cancel_before\": 10,\n                \"percentage\": 100,\n                \"type\": \"select\"\n            },\n            {\n                \"cancel_before\": 10,\n                \"percentage\": 90,\n                \"type\": \"select\",\n                \"cancel_before_end\": 20\n            },\n            {\n                \"cancel_before\": 20,\n                \"percentage\": 80,\n                \"type\": \"select\",\n                \"cancel_before_end\": 30\n            }\n        ],\n        \"weather_restrictions\": \"{\\\"blocks\\\":[{\\\"key\\\":\\\"1q0e0\\\",\\\"text\\\":\\\"Hyari trip test Weather Restriction\\\",\\\"type\\\":\\\"unstyled\\\",\\\"depth\\\":0,\\\"inlineStyleRanges\\\":[{\\\"offset\\\":5,\\\"length\\\":19,\\\"style\\\":\\\"color-rgb(13,13,13)\\\"},{\\\"offset\\\":5,\\\"length\\\":19,\\\"style\\\":\\\"bgcolor-rgb(255,255,255)\\\"},{\\\"offset\\\":5,\\\"length\\\":19,\\\"style\\\":\\\"fontsize-16\\\"},{\\\"offset\\\":5,\\\"length\\\":19,\\\"style\\\":\\\"fontfamily-Outfit, sans-serif\\\"}],\\\"entityRanges\\\":[],\\\"data\\\":{}}],\\\"entityMap\\\":{}}\",\n        \"rules_and_instructions\": \"{\\\"blocks\\\":[{\\\"key\\\":\\\"cuur0\\\",\\\"text\\\":\\\"Test Rules and instructions\\\",\\\"type\\\":\\\"unstyled\\\",\\\"depth\\\":0,\\\"inlineStyleRanges\\\":[{\\\"offset\\\":0,\\\"length\\\":5,\\\"style\\\":\\\"color-rgb(33,37,41)\\\"},{\\\"offset\\\":0,\\\"length\\\":5,\\\"style\\\":\\\"bgcolor-rgb(248,248,248)\\\"},{\\\"offset\\\":0,\\\"length\\\":27,\\\"style\\\":\\\"fontsize-16\\\"},{\\\"offset\\\":0,\\\"length\\\":27,\\\"style\\\":\\\"fontfamily-Outfit, sans-serif\\\"},{\\\"offset\\\":5,\\\"length\\\":22,\\\"style\\\":\\\"color-rgb(13,13,13)\\\"},{\\\"offset\\\":5,\\\"length\\\":22,\\\"style\\\":\\\"bgcolor-rgb(255,255,255)\\\"}],\\\"entityRanges\\\":[],\\\"data\\\":{}}],\\\"entityMap\\\":{}}\",\n        \"allowed_and_not_allowed_items\": \"{\\\"blocks\\\":[{\\\"key\\\":\\\"522vb\\\",\\\"text\\\":\\\"Allowed and not allowed items on board\\\",\\\"type\\\":\\\"unstyled\\\",\\\"depth\\\":0,\\\"inlineStyleRanges\\\":[{\\\"offset\\\":0,\\\"length\\\":38,\\\"style\\\":\\\"color-rgb(13,13,13)\\\"},{\\\"offset\\\":0,\\\"length\\\":38,\\\"style\\\":\\\"bgcolor-rgb(255,255,255)\\\"},{\\\"offset\\\":0,\\\"length\\\":38,\\\"style\\\":\\\"fontsize-16\\\"},{\\\"offset\\\":0,\\\"length\\\":38,\\\"style\\\":\\\"fontfamily-Outfit, sans-serif\\\"}],\\\"entityRanges\\\":[],\\\"data\\\":{}}],\\\"entityMap\\\":{}}\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}trip/create_policy_with_cancel_policies",
+							"host": [
+								"{{local}}trip"
+							],
+							"path": [
+								"create_policy_with_cancel_policies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_polices",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIxMzM5ODM4LCJpYXQiOjE3MjEzMzYyMzgsImp0aSI6IjRlODVjNTQzNThmZDQ1NjNiNzJhNjU1MDVmZmVhZTg3IiwidXNlcl9pZCI6MTYyfQ.V9kIIfw3_xVx1HdTCZ_g0HE1dQ0KYJdKpb4jnz2J_sA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{testing}}trip/get_policies?trip_package_id=13",
+							"host": [
+								"{{testing}}trip"
+							],
+							"path": [
+								"get_policies"
+							],
+							"query": [
+								{
+									"key": "trip_package_id",
+									"value": "13"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "activity",
+			"item": [
+				{
+					"name": "create_policy_with_cancel_policies",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIxMzM5ODM4LCJpYXQiOjE3MjEzMzYyMzgsImp0aSI6IjRlODVjNTQzNThmZDQ1NjNiNzJhNjU1MDVmZmVhZTg3IiwidXNlcl9pZCI6MTYyfQ.V9kIIfw3_xVx1HdTCZ_g0HE1dQ0KYJdKpb4jnz2J_sA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US,en;q=0.8"
+							},
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIxMTYwMTQ0LCJpYXQiOjE3MjExNTY1NDQsImp0aSI6Ijg0ZTI0MzhjZDY0ZTQ1YTY4MzA1OGQ5MjkxYmM2YjQ5IiwidXNlcl9pZCI6MTYyfQ.QMiOHsDdd_pOVQwl2CXxynCvtIWQ5ZBL9bNthCL_cG4"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "origin",
+								"value": "https://nuaris.vercel.app"
+							},
+							{
+								"key": "priority",
+								"value": "u=1, i"
+							},
+							{
+								"key": "referer",
+								"value": "https://nuaris.vercel.app/"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Brave\";v=\"126\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Linux\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "cross-site"
+							},
+							{
+								"key": "sec-gpc",
+								"value": "1"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"policy\": {\n        \"trip_package_id\": 13,\n        \"cancellation_policy\": [\n            {\n                \"cancel_before\": 10,\n                \"percentage\": 100,\n                \"type\": \"select\"\n            },\n            {\n                \"cancel_before\": 10,\n                \"percentage\": 90,\n                \"type\": \"select\",\n                \"cancel_before_end\": 20\n            },\n            {\n                \"cancel_before\": 20,\n                \"percentage\": 80,\n                \"type\": \"select\",\n                \"cancel_before_end\": 30\n            }\n        ],\n        \"weather_restrictions\": \"{\\\"blocks\\\":[{\\\"key\\\":\\\"1q0e0\\\",\\\"text\\\":\\\"Hyari trip test Weather Restriction\\\",\\\"type\\\":\\\"unstyled\\\",\\\"depth\\\":0,\\\"inlineStyleRanges\\\":[{\\\"offset\\\":5,\\\"length\\\":19,\\\"style\\\":\\\"color-rgb(13,13,13)\\\"},{\\\"offset\\\":5,\\\"length\\\":19,\\\"style\\\":\\\"bgcolor-rgb(255,255,255)\\\"},{\\\"offset\\\":5,\\\"length\\\":19,\\\"style\\\":\\\"fontsize-16\\\"},{\\\"offset\\\":5,\\\"length\\\":19,\\\"style\\\":\\\"fontfamily-Outfit, sans-serif\\\"}],\\\"entityRanges\\\":[],\\\"data\\\":{}}],\\\"entityMap\\\":{}}\",\n        \"rules_and_instructions\": \"{\\\"blocks\\\":[{\\\"key\\\":\\\"cuur0\\\",\\\"text\\\":\\\"Test Rules and instructions\\\",\\\"type\\\":\\\"unstyled\\\",\\\"depth\\\":0,\\\"inlineStyleRanges\\\":[{\\\"offset\\\":0,\\\"length\\\":5,\\\"style\\\":\\\"color-rgb(33,37,41)\\\"},{\\\"offset\\\":0,\\\"length\\\":5,\\\"style\\\":\\\"bgcolor-rgb(248,248,248)\\\"},{\\\"offset\\\":0,\\\"length\\\":27,\\\"style\\\":\\\"fontsize-16\\\"},{\\\"offset\\\":0,\\\"length\\\":27,\\\"style\\\":\\\"fontfamily-Outfit, sans-serif\\\"},{\\\"offset\\\":5,\\\"length\\\":22,\\\"style\\\":\\\"color-rgb(13,13,13)\\\"},{\\\"offset\\\":5,\\\"length\\\":22,\\\"style\\\":\\\"bgcolor-rgb(255,255,255)\\\"}],\\\"entityRanges\\\":[],\\\"data\\\":{}}],\\\"entityMap\\\":{}}\",\n        \"allowed_and_not_allowed_items\": \"{\\\"blocks\\\":[{\\\"key\\\":\\\"522vb\\\",\\\"text\\\":\\\"Allowed and not allowed items on board\\\",\\\"type\\\":\\\"unstyled\\\",\\\"depth\\\":0,\\\"inlineStyleRanges\\\":[{\\\"offset\\\":0,\\\"length\\\":38,\\\"style\\\":\\\"color-rgb(13,13,13)\\\"},{\\\"offset\\\":0,\\\"length\\\":38,\\\"style\\\":\\\"bgcolor-rgb(255,255,255)\\\"},{\\\"offset\\\":0,\\\"length\\\":38,\\\"style\\\":\\\"fontsize-16\\\"},{\\\"offset\\\":0,\\\"length\\\":38,\\\"style\\\":\\\"fontfamily-Outfit, sans-serif\\\"}],\\\"entityRanges\\\":[],\\\"data\\\":{}}],\\\"entityMap\\\":{}}\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{testing}}trip/create_policy_with_cancel_policies",
+							"host": [
+								"{{testing}}trip"
+							],
+							"path": [
+								"create_policy_with_cancel_policies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_polices",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIxMzM5ODM4LCJpYXQiOjE3MjEzMzYyMzgsImp0aSI6IjRlODVjNTQzNThmZDQ1NjNiNzJhNjU1MDVmZmVhZTg3IiwidXNlcl9pZCI6MTYyfQ.V9kIIfw3_xVx1HdTCZ_g0HE1dQ0KYJdKpb4jnz2J_sA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}activity/get_policies?activity_id=2",
+							"host": [
+								"{{local}}activity"
+							],
+							"path": [
+								"get_policies"
+							],
+							"query": [
+								{
+									"key": "activity_id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "health_check",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwNjIxNjI4LCJpYXQiOjE3MjA2MjEzMjgsImp0aSI6IjIyOGQ5MmM3ZDQ2MTQ3NTM5MDkyZDdlZDc4MDNiYTJiIiwidXNlcl9pZCI6MTU4fQ.NPbzDbFjSc_51rTYaXvuV-F1uePa0xOv8uoNVt9VUjI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{testing}}health/check",
+					"host": [
+						"{{testing}}health"
+					],
+					"path": [
+						"check"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
