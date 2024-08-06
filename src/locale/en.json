@@ -135,6 +135,7 @@
     "categories": "Categories",
     "viewAll": "View All",
     "service": "Service",
+    "noService": "",
     "bestServices": "Most Popular Services",
     "bestServicesSubTitle": "The most viewed and best-selling services of all time",
     "startFrom": "Starting from",

@@ -5,14 +5,17 @@ import { useTranslation } from "react-i18next";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/swiper-bundle.css";
+import { useSelector } from "react-redux";
 
 const Department = ({ category }) => {
   const { t } = useTranslation();
+  const lang = useSelector((state) => state.language.lang);
+
   return (
     <div className="container">
       <div className="row-head" data-aos="fade-up">
         <h6>{category?.name || "برمجة وتطوير"}</h6>
-        <Link to="/services?categories=1">
+        <Link to={`/services?sub_categories=${category?.id}`}>
           {t("home.viewAll")}
           <i className="fa-regular fa-angle-left"></i>
         </Link>
@@ -28,16 +31,16 @@ const Department = ({ category }) => {
           className="mainSliderContainer"
           breakpoints={{
             992: {
-              slidesPerView: 4
+              slidesPerView: 4,
             },
             768: {
-              slidesPerView: 3
+              slidesPerView: 3,
             },
             350: {
-              slidesPerView: 2
-            }
+              slidesPerView: 2,
+            },
           }}
-          dir="rtl"
+          dir={lang === "ar" ? "rtl" : "ltr"}
         >
           {category?.services?.map((service) => (
             <SwiperSlide key={service.id}>

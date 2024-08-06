@@ -13,7 +13,9 @@ const CategoryCard = ({ category }) => {
         <div className="category-content">
           <div className="top-area">
             <h6 className="title mb-1">
-              {category?.count || "1.853"} {t("home.service")}
+              {category?.count
+                ? `${category?.count} ${t("home.service")}`
+                : `${t("home.noService")}`}
             </h6>
             <h5 className="text">{category?.name || "تصميم وابداع"}</h5>
           </div>

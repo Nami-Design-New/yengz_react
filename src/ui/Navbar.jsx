@@ -75,6 +75,7 @@ const Navbar = () => {
   }
 
   const handleLang = (newLang) => {
+    navigate(0);
     dispatch(setLanguage(newLang));
     i18next.changeLanguage(newLang);
 
@@ -220,6 +221,12 @@ const Navbar = () => {
             )}
             {isLogged && (
               <>
+                <li className="nav-link" onClick={closeSmallMediaMenu}>
+                  <Link>
+                    <i className="fa-sharp fa-solid fa-pen-to-square"></i>
+                    {t("navbar.editProfile")}
+                  </Link>
+                </li>
                 <li className="nav-link" onClick={closeSmallMediaMenu}>
                   <Link>
                     <i className="fa-solid fa-trash"></i>

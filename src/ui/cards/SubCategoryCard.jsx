@@ -2,6 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 
 const SubCategoryCard = ({ subCategory, onClick }) => {
+
   const { t } = useTranslation();
   return (
     <div
@@ -17,7 +18,9 @@ const SubCategoryCard = ({ subCategory, onClick }) => {
         <div className="category-content">
           <div className="top-area">
             <h6 className="title mb-1">
-              {subCategory?.count || "1.853"} {t("home.service")}
+              {subCategory?.count
+                ? `${subCategory?.count} ${t("home.service")}`
+                : `${t("home.noService")}`}
             </h6>
             <h5 className="text">{subCategory?.name || "تصميم وابداع"}</h5>
           </div>

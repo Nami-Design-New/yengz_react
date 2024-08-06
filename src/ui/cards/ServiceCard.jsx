@@ -8,6 +8,7 @@ import StarsList from "../StarsList";
 const ServiceCard = ({ service, canEdit, handleDelete, type, showPending }) => {
   const { t } = useTranslation();
   const truncate = useTruncateString(service?.title);
+
   return (
     <Link
       to={`/${type === "project" ? "projects" : "services"}/${service?.id}`}
@@ -21,13 +22,14 @@ const ServiceCard = ({ service, canEdit, handleDelete, type, showPending }) => {
         )}
       </div>
       <div className="content">
-        <h6>{truncate}</h6>
-        <p>
-          <span>{service?.category?.name || "برمجة وتطوير"}</span>
-          {service?.subCategory?.name && (
-            <>
-              / <span>{service?.subCategory?.name}</span>
-            </>
+        <h6 className="one-line-wrap">{truncate}</h6>
+        <p className="d-flex align-items-center gap-1">
+          {service?.category?.name && <span>{service?.category?.name}</span>}
+          {service?.category?.name && service?.sub_category?.name && (
+            <span>/</span>
+          )}
+          {service?.sub_category?.name && (
+            <span>{service?.sub_category?.name}</span>
           )}
         </p>
         <div className="d-flex gap-3 align-items-center">

@@ -3094,7 +3094,7 @@ body {
         width: 100%;
         border: none;
         outline: none;
-        padding: 12px;
+        padding: 8px 12px;
         border-radius: 12px;
         background: var(--input-bg);
         border: 1px solid var(--LightGray);
@@ -5368,7 +5368,6 @@ body {
   aspect-ratio: 3 / 2;
 }
 .partener-slide {
-  flex: 1 0 0;
   position: relative;
   display: flex;
   align-items: center;
@@ -5522,6 +5521,9 @@ body {
   white-space: nowrap;
 }
 .collection_modal {
+  input {
+    height: 48px !important;
+  }
   button {
     height: unset !important;
   }
@@ -5633,4 +5635,11 @@ body {
   border-radius: 12px;
   background: var(--main-color);
   color: var(--white-color);
+}
+
+.one-line-wrap {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
