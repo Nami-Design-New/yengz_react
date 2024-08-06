@@ -4,10 +4,13 @@ import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import usePartenersList from "./usePartenersList";
+import { useSelector } from "react-redux";
 
 function Parteners() {
   const { t } = useTranslation();
   const { data: parteners } = usePartenersList();
+  const lang = useSelector((state) => state.language.lang);
+  console.log(lang);
 
   return (
     <section className="popular_departments pt-0">
@@ -43,7 +46,7 @@ function Parteners() {
                 slidesPerView: 1,
               },
             }}
-            dir="rtl"
+            dir={lang === "ar" ? "rtl" : "ltr"}
           >
             {parteners?.map((partener) => (
               <SwiperSlide key={partener.id} className="partener-slide">

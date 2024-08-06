@@ -11,7 +11,7 @@ const ConfirmationModal = ({
   eventFun,
   buttonText,
   type = "delete",
-  loading
+  loading,
 }) => {
   const { t } = useTranslation();
   return (
@@ -24,7 +24,13 @@ const ConfirmationModal = ({
           {text} <span>{target}</span>
         </p>
         <div className="d-flex justify-content-end gap-3">
-          <button onClick={() => setShowModal(false)} className="cancel-btn">
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowModal(false);
+            }}
+            className="cancel-btn"
+          >
             {t("cancel")}
           </button>
           <SubmitButton

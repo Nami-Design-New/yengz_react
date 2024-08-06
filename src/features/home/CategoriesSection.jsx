@@ -5,10 +5,12 @@ import { Autoplay } from "swiper/modules";
 import { Link } from "react-router-dom";
 import CategoryCard from "../../ui/cards/CategoryCard";
 import useCategoriesList from "./../categories/useCategoriesList";
+import { useSelector } from "react-redux";
 
 const CategoriesSection = () => {
   const { t } = useTranslation();
   const { data } = useCategoriesList();
+  const lang = useSelector((state) => state.language.lang);
 
   return (
     <section className="categories ">
@@ -43,7 +45,7 @@ const CategoriesSection = () => {
               slidesPerView: 2,
             },
           }}
-          dir="rtl"
+          dir={lang === "ar" ? "rtl" : "ltr"}
         >
           {data?.map((category) => (
             <SwiperSlide key={category.id}>

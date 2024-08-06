@@ -4,10 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/swiper-bundle.css";
+import { useSelector } from "react-redux";
 
 const HeroSection = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const lang = useSelector((state) => state.language.lang);
 
   function handleSubmitSearch(e) {
     e.preventDefault();
@@ -43,9 +45,10 @@ const HeroSection = () => {
                 slidesPerView={1}
                 speed={1000}
                 modules={[Autoplay]}
-                dir="rtl"
+                dir={lang === "ar" ? "rtl" : "ltr"}
                 className="mainSliderContainer"
                 autoplay={{ delay: 3000, disableOnInteraction: false }}
+
               >
                 <SwiperSlide>
                   <div className="info">

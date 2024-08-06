@@ -135,6 +135,7 @@
     "categories": "Categories",
     "viewAll": "View All",
     "service": "Service",
+    "noService": "",
     "bestServices": "Most Popular Services",
     "bestServicesSubTitle": "The most viewed and best-selling services of all time",
     "startFrom": "Starting from",
@@ -164,10 +165,14 @@
   "profile": {
     "editProfile": "Edit Profile",
     "totalBalance": "Total Balance",
+    "totalBalanceTooltip": "Total balance that have been given",
     "pendingBalance": "Pending Balance",
+    "pendingBalanceTooltip": "Pending Balance: Balance waiting for approval",
     "availableBalance": "Available Balance",
+    "availableBalanceTooltip": "Available Balance = Total Balance - Pending Balance",
     "balance": "Balance",
     "withdraw": "Withdraw",
+    "deposit": "Deposit balance",
     "aboutMe": "About Me",
     "noAbout": "This section is not available. Add information to display here.",
     "services": "Services",
@@ -215,6 +220,7 @@
     "edit": "Edit",
     "add": "Add",
     "wallet": "Wallet",
+    "walletTooltip": "Wallet: Contains the balance in your account",
     "projects": "Projects",
     "noProjects": "No projects to display",
     "images": "Image Gallery",
@@ -435,6 +441,10 @@
     "choose": "Choose",
     "pageTitle": "We are here to listen to your feedback and work on improving our services",
     "complaintSentSuccessfully": "Complaint sent successfully"
+  },
+  "error": {
+    "pageNotFound": "Page Not Found",
+    "goHome": "Go Home"
   },
   "password": "Enter Password",
   "cancel": "Cancel",

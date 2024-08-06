@@ -70,24 +70,30 @@ const Footer = () => {
                 <h4>تحميل التطبيق</h4>
                 <ul>
                   <li>
-                    <Link to="#">
+                    <a
+                      target="_blank"
+                      href="https://apps.apple.com/app/id6605935240"
+                    >
                       <div className="text">
                         <p>App Store</p>
                       </div>
                       <div className="icon">
                         <i className="fa-brands fa-apple"></i>
                       </div>
-                    </Link>
+                    </a>
                   </li>
                   <li>
-                    <Link to="#">
+                    <a
+                      target="_blank"
+                      href="https://play.google.com/store/apps/details?id=com.app.ynjez"
+                    >
                       <div className="text">
                         <p>Google Play</p>
                       </div>
                       <div className="icon">
                         <i className="fa-brands fa-google-play"></i>
                       </div>
-                    </Link>
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -138,7 +144,7 @@ const Footer = () => {
                       style={{
                         width: "50px",
                         objectFit: "cover",
-                        cursor: "pointer"
+                        cursor: "pointer",
                       }}
                     />
                   ))}

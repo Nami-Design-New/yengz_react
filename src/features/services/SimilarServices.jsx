@@ -3,9 +3,11 @@ import { useTranslation } from "react-i18next";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import ServiceCard from "./../../ui/cards/ServiceCard";
+import { useSelector } from "react-redux";
 
 const SimilarServices = ({ services }) => {
   const { t } = useTranslation();
+  const lang = useSelector((state) => state.language.lang);
   return (
     <section className="mb-5 container pt-0" style={{ padding: "0 16px" }}>
       <div className="container">
@@ -35,7 +37,7 @@ const SimilarServices = ({ services }) => {
               slidesPerView: 2
             }
           }}
-          dir="rtl"
+          dir={lang === "ar" ? "rtl" : "ltr"}
         >
           {services?.map((ser) => (
             <SwiperSlide key={ser.id}>

@@ -3,12 +3,21 @@ import avatar from "../../Assets/images/avatar.jpg";
 import StarsList from "../../ui/StarsList";
 import { useTranslation } from "react-i18next";
 import {
+  IconCirclePlus,
   IconInfoCircle,
-  IconRosetteDiscountCheckFilled
+  IconRosetteDiscountCheckFilled,
 } from "@tabler/icons-react";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const UserProfileCard = ({ user, isMyAccount }) => {
   const { t } = useTranslation();
+
+  const renderTooltip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      {props.content}
+    </Tooltip>
+  );
 
   return (
     <div className="profile-descripe">
@@ -34,44 +43,89 @@ const UserProfileCard = ({ user, isMyAccount }) => {
                 <h4>
                   <IconInfoCircle stroke={2} /> {t("profile.balance")}
                 </h4>
-                {/* <a href="#!">{t("profile.withdraw")}</a> */}
+                <Link to="#!">{t("profile.withdraw")}</Link>
               </div>
             </div>
             <div className="col-6 p-2">
               <div className="cash-info">
-                <span>{t("profile.totalBalance")}</span>
+                <span className="d-flex align-items-center justify-content-between w-100">
+                  {t("profile.totalBalance")}
+                  <OverlayTrigger
+                    placement="bottom"
+                    overlay={renderTooltip({
+                      content: t("profile.totalBalanceTooltip"),
+                    })}
+                  >
+                    <i className="info-label fa-light fa-circle-info"></i>
+                  </OverlayTrigger>
+                </span>
                 <h6>
-                  {user?.total_balance}{" "}
+                  {user?.total_balance}
                   <i className="fa-solid fa-dollar-sign"></i>
                 </h6>
               </div>
             </div>
             <div className="col-6 p-2">
               <div className="cash-info">
-                <span> {t("profile.pendingBalance")} </span>
+                <span className="d-flex align-items-center justify-content-between w-100">
+                  {t("profile.pendingBalance")}
+                  <OverlayTrigger
+                    placement="bottom"
+                    overlay={renderTooltip({
+                      content: t("profile.pendingBalanceTooltip"),
+                    })}
+                  >
+                    <i className="info-label fa-light fa-circle-info"></i>
+                  </OverlayTrigger>
+                </span>
                 <h6>
-                  {user?.pending_balance}{" "}
+                  {user?.pending_balance}
                   <i className="fa-solid fa-dollar-sign"></i>
                 </h6>
               </div>
             </div>
             <div className="col-6 p-2">
               <div className="cash-info">
-                <span> {t("profile.availableBalance")} </span>
+                <span className="d-flex align-items-center justify-content-between w-100">
+                  {t("profile.availableBalance")}
+                  <OverlayTrigger
+                    placement="bottom"
+                    overlay={renderTooltip({
+                      content: t("profile.availableBalanceTooltip"),
+                    })}
+                  >
+                    <i className="info-label fa-light fa-circle-info"></i>
+                  </OverlayTrigger>
+                </span>
+
                 <h6>
-                  {user?.available_balance}{" "}
+                  {user?.available_balance}
                   <i className="fa-solid fa-dollar-sign"></i>
                 </h6>
               </div>
             </div>
             <div className="col-6 p-2">
               <div className="cash-info">
-                <span> {t("profile.wallet")} </span>
+                <span className="d-flex align-items-center justify-content-between w-100">
+                  {t("profile.wallet")}
+                  <OverlayTrigger
+                    placement="bottom"
+                    overlay={renderTooltip({
+                      content: t("profile.walletTooltip"),
+                    })}
+                  >
+                    <i className="info-label fa-light fa-circle-info"></i>
+                  </OverlayTrigger>
+                </span>
                 <h6>
-                  {user?.wallet}{" "}
-                  <i className="fa-solid fa-dollar-sign"></i>
+                  {user?.wallet} <i className="fa-solid fa-dollar-sign"></i>
                 </h6>
               </div>
+            </div>
+            <div className="col-12 p-2 d-flex align-items-center justify-content-center">
+              <Link to="/deposit" className="deposit-link">
+                <IconCirclePlus stroke={2} /> {t("profile.deposit")}
+              </Link>
             </div>
           </div>
         </div>

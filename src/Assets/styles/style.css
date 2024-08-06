@@ -1143,6 +1143,31 @@ body main .profile-section .profile-descripe .cash {
   flex-direction: column;
   align-items: center;
 }
+body main .profile-section .profile-descripe .cash .info-labelsvg, body main .profile-section .profile-descripe .cash .info-labeli {
+  stroke: var(--main-color);
+  width: 16px;
+  height: 16px;
+}
+body main .profile-section .profile-descripe .cash .deposit-link {
+  width: 100%;
+  border: 1px solid var(--main-color);
+  color: var(--main-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 0;
+  transition: var(--main-transation);
+  border-radius: 12px;
+  gap: 4px;
+  background: none;
+}
+body main .profile-section .profile-descripe .cash .deposit-link i {
+  margin: 0 4px;
+}
+body main .profile-section .profile-descripe .cash .deposit-link:hover {
+  background: var(--main-color);
+  color: #fff;
+}
 body main .profile-section .profile-descripe .cash .head {
   display: flex;
   align-items: center;
@@ -3275,7 +3300,7 @@ body .form .input-field select {
   width: 100%;
   border: none;
   outline: none;
-  padding: 12px;
+  padding: 8px 12px;
   border-radius: 12px;
   background: var(--input-bg);
   border: 1px solid var(--LightGray);
@@ -3646,6 +3671,12 @@ body .images_grid_upload .file_upload {
 }
 body .images_grid_upload .file_upload label {
   height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3655,6 +3686,15 @@ body .images_grid_upload .file_upload label input {
 }
 body .images_grid_upload .file_upload label img {
   height: 60px;
+}
+body .images_grid_upload .file_upload label .file_upload_dimensions {
+  color: var(--LightGray);
+  font-weight: 600;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 body .images_grid_upload .uploaded_file {
   border: 1px solid var(--LightGray);
@@ -5607,13 +5647,12 @@ body.en main .row-head a i {
   display: flex;
 }
 .work-view-modal .swiper .work-modal-img-box img {
-  aspect-ratio: 5/2;
+  aspect-ratio: 16/9;
   width: 100%;
-  height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-  -o-object-position: center;
-     object-position: center;
+  -o-object-position: top;
+     object-position: top;
 }
 .work-view-modal .work-modal-content {
   width: 100%;
@@ -5668,7 +5707,6 @@ body.en main .row-head a i {
 }
 
 .partener-slide {
-  flex: 1 0 0;
   position: relative;
   display: flex;
   align-items: center;
@@ -5832,6 +5870,9 @@ body.en main .row-head a i {
   white-space: nowrap;
 }
 
+.collection_modal input {
+  height: 48px !important;
+}
 .collection_modal button {
   height: unset !important;
 }
@@ -5952,4 +5993,55 @@ body.en main .row-head a i {
   border-radius: 12px;
   background: var(--main-color);
   color: var(--white-color);
+}
+
+.one-line-wrap {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.error-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.error-section img {
+  height: 300px;
+  margin-bottom: 24px;
+}
+.error-section h2 {
+  margin: 0;
+  text-align: center;
+  text-wrap: balance;
+  font-size: 48px;
+  font-weight: 800;
+  color: #cecece;
+}
+.error-section a {
+  min-width: 200px;
+  margin-top: 36px;
+  border: 1px solid var(--main-color);
+  color: var(--main-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  transition: var(--main-transation);
+  border-radius: 12px;
+  gap: 8px;
+  background: none;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+}
+.error-section a i {
+  font-size: 16px;
+}
+.error-section a:hover {
+  background: var(--main-color);
+  color: #fff;
 }/*# sourceMappingURL=style.css.map */

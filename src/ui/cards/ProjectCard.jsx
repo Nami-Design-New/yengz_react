@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { formatTimeDifference, getTimeDifference } from "../../utils/helpers";
 import { useTranslation } from "react-i18next";
 import { IconEdit, IconTrash } from "@tabler/icons-react";
@@ -26,6 +26,7 @@ function ProjectCard({ project }) {
     t
   );
   const truncatedText = useTruncateString(project?.description, 200);
+
   const delteProject = async () => {
     setLoading(true);
     try {
@@ -40,7 +41,11 @@ function ProjectCard({ project }) {
   };
 
   return (
-    <Link to={`/projects/${project?.id}`} className="singleRequst">
+    <Link
+      to={`/projects/${project?.id}`}
+      className="singleRequst"
+      onClick={(e) => e.stopPropagation()} // Prevent card navigation
+    >
       <div className="row">
         <div className="col-12 p-0">
           <div className="requstPost">
@@ -77,12 +82,23 @@ function ProjectCard({ project }) {
             {user?.id === project?.user?.id && (
               <div className="status_action">
                 <span className="status">{project?.status_name}</span>
-                <Link to={`/edit-project/${project?.id}`}>
-                  <IconEdit stroke={2} />
-                </Link>
-                <button onClick={() => setShowModal(true)}>
-                  <IconTrash stroke={2} />
-                </button>
+                {(project?.status_name === "جديد" ||
+                  project?.status_name === "new") && (
+                  <>
+                    <Link to={`/edit-project/${project?.id}`}>
+                      <IconEdit stroke={2} />
+                    </Link>
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        setShowModal(true);
+                      }}
+                    >
+                      <IconTrash stroke={2} />
+                    </button>
+                  </>
+                )}
               </div>
             )}
           </div>

@@ -6,12 +6,16 @@ const CertificateCard = ({
   canEdit,
   onDeleteModalShow,
   onEditModalShow,
-  onClick
+  onClick,
 }) => {
   return (
     <div className="workCard">
       <div className="img">
-        <img src={certificate?.image} alt={certificate?.title} />
+        <img
+          src={certificate?.image}
+          alt={certificate?.title}
+          onClick={() => onClick(certificate)}
+        />
         {canEdit && (
           <div className="icons">
             <button onClick={() => onEditModalShow(certificate)}>

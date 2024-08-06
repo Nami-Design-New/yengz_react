@@ -6,7 +6,7 @@ import { IconPencil, IconTrash } from "@tabler/icons-react";
 import { toast } from "react-toastify";
 import {
   removeCollection,
-  updateCollection
+  updateCollection,
 } from "../../services/apiCollections";
 import { useQueryClient } from "@tanstack/react-query";
 import ConfirmationModal from "../modals/ConfirmationModal";
@@ -20,6 +20,7 @@ const CollectionCard = ({ collection }) => {
   const queryClient = useQueryClient();
 
   const timeDifference = getTimeDifference(collection?.created_at);
+  console.log(timeDifference);
   const startTime = formatTimeDifference(
     timeDifference.years,
     timeDifference.months,
@@ -43,7 +44,7 @@ const CollectionCard = ({ collection }) => {
   };
 
   return (
-    <div className="col-12 p-2">
+    <div className="col-6 p-2">
       <div className="collectionCard">
         <div className="info">
           <h6>

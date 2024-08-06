@@ -135,6 +135,7 @@
     "categories": "الأقسام",
     "viewAll": "عرض الكل",
     "service": "خدمة",
+    "noService": "لا توجد خدمات حاليًا",
     "bestServices": "الخدمات الاكثر شهرة",
     "bestServicesSubTitle": "الخدمات الأكثر مشاهدة والأكثر مبيعًا على الإطلاق",
     "startFrom": "تبدأ من",
@@ -164,9 +165,13 @@
   "profile": {
     "editProfile": "تعديل الملف الشخصي",
     "totalBalance": "الرصيد الكلى",
+    "totalBalanceTooltip": "الرصيد الكلى الذي تم الحصول عليه",
     "pendingBalance": "الرصيد المعلق",
+    "pendingBalanceTooltip": "الرصيد المعلق: الرصيد المعلّق في انتظار الموافقة",
     "availableBalance": "الرصيد المتوفر",
+    "availableBalanceTooltip": "الرصيد المتوفر = الرصيد الكلى - الرصيد المعلّق",
     "balance": "الرصيد",
+    "deposit": "إيداع رصيد",
     "withdraw": "سحب",
     "aboutMe": "نبذه عني ",
     "noAbout": "هذا القسم غير متوفر قم بإضافته لتظهر هنا",
@@ -215,6 +220,7 @@
     "edit": "تعديل",
     "add": "اضافة",
     "wallet": "المحفظة",
+    "walletTooltip": "المحفظة: تحتوي على المبالغ الموجودة في حسابك",
     "projects": "المشاريع",
     "noProjects": "لا يوجد مشاريع لعرضها",
     "images": "معرض الصور",
@@ -435,6 +441,10 @@
     "choose": "اختر",
     "pageTitle": "نحن هنا لسماع آرائكم والعمل على تحسين خدماتنا",
     "complaintSentSuccessfully": "تم ارسال الشكوى بنجاح"
+  },
+  "error": {
+    "pageNotFound": "هذه الصفحة غير موجودة",
+    "goHome": "الذهاب للرئيسية"
   },
   "password": "ادخل كلمة المرور ",
   "cancel": "الغاء",
