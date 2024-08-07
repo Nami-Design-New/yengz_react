@@ -10,7 +10,6 @@ function Parteners() {
   const { t } = useTranslation();
   const { data: parteners } = usePartenersList();
   const lang = useSelector((state) => state.language.lang);
-  console.log(lang);
 
   return (
     <section className="popular_departments pt-0">

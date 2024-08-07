@@ -60,7 +60,7 @@ function RatingFilterBox({ value, onChange }) {
             <i className="fa-solid fa-star"></i>
           </li>
         </ul>
-        <span>او اكثر</span>
+        <span>{t("orMore")}</span>
       </li>
       <li>
         <input
@@ -88,7 +88,7 @@ function RatingFilterBox({ value, onChange }) {
             <i className="fa-solid fa-star"></i>
           </li>
         </ul>
-        <span>او اكثر</span>
+        <span>{t("orMore")}</span>
       </li>
       <li>
         <input
@@ -116,7 +116,7 @@ function RatingFilterBox({ value, onChange }) {
             <i className="fa-solid fa-star"></i>
           </li>
         </ul>
-        <span>او اكثر</span>
+        <span>{t("orMore")}</span>
       </li>
       <li>
         <input
@@ -144,7 +144,7 @@ function RatingFilterBox({ value, onChange }) {
             <i className="fa-solid fa-star"></i>
           </li>
         </ul>
-        <span>او اكثر</span>
+        <span>{t("orMore")}</span>
       </li>
     </ul>
   );

@@ -1,6 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 import CustomPaginationNumbers from "./CustomPaginationNumbers";
 import { PAGE_SIZE } from "../utils/constants";
+import { useSelector } from "react-redux";
 
 export default function CustomPagination({
   pageSize,
@@ -11,6 +12,7 @@ export default function CustomPagination({
   const [searchParams, setSearchParams] = useSearchParams();
   const lastPage = Math.ceil(count / (pageSize || PAGE_SIZE));
   const currentPage = searchParams.get(param) || 1;
+  const lang = useSelector((state) => state.language.lang);
 
   const atStart = currentPage <= 1;
   const atEnd = currentPage >= lastPage;
@@ -38,8 +40,12 @@ export default function CustomPagination({
   }
 
   return (
-    <div className={`pagination_component mt-4 ${className}`}>
-      <div className="paginator_btns d-flex align-items-center gap-1">
+    <div className={`pagination_component mt-4 ${className} `}>
+      <div
+        className={`paginator_btns d-flex align-items-center gap-1 ${
+          lang === "en" ? "rotate" : ""
+        }`}
+      >
         <button onClick={handlePrev} className={atStart ? "disabled" : ""}>
           <i className="fa-regular fa-angle-right"></i>
         </button>
@@ -54,7 +60,11 @@ export default function CustomPagination({
         setSearchParams={setSearchParams}
       />
 
-      <div className="paginator_btns d-flex align-items-center gap-1">
+      <div
+        className={`paginator_btns d-flex align-items-center gap-1 ${
+          lang === "en" ? "rotate" : ""
+        }`}
+      >
         <button onClick={handleLastPage} className={atEnd ? "disabled" : ""}>
           <i className="fa-regular fa-angles-left"></i>
         </button>

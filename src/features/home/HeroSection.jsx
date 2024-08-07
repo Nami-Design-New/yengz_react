@@ -45,17 +45,20 @@ const HeroSection = () => {
                 slidesPerView={1}
                 speed={1000}
                 modules={[Autoplay]}
-                dir={lang === "ar" ? "rtl" : "ltr"}
+                dir="rtl"
                 className="mainSliderContainer"
                 autoplay={{ delay: 3000, disableOnInteraction: false }}
-
               >
                 <SwiperSlide>
                   <div className="info">
-                    <h1 className="sliderTitle">
+                    <h1
+                      className={`sliderTitle ${lang === "en" ? "px-2" : ""}`}
+                    >
                       {t("home.heroSectionTitle")}
                     </h1>
-                    <p className="hint">{t("home.heroSectionSubTitle")}</p>
+                    <p className={`hint ${lang === "en" ? "px-2" : ""}`}>
+                      {t("home.heroSectionSubTitle")}
+                    </p>
                   </div>
                 </SwiperSlide>
               </Swiper>
