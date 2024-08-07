@@ -416,7 +416,9 @@ const Navbar = () => {
                 </li>
 
                 {/* Notifications */}
-                <li className="link hide-sm2">
+                <li
+                  className={`link hide-sm2 ${lang === "en" ? "reverse" : ""}`}
+                >
                   <Dropdown style={{ position: "relative" }}>
                     <Dropdown.Toggle
                       style={{ backgroundColor: "#f4f4f4" }}
@@ -427,7 +429,7 @@ const Navbar = () => {
                         {user?.receive_notification || 0}
                       </span>
                     </Dropdown.Toggle>
-                    <Dropdown.Menu className="drop_Message_Menu">
+                    <Dropdown.Menu className="drop_Message_Menu" align="start">
                       {notifications?.map((notification) => (
                         <Fragment key={notification?.title}>
                           <Dropdown.Item className="drop_Message">
@@ -490,7 +492,10 @@ const Navbar = () => {
                   </span>
                 </li>
                 {isProfileMenuOpen && (
-                  <ul className="profile-menu" ref={profileMenuRef}>
+                  <ul
+                    className={`profile-menu ${lang === "en" ? "reverse" : ""}`}
+                    ref={profileMenuRef}
+                  >
                     <li onClick={closeProfileMenu}>
                       <Link className="dropdown-item_Link" to="/profile">
                         <i className="fa-solid fa-user"></i>

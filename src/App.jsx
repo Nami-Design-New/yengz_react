@@ -64,7 +64,7 @@ function App() {
                 path={path}
                 element={
                   isProtected ? (
-                    <ProtectedRoute>{element}</ProtectedRoute>
+                    <ProtectedRoute profile={profile}>{element}</ProtectedRoute>
                   ) : (
                     element
                   )

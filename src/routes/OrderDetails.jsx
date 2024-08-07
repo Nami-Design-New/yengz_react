@@ -24,6 +24,8 @@ function OrderDetails() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { data: order, isLoading } = useGetOrder(id);
+  console.log(order);
+
   const [userType, setUserType] = useState(null);
   const [btn1Loading, setBtn1Loading] = useState(false);
   const [showRateModal, setShowRateModal] = useState(false);
@@ -97,10 +99,7 @@ function OrderDetails() {
                     <h5>{order?.service?.title}</h5>
                     <div className="owner">
                       <div className="owner-avatar">
-                        <img
-                          src={order?.user?.image || avatar}
-                          alt="owner"
-                        />
+                        <img src={order?.user?.image || avatar} alt="owner" />
                       </div>
                       <span>{order?.user?.name}</span>
                     </div>

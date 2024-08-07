@@ -91,3 +91,14 @@ export const formatMessageTime = (timestamp) => {
   const timeStr = `${hours}:${minutesStr} ${ampm}`;
   return timeStr;
 };
+
+export function formattedDate(date) {
+  let formattedDate = new Date(date);
+  formattedDate = new Intl.DateTimeFormat("en-US", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(formattedDate);
+
+  return formattedDate;
+}

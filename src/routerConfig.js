@@ -33,6 +33,8 @@ import MyCollections from "./routes/MyCollections";
 import MyCollection from "./routes/MyCollection";
 import BestFreeLancers from "./routes/BestFreeLancers";
 import ErrorPage from "./routes/ErrorPage";
+import Blogs from "./routes/Blogs";
+import BlogDetails from "./routes/BlogDetails";
 
 const routesConfig = [
   { path: "/", element: <Home />, index: true },
@@ -74,6 +76,8 @@ const routesConfig = [
   { path: "/about/preview/:id", element: <AboutPreview /> },
   { path: "/privacy-policy", element: <Privacy /> },
   { path: "/terms-conditions", element: <Terms /> },
+  { path: "/blogs", element: <Blogs /> },
+  { path: "/blogs/:id", element: <BlogDetails /> },
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
   { path: "/logout", element: <Logout /> },

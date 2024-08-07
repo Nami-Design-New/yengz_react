@@ -31,8 +31,6 @@ const EditProfile = () => {
   const [wantChangePassword, setWantChangePassword] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState([]);
 
-  console.log(user);
-
   useEffect(() => {
     setFormData({
       image: "",

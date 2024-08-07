@@ -19,21 +19,23 @@ function CollectionModal({ showModal, setShowModal, showDeleteFromCart }) {
     id: "",
     delete_collection_from_cart: 0,
     title: "",
-    description: ""
+    description: "",
   });
   const [loading, setLoading] = useState(false);
 
   const collectionOptions =
     collections?.map((collection) => ({
       name: collection.title,
-      value: collection.id
+      value: collection.id,
     })) || [];
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]:
-        e.target.type === "checkbox" ? Number(e.target.checked) : e.target.value
+        e.target.type === "checkbox"
+          ? Number(e.target.checked)
+          : e.target.value,
     });
   };
 
@@ -44,7 +46,7 @@ function CollectionModal({ showModal, setShowModal, showDeleteFromCart }) {
       id: "",
       delete_collection_from_cart: 0,
       title: "",
-      description: ""
+      description: "",
     });
   }
 

@@ -120,7 +120,6 @@ const Services = () => {
       searchParams.set("page", searchFilterData.page);
       setSearchParams(searchParams);
     }
-    console.log(String(searchFilterData.search).trim());
     if (String(searchFilterData.search).trim()) {
       searchParams.set("search", searchFilterData.search);
       setSearchParams(searchParams);

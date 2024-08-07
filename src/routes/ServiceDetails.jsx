@@ -6,7 +6,7 @@ import {
   addToCart,
   decreaseCartQuantity,
   increaseCartQuantity,
-  updateDevelopmentsInCart
+  updateDevelopmentsInCart,
 } from "../services/apiCart";
 import { useQueryClient } from "@tanstack/react-query";
 import { updateEntireCart } from "../redux/slices/cart";
@@ -43,7 +43,7 @@ const ServiceDetails = () => {
   const [cartObj, setCartObj] = useState({
     service_id: service?.id,
     quantity: 1,
-    developments: []
+    developments: [],
   });
 
   useEffect(() => {
@@ -56,7 +56,7 @@ const ServiceDetails = () => {
             quantity: item.quantity,
             developments: item?.service?.developments
               ?.filter((dev) => dev.in_cart)
-              .map((dev) => dev.id)
+              .map((dev) => dev.id),
           }))
         )
       );
@@ -82,7 +82,7 @@ const ServiceDetails = () => {
         id: itemFromCart?.id,
         service_id: service.id,
         quantity: itemFromCart ? itemFromCart.quantity : 1,
-        developments: itemFromCart ? itemFromCart.developments : []
+        developments: itemFromCart ? itemFromCart.developments : [],
       });
       setTotalPrice(
         (servicePrice || 0) +
@@ -108,7 +108,7 @@ const ServiceDetails = () => {
     } else {
       setCartObj((prevCartObj) => ({
         ...prevCartObj,
-        quantity: prevCartObj.quantity + 1
+        quantity: prevCartObj.quantity + 1,
       }));
     }
     const newQuantity = cartObj.quantity + 1;
@@ -136,7 +136,7 @@ const ServiceDetails = () => {
       } else {
         setCartObj((prevCartObj) => ({
           ...prevCartObj,
-          quantity: prevCartObj.quantity - 1
+          quantity: prevCartObj.quantity - 1,
         }));
       }
       const newQuantity = cartObj.quantity - 1;
@@ -160,7 +160,7 @@ const ServiceDetails = () => {
         await updateDevelopmentsInCart(
           {
             cart_id: cartObj?.id,
-            development_id: id
+            development_id: id,
           },
           queryClient
         );
@@ -172,7 +172,7 @@ const ServiceDetails = () => {
         ...prevCartObj,
         developments: isChecked
           ? prevCartObj.developments.filter((item) => item !== id)
-          : [...prevCartObj.developments, id]
+          : [...prevCartObj.developments, id],
       }));
     }
     setTotalPrice((prevTotalPrice) =>
@@ -283,7 +283,7 @@ const ServiceDetails = () => {
                               onChange={(e) =>
                                 setCartObj({
                                   ...cartObj,
-                                  quantity: e.target.value
+                                  quantity: e.target.value,
                                 })
                               }
                             />

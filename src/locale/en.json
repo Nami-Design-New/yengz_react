@@ -36,7 +36,8 @@
     "privacy-policy": "Privacy Policy",
     "complaints-suggestions": "Complaints and Suggestions",
     "my-collections": "My Collections",
-    "best-freelancers": "Best Freelancers"
+    "best-freelancers": "Best Freelancers",
+    "blogs": "Blogs"
   },
   "auth": {
     "loginPageTitle": "Login",
@@ -160,7 +161,9 @@
     "allRightsReserved": "All rights reserved by Yengz",
     "acceptPaymentsBy": "We Accept Payments By",
     "terms": "Terms and Conditions",
-    "privacy": "Privacy Policy"
+    "privacy": "Privacy Policy",
+    "blogs": "Blogs",
+    "about": "Welcome to the largest Arab market for buying and selling micro-services. We are here to help you achieve your goals easily and safely. You can rely on our platform to complete your tasks and projects at prices that suit you"
   },
   "profile": {
     "editProfile": "Edit Profile",
@@ -446,6 +449,9 @@
     "pageNotFound": "Page Not Found",
     "goHome": "Go Home"
   },
+  "blogs": {
+    "moreBlogs": "More news"
+  },
   "password": "Enter Password",
   "cancel": "Cancel",
   "homePage": "Home",
@@ -469,5 +475,6 @@
   "notifications": "Notifications",
   "collectionsEmpty": "No collections",
   "emptyCollection": "This collection is empty",
-  "servicesCount": "Displayed services"
+  "servicesCount": "Displayed services",
+  "orMore": "or more"
 }

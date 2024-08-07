@@ -21,11 +21,7 @@ const Footer = () => {
               <Link to="/" className="logo">
                 <img className="brand" src={logo} alt="" />
               </Link>
-              <p>
-                مرحبًا بك في أكبر سوق عربي لبيع وشراء الخدمات المصغرة. نحن هنا
-                لمساعدتك في تحقيق أهدافك بسهولة وأمان. يمكنك الاعتماد على منصتنا
-                لإتمام مهامك ومشاريعك بلاسعار التي تناسبك
-              </p>
+              <p>{t("footer.about")}</p>
             </div>
           </div>
           {footerCategoriesList && footerCategoriesList?.length > 0 && (
@@ -39,6 +35,9 @@ const Footer = () => {
                     </li>
                   ))}
                   <li>
+                    <Link to="/blogs">{t("footer.blogs")}</Link>
+                  </li>
+                  <li>
                     <Link to="/terms-conditions">{t("footer.terms")}</Link>
                   </li>
                   <li>
@@ -51,7 +50,7 @@ const Footer = () => {
           {popularCategoriesList && popularCategoriesList?.length > 0 && (
             <div className="col-lg-3 col-6">
               <div className="links pa-24">
-                <h4>الاقسام</h4>
+                <h4>{t("footer.categories")}</h4>
                 <ul className="categories_links">
                   {popularCategoriesList.map((category) => (
                     <li key={category.id}>
@@ -67,7 +66,7 @@ const Footer = () => {
           <div className="col-lg-3 col-md-6 col-12">
             <div className="d-flex flex-column gap-lg-5 gap-4 pa-24">
               <div className="download-app">
-                <h4>تحميل التطبيق</h4>
+                <h4>{t("footer.dowloadApp")}</h4>
                 <ul>
                   <li>
                     <a
