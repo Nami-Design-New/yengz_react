@@ -1234,7 +1234,7 @@ body {
             flex: 0 1;
             min-width: calc(100% / 3 - 11px);
             @media screen and (max-width: 576px) {
-              flex: 1 0;
+              min-width: 100%;
             }
           }
           .workCard {
@@ -1242,7 +1242,7 @@ body {
             flex: 0 1;
             min-width: calc(100% / 3 - 11px);
             @media screen and (max-width: 576px) {
-              flex: 1 0;
+              min-width: 100%;
             }
             .img {
               position: relative;
@@ -3789,7 +3789,6 @@ body {
     border-radius: 12px;
     background-color: var(--input-bg);
     overflow: hidden;
-    height: 100%;
     display: flex;
     flex-direction: column;
     &:hover {
@@ -5265,7 +5264,7 @@ body {
         border-left: 1px solid var(--LightGray) !important;
         border-right: 0 !important;
       }
-      .pass-group button {
+      .pass-group span {
         border-radius: 0 12px 12px 0 !important;
         border-right: 1px solid var(--LightGray) !important;
         border-left: 0 !important;
