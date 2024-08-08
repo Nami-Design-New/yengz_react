@@ -6,7 +6,7 @@ import {
   addToCart,
   decreaseCartQuantity,
   increaseCartQuantity,
-  updateDevelopmentsInCart,
+  updateDevelopmentsInCart
 } from "../services/apiCart";
 import { useQueryClient } from "@tanstack/react-query";
 import { updateEntireCart } from "../redux/slices/cart";
@@ -21,6 +21,7 @@ import useCartList from "../features/cart/useCartList";
 import DataLoader from "./../ui/DataLoader";
 import SimilarServices from "./../features/services/SimilarServices";
 import CollectionModal from "../ui/modals/CollectionModal";
+import useGetComments from "../features/services/useGetComments";
 
 const ServiceDetails = () => {
   const { t } = useTranslation();
@@ -32,8 +33,10 @@ const ServiceDetails = () => {
   const { data: rates } = useGetRates();
   const { data: service, isLoading } = useServiceDetails();
   const { data: cartQuery } = useCartList();
+  const { data: comments } = useGetComments();
 
   const cart = useSelector((state) => state.cart.cartList);
+  const user = useSelector((state) => state.authedUser.user);
   const isLogged = useSelector((state) => state.authedUser.isLogged);
 
   const [inCart, setInCart] = useState(false);
@@ -43,7 +46,7 @@ const ServiceDetails = () => {
   const [cartObj, setCartObj] = useState({
     service_id: service?.id,
     quantity: 1,
-    developments: [],
+    developments: []
   });
 
   useEffect(() => {
@@ -56,12 +59,22 @@ const ServiceDetails = () => {
             quantity: item.quantity,
             developments: item?.service?.developments
               ?.filter((dev) => dev.in_cart)
-              .map((dev) => dev.id),
+              .map((dev) => dev.id)
           }))
         )
       );
     }
   }, [cartQuery, dispatch]);
+
+  useEffect(() => {
+    if (
+      service?.accepted === 0 &&
+      service?.refuse_reason !== null &&
+      service?.user_id !== user?.id
+    ) {
+      navigate("/services");
+    }
+  }, [service, user]);
 
   useEffect(() => {
     if (cart && service) {
@@ -82,7 +95,7 @@ const ServiceDetails = () => {
         id: itemFromCart?.id,
         service_id: service.id,
         quantity: itemFromCart ? itemFromCart.quantity : 1,
-        developments: itemFromCart ? itemFromCart.developments : [],
+        developments: itemFromCart ? itemFromCart.developments : []
       });
       setTotalPrice(
         (servicePrice || 0) +
@@ -108,7 +121,7 @@ const ServiceDetails = () => {
     } else {
       setCartObj((prevCartObj) => ({
         ...prevCartObj,
-        quantity: prevCartObj.quantity + 1,
+        quantity: prevCartObj.quantity + 1
       }));
     }
     const newQuantity = cartObj.quantity + 1;
@@ -136,7 +149,7 @@ const ServiceDetails = () => {
       } else {
         setCartObj((prevCartObj) => ({
           ...prevCartObj,
-          quantity: prevCartObj.quantity - 1,
+          quantity: prevCartObj.quantity - 1
         }));
       }
       const newQuantity = cartObj.quantity - 1;
@@ -160,7 +173,7 @@ const ServiceDetails = () => {
         await updateDevelopmentsInCart(
           {
             cart_id: cartObj?.id,
-            development_id: id,
+            development_id: id
           },
           queryClient
         );
@@ -172,7 +185,7 @@ const ServiceDetails = () => {
         ...prevCartObj,
         developments: isChecked
           ? prevCartObj.developments.filter((item) => item !== id)
-          : [...prevCartObj.developments, id],
+          : [...prevCartObj.developments, id]
       }));
     }
     setTotalPrice((prevTotalPrice) =>
@@ -207,6 +220,15 @@ const ServiceDetails = () => {
         <>
           <section className="service-details container">
             <div className="row">
+              {service?.refuse_reason !== null && (
+                <div className="col-12 p-2 mb-3">
+                  <div className="refuse_reason">
+                    <p>
+                      {t("services.refuseReason")}: {service?.refuse_reason}
+                    </p>
+                  </div>
+                </div>
+              )}
               <div className="col-lg-7 col-12 p-2">
                 <div className="service-content">
                   <ServiceSlider images={service?.images} />
@@ -227,7 +249,7 @@ const ServiceDetails = () => {
                       </Link>
                     </p>
                     <p>{service?.description}</p>
-                    {service.is_my_service === false && (
+                    {service?.is_my_service === false && (
                       <>
                         {service?.developments &&
                           service?.developments.length > 0 && (
@@ -283,7 +305,7 @@ const ServiceDetails = () => {
                               onChange={(e) =>
                                 setCartObj({
                                   ...cartObj,
-                                  quantity: e.target.value,
+                                  quantity: e.target.value
                                 })
                               }
                             />

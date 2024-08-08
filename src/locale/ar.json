@@ -312,7 +312,9 @@
     "developmentsAvailable": "تطويرات متوفرة لهذه الخدمة",
     "orderNow": "طلب الان",
     "instructions": "تعليمات للمشتري",
-    "inReview": "في المراجعة"
+    "inReview": "في المراجعة",
+    "refused": "مرفوضة",
+    "refuseReason": "سبب الرفض"
   },
   "comments": {
     "comments": "تعليقات",
@@ -423,7 +425,8 @@
     "update": "تحديث",
     "attachments": "المرفقات",
     "requestRefused": "تم رفض الطلب",
-    "requestAccepted": "تم قبول الطلب"
+    "requestAccepted": "تم قبول الطلب",
+    "refused": "مرفوض"
   },
   "chat": {
     "block": "حظر",

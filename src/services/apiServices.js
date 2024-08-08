@@ -38,7 +38,7 @@ export async function getServicesByFilter(
     return {
       data: req.data.data,
       total: req.data.total
-    }
+    };
   } catch (err) {
     throw new Error(err.message);
   }
@@ -109,6 +109,17 @@ export async function deleteService(id, queryClient) {
 export async function getRates(id) {
   try {
     const req = await axios.post("/get_rates", {
+      id
+    });
+    return req.data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+export async function getComments(id) {
+  try {
+    const req = await axios.post("/get_comments", {
       id
     });
     return req.data;
