@@ -44,7 +44,7 @@ const CollectionCard = ({ collection }) => {
   };
 
   return (
-    <div className="col-6 p-2">
+    <div className="col-lg-6 col-12 p-2">
       <div className="collectionCard">
         <div className="info">
           <h6>

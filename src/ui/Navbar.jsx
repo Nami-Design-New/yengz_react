@@ -133,7 +133,7 @@ const Navbar = () => {
           className={`small-media-menu  ${isSmallMediaMenuOpen ? "show" : ""}`}
         >
           {isLogged && (
-            <div className="user">
+            <div className="user" onClick={closeSmallMediaMenu}>
               <Link to="/profile" className="avatar" onClick={closeProfileMenu}>
                 <img src={user?.image} alt="" />
               </Link>
@@ -222,7 +222,7 @@ const Navbar = () => {
             {isLogged && (
               <>
                 <li className="nav-link" onClick={closeSmallMediaMenu}>
-                  <Link>
+                  <Link to="/edit-profile">
                     <i className="fa-sharp fa-solid fa-pen-to-square"></i>
                     {t("navbar.editProfile")}
                   </Link>
@@ -563,6 +563,7 @@ const Navbar = () => {
         showModal={isDeleteAccountModalOpen}
         setShowModal={setIsDeleteAccountModalOpen}
         loading={deleteLoading}
+        text={t("navbar.areYouSureYouWantToDeleteYourAccount")}
         eventFunction={handleDeleteAccount}
       />
     </header>

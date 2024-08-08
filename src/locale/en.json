@@ -37,7 +37,8 @@
     "complaints-suggestions": "Complaints and Suggestions",
     "my-collections": "My Collections",
     "best-freelancers": "Best Freelancers",
-    "blogs": "Blogs"
+    "blogs": "Blogs",
+    "requests": "Requests"
   },
   "auth": {
     "loginPageTitle": "Login",
@@ -100,7 +101,8 @@
     "idBack": "Back image of national ID",
     "idSelfie": "Selfie with national ID",
     "verificationSuccess": "Your details have been successfully sent and are currently being reviewed. You will be notified via the registered email.",
-    "doYouWantChangePassword": "Do you want to change your password?"
+    "doYouWantChangePassword": "Do you want to change your password?",
+    "areYouSureYouWantToDeleteYourAccount": "Are you sure you want to delete your account?"
   },
   "navbar": {
     "addService": "Add Service",
@@ -230,7 +232,8 @@
     "verifyYourIdentity": "Verify Your Identity",
     "verifyPhone": "Verify Phone Number",
     "areYouSureWantToDeleteThisService": "Are you sure you want to delete this service?",
-    "deleteService": "Delete"
+    "deleteService": "Delete",
+    "profileEditedSuccessfully": "Profile edited successfully"
   },
   "addService": {
     "serviceTitle": "Service Title",
