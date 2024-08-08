@@ -1,14 +1,14 @@
-import ChatRoom from "../features/chat/ChatRoom";
+import { useEffect, useState } from "react";
 import { IconBrandWechat } from "@tabler/icons-react";
 import { useTranslation } from "react-i18next";
-import { useEffect, useState } from "react";
-import "../Assets/styles/Chat.css";
+import { useSelector } from "react-redux";
 import ChatSideBar from "../features/chat/ChatSideBar";
+import ChatRoom from "../features/chat/ChatRoom";
 import useGetChats from "../features/chat/useGetChats";
 import Lottie from "react-lottie";
 import DataLoader from "./../ui/DataLoader";
 import useGetChat from "../features/chat/useGetChat";
-import { useDispatch, useSelector } from "react-redux";
+import "../Assets/styles/Chat.css";
 
 const Chats = () => {
   const defaultOptions = {
@@ -16,11 +16,10 @@ const Chats = () => {
     autoplay: true,
     animationData: require("../Assets/lotties/chat.json"),
     rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
+      preserveAspectRatio: "xMidYMid slice"
+    }
   };
 
-  const dispatch = useDispatch();
   const targetRoom = useSelector((state) => state.requestRoom.requestRoom);
   const { t } = useTranslation();
   const [showChatsMenu, setShowChatsMenu] = useState(false);
@@ -31,7 +30,7 @@ const Chats = () => {
     request_type: targetChat?.request_type,
     owner_id: targetChat?.owner_id,
     applied_id: targetChat?.applied_id,
-    request_id: targetChat?.request_id,
+    request_id: targetChat?.request_id
   });
 
   useEffect(() => {

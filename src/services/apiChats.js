@@ -21,7 +21,7 @@ export async function getTargetChat(data) {
   }
 }
 
-export const createMessage = async (data, queryClient) => {
+export const createMessage = async (data) => {
   try {
     const res = await axios.post("/user/create_message", data, {
       headers: {
@@ -29,7 +29,7 @@ export const createMessage = async (data, queryClient) => {
       }
     });
     if (res.data.code === 200) {
-      queryClient.invalidateQueries(["chats", "chat-object"]);
+      return res.data.data;
     }
   } catch (error) {
     console.error("Error fetching profile:", error.message);
