@@ -232,19 +232,6 @@ input[type=checkbox]:checked::after {
   height: 100% !important;
 }
 
-.modal-header {
-  border-bottom: 0;
-}
-.modal-header .modal-title {
-  font-size: 14px;
-}
-.modal-header .btn-close {
-  box-shadow: none !important;
-  background-image: url("../images/close.svg");
-  margin-left: 0;
-  margin-right: auto;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -272,6 +259,18 @@ body {
   ////////////////// LTR ////////////////////////
   ////////////////////////////////////////////////
   /////////////////////////////////////////////*/
+}
+body .modal-header {
+  border-bottom: 0;
+}
+body .modal-header .modal-title {
+  font-size: 14px;
+}
+body .modal-header .btn-close {
+  box-shadow: none !important;
+  background-image: url("../images/close.svg");
+  margin-left: 0;
+  margin-right: auto;
 }
 body header {
   position: sticky;
@@ -1325,7 +1324,7 @@ body main .profile-section .tab-content .services_grid .service-card {
 }
 @media screen and (max-width: 576px) {
   body main .profile-section .tab-content .services_grid .service-card {
-    flex: 1 0;
+    min-width: 100%;
   }
 }
 body main .profile-section .tab-content .services_grid .workCard {
@@ -1335,7 +1334,7 @@ body main .profile-section .tab-content .services_grid .workCard {
 }
 @media screen and (max-width: 576px) {
   body main .profile-section .tab-content .services_grid .workCard {
-    flex: 1 0;
+    min-width: 100%;
   }
 }
 body main .profile-section .tab-content .services_grid .workCard .img {
@@ -4057,7 +4056,6 @@ body .service-card {
   border-radius: 12px;
   background-color: var(--input-bg);
   overflow: hidden;
-  height: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -5585,6 +5583,10 @@ body.en header .tnavbar .loged-in-minor-menu .link .dropdown-menu.show {
   left: initial !important;
   right: 0 !important;
 }
+body.en .modal-header .btn-close {
+  margin-right: 0 !important;
+  margin-left: auto !important;
+}
 body.en main .mainSliderContainer .swiper-slide {
   display: flex;
   justify-content: end;
@@ -5597,7 +5599,7 @@ body.en main .form .pass-group input {
   border-left: 1px solid var(--LightGray) !important;
   border-right: 0 !important;
 }
-body.en main .form .pass-group button {
+body.en main .form .pass-group span {
   border-radius: 0 12px 12px 0 !important;
   border-right: 1px solid var(--LightGray) !important;
   border-left: 0 !important;
