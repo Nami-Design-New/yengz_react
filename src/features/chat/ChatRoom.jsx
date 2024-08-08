@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { createMessage } from "../../services/apiChats";
-import { useQueryClient } from "@tanstack/react-query";
+import { formatMessageTime } from "../../utils/helpers";
 import {
   IconFileFilled,
   IconMicrophone,
@@ -12,14 +12,14 @@ import {
   IconSend,
   IconTrash
 } from "@tabler/icons-react";
+import Pusher from "pusher-js";
 import avatar from "../../Assets/images/avatar.jpg";
 import deletedAccount from "../../Assets/images/deleted-account.jpg";
 import service from "../../Assets/images/bann.webp";
-import { formatMessageTime } from "../../utils/helpers";
 
 const ChatRoom = ({ chat }) => {
-  const queryClient = useQueryClient();
   const [loading, setLoading] = useState(false);
+  const [messages, setMessages] = useState([]);
   const [isRecording, setIsRecording] = useState(false);
   const [mediaRecorder, setMediaRecorder] = useState(null);
   const [recordingTime, setRecordingTime] = useState(0);
@@ -36,11 +36,39 @@ const ChatRoom = ({ chat }) => {
   });
 
   useEffect(() => {
+    if (chat) {
+      setMessages(chat?.messages.slice() || []);
+    }
+  }, [chat]);
+
+  function pushMessage(message) {
+    setMessages((prevMessages) => [...prevMessages, message]);
+  }
+
+  useEffect(() => {
+    const pusher = new Pusher("40956cc89171b3e710e6", {
+      cluster: "eu"
+    });
+
+    const channel = pusher.subscribe(`chat_${chat?.id}`);
+
+    channel.bind("new_message", function (data) {
+      console.log("Message received:", data?.message);
+      pushMessage(data?.message);
+    });
+
+    return () => {
+      channel.unbind_all();
+      channel.unsubscribe();
+    };
+  }, [chat?.id]);
+
+  useEffect(() => {
     if (chatContainerRef.current) {
       chatContainerRef.current.scrollTop =
         chatContainerRef.current.scrollHeight;
     }
-  }, [chat?.messages?.length]);
+  }, [messages]);
 
   useEffect(() => {
     return () => {
@@ -52,16 +80,18 @@ const ChatRoom = ({ chat }) => {
 
   const handleSendMessage = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
-      setLoading(true);
-      await createMessage(message, queryClient);
-      setMessage({ ...message, message: "", type: "" });
-      formRef.current.reset();
+      // Send the message to the server
+      const serverMessage = await createMessage(message);
+      console.log("Server response:", serverMessage);
     } catch (error) {
       console.error("Error sending message:", error);
     } finally {
-      setLoading(false);
+      formRef.current.reset();
+      setMessage({ ...message, message: "", type: "" });
       setRecordingTime(0);
+      setLoading(false);
     }
   };
 
@@ -159,28 +189,6 @@ const ChatRoom = ({ chat }) => {
               : t("chat.deletedAccount")}
           </h6>
         </div>
-        {/* <div className="dropdown setting">
-          <button
-            className="btn dropdown-toggle"
-            type="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            <IconDotsVertical stroke={2} />
-          </button>
-          <ul className="dropdown-menu">
-            <li>
-              <button className="dropdown-item">
-                <IconCircleOff stroke={2} /> {t("chat.block")}
-              </button>
-            </li>
-            <li>
-              <button className="dropdown-item">
-                <IconInfoCircle stroke={2} /> {t("chat.report")}
-              </button>
-            </li>
-          </ul>
-        </div> */}
       </div>
 
       {chat?.service && (
@@ -197,8 +205,8 @@ const ChatRoom = ({ chat }) => {
       )}
 
       <div className="inner-container" ref={chatContainerRef}>
-        {chat?.messages
-          ?.slice()
+        {messages
+          .slice()
           .reverse()
           .map((message) => (
             <div
@@ -213,7 +221,10 @@ const ChatRoom = ({ chat }) => {
                 <div className="message-content">
                   {message?.type === "text" && <p>{message?.message}</p>}
                   {message?.type === "audio" && (
-                    <audio controls src={message?.message} />
+                    <audio
+                      controls
+                      src={URL.createObjectURL(message?.message)}
+                    />
                   )}
                   {message?.type === "image" && (
                     <img
@@ -321,11 +332,7 @@ const ChatRoom = ({ chat }) => {
           </div>
 
           <button type="submit" disabled={loading}>
-            {loading ? (
-              <i className="fa-solid fa-spinner fa-spin" />
-            ) : (
-              <IconSend stroke={2} />
-            )}
+            <IconSend stroke={2} />
           </button>
         </form>
       </div>
