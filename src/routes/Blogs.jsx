@@ -18,7 +18,7 @@ function Blogs() {
             <div className="row">
               {blogs?.length > 0 ? (
                 blogs?.map((blog) => (
-                  <div className="col-lg-4 colmd-6 col-12 p-2" key={blog?.id}>
+                  <div className="col-lg-4 col-md-6 col-12 p-2" key={blog?.id}>
                     <BlogCard blog={blog} />
                   </div>
                 ))

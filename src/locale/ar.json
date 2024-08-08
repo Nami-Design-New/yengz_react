@@ -37,7 +37,8 @@
     "complaints-suggestions": "الشكاوي والمقترحات",
     "my-collections": "مجموعاتي",
     "best-freelancers": "افضل الموثقين",
-    "blogs": "المدونات"
+    "blogs": "المدونات",
+    "requests": "الطلبات"
   },
   "auth": {
     "loginPageTitle": "تسجيل الدخول",
@@ -100,7 +101,8 @@
     "idBack": "صورة الجهة الخلفية للهوية الوطنية",
     "idSelfie": "صورتك مع الهوية الوطنية",
     "verificationSuccess": "تم ارسال بياناتك بنجاح وجاري مراجعتها حالياً , سيتم اخطارك علي البريد الالكتروني المسجل لدينا",
-    "doYouWantChangePassword": "هل تريد تغيير كلمة المرور؟"
+    "doYouWantChangePassword": "هل تريد تغيير كلمة المرور؟",
+    "areYouSureYouWantToDeleteYourAccount": "هل أنت متأكد من أنك تريد حذف حسابك"
   },
   "navbar": {
     "addService": "اضف خدمة",
@@ -230,7 +232,8 @@
     "verifyYourIdentity": "توثيق هويتك",
     "verifyPhone": "توثيق رقم الجوال",
     "areYouSureWantToDeleteThisService": "هل انت متاكد من حذف هذا الخدمة؟",
-    "deleteService": "حذف"
+    "deleteService": "حذف",
+    "profileEditedSuccessfully": "تم تعديل الملف الشخصي بنجاح"
   },
   "addService": {
     "serviceTitle": "عنوان الخدمة",

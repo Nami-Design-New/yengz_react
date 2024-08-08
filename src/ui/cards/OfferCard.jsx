@@ -2,7 +2,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { formatTimeDifference, getTimeDifference } from "../../utils/helpers";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { IconDotsVertical, IconPencil, IconTrash } from "@tabler/icons-react";
+import {
+  IconCheck,
+  IconDotsVertical,
+  IconPencil,
+  IconTrash,
+  IconX
+} from "@tabler/icons-react";
 import { useState } from "react";
 import { requestChatRoom } from "../../redux/slices/requctRoom";
 import StarsList from "./../StarsList";
@@ -127,55 +133,37 @@ function OfferCard({ request, isMyProject, project }) {
           </div>
         </div>
         {(isMyProject || user?.id === request?.user?.id) && (
-          <div className="d-flex gap-3">
+          <div
+            className="d-flex gap-3 align-items-center"
+            style={{ height: "fit-content" }}
+          >
             {isMyProject && (
               <button className="butn" onClick={handleCreateRoom}>
                 <i className="fa-regular fa-message-lines"></i>
               </button>
             )}
             {request?.status === "in_progress" && (
-              <div className="dropdown setting">
-                <button
-                  className="btn dropdown-toggle"
-                  type="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <IconDotsVertical stroke={2} />
-                </button>
-                <ul className="dropdown-menu">
-                  {user?.id === request?.user?.id ? (
-                    <>
-                      <li>
-                        <button
-                          className="dropdown-item"
-                          onClick={() => setShowEditModal(true)}
-                        >
-                          <IconPencil stroke={2} /> {t("projects.editOffer")}
-                        </button>
-                      </li>
-                    </>
-                  ) : (
-                    <>
-                      <li>
-                        <button
-                          className="dropdown-item"
-                          onClick={() => setShowConfirmPayModel(true)}
-                        >
-                          {t("projects.acceptOffer")}
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          className="dropdown-item"
-                          onClick={handleRefuseOffer}
-                        >
-                          {t("projects.refuseOffer")}
-                        </button>
-                      </li>
-                    </>
-                  )}
-                </ul>
+              <div className="setting">
+                {user?.id === request?.user?.id ? (
+                  <button
+                    className="refuse_btn"
+                    onClick={() => setShowEditModal(true)}
+                  >
+                    <IconPencil stroke={2} /> {t("projects.editOffer")}
+                  </button>
+                ) : (
+                  <>
+                    <button
+                      className="edit_btn"
+                      onClick={() => setShowConfirmPayModel(true)}
+                    >
+                      <IconCheck stroke={1.25} /> {t("projects.acceptOffer")}
+                    </button>
+                    <button className="refuse_btn" onClick={handleRefuseOffer}>
+                      <IconX stroke={1.25} /> {t("projects.refuseOffer")}
+                    </button>
+                  </>
+                )}
               </div>
             )}
           </div>

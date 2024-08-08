@@ -117,7 +117,7 @@ const EditProfile = () => {
     try {
       const res = await axios.request(request);
       if (res.data.code === 200) {
-        toast.success(res.data.message);
+        toast.success(t("profile.profileEditedSuccessfully"));
         dispatch(setUser(res.data.data));
         navigate("/profile");
       } else {

@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import {
   IconCirclePlus,
   IconInfoCircle,
-  IconRosetteDiscountCheckFilled,
+  IconRosetteDiscountCheckFilled
 } from "@tabler/icons-react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -53,14 +53,14 @@ const UserProfileCard = ({ user, isMyAccount }) => {
                   <OverlayTrigger
                     placement="bottom"
                     overlay={renderTooltip({
-                      content: t("profile.totalBalanceTooltip"),
+                      content: t("profile.totalBalanceTooltip")
                     })}
                   >
                     <i className="info-label fa-light fa-circle-info"></i>
                   </OverlayTrigger>
                 </span>
                 <h6>
-                  {user?.total_balance}
+                  {user?.total_balance}{" "}
                   <i className="fa-solid fa-dollar-sign"></i>
                 </h6>
               </div>
@@ -72,14 +72,14 @@ const UserProfileCard = ({ user, isMyAccount }) => {
                   <OverlayTrigger
                     placement="bottom"
                     overlay={renderTooltip({
-                      content: t("profile.pendingBalanceTooltip"),
+                      content: t("profile.pendingBalanceTooltip")
                     })}
                   >
                     <i className="info-label fa-light fa-circle-info"></i>
                   </OverlayTrigger>
                 </span>
                 <h6>
-                  {user?.pending_balance}
+                  {user?.pending_balance}{" "}
                   <i className="fa-solid fa-dollar-sign"></i>
                 </h6>
               </div>
@@ -91,7 +91,7 @@ const UserProfileCard = ({ user, isMyAccount }) => {
                   <OverlayTrigger
                     placement="bottom"
                     overlay={renderTooltip({
-                      content: t("profile.availableBalanceTooltip"),
+                      content: t("profile.availableBalanceTooltip")
                     })}
                   >
                     <i className="info-label fa-light fa-circle-info"></i>
@@ -99,7 +99,7 @@ const UserProfileCard = ({ user, isMyAccount }) => {
                 </span>
 
                 <h6>
-                  {user?.available_balance}
+                  {user?.available_balance}{" "}
                   <i className="fa-solid fa-dollar-sign"></i>
                 </h6>
               </div>
@@ -111,7 +111,7 @@ const UserProfileCard = ({ user, isMyAccount }) => {
                   <OverlayTrigger
                     placement="bottom"
                     overlay={renderTooltip({
-                      content: t("profile.walletTooltip"),
+                      content: t("profile.walletTooltip")
                     })}
                   >
                     <i className="info-label fa-light fa-circle-info"></i>

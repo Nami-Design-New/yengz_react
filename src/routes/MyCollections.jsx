@@ -18,7 +18,7 @@ const MyCollections = () => {
           <DataLoader />
         ) : (
           <div className="container">
-            <div className="row justify-content-center">
+            <div className="row">
               {collections && collections?.length > 0 ? (
                 collections?.map((collection) => (
                   <CollectionCard key={collection.id} collection={collection} />

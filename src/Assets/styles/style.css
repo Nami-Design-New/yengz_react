@@ -1201,10 +1201,9 @@ body main .profile-section .profile-descripe .cash .row {
 body main .profile-section .profile-descripe .cash .cash-info {
   display: flex;
   flex-direction: column;
-  align-items: center;
   background: var(--main10-color);
   gap: 4px;
-  padding: 8px;
+  padding: 12px;
   border-radius: 8px;
 }
 body main .profile-section .profile-descripe .cash .cash-info span {
@@ -1220,6 +1219,7 @@ body main .profile-section .profile-descripe .cash .cash-info span {
 body main .profile-section .profile-descripe .cash .cash-info h6 {
   color: var(--main-color);
   font-weight: bold;
+  margin: 0;
   font-size: 20px;
 }
 body main .profile-section .profile-descripe .cash .cash-info h6 i {
@@ -4873,6 +4873,31 @@ body .requestDetails .allComments .userCommented .lastUser .time i {
   justify-content: center;
   align-items: center;
 }
+body .requestDetails .allComments .setting {
+  display: flex;
+  height: -moz-fit-content;
+  height: fit-content;
+  gap: 12px;
+}
+body .requestDetails .allComments .setting button {
+  padding: 6px 16px;
+  border-radius: 8px;
+  border: none;
+  background: none;
+  outline: none;
+  text-wrap: nowrap;
+}
+body .requestDetails .allComments .setting button.edit_btn {
+  background-color: #26ba35;
+  color: var(--white-color);
+}
+body .requestDetails .allComments .setting button.refuse_btn {
+  background-color: #0d0d0d;
+  color: var(--white-color);
+}
+body .requestDetails .allComments .setting button svg {
+  height: 20px;
+}
 body .requestDetails .allComments .text {
   font-size: 14px;
 }
@@ -5556,6 +5581,10 @@ body.en {
 body.en header .tnavbar .loged-in-minor-menu .link .btns a i {
   transform: scaleX(-1);
 }
+body.en header .tnavbar .loged-in-minor-menu .link .dropdown-menu.show {
+  left: initial !important;
+  right: 0 !important;
+}
 body.en main .mainSliderContainer .swiper-slide {
   display: flex;
   justify-content: end;
@@ -6055,16 +6084,15 @@ body.en main .row-head a i {
 }
 
 .blogs {
-  padding: 120px 0 40px;
+  padding: 40px 0;
 }
 .blogs .blog {
   height: 100%;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  transition: var(--transition);
   background: var(--white-color);
-  box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.1019607843);
+  box-shadow: rgba(99, 99, 99, 0.1) 0px 2px 8px 0px;
   border-radius: 12px;
   overflow: hidden;
 }
@@ -6101,15 +6129,6 @@ body.en main .row-head a i {
   font-size: 12px;
   line-height: 24px;
   color: var(--text-color);
-}
-.blogs .blog:hover {
-  transform: translateY(-5px);
-}
-.blogs .blog:hover .title {
-  color: var(--black-color);
-}
-.blogs .blog:hover .date i {
-  color: var(--whiteColor);
 }
 .blogs .swiperControl {
   position: relative;

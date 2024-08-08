@@ -1,7 +1,5 @@
-import { useState } from "react";
 import { Modal } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import Lottie from "react-lottie";
 import SubmitButton from "../form-elements/SubmitButton";
 
 function DeleteAcountModal({
@@ -16,7 +14,7 @@ function DeleteAcountModal({
     <Modal show={showModal} onHide={() => setShowModal(false)} centered>
       <Modal.Header className="pb-0" closeButton />
       <Modal.Body className="pay_modal">
-        <h3>{t("auth.areYouSureYouWantToDelete")} </h3>
+        <h3>{t("auth.areYouSureYouWantToDeleteYourAccount")} </h3>
         <div className="d-flex justify-content-end gap-3 mt-4">
           <button onClick={() => setShowModal(false)} className="cancel-btn">
             {t("cancel")}
