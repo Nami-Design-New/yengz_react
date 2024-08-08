@@ -5886,3 +5886,13 @@ body {
     }
   }
 }
+.refuse_reason {
+  width: 100%;
+  padding: 12px;
+  background: #ff00001a;
+  border-radius: 12px;
+  p {
+    margin-bottom: 0;
+    color: red;
+  }
+}

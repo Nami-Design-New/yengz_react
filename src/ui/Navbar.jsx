@@ -75,7 +75,6 @@ const Navbar = () => {
   }
 
   const handleLang = (newLang) => {
-    navigate(0);
     dispatch(setLanguage(newLang));
     i18next.changeLanguage(newLang);
 

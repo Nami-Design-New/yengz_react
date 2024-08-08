@@ -44,7 +44,7 @@ function ProjectCard({ project }) {
     <Link
       to={`/projects/${project?.id}`}
       className="singleRequst"
-      onClick={(e) => e.stopPropagation()} // Prevent card navigation
+      onClick={(e) => e.stopPropagation()}
     >
       <div className="row">
         <div className="col-12 p-0">
@@ -81,7 +81,11 @@ function ProjectCard({ project }) {
             </div>
             {user?.id === project?.user?.id && (
               <div className="status_action">
-                <span className="status">{project?.status_name}</span>
+                <span className="status">
+                  {project?.accepted === 0 && project?.refuse_reason !== null
+                    ? t("projects.refused")
+                    : project?.status_name}
+                </span>
                 {(project?.status_name === "جديد" ||
                   project?.status_name === "new") && (
                   <>

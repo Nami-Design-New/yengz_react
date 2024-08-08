@@ -1,5 +1,5 @@
-import React from "react";
-import { Link, useParams } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import SectionHeader from "../ui/SectionHeader";
 import useGetProject from "./../features/projects/useGetProject";
@@ -8,13 +8,26 @@ import AboutProjectCard from "../ui/cards/AboutProjectCard";
 import AddOffer from "../features/projects/AddOffer";
 import useGetProjectRequests from "../features/projects/useGetProjectRequests";
 import OfferCard from "../ui/cards/OfferCard";
+import { useSelector } from "react-redux";
 
 function ProjectDetails() {
   const { t } = useTranslation();
   const { id } = useParams();
+  const navigate = useNavigate();
   const { data: project, isLoading } = useGetProject();
   const { data: requests, isLoading: isLoadingRequests } =
     useGetProjectRequests(id, "global");
+  const user = useSelector((state) => state.authedUser.user);
+
+  useEffect(() => {
+    if (
+      project?.accepted === 0 &&
+      project?.refuse_reason !== null &&
+      project?.user?.id !== user?.id
+    ) {
+      navigate("/projects");
+    }
+  }, [project, user]);
 
   return isLoading || isLoadingRequests ? (
     <DataLoader />
@@ -24,6 +37,15 @@ function ProjectDetails() {
       <section className="requestDetails">
         <div className="container">
           <div className="row ">
+            {project?.refuse_reason !== null && (
+              <div className="col-12 p-2 mb-3">
+                <div className="refuse_reason">
+                  <p>
+                    {t("services.refuseReason")}: {project?.refuse_reason}
+                  </p>
+                </div>
+              </div>
+            )}
             <div className="col-lg-8 col-12 p-2 d-flex flex-column gap-3">
               {/* post details */}
               <div className="postDetails w-100">

@@ -312,7 +312,9 @@
     "developmentsAvailable": "Available Add-ons for This Service",
     "orderNow": "Order Now",
     "instructions": "Instructions for Buyer",
-    "inReview": "In Review"
+    "inReview": "In Review",
+    "refused": "Refused",
+    "refuseReason": "Reason for Refusal"
   },
   "comments": {
     "comments": "Comments",
@@ -423,7 +425,8 @@
     "update": "Update",
     "attachments": "Attachments",
     "requestRefused": "Request Rejected",
-    "requestAccepted": "Request Accepted"
+    "requestAccepted": "Request Accepted",
+    "refused": "Refused"
   },
   "chat": {
     "block": "Block",

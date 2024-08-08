@@ -6253,4 +6253,15 @@ body.en main .row-head a i {
 .blogDetails .swiper-button-next:hover,
 .blogDetails .swiper-button-prev:hover {
   background: var(--main-color);
+}
+
+.refuse_reason {
+  width: 100%;
+  padding: 12px;
+  background: rgba(255, 0, 0, 0.1019607843);
+  border-radius: 12px;
+}
+.refuse_reason p {
+  margin-bottom: 0;
+  color: red;
 }/*# sourceMappingURL=style.css.map */
