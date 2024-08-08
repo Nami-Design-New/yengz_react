@@ -21,6 +21,7 @@ import useCartList from "../features/cart/useCartList";
 import DataLoader from "./../ui/DataLoader";
 import SimilarServices from "./../features/services/SimilarServices";
 import CollectionModal from "../ui/modals/CollectionModal";
+import useGetComments from "../features/services/useGetComments";
 
 const ServiceDetails = () => {
   const { t } = useTranslation();
@@ -32,6 +33,7 @@ const ServiceDetails = () => {
   const { data: rates } = useGetRates();
   const { data: service, isLoading } = useServiceDetails();
   const { data: cartQuery } = useCartList();
+  const { data: comments } = useGetComments();
 
   const cart = useSelector((state) => state.cart.cartList);
   const user = useSelector((state) => state.authedUser.user);
@@ -221,7 +223,9 @@ const ServiceDetails = () => {
               {service?.refuse_reason !== null && (
                 <div className="col-12 p-2 mb-3">
                   <div className="refuse_reason">
-                    <p>{t("services.refuseReason")}: {service?.refuse_reason}</p>
+                    <p>
+                      {t("services.refuseReason")}: {service?.refuse_reason}
+                    </p>
                   </div>
                 </div>
               )}
