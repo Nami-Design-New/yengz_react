@@ -143,13 +143,15 @@ const Login = () => {
     window.AppleID.auth.init({
       clientId: process.env.REACT_APP_APPLE_CLIENT_ID,
       scope: "name email",
-      redirectURI: process.env.REACT_APP_APPLE_REDIRECT_URI
+      redirectURI: process.env.REACT_APP_APPLE_REDIRECT_URI,
+      usePopup: true,
     });
 
     window.AppleID.auth
       .signIn()
       .then((response) => {
         console.log(response);
+        alert(JSON.stringify(response));
       })
       .catch((error) => {
         console.error("Apple Sign-In Error:", error);
