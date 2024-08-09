@@ -1416,10 +1416,11 @@ body {
             .owner {
               display: flex;
               align-items: center;
-              gap: 16px;
+              gap: 12px;
               .img {
                 border-radius: 50%;
                 width: 92px;
+                min-width: 92px;
                 height: 100%;
                 position: relative;
                 .status {
@@ -1447,6 +1448,7 @@ body {
                 }
                 @media (max-width: 576px) {
                   width: 70px;
+                  min-width: 70px;
                   height: 70px;
                 }
               }
@@ -1457,6 +1459,7 @@ body {
                 gap: 5px;
                 h6 {
                   font-size: 22px;
+                  margin: 0;
                   color: var(--black-color);
                   font-weight: bold;
                   @media (max-width: 576px) {
@@ -1479,6 +1482,9 @@ body {
               @include centerFlex();
               gap: 18px;
               padding: 0 8px;
+              @media (max-width: 576px) {
+                gap: 12px;
+              }
               .butn {
                 width: 40px;
                 height: 40px;

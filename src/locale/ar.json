@@ -267,7 +267,8 @@
     "serviceDeleted": "تم حذف الخدمة بنجاح",
     "noChangesMade": "لم يتم اكتشاف أي تغييرات. يرجى إجراء بعض التحديثات قبل الإرسال.",
     "SimilarServices": "خدمات مماثلة ",
-    "yourDuesAfterfees": "المستحقات بعد الرسوم"
+    "yourDuesAfterfees": "المستحقات بعد الرسوم",
+    "success": "تم الاضافة بنجاح"
   },
   "search": {
     "searchFor": "ابحث عن...",

@@ -1515,11 +1515,12 @@ body main .service-details .service-content .content .service-owner-card {
 body main .service-details .service-content .content .service-owner-card .owner {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
 }
 body main .service-details .service-content .content .service-owner-card .owner .img {
   border-radius: 50%;
   width: 92px;
+  min-width: 92px;
   height: 100%;
   position: relative;
 }
@@ -1552,6 +1553,7 @@ body main .service-details .service-content .content .service-owner-card .owner 
 @media (max-width: 576px) {
   body main .service-details .service-content .content .service-owner-card .owner .img {
     width: 70px;
+    min-width: 70px;
     height: 70px;
   }
 }
@@ -1563,6 +1565,7 @@ body main .service-details .service-content .content .service-owner-card .owner 
 }
 body main .service-details .service-content .content .service-owner-card .owner .title h6 {
   font-size: 22px;
+  margin: 0;
   color: var(--black-color);
   font-weight: bold;
 }
@@ -1589,6 +1592,11 @@ body main .service-details .service-content .content .service-owner-card .btns {
   justify-content: center;
   gap: 18px;
   padding: 0 8px;
+}
+@media (max-width: 576px) {
+  body main .service-details .service-content .content .service-owner-card .btns {
+    gap: 12px;
+  }
 }
 body main .service-details .service-content .content .service-owner-card .btns .butn {
   width: 40px;
