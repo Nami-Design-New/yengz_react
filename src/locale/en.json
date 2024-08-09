@@ -364,7 +364,9 @@
     "collectionDeletedSuccessfully": "Collection deleted successfully",
     "editCollection": "Edit Collection",
     "edit": "Edit",
-    "collectionUpdated": "Collection updated successfully"
+    "collectionUpdated": "Collection updated successfully",
+    "youDontHaveEnoughBallance": "You do not have enough credit to pay: ",
+    "chargeWallet": "Charge Wallet"
   },
   "recievedOrders": {
     "title": "Received Orders",

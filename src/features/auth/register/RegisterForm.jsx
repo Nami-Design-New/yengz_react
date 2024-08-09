@@ -103,7 +103,6 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
 
   const handleGoogleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
-      console.log("Google Login Success:", tokenResponse);
       try {
         const res = await axios.post("/user/social_login", {
           login_from: "google",
@@ -142,6 +141,7 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
 
   const handleAppleLogin = async (response) => {
     try {
+      console.log("Apple Login Success:", response);
       const res = await axios.post("/user/social_login", {
         login_from: "apple",
         token: response.code
@@ -170,7 +170,7 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
       }
     } catch (error) {
       toast.error(t("auth.loginErorr"));
-      throw new Error(error.message);
+      console.error("Apple Login Error:", error);
     }
   };
 

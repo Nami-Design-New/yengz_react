@@ -35,7 +35,7 @@ const Cart = () => {
         quantity: item?.quantity,
         developments: item?.service?.developments
           ?.filter((dev) => dev.in_cart !== false)
-          .map((dev) => dev.id),
+          .map((dev) => dev.id)
       }));
       setCartObjList(newCartObjList);
       setTotalCartPrice(
@@ -56,7 +56,7 @@ const Cart = () => {
             quantity: item.quantity,
             developments: item?.service?.developments?.map(
               (dev) => dev.in_cart === false && dev.id
-            ),
+            )
           }))
         )
       );
@@ -90,6 +90,15 @@ const Cart = () => {
       throw new Error(error.message);
     } finally {
       setPayLoading(false);
+    }
+  };
+
+  const chargeBallance = async () => {
+    try {
+      
+    } catch (error) {
+      throw new Error(error.message);
+    } finally {
     }
   };
 
@@ -165,9 +174,9 @@ const Cart = () => {
         ballance={user?.wallet}
         cartTotalPrice={totalCartPrice}
         eventFunction={handlePlaceOrder}
+        chargeBallance={chargeBallance}
         loading={payLoading}
       />
-
       <CollectionModal
         setShowModal={setShowCollectionModel}
         showModal={showCollectionModel}
