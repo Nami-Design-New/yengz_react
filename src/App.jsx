@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useCookies } from "react-cookie";
 import { useJwt } from "react-jwt";
@@ -10,12 +10,14 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 import routesConfig from "./routerConfig";
 import useGetProfile from "./features/profile/useGetProfile";
 import axios from "./utils/axios";
+import { toast } from "react-toastify";
 
 function App() {
   const dispatch = useDispatch();
   const lang = useSelector((state) => state.language.lang);
 
   const [cookies] = useCookies(["token", "id"]);
+  const [searchParams] = useSearchParams();
   const token = cookies?.token;
   const id = cookies?.id;
 
@@ -27,7 +29,7 @@ function App() {
     data: profile,
     isLoading,
     isFetched,
-    refetch,
+    refetch
   } = useGetProfile(id, Boolean(token && id && !isExpired));
 
   useEffect(() => {
@@ -50,6 +52,14 @@ function App() {
     const body = document.querySelector("body");
     lang === "en" ? body.classList.add("en") : body.classList.remove("en");
   }, [lang]);
+
+  useEffect(() => {
+    if (searchParams.status) {
+      searchParams.status === "paid"
+        ? toast.success("paymentSuccess")
+        : toast.error("paymentFailed");
+    }
+  }, [searchParams]);
 
   return isLoading ? (
     <Loader />

@@ -486,5 +486,7 @@
   "emptyCollection": "هذه المجموعة فارغة",
   "servicesCount": "الخدمات المعروضة",
   "orMore": "او أكثر",
-  "enterChargeValue": "ادخل قيمة الشحن"
+  "enterChargeValue": "ادخل قيمة الشحن",
+  "paymentFailed": "فشل الدفع",
+  "paymentSuccess": "تم الدفع بنجاح"
 }

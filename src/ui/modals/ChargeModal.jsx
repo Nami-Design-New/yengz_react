@@ -46,7 +46,7 @@ const ChargeModal = ({ showModal, setShowModal, cartTotalPrice }) => {
             to={
               chargeValue === 0 || chargeValue === ""
                 ? ""
-                : `/payment?charge=${chargeValue}`
+                : `https://api.ynjez.com/payment/${chargeValue}?Authorization=${token}&Redirect_url=${window.location.href}`
             }
           >
             {t("cart.chargeWallet")}
