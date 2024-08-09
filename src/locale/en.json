@@ -485,5 +485,6 @@
   "collectionsEmpty": "No collections",
   "emptyCollection": "This collection is empty",
   "servicesCount": "Displayed services",
-  "orMore": "or more"
+  "orMore": "or more",
+  "enterChargeValue": "Enter Charge Value"
 }

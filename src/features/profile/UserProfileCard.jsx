@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import avatar from "../../Assets/images/avatar.jpg";
 import StarsList from "../../ui/StarsList";
 import { useTranslation } from "react-i18next";
@@ -9,9 +9,11 @@ import {
 } from "@tabler/icons-react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import ChargeModal from "../../ui/modals/ChargeModal";
 
 const UserProfileCard = ({ user, isMyAccount }) => {
   const { t } = useTranslation();
+  const [showChargeModel, setShowChargeModel] = useState(false);
 
   const renderTooltip = (props) => (
     <Tooltip id="button-tooltip" {...props}>
@@ -97,7 +99,6 @@ const UserProfileCard = ({ user, isMyAccount }) => {
                     <i className="info-label fa-light fa-circle-info"></i>
                   </OverlayTrigger>
                 </span>
-
                 <h6>
                   {user?.available_balance}{" "}
                   <i className="fa-solid fa-dollar-sign"></i>
@@ -123,13 +124,20 @@ const UserProfileCard = ({ user, isMyAccount }) => {
               </div>
             </div>
             <div className="col-12 p-2 d-flex align-items-center justify-content-center">
-              <Link to="/deposit" className="deposit-link">
+              <Link
+                onClick={() => setShowChargeModel(true)}
+                className="deposit-link"
+              >
                 <IconCirclePlus stroke={2} /> {t("profile.deposit")}
               </Link>
             </div>
           </div>
         </div>
       )}
+      <ChargeModal
+        showModal={showChargeModel}
+        setShowModal={setShowChargeModel}
+      />
     </div>
   );
 };
