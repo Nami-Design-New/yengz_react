@@ -42,7 +42,12 @@ const ChatRoom = ({ chat }) => {
   }, [chat]);
 
   function pushMessage(message) {
-    setMessages((prevMessages) => [...prevMessages, message]);
+    if (message?.from_id === user?.id) {
+      return;
+    }
+    setMessages((prevMessages) => {
+      return [...prevMessages, message];
+    });
   }
 
   useEffect(() => {
@@ -81,15 +86,25 @@ const ChatRoom = ({ chat }) => {
   const handleSendMessage = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setMessages((prevMessages) => {
+      return [
+        ...prevMessages,
+        { ...message, id: Date.now(), created_at: Date.now() }
+      ];
+    });
+    formRef.current.reset();
+    setMessage({
+      from_id: user?.id,
+      chat_id: chat?.id,
+      message: "",
+      type: ""
+    });
+
     try {
-      // Send the message to the server
-      const serverMessage = await createMessage(message);
-      console.log("Server response:", serverMessage);
+      await createMessage(message);
     } catch (error) {
       console.error("Error sending message:", error);
     } finally {
-      formRef.current.reset();
-      setMessage({ ...message, message: "", type: "" });
       setRecordingTime(0);
       setLoading(false);
     }
@@ -205,58 +220,52 @@ const ChatRoom = ({ chat }) => {
       )}
 
       <div className="inner-container" ref={chatContainerRef}>
-        {messages
-          .slice()
-          .reverse()
-          .map((message) => (
-            <div
-              className={`message ${
-                message?.from_id === user?.id
-                  ? "sent-message"
-                  : "received-message"
-              }`}
-              key={message?.id}
-            >
-              <div className="d-flex flex-column">
-                <div className="message-content">
-                  {message?.type === "text" && <p>{message?.message}</p>}
-                  {message?.type === "audio" && (
-                    <audio
-                      controls
-                      src={URL.createObjectURL(message?.message)}
-                    />
-                  )}
-                  {message?.type === "image" && (
-                    <img
-                      style={{
-                        aspectRatio: 1 / 1,
-                        width: "300px",
-                        objectFit: "contain"
-                      }}
-                      src={message?.message}
-                      alt=""
-                    />
-                  )}
-                  {message?.type === "file" && (
-                    <Link to={message?.message} target="_blank">
-                      <div className="doc_message">
-                        <p>{extractTextAfterMessages(message?.message)}</p>
-                        <div className="icon">
-                          <IconFileFilled />
-                        </div>
+        {messages.map((message) => (
+          <div
+            className={`message ${
+              message?.from_id === user?.id
+                ? "sent-message"
+                : "received-message"
+            }`}
+            key={message?.id}
+          >
+            <div className="d-flex flex-column">
+              <div className="message-content">
+                {message?.type === "text" && <p>{message?.message}</p>}
+                {message?.type === "audio" && (
+                  <audio controls src={URL.createObjectURL(message?.message)} />
+                )}
+                {message?.type === "image" && (
+                  <img
+                    style={{
+                      aspectRatio: 1 / 1,
+                      width: "300px",
+                      objectFit: "contain"
+                    }}
+                    src={message?.message}
+                    alt=""
+                  />
+                )}
+                {message?.type === "file" && (
+                  <Link to={message?.message} target="_blank">
+                    <div className="doc_message">
+                      <p>{extractTextAfterMessages(message?.message)}</p>
+                      <div className="icon">
+                        <IconFileFilled />
                       </div>
-                    </Link>
-                  )}
-                </div>
-                <span
-                  dir="ltr"
-                  className={message?.from_id === user?.id ? "sen" : "rec"}
-                >
-                  {formatMessageTime(message?.created_at)}
-                </span>
+                    </div>
+                  </Link>
+                )}
               </div>
+              <span
+                dir="ltr"
+                className={message?.from_id === user?.id ? "sen" : "rec"}
+              >
+                {formatMessageTime(message?.created_at)}
+              </span>
             </div>
-          ))}
+          </div>
+        ))}
       </div>
 
       <div className="chat-send">
