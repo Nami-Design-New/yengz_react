@@ -139,6 +139,23 @@ const Login = () => {
     }
   };
 
+  const handleAppleSignIn = () => {
+    window.AppleID.auth.init({
+      clientId: process.env.REACT_APP_APPLE_CLIENT_ID,
+      scope: "name email",
+      redirectURI: process.env.REACT_APP_APPLE_REDIRECT_URI
+    });
+
+    window.AppleID.auth
+      .signIn()
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.error("Apple Sign-In Error:", error);
+      });
+  };
+
   return (
     <section className="login-section container">
       <h1 className="text-center">{t("auth.loginPageTitle")}</h1>
@@ -183,28 +200,9 @@ const Login = () => {
                 <img src={Google} alt="google" /> {t("auth.googleAccount")}
               </button>
 
-              <AppleLogin
-                clientId={process.env.REACT_APP_APPLE_CLIENT_ID}
-                redirectURI={process.env.REACT_APP_APPLE_REDIRECT_URI}
-                responseType="code"
-                responseMode="form_post"
-                scope="name email"
-                usePopup={true}
-                onSuccess={handleAppleLogin}
-                onError={(error) => {
-                  console.error("Apple Login Error:", error);
-                  toast.error(t("auth.appleLoginError"));
-                }}
-                render={(renderProps) => (
-                  <button
-                    onClick={renderProps.onClick}
-                    disabled={renderProps.disabled}
-                    className="auth_social_btn"
-                  >
-                    <img src={Apple} alt="apple" /> {t("auth.appleAccount")}
-                  </button>
-                )}
-              />
+              <button onClick={handleAppleSignIn} className="auth_social_btn">
+                <img src={Apple} alt="apple" /> {t("auth.appleAccount")}
+              </button>
             </div>
             <Link to="/register" className="noAccount">
               {t("auth.don'tHaveAccount")}{" "}

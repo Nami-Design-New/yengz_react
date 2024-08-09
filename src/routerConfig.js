@@ -35,7 +35,6 @@ import BestFreeLancers from "./routes/BestFreeLancers";
 import ErrorPage from "./routes/ErrorPage";
 import Blogs from "./routes/Blogs";
 import BlogDetails from "./routes/BlogDetails";
-import Payment from "./routes/Payment";
 
 const routesConfig = [
   { path: "/", element: <Home />, index: true },
@@ -72,7 +71,6 @@ const routesConfig = [
   { path: "/chat", element: <Chats />, protected: true },
   { path: "/notifications", element: <Notifcations />, protected: true },
   { path: "/complaints-suggestions", element: <Complaints />, protected: true },
-  { path: "/payment", element: <Payment />, protected: true },
   { path: "/contact", element: <Contact /> },
   { path: "/about/:id", element: <About /> },
   { path: "/about/preview/:id", element: <AboutPreview /> },

@@ -2,27 +2,16 @@ import { Link, useNavigate } from "react-router-dom";
 import { formatTimeDifference, getTimeDifference } from "../../utils/helpers";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  IconCheck,
-  IconDotsVertical,
-  IconPencil,
-  IconTrash,
-  IconX
-} from "@tabler/icons-react";
+import { IconCheck, IconPencil, IconX } from "@tabler/icons-react";
 import { useState } from "react";
 import { requestChatRoom } from "../../redux/slices/requctRoom";
-import StarsList from "./../StarsList";
-import EditProjectOfferModal from "../modals/EditProjectOfferModal";
-import OrderModal from "../modals/OrderModal";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { updateRequestStatus } from "../../services/apiProjects";
-import SubmitButton from "../form-elements/SubmitButton";
-import {
-  ORDER_STATUS_AR,
-  ORDER_STATUS_EN,
-  ORDER_STATUS_PERSENTAGE
-} from "../../utils/constants";
+import StarsList from "./../StarsList";
+import EditProjectOfferModal from "../modals/EditProjectOfferModal";
+import OrderModal from "../modals/OrderModal";
+import ChargeModal from "../modals/ChargeModal";
 
 function OfferCard({ request, isMyProject, project }) {
   const { t } = useTranslation();
@@ -30,7 +19,6 @@ function OfferCard({ request, isMyProject, project }) {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showConfirmPayModel, setShowConfirmPayModel] = useState(false);
   const { user } = useSelector((state) => state.authedUser);
-  const lang = useSelector((state) => state.language.lang);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -44,6 +32,7 @@ function OfferCard({ request, isMyProject, project }) {
     t
   );
   const [btn1Loading, setBtn1Loading] = useState(false);
+  const [showChargeModal, setShowChargeModal] = useState(false);
 
   function truncate(inputString) {
     let truncateStringResult;
@@ -155,7 +144,11 @@ function OfferCard({ request, isMyProject, project }) {
                   <>
                     <button
                       className="edit_btn"
-                      onClick={() => setShowConfirmPayModel(true)}
+                      onClick={() =>
+                        user?.wallet < request?.price
+                          ? setShowChargeModal(true)
+                          : setShowConfirmPayModel(true)
+                      }
                     >
                       <IconCheck stroke={1.25} /> {t("projects.acceptOffer")}
                     </button>
@@ -203,6 +196,11 @@ function OfferCard({ request, isMyProject, project }) {
         ballance={user?.wallet}
         cartTotalPrice={request?.price}
         eventFunction={handleAcceptOffer}
+      />
+      <ChargeModal
+        showModal={showChargeModal}
+        setShowModal={setShowChargeModal}
+        cartTotalPrice={request?.price}
       />
     </div>
   );
