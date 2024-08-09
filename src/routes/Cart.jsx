@@ -14,6 +14,7 @@ import DataLoader from "../ui/DataLoader";
 import SubmitButton from "./../ui/form-elements/SubmitButton";
 import OrderModal from "./../ui/modals/OrderModal";
 import CollectionModal from "../ui/modals/CollectionModal";
+import ChargeModal from "./../ui/modals/ChargeModal";
 
 const Cart = () => {
   const { data: cartQuery, isLoading } = useCartList();
@@ -26,6 +27,7 @@ const Cart = () => {
   const [payLoading, setPayLoading] = useState(false);
   const [showConfirmPayModel, setShowConfirmPayModel] = useState(false);
   const [showCollectionModel, setShowCollectionModel] = useState(false);
+  const [showChargeModel, setShowChargeModel] = useState(false);
   const user = useSelector((state) => state.authedUser.user);
 
   useEffect(() => {
@@ -95,11 +97,16 @@ const Cart = () => {
 
   const chargeBallance = async () => {
     try {
-      
     } catch (error) {
       throw new Error(error.message);
     } finally {
     }
+  };
+
+  const handleOrder = () => {
+    user?.wallet < totalCartPrice
+      ? setShowChargeModel(true)
+      : setShowConfirmPayModel(true);
   };
 
   return isLoading ? (
@@ -139,10 +146,7 @@ const Cart = () => {
               <div className="container">
                 <div className="row justify-content-center responsive-gap">
                   <div className="col-lg-6 col-md-6 col-12">
-                    <button
-                      className="order-now"
-                      onClick={() => setShowConfirmPayModel(true)}
-                    >
+                    <button className="order-now" onClick={handleOrder}>
                       {t("services.orderNow")}
                     </button>
                   </div>
@@ -181,6 +185,11 @@ const Cart = () => {
         setShowModal={setShowCollectionModel}
         showModal={showCollectionModel}
         showDeleteFromCart={true}
+      />
+      <ChargeModal
+        showModal={showChargeModel}
+        setShowModal={setShowChargeModel}
+        cartTotalPrice={totalCartPrice}
       />
     </section>
   );

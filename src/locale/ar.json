@@ -485,5 +485,6 @@
   "collectionsEmpty": "لا يوجد مجموعات",
   "emptyCollection": "هذه المجموعة فارغة",
   "servicesCount": "الخدمات المعروضة",
-  "orMore": "او أكثر"
+  "orMore": "او أكثر",
+  "enterChargeValue": "ادخل قيمة الشحن"
 }

@@ -182,6 +182,7 @@ const Login = () => {
               >
                 <img src={Google} alt="google" /> {t("auth.googleAccount")}
               </button>
+
               <AppleLogin
                 clientId={process.env.REACT_APP_APPLE_CLIENT_ID}
                 redirectURI={process.env.REACT_APP_APPLE_REDIRECT_URI}
