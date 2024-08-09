@@ -5,13 +5,13 @@ import { useCookies } from "react-cookie";
 import { useDispatch } from "react-redux";
 import { setIsLogged, setUser } from "../../../redux/slices/authedUser";
 import { useTranslation } from "react-i18next";
+import { useGoogleLogin } from "@react-oauth/google";
 import Google from "../../../Assets/images/Google.svg";
 import Apple from "../../../Assets/images/Apple.svg";
 import InputField from "../../../ui/form-elements/InputField";
 import PasswordField from "../../../ui/form-elements/PasswordField";
 import axios from "../../../utils/axios";
 import SubmitButton from "../../../ui/form-elements/SubmitButton";
-import { useGoogleLogin } from "@react-oauth/google";
 import AppleLogin from "react-apple-login";
 
 const Login = () => {
@@ -32,12 +32,8 @@ const Login = () => {
     });
   };
 
-  console.log("Apple Client ID:", process.env.REACT_APP_APPLE_CLIENT_ID);
-  console.log("Apple Redirect URI:", process.env.REACT_APP_APPLE_REDIRECT_URI);
-
   const handleGoogleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
-      console.log("Google Login Success:", tokenResponse);
       try {
         const res = await axios.post("/user/social_login", {
           login_from: "google",
@@ -76,12 +72,10 @@ const Login = () => {
 
   const handleAppleLogin = async (response) => {
     try {
-      // You receive an authorization code from Apple.
       console.log("Apple Login Success:", response);
-
       const res = await axios.post("/user/social_login", {
         login_from: "apple",
-        token: response.code // Send the code to your backend.
+        token: response.code
       });
 
       if (res.data.code === 200) {

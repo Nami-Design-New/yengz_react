@@ -364,7 +364,9 @@
     "collectionDeletedSuccessfully": "تم حذف المجموعة بنجاح",
     "editCollection": "تعديل المجموعة",
     "edit": "تعديل",
-    "collectionUpdated": "تم تعديل المجموعة بنجاح"
+    "collectionUpdated": "تم تعديل المجموعة بنجاح",
+    "youDontHaveEnoughBallance": "ليس لديك رصيد كافي لدفع مبلغ: ",
+    "chargeWallet": "شحن المحفظة"
   },
   "recievedOrders": {
     "title": "الطلبات المستلمة",
