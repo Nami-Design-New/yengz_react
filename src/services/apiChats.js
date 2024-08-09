@@ -12,7 +12,10 @@ export async function getChats() {
 
 export async function getTargetChat(data) {
   try {
-    const res = await axios.post("user/get_object_chat", data);
+    const res = await axios.post("user/get_object_chat", {
+      ...data,
+      orderBy: "asc"
+    });
     if (res.data.code === 200) {
       return res.data.data;
     }
