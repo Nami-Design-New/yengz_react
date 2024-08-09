@@ -32,6 +32,9 @@ const Login = () => {
     });
   };
 
+  console.log("Apple Client ID:", process.env.REACT_APP_APPLE_CLIENT_ID);
+  console.log("Apple Redirect URI:", process.env.REACT_APP_APPLE_REDIRECT_URI);
+
   const handleGoogleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
       console.log("Google Login Success:", tokenResponse);
@@ -184,12 +187,12 @@ const Login = () => {
               </button>
               <AppleLogin
                 clientId={process.env.REACT_APP_APPLE_CLIENT_ID}
-                redirectURI={process.env.REACT_APP_APPLE_REDIRECT_URL}
+                redirectURI={process.env.REACT_APP_APPLE_REDIRECT_URI}
                 responseType="code"
                 responseMode="form_post"
                 scope="name email"
                 usePopup={true}
-                onSuccess={handleAppleLogin}
+                onSuccess={(response) => console.log(response)}
                 onError={(error) => {
                   console.error("Apple Login Error:", error);
                   toast.error(t("auth.appleLoginError"));
