@@ -107,7 +107,7 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
       try {
         const res = await axios.post("/user/social_login", {
           login_from: "google",
-          token: tokenResponse.access_token
+          google_token: tokenResponse.access_token
         });
 
         if (res.data.code === 200) {
@@ -128,8 +128,6 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
           axios.defaults.headers.common[
             "Authorization"
           ] = `${res.data.data.token}`;
-        } else {
-          toast.error(t("auth.emailOrPasswordWrong"));
         }
       } catch (error) {
         toast.error(t("auth.loginErorr"));

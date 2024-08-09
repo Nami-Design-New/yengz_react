@@ -19,7 +19,6 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [, setCookie] = useCookies(["token", "id"]);
-
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
@@ -39,7 +38,7 @@ const Login = () => {
       try {
         const res = await axios.post("/user/social_login", {
           login_from: "google",
-          token: tokenResponse.access_token
+          google_token: tokenResponse.access_token
         });
 
         if (res.data.code === 200) {
@@ -60,8 +59,6 @@ const Login = () => {
           axios.defaults.headers.common[
             "Authorization"
           ] = `${res.data.data.token}`;
-        } else {
-          toast.error(t("auth.emailOrPasswordWrong"));
         }
       } catch (error) {
         toast.error(t("auth.loginErorr"));
@@ -186,8 +183,8 @@ const Login = () => {
                 <img src={Google} alt="google" /> {t("auth.googleAccount")}
               </button>
               <AppleLogin
-                clientId={"process.env.REACT_APP_APPLE_CLIENT_ID"}
-                redirectURI={"process.env.REACT_APP_APPLE_REDIRECT_URI"}
+                clientId={process.env.REACT_APP_APPLE_CLIENT_ID}
+                redirectURI={process.env.REACT_APP_APPLE_REDIRECT_URL}
                 responseType="code"
                 responseMode="form_post"
                 scope="name email"

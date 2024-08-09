@@ -267,7 +267,8 @@
     "serviceDeleted": "Service deleted successfully",
     "noChangesMade": "No changes detected. Please make some updates before submitting.",
     "SimilarServices": "Similar Services",
-    "yourDuesAfterfees": "Dues After Fees"
+    "yourDuesAfterfees": "Dues After Fees",
+    "success": "Service added successfully"
   },
   "search": {
     "searchFor": "Search for...",
