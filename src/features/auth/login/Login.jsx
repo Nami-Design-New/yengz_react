@@ -76,9 +76,12 @@ const Login = () => {
 
   const handleAppleLogin = async (response) => {
     try {
+      // You receive an authorization code from Apple.
+      console.log("Apple Login Success:", response);
+
       const res = await axios.post("/user/social_login", {
         login_from: "apple",
-        token: response.code
+        token: response.code // Send the code to your backend.
       });
 
       if (res.data.code === 200) {
@@ -104,7 +107,7 @@ const Login = () => {
       }
     } catch (error) {
       toast.error(t("auth.loginErorr"));
-      throw new Error(error.message);
+      console.error("Apple Login Error:", error);
     }
   };
 
@@ -192,7 +195,7 @@ const Login = () => {
                 responseMode="form_post"
                 scope="name email"
                 usePopup={true}
-                onSuccess={(response) => console.log(response)}
+                onSuccess={handleAppleLogin}
                 onError={(error) => {
                   console.error("Apple Login Error:", error);
                   toast.error(t("auth.appleLoginError"));
