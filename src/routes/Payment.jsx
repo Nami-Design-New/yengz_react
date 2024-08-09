@@ -22,7 +22,7 @@ const Payment = () => {
       <iframe
         ref={iframeRef}
         id="payment-iframe"
-        src={`http://api.ynjez.com/payment/${searchParams.get(
+        src={`https://api.ynjez.com/payment/${searchParams.get(
           "charge"
         )}/?token=${token}`}
         width="100%"
