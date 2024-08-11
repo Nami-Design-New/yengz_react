@@ -12,7 +12,6 @@ import InputField from "../../../ui/form-elements/InputField";
 import PasswordField from "../../../ui/form-elements/PasswordField";
 import axios from "../../../utils/axios";
 import SubmitButton from "../../../ui/form-elements/SubmitButton";
-import AppleLogin from "react-apple-login";
 
 const Login = () => {
   const { t } = useTranslation();
@@ -70,39 +69,24 @@ const Login = () => {
     }
   });
 
-  const handleAppleLogin = async (response) => {
-    try {
-      console.log("Apple Login Success:", response);
-      const res = await axios.post("/user/social_login", {
-        login_from: "apple",
-        token: response.code
-      });
+  const handleAppleSignIn = (e) => {
+    e.preventDefault();
+    window.AppleID.auth.init({
+      clientId: process.env.REACT_APP_APPLE_CLIENT_ID,
+      scope: "name email",
+      redirectURI: process.env.REACT_APP_APPLE_REDIRECT_URI,
+      usePopup: true
+    });
 
-      if (res.data.code === 200) {
-        toast.success(t("auth.loginSuccess"));
-        dispatch(setUser(res.data.data));
-        dispatch(setIsLogged(true));
-        navigate("/");
-        setCookie("token", res.data.data.token, {
-          path: "/",
-          secure: true,
-          sameSite: "Strict"
-        });
-        setCookie("id", res.data.data.id, {
-          path: "/",
-          secure: true,
-          sameSite: "Strict"
-        });
-        axios.defaults.headers.common[
-          "Authorization"
-        ] = `${res.data.data.token}`;
-      } else {
-        toast.error(t("auth.emailOrPasswordWrong"));
-      }
-    } catch (error) {
-      toast.error(t("auth.loginErorr"));
-      console.error("Apple Login Error:", error);
-    }
+    window.AppleID.auth
+      .signIn()
+      .then((response) => {
+        console.log(response);
+        alert(JSON.stringify(response));
+      })
+      .catch((error) => {
+        console.error("Apple Sign-In Error:", error);
+      });
   };
 
   const handleSubmit = async (e) => {
@@ -137,25 +121,6 @@ const Login = () => {
     } finally {
       setLoading(false);
     }
-  };
-
-  const handleAppleSignIn = (e) => {
-    e.preventDefault();
-    window.AppleID.auth.init({
-      clientId: process.env.REACT_APP_APPLE_CLIENT_ID,
-      scope: "name email",
-      redirectURI: process.env.REACT_APP_APPLE_REDIRECT_URI
-    });
-
-    window.AppleID.auth
-      .signIn()
-      .then((response) => {
-        console.log(response);
-        alert(JSON.stringify(response));
-      })
-      .catch((error) => {
-        console.error("Apple Sign-In Error:", error);
-      });
   };
 
   return (
@@ -201,12 +166,12 @@ const Login = () => {
               >
                 <img src={Google} alt="google" /> {t("auth.googleAccount")}
               </button>
-              {/* <button
+              <button
                 onClick={(e) => handleAppleSignIn(e)}
                 className="auth_social_btn"
               >
                 <img src={Apple} alt="apple" /> {t("auth.appleAccount")}
-              </button> */}
+              </button>
             </div>
             <Link to="/register" className="noAccount">
               {t("auth.don'tHaveAccount")}{" "}
