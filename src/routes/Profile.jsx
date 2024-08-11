@@ -5,6 +5,7 @@ import ProfileTabs from "../features/profile/ProfileTabs";
 import UserProfileCard from "../features/profile/UserProfileCard";
 import useGetProfile from "../features/profile/useGetProfile";
 import DataLoader from "../ui/DataLoader";
+import ErrorPage from "./ErrorPage";
 
 const Profile = () => {
   const authedUser = useSelector((state) => state.authedUser.user);
@@ -21,9 +22,15 @@ const Profile = () => {
     }
   }, [isMyAccount, authedUser, profile, id]);
 
-  return isLoading ? (
-    <DataLoader />
-  ) : (
+  if (isLoading) {
+    <DataLoader />;
+  }
+
+  if (!user) {
+    return <ErrorPage />;
+  }
+
+  return (
     <section className="profile-section container">
       <div className="row">
         <div className="col-lg-4 col-12 p-2">

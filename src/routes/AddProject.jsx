@@ -15,6 +15,7 @@ import useGetProject from "../features/projects/useGetProject";
 import useSubCategoriesList from "../features/categories/useSubCategoriesList";
 import ImageUpload from "../Assets/images/img-upload.svg";
 import doc from "../Assets/images/doc.svg";
+import ErrorPage from "./ErrorPage";
 
 function AddProject() {
   const { id } = useParams();
@@ -107,6 +108,10 @@ function AddProject() {
       setLoading(false);
     }
   };
+
+  if (!projectDetails) {
+    return <ErrorPage />;
+  }
 
   return (
     <>

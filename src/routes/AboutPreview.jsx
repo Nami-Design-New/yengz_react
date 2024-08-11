@@ -7,16 +7,16 @@ const AboutPreview = () => {
   const renderHTML = (htmlContent) => {
     return { __html: htmlContent };
   };
+  if (isLoading) {
+    <DataLoader />;
+  }
+  if (!data) {
+    return <ErrorPage />;
+  }
   return (
     <section className="faqs">
       <div className="container">
-        {isLoading ? (
-          <div>
-            <DataLoader />
-          </div>
-        ) : (
-          <div dangerouslySetInnerHTML={renderHTML(data?.html)} />
-        )}
+        <div dangerouslySetInnerHTML={renderHTML(data?.html)} />
       </div>
     </section>
   );

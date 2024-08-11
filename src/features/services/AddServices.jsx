@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import useServiceDetails from "./useServiceDetails";
+import ErrorPage from "../../routes/ErrorPage";
 
 const AddServices = () => {
   const totalSteps = 3;
@@ -100,6 +101,10 @@ const AddServices = () => {
       setLoading(false);
     }
   };
+
+  if (!service) {
+    return <ErrorPage />;
+  }
 
   return (
     <section className="add-service">

@@ -6,7 +6,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import {
   calculateExpectedEndDate,
   formatTimeDifference,
-  getTimeDifference,
+  getTimeDifference
 } from "../utils/helpers";
 import { requestChatRoom } from "../redux/slices/requctRoom";
 import DataLoader from "../ui/DataLoader";
@@ -14,11 +14,12 @@ import { Link } from "react-router-dom";
 import {
   ORDER_STATUS_AR,
   ORDER_STATUS_EN,
-  ORDER_STATUS_PERSENTAGE,
+  ORDER_STATUS_PERSENTAGE
 } from "../utils/constants";
 import AddRateModal from "../ui/modals/AddRateModal";
 import SubmitButton from "../ui/form-elements/SubmitButton";
 import { updateProject } from "../services/apiProjects";
+import ErrorPage from "./ErrorPage";
 
 function ProjectsOrdersDetails() {
   const { t } = useTranslation();
@@ -75,14 +76,19 @@ function ProjectsOrdersDetails() {
         request_type: "service",
         request_id: project?.service?.id,
         owner_id: userType === "seller" ? project?.user?.id : user?.id,
-        applied_id: userType === "seller" ? user?.id : project?.user?.id,
+        applied_id: userType === "seller" ? user?.id : project?.user?.id
       })
     );
   };
 
-  return isLoading ? (
-    <DataLoader />
-  ) : (
+  if (isLoading) {
+    return <DataLoader />;
+  }
+  if (!project) {
+    return <ErrorPage />;
+  }
+
+  return (
     <section className="cart-section container">
       <div className="row">
         <div className="col-12">
@@ -164,7 +170,7 @@ function ProjectsOrdersDetails() {
                           style={{
                             width: `${
                               ORDER_STATUS_PERSENTAGE[project?.status]
-                            }%`,
+                            }%`
                           }}
                           aria-valuenow={
                             ORDER_STATUS_PERSENTAGE[project?.status]
