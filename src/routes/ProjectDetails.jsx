@@ -29,9 +29,15 @@ function ProjectDetails() {
     }
   }, [project, user]);
 
-  return isLoading || isLoadingRequests ? (
-    <DataLoader />
-  ) : (
+  if (isLoading || isLoadingRequests) {
+    return <DataLoader />;
+  }
+
+  if (!project) {
+    return <ErrorPage />;
+  }
+
+  return (
     <>
       <SectionHeader title={project?.title} />
       <section className="requestDetails">

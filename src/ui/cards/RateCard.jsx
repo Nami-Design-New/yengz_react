@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const RateCard = ({ rate }) => {
   const { t } = useTranslation();
-  const timeDifference = getTimeDifference(rate.created_at);
+  const timeDifference = getTimeDifference(rate?.created_at);
   const formattedTime = formatTimeDifference(
     timeDifference.years,
     timeDifference.months,
@@ -30,9 +30,9 @@ const RateCard = ({ rate }) => {
               <span>{formattedTime}</span>
             </Link>
           </div>
-          <StarsList rate={rate.rate} />
+          <StarsList rate={rate?.rate} />
         </div>
-        <i className="rate-text m-0 mt-3">{`"${rate.comment || " "}" `}</i>
+        <i className="rate-text m-0 mt-3">{`"${rate?.comment || " "}" `}</i>
       </div>
     </div>
   );

@@ -9,6 +9,7 @@ import DataLoader from "../ui/DataLoader";
 import useGetCategoryById from "./../features/categories/useGetCategoryById";
 import ChooseCategoryPath from "../ui/modals/ChooseCategoryPath";
 import SubCategoryCard from "./../ui/cards/SubCategoryCard";
+import ErrorPage from "./ErrorPage";
 
 const SubCategories = () => {
   const { id } = useParams();
@@ -17,6 +18,10 @@ const SubCategories = () => {
   const { data, isLoading } = useSubCategoriesList(id);
   const [showModal, setShowModal] = React.useState(false);
   const [targetedSubCategory, setTargetedSubCategory] = useState("");
+
+  if (!category) {
+    return <ErrorPage />;
+  }
 
   return (
     <>

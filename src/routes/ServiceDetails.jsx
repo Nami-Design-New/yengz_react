@@ -22,6 +22,7 @@ import DataLoader from "./../ui/DataLoader";
 import SimilarServices from "./../features/services/SimilarServices";
 import CollectionModal from "../ui/modals/CollectionModal";
 import useGetComments from "../features/services/useGetComments";
+import ErrorPage from "./ErrorPage";
 
 const ServiceDetails = () => {
   const { t } = useTranslation();
@@ -212,178 +213,176 @@ const ServiceDetails = () => {
     }
   };
 
+  if (isLoading) {
+    return <DataLoader />;
+  }
+
+  if (!service) {
+    return <ErrorPage />;
+  }
   return (
     <>
-      {isLoading ? (
-        <DataLoader />
-      ) : (
-        <>
-          <section className="service-details container">
-            <div className="row">
-              {service?.refuse_reason !== null && (
-                <div className="col-12 p-2 mb-3">
-                  <div className="refuse_reason">
-                    <p>
-                      {t("services.refuseReason")}: {service?.refuse_reason}
-                    </p>
-                  </div>
-                </div>
-              )}
-              <div className="col-lg-7 col-12 p-2">
-                <div className="service-content">
-                  <ServiceSlider images={service?.images} />
-                  <div className="content">
-                    <ServiceOwnerCard service={service} />
-                    <h4>{service?.title}</h4>
-                    <p>
-                      <Link
-                        to={`/services?categories=${service?.category?.id}`}
-                      >
-                        {service?.category?.name}
-                      </Link>{" "}
-                      /{" "}
-                      <Link
-                        to={`/services?sub_categories=${service?.sub_category_id}`}
-                      >
-                        {service?.sub_category?.name}
-                      </Link>
-                    </p>
-                    <p>{service?.description}</p>
-                    {service?.is_my_service === false && (
-                      <>
-                        {service?.developments &&
-                          service?.developments.length > 0 && (
-                            <div className="more-develop">
-                              <h6>
-                                <img src={vector88} alt="icon" />{" "}
-                                {t("services.developmentsAvailable")}
-                              </h6>
-                              {service?.developments.map((development) => (
-                                <div
-                                  className="d-flex input-field align-items-baseline"
-                                  key={development?.id}
-                                >
-                                  <input
-                                    type="checkbox"
-                                    id={`check-${development.id}`}
-                                    name={`check-${development.id}`}
-                                    checked={cartObj.developments.includes(
-                                      development.id
-                                    )}
-                                    onChange={() =>
-                                      handleCheckboxChange(development.id)
-                                    }
-                                  />
-                                  <div className="label">
-                                    <label htmlFor={`check-${development.id}`}>
-                                      {development.description}
-                                    </label>
-                                    <p>
-                                      {t("services.compare")}{" "}
-                                      {development.price}{" "}
-                                      {t("services.percentageofExtraService")}
-                                    </p>
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
-                          )}
-                        <div className="add-cart">
-                          <div className="input-field">
-                            <button
-                              className="add"
-                              disabled={formLoading}
-                              onClick={handleIncreaseQuantity}
-                            >
-                              <i className="fa-regular fa-plus"></i>
-                            </button>
-                            <input
-                              type="number"
-                              min={1}
-                              readOnly
-                              value={cartObj.quantity}
-                              onChange={(e) =>
-                                setCartObj({
-                                  ...cartObj,
-                                  quantity: e.target.value
-                                })
-                              }
-                            />
-                            <button
-                              className="minus"
-                              onClick={handleDecreaseQuantity}
-                            >
-                              <i className="fa-regular fa-minus"></i>
-                            </button>
-                          </div>
-                          <div className="total d-flex justify-content-between align-items-center">
-                            <p>
-                              {t("services.total")} : <br />
-                              {cartObj.developments.length > 0 && (
-                                <span>
-                                  +{" "}
-                                  <span id="num">
-                                    {cartObj.developments.length}
-                                  </span>{" "}
-                                  {t("services.extraService")}
-                                </span>
-                              )}
-                            </p>
-                            <h6>
-                              {totalPrice || 0}
-                              <i className="fa-solid fa-dollar-sign"></i>
-                            </h6>
-                          </div>
-                          <div className="d-flex w-100 gap-2">
-                            {!inCart && (
-                              <button
-                                className="request-order"
-                                onClick={handleAddToCart}
-                              >
-                                <i className="fa-regular fa-cart-plus"></i>{" "}
-                                {t("services.addToCart")}
-                              </button>
-                            )}
-                            <button
-                              className="request-order"
-                              onClick={() => {
-                                if (!isLogged) {
-                                  navigate("/login");
-                                } else {
-                                  setShowCollectionModel(true);
-                                }
-                              }}
-                            >
-                              <i className="fa-light fa-plus"></i>
-                              {t("cart.addToCollection")}
-                            </button>
-                          </div>
-                        </div>
-                      </>
-                    )}
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-5 col-12 p-2">
-                <UserServiceCard service={service} />
-                <div className="rating-cards-container">
-                  {rates?.data?.map((rate) => (
-                    <RateCard key={rate?.id} rate={rate} />
-                  ))}
-                </div>
+      <section className="service-details container">
+        <div className="row">
+          {service?.refuse_reason !== null && (
+            <div className="col-12 p-2 mb-3">
+              <div className="refuse_reason">
+                <p>
+                  {t("services.refuseReason")}: {service?.refuse_reason}
+                </p>
               </div>
             </div>
-          </section>
-          {service?.similar_services?.length > 0 && (
-            <SimilarServices services={service?.similar_services} />
           )}
-          <CollectionModal
-            setShowModal={setShowCollectionModel}
-            showModal={showCollectionModel}
-            showDeleteFromCart={false}
-          />
-        </>
+          <div className="col-lg-7 col-12 p-2">
+            <div className="service-content">
+              <ServiceSlider images={service?.images} />
+              <div className="content">
+                <ServiceOwnerCard service={service} />
+                <h4>{service?.title}</h4>
+                <p>
+                  <Link to={`/services?categories=${service?.category?.id}`}>
+                    {service?.category?.name}
+                  </Link>{" "}
+                  /{" "}
+                  <Link
+                    to={`/services?sub_categories=${service?.sub_category_id}`}
+                  >
+                    {service?.sub_category?.name}
+                  </Link>
+                </p>
+                <p>{service?.description}</p>
+                {service?.is_my_service === false && (
+                  <>
+                    {service?.developments &&
+                      service?.developments.length > 0 && (
+                        <div className="more-develop">
+                          <h6>
+                            <img src={vector88} alt="icon" />{" "}
+                            {t("services.developmentsAvailable")}
+                          </h6>
+                          {service?.developments.map((development) => (
+                            <div
+                              className="d-flex input-field align-items-baseline"
+                              key={development?.id}
+                            >
+                              <input
+                                type="checkbox"
+                                id={`check-${development.id}`}
+                                name={`check-${development.id}`}
+                                checked={cartObj.developments.includes(
+                                  development.id
+                                )}
+                                onChange={() =>
+                                  handleCheckboxChange(development.id)
+                                }
+                              />
+                              <div className="label">
+                                <label htmlFor={`check-${development.id}`}>
+                                  {development.description}
+                                </label>
+                                <p>
+                                  {t("services.compare")} {development.price}{" "}
+                                  {t("services.percentageofExtraService")}
+                                </p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    <div className="add-cart">
+                      <div className="input-field">
+                        <button
+                          className="add"
+                          disabled={formLoading}
+                          onClick={handleIncreaseQuantity}
+                        >
+                          <i className="fa-regular fa-plus"></i>
+                        </button>
+                        <input
+                          type="number"
+                          min={1}
+                          readOnly
+                          value={cartObj.quantity}
+                          onChange={(e) =>
+                            setCartObj({
+                              ...cartObj,
+                              quantity: e.target.value
+                            })
+                          }
+                        />
+                        <button
+                          className="minus"
+                          onClick={handleDecreaseQuantity}
+                        >
+                          <i className="fa-regular fa-minus"></i>
+                        </button>
+                      </div>
+                      <div className="total d-flex justify-content-between align-items-center">
+                        <p>
+                          {t("services.total")} : <br />
+                          {cartObj.developments.length > 0 && (
+                            <span>
+                              +{" "}
+                              <span id="num">
+                                {cartObj.developments.length}
+                              </span>{" "}
+                              {t("services.extraService")}
+                            </span>
+                          )}
+                        </p>
+                        <h6>
+                          {totalPrice || 0}
+                          <i className="fa-solid fa-dollar-sign"></i>
+                        </h6>
+                      </div>
+                      <div className="d-flex w-100 gap-2">
+                        {!inCart && (
+                          <button
+                            className="request-order"
+                            onClick={handleAddToCart}
+                          >
+                            <i className="fa-regular fa-cart-plus"></i>{" "}
+                            {t("services.addToCart")}
+                          </button>
+                        )}
+                        <button
+                          className="request-order"
+                          onClick={() => {
+                            if (!isLogged) {
+                              navigate("/login");
+                            } else {
+                              setShowCollectionModel(true);
+                            }
+                          }}
+                        >
+                          <i className="fa-light fa-plus"></i>
+                          {t("cart.addToCollection")}
+                        </button>
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+          <div className="col-lg-5 col-12 p-2">
+            <UserServiceCard service={service} />
+            <div className="rating-cards-container">
+              {rates?.data?.map((rate) => (
+                <RateCard key={rate?.id} rate={rate} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+      {service?.similar_services?.length > 0 && (
+        <SimilarServices services={service?.similar_services} />
       )}
+      <CollectionModal
+        setShowModal={setShowCollectionModel}
+        showModal={showCollectionModel}
+        showDeleteFromCart={false}
+      />
     </>
   );
 };

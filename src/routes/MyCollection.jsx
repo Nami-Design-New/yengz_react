@@ -12,30 +12,31 @@ const MyCollection = () => {
   const { t } = useTranslation();
   const { data: collection, isLoading } = useGetCollection(id);
 
+  if (isLoading) {
+    <DataLoader />;
+  }
+
+  if (!collection) {
+    return <ErrorPage />;
+  }
+
   return (
     <>
       <SectionHeader title={collection?.data?.title} />
       <section className="myCollections">
-        {isLoading ? (
-          <DataLoader />
-        ) : (
-          <div className="container">
-            <div className="row">
-              {collection?.data && collection?.data?.services?.length > 0 ? (
-                collection?.data?.services?.map((service) => (
-                  <div
-                    className="col-lg-3 col-md-6 col-12 p2"
-                    key={service?.id}
-                  >
-                    <ServiceCard service={service} />
-                  </div>
-                ))
-              ) : (
-                <EmptyData>{t("emptyCollection")}</EmptyData>
-              )}
-            </div>
+        <div className="container">
+          <div className="row">
+            {collection?.data && collection?.data?.services?.length > 0 ? (
+              collection?.data?.services?.map((service) => (
+                <div className="col-lg-3 col-md-6 col-12 p2" key={service?.id}>
+                  <ServiceCard service={service} />
+                </div>
+              ))
+            ) : (
+              <EmptyData>{t("emptyCollection")}</EmptyData>
+            )}
           </div>
-        )}
+        </div>
       </section>
     </>
   );

@@ -75,7 +75,7 @@ const Login = () => {
       clientId: process.env.REACT_APP_APPLE_CLIENT_ID,
       scope: "name email",
       redirectURI: process.env.REACT_APP_APPLE_REDIRECT_URI,
-      usePopup: true
+      // usePopup: true
     });
 
     window.AppleID.auth

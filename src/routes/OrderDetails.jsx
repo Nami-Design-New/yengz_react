@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   ORDER_STATUS_AR,
   ORDER_STATUS_EN,
-  ORDER_STATUS_PERSENTAGE,
+  ORDER_STATUS_PERSENTAGE
 } from "../utils/constants";
 import { formatTimeDifference, getTimeDifference } from "../utils/helpers";
 import { calculateExpectedEndDate } from "./../utils/helpers";
@@ -18,6 +18,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import SubmitButton from "./../ui/form-elements/SubmitButton";
 import AddRateModal from "../ui/modals/AddRateModal";
 import { requestChatRoom } from "../redux/slices/requctRoom";
+import ErrorPage from "./ErrorPage";
 
 function OrderDetails() {
   const { id } = useParams();
@@ -77,14 +78,20 @@ function OrderDetails() {
         request_type: "service",
         request_id: order?.service?.id,
         owner_id: userType === "seller" ? order?.user?.id : user?.id,
-        applied_id: userType === "seller" ? user?.id : order?.user?.id,
+        applied_id: userType === "seller" ? user?.id : order?.user?.id
       })
     );
   };
 
-  return isLoading ? (
-    <DataLoader />
-  ) : (
+  if (isLoading) {
+    return <DataLoader />;
+  }
+
+  if (!order) {
+    return <ErrorPage />;
+  }
+
+  return (
     <section className="cart-section container">
       <div className="row">
         <div className="col-12">
@@ -151,7 +158,7 @@ function OrderDetails() {
                           className={`progress-bar ${order?.status}`}
                           role="progressbar"
                           style={{
-                            width: `${ORDER_STATUS_PERSENTAGE[order?.status]}%`,
+                            width: `${ORDER_STATUS_PERSENTAGE[order?.status]}%`
                           }}
                           aria-valuenow={ORDER_STATUS_PERSENTAGE[order?.status]}
                           aria-valuemin="0"
