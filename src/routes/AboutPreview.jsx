@@ -10,7 +10,7 @@ const AboutPreview = () => {
   if (isLoading) {
     <DataLoader />;
   }
-  if (!data) {
+  if (!isLoading && !data) {
     return <ErrorPage />;
   }
   return (

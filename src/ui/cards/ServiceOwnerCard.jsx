@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { IconRosetteDiscountCheckFilled } from "@tabler/icons-react";
-import { requestChatRoom } from "../../redux/slices/requctRoom";
 import avatar from "../../Assets/images/avatar.jpg";
 
 const ServiceOwnerCard = ({ service }) => {
@@ -28,14 +27,10 @@ const ServiceOwnerCard = ({ service }) => {
   };
 
   const handleCreateRoom = () => {
-    dispatch(
-      requestChatRoom({
-        request_type: "service",
-        request_id: service?.id,
-        owner_id: service?.user?.id,
-        applied_id: authedUser?.id
-      })
-    );
+    sessionStorage.setItem("request_type", "service");
+    sessionStorage.setItem("request_id", service?.id);
+    sessionStorage.setItem("owner_id", service?.user?.id);
+    sessionStorage.setItem("applied_id", authedUser?.id);
     navigate(`/chat`);
   };
 

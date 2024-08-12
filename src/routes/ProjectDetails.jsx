@@ -33,7 +33,7 @@ function ProjectDetails() {
     return <DataLoader />;
   }
 
-  if (!project) {
+  if (!isLoading &&!project) {
     return <ErrorPage />;
   }
 

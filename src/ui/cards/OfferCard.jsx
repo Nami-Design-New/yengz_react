@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { IconCheck, IconPencil, IconX } from "@tabler/icons-react";
 import { useState } from "react";
-import { requestChatRoom } from "../../redux/slices/requctRoom";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { updateRequestStatus } from "../../services/apiProjects";
@@ -45,14 +44,10 @@ function OfferCard({ request, isMyProject, project }) {
   }
 
   const handleCreateRoom = () => {
-    dispatch(
-      requestChatRoom({
-        request_type: "project",
-        request_id: request?.project_id,
-        owner_id: user?.id,
-        applied_id: request?.user?.id
-      })
-    );
+    sessionStorage.setItem("request_type", "project");
+    sessionStorage.setItem("request_id", request?.project_id);
+    sessionStorage.setItem("owner_id", user?.id);
+    sessionStorage.setItem("applied_id", request?.user?.id);
     navigate(`/chat`);
   };
 

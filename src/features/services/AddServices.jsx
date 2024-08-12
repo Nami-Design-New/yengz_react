@@ -5,18 +5,19 @@ import WizardStep2 from "./WizardStep2";
 import WizardStep3 from "./WizardStep3";
 import { createService, updateService } from "../../services/apiServices";
 import { useQueryClient } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import useServiceDetails from "./useServiceDetails";
 import ErrorPage from "../../routes/ErrorPage";
 
 const AddServices = () => {
+  const { id } = useParams();
   const totalSteps = 3;
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { data: service } = useServiceDetails();
+  const { data: service, isLoading } = useServiceDetails();
   const [categoryId, setCategoryId] = useState("");
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -102,7 +103,7 @@ const AddServices = () => {
     }
   };
 
-  if (!service) {
+  if (id && !isLoading && !service) {
     return <ErrorPage />;
   }
 

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { formatTimeDifference, getTimeDifference } from "../../utils/helpers";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IconPencil, IconTrash } from "@tabler/icons-react";
 import { toast } from "react-toastify";
 import {
   removeCollection,
-  updateCollection,
+  addCollectionToCart
 } from "../../services/apiCollections";
 import { useQueryClient } from "@tanstack/react-query";
 import ConfirmationModal from "../modals/ConfirmationModal";
@@ -14,6 +14,7 @@ import EditCollectionModal from "../modals/EditCollectionModal";
 
 const CollectionCard = ({ collection }) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -43,6 +44,18 @@ const CollectionCard = ({ collection }) => {
     }
   };
 
+  const handleAddtoCart = async () => {
+    try {
+      const res = await addCollectionToCart(collection?.id, queryClient);
+      if (res?.code === 200) {
+        toast.success(t("cart.collectionAddedToCart"));
+        navigate("/cart");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="col-lg-6 col-12 p-2">
       <div className="collectionCard">
@@ -67,6 +80,9 @@ const CollectionCard = ({ collection }) => {
           </button>
           <button onClick={() => setShowModal(true)}>
             <IconTrash stroke={2} />
+          </button>
+          <button className="btn" onClick={handleAddtoCart}>
+            {t("cart.addTocart")}
           </button>
         </div>
       </div>

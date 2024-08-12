@@ -4,18 +4,20 @@ import { IconLanguage } from "@tabler/icons-react";
 import { useDispatch, useSelector } from "react-redux";
 import { setLanguage } from "../redux/slices/language";
 import { useTranslation } from "react-i18next";
+import { deleteAccount } from "../services/apiAuth";
+import { logout, setIsLogged, setUser } from "../redux/slices/authedUser";
+import { toast } from "react-toastify";
+import { calculateDate } from "../utils/helpers";
+import { useCookies } from "react-cookie";
+import "../Assets/styles/dropdownes.css";
+import axios from "./../utils/axios";
 import avatar from "../Assets/images/avatar.jpg";
 import logo from "../Assets/images/logo.svg";
 import Dropdown from "react-bootstrap/Dropdown";
 import i18next from "i18next";
-import "../Assets/styles/dropdownes.css";
 import useOutsideClose from "../hooks/useOutsideClose";
 import DeleteAcountModal from "./modals/DeleteAcountModal";
-import { deleteAccount } from "../services/apiAuth";
-import { logout, setIsLogged, setUser } from "../redux/slices/authedUser";
-import { toast } from "react-toastify";
 import useGetNotifications from "../features/profile/useGetNotifications";
-import { calculateDate } from "../utils/helpers";
 
 const Navbar = () => {
   const { t } = useTranslation();
@@ -33,6 +35,27 @@ const Navbar = () => {
     useState(false);
   const [deleteLoading, setDeleteLoading] = useState(false);
   const { data: notifications } = useGetNotifications();
+  const [, , deleteCookie] = useCookies();
+  const [cookies] = useCookies(["token"]);
+  const token = cookies?.token;
+
+  const performLogout = async () => {
+    try {
+      deleteCookie("token");
+      deleteCookie("id");
+      const deleteToken = await axios.post("/user/logout", { token: token });
+      if (deleteToken.data.code === 200) {
+        delete axios.defaults.headers.common["Authorization"];
+        dispatch(setUser({}));
+        dispatch(setIsLogged(false));
+        dispatch(logout());
+        navigate("/");
+      }
+    } catch (error) {
+      console.error("Error during logout:", error);
+      throw new Error(error.message);
+    }
+  };
 
   function handleShowDeleteAccountModal() {
     setIsDeleteAccountModalOpen(true);
@@ -134,7 +157,7 @@ const Navbar = () => {
           {isLogged && (
             <div className="user" onClick={closeSmallMediaMenu}>
               <Link to="/profile" className="avatar" onClick={closeProfileMenu}>
-                <img src={user?.image} alt="" />
+                <img src={user?.image || avatar} alt="" />
               </Link>
               <div className="userr">
                 <h6>{user?.name}</h6>
@@ -233,7 +256,7 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li className="nav-link" onClick={closeSmallMediaMenu}>
-                  <Link to="/logout">
+                  <Link onClick={performLogout}>
                     <i className="fa-regular fa-right-from-bracket"></i>
                     {t("navbar.logout")}
                   </Link>
@@ -546,7 +569,10 @@ const Navbar = () => {
                     </li>
                     <hr />
                     <li onClick={closeProfileMenu}>
-                      <Link className="dropdown-item_Link" to="/logout">
+                      <Link
+                        className="dropdown-item_Link"
+                        onClick={performLogout}
+                      >
                         <i className="fa-solid fa-right-from-bracket"></i>
                         {t("navbar.logout")}
                       </Link>

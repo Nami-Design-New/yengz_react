@@ -167,6 +167,7 @@ const ServiceDetails = () => {
     } else return;
   };
   // developments
+  
   const handleCheckboxChange = async (id) => {
     const isChecked = cartObj.developments.includes(id);
     if (inCart) {
@@ -217,7 +218,7 @@ const ServiceDetails = () => {
     return <DataLoader />;
   }
 
-  if (!service) {
+  if (!isLoading && !service) {
     return <ErrorPage />;
   }
   return (

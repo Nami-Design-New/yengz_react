@@ -386,7 +386,7 @@ body {
       .right-wrapper,
       .left-wrapper {
         display: flex;
-        gap: 32px;
+        gap: 24px;
         .nav-links {
           height: 100%;
           display: contents;
@@ -396,6 +396,7 @@ body {
             font-weight: 500;
             @include centerFlex();
             a {
+              font-size: 14px;
               color: var(--black-color);
             }
             color: var(--black-color);
@@ -775,6 +776,16 @@ body {
               svg {
                 stroke: red;
               }
+            }
+            &.btn {
+              width: auto;
+              height: auto;
+              border: 0;
+              padding: 6px 12px;
+              background: var(--main-color);
+              font-size: 14px;
+              border-radius: 8px;
+              color: var(--white-color);
             }
           }
         }

@@ -8,7 +8,6 @@ import ProjectDetails from "./routes/ProjectDetails";
 import Purchases from "./routes/Purchases";
 import Categories from "./routes/Categories";
 import EditProfile from "./features/profile/EditProfile";
-import Logout from "./features/auth/Logout";
 import Login from "./features/auth/login/Login";
 import AddServices from "./features/services/AddServices";
 import VerifyPhone from "./features/auth/verification/VerifyPhone";
@@ -80,7 +79,6 @@ const routesConfig = [
   { path: "/blogs/:id", element: <BlogDetails /> },
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
-  { path: "/logout", element: <Logout /> },
   { path: "/forget-password", element: <ForgetPassword /> }
 ];
 

@@ -8,7 +8,6 @@ import {
   formatTimeDifference,
   getTimeDifference
 } from "../utils/helpers";
-import { requestChatRoom } from "../redux/slices/requctRoom";
 import DataLoader from "../ui/DataLoader";
 import { Link } from "react-router-dom";
 import {
@@ -71,20 +70,22 @@ function ProjectsOrdersDetails() {
   };
 
   const handleRequestRoom = () => {
-    dispatch(
-      requestChatRoom({
-        request_type: "service",
-        request_id: project?.service?.id,
-        owner_id: userType === "seller" ? project?.user?.id : user?.id,
-        applied_id: userType === "seller" ? user?.id : project?.user?.id
-      })
+    sessionStorage.setItem("request_type", "service");
+    sessionStorage.setItem("request_id", project?.service?.id);
+    sessionStorage.setItem(
+      "owner_id",
+      userType === "seller" ? project?.user?.id : user?.id
+    );
+    sessionStorage.setItem(
+      "applied_id",
+      userType === "seller" ? user?.id : project?.user?.id
     );
   };
 
   if (isLoading) {
     return <DataLoader />;
   }
-  if (!project) {
+  if (!isLoading && !project) {
     return <ErrorPage />;
   }
 
