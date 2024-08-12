@@ -412,7 +412,7 @@ body header .tnavbar .toogler.close span:nth-child(3) {
 body header .tnavbar .right-wrapper,
 body header .tnavbar .left-wrapper {
   display: flex;
-  gap: 32px;
+  gap: 24px;
 }
 body header .tnavbar .right-wrapper .nav-links,
 body header .tnavbar .left-wrapper .nav-links {
@@ -431,6 +431,7 @@ body header .tnavbar .left-wrapper .nav-links .nav-link {
 }
 body header .tnavbar .right-wrapper .nav-links .nav-link a,
 body header .tnavbar .left-wrapper .nav-links .nav-link a {
+  font-size: 14px;
   color: var(--black-color);
 }
 @media (max-width: 992px) {
@@ -844,6 +845,16 @@ body main .myCollections .collectionCard .actions button:nth-child(2) {
 }
 body main .myCollections .collectionCard .actions button:nth-child(2) svg {
   stroke: red;
+}
+body main .myCollections .collectionCard .actions button.btn {
+  width: auto;
+  height: auto;
+  border: 0;
+  padding: 6px 12px;
+  background: var(--main-color);
+  font-size: 14px;
+  border-radius: 8px;
+  color: var(--white-color);
 }
 body main .best-freelancers {
   padding: 60px 0;

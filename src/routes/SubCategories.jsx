@@ -19,7 +19,7 @@ const SubCategories = () => {
   const [showModal, setShowModal] = React.useState(false);
   const [targetedSubCategory, setTargetedSubCategory] = useState("");
 
-  if (!category) {
+  if (!isLoading && !category) {
     return <ErrorPage />;
   }
 

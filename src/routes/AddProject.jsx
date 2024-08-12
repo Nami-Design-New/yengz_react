@@ -25,7 +25,7 @@ function AddProject() {
   const [categoryId, setCategoryId] = useState("");
   const [loading, setLoading] = useState(false);
   const { data: categories } = useCategoriesList();
-  const { data: projectDetails } = useGetProject();
+  const { data: projectDetails, isLoading } = useGetProject();
   const { data: subCategories } = useSubCategoriesList(categoryId);
 
   const [formData, setFormData] = useState({
@@ -109,7 +109,7 @@ function AddProject() {
     }
   };
 
-  if (!projectDetails) {
+  if (id && !isLoading && !projectDetails) {
     return <ErrorPage />;
   }
 

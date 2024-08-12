@@ -52,6 +52,11 @@ const ConfirmOtp = ({ otpData, setOtpData, formData }) => {
             secure: true,
             sameSite: "Strict"
           });
+          setCookie("id", login.data.data.id, {
+            path: "/",
+            secure: true,
+            sameSite: "Strict"
+          });
           axios.defaults.headers.common[
             "Authorization"
           ] = `${login.data.data.token}`;

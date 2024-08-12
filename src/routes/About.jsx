@@ -22,7 +22,7 @@ const About = () => {
     return <DataLoader />;
   }
 
-  if (!aboutCategoriesList) {
+  if (!isLoading && !aboutCategoriesList) {
     return <ErrorPage />;
   }
 

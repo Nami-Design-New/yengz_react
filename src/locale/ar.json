@@ -366,7 +366,9 @@
     "edit": "تعديل",
     "collectionUpdated": "تم تعديل المجموعة بنجاح",
     "youDontHaveEnoughBallance": "ليس لديك رصيد كافي لدفع مبلغ: ",
-    "chargeWallet": "شحن المحفظة"
+    "chargeWallet": "شحن المحفظة",
+    "addTocart": "اضافة الى السلة",
+    "collectionAddedToCart": "تمت اضافةالمجموعة الى السلة بنجاح"
   },
   "recievedOrders": {
     "title": "الطلبات المستلمة",

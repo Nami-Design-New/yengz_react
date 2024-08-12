@@ -26,7 +26,7 @@ const Profile = () => {
     <DataLoader />;
   }
 
-  if (!user) {
+  if (!isLoading && !user) {
     return <ErrorPage />;
   }
 

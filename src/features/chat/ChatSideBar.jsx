@@ -36,6 +36,10 @@ const ChatSideBar = ({
           className={`nav-link ${targetChat?.id === chat?.id ? "active" : ""}`}
           key={chat?.id}
           onClick={() => {
+            sessionStorage.setItem("request_type", chat?.request_type);
+            sessionStorage.setItem("request_id", chat?.request_id);
+            sessionStorage.setItem("owner_id", chat?.owner_id);
+            sessionStorage.setItem("applied_id", chat?.applied_id);
             setTargetChat(chat);
             setShowChatsMenu(false);
           }}

@@ -19,7 +19,7 @@ const ServiceCard = ({ service, canEdit, handleDelete, type, showPending }) => {
         <img src={service?.image || bann} alt="" />
         {showPending && service?.accepted === 0 && (
           <div className="services_status">
-            {service?.accepted === 0 && service?.c !== null
+            {service?.accepted === 0 && service?.refuse_reason !== null
               ? t("services.refused")
               : t("services.inReview")}
           </div>

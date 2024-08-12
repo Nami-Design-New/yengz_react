@@ -17,7 +17,7 @@ function BlogDetails() {
     <DataLoader />;
   }
 
-  if (!blog) {
+  if (!isLoading && !blog) {
     return <ErrorPage />;
   }
 

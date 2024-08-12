@@ -366,7 +366,9 @@
     "edit": "Edit",
     "collectionUpdated": "Collection updated successfully",
     "youDontHaveEnoughBallance": "You do not have enough credit to pay: ",
-    "chargeWallet": "Charge Wallet"
+    "chargeWallet": "Charge Wallet",
+    "addTocart": "Add To Cart",
+    "collectionAddedToCart": "Collection added to cart successfully"
   },
   "recievedOrders": {
     "title": "Received Orders",

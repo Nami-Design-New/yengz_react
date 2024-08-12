@@ -23,6 +23,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 /*---------- app style global -----*/
 import "./Assets/styles/style.css";
+import InterceptorProvider from "./features/auth/InterceptorProvider";
 
 const queryClient = new QueryClient();
 
@@ -38,7 +39,9 @@ root.render(
           <GoogleOAuthProvider
             clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
           >
-            <App />
+            <InterceptorProvider>
+              <App />
+            </InterceptorProvider>
           </GoogleOAuthProvider>
           <ReactQueryDevtools initialIsOpen={false} />
         </BrowserRouter>

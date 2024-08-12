@@ -28,6 +28,7 @@ const ChatRoom = ({ chat }) => {
   const recordingIntervalRef = useRef(null);
   const { t } = useTranslation();
   const { user } = useSelector((state) => state.authedUser);
+  const [fileName, setFileName] = useState("");
   const [message, setMessage] = useState({
     from_id: user?.id,
     chat_id: chat?.id,
@@ -40,15 +41,6 @@ const ChatRoom = ({ chat }) => {
       setMessages(chat?.messages.slice() || []);
     }
   }, [chat]);
-
-  function pushMessage(message) {
-    if (message?.from_id === user?.id) {
-      return;
-    }
-    setMessages((prevMessages) => {
-      return [...prevMessages, message];
-    });
-  }
 
   useEffect(() => {
     const pusher = new Pusher("40956cc89171b3e710e6", {
@@ -83,13 +75,30 @@ const ChatRoom = ({ chat }) => {
     };
   }, []);
 
+  function pushMessage(message) {
+    if (message?.from_id === user?.id) {
+      return;
+    }
+    setMessages((prevMessages) => {
+      return [...prevMessages, message];
+    });
+  }
+
   const handleSendMessage = async (e) => {
     e.preventDefault();
     setLoading(true);
     setMessages((prevMessages) => {
       return [
         ...prevMessages,
-        { ...message, id: Date.now(), created_at: Date.now() }
+        {
+          ...message,
+          message:
+            message.type !== "text"
+              ? URL.createObjectURL(message.message)
+              : message.message,
+          id: Date.now(),
+          created_at: Date.now()
+        }
       ];
     });
     formRef.current.reset();
@@ -179,7 +188,7 @@ const ChatRoom = ({ chat }) => {
   const extractTextAfterMessages = (url) => {
     const regex = /_messages\.(.*)/;
     const match = url.match(regex);
-    return match ? match[1] : "";
+    return match ? match[1] : fileName;
   };
 
   return (
@@ -233,7 +242,7 @@ const ChatRoom = ({ chat }) => {
               <div className="message-content">
                 {message?.type === "text" && <p>{message?.message}</p>}
                 {message?.type === "audio" && (
-                  <audio controls src={URL.createObjectURL(message?.message)} />
+                  <audio controls src={message?.message} />
                 )}
                 {message?.type === "image" && (
                   <img
@@ -309,6 +318,7 @@ const ChatRoom = ({ chat }) => {
               <input
                 onChange={(e) => {
                   const file = e.target.files[0];
+                  setFileName(file.name);
                   setMessage({
                     ...message,
                     message: file,

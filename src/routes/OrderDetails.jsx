@@ -17,7 +17,6 @@ import { updateOrder } from "../services/apiOrders";
 import { useQueryClient } from "@tanstack/react-query";
 import SubmitButton from "./../ui/form-elements/SubmitButton";
 import AddRateModal from "../ui/modals/AddRateModal";
-import { requestChatRoom } from "../redux/slices/requctRoom";
 import ErrorPage from "./ErrorPage";
 
 function OrderDetails() {
@@ -73,13 +72,15 @@ function OrderDetails() {
   };
 
   const handleRequestRoom = () => {
-    dispatch(
-      requestChatRoom({
-        request_type: "service",
-        request_id: order?.service?.id,
-        owner_id: userType === "seller" ? order?.user?.id : user?.id,
-        applied_id: userType === "seller" ? user?.id : order?.user?.id
-      })
+    sessionStorage.setItem("request_type", "service");
+    sessionStorage.setItem("request_id", order?.service?.id);
+    sessionStorage.setItem(
+      "owner_id",
+      userType === "seller" ? order?.user?.id : user?.id
+    );
+    sessionStorage.setItem(
+      "applied_id",
+      userType === "seller" ? user?.id : order?.user?.id
     );
   };
 
@@ -87,7 +88,7 @@ function OrderDetails() {
     return <DataLoader />;
   }
 
-  if (!order) {
+  if (!isLoading && !order) {
     return <ErrorPage />;
   }
 
