@@ -127,7 +127,8 @@
     "cart": "Cart",
     "allNotifications": "All Notifications",
     "myCollections": "My Collections",
-    "bestFreelancers": "Best Freelancers"
+    "bestFreelancers": "Best Freelancers",
+    "services": "Services"
   },
   "home": {
     "searchFor": "Search for...",

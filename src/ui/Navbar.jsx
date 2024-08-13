@@ -328,6 +328,15 @@ const Navbar = () => {
                 </li>
                 <li className="nav-link">
                   <Link
+                    to="/services"
+                    className="d-flex align-items-center gap-1"
+                  >
+                    <i className="fa-light fa-database"></i>
+                    {t("navbar.services")}
+                  </Link>
+                </li>
+                <li className="nav-link">
+                  <Link
                     to="/projects"
                     className="d-flex align-items-center gap-1"
                   >
