@@ -1,14 +1,19 @@
 import { useTranslation } from "react-i18next";
 import { formatTimeDifference, getTimeDifference } from "../../utils/helpers";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import {
   ORDER_STATUS_AR,
   ORDER_STATUS_EN,
-  ORDER_STATUS_PERSENTAGE,
+  ORDER_STATUS_PERSENTAGE
 } from "../../utils/constants";
 
 function OrderCard({ order, type }) {
+  const [searchParams] = useSearchParams();
+  const page = Number(searchParams.get("page")) || 1;
+
+  console.log(page, order);
+
   const lang = useSelector((state) => state.language.lang);
   const { t } = useTranslation();
   const timeDifference = getTimeDifference(order.created_at);
@@ -56,7 +61,7 @@ function OrderCard({ order, type }) {
                     className={`progress-bar ${order?.status}`}
                     role="progressbar"
                     style={{
-                      width: `${ORDER_STATUS_PERSENTAGE[order?.status]}%`,
+                      width: `${ORDER_STATUS_PERSENTAGE[order?.status]}%`
                     }}
                     aria-valuenow={ORDER_STATUS_PERSENTAGE[order?.status]}
                     aria-valuemin="0"
@@ -67,7 +72,7 @@ function OrderCard({ order, type }) {
               <Link
                 to={`/${
                   type === "project" ? "projects-orders" : "recieved-orders"
-                }/${order.id}`}
+                }/${order.id}?page=${searchParams.get("page") || 1}`}
                 className="details"
               >
                 {t("details")}

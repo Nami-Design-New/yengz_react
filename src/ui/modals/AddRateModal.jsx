@@ -27,7 +27,7 @@ const AddRateModal = ({ showModal, setShowModal, order }) => {
     try {
       await createRate(formData);
       toast.success(t("comments.createSuccess"));
-      navigate("/recieved-orders");
+      navigate("/purchases");
       setShowModal(false);
     } catch (error) {
       throw new Error(error.message);

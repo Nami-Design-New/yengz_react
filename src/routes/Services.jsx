@@ -1,23 +1,18 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import DepartmentFilterBox from "../ui/filter/DepartmentFilterBox";
 import RatingFilterBox from "../ui/filter/RatingFilterBox";
 import SellerStatusFilterBox from "../ui/filter/SellerStatusFilterBox";
 import InputField from "../ui/form-elements/InputField";
 import useSearchServicesList from "../features/services/useSearchServicesList";
 import ServiceCard from "../ui/cards/ServiceCard";
-import { useTranslation } from "react-i18next";
 import useCategorieListWithSub from "../features/categories/useCategorieListWithSub";
 import DataLoader from "../ui/DataLoader";
-import CustomPagination from "../ui/CustomPagination";
-import EmptyData from "./../ui/EmptyData";
+import EmptyData from "../ui/EmptyData";
 
 const Services = () => {
   const { t } = useTranslation();
-  const { isLoading: categoriesIsLoading, data: categoriesWithSubCategories } =
-    useCategorieListWithSub();
-  const { isLoading: searchIsLoading, data: searchServicesList } =
-    useSearchServicesList();
   const [searchParams, setSearchParams] = useSearchParams();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [searchFilterData, setSearchFilterData] = useState({
@@ -38,8 +33,18 @@ const Services = () => {
           .split("-")
           .map((subcategory) => Number(subcategory))
       : [],
-    is_old: Number(searchParams.get("is_old")) || null,
+    is_old: Number(searchParams.get("is_old")) || null
   });
+
+  const { isLoading: categoriesIsLoading, data: categoriesWithSubCategories } =
+    useCategorieListWithSub();
+  const {
+    data: searchServicesList,
+    fetchNextPage,
+    hasNextPage,
+    isFetching,
+    isFetchingNextPage
+  } = useSearchServicesList();
 
   const handleChange = (e) => {
     const { name, checked, type, value } = e.target;
@@ -68,8 +73,8 @@ const Services = () => {
               updatedState["sub_categories"] = [
                 ...new Set([
                   ...prevState["sub_categories"],
-                  ...relatedSubCategories,
-                ]),
+                  ...relatedSubCategories
+                ])
               ];
             } else {
               updatedState["sub_categories"] = prevState[
@@ -94,7 +99,7 @@ const Services = () => {
 
             if (areAllChildrenChecked) {
               updatedState["categories"] = [
-                ...new Set([...prevState["categories"], parentCategory.id]),
+                ...new Set([...prevState["categories"], parentCategory.id])
               ];
             } else {
               updatedState["categories"] = prevState["categories"].filter(
@@ -116,60 +121,17 @@ const Services = () => {
   }
 
   function handleApplyFilters() {
-    if (searchFilterData.page) {
-      searchParams.set("page", searchFilterData.page);
-      setSearchParams(searchParams);
+    const newParams = new URLSearchParams();
+    for (const [key, value] of Object.entries(searchFilterData)) {
+      if (value !== undefined && value !== null && value !== "") {
+        if (Array.isArray(value)) {
+          newParams.set(key, value.join("-"));
+        } else {
+          newParams.set(key, value);
+        }
+      }
     }
-    if (String(searchFilterData.search).trim()) {
-      searchParams.set("search", searchFilterData.search);
-      setSearchParams(searchParams);
-    } else {
-      searchParams.delete("search");
-      setSearchParams(searchParams);
-    }
-    if (
-      searchFilterData.rate !== undefined &&
-      searchFilterData.rate !== null &&
-      searchFilterData.rate !== ""
-    ) {
-      searchParams.set("rate", searchFilterData.rate);
-      setSearchParams(searchParams);
-    }
-    if (
-      searchFilterData.user_verification !== undefined &&
-      searchFilterData.user_verification !== null &&
-      searchFilterData.user_verification !== ""
-    ) {
-      searchParams.set("user_verification", searchFilterData.user_verification);
-      setSearchParams(searchParams);
-    }
-    if (
-      searchFilterData.user_available !== undefined &&
-      searchFilterData.user_available !== null &&
-      searchFilterData.user_available !== ""
-    ) {
-      searchParams.set("user_available", searchFilterData.user_available);
-      setSearchParams(searchParams);
-    }
-    if (searchFilterData.categories?.length > 0) {
-      searchParams.set("categories", searchFilterData.categories.join("-"));
-      setSearchParams(searchParams);
-    }
-    if (searchFilterData.sub_categories?.length > 0) {
-      searchParams.set(
-        "sub_categories",
-        searchFilterData.sub_categories.join("-")
-      );
-      setSearchParams(searchParams);
-    }
-    if (
-      searchFilterData.is_old !== undefined &&
-      searchFilterData.is_old !== null &&
-      searchFilterData.is_old !== ""
-    ) {
-      searchParams.set("is_old", searchFilterData.is_old);
-      setSearchParams(searchParams);
-    }
+    setSearchParams(newParams);
   }
 
   function handleSubmit(e) {
@@ -178,15 +140,26 @@ const Services = () => {
   }
 
   useEffect(() => {
-    if (!searchParams.get("page")) {
-      searchParams.append("page", 1);
-      setSearchParams(searchParams);
-    }
-  }, [searchParams, setSearchParams]);
+    const handleScroll = () => {
+      if (
+        window.innerHeight + document.documentElement.scrollTop >=
+        document.documentElement.offsetHeight - 1000
+      ) {
+        if (!isFetchingNextPage && hasNextPage) {
+          fetchNextPage();
+        }
+      }
+    };
 
-  return categoriesIsLoading || searchIsLoading ? (
-    <DataLoader />
-  ) : (
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isFetchingNextPage, hasNextPage, fetchNextPage]);
+
+  if ((categoriesIsLoading || isFetching) && searchServicesList?.length < 10) {
+    return <DataLoader />;
+  }
+
+  return (
     <section className="search-section">
       <div className="container">
         <div className="row">
@@ -227,51 +200,46 @@ const Services = () => {
                   onChange={handleChange}
                 />
                 <hr />
-                <div className="search-btn">
-                  <button onClick={handleApplyFilters}>
-                    {t("search.apply")}
-                  </button>
-                </div>
-                <div className="search-btn">
-                  <span onClick={handleClearFilters}>{t("search.clear")}</span>
+                <div className="d-flex gap-2">
+                  <div className="search-btn">
+                    <button onClick={handleApplyFilters}>
+                      {t("search.apply")}
+                    </button>
+                  </div>
+                  <div className="search-btn">
+                    <span onClick={handleClearFilters}>
+                      {t("search.clear")}
+                    </span>
+                  </div>
                 </div>
               </form>
             </div>
           </aside>
-          <div className="small-filter-header">
-            <h6>{t("search.searchFilter")}</h6>
-            <button
-              className="openfilter"
-              onClick={() => setIsFilterOpen(true)}
-            >
-              <i className="fa-light fa-sliders"></i>
-            </button>
-          </div>
-          {searchServicesList && searchServicesList?.data.length > 0 ? (
-            <div className="col-lg-9 col-12 p-2 results-wrapper">
-              <div className="container">
-                <div className="row">
-                  {searchServicesList.data.map((service) => (
-                    <div className="col-lg-4 col-6 p-2" key={service.id}>
+          <main className="col-lg-9">
+            <div className="row">
+              {searchServicesList.length > 0 ? (
+                <>
+                  {searchServicesList.map((service) => (
+                    <div className="col-lg-4 col-sm-6 mb-4" key={service.id}>
                       <ServiceCard service={service} />
                     </div>
                   ))}
-                </div>
-                {searchServicesList?.total > 10 && (
-                  <CustomPagination
-                    count={searchServicesList?.total}
-                    pageSize={10}
-                  />
-                )}
-              </div>
+                  {isFetching && (
+                    <div className="col-12 p-2">
+                      <div className="smallLoader">
+                        <span>
+                          {t("search.loading")}{" "}
+                          <i className="fa-light fa-loader fa-spin"></i>
+                        </span>
+                      </div>
+                    </div>
+                  )}
+                </>
+              ) : (
+                <EmptyData />
+              )}
             </div>
-          ) : (
-            <EmptyData>
-              {searchServicesList?.total === 0
-                ? t("recievedOrders.emptyOrders")
-                : t("recievedOrders.noOrders")}
-            </EmptyData>
-          )}
+          </main>
         </div>
       </div>
     </section>

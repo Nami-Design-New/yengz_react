@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import {
+  Link,
+  useLocation,
+  useParams,
+  useSearchParams
+} from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import avatar from "../Assets/images/avatar.jpg";
 import bann from "../Assets/images/bann.webp";
 import useGetOrder from "../features/orders/useGetOrder";
 import DataLoader from "../ui/DataLoader";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   ORDER_STATUS_AR,
   ORDER_STATUS_EN,
@@ -18,19 +23,24 @@ import { useQueryClient } from "@tanstack/react-query";
 import SubmitButton from "./../ui/form-elements/SubmitButton";
 import AddRateModal from "../ui/modals/AddRateModal";
 import ErrorPage from "./ErrorPage";
+import useServiceOrdersList from "./../features/orders/useServiceOrdersList";
+import useGetPurchases from "../features/purchases/useGetPurchases";
 
 function OrderDetails() {
   const { id } = useParams();
   const { t } = useTranslation();
-  const dispatch = useDispatch();
+  const [searchParams] = useSearchParams();
+  const page = Number(searchParams.get("page")) || 1;
+
+  const { refetch: refetchOrders } = useServiceOrdersList(page);
+  const { refetch: refetchPurchases } = useGetPurchases(page);
   const { data: order, isLoading } = useGetOrder(id);
-  console.log(order);
 
   const [userType, setUserType] = useState(null);
   const [btn1Loading, setBtn1Loading] = useState(false);
   const [showRateModal, setShowRateModal] = useState(false);
   const [loading, setLoading] = useState(false);
-  const quryClient = useQueryClient();
+  const queryClient = useQueryClient();
   const user = useSelector((state) => state.authedUser.user);
   const lang = useSelector((state) => state.language.lang);
 
@@ -62,7 +72,9 @@ function OrderDetails() {
   const handleupdateOrder = async (status) => {
     try {
       status === "canceled" ? setBtn1Loading(true) : setLoading(true);
-      await updateOrder(order?.id, status, quryClient);
+      await updateOrder(order?.id, status, queryClient);
+      refetchOrders();
+      refetchPurchases();
     } catch (error) {
       throw new Error(error.message);
     } finally {

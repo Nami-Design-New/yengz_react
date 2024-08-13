@@ -7,15 +7,18 @@ const setupAxiosInterceptors = (setCookie) => {
     (res) => res,
     async (err) => {
       const originalRequest = err.config;
+
       if (err.response?.status === 401 && !originalRequest._retry) {
         originalRequest._retry = true;
 
         try {
           const cookies = document.cookie;
           const listOfCookies = cookies.split(";");
+          console.log(listOfCookies);
+
           let token = "";
           listOfCookies.forEach((e) => {
-            if (e.includes("refreshToken")) {
+            if (e.includes("token")) {
               token = e.split("=")[1];
             }
           });
@@ -26,16 +29,16 @@ const setupAxiosInterceptors = (setCookie) => {
             token: token
           });
 
-          const newToken = res.data.access;
-
-          setCookie("token", newToken, {
-            path: "/",
-            secure: true,
-            sameSite: "Strict"
-          });
-
-          axios.defaults.headers.common["Authorization"] = `Bearer ${newToken}`;
-          originalRequest.headers["Authorization"] = `Bearer ${newToken}`;
+          if (res.data.code === 200 && res.data.data) {
+            const newToken = res.data.token;
+            setCookie("token", newToken, {
+              path: "/",
+              secure: true,
+              sameSite: "Strict"
+            });
+            axios.defaults.headers.common["Authorization"] = newToken;
+            originalRequest.headers["Authorization"] = newToken;
+          }
 
           return axios(originalRequest);
         } catch (error) {

@@ -53,12 +53,12 @@ export async function updateCollection(requestBody, querClient) {
   }
 }
 
-export async function addCollectionToCart(id, querClient) {
+export async function addCollectionToCart(id, queryClient) {
   try {
     const req = await axios.post("/user/add_collection_to_cart", {
       id: id
     });
-    querClient.invalidateQueries(["cartList", "profile"]);
+    queryClient.invalidateQueries(["cartList"]);
     return req.data;
   } catch (error) {
     throw new Error(error.message);
