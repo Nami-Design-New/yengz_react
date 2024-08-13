@@ -1,11 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
 import { getProjectsByFilter } from "../../services/apiProjects";
 
 function useProjectsList() {
   const [searchParams] = useSearchParams();
   const search = searchParams.get("search");
-  const page = Number(searchParams.get("page")) || 1;
   const rate = Number(searchParams.get("rate"));
   const user_verification = Number(searchParams.get("user_verification"));
   const user_available = Number(searchParams.get("user_available"));
@@ -22,37 +21,51 @@ function useProjectsList() {
       .split("-")
       .map((subcategory) => Number(subcategory));
   const is_old = Number(searchParams.get("is_old"));
+  const pageSize = 10;
 
-  const { isLoading, data, error } = useQuery({
-    queryKey: [
-      "projectsList",
+  const queryKey = [
+    "projectsList",
+    {
       search,
-      page,
       rate,
       user_verification,
       user_available,
       categories,
       sub_categories,
-      is_old,
-    ],
-    queryFn: () =>
-      getProjectsByFilter({
-        search,
-        page,
-        rate,
-        user_verification,
-        user_available,
-        categories,
-        sub_categories,
-        is_old,
-      }),
-    retry: false,
-    refetchOnWindowFocus: false,
-    refetchOnMount: false,
-    refetchOnReconnect: false
-  });
+      is_old
+    }
+  ];
 
-  return { isLoading, data, error };
+  const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } =
+    useInfiniteQuery({
+      queryKey,
+      queryFn: ({ pageParam = 1 }) =>
+        getProjectsByFilter(
+          search,
+          pageParam,
+          rate,
+          user_verification,
+          user_available,
+          categories,
+          sub_categories,
+          is_old
+        ),
+      getNextPageParam: (lastPage, pages) => {
+        const isMore = lastPage.data.length >= pageSize;
+        return isMore ? pages.length + 1 : undefined;
+      },
+      keepPreviousData: true,
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false
+    });
+
+  return {
+    data: data?.pages.flatMap((page) => page.data) || [],
+    fetchNextPage,
+    hasNextPage,
+    isFetching,
+    isFetchingNextPage
+  };
 }
 
 export default useProjectsList;

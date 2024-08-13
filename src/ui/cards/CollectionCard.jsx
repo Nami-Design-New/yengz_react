@@ -11,10 +11,12 @@ import {
 import { useQueryClient } from "@tanstack/react-query";
 import ConfirmationModal from "../modals/ConfirmationModal";
 import EditCollectionModal from "../modals/EditCollectionModal";
+import useCartList from "../../features/cart/useCartList";
 
 const CollectionCard = ({ collection }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { refetch } = useCartList();
   const [showModal, setShowModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -49,6 +51,7 @@ const CollectionCard = ({ collection }) => {
       const res = await addCollectionToCart(collection?.id, queryClient);
       if (res?.code === 200) {
         toast.success(t("cart.collectionAddedToCart"));
+        refetch();
         navigate("/cart");
       }
     } catch (error) {

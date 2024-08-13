@@ -282,7 +282,8 @@
     "apply": "Apply",
     "clear": "Clear Filter",
     "searchFilter": "Search Results",
-    "noData": "No services found with these details, please try something else..."
+    "noData": "No services found with these details, please try something else...",
+    "loading": "Loading"
   },
   "services": {
     "developments": "Available Add-ons for This Service",

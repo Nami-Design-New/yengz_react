@@ -41,7 +41,9 @@ export async function updateOrder(id, status, queryClient) {
       id: id,
       status: status
     });
-    queryClient.invalidateQueries("order", "serviceOrdersList");
+    queryClient.invalidateQueries("order");
+    queryClient.invalidateQueries("serviceOrdersList");
+    queryClient.invalidateQueries("purchasesList");
   } catch (error) {
     throw new Error(error.message);
   }

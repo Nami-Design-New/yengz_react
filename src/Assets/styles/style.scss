@@ -50,8 +50,9 @@
   background-color: var(--white-color-color);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--main-color);
+  background: var(--input-hint);
   height: 300px;
+  border-radius: 8px;
 }
 .progress {
   height: 8px;
@@ -230,7 +231,6 @@ input[type="checkbox"] {
   line-height: 28px;
   box-sizing: border-box;
   scroll-behavior: smooth;
-  scrollbar-width: none;
   -webkit-tap-highlight-color: transparent;
   font-family: "Din", sans-serif;
 }
@@ -386,20 +386,26 @@ body {
       .right-wrapper,
       .left-wrapper {
         display: flex;
-        gap: 24px;
+        gap: 4px;
         .nav-links {
           height: 100%;
           display: contents;
           .nav-link {
             height: 60px;
+            padding: 0 12px;
             font-size: 15px;
             font-weight: 500;
+            border-radius: 8px;
             @include centerFlex();
             a {
               font-size: 14px;
               color: var(--black-color);
             }
             color: var(--black-color);
+            &:hover {
+              background: var(--main1010-color);
+              color: var(--main-color);
+            }
           }
           @media (max-width: 992px) {
             display: none;
@@ -2254,7 +2260,7 @@ body {
         }
       }
       .filter-wrap {
-        position: sticky;
+        overflow-y: scroll;
         top: 100px;
         background: var(--input-bg);
         padding: 16px;
@@ -4819,7 +4825,7 @@ body {
     color: var(--white-color);
     background: var(--main-color);
     top: 14px;
-    right: -12px;
+    right: 0;
     border-radius: 50%;
     font-size: 10px;
     padding-top: 2px;
@@ -5912,4 +5918,8 @@ body {
     margin-bottom: 0;
     color: red;
   }
+}
+.smallLoader {
+  @include centerFlex();
+  color: var(--main-color);
 }

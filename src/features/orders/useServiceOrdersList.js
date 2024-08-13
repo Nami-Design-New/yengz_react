@@ -2,13 +2,15 @@ import { useQuery } from "@tanstack/react-query";
 import { getServiceOrders } from "../../services/apiOrders";
 import { useSearchParams } from "react-router-dom";
 
-function useServiceOrdersList() {
+function useServiceOrdersList(refetchPage) {
   const [searchParams] = useSearchParams();
   const status =
     searchParams.get("status") && searchParams.get("status").split("-");
-  const page = Number(searchParams.get("page")) || 1;
+  const page = refetchPage
+    ? refetchPage
+    : Number(searchParams.get("page")) || 1;
 
-  const { isLoading, data, error } = useQuery({
+  const { isLoading, data, refetch, error } = useQuery({
     queryKey: ["serviceOrdersList", status, page],
     queryFn: () => getServiceOrders({ page, status }),
     retry: false,
@@ -17,7 +19,7 @@ function useServiceOrdersList() {
     refetchOnReconnect: false
   });
 
-  return { isLoading, data, error };
+  return { isLoading, refetch, data, error };
 }
 
 export default useServiceOrdersList;

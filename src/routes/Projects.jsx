@@ -14,10 +14,6 @@ import ProjectCard from "../ui/cards/ProjectCard";
 
 function Projects() {
   const { t } = useTranslation();
-  const { isLoading: categoriesIsLoading, data: categoriesWithSubCategories } =
-    useCategorieListWithSub();
-  const { isLoading: projectsIsLoading, data: projectsList } =
-    useProjectsList();
   const [searchParams, setSearchParams] = useSearchParams();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [searchFilterData, setSearchFilterData] = useState({
@@ -38,8 +34,19 @@ function Projects() {
           .split("-")
           .map((subcategory) => Number(subcategory))
       : [],
-    is_old: Number(searchParams.get("is_old")) || null,
+    is_old: Number(searchParams.get("is_old")) || null
   });
+
+  const { isLoading: categoriesIsLoading, data: categoriesWithSubCategories } =
+    useCategorieListWithSub();
+
+  const {
+    data: searchProjectsList,
+    fetchNextPage,
+    hasNextPage,
+    isFetching,
+    isFetchingNextPage
+  } = useProjectsList();
 
   const handleChange = (e) => {
     const { name, checked, type, value } = e.target;
@@ -68,8 +75,8 @@ function Projects() {
               updatedState["sub_categories"] = [
                 ...new Set([
                   ...prevState["sub_categories"],
-                  ...relatedSubCategories,
-                ]),
+                  ...relatedSubCategories
+                ])
               ];
             } else {
               updatedState["sub_categories"] = prevState[
@@ -94,7 +101,7 @@ function Projects() {
 
             if (areAllChildrenChecked) {
               updatedState["categories"] = [
-                ...new Set([...prevState["categories"], parentCategory.id]),
+                ...new Set([...prevState["categories"], parentCategory.id])
               ];
             } else {
               updatedState["categories"] = prevState["categories"].filter(
@@ -116,60 +123,17 @@ function Projects() {
   }
 
   function handleApplyFilters() {
-    if (searchFilterData.page) {
-      searchParams.set("page", searchFilterData.page);
-      setSearchParams(searchParams);
+    const newParams = new URLSearchParams();
+    for (const [key, value] of Object.entries(searchFilterData)) {
+      if (value !== undefined && value !== null && value !== "") {
+        if (Array.isArray(value)) {
+          newParams.set(key, value.join("-"));
+        } else {
+          newParams.set(key, value);
+        }
+      }
     }
-    if (String(searchFilterData.search).trim()) {
-      searchParams.set("search", searchFilterData.search);
-      setSearchParams(searchParams);
-    } else {
-      searchParams.delete("search");
-      setSearchParams(searchParams);
-    }
-    if (
-      searchFilterData.rate !== undefined &&
-      searchFilterData.rate !== null &&
-      searchFilterData.rate !== ""
-    ) {
-      searchParams.set("rate", searchFilterData.rate);
-      setSearchParams(searchParams);
-    }
-    if (
-      searchFilterData.user_verification !== undefined &&
-      searchFilterData.user_verification !== null &&
-      searchFilterData.user_verification !== ""
-    ) {
-      searchParams.set("user_verification", searchFilterData.user_verification);
-      setSearchParams(searchParams);
-    }
-    if (
-      searchFilterData.user_available !== undefined &&
-      searchFilterData.user_available !== null &&
-      searchFilterData.user_available !== ""
-    ) {
-      searchParams.set("user_available", searchFilterData.user_available);
-      setSearchParams(searchParams);
-    }
-    if (searchFilterData.categories?.length > 0) {
-      searchParams.set("categories", searchFilterData.categories.join("-"));
-      setSearchParams(searchParams);
-    }
-    if (searchFilterData.sub_categories?.length > 0) {
-      searchParams.set(
-        "sub_categories",
-        searchFilterData.sub_categories.join("-")
-      );
-      setSearchParams(searchParams);
-    }
-    if (
-      searchFilterData.is_old !== undefined &&
-      searchFilterData.is_old !== null &&
-      searchFilterData.is_old !== ""
-    ) {
-      searchParams.set("is_old", searchFilterData.is_old);
-      setSearchParams(searchParams);
-    }
+    setSearchParams(newParams);
   }
 
   function handleSubmit(e) {
@@ -178,11 +142,24 @@ function Projects() {
   }
 
   useEffect(() => {
-    if (!searchParams.get("page")) {
-      searchParams.append("page", 1);
-      setSearchParams(searchParams);
-    }
-  }, [searchParams, setSearchParams]);
+    const handleScroll = () => {
+      if (
+        window.innerHeight + document.documentElement.scrollTop >=
+        document.documentElement.offsetHeight - 1000
+      ) {
+        if (!isFetchingNextPage && hasNextPage) {
+          fetchNextPage();
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isFetchingNextPage, hasNextPage, fetchNextPage]);
+
+  if ((categoriesIsLoading || isFetching) && searchProjectsList?.length < 10) {
+    return <DataLoader />;
+  }
 
   return (
     <section className="search-section">
@@ -223,15 +200,17 @@ function Projects() {
                     onChange={handleChange}
                   />
                   <hr />
-                  <div className="search-btn">
-                    <button onClick={handleApplyFilters}>
-                      {t("search.apply")}
-                    </button>
-                  </div>
-                  <div className="search-btn">
-                    <span onClick={handleClearFilters}>
-                      {t("search.clear")}
-                    </span>
+                  <div className="d-flex gap-2">
+                    <div className="search-btn">
+                      <button onClick={handleApplyFilters}>
+                        {t("search.apply")}
+                      </button>
+                    </div>
+                    <div className="search-btn">
+                      <span onClick={handleClearFilters}>
+                        {t("search.clear")}
+                      </span>
+                    </div>
                   </div>
                 </form>
               </div>
@@ -249,32 +228,37 @@ function Projects() {
           </div>
 
           <div className="col-lg-9 col-12 p-2 results-wrapper">
-            {projectsIsLoading || categoriesIsLoading ? (
-              <DataLoader />
-            ) : (
-              <div className="container">
-                <div className="row">
-                  <div className="col-12 p-2 pt-0 d-flex justify-content-end">
-                    <Link to="/add-project" className="btn btn-success">
-                      <i className="fa-regular fa-hexagon-plus me-2"></i> {""}
-                      {t("projects.addProject")}
-                    </Link>
-                  </div>
-                  {projectsList?.data && projectsList?.data?.length > 0 ? (
-                    projectsList?.data?.map((project) => (
+            <div className="container">
+              <div className="row">
+                <div className="col-12 p-2 pt-0 d-flex justify-content-end">
+                  <Link to="/add-project" className="btn btn-success">
+                    <i className="fa-regular fa-hexagon-plus me-2"></i> {""}
+                    {t("projects.addProject")}
+                  </Link>
+                </div>
+                {searchProjectsList && searchProjectsList?.length > 0 ? (
+                  <>
+                    {searchProjectsList.map((project) => (
                       <div className="col-12 p-2" key={project.id}>
                         <ProjectCard project={project} />
                       </div>
-                    ))
-                  ) : (
-                    <EmptyData>{t("projects.emptyProjects")}</EmptyData>
-                  )}
-                </div>
-                {projectsList.total > 10 && (
-                  <CustomPagination count={projectsList?.total} pageSize={10} />
+                    ))}
+                    {isFetching && (
+                      <div className="col-12 p-2">
+                        <div className="smallLoader">
+                          <span>
+                            {t("search.loading")}{" "}
+                            <i className="fa-light fa-loader fa-spin"></i>
+                          </span>
+                        </div>
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <EmptyData>{t("projects.emptyProjects")}</EmptyData>
                 )}
               </div>
-            )}
+            </div>
           </div>
         </div>
       </div>

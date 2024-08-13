@@ -2,16 +2,19 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import bann from "../../Assets/images/bann.webp";
 import avatar from "../../Assets/images/avatar.jpg";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { formatTimeDifference, getTimeDifference } from "../../utils/helpers";
 import {
   ORDER_STATUS_AR,
   ORDER_STATUS_EN,
-  ORDER_STATUS_PERSENTAGE,
+  ORDER_STATUS_PERSENTAGE
 } from "../../utils/constants";
 import { useSelector } from "react-redux";
 
 const PurchaseCard = ({ purchase }) => {
+  const [searchParams] = useSearchParams();
+  const page = Number(searchParams.get("page")) || 1;
+
   const lang = useSelector((state) => state.language.lang);
   const { t } = useTranslation();
   const timeDifference = getTimeDifference(purchase?.created_at);
@@ -64,7 +67,7 @@ const PurchaseCard = ({ purchase }) => {
                       className={`progress-bar ${purchase?.status}`}
                       role="progressbar"
                       style={{
-                        width: `${ORDER_STATUS_PERSENTAGE[purchase?.status]}%`,
+                        width: `${ORDER_STATUS_PERSENTAGE[purchase?.status]}%`
                       }}
                       aria-valuenow={ORDER_STATUS_PERSENTAGE[purchase?.status]}
                       aria-valuemin="0"
@@ -72,7 +75,10 @@ const PurchaseCard = ({ purchase }) => {
                     ></div>
                   </div>
                 </div>
-                <Link to={`/purchases/${purchase?.id}`} className="details">
+                <Link
+                  to={`/purchases/${purchase?.id}?page=${page}`}
+                  className="details"
+                >
                   {t("details")}
                 </Link>
               </div>

@@ -2,13 +2,13 @@ import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
 import { getPurchasesOrders } from "../../services/apiPurchases";
 
-function useGetPurchases() {
+function useGetPurchases(refetchPage) {
   const [searchParams] = useSearchParams();
   const status =
     searchParams.get("status") && searchParams.get("status").split("-");
-  const page = Number(searchParams.get("page")) || 1;
+  const page = refetchPage ? refetchPage : Number(searchParams.get("page")) || 1;
 
-  const { isLoading, data, error } = useQuery({
+  const { isLoading, refetch, data, error } = useQuery({
     queryKey: ["purchacesList", status, page],
     queryFn: () => getPurchasesOrders({ page, status }),
     retry: false,
@@ -17,7 +17,7 @@ function useGetPurchases() {
     refetchOnReconnect: false
   });
 
-  return { isLoading, data, error };
+  return { isLoading, refetch, data, error };
 }
 
 export default useGetPurchases;

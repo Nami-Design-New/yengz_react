@@ -32,8 +32,9 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--main-color);
+  background: var(--input-hint);
   height: 300px;
+  border-radius: 8px;
 }
 
 .progress {
@@ -238,7 +239,6 @@ input[type=checkbox]:checked::after {
   line-height: 28px;
   box-sizing: border-box;
   scroll-behavior: smooth;
-  scrollbar-width: none;
   -webkit-tap-highlight-color: transparent;
   font-family: "Din", sans-serif;
 }
@@ -412,7 +412,7 @@ body header .tnavbar .toogler.close span:nth-child(3) {
 body header .tnavbar .right-wrapper,
 body header .tnavbar .left-wrapper {
   display: flex;
-  gap: 24px;
+  gap: 4px;
 }
 body header .tnavbar .right-wrapper .nav-links,
 body header .tnavbar .left-wrapper .nav-links {
@@ -422,8 +422,10 @@ body header .tnavbar .left-wrapper .nav-links {
 body header .tnavbar .right-wrapper .nav-links .nav-link,
 body header .tnavbar .left-wrapper .nav-links .nav-link {
   height: 60px;
+  padding: 0 12px;
   font-size: 15px;
   font-weight: 500;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -433,6 +435,11 @@ body header .tnavbar .right-wrapper .nav-links .nav-link a,
 body header .tnavbar .left-wrapper .nav-links .nav-link a {
   font-size: 14px;
   color: var(--black-color);
+}
+body header .tnavbar .right-wrapper .nav-links .nav-link:hover,
+body header .tnavbar .left-wrapper .nav-links .nav-link:hover {
+  background: var(--main1010-color);
+  color: var(--main-color);
 }
 @media (max-width: 992px) {
   body header .tnavbar .right-wrapper .nav-links,
@@ -2437,7 +2444,7 @@ body main .search-section input[type=radio]:checked::before {
   display: block;
 }
 body main .search-section .filter-wrap {
-  position: sticky;
+  overflow-y: scroll;
   top: 100px;
   background: var(--input-bg);
   padding: 16px;
@@ -5157,7 +5164,7 @@ body .num-count2 {
   color: var(--white-color);
   background: var(--main-color);
   top: 14px;
-  right: -12px;
+  right: 0;
   border-radius: 50%;
   font-size: 10px;
   padding-top: 2px;
@@ -6283,4 +6290,11 @@ body.en main .row-head a i {
 .refuse_reason p {
   margin-bottom: 0;
   color: red;
+}
+
+.smallLoader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--main-color);
 }/*# sourceMappingURL=style.css.map */
