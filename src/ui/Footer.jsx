@@ -130,26 +130,28 @@ const Footer = () => {
                 {t("footer.copyright")} © {new Date().getFullYear()}{" "}
                 {t("footer.allRightsReserved")}
               </p>
-            </div>
-            {payments && payments?.length > 0 && (
-              <div className="footer-payment d-flex align-items-center h-full gap-2">
-                <span>{t("footer.acceptPaymentsBy")}:</span>
-                <div className="d-flex align-items-center gap-2">
-                  {payments?.map((payment) => (
-                    <img
-                      src={payment.image}
-                      key={payment.id}
-                      alt={`payment ${payment.id}`}
-                      style={{
-                        width: "50px",
-                        objectFit: "cover",
-                        cursor: "pointer",
-                      }}
-                    />
-                  ))}
-                </div>
+              <div>
+                {payments && payments?.length > 0 && (
+                  <div className="footer-payment d-flex align-items-center h-full gap-2">
+                    <span>{t("footer.acceptPaymentsBy")}:</span>
+                    <div className="d-flex align-items-center gap-2">
+                      {payments?.map((payment) => (
+                        <img
+                          src={payment.image}
+                          key={payment.id}
+                          alt={`payment ${payment.id}`}
+                          style={{
+                            width: "50px",
+                            objectFit: "cover",
+                            cursor: "pointer"
+                          }}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
-            )}
+            </div>
           </div>
         </div>
       </div>

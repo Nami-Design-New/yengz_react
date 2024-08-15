@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import NewsLetter from "../ui/NewsLetter";
 import SectionHeader from "../ui/SectionHeader";
 import useGetAboutAppCategory from "./../features/About/useGetAboutAppCategory";
 import DataLoader from "../ui/DataLoader";
@@ -61,7 +60,6 @@ const About = () => {
           </div>
         </div>
       </section>
-      <NewsLetter />
     </>
   );
 };

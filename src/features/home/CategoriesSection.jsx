@@ -1,11 +1,13 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
 import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper-bundle.css";
+
+import { useTranslation } from "react-i18next";
 import { Autoplay } from "swiper/modules";
 import { Link } from "react-router-dom";
-import CategoryCard from "../../ui/cards/CategoryCard";
-import useCategoriesList from "./../categories/useCategoriesList";
 import { useSelector } from "react-redux";
+import useCategoriesList from "./../categories/useCategoriesList";
+import CategoryCard from "../../ui/cards/CategoryCard";
 
 const CategoriesSection = () => {
   const { t } = useTranslation();
@@ -16,6 +18,8 @@ const CategoriesSection = () => {
     <section className="categories ">
       <div className="container">
         {/* section head */}
+        <h2 className="title">اعثر على مستقلين محترفين في كافة المجالات</h2>
+        <p className="desc">غطي احتياجاتك من المهارات في جميع التخصصات</p>
         <div className="row-head" data-aos="fade-up">
           <h6>
             <i className="fa-sharp fa-solid fa-grid-2"></i>{" "}
@@ -27,8 +31,8 @@ const CategoriesSection = () => {
           </Link>
         </div>
         <Swiper
-          spaceBetween={30}
-          slidesPerView={4}
+          spaceBetween={16}
+          slidesPerView={5}
           speed={1000}
           loop={true}
           modules={[Autoplay]}

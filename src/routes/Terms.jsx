@@ -1,6 +1,5 @@
 import React from "react";
 import SectionHeader from "../ui/SectionHeader";
-import NewsLetter from "../ui/NewsLetter";
 import useGetSettings from "../features/settings/useGetSettings";
 import DataLoader from "../ui/DataLoader";
 
@@ -23,7 +22,6 @@ const Terms = () => {
           )}
         </div>
       </section>
-      <NewsLetter />
     </>
   );
 };

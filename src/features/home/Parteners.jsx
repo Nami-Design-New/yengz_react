@@ -12,7 +12,7 @@ function Parteners() {
   const lang = useSelector((state) => state.language.lang);
 
   return (
-    <section className="popular_departments pt-0">
+    <section className="popular_departments partinars pt-0">
       <div className="container">
         <div
           className="row-head d-flex flex-column gap-1 justify-content-center"

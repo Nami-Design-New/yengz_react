@@ -10,6 +10,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import ToTopOnNavigation from "./utils/ToTopOnNavigation";
+import InterceptorProvider from "./features/auth/InterceptorProvider";
 
 /*---------- fontawesome ----------*/
 import "./Assets/styles/all.min.css";
@@ -23,7 +24,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 /*---------- app style global -----*/
 import "./Assets/styles/style.css";
-import InterceptorProvider from "./features/auth/InterceptorProvider";
 
 const queryClient = new QueryClient();
 

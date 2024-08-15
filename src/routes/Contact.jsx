@@ -2,7 +2,6 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import contact from "../Assets/images/contact.webp";
 import SectionHeader from "../ui/SectionHeader";
-import NewsLetter from "../ui/NewsLetter";
 
 const Contact = () => {
   const { t } = useTranslation();
@@ -64,9 +63,6 @@ const Contact = () => {
               </div>
             </div>
           </div>
-        </div>
-        <div className="Newsletter">
-          <NewsLetter />
         </div>
       </section>
     </>

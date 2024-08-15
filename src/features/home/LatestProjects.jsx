@@ -1,8 +1,11 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
 import useGetLatestProjects from "../projects/useGetLatestProjects";
 import ProjectCard from "../../ui/cards/ProjectCard";
+import "swiper/swiper-bundle.css";
 
 const LatestProjects = () => {
   const { t } = useTranslation();
@@ -19,11 +22,32 @@ const LatestProjects = () => {
           </Link>
         </div>
         <div className="row mb-5">
-          {projects?.map((project) => (
-            <div className="col-lg-6 col-12 p-2" key={project.id}>
-              <ProjectCard project={project} />
-            </div>
-          ))}
+          <Swiper
+            spaceBetween={12}
+            slidesPerView={1}
+            speed={1000}
+            loop={true}
+            modules={[Autoplay]}
+            autoplay={{ delay: 3000, disableOnInteraction: false }}
+            className="mainSliderContainer"
+            breakpoints={{
+              992: {
+                slidesPerView: 2
+              },
+              768: {
+                slidesPerView: 1
+              },
+              350: {
+                slidesPerView: 1
+              },
+            }}
+          >
+            {projects?.map((project) => (
+              <SwiperSlide key={project.id}>
+                <ProjectCard project={project} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </div>
     </section>

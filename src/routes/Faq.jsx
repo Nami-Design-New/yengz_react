@@ -1,6 +1,5 @@
 import React from "react";
 import SectionHeader from "../ui/SectionHeader";
-import NewsLetter from "../ui/NewsLetter";
 import FaqAccordin from "../ui/FaqAccordin";
 
 const Faq = () => {
@@ -10,7 +9,6 @@ const Faq = () => {
       <section className="faqs">
         <FaqAccordin />
       </section>
-      <NewsLetter />
     </>
   );
 };
