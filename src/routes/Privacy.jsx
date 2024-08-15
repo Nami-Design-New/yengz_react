@@ -1,6 +1,5 @@
 import React from "react";
 import useGetSettings from "../features/settings/useGetSettings";
-import NewsLetter from "../ui/NewsLetter";
 import SectionHeader from "../ui/SectionHeader";
 import DataLoader from "../ui/DataLoader";
 
@@ -23,7 +22,6 @@ const Privacy = () => {
           )}
         </div>
       </section>
-      <NewsLetter />
     </>
   );
 };

@@ -267,7 +267,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="right-wrapper">
-          <div className="logo d-block">
+          <div className="logo">
             <Link to="/">
               <img className="brand" src={logo} alt="logo" />
             </Link>
@@ -300,6 +300,18 @@ const Navbar = () => {
                 {t("navbar.bestFreelancers")}
               </Link>
             </li>
+            <li className="nav-link">
+              <Link to="/services" className="d-flex align-items-center gap-1">
+                <i className="fa-light fa-database"></i>
+                {t("navbar.services")}
+              </Link>
+            </li>
+            <li className="nav-link">
+              <Link to="/projects" className="d-flex align-items-center gap-1">
+                <i className="fa-regular fa-file-invoice"></i>
+                {t("navbar.projects")}
+              </Link>
+            </li>
             {isLogged && (
               <>
                 <li className="nav-link">
@@ -326,24 +338,7 @@ const Navbar = () => {
                     {user?.service_orders_count || 0}
                   </span>
                 </li>
-                <li className="nav-link">
-                  <Link
-                    to="/services"
-                    className="d-flex align-items-center gap-1"
-                  >
-                    <i className="fa-light fa-database"></i>
-                    {t("navbar.services")}
-                  </Link>
-                </li>
-                <li className="nav-link">
-                  <Link
-                    to="/projects"
-                    className="d-flex align-items-center gap-1"
-                  >
-                    <i className="fa-regular fa-file-invoice"></i>
-                    {t("navbar.projects")}
-                  </Link>
-                </li>
+
                 <li className="nav-link">
                   <Link
                     to="/projects-orders"
