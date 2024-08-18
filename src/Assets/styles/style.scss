@@ -375,6 +375,13 @@ body {
       .left-wrapper {
         display: flex;
         gap: 12px;
+        .webmenu_open {
+          @include clearInput();
+          padding: 0 12px;
+          @media screen and (max-width: 992px) {
+            display: none;
+          }
+        }
         .nav-links {
           height: 100%;
           display: contents;
@@ -404,7 +411,7 @@ body {
         height: 60px;
         @include centerFlex();
         img {
-          height: 70%;
+          height: 60%;
         }
       }
       .loged-in-minor-menu {
@@ -632,13 +639,40 @@ body {
     min-height: calc(100dvh - 80px);
     .hero_section {
       width: 100%;
-      min-height: 100dvh;
-      background-image: linear-gradient(#00000075, #00000075),
-        url("../images/hero.jpg");
+      background-image: linear-gradient(#00000075, #00000075);
       background-size: cover;
+      position: relative;
       background-position: center;
+      .hero_slider {
+        height: calc(100dvh - 80px);
+        .swiper-slide {
+          height: 100%;
+          position: relative;
+          &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+          }
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+      }
       .hero_content {
-        height: 80vh;
+        height: 100%;
+        width: calc(100% - 32px);
+        position: absolute;
+        top: 0;
+        z-index: 2;
+        left: 50%;
+        transform: translateX(-50%);
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -813,6 +847,23 @@ body {
         display: flex;
         align-items: center;
         gap: 4px;
+      }
+    }
+    .portfolios {
+      padding: 60px 0;
+      .portfolio-card {
+        width: 100%;
+        border-radius: 12px;
+        overflow: hidden;
+        .img {
+          width: 100%;
+          aspect-ratio: 3 / 2;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
       }
     }
     .how_it_works {
@@ -1078,7 +1129,6 @@ body {
       padding: 100px 16px 40px;
       .title {
         font-size: 24px;
-        text-align: center;
       }
       .desc {
         color: #664180;
@@ -5774,7 +5824,7 @@ body {
     align-items: center;
     gap: 16px;
     justify-content: space-between;
-    padding: 8px 16px;
+    padding: 8px 16px 8px 8px;
     z-index: 10000;
     input {
       flex: 1 0 0;
@@ -5947,6 +5997,31 @@ body {
     }
     main .row-head a i {
       transform: scaleX(-1);
+    }
+  }
+}
+.web-menu-sidebar {
+  position: fixed;
+  top: 80px;
+  width: 250px;
+  background: var(--white-color);
+  height: calc(100dvh - 80px);
+  right: -250px;
+  transition: .3s ease-in-out;
+  padding: 24px;
+  &.active {
+    right: 0;
+  }
+  .nav_side_menu {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    a {
+      color: var(--black-color);
+      font-size: 16px;
+      svg {
+        height: 20px;
+      }
     }
   }
 }

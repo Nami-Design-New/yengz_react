@@ -34,6 +34,7 @@ import BestFreeLancers from "./routes/BestFreeLancers";
 import ErrorPage from "./routes/ErrorPage";
 import Blogs from "./routes/Blogs";
 import BlogDetails from "./routes/BlogDetails";
+import Portfolios from "./routes/Portfolios";
 
 const routesConfig = [
   { path: "/", element: <Home />, index: true },
@@ -79,7 +80,8 @@ const routesConfig = [
   { path: "/blogs/:id", element: <BlogDetails /> },
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
-  { path: "/forget-password", element: <ForgetPassword /> }
+  { path: "/forget-password", element: <ForgetPassword /> },
+  { path: "/portfolios", element: <Portfolios /> }
 ];
 
 export default routesConfig;
