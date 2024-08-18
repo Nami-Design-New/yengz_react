@@ -1,6 +1,6 @@
 import { Fragment, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { IconLanguage } from "@tabler/icons-react";
+import { IconLanguage, IconMenu2 } from "@tabler/icons-react";
 import { useDispatch, useSelector } from "react-redux";
 import { setLanguage } from "../redux/slices/language";
 import { useTranslation } from "react-i18next";
@@ -18,6 +18,8 @@ import i18next from "i18next";
 import useOutsideClose from "../hooks/useOutsideClose";
 import DeleteAcountModal from "./modals/DeleteAcountModal";
 import useGetNotifications from "../features/profile/useGetNotifications";
+import SmallMediaMenu from "./SmallMediaMenu";
+import WebMenuSideBar from "./WebMenuSideBar";
 
 const Navbar = () => {
   const { t } = useTranslation();
@@ -28,34 +30,20 @@ const Navbar = () => {
   const user = useSelector((state) => state.authedUser.user);
   const lang = useSelector((state) => state.language.lang);
   const isLogged = useSelector((state) => state.authedUser.isLogged);
+
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const [isSmallMediaMenuOpen, setIsSmallMediaMenuOpen] = useState(false);
+  const [deleteLoading, setDeleteLoading] = useState(false);
+  const [isWebMenuOpen, setIsWebMenuOpen] = useState(false);
   const [isDeleteAccountModalOpen, setIsDeleteAccountModalOpen] =
     useState(false);
-  const [deleteLoading, setDeleteLoading] = useState(false);
+
   const { data: notifications } = useGetNotifications();
+
   const [, , deleteCookie] = useCookies();
   const [cookies] = useCookies(["token"]);
   const token = cookies?.token;
-
-  const performLogout = async () => {
-    try {
-      deleteCookie("token");
-      deleteCookie("id");
-      const deleteToken = await axios.post("/user/logout", { token: token });
-      if (deleteToken.data.code === 200) {
-        delete axios.defaults.headers.common["Authorization"];
-        dispatch(setUser({}));
-        dispatch(setIsLogged(false));
-        dispatch(logout());
-        navigate("/");
-      }
-    } catch (error) {
-      console.error("Error during logout:", error);
-      throw new Error(error.message);
-    }
-  };
 
   function handleShowDeleteAccountModal() {
     setIsDeleteAccountModalOpen(true);
@@ -97,6 +85,16 @@ const Navbar = () => {
     setIsProfileMenuOpen(false);
   }
 
+  useOutsideClose(searchRef, closeSearchInput, true);
+  useOutsideClose(profileMenuRef, closeProfileMenu, true);
+
+  function handleSubmitSearch(e) {
+    e.preventDefault();
+    const searchInput = e.target[0].value;
+    closeSearchInput();
+    navigate(`/services?search=${searchInput}`);
+  }
+
   const handleLang = (newLang) => {
     navigate(0);
     dispatch(setLanguage(newLang));
@@ -108,15 +106,23 @@ const Navbar = () => {
     }
   };
 
-  useOutsideClose(searchRef, closeSearchInput, true);
-  useOutsideClose(profileMenuRef, closeProfileMenu, true);
-
-  function handleSubmitSearch(e) {
-    e.preventDefault();
-    const searchInput = e.target[0].value;
-    closeSearchInput();
-    navigate(`/services?search=${searchInput}`);
-  }
+  const performLogout = async () => {
+    try {
+      deleteCookie("token");
+      deleteCookie("id");
+      const deleteToken = await axios.post("/user/logout", { token: token });
+      if (deleteToken.data.code === 200) {
+        delete axios.defaults.headers.common["Authorization"];
+        dispatch(setUser({}));
+        dispatch(setIsLogged(false));
+        dispatch(logout());
+        navigate("/");
+      }
+    } catch (error) {
+      console.error("Error during logout:", error);
+      throw new Error(error.message);
+    }
+  };
 
   const handleDeleteAccount = async () => {
     try {
@@ -152,126 +158,31 @@ const Navbar = () => {
           <span></span>
           <span></span>
         </div>
-        <div
-          className={`small-media-menu  ${isSmallMediaMenuOpen ? "show" : ""}`}
-        >
-          {isLogged && (
-            <div className="user" onClick={closeSmallMediaMenu}>
-              <Link to="/profile" className="avatar" onClick={closeProfileMenu}>
-                <img src={user?.image || avatar} alt="" />
-              </Link>
-              <div className="userr">
-                <h6>{user?.name}</h6>
-              </div>
-            </div>
-          )}
-          <ul className="nav-links">
-            <li className="nav-link" onClick={closeSmallMediaMenu}>
-              <Link to="/">
-                <i className="fa-sharp fa-regular fa-house"></i>
-                {t("homePage")}
-              </Link>
-            </li>
-            <li className="nav-link" onClick={closeSmallMediaMenu}>
-              <Link to="/categories">
-                <i className="far fa-cube"></i> {t("navbar.categories")}
-              </Link>
-            </li>
-            <li className="nav-link" onClick={closeSmallMediaMenu}>
-              <Link to="/best-freelancers">
-                <i className="fa-solid fa-stars"></i>{" "}
-                {t("navbar.bestFreelancers")}
-              </Link>
-            </li>
-            {!isLogged && (
-              <li className="nav-link" onClick={closeSmallMediaMenu}>
-                <Link to="/login">
-                  <i className="fa-regular fa-arrow-right-from-bracket"></i>
-                  {t("navbar.login")}
-                </Link>
-              </li>
-            )}
-            {isLogged && (
-              <>
-                <li className="nav-link" onClick={closeSmallMediaMenu}>
-                  <Link to="/recieved-orders">
-                    <i className="far fa-clipboard-list-check"></i>{" "}
-                    {t("navbar.requestsRecieved")}
-                  </Link>
-                </li>
-                <li className="nav-link" onClick={closeSmallMediaMenu}>
-                  <Link to="/add-service">
-                    <i className="far fa-plus"></i> {t("navbar.addService")}
-                  </Link>
-                </li>
-                <li className="nav-link" onClick={closeSmallMediaMenu}>
-                  <Link to="/profile">
-                    <i className="fa-regular fa-user"></i>
-                    {t("navbar.myProfile")}
-                  </Link>
-                </li>
-                <li className="nav-link" onClick={closeSmallMediaMenu}>
-                  <Link to="/chat">
-                    <i className="fa-regular fa-messages"></i>
-                    {t("navbar.messages")}
-                  </Link>
-                </li>
-                <li className="nav-link" onClick={closeSmallMediaMenu}>
-                  <Link to="/cart">
-                    <i className="fa-light fa-cart-shopping"></i>
-                    {t("navbar.cart")}
-                  </Link>
-                </li>
-                <li className="nav-link" onClick={closeSmallMediaMenu}>
-                  <Link to="/purchases">
-                    <i className="far fa-shopping-bag"></i>{" "}
-                    {t("navbar.purchase")}
-                  </Link>
-                </li>
-                <li className="nav-link" onClick={closeSmallMediaMenu}>
-                  <Link to="/projects">
-                    <i className="fa-regular fa-file-invoice"></i>
-                    {t("navbar.projects")}
-                  </Link>
-                </li>
-                <li className="nav-link" onClick={closeSmallMediaMenu}>
-                  <Link to="/projects-orders">
-                    <i className="fa-regular fa-hourglass-half"></i>
-                    {t("navbar.projectsOrders")}
-                  </Link>
-                </li>
-              </>
-            )}
-            {isLogged && (
-              <>
-                <li className="nav-link" onClick={closeSmallMediaMenu}>
-                  <Link to="/edit-profile">
-                    <i className="fa-sharp fa-solid fa-pen-to-square"></i>
-                    {t("navbar.editProfile")}
-                  </Link>
-                </li>
-                <li className="nav-link" onClick={closeSmallMediaMenu}>
-                  <Link>
-                    <i className="fa-solid fa-trash"></i>
-                    {t("navbar.deleteAccount")}
-                  </Link>
-                </li>
-                <li className="nav-link" onClick={closeSmallMediaMenu}>
-                  <Link onClick={performLogout}>
-                    <i className="fa-regular fa-right-from-bracket"></i>
-                    {t("navbar.logout")}
-                  </Link>
-                </li>
-              </>
-            )}
-          </ul>
-        </div>
+        <SmallMediaMenu
+          isSmallMediaMenuOpen={isSmallMediaMenuOpen}
+          closeSmallMediaMenu={closeSmallMediaMenu}
+          isLogged={isLogged}
+          user={user}
+          t={t}
+          closeProfileMenu={closeProfileMenu}
+          avatar={avatar}
+          performLogout={performLogout}
+        />
+
         <div className="right-wrapper">
+          <button
+            className="webmenu_open"
+            onClick={() => setIsWebMenuOpen(!isWebMenuOpen)}
+          >
+            <IconMenu2 stroke={1.5} />
+          </button>
+
           <div className="logo">
             <Link to="/">
               <img className="brand" src={logo} alt="logo" />
             </Link>
           </div>
+
           <ul className="nav-links">
             {isLogged && (
               <li className="nav-link">
@@ -354,6 +265,8 @@ const Navbar = () => {
               </>
             )}
           </ul>
+
+          <WebMenuSideBar isOpen={isWebMenuOpen} setIsOpen={setIsWebMenuOpen} />
         </div>
 
         <div className="left-wrapper">
