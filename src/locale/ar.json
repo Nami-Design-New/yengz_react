@@ -38,7 +38,8 @@
     "my-collections": "مجموعاتي",
     "best-freelancers": "افضل الموثقين",
     "blogs": "المدونات",
-    "requests": "الطلبات"
+    "requests": "الطلبات",
+    "portfolios": "معرض الأعمال"
   },
   "auth": {
     "loginPageTitle": "تسجيل الدخول",

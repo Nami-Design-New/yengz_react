@@ -38,7 +38,8 @@
     "my-collections": "My Collections",
     "best-freelancers": "Best Freelancers",
     "blogs": "Blogs",
-    "requests": "Requests"
+    "requests": "Requests",
+    "portfolios": "Portfolios"
   },
   "auth": {
     "loginPageTitle": "Login",

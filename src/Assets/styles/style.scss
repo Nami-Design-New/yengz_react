@@ -853,15 +853,39 @@ body {
       padding: 60px 0;
       .portfolio-card {
         width: 100%;
-        border-radius: 12px;
-        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
         .img {
+          border-radius: 12px;
+          overflow: hidden;
           width: 100%;
           aspect-ratio: 3 / 2;
           img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+          }
+        }
+        .info {
+          h6 {
+            color: var(--black-color);
+          }
+          ul {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            li {
+              color: var(--black-color);
+              i {
+                color: #0275d8;
+              }
+              &:nth-child(2) {
+                i {
+                  color: red;
+                }
+              }
+            }
           }
         }
       }
@@ -6004,7 +6028,7 @@ body {
   position: fixed;
   top: 80px;
   width: 250px;
-  background: var(--white-color);
+  background: var(--gray-background);
   height: calc(100dvh - 80px);
   right: -250px;
   transition: .3s ease-in-out;
