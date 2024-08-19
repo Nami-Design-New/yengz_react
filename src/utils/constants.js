@@ -9,6 +9,18 @@ export const FILTER_STATUS = [
 
 export const PAGE_SIZE = 10;
 
+export const COMMUNITIES_OPTIONS = [
+  {
+    name: "unexisited-requests-orders",
+  },
+  {
+    name: "users-stories",
+  },
+  {
+    name: "done-works-modals",
+  },
+];
+
 export const ORDER_STATUS_AR = {
   new: "جديد",
   in_progress: "قيد التنفيذ",

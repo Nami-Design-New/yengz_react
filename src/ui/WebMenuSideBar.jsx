@@ -29,7 +29,7 @@ function WebMenuSideBar({ isOpen, setIsOpen }) {
         </li>
         <li>
           <Link to="/freelancers" onClick={() => setIsOpen(false)}>
-          <IconUsers stroke={1.5} /> {t("navbar.freelancers")}
+            <IconUsers stroke={1.5} /> {t("navbar.freelancers")}
           </Link>
         </li>
         <Accordion>
@@ -61,17 +61,23 @@ function WebMenuSideBar({ isOpen, setIsOpen }) {
             <Accordion.Body>
               <ul>
                 <li>
-                  <Link to="/communities/1" onClick={() => setIsOpen(false)}>
-                    نماذج أعمال قمت بتنفيذها
+                  <Link
+                    to="/done-works-modals"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {t("routes.done-works-modals")}
                   </Link>
                 </li>
                 <li>
-                  <Link to="/communities/1" onClick={() => setIsOpen(false)}>
-                    طلبات الخدمات غير الموجودة
+                  <Link
+                    to="/unexisited-requests-orders"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {t("routes.unexisited-requests-orders")}
                   </Link>
                 </li>
                 <li>
-                  <Link to="" onClick={() => setIsOpen(false)}>
+                  <Link to="/users-stories" onClick={() => setIsOpen(false)}>
                     تجارب وقصص المستخدمين
                   </Link>
                 </li>

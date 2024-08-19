@@ -39,7 +39,11 @@
     "best-freelancers": "Best Freelancers",
     "blogs": "Blogs",
     "requests": "Requests",
-    "portfolios": "Portfolios"
+    "portfolios": "Portfolios",
+    "ynjezCommunity": "Ynjez communities",
+    "done-works-modals": "Done Works Modals",
+    "unexisited-requests-orders": "Unexisited Requests Orders",
+    "users-stories": "Users Stories and Opinions"
   },
   "auth": {
     "loginPageTitle": "Login",
@@ -468,6 +472,25 @@
   },
   "blogs": {
     "moreBlogs": "More news"
+  },
+  "communities": {
+    "worksHasBeenDone": "Works has been done",
+    "newSubject": "New Subject",
+    "subjectHeader": "Resturant social media designs",
+    "addComment": "Add Comment",
+    "subjectWork": "Designs for Basha resturant",
+    "viewWorks": "View",
+    "aboutSubject": "About Subject",
+    "publishTime": "Publish Time",
+    "subjectPublisher": "Subject Publisher",
+    "newSeller": "New Seller",
+    "comments": "Comments",
+    "latestContributions": "Latest Contributions",
+    "addSubject": "Add Subject",
+    "subjectTitle": "Subject Title",
+    "subjectDescription": "Subject Description",
+    "add": "Add",
+    "community": "Community"
   },
   "password": "Enter Password",
   "cancel": "Cancel",
