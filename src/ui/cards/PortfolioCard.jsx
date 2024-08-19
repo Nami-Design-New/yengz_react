@@ -12,10 +12,10 @@ function PortfolioCard({ setRow, setIsModalOpen }) {
         <h6>من اخر اعمالي في تصميم الشعارات</h6>
         <ul>
           <li>
-            <i class="fa-sharp fa-regular fa-eye"></i> 3
+            <i className="fa-sharp fa-regular fa-eye"></i> 3
           </li>
           <li>
-            <i class="fa-sharp fa-solid fa-heart"></i> 4
+            <i className="fa-sharp fa-solid fa-heart"></i> 4
           </li>
         </ul>
       </div>

@@ -203,15 +203,6 @@ const Navbar = () => {
               </Link>
             </li>
             <li className="nav-link">
-              <Link
-                to="/best-freelancers"
-                className="d-flex align-items-center gap-1"
-              >
-                <i className="fa-solid fa-stars"></i>{" "}
-                {t("navbar.bestFreelancers")}
-              </Link>
-            </li>
-            <li className="nav-link">
               <Link to="/services" className="d-flex align-items-center gap-1">
                 <i className="fa-light fa-database"></i>
                 {t("navbar.services")}

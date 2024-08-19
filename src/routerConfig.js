@@ -44,7 +44,7 @@ const routesConfig = [
   { path: "/categories/:id", element: <SubCategories /> },
   { path: "/services", element: <Services /> },
   { path: "/services/:id", element: <ServiceDetails /> },
-  { path: "/best-freelancers", element: <BestFreeLancers /> },
+  { path: "/freelancers", element: <BestFreeLancers /> },
   { path: "/add-service", element: <AddServices />, protected: true },
   { path: "/edit-service/:id", element: <AddServices />, protected: true },
   { path: "/cart", element: <Cart />, protected: true },

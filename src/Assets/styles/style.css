@@ -1131,8 +1131,8 @@ body main .best-freelancers .freelancerCard {
   border-radius: 12px;
   padding: 16px 24px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 12px;
 }
 body main .best-freelancers .freelancerCard .info {
   display: flex;
@@ -1154,7 +1154,7 @@ body main .best-freelancers .freelancerCard .info .img img {
 body main .best-freelancers .freelancerCard .info .img .status {
   display: block;
   position: absolute;
-  bottom: -4px;
+  bottom: -8px;
   left: 4px;
   width: 28px;
   border-radius: 50%;
@@ -1181,6 +1181,10 @@ body main .best-freelancers .freelancerCard .info .content h6 {
 body main .best-freelancers .freelancerCard .info .content ul li {
   font-size: 14px;
   color: var(--input-hint);
+}
+body main .best-freelancers .freelancerCard p {
+  font-size: 14px;
+  color: var(--text-color);
 }
 body main .notifications_section {
   padding: 60px 0;
@@ -6413,6 +6417,13 @@ body.en main .row-head a i {
   padding: 24px;
   overflow-y: auto;
 }
+.web-menu-sidebar a {
+  transition: 0.2s ease-in-out;
+  color: var(--black-color);
+}
+.web-menu-sidebar a:hover {
+  color: var(--main-color) !important;
+}
 .web-menu-sidebar::-webkit-scrollbar {
   width: 0;
   height: 0;
@@ -6420,10 +6431,48 @@ body.en main .row-head a i {
 .web-menu-sidebar.active {
   right: 0;
 }
-.web-menu-sidebar .nav_side_menu {
+.web-menu-sidebar .accordion-header img,
+.web-menu-sidebar .accordion-header svg,
+.web-menu-sidebar .accordion-header i {
+  height: 20px;
+  width: 20px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.web-menu-sidebar .accordion-body {
+  padding: 8px;
+}
+.web-menu-sidebar .accordion-body ul {
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+.web-menu-sidebar .accordion-body ul li {
+  line-height: 24px;
+}
+.web-menu-sidebar .accordion-body ul li a {
+  padding: 0 !important;
+}
+.web-menu-sidebar .accordion-button::after {
+  content: "\f107";
+  background: none;
+  transform: none;
+  font-family: "Font Awesome 6 Pro";
+}
+.web-menu-sidebar .accordion-button:not(.collapsed)::after {
+  content: "\f106";
+}
+.web-menu-sidebar .nav_side_menu {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.web-menu-sidebar .nav_side_menu .accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 .web-menu-sidebar .nav_side_menu .accordion-header {
   border: none;

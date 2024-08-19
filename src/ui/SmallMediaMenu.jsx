@@ -36,7 +36,7 @@ function SmallMediaMenu({
           </Link>
         </li>
         <li className="nav-link" onClick={closeSmallMediaMenu}>
-          <Link to="/best-freelancers">
+          <Link to="/freelancers">
             <i className="fa-solid fa-stars"></i> {t("navbar.bestFreelancers")}
           </Link>
         </li>

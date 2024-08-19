@@ -166,7 +166,7 @@ function Projects() {
       <div className="container">
         <div className="row">
           <div className="col-lg-3 p-2">
-            <aside className={`side-menu ${isFilterOpen ? "active" : ""}`}>
+            <aside className={`side-menu p-2 pt-3 ${isFilterOpen ? "active" : ""}`}>
               <div className="filter-wrap">
                 <div className="colse" onClick={() => setIsFilterOpen(false)}>
                   <i className="fa-light fa-xmark"></i>
@@ -175,7 +175,7 @@ function Projects() {
                   <InputField
                     id="aside-search-input"
                     name="search"
-                    className="aside-search-input search_input"
+                    
                     value={searchFilterData.search}
                     onChange={handleChange}
                     label={t("search.search")}
