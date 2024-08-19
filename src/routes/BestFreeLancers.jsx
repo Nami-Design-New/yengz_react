@@ -42,6 +42,10 @@ const BestFreeLancers = () => {
     setSearchFilterData({ ...searchFilterData, [name]: value });
   };
 
+  const handleRatingChange = (value) => {
+    setSearchFilterData({ ...searchFilterData, rate: value });
+  };
+
   const handleSelect = (selectedItems) => {
     setSelectedOptions(selectedItems);
     const selectedValues = selectedItems
@@ -98,7 +102,57 @@ const BestFreeLancers = () => {
                     />
                     <div className="input-field">
                       <label htmlFor="rate">{t("search.rating")}</label>
+                      <div className="stars">
+                        <div className="star-rating-service">
+                          {[5, 4, 3, 2, 1].map((star) => (
+                            <React.Fragment key={star}>
+                              <input
+                                type="radio"
+                                id={`star${star}`}
+                                name="rating"
+                                value={star}
+                                checked={searchFilterData.rate === star}
+                                onChange={() => handleRatingChange(star)}
+                              />
+                              <label
+                                htmlFor={`star${star}`}
+                                title={`${star} stars`}
+                                className={
+                                  searchFilterData.rate >= star ? "active" : ""
+                                }
+                              >
+                                <i className="fa-sharp fa-solid fa-star"></i>
+                              </label>
+                            </React.Fragment>
+                          ))}
+                        </div>
+                      </div>
                     </div>
+                    <ul className="seller-level w-100">
+                      <h6>{t("search.sellerStatus")}</h6>
+                      <ul>
+                        <li>
+                          <input
+                            type="checkbox"
+                            id="user_verification"
+                            name="user_verification"
+                          />
+                          <label htmlFor="user_verification">
+                            {t("search.verificated")}
+                          </label>
+                        </li>
+                        <li>
+                          <input
+                            type="checkbox"
+                            id="online_now"
+                            name="online_now"
+                          />
+                          <label htmlFor="user_available">
+                            {t("search.availabilty")}
+                          </label>
+                        </li>
+                      </ul>
+                    </ul>
                     <div className="d-flex gap-2 w-100">
                       <div className="search-btn">
                         <button style={{ height: "44px" }}>

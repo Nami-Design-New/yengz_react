@@ -2876,6 +2876,24 @@ body main .search-section .filter-wrap form .seller-level ul li {
   gap: 16px;
   color: var(--black-color);
 }
+body main .search-section .filter-wrap form .star-rating-service {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 12px;
+}
+body main .search-section .filter-wrap form .star-rating-service label {
+  cursor: pointer;
+  color: var(--LightGray);
+}
+body main .search-section .filter-wrap form .star-rating-service label.active {
+  color: gold;
+}
+body main .search-section .filter-wrap form .star-rating-service input {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  display: none;
+}
 @media (max-width: 991px) {
   body main .search-section aside {
     display: none;

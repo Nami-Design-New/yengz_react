@@ -2670,6 +2670,22 @@ body {
               }
             }
           }
+          .star-rating-service {
+            display: flex;
+            flex-direction: row-reverse;
+            gap: 12px;
+            label {
+              cursor: pointer;
+              color: var(--LightGray);
+              &.active {
+                color: gold;
+              }
+            }
+            input {
+              appearance: none;
+              display: none;
+            }
+          }
         }
       }
       aside {
