@@ -6411,6 +6411,11 @@ body.en main .row-head a i {
   right: -250px;
   transition: 0.3s ease-in-out;
   padding: 24px;
+  overflow-y: auto;
+}
+.web-menu-sidebar::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 .web-menu-sidebar.active {
   right: 0;
@@ -6420,10 +6425,51 @@ body.en main .row-head a i {
   flex-direction: column;
   gap: 12px;
 }
+.web-menu-sidebar .nav_side_menu .accordion-header {
+  border: none;
+}
+.web-menu-sidebar .nav_side_menu .accordion-header span {
+  flex: 1 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.web-menu-sidebar .nav_side_menu .accordion-button {
+  padding: 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: transparent !important;
+  box-shadow: none;
+}
+.web-menu-sidebar .nav_side_menu img {
+  filter: brightness(0);
+  height: 20px;
+  width: 20px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.web-menu-sidebar .nav_side_menu .accordion-item {
+  border: none !important;
+}
+.web-menu-sidebar .nav_side_menu .accordion-body a {
+  padding: 8px 0;
+  line-height: 1.4;
+}
 .web-menu-sidebar .nav_side_menu a {
   color: var(--black-color);
   font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
-.web-menu-sidebar .nav_side_menu a svg {
+.web-menu-sidebar .nav_side_menu a svg,
+.web-menu-sidebar .nav_side_menu a i,
+.web-menu-sidebar .nav_side_menu a img {
   height: 20px;
+  width: 20px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }/*# sourceMappingURL=style.css.map */

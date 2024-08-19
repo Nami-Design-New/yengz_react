@@ -106,6 +106,7 @@
     "areYouSureYouWantToDeleteYourAccount": "هل أنت متأكد من أنك تريد حذف حسابك"
   },
   "navbar": {
+    "ynjez": "ينجز",
     "addService": "اضف خدمة",
     "categories": "الأقسام",
     "purchase": "المشتريات",
@@ -130,7 +131,9 @@
     "myCollections": "مجموعاتي",
     "bestFreelancers": "افضل الموثقين",
     "services": "الخدمات",
-    "portfolios": "معرض الأعمال"
+    "portfolios": "معرض الأعمال",
+    "communities": "مجتمع ينجز",
+    "blogs": "المدونات"
   },
   "home": {
     "searchFor": "ابحث عن...",
