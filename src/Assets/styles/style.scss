@@ -1051,7 +1051,9 @@ body {
         background: var(--input-bg);
         border-radius: 12px;
         padding: 16px 24px;
-        @include space-between();
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
         .info {
           display: flex;
           align-items: center;
@@ -1069,7 +1071,7 @@ body {
             .status {
               display: block;
               position: absolute;
-              bottom: -4px;
+              bottom: -8px;
               left: 4px;
               width: 28px;
               border-radius: 50%;
@@ -1098,6 +1100,10 @@ body {
               }
             }
           }
+        }
+        p {
+          font-size: 14px;
+          color: var(--text-color);
         }
       }
     }
@@ -6039,22 +6045,66 @@ body {
   transition: 0.3s ease-in-out;
   padding: 24px;
   overflow-y: auto;
-
+  a {
+    transition: .2s ease-in-out;
+    color: var(--black-color);
+  }
+  a:hover {
+    color: var(--main-color) !important;
+  }
   &::-webkit-scrollbar {
     width: 0;
     height: 0;
   }
-
   &.active {
     right: 0;
+  }
+  .accordion-header {
+    img,
+    svg,
+    i {
+      height: 20px;
+      width: 20px;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  .accordion-body {
+    padding: 8px;
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      li {
+        line-height: 24px;
+        a {
+          padding: 0 !important;
+        }
+      }
+    }
+  }
+  .accordion-button::after {
+    content: "\f107";
+    background: none;
+    transform: none;
+    font-family: "Font Awesome 6 Pro";
+  }
+  .accordion-button:not(.collapsed)::after {
+    content: "\f106";
   }
   .nav_side_menu {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 20px;
+    .accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
     .accordion-header {
       border: none;
-
       span {
         flex: 1 0;
         display: flex;
@@ -6062,7 +6112,6 @@ body {
         justify-content: flex-start;
       }
     }
-
     .accordion-button {
       padding: 8px 0;
       display: flex;
@@ -6071,14 +6120,12 @@ body {
       background-color: transparent !important;
       box-shadow: none;
     }
-
     img {
       filter: brightness(0);
       height: 20px;
       width: 20px;
       object-fit: contain;
     }
-
     .accordion-item {
       border: none !important;
       background-color: transparent !important;

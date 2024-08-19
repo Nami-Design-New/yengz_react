@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import useGetAbout from "../features/About/useGetAbout";
 import { Accordion } from "react-bootstrap";
-import logo from "../Assets/images/logo.svg";
+import { IconBriefcase, IconFile, IconUsers } from "@tabler/icons-react";
+import useGetAbout from "../features/About/useGetAbout";
 
 function WebMenuSideBar({ isOpen, setIsOpen }) {
   const { t } = useTranslation();
@@ -24,57 +24,64 @@ function WebMenuSideBar({ isOpen, setIsOpen }) {
       <ul className="nav_side_menu">
         <li>
           <Link to="/portfolios" onClick={() => setIsOpen(false)}>
-            <i className="fa-regular fa-file-invoice"></i>{" "}
-            {t("navbar.portfolios")}
+            <IconBriefcase stroke={1.5} /> {t("navbar.portfolios")}
+          </Link>
+        </li>
+        <li>
+          <Link to="/freelancers" onClick={() => setIsOpen(false)}>
+          <IconUsers stroke={1.5} /> {t("navbar.freelancers")}
           </Link>
         </li>
         <Accordion>
           <Accordion.Item eventKey="0">
             <Accordion.Header>
-              <img src={logo} alt="" />
+              <IconFile stroke={1.5} />
               <span>{t("navbar.ynjez")}</span>
             </Accordion.Header>
             <Accordion.Body>
-              {footerCategoriesList?.map((category) => (
-                <li key={category.id}>
-                  <Link
-                    to={`/about/${category.id}`}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    <i class="fa-sharp fa-solid fa-circle-info"></i>{" "}
-                    {category.name}
-                  </Link>
-                </li>
-              ))}
+              <ul>
+                {footerCategoriesList?.map((category) => (
+                  <li key={category.id}>
+                    <Link
+                      to={`/about/${category.id}`}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {category.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </Accordion.Body>
           </Accordion.Item>
           <Accordion.Item eventKey="1">
             <Accordion.Header>
-              <i class="fa-solid fa-comments"></i>{" "}
+              <i className="fa-regular fa-comments"></i>{" "}
               <span>{t("navbar.communities")}</span>
             </Accordion.Header>
             <Accordion.Body>
-              <li>
-                <Link to="/communities/1" onClick={() => setIsOpen(false)}>
-                  نماذج أعمال قمت بتنفيذها
-                </Link>
-              </li>
-              <li>
-                <Link to="/communities/1" onClick={() => setIsOpen(false)}>
-                  طلبات الخدمات غير الموجودة
-                </Link>
-              </li>
-              <li>
-                <Link to="" onClick={() => setIsOpen(false)}>
-                  تجارب وقصص المستخدمين
-                </Link>
-              </li>
+              <ul>
+                <li>
+                  <Link to="/communities/1" onClick={() => setIsOpen(false)}>
+                    نماذج أعمال قمت بتنفيذها
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/communities/1" onClick={() => setIsOpen(false)}>
+                    طلبات الخدمات غير الموجودة
+                  </Link>
+                </li>
+                <li>
+                  <Link to="" onClick={() => setIsOpen(false)}>
+                    تجارب وقصص المستخدمين
+                  </Link>
+                </li>
+              </ul>
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>
         <li>
           <Link to="/blogs" onClick={() => setIsOpen(false)}>
-            <i class="fa-solid fa-blog"></i> {t("navbar.blogs")}
+            <i className="fa-regular fa-blog"></i> {t("navbar.blogs")}
           </Link>
         </li>
       </ul>

@@ -36,7 +36,7 @@
     "privacy-policy": "سياسة الخصوصية",
     "complaints-suggestions": "الشكاوي والمقترحات",
     "my-collections": "مجموعاتي",
-    "best-freelancers": "افضل الموثقين",
+    "freelancers": "ابحث عن مستقلين",
     "blogs": "المدونات",
     "requests": "الطلبات",
     "portfolios": "معرض الأعمال"
@@ -133,7 +133,8 @@
     "services": "الخدمات",
     "portfolios": "معرض الأعمال",
     "communities": "مجتمع ينجز",
-    "blogs": "المدونات"
+    "blogs": "المدونات",
+    "freelancers": "ابحث عن مستقلين"
   },
   "home": {
     "searchFor": "ابحث عن...",
@@ -335,7 +336,9 @@
     "noData": "لا يوجد خدمات بهذه التفاصيل، يرجى المحاولة بشيء اخر...",
     "loading": "جاري التحميل",
     "addedDuring": "الأعمال المضافة خلال آخر",
-    "skills": "المهارات المستخدمة"
+    "skills": "المهارات المستخدمة",
+    "jobTitle": "المسمى الوظيفي",
+    "rating": "التقييم"
   },
   "services": {
     "developments": "تطويرات متوفرة لهذه الخدمة",

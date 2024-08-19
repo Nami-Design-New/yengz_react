@@ -27,7 +27,7 @@ const ChatSideBar = ({
   }
 
   return (
-    <div className={`side-menu ${showChatsMenu ? "active" : ""}`}>
+    <div className={`side-menu p-2 pt-3 ${showChatsMenu ? "active" : ""}`}>
       <div className="colse" onClick={() => setShowChatsMenu(false)}>
         <IconX stroke={2} />
       </div>

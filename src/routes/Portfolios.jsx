@@ -51,7 +51,7 @@ function Portfolios() {
         <div className="container">
           <div className="row">
             <aside
-              className={`col-lg-3 side-menu ${isFilterOpen ? "active" : ""}`}
+              className={`col-lg-3 p-2 pt-3 side-menu ${isFilterOpen ? "active" : ""}`}
             >
               <div className="filter-wrap">
                 <div className="colse" onClick={() => setIsFilterOpen(false)}>
@@ -61,7 +61,7 @@ function Portfolios() {
                   <InputField
                     id="search"
                     name="search"
-                    className="aside-search-input search_input"
+                    
                     value={searchFilterData.search}
                     onChange={handleChange}
                     label={t("search.search")}
