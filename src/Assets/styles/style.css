@@ -933,6 +933,7 @@ body main .portfolios {
 }
 body main .portfolios .portfolio-card {
   width: 100%;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -961,9 +962,9 @@ body main .portfolios .portfolio-card .info ul li {
   color: var(--black-color);
 }
 body main .portfolios .portfolio-card .info ul li i {
-  color: #0275d8;
+  color: var(--input-hint);
 }
-body main .portfolios .portfolio-card .info ul li:nth-child(2) i {
+body main .portfolios .portfolio-card .info ul li:nth-child(2) i.active {
   color: red;
 }
 body main .how_it_works {
@@ -2730,12 +2731,16 @@ body main .search-section .filter-wrap form .input-field {
 body main .search-section .filter-wrap form .input-field label {
   color: var(--input-hint);
 }
-body main .search-section .filter-wrap form .input-field input {
+body main .search-section .filter-wrap form .input-field input,
+body main .search-section .filter-wrap form .input-field select {
   height: 50px;
   border: none;
   background: none;
   outline: none;
   border: 1px solid var(--input-hint);
+}
+body main .search-section .filter-wrap form .css-13cymwt-control {
+  background-color: transparent !important;
 }
 body main .search-section .filter-wrap form h6 {
   color: var(--black-color);
