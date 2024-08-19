@@ -933,10 +933,13 @@ body main .portfolios {
 }
 body main .portfolios .portfolio-card {
   width: 100%;
-  border-radius: 12px;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 body main .portfolios .portfolio-card .img {
+  border-radius: 12px;
+  overflow: hidden;
   width: 100%;
   aspect-ratio: 3/2;
 }
@@ -945,6 +948,23 @@ body main .portfolios .portfolio-card .img img {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+body main .portfolios .portfolio-card .info h6 {
+  color: var(--black-color);
+}
+body main .portfolios .portfolio-card .info ul {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+body main .portfolios .portfolio-card .info ul li {
+  color: var(--black-color);
+}
+body main .portfolios .portfolio-card .info ul li i {
+  color: #0275d8;
+}
+body main .portfolios .portfolio-card .info ul li:nth-child(2) i {
+  color: red;
 }
 body main .how_it_works {
   padding: 60px 0 !important;
@@ -6381,7 +6401,7 @@ body.en main .row-head a i {
   position: fixed;
   top: 80px;
   width: 250px;
-  background: var(--white-color);
+  background: var(--gray-background);
   height: calc(100dvh - 80px);
   right: -250px;
   transition: 0.3s ease-in-out;
