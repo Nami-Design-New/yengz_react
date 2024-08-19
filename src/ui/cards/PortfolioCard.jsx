@@ -2,9 +2,9 @@ import React from "react";
 import image from "../../Assets/images/Artboard.png";
 import { Link } from "react-router-dom";
 
-function PortfolioCard() {
+function PortfolioCard({ setRow, setIsModalOpen }) {
   return (
-    <Link to="/portfolios" className="portfolio-card">
+    <div className="portfolio-card" onClick={() => setIsModalOpen(true)}>
       <div className="img">
         <img src={image} alt="" />
       </div>
@@ -19,7 +19,7 @@ function PortfolioCard() {
           </li>
         </ul>
       </div>
-    </Link>
+    </div>
   );
 }
 

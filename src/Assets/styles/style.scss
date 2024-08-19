@@ -853,6 +853,7 @@ body {
       padding: 60px 0;
       .portfolio-card {
         width: 100%;
+        cursor: pointer;
         display: flex;
         flex-direction: column;
         gap: 16px;
@@ -878,10 +879,10 @@ body {
             li {
               color: var(--black-color);
               i {
-                color: #0275d8;
+                color: var(--input-hint);
               }
               &:nth-child(2) {
-                i {
+                i.active {
                   color: red;
                 }
               }
@@ -2531,11 +2532,15 @@ body {
             label {
               color: var(--input-hint);
             }
-            input {
+            input,
+            select {
               height: 50px;
               @include clearInput();
               border: 1px solid var(--input-hint);
             }
+          }
+          .css-13cymwt-control {
+            background-color: transparent !important;
           }
           h6 {
             color: var(--black-color);
