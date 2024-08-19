@@ -55,12 +55,12 @@ function WebMenuSideBar({ isOpen, setIsOpen }) {
             </Accordion.Header>
             <Accordion.Body>
               <li>
-                <Link to="" onClick={() => setIsOpen(false)}>
+                <Link to="/communities/1" onClick={() => setIsOpen(false)}>
                   نماذج أعمال قمت بتنفيذها
                 </Link>
               </li>
               <li>
-                <Link to="" onClick={() => setIsOpen(false)}>
+                <Link to="/communities/1" onClick={() => setIsOpen(false)}>
                   طلبات الخدمات غير الموجودة
                 </Link>
               </li>
