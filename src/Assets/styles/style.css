@@ -6451,6 +6451,7 @@ body.en main .row-head a i {
 }
 .web-menu-sidebar .nav_side_menu .accordion-item {
   border: none !important;
+  background-color: transparent !important;
 }
 .web-menu-sidebar .nav_side_menu .accordion-body a {
   padding: 8px 0;
