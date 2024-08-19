@@ -5953,6 +5953,234 @@ body .blogDetails .swiper-button-next:hover,
 body .blogDetails .swiper-button-prev:hover {
   background: var(--main-color);
 }
+body .communityDetails {
+  padding: 50px 0;
+}
+body .communityDetails.communitySubjectDetails .content-body {
+  flex-wrap: wrap !important;
+  flex-direction: row !important;
+}
+body .communityDetails .container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: relative;
+}
+body .communityDetails .container .communityHeader {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  position: relative;
+}
+body .communityDetails .container .btn {
+  border: 1px solid var(--main-color);
+  color: var(--main-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  transition: var(--main-transation);
+  border-radius: 12px;
+  gap: 4px;
+  background: none;
+}
+body .communityDetails .container .btn i {
+  margin: 0 4px;
+}
+body .communityDetails .container .btn:hover {
+  background: var(--main-color);
+  color: #fff;
+}
+body .communityDetails .container .content-body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  gap: 16px;
+}
+body .communityDetails .container .content-body .image-wrapper {
+  position: relative;
+  display: flex;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid var(--LightGray);
+}
+body .communityDetails .container .content-body .image-wrapper.mini {
+  width: 36px;
+  height: 36px;
+}
+body .communityDetails .container .content-body .image-wrapper img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+}
+body .communityDetails .container .content-body .info-wrapper {
+  flex: 1 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+body .communityDetails .container .content-body .info-wrapper .info-boxes-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  position: relative;
+}
+body .communityDetails .container .content-body .info-wrapper .info-boxes-wrapper .info-box {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+  font-size: 12px;
+  margin: 0;
+  color: var(--text-color);
+}
+body .communityDetails .container .content-body .info-wrapper .info-boxes-wrapper .info-box i {
+  font-size: 12px;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color);
+}
+body .communityDetails .container .content-body .subjectItem {
+  width: 100%;
+  padding: 16px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background-color: var(--gray-background);
+  border-radius: 16px;
+  color: var(--black-color);
+}
+body .communityDetails .container .content-body .subjectItem .subjectContent {
+  flex: 2 0;
+  display: flex;
+  gap: 8px;
+  position: relative;
+  align-items: center;
+}
+body .communityDetails .container .content-body .subjectItem .userContent {
+  flex: 1 0;
+  display: flex;
+  gap: 8px;
+  position: relative;
+  align-items: center;
+}
+body .communityDetails .container .content-body .subjectItem .userContent .image-wrapper {
+  width: 50px;
+  height: 50px;
+}
+body .communityDetails .container .content-body .right-wrapper {
+  flex: 2 0;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: relative;
+}
+body .communityDetails .container .content-body .left-wrapper {
+  flex: 1 0;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: relative;
+}
+body .communityDetails .container .content-body .subject-box {
+  padding: 16px 0;
+  width: 100%;
+  border-radius: 16px;
+  background-color: var(--gray-background);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+body .communityDetails .container .content-body .subject-box .box-header {
+  display: flex;
+  position: relative;
+  align-items: center;
+  padding: 0 16px 16px;
+  border-bottom: 1px solid var(--LightGray);
+}
+body .communityDetails .container .content-body .subject-box .userBox {
+  display: flex;
+  align-items: center;
+  position: relative;
+  gap: 16px;
+  width: 100%;
+}
+body .communityDetails .container .content-body .subject-box .comment-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+body .communityDetails .container .content-body .subject-box .comment-wrapper p {
+  font-size: 14px;
+}
+body .communityDetails .container .content-body .subject-box * {
+  margin: 0;
+}
+body .communityDetails .container .content-body .subject-box .box-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  position: relative;
+  padding: 0 16px;
+}
+body .communityDetails .container .content-body .subject-box .box-item.comment-item {
+  padding: 0 32px;
+}
+body .communityDetails .container .content-body .subject-box .box-item.comment-item::after {
+  width: calc(100% - 64px) !important;
+}
+body .communityDetails .container .content-body .subject-box .box-item:not(:last-of-type) {
+  padding-bottom: 16px;
+}
+body .communityDetails .container .content-body .subject-box .box-item:not(:last-of-type)::after {
+  content: "";
+  width: 100%;
+  height: 1px;
+  background-color: var(--LightGray);
+  position: absolute;
+  bottom: 0;
+  right: 50%;
+  transform: translateX(50%);
+}
+body .communityDetails .container .content-body .subject-box .box-item.no-border {
+  padding-bottom: 0 !important;
+}
+body .communityDetails .container .content-body .subject-box .box-item.no-border::after {
+  content: none !important;
+}
+body .communityDetails .container .content-body .subject-box .box-item.column {
+  flex-direction: column;
+  align-items: unset !important;
+}
+body .communityDetails .container .content-body .subject-box .box-item p {
+  flex: 1 0;
+  display: flex;
+  align-items: center;
+}
+body .communityDetails .container .content-body .subject-box .box-item span {
+  flex: 1 0;
+  display: flex;
+  font-size: 14px;
+  align-items: center;
+}
 body .refuse_reason {
   width: 100%;
   padding: 12px;

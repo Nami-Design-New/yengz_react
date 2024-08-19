@@ -39,7 +39,11 @@
     "freelancers": "ابحث عن مستقلين",
     "blogs": "المدونات",
     "requests": "الطلبات",
-    "portfolios": "معرض الأعمال"
+    "portfolios": "معرض الأعمال",
+    "ynjezCommunity": "مجتمع ينجز",
+    "done-works-modals": "نماذج أعمال قمت بتنفيذها",
+    "unexisited-requests-orders": "طلبات الخدمات غير الموجودة",
+    "users-stories": "تجارب وقصص المستخدمين"
   },
   "auth": {
     "loginPageTitle": "تسجيل الدخول",
@@ -518,6 +522,25 @@
   },
   "blogs": {
     "moreBlogs": "المزيد من الأخبار"
+  },
+  "communities": {
+    "worksHasBeenDone": "نماذج أعمال قمت بتنفيذها",
+    "newSubject": "موضوع جديد",
+    "subjectHeader": "تصميمات سوشيال ميديا لمطعم",
+    "addComment": "اضافة تعليق",
+    "subjectWork": "تصميمات لمطعم الباشا",
+    "viewWorks": "عرض",
+    "aboutSubject": "عن الموضوع",
+    "publishTime": "تاريخ النشر",
+    "subjectPublisher": "ناشر الموضوع",
+    "newSeller": "بائع جديد",
+    "comments": "التعليقات",
+    "latestContributions": "آخر المساهمات",
+    "addSubject": "اضافة موضوع",
+    "subjectTitle": "عنوان الموضوع",
+    "subjectDescription": "وصف الموضوع",
+    "add": "اضافة",
+    "community": "المجتمع"
   },
   "password": "ادخل كلمة المرور ",
   "cancel": "الغاء",

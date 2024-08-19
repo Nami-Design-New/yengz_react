@@ -36,6 +36,8 @@ import Blogs from "./routes/Blogs";
 import BlogDetails from "./routes/BlogDetails";
 import Portfolios from "./routes/Portfolios";
 import CommunityDetails from "./routes/CommunityDetails";
+import CommunitySubjectDetails from "./routes/CommunitySubjectDetails";
+import AddCommunitySubject from "./routes/AddCommunitySubject";
 
 const routesConfig = [
   { path: "/", element: <Home />, index: true },
@@ -79,7 +81,20 @@ const routesConfig = [
   { path: "/terms-conditions", element: <Terms /> },
   { path: "/blogs", element: <Blogs /> },
   { path: "/blogs/:id", element: <BlogDetails /> },
-  { path: "/communities/:id", element: <CommunityDetails /> },
+  { path: "/done-works-modals", element: <CommunityDetails /> },
+  { path: "/done-works-modals/:id", element: <CommunitySubjectDetails /> },
+  { path: "/unexisited-requests-orders", element: <CommunityDetails /> },
+  {
+    path: "/unexisited-requests-orders/:id",
+    element: <CommunitySubjectDetails />,
+  },
+  { path: "/users-stories", element: <CommunityDetails /> },
+  { path: "/users-stories/:id", element: <CommunitySubjectDetails /> },
+  {
+    path: "/add-subject",
+    element: <AddCommunitySubject />,
+    protected: true,
+  },
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
   { path: "/forget-password", element: <ForgetPassword /> },
