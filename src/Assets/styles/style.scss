@@ -902,7 +902,7 @@ body {
         color: #664180;
       }
       .feature_card {
-        box-shadow: 0px 4px 20px 0px #0000000A;
+        box-shadow: 0px 4px 20px 0px #0000000a;
         border-radius: 12px;
         padding: 16px;
         display: flex;
@@ -6036,8 +6036,15 @@ body {
   background: var(--gray-background);
   height: calc(100dvh - 80px);
   right: -250px;
-  transition: .3s ease-in-out;
+  transition: 0.3s ease-in-out;
   padding: 24px;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
   &.active {
     right: 0;
   }
@@ -6045,11 +6052,58 @@ body {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    .accordion-header {
+      border: none;
+
+      span {
+        flex: 1 0;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+      }
+    }
+
+    .accordion-button {
+      padding: 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background-color: transparent !important;
+      box-shadow: none;
+    }
+
+    img {
+      filter: brightness(0);
+      height: 20px;
+      width: 20px;
+      object-fit: contain;
+    }
+
+    .accordion-item {
+      border: none !important;
+      background-color: transparent !important;
+    }
+    .accordion-body {
+      a {
+        padding: 8px 0;
+        line-height: 1.4;
+      }
+    }
     a {
       color: var(--black-color);
       font-size: 16px;
-      svg {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      svg,
+      i,
+      img {
         height: 20px;
+        width: 20px;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     }
   }

@@ -106,6 +106,7 @@
     "areYouSureYouWantToDeleteYourAccount": "Are you sure you want to delete your account?"
   },
   "navbar": {
+    "ynjez": "Ynjez",
     "addService": "Add Service",
     "categories": "Categories",
     "purchase": "Purchases",
@@ -129,7 +130,9 @@
     "allNotifications": "All Notifications",
     "myCollections": "My Collections",
     "bestFreelancers": "Best Freelancers",
-    "services": "Services"
+    "services": "Services",
+    "communities": "Ynjez communities",
+    "blogs": "Blogs"
   },
   "home": {
     "searchFor": "Search for...",

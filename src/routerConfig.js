@@ -35,6 +35,7 @@ import ErrorPage from "./routes/ErrorPage";
 import Blogs from "./routes/Blogs";
 import BlogDetails from "./routes/BlogDetails";
 import Portfolios from "./routes/Portfolios";
+import CommunityDetails from "./routes/CommunityDetails";
 
 const routesConfig = [
   { path: "/", element: <Home />, index: true },
@@ -59,7 +60,7 @@ const routesConfig = [
   {
     path: "/projects-orders/:id",
     element: <ProjectsOrdersDetails />,
-    protected: true
+    protected: true,
   },
   { path: "/my-collections", element: <MyCollections />, protected: true },
   { path: "/my-collections/:id", element: <MyCollection />, protected: true },
@@ -78,10 +79,11 @@ const routesConfig = [
   { path: "/terms-conditions", element: <Terms /> },
   { path: "/blogs", element: <Blogs /> },
   { path: "/blogs/:id", element: <BlogDetails /> },
+  { path: "/communities/:id", element: <CommunityDetails /> },
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
   { path: "/forget-password", element: <ForgetPassword /> },
-  { path: "/portfolios", element: <Portfolios /> }
+  { path: "/portfolios", element: <Portfolios /> },
 ];
 
 export default routesConfig;
