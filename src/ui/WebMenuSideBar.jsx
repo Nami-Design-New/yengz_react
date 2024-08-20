@@ -6,13 +6,15 @@ import {
   IconBriefcase,
   IconFile,
   IconMail,
-  IconUsers
+  IconUsers,
 } from "@tabler/icons-react";
 import useGetAbout from "../features/About/useGetAbout";
+import { useSelector } from "react-redux";
 
 function WebMenuSideBar({ isOpen, setIsOpen }) {
   const { t } = useTranslation();
   const { data: footerCategoriesList } = useGetAbout();
+  const isLogged = useSelector((state) => state.authedUser.isLogged);
 
   useEffect(() => {
     const menuButton = document.querySelector(".webmenu_open");
@@ -37,11 +39,28 @@ function WebMenuSideBar({ isOpen, setIsOpen }) {
             <IconUsers stroke={1.5} /> {t("navbar.freelancers")}
           </Link>
         </li>
-        <li>
-          <Link to="/bids" onClick={() => setIsOpen(false)}>
-            <IconMail stroke={2} /> {t("navbar.bids")}
-          </Link>
-        </li>
+        {isLogged && (
+          <li>
+            <Link to="/bids" onClick={() => setIsOpen(false)}>
+              <IconMail stroke={2} /> {t("navbar.bids")}
+            </Link>
+          </li>
+        )}
+        {!isLogged && (
+          <>
+            <li>
+              <Link to="/bids" onClick={() => setIsOpen(false)}>
+                <i className="fa-regular fa-file-invoice"></i>{" "}
+                {t("navbar.projects")}
+              </Link>
+            </li>
+            <li>
+              <Link to="/bids" onClick={() => setIsOpen(false)}>
+                <i className="fa-light fa-database"></i> {t("navbar.services")}
+              </Link>
+            </li>
+          </>
+        )}
         <Accordion>
           <Accordion.Item eventKey="0">
             <Accordion.Header>

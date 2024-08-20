@@ -23,7 +23,7 @@ const BestFreeLancers = () => {
   const options = [
     { value: "1", label: "1" },
     { value: "2", label: "2" },
-    { value: "3", label: "3" }
+    { value: "3", label: "3" },
   ];
 
   function truncate(inputString) {
@@ -38,7 +38,7 @@ const BestFreeLancers = () => {
 
   const [searchFilterData, setSearchFilterData] = useState({
     skills: [],
-    page: Number(searchParams.get("page")) || null
+    page: Number(searchParams.get("page")) || null,
   });
 
   const handleChange = (e) => {
@@ -52,12 +52,15 @@ const BestFreeLancers = () => {
 
   const handleSelect = (selectedItems) => {
     setSelectedOptions(selectedItems);
+    console.log(selectedItems);
+    
     const selectedValues = selectedItems
-      ? selectedItems?.map((option) => option.value)
-      : [];
+    ? selectedItems?.map((option) => option.value)
+    : [];
+    console.log(selectedValues);
     setSearchFilterData({
       ...searchFilterData,
-      skills: selectedValues
+      skills: selectedValues,
     });
   };
 
