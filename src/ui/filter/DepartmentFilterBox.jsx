@@ -1,17 +1,16 @@
 import { useTranslation } from "react-i18next";
 import CheckBoxContainer from "./CheckBoxContainer";
-import useCategorieListWithSub from "../../features/categories/useCategorieListWithSub";
 
 function DepartmentFilterBox({
   categoriesWithSubCategories,
   categoriesValue,
   sub_categoriesValue,
-  onChange,
+  onChange
 }) {
   const { t } = useTranslation();
 
   return (
-    <div className="departments">
+    <div className="departments w-100">
       {categoriesWithSubCategories &&
         categoriesWithSubCategories.length > 0 && (
           <>

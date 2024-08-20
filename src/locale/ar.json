@@ -353,7 +353,10 @@
     "completed": "مكتملة",
     "excluded": "مستبعدة",
     "closed": "مغلقة",
-    "canceled": "ملغية"
+    "canceled": "ملغية",
+    "onlineNow": " المتصلون الآن",
+    "addedOffers": "أضافوا عروضا على مشاريعي",
+    "hiredThemBefore": "وظفتهم سابقا"
   },
   "services": {
     "developments": "تطويرات متوفرة لهذه الخدمة",

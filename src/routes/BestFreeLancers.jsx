@@ -3,11 +3,13 @@ import { IconRosetteDiscountCheckFilled } from "@tabler/icons-react";
 import { useTranslation } from "react-i18next";
 import { Link, useSearchParams } from "react-router-dom";
 import SectionHeader from "../ui/SectionHeader";
-import useGetBestFreelancers from "../features/home/useGetBestFreelancers";
 import StarsList from "../ui/StarsList";
 import DataLoader from "../ui/DataLoader";
 import InputField from "./../ui/form-elements/InputField";
 import MultiSelect from "../ui/form-elements/MultiSelect";
+import useGetBestFreelancers from "../features/home/useGetBestFreelancers";
+import useCategorieListWithSub from "../features/categories/useCategorieListWithSub";
+import DepartmentFilterBox from "../ui/filter/DepartmentFilterBox";
 
 const BestFreeLancers = () => {
   const { t } = useTranslation();
@@ -15,6 +17,8 @@ const BestFreeLancers = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
+  const { isLoading: categoriesIsLoading, data: categoriesWithSubCategories } =
+    useCategorieListWithSub();
 
   const options = [
     { value: "1", label: "1" },
@@ -84,6 +88,12 @@ const BestFreeLancers = () => {
                       label={t("search.search")}
                       placeholder={t("search.searchFor")}
                     />
+                    <DepartmentFilterBox
+                      categoriesValue={searchFilterData.categories}
+                      sub_categoriesValue={searchFilterData.sub_categories}
+                      onChange={handleChange}
+                      categoriesWithSubCategories={categoriesWithSubCategories}
+                    />
                     <InputField
                       id="job_title"
                       name="job_title"
@@ -148,7 +158,27 @@ const BestFreeLancers = () => {
                             name="online_now"
                           />
                           <label htmlFor="user_available">
-                            {t("search.availabilty")}
+                            {t("search.onlineNow")}
+                          </label>
+                        </li>
+                        <li>
+                          <input
+                            type="checkbox"
+                            id="added_offers"
+                            name="added_offers"
+                          />
+                          <label htmlFor="added_offers">
+                            {t("search.addedOffers")}
+                          </label>
+                        </li>
+                        <li>
+                          <input
+                            type="checkbox"
+                            id="hired_them_before"
+                            name="hired_them_before"
+                          />
+                          <label htmlFor="hired_them_before">
+                            {t("search.hiredThemBefore")}
                           </label>
                         </li>
                       </ul>
