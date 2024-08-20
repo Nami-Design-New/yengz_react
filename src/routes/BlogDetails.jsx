@@ -8,6 +8,7 @@ import ErrorPage from "./ErrorPage";
 
 function BlogDetails() {
   const { isLoading, data: blog } = useBlogDetails();
+  console.log(blog);
 
   const renderHTML = (htmlContent) => {
     return { __html: htmlContent };
@@ -39,7 +40,7 @@ function BlogDetails() {
                       modules={[Navigation, EffectFade, Autoplay]}
                       navigation={{
                         nextEl: ".swiper-button-next",
-                        prevEl: ".swiper-button-prev"
+                        prevEl: ".swiper-button-prev",
                       }}
                       autoplay={{ delay: 3000, disableOnInteraction: false }}
                     >
@@ -56,10 +57,10 @@ function BlogDetails() {
                     </Swiper>
                   )}
                 </div>
-                <div className="date">
+                {/* <div className="date">
                   <i className="fa-duotone fa-calendar-days"></i>
                   {formattedDate(blog?.created_at)}
-                </div>
+                </div> */}
                 <p
                   className="description"
                   dangerouslySetInnerHTML={renderHTML(blog?.html)}

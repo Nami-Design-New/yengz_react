@@ -111,7 +111,7 @@
     "areYouSureYouWantToDeleteYourAccount": "هل أنت متأكد من أنك تريد حذف حسابك"
   },
   "navbar": {
-    "ynjez": "ينجز",
+    "ynjez": "عن ينجز",
     "addService": "اضف خدمة",
     "categories": "الأقسام",
     "purchase": "المشتريات",
@@ -554,7 +554,8 @@
     "subjectTitle": "عنوان الموضوع",
     "subjectDescription": "وصف الموضوع",
     "add": "اضافة",
-    "community": "المجتمع"
+    "community": "المجتمع",
+    "commentBody": "محتوى التعليق"
   },
   "password": "ادخل كلمة المرور ",
   "cancel": "الغاء",
