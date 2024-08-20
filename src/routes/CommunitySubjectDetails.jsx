@@ -3,9 +3,12 @@ import SectionHeader from "../ui/SectionHeader";
 import avatarImg from "../Assets/images/avatar.jpg";
 import SubjectCommentCard from "../ui/cards/SubjectCommentCard";
 import avatarPlaceholder from "../Assets/images/avatar-placeholder-2.svg";
+import { useState } from "react";
+import AddCommentModal from "../ui/modals/AddCommentModal";
 
 function CommunitySubjectDetails() {
   const { t } = useTranslation();
+  const [showAddCommentModal, setShowAddCommentModal] = useState(false);
 
   return (
     <>
@@ -14,7 +17,7 @@ function CommunitySubjectDetails() {
         <div className="container">
           <div className="communityHeader">
             <h3>{t("communities.subjectHeader")}</h3>
-            <button to={"/done-works-modals/add-comment"} className="btn">
+            <button className="btn" onClick={() => setShowAddCommentModal(true)}>
               <i className="far fa-plus"></i> {t("communities.addComment")}
             </button>
           </div>
@@ -23,7 +26,6 @@ function CommunitySubjectDetails() {
               <div className="subject-box">
                 <div className="box-item">
                   <p>{t("communities.subjectWork")}</p>
-                  <button className="btn">{t("communities.viewWorks")}</button>
                 </div>
               </div>
               <div className="subject-box">
@@ -98,6 +100,10 @@ function CommunitySubjectDetails() {
           </div>
         </div>
       </section>
+      <AddCommentModal
+        showModal={showAddCommentModal}
+        setShowModal={setShowAddCommentModal}
+      />
     </>
   );
 }

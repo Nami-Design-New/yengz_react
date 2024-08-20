@@ -110,7 +110,7 @@
     "areYouSureYouWantToDeleteYourAccount": "Are you sure you want to delete your account?"
   },
   "navbar": {
-    "ynjez": "Ynjez",
+    "ynjez": "About Ynjez",
     "addService": "Add Service",
     "categories": "Categories",
     "purchase": "Purchases",
@@ -490,7 +490,8 @@
     "subjectTitle": "Subject Title",
     "subjectDescription": "Subject Description",
     "add": "Add",
-    "community": "Community"
+    "community": "Community",
+    "commentBody": "Comment Body"
   },
   "password": "Enter Password",
   "cancel": "Cancel",
