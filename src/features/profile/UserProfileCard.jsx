@@ -5,15 +5,13 @@ import { useTranslation } from "react-i18next";
 import {
   IconCirclePlus,
   IconInfoCircle,
-  IconRosetteDiscountCheckFilled
+  IconRosetteDiscountCheckFilled,
 } from "@tabler/icons-react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import ChargeModal from "../../ui/modals/ChargeModal";
 
 const UserProfileCard = ({ user, isMyAccount }) => {
   const { t } = useTranslation();
-  const [showChargeModel, setShowChargeModel] = useState(false);
 
   const renderTooltip = (props) => (
     <Tooltip id="button-tooltip" {...props}>
@@ -45,7 +43,7 @@ const UserProfileCard = ({ user, isMyAccount }) => {
                 <h4>
                   <IconInfoCircle stroke={2} /> {t("profile.balance")}
                 </h4>
-                <Link to="#!">{t("profile.withdraw")}</Link>
+                <Link to="/balance">{t("profile.withdraw")}</Link>
               </div>
             </div>
             <div className="col-6 p-2">
@@ -55,7 +53,7 @@ const UserProfileCard = ({ user, isMyAccount }) => {
                   <OverlayTrigger
                     placement="bottom"
                     overlay={renderTooltip({
-                      content: t("profile.totalBalanceTooltip")
+                      content: t("profile.totalBalanceTooltip"),
                     })}
                   >
                     <i className="info-label fa-light fa-circle-info"></i>
@@ -74,7 +72,7 @@ const UserProfileCard = ({ user, isMyAccount }) => {
                   <OverlayTrigger
                     placement="bottom"
                     overlay={renderTooltip({
-                      content: t("profile.pendingBalanceTooltip")
+                      content: t("profile.pendingBalanceTooltip"),
                     })}
                   >
                     <i className="info-label fa-light fa-circle-info"></i>
@@ -93,7 +91,7 @@ const UserProfileCard = ({ user, isMyAccount }) => {
                   <OverlayTrigger
                     placement="bottom"
                     overlay={renderTooltip({
-                      content: t("profile.availableBalanceTooltip")
+                      content: t("profile.availableBalanceTooltip"),
                     })}
                   >
                     <i className="info-label fa-light fa-circle-info"></i>
@@ -112,7 +110,7 @@ const UserProfileCard = ({ user, isMyAccount }) => {
                   <OverlayTrigger
                     placement="bottom"
                     overlay={renderTooltip({
-                      content: t("profile.walletTooltip")
+                      content: t("profile.walletTooltip"),
                     })}
                   >
                     <i className="info-label fa-light fa-circle-info"></i>
@@ -124,20 +122,13 @@ const UserProfileCard = ({ user, isMyAccount }) => {
               </div>
             </div>
             <div className="col-12 p-2 d-flex align-items-center justify-content-center">
-              <Link
-                onClick={() => setShowChargeModel(true)}
-                className="deposit-link"
-              >
+              <Link to="/balance" className="deposit-link">
                 <IconCirclePlus stroke={2} /> {t("profile.deposit")}
               </Link>
             </div>
           </div>
         </div>
       )}
-      <ChargeModal
-        showModal={showChargeModel}
-        setShowModal={setShowChargeModel}
-      />
     </div>
   );
 };

@@ -44,7 +44,8 @@
     "done-works-modals": "نماذج أعمال قمت بتنفيذها",
     "unexisited-requests-orders": "طلبات الخدمات غير الموجودة",
     "users-stories": "تجارب وقصص المستخدمين",
-    "bids": "عروضى"
+    "bids": "عروضى",
+    "balance": "الرصيد"
   },
   "auth": {
     "loginPageTitle": "تسجيل الدخول",
@@ -556,6 +557,29 @@
     "add": "اضافة",
     "community": "المجتمع",
     "commentBody": "محتوى التعليق"
+  },
+  "balance": {
+    "accountBalance": "رصيد الحساب",
+    "depositBalance": "إيداع رصيد",
+    "withdrawBalance": "سحب رصيد",
+    "totalBalance": "الرصيد الكلى",
+    "totalBalanceTooltip": "الرصيد الكلى الذي تم الحصول عليه",
+    "pendingBalance": "الرصيد المعلق",
+    "pendingBalanceTooltip": "الرصيد المعلق: الرصيد المعلّق في انتظار الموافقة",
+    "availableBalance": "الرصيد المتوفر",
+    "availableBalanceTooltip": "الرصيد المتوفر = الرصيد الكلى - الرصيد المعلّق",
+    "wallet": "المحفظة",
+    "walletTooltip": "المحفظة: تحتوي على المبالغ الموجودة في حسابك",
+    "transactions": "المعاملات المالية",
+    "period": "الفترة",
+    "from": "من",
+    "to": "إلى",
+    "transactionType": "نوع المعاملة",
+    "deposit": "إيداع",
+    "fees": "رسوم",
+    "finishingProject": "انهاء مشروع",
+    "refund": "استرجاع",
+    "withdraw": "سحب"
   },
   "password": "ادخل كلمة المرور ",
   "cancel": "الغاء",

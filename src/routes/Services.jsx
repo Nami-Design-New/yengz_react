@@ -10,10 +10,12 @@ import ServiceCard from "../ui/cards/ServiceCard";
 import useCategorieListWithSub from "../features/categories/useCategorieListWithSub";
 import DataLoader from "../ui/DataLoader";
 import EmptyData from "../ui/EmptyData";
+import MultiSelect from "../ui/form-elements/MultiSelect";
 
 const Services = () => {
   const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
+  const [selectedOptions, setSelectedOptions] = useState([]);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [searchFilterData, setSearchFilterData] = useState({
     search: searchParams.get("search") || "",
@@ -33,8 +35,17 @@ const Services = () => {
           .split("-")
           .map((subcategory) => Number(subcategory))
       : [],
-    is_old: Number(searchParams.get("is_old")) || null
+    is_old: Number(searchParams.get("is_old")) || null,
+    skills: searchParams.get("skills")
+      ? searchParams.get("skills").split("-")
+      : [],
   });
+
+  const options = [
+    { value: "1", label: "1" },
+    { value: "2", label: "2" },
+    { value: "3", label: "3" },
+  ];
 
   const { isLoading: categoriesIsLoading, data: categoriesWithSubCategories } =
     useCategorieListWithSub();
@@ -43,7 +54,7 @@ const Services = () => {
     fetchNextPage,
     hasNextPage,
     isFetching,
-    isFetchingNextPage
+    isFetchingNextPage,
   } = useSearchServicesList();
 
   const handleChange = (e) => {
@@ -73,8 +84,8 @@ const Services = () => {
               updatedState["sub_categories"] = [
                 ...new Set([
                   ...prevState["sub_categories"],
-                  ...relatedSubCategories
-                ])
+                  ...relatedSubCategories,
+                ]),
               ];
             } else {
               updatedState["sub_categories"] = prevState[
@@ -99,7 +110,7 @@ const Services = () => {
 
             if (areAllChildrenChecked) {
               updatedState["categories"] = [
-                ...new Set([...prevState["categories"], parentCategory.id])
+                ...new Set([...prevState["categories"], parentCategory.id]),
               ];
             } else {
               updatedState["categories"] = prevState["categories"].filter(
@@ -113,6 +124,17 @@ const Services = () => {
         return updateCategoriesAndSubCategories(name, value, checked);
       }
       return updatedState;
+    });
+  };
+
+  const handleSelect = (selectedItems) => {
+    setSelectedOptions(selectedItems);
+    const selectedValues = selectedItems
+      ? selectedItems?.map((option) => option.value)
+      : [];
+    setSearchFilterData({
+      ...searchFilterData,
+      skills: selectedValues,
     });
   };
 
@@ -189,6 +211,15 @@ const Services = () => {
                   categoriesWithSubCategories={categoriesWithSubCategories}
                 />
                 <hr />
+                <MultiSelect
+                  label={t("search.skills")}
+                  id="skills"
+                  name="skills"
+                  options={options}
+                  selectedOptions={selectedOptions}
+                  handleChange={handleSelect}
+                />
+                <hr />
                 <RatingFilterBox
                   value={searchFilterData.rate}
                   onChange={handleChange}
@@ -221,7 +252,10 @@ const Services = () => {
               {searchServicesList.length > 0 ? (
                 <>
                   {searchServicesList.map((service) => (
-                    <div className="col-lg-4 col-md-6 col-12 p-2" key={service.id}>
+                    <div
+                      className="col-lg-4 col-md-6 col-12 p-2"
+                      key={service.id}
+                    >
                       <ServiceCard service={service} />
                     </div>
                   ))}

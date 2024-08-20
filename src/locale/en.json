@@ -43,7 +43,9 @@
     "ynjezCommunity": "Ynjez communities",
     "done-works-modals": "Done Works Modals",
     "unexisited-requests-orders": "Unexisited Requests Orders",
-    "users-stories": "Users Stories and Opinions"
+    "users-stories": "Users Stories and Opinions",
+    "bids": "Bids",
+    "balance": "Balance"
   },
   "auth": {
     "loginPageTitle": "Login",
@@ -492,6 +494,23 @@
     "add": "Add",
     "community": "Community",
     "commentBody": "Comment Body"
+  },
+  "balance": {
+    "accountBalance": "Account Balance",
+    "depositBalance": "Deposit Balance",
+    "withdrawBalance": "Withdraw Balance",
+    "totalBalance": "Total Balance",
+    "totalBalanceTooltip": "Total balance that have been given",
+    "pendingBalance": "Pending Balance",
+    "pendingBalanceTooltip": "Pending Balance: Balance waiting for approval",
+    "availableBalance": "Available Balance",
+    "availableBalanceTooltip": "Available Balance = Total Balance - Pending Balance",
+    "wallet": "Wallet",
+    "walletTooltip": "Wallet: Contains the balance in your account",
+    "transactions": "Money Transactions",
+    "period": "Period",
+    "from": "From",
+    "to": "To"
   },
   "password": "Enter Password",
   "cancel": "Cancel",

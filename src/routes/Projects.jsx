@@ -11,10 +11,12 @@ import EmptyData from "../ui/EmptyData";
 import DataLoader from "../ui/DataLoader";
 import CustomPagination from "../ui/CustomPagination";
 import ProjectCard from "../ui/cards/ProjectCard";
+import MultiSelect from "../ui/form-elements/MultiSelect";
 
 function Projects() {
   const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
+  const [selectedOptions, setSelectedOptions] = useState([]);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [searchFilterData, setSearchFilterData] = useState({
     search: searchParams.get("search") || "",
@@ -23,19 +25,28 @@ function Projects() {
     user_verification: Number(searchParams.get("user_verification")) || null,
     user_available: Number(searchParams.get("user_available")) || null,
     categories: searchParams.get("categories")
-      ? searchParams
-          .get("categories")
-          .split("-")
-          .map((category) => Number(category))
-      : [],
+    ? searchParams
+    .get("categories")
+    .split("-")
+    .map((category) => Number(category))
+    : [],
     sub_categories: searchParams.get("sub_categories")
-      ? searchParams
-          .get("sub_categories")
-          .split("-")
-          .map((subcategory) => Number(subcategory))
+    ? searchParams
+    .get("sub_categories")
+    .split("-")
+    .map((subcategory) => Number(subcategory))
+    : [],
+    is_old: Number(searchParams.get("is_old")) || null,
+    skills: searchParams.get("skills")
+      ? searchParams.get("skills").split("-")
       : [],
-    is_old: Number(searchParams.get("is_old")) || null
   });
+
+  const options = [
+    { value: "1", label: "1" },
+    { value: "2", label: "2" },
+    { value: "3", label: "3" },
+  ];
 
   const { isLoading: categoriesIsLoading, data: categoriesWithSubCategories } =
     useCategorieListWithSub();
@@ -45,7 +56,7 @@ function Projects() {
     fetchNextPage,
     hasNextPage,
     isFetching,
-    isFetchingNextPage
+    isFetchingNextPage,
   } = useProjectsList();
 
   const handleChange = (e) => {
@@ -75,8 +86,8 @@ function Projects() {
               updatedState["sub_categories"] = [
                 ...new Set([
                   ...prevState["sub_categories"],
-                  ...relatedSubCategories
-                ])
+                  ...relatedSubCategories,
+                ]),
               ];
             } else {
               updatedState["sub_categories"] = prevState[
@@ -101,7 +112,7 @@ function Projects() {
 
             if (areAllChildrenChecked) {
               updatedState["categories"] = [
-                ...new Set([...prevState["categories"], parentCategory.id])
+                ...new Set([...prevState["categories"], parentCategory.id]),
               ];
             } else {
               updatedState["categories"] = prevState["categories"].filter(
@@ -115,6 +126,17 @@ function Projects() {
         return updateCategoriesAndSubCategories(name, value, checked);
       }
       return updatedState;
+    });
+  };
+
+  const handleSelect = (selectedItems) => {
+    setSelectedOptions(selectedItems);    
+    const selectedValues = selectedItems
+    ? selectedItems?.map((option) => option.value)
+    : [];
+    setSearchFilterData({
+      ...searchFilterData,
+      skills: selectedValues,
     });
   };
 
@@ -166,7 +188,9 @@ function Projects() {
       <div className="container">
         <div className="row">
           <div className="col-lg-3 p-2">
-            <aside className={`side-menu p-2 pt-3 ${isFilterOpen ? "active" : ""}`}>
+            <aside
+              className={`side-menu p-2 pt-3 ${isFilterOpen ? "active" : ""}`}
+            >
               <div className="filter-wrap">
                 <div className="colse" onClick={() => setIsFilterOpen(false)}>
                   <i className="fa-light fa-xmark"></i>
@@ -175,7 +199,6 @@ function Projects() {
                   <InputField
                     id="aside-search-input"
                     name="search"
-                    
                     value={searchFilterData.search}
                     onChange={handleChange}
                     label={t("search.search")}
@@ -186,6 +209,15 @@ function Projects() {
                     sub_categoriesValue={searchFilterData.sub_categories}
                     onChange={handleChange}
                     categoriesWithSubCategories={categoriesWithSubCategories}
+                  />
+                  <hr />
+                  <MultiSelect
+                    label={t("search.skills")}
+                    id="skills"
+                    name="skills"
+                    options={options}
+                    selectedOptions={selectedOptions}
+                    handleChange={handleSelect}
                   />
                   <hr />
                   <RatingFilterBox
