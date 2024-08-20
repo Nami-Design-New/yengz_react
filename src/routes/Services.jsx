@@ -164,7 +164,9 @@ const Services = () => {
       <div className="container">
         <div className="row">
           <aside
-            className={`col-lg-3 p-2 pt-3 side-menu ${isFilterOpen ? "active" : ""}`}
+            className={`col-lg-3 p-2 mt-2 side-menu ${
+              isFilterOpen ? "active" : ""
+            }`}
           >
             <div className="filter-wrap">
               <div className="colse" onClick={() => setIsFilterOpen(false)}>
@@ -175,7 +177,6 @@ const Services = () => {
                 <InputField
                   id="aside-search-input"
                   name="search"
-                  
                   value={searchFilterData.search}
                   onChange={handleChange}
                   label={t("search.search")}
@@ -215,12 +216,12 @@ const Services = () => {
               </form>
             </div>
           </aside>
-          <main className="col-lg-9">
+          <main className="col-lg-9 p-2">
             <div className="row">
               {searchServicesList.length > 0 ? (
                 <>
                   {searchServicesList.map((service) => (
-                    <div className="col-lg-4 col-sm-6 mb-4" key={service.id}>
+                    <div className="col-lg-4 col-md-6 col-12 p-2" key={service.id}>
                       <ServiceCard service={service} />
                     </div>
                   ))}

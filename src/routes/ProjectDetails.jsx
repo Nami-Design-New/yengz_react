@@ -9,6 +9,7 @@ import AddOffer from "../features/projects/AddOffer";
 import useGetProjectRequests from "../features/projects/useGetProjectRequests";
 import OfferCard from "../ui/cards/OfferCard";
 import { useSelector } from "react-redux";
+import ErrorPage from "./ErrorPage";
 
 function ProjectDetails() {
   const { t } = useTranslation();

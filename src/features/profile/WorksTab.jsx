@@ -48,10 +48,7 @@ const WorksTab = ({ works, isMyAccount }) => {
   return (
     <>
       <div className="tab-pane ">
-        <div
-          className="services-container"
-          
-        >
+        <div className="services-container">
           {isMyAccount && (
             <button
               onClick={() => setShowAddWorkModal(true)}

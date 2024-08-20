@@ -13,7 +13,7 @@ const AddWorkModal = ({
   showModal,
   setShowModal,
   targetWork,
-  setTargetWork,
+  setTargetWork
 }) => {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
@@ -25,7 +25,7 @@ const AddWorkModal = ({
     start_date: "",
     end_date: "",
     images: [],
-    delete_images: [],
+    delete_images: []
   });
 
   useEffect(() => {
@@ -38,7 +38,7 @@ const AddWorkModal = ({
         start_date: targetWork.start_date,
         end_date: targetWork.end_date,
         images: targetWork.images || [],
-        delete_images: [],
+        delete_images: []
       });
     }
   }, [targetWork]);
@@ -54,7 +54,7 @@ const AddWorkModal = ({
       ...formData,
       images: formData.images.filter((image) =>
         image?.type?.startsWith("image/")
-      ),
+      )
     };
     try {
       if (targetWork?.id) {
@@ -72,7 +72,7 @@ const AddWorkModal = ({
         start_date: "",
         end_date: "",
         images: [],
-        delete_images: [],
+        delete_images: []
       });
       setTargetWork(null);
     } catch (error) {
@@ -88,7 +88,7 @@ const AddWorkModal = ({
     const newImages = Array.from(e.target.files);
     setFormData((prevState) => ({
       ...prevState,
-      images: [...prevState.images, ...newImages],
+      images: [...prevState.images, ...newImages]
     }));
   };
 
@@ -97,12 +97,12 @@ const AddWorkModal = ({
       setFormData((prevState) => ({
         ...prevState,
         images: prevState.images.filter((_, i) => i !== index),
-        delete_images: [...prevState.delete_images, image.id],
+        delete_images: [...prevState.delete_images, image.id]
       }));
     } else {
       setFormData((prevState) => ({
         ...prevState,
-        images: prevState.images.filter((_, i) => i !== index),
+        images: prevState.images.filter((_, i) => i !== index)
       }));
     }
   };
@@ -119,7 +119,7 @@ const AddWorkModal = ({
           start_date: "",
           end_date: "",
           images: [],
-          delete_images: [],
+          delete_images: []
         });
         setTargetWork(null);
       }}

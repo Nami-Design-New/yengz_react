@@ -1,5 +1,6 @@
 import React from "react";
 import image from "../../Assets/images/Artboard.png";
+import avatar from "../../Assets/images/avatar.jpg";
 import { Link } from "react-router-dom";
 
 function PortfolioCard({ setRow, setIsModalOpen }) {
@@ -7,6 +8,9 @@ function PortfolioCard({ setRow, setIsModalOpen }) {
     <div className="portfolio-card" onClick={() => setIsModalOpen(true)}>
       <div className="img">
         <img src={image} alt="" />
+        <Link to="/profile/1" className="user">
+          <img src={avatar} alt="avatar" />
+        </Link>
       </div>
       <div className="info">
         <h6>من اخر اعمالي في تصميم الشعارات</h6>

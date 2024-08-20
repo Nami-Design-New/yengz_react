@@ -2,7 +2,12 @@ import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { Accordion } from "react-bootstrap";
-import { IconBriefcase, IconFile, IconUsers } from "@tabler/icons-react";
+import {
+  IconBriefcase,
+  IconFile,
+  IconMail,
+  IconUsers
+} from "@tabler/icons-react";
 import useGetAbout from "../features/About/useGetAbout";
 
 function WebMenuSideBar({ isOpen, setIsOpen }) {
@@ -30,6 +35,11 @@ function WebMenuSideBar({ isOpen, setIsOpen }) {
         <li>
           <Link to="/freelancers" onClick={() => setIsOpen(false)}>
             <IconUsers stroke={1.5} /> {t("navbar.freelancers")}
+          </Link>
+        </li>
+        <li>
+          <Link to="/bids" onClick={() => setIsOpen(false)}>
+            <IconMail stroke={2} /> {t("navbar.bids")}
           </Link>
         </li>
         <Accordion>
