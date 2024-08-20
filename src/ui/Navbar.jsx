@@ -434,7 +434,7 @@ const Navbar = () => {
                       </Link>
                     </li>
                     <li onClick={closeProfileMenu}>
-                      <Link className="dropdown-item_Link" to="/profile">
+                      <Link className="dropdown-item_Link" to="/balance">
                         <i className="fa-sharp fa-solid fa-dollar-sign"></i>
                         {t("navbar.balance")}
                       </Link>

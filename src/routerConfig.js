@@ -39,15 +39,25 @@ import CommunityDetails from "./routes/CommunityDetails";
 import CommunitySubjectDetails from "./routes/CommunitySubjectDetails";
 import AddCommunitySubject from "./routes/AddCommunitySubject";
 import MyBids from "./routes/MyBids";
+import Balance from "./routes/Balance";
 
 const routesConfig = [
+  // main routes
   { path: "/", element: <Home />, index: true },
   { path: "*", element: <ErrorPage /> },
+
+  // auth routes
+  { path: "/login", element: <Login /> },
+  { path: "/register", element: <Register /> },
+  { path: "/forget-password", element: <ForgetPassword /> },
+
+  // category routes
   { path: "/categories", element: <Categories /> },
   { path: "/categories/:id", element: <SubCategories /> },
+
+  // service routes
   { path: "/services", element: <Services /> },
   { path: "/services/:id", element: <ServiceDetails /> },
-  { path: "/freelancers", element: <BestFreeLancers /> },
   { path: "/add-service", element: <AddServices />, protected: true },
   { path: "/edit-service/:id", element: <AddServices />, protected: true },
   { path: "/cart", element: <Cart />, protected: true },
@@ -55,6 +65,8 @@ const routesConfig = [
   { path: "/purchases/:id", element: <OrderDetails />, protected: true },
   { path: "/recieved-orders", element: <RecievedOrders />, protected: true },
   { path: "/recieved-orders/:id", element: <OrderDetails />, protected: true },
+
+  // project routes
   { path: "/projects", element: <Projects /> },
   { path: "/projects/:id", element: <ProjectDetails /> },
   { path: "/add-project", element: <AddProject />, protected: true },
@@ -65,23 +77,21 @@ const routesConfig = [
     element: <ProjectsOrdersDetails />,
     protected: true
   },
-  { path: "/my-collections", element: <MyCollections />, protected: true },
-  { path: "/my-collections/:id", element: <MyCollection />, protected: true },
+
+  // profile routes
   { path: "/profile", element: <Profile />, protected: true },
   { path: "/profile/:id", element: <Profile /> },
   { path: "/edit-profile", element: <EditProfile />, protected: true },
-  { path: "/verify-identity", element: <VerifyIdentity />, protected: true },
   { path: "/verify-phone", element: <VerifyPhone />, protected: true },
+  { path: "/my-collections", element: <MyCollections />, protected: true },
+  { path: "/my-collections/:id", element: <MyCollection />, protected: true },
   { path: "/chat", element: <Chats />, protected: true },
+  { path: "/bids", element: <MyBids />, protected: true },
+  { path: "/verify-identity", element: <VerifyIdentity />, protected: true },
   { path: "/notifications", element: <Notifcations />, protected: true },
-  { path: "/complaints-suggestions", element: <Complaints />, protected: true },
-  { path: "/contact", element: <Contact /> },
-  { path: "/about/:id", element: <About /> },
-  { path: "/about/preview/:id", element: <AboutPreview /> },
-  { path: "/privacy-policy", element: <Privacy /> },
-  { path: "/terms-conditions", element: <Terms /> },
-  { path: "/blogs", element: <Blogs /> },
-  { path: "/blogs/:id", element: <BlogDetails /> },
+  { path: "/balance", element: <Balance />, protected: true },
+
+  // community routes
   { path: "/done-works-modals", element: <CommunityDetails /> },
   { path: "/done-works-modals/:id", element: <CommunitySubjectDetails /> },
   { path: "/unexisited-requests-orders", element: <CommunityDetails /> },
@@ -96,11 +106,22 @@ const routesConfig = [
     element: <AddCommunitySubject />,
     protected: true
   },
-  { path: "/login", element: <Login /> },
-  { path: "/register", element: <Register /> },
-  { path: "/forget-password", element: <ForgetPassword /> },
+
+  // freelancers routes
+  { path: "/freelancers", element: <BestFreeLancers /> },
   { path: "/portfolios", element: <Portfolios /> },
-  { path: "/bids", element: <MyBids />, protected: true }
+
+  // support routes
+  { path: "/complaints-suggestions", element: <Complaints />, protected: true },
+  { path: "/contact", element: <Contact /> },
+
+  // landing routes
+  { path: "/about/:id", element: <About /> },
+  { path: "/about/preview/:id", element: <AboutPreview /> },
+  { path: "/blogs", element: <Blogs /> },
+  { path: "/blogs/:id", element: <BlogDetails /> },
+  { path: "/privacy-policy", element: <Privacy /> },
+  { path: "/terms-conditions", element: <Terms /> }
 ];
 
 export default routesConfig;
