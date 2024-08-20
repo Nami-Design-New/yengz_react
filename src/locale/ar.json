@@ -43,7 +43,8 @@
     "ynjezCommunity": "مجتمع ينجز",
     "done-works-modals": "نماذج أعمال قمت بتنفيذها",
     "unexisited-requests-orders": "طلبات الخدمات غير الموجودة",
-    "users-stories": "تجارب وقصص المستخدمين"
+    "users-stories": "تجارب وقصص المستخدمين",
+    "bids": "عروضى"
   },
   "auth": {
     "loginPageTitle": "تسجيل الدخول",
@@ -138,7 +139,9 @@
     "portfolios": "معرض الأعمال",
     "communities": "مجتمع ينجز",
     "blogs": "المدونات",
-    "freelancers": "ابحث عن مستقلين"
+    "freelancers": "ابحث عن مستقلين",
+    "bids": "عروضى",
+    "projectOwnerName": "اسم صاحب المشروع"
   },
   "home": {
     "searchFor": "ابحث عن...",
@@ -342,7 +345,15 @@
     "addedDuring": "الأعمال المضافة خلال آخر",
     "skills": "المهارات المستخدمة",
     "jobTitle": "المسمى الوظيفي",
-    "rating": "التقييم"
+    "rating": "التقييم",
+    "projectOwnerName": "اسم صاحب المشروع",
+    "satus": "الحالة",
+    "waitingForApproval": "بانتظار الموافقة",
+    "underImplementation": "قيد التنفيذ",
+    "completed": "مكتملة",
+    "excluded": "مستبعدة",
+    "closed": "مغلقة",
+    "canceled": "ملغية"
   },
   "services": {
     "developments": "تطويرات متوفرة لهذه الخدمة",

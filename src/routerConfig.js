@@ -38,6 +38,7 @@ import Portfolios from "./routes/Portfolios";
 import CommunityDetails from "./routes/CommunityDetails";
 import CommunitySubjectDetails from "./routes/CommunitySubjectDetails";
 import AddCommunitySubject from "./routes/AddCommunitySubject";
+import MyBids from "./routes/MyBids";
 
 const routesConfig = [
   { path: "/", element: <Home />, index: true },
@@ -62,7 +63,7 @@ const routesConfig = [
   {
     path: "/projects-orders/:id",
     element: <ProjectsOrdersDetails />,
-    protected: true,
+    protected: true
   },
   { path: "/my-collections", element: <MyCollections />, protected: true },
   { path: "/my-collections/:id", element: <MyCollection />, protected: true },
@@ -86,19 +87,20 @@ const routesConfig = [
   { path: "/unexisited-requests-orders", element: <CommunityDetails /> },
   {
     path: "/unexisited-requests-orders/:id",
-    element: <CommunitySubjectDetails />,
+    element: <CommunitySubjectDetails />
   },
   { path: "/users-stories", element: <CommunityDetails /> },
   { path: "/users-stories/:id", element: <CommunitySubjectDetails /> },
   {
     path: "/add-subject",
     element: <AddCommunitySubject />,
-    protected: true,
+    protected: true
   },
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
   { path: "/forget-password", element: <ForgetPassword /> },
   { path: "/portfolios", element: <Portfolios /> },
+  { path: "/bids", element: <MyBids />, protected: true }
 ];
 
 export default routesConfig;

@@ -374,7 +374,6 @@ body {
       .right-wrapper,
       .left-wrapper {
         display: flex;
-        gap: 12px;
         .webmenu_open {
           @include clearInput();
           padding: 0 12px;
@@ -387,7 +386,7 @@ body {
           display: contents;
           .nav-link {
             height: 60px;
-            padding: 0 12px;
+            padding: 0 18px;
             font-size: 15px;
             font-weight: 500;
             border-radius: 8px;
@@ -410,6 +409,7 @@ body {
       .logo a {
         height: 60px;
         @include centerFlex();
+        padding: 0 12px;
         img {
           height: 60%;
         }
@@ -862,10 +862,27 @@ body {
           overflow: hidden;
           width: 100%;
           aspect-ratio: 3 / 2;
+          position: relative;
           img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+          }
+          .user {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 1px solid var(--white-color);
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: center;
+            }
           }
         }
         .info {
@@ -5605,20 +5622,17 @@ body {
   }
   .communityDetails {
     padding: 50px 0;
-
     &.communitySubjectDetails {
       .content-body {
         flex-wrap: wrap !important;
         flex-direction: row !important;
       }
     }
-
     .container {
       display: flex;
       flex-direction: column;
       gap: 24px;
       position: relative;
-
       .communityHeader {
         width: 100%;
         display: flex;
@@ -5644,7 +5658,6 @@ body {
           color: #fff;
         }
       }
-
       .content-body {
         width: 100%;
         display: flex;
@@ -5652,7 +5665,6 @@ body {
         position: relative;
         overflow: hidden;
         gap: 16px;
-
         .image-wrapper {
           position: relative;
           display: flex;
@@ -5661,31 +5673,26 @@ body {
           border-radius: 50%;
           overflow: hidden;
           border: 1px solid var(--LightGray);
-
           &.mini {
             width: 36px;
             height: 36px;
           }
-
           img {
             object-fit: cover;
             width: 100%;
           }
         }
-
         .info-wrapper {
           flex: 1 0;
           display: flex;
           flex-direction: column;
           gap: 8px;
           position: relative;
-
           .info-boxes-wrapper {
             display: flex;
             align-items: center;
             gap: 24px;
             position: relative;
-
             .info-box {
               display: flex;
               align-items: center;
@@ -5706,7 +5713,6 @@ body {
             }
           }
         }
-
         .subjectItem {
           width: 100%;
           padding: 16px;
@@ -5718,7 +5724,6 @@ body {
           background-color: var(--gray-background);
           border-radius: 16px;
           color: var(--black-color);
-
           .subjectContent {
             flex: 2 0;
             display: flex;
@@ -5726,21 +5731,18 @@ body {
             position: relative;
             align-items: center;
           }
-
           .userContent {
             flex: 1 0;
             display: flex;
             gap: 8px;
             position: relative;
             align-items: center;
-
             .image-wrapper {
               width: 50px;
               height: 50px;
             }
           }
         }
-
         .right-wrapper {
           flex: 2 0;
           min-width: 300px;
@@ -5749,7 +5751,6 @@ body {
           gap: 24px;
           position: relative;
         }
-
         .left-wrapper {
           flex: 1 0;
           min-width: 300px;
@@ -5758,7 +5759,6 @@ body {
           gap: 24px;
           position: relative;
         }
-
         .subject-box {
           padding: 16px 0;
           width: 100%;
@@ -5769,7 +5769,6 @@ body {
           display: flex;
           flex-direction: column;
           gap: 16px;
-
           .box-header {
             display: flex;
             position: relative;
@@ -5777,7 +5776,6 @@ body {
             padding: 0 16px 16px;
             border-bottom: 1px solid var(--LightGray);
           }
-
           .userBox {
             display: flex;
             align-items: center;
@@ -5785,22 +5783,18 @@ body {
             gap: 16px;
             width: 100%;
           }
-
           .comment-wrapper {
             width: 100%;
             display: flex;
             flex-direction: column;
             position: relative;
-
             p {
               font-size: 14px;
             }
           }
-
           * {
             margin: 0;
           }
-
           .box-item {
             display: flex;
             align-items: center;
@@ -5808,14 +5802,12 @@ body {
             gap: 16px;
             position: relative;
             padding: 0 16px;
-
             &.comment-item {
               padding: 0 32px;
               &::after {
                 width: calc(100% - 64px) !important;
               }
             }
-
             &:not(:last-of-type) {
               padding-bottom: 16px;
               &::after {
@@ -5829,26 +5821,21 @@ body {
                 transform: translateX(50%);
               }
             }
-
             &.no-border {
               padding-bottom: 0 !important;
-
               &::after {
                 content: none !important;
               }
             }
-
             &.column {
               flex-direction: column;
               align-items: unset !important;
             }
-
             p {
               flex: 1 0;
               display: flex;
               align-items: center;
             }
-
             span {
               flex: 1 0;
               display: flex;
@@ -5952,7 +5939,7 @@ body {
     color: var(--white-color);
     background: var(--main-color);
     top: 14px;
-    right: 0;
+    right: 8px;
     border-radius: 50%;
     font-size: 10px;
     padding-top: 2px;
@@ -6426,5 +6413,41 @@ body {
         justify-content: center;
       }
     }
+  }
+}
+.bid-card {
+  padding: 18px;
+  border-radius: 12px;
+  background-color: var(--input-bg);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  h4 {
+    color: var(--main-color);
+    font-size: 24px;
+  }
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    li {
+      color: var(--text-color);
+      display: flex;
+      align-items: center;
+      font-size: 12px;
+      span {
+        line-height: 14px;
+      }
+      svg {
+        height: 16px;
+      }
+    }
+  }
+  p {
+    margin-bottom: 0;
+    line-height: 24px;
+    color: var(--text-color);
+    font-size: 14px;
   }
 }
