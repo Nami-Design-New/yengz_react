@@ -4,11 +4,13 @@ import { useSelector } from "react-redux";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useState } from "react";
 import ChargeModal from "../ui/modals/ChargeModal";
+import WithdrawModal from "../ui/modals/WithdrawModal";
 
 function Balance() {
   const { t } = useTranslation();
   const user = useSelector((state) => state.authedUser.user);
   const [showChargeModel, setShowChargeModel] = useState(false);
+  const [showWithdrawModel, setShowWithdrawModel] = useState(false);
 
   const renderTooltip = (props) => (
     <Tooltip id="button-tooltip" {...props}>
@@ -27,7 +29,12 @@ function Balance() {
               <button className="btn" onClick={() => setShowChargeModel(true)}>
                 {t("balance.depositBalance")}
               </button>
-              <button className="btn">{t("balance.withdrawBalance")}</button>
+              <button
+                className="btn"
+                onClick={() => setShowWithdrawModel(true)}
+              >
+                {t("balance.withdrawBalance")}
+              </button>
             </div>
           </div>
           <div className="content-body">
@@ -107,16 +114,24 @@ function Balance() {
                   <h5 className="box-header">{t("balance.period")}</h5>
                   <div className="box-content">
                     <div className="item">
-                      <input
-                        type="date"
-                        className="form-date"
-                        placeholder={t("balance.from")}
-                      />
-                      <input
-                        type="date"
-                        className="form-date"
-                        placeholder={t("balance.to")}
-                      />
+                      <div className="input-field">
+                        <label htmlFor="date-from">{t("balance.from")}</label>
+                        <input
+                          type="date"
+                          className="form-date"
+                          placeholder={t("balance.from")}
+                          id="date-from"
+                        />
+                      </div>
+                      <div className="input-field">
+                        <label htmlFor="date-to">{t("balance.to")}</label>
+                        <input
+                          type="date"
+                          className="form-date"
+                          placeholder={t("balance.to")}
+                          id="date-to"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -241,6 +256,10 @@ function Balance() {
         <ChargeModal
           showModal={showChargeModel}
           setShowModal={setShowChargeModel}
+        />
+        <WithdrawModal
+          showModal={showWithdrawModel}
+          setShowModal={setShowWithdrawModel}
         />
       </section>
     </>

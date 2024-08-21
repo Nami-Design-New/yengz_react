@@ -510,7 +510,11 @@
     "transactions": "Money Transactions",
     "period": "Period",
     "from": "From",
-    "to": "To"
+    "to": "To",
+    "bankTransfer": "Bank Transfer",
+    "amount": "Amount",
+    "bankName": "Bank Name",
+    "status": "Status"
   },
   "password": "Enter Password",
   "cancel": "Cancel",
@@ -539,5 +543,6 @@
   "orMore": "or more",
   "enterChargeValue": "Enter Charge Value",
   "paymentFailed": "Payment Failed",
-  "paymentSuccess": "Payment Success"
+  "paymentSuccess": "Payment Success",
+  "manageAccount": "Manage Account"
 }
