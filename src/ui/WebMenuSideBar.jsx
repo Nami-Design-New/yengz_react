@@ -6,7 +6,7 @@ import {
   IconBriefcase,
   IconFile,
   IconMail,
-  IconUsers,
+  IconUsers
 } from "@tabler/icons-react";
 import useGetAbout from "../features/About/useGetAbout";
 import { useSelector } from "react-redux";
@@ -29,6 +29,23 @@ function WebMenuSideBar({ isOpen, setIsOpen }) {
   return (
     <div className={`web-menu-sidebar ${isOpen ? "active" : ""}`}>
       <ul className="nav_side_menu">
+        <li className="nav-link" onClick={() => setIsOpen(false)}>
+          <Link to="/categories">
+            <i className="far fa-cube"></i> {t("navbar.categories")}
+          </Link>
+        </li>
+        <li className="nav-link">
+          <Link to="/services" onClick={() => setIsOpen(false)}>
+            <i className="fa-light fa-database"></i>
+            {t("navbar.services")}
+          </Link>
+        </li>
+        <li className="nav-link">
+          <Link to="/projects" onClick={() => setIsOpen(false)}>
+            <i className="fa-regular fa-file-invoice"></i>
+            {t("navbar.projects")}
+          </Link>
+        </li>
         <li>
           <Link to="/portfolios" onClick={() => setIsOpen(false)}>
             <IconBriefcase stroke={1.5} /> {t("navbar.portfolios")}

@@ -487,6 +487,19 @@ body {
             }
           }
         }
+        .words {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          margin-top: 16px;
+          flex-wrap: wrap;
+          .word {
+            padding: 4px 12px;
+            border-radius: 20px;
+            background: var(--white-color);
+            color: var(--main-color);
+          }
+        }
       }
     }
     .video_section {
@@ -2856,7 +2869,6 @@ body {
         justify-content: space-between;
         gap: 16px;
         position: relative;
-
         .btns-wrapper {
           display: flex;
           align-items: center;
@@ -2888,7 +2900,6 @@ body {
         position: relative;
         overflow: hidden;
         gap: 32px;
-
         .balance-boxes-wrapper {
           width: 100%;
           display: flex;
@@ -2896,7 +2907,6 @@ body {
           gap: 16px;
           position: relative;
           flex-wrap: wrap;
-
           .balance-box {
             min-width: 300px;
             flex: 1 0;
@@ -2909,12 +2919,10 @@ body {
             padding: 16px;
             border-radius: 12px;
             background: var(--gray-background);
-
             span,
             p {
               margin: 0;
             }
-
             span {
               font-size: 14px;
               color: var(--black-color);
@@ -2923,7 +2931,6 @@ body {
                 font-size: 12px;
               }
             }
-
             h6 {
               color: var(--main-color);
               font-weight: bold;
@@ -2938,7 +2945,6 @@ body {
             }
           }
         }
-
         .transactions-wrapper {
           width: 100%;
           display: flex;
@@ -2946,39 +2952,32 @@ body {
           gap: 16px;
           position: relative;
           flex-wrap: wrap;
-
           h3 {
             width: 100%;
           }
-
           .transactions-aside {
             flex: 1 0;
             display: flex;
             flex-direction: column;
             position: relative;
             gap: 24px;
-
             .filter-box {
               display: flex;
               flex-direction: column;
               position: relative;
               gap: 16px;
-
               .box-header {
                 margin: 0;
               }
-
               .box-content {
                 display: flex;
                 flex-direction: column;
                 position: relative;
                 gap: 8px;
-
                 .item {
                   display: flex;
                   align-items: center;
                   gap: 8px;
-
                   .input-field {
                     display: flex;
                     flex-direction: column;
@@ -2987,7 +2986,6 @@ body {
                     label {
                     }
                   }
-
                   .form-date {
                     padding: 8px;
                     background-color: var(--input-bg);
@@ -2999,14 +2997,12 @@ body {
               }
             }
           }
-
           .transactions-body {
             flex: 2 0;
             display: flex;
             flex-direction: column;
             position: relative;
             gap: 16px;
-
             .transaction-box {
               width: 100%;
               position: relative;
@@ -3016,7 +3012,6 @@ body {
               padding: 16px;
               border-radius: 16px;
               background: var(--gray-background);
-
               .money-wrapper {
                 display: flex;
                 align-items: center;
@@ -3030,20 +3025,17 @@ body {
                   font-weight: 600;
                 }
               }
-
               .info-wrapper {
                 display: flex;
                 flex-direction: column;
                 position: relative;
                 gap: 8px;
-
                 .info-header {
                   margin: 0;
                   display: flex;
                   gap: 4px;
                   align-items: center;
                   position: relative;
-
                   span {
                     color: var(--main-color);
                   }
@@ -4924,10 +4916,8 @@ body {
     display: flex;
     flex-direction: column;
     gap: 40px;
-
     .tab-content {
       position: relative;
-
       &::after {
         content: "";
         position: absolute;
@@ -4938,7 +4928,6 @@ body {
         background-color: var(--LightGray);
       }
     }
-
     .form {
       align-items: flex-start !important;
     }
@@ -4946,7 +4935,6 @@ body {
       background-color: var(--gray-background);
       padding: 0 !important;
       border-radius: 12px !important;
-
       .nav-item {
         border-radius: 12px !important;
         a {
@@ -4957,12 +4945,10 @@ body {
           font-size: 16px;
           color: var(--dark-color);
           transition: var(--transition);
-
           &.active {
             background-color: var(--main-color);
             color: var(--white-color);
           }
-
           i {
             font-size: 16px;
           }
@@ -5010,18 +4996,14 @@ body {
         font-size: 16px;
       }
     }
-
     .bank-transfer-box {
       width: 100%;
-
       input {
         display: none;
-
         &:checked + label {
           border-color: var(--main-color);
         }
       }
-
       label {
         background-color: var(--gray-background);
         border: 2px solid var(--gray-background);
@@ -5034,14 +5016,12 @@ body {
         cursor: pointer;
         transition: var(--transition);
       }
-
       .image-wrapper {
         width: 42px;
         height: 42px;
         display: flex;
         align-items: center;
         justify-content: center;
-
         i {
           font-size: 24px;
         }
@@ -5051,11 +5031,9 @@ body {
         flex-direction: column;
         gap: 8px;
         position: relative;
-
         h5 {
           margin: 0;
         }
-
         .info-boxes-wrapper {
           display: flex;
           flex-direction: column;
@@ -5081,7 +5059,6 @@ body {
         }
       }
     }
-
     .btn {
       border: 1px solid var(--main-color);
       color: var(--main-color);
@@ -6001,7 +5978,7 @@ body {
     color: var(--white-color);
     background: var(--main-color);
     top: 14px;
-    right: 8px;
+    right: 4px;
     border-radius: 50%;
     font-size: 10px;
     padding-top: 2px;
@@ -6351,6 +6328,12 @@ body {
           height: 16px;
         }
       }
+    }
+    .bid-status {
+      background: var(--main-color);
+      padding: 4px 12px;
+      border-radius: 8px;
+      color: var(--white-color);
     }
     p {
       margin-bottom: 0;
