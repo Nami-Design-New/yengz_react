@@ -65,7 +65,6 @@
 }
 ::-webkit-scrollbar-thumb {
   background: var(--input-hint);
-  height: 300px;
   border-radius: 8px;
 }
 .progress {
@@ -268,4 +267,10 @@ input[type="checkbox"] {
 
 .form-control {
   box-shadow: none !important;
+}
+
+.form-check-input {
+  border: 0 !important;
+  box-shadow: none !important;
+  background: none !important;
 }

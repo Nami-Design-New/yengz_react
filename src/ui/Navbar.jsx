@@ -85,9 +85,6 @@ const Navbar = () => {
     setIsProfileMenuOpen(false);
   }
 
-  useOutsideClose(searchRef, closeSearchInput, true);
-  useOutsideClose(profileMenuRef, closeProfileMenu, true);
-
   function handleSubmitSearch(e) {
     e.preventDefault();
     const searchInput = e.target[0].value;
@@ -147,6 +144,9 @@ const Navbar = () => {
     }
   };
 
+  useOutsideClose(searchRef, closeSearchInput, true);
+  useOutsideClose(profileMenuRef, closeProfileMenu, true);
+
   return (
     <header>
       <nav className="tnavbar">
@@ -158,6 +158,7 @@ const Navbar = () => {
           <span></span>
           <span></span>
         </div>
+
         <SmallMediaMenu
           isSmallMediaMenuOpen={isSmallMediaMenuOpen}
           closeSmallMediaMenu={closeSmallMediaMenu}
@@ -184,34 +185,20 @@ const Navbar = () => {
           </div>
 
           <ul className="nav-links">
-            {isLogged && (
-              <li className="nav-link">
-                <Link
-                  to="/add-service"
-                  className="d-flex align-items-center gap-1"
-                >
-                  <i className="far fa-plus"></i> {t("navbar.addService")}
-                </Link>
-              </li>
-            )}
             <li className="nav-link">
               <Link
-                to="/categories"
+                to="/add-service"
                 className="d-flex align-items-center gap-1"
               >
-                <i className="far fa-cube"></i> {t("navbar.categories")}
+                <i className="far fa-plus"></i> {t("navbar.addService")}
               </Link>
             </li>
             <li className="nav-link">
-              <Link to="/services" className="d-flex align-items-center gap-1">
-                <i className="fa-light fa-database"></i>
-                {t("navbar.services")}
-              </Link>
-            </li>
-            <li className="nav-link">
-              <Link to="/projects" className="d-flex align-items-center gap-1">
-                <i className="fa-regular fa-file-invoice"></i>
-                {t("navbar.projects")}
+              <Link
+                to="/add-project"
+                className="d-flex align-items-center gap-1"
+              >
+                <i className="far fa-plus"></i> {t("navbar.addProject")}
               </Link>
             </li>
             {isLogged && (
@@ -240,7 +227,6 @@ const Navbar = () => {
                     {user?.service_orders_count || 0}
                   </span>
                 </li>
-
                 <li className="nav-link">
                   <Link
                     to="/projects-orders"
@@ -364,7 +350,7 @@ const Navbar = () => {
                       {notifications?.map((notification) => (
                         <Fragment key={notification?.title}>
                           <Dropdown.Item className="drop_Message">
-                            <Link to="/chat" style={{ display: "flex" }}>
+                            <Link to="/notifications" style={{ display: "flex" }}>
                               <div className="text-wrap">
                                 <div className="d-flex justify-content-between">
                                   <h6>{notification?.title}</h6>

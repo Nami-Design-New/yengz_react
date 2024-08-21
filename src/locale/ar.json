@@ -143,7 +143,8 @@
     "blogs": "المدونات",
     "freelancers": "ابحث عن مستقلين",
     "bids": "عروضى",
-    "projectOwnerName": "اسم صاحب المشروع"
+    "projectOwnerName": "اسم صاحب المشروع",
+    "addProject": "أضف مشروع"
   },
   "home": {
     "searchFor": "ابحث عن...",
