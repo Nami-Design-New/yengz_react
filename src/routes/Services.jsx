@@ -38,13 +38,13 @@ const Services = () => {
     is_old: Number(searchParams.get("is_old")) || null,
     skills: searchParams.get("skills")
       ? searchParams.get("skills").split("-")
-      : [],
+      : []
   });
 
   const options = [
     { value: "1", label: "1" },
     { value: "2", label: "2" },
-    { value: "3", label: "3" },
+    { value: "3", label: "3" }
   ];
 
   const { isLoading: categoriesIsLoading, data: categoriesWithSubCategories } =
@@ -54,7 +54,7 @@ const Services = () => {
     fetchNextPage,
     hasNextPage,
     isFetching,
-    isFetchingNextPage,
+    isFetchingNextPage
   } = useSearchServicesList();
 
   const handleChange = (e) => {
@@ -84,8 +84,8 @@ const Services = () => {
               updatedState["sub_categories"] = [
                 ...new Set([
                   ...prevState["sub_categories"],
-                  ...relatedSubCategories,
-                ]),
+                  ...relatedSubCategories
+                ])
               ];
             } else {
               updatedState["sub_categories"] = prevState[
@@ -110,7 +110,7 @@ const Services = () => {
 
             if (areAllChildrenChecked) {
               updatedState["categories"] = [
-                ...new Set([...prevState["categories"], parentCategory.id]),
+                ...new Set([...prevState["categories"], parentCategory.id])
               ];
             } else {
               updatedState["categories"] = prevState["categories"].filter(
@@ -134,7 +134,7 @@ const Services = () => {
       : [];
     setSearchFilterData({
       ...searchFilterData,
-      skills: selectedValues,
+      skills: selectedValues
     });
   };
 

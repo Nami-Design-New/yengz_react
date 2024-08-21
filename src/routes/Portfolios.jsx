@@ -7,24 +7,23 @@ import InputField from "../ui/form-elements/InputField";
 import SelectField from "../ui/form-elements/SelectField";
 import MultiSelect from "../ui/form-elements/MultiSelect";
 import WorkViewModal from "../ui/modals/WorkViewModal";
+import useGetSkills from "../features/settings/useGetSkills";
+import handleApplyFilters from "../utils/helpers";
 
 function Portfolios() {
-  const options = [
-    { value: "1", label: "1" },
-    { value: "2", label: "2" },
-    { value: "3", label: "3" }
-  ];
-
   const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [row, setRow] = useState({});
+  const { data: skills } = useGetSkills();
 
   const [searchFilterData, setSearchFilterData] = useState({
     search: searchParams.get("search") || "",
-    added_during: searchParams.get("added_during") || "",
+    duration: searchParams.get("added_during") || "",
+    skills: searchParams.get("skills")?.split("-") || [],
+    sort: searchParams.get("sort") || "",
     page: Number(searchParams.get("page")) || null
   });
 
@@ -44,6 +43,15 @@ function Portfolios() {
     });
   };
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    handleApplyFilters(setSearchParams, searchFilterData);
+  }
+
+  function handleClearFilters() {
+    setSearchParams({});
+  }
+
   return (
     <>
       <SectionHeader />
@@ -51,17 +59,18 @@ function Portfolios() {
         <div className="container">
           <div className="row">
             <aside
-              className={`col-lg-3 p-2 pt-3 side-menu ${isFilterOpen ? "active" : ""}`}
+              className={`col-lg-3 p-2 pt-3 side-menu ${
+                isFilterOpen ? "active" : ""
+              }`}
             >
               <div className="filter-wrap">
                 <div className="colse" onClick={() => setIsFilterOpen(false)}>
                   <i className="fa-light fa-xmark"></i>
                 </div>
-                <form className="form">
+                <form className="form" onSubmit={handleSubmit}>
                   <InputField
                     id="search"
                     name="search"
-                    
                     value={searchFilterData.search}
                     onChange={handleChange}
                     label={t("search.search")}
@@ -71,7 +80,10 @@ function Portfolios() {
                     label={t("search.skills")}
                     id="skills"
                     name="skills"
-                    options={options}
+                    options={skills?.map((skill) => ({
+                      label: skill?.name,
+                      value: skill?.id
+                    }))}
                     selectedOptions={selectedOptions}
                     handleChange={handleSelect}
                   />
@@ -97,7 +109,7 @@ function Portfolios() {
                         {t("search.apply")}
                       </button>
                     </div>
-                    <div className="search-btn">
+                    <div className="search-btn" onClick={handleClearFilters}>
                       <span>{t("search.clear")}</span>
                     </div>
                   </div>

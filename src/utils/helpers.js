@@ -97,8 +97,24 @@ export function formattedDate(date) {
   formattedDate = new Intl.DateTimeFormat("en-US", {
     day: "numeric",
     month: "long",
-    year: "numeric",
+    year: "numeric"
   }).format(formattedDate);
 
   return formattedDate;
+}
+
+export default function handleApplyFilters(setSearchParams, searchFilterData) {
+  const newParams = new URLSearchParams();
+
+  for (const [key, value] of Object.entries(searchFilterData)) {
+    if (value !== undefined && value !== null && value !== "") {
+      if (Array.isArray(value) && value.length > 0) {
+        newParams.set(key, value.join("-"));
+      } else if (!Array.isArray(value)) {
+        newParams.set(key, value);
+      }
+    }
+  }
+
+  setSearchParams(newParams);
 }
