@@ -5,12 +5,18 @@ import { Link } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import InputField from "../form-elements/InputField";
 
-const ChargeModal = ({ showModal, setShowModal, cartTotalPrice }) => {
+const WithdrawModal = ({ showModal, setShowModal, cartTotalPrice }) => {
   const { t } = useTranslation();
-  const [chargeValue, setChargeValue] = useState("");
-  const [amountValue, setAmountValue] = useState("");
+  const [transferAmountValue, setTransferAmountValue] = useState("");
+  const [paypalAmountValue, setPaypalAmountValue] = useState("");
+  const [selectedBankTransfer, setSelectedBankTransfer] = useState("");
+  const [paypalAccount, setPaypalAccount] = useState("");
   const [cookies] = useCookies(["token"]);
   const token = cookies?.token;
+
+  const handleBankTransferChange = (event) => {
+    setSelectedBankTransfer(event.target.id);
+  };
 
   return (
     <Modal show={showModal} onHide={() => setShowModal(false)} centered>
@@ -48,12 +54,12 @@ const ChargeModal = ({ showModal, setShowModal, cartTotalPrice }) => {
                 <form className="form">
                   <InputField
                     type="number"
-                    id="amountValue"
-                    name="amountValue"
+                    id="transferAmountValue"
+                    name="transferAmountValue"
                     placeholder={"00"}
-                    value={amountValue}
+                    value={transferAmountValue}
                     label={`${t("balance.amount")} *`}
-                    onChange={(e) => setAmountValue(e.target.value)}
+                    onChange={(e) => setTransferAmountValue(e.target.value)}
                   />
 
                   <div className="bank-transfer-box">
@@ -61,6 +67,8 @@ const ChargeModal = ({ showModal, setShowModal, cartTotalPrice }) => {
                       type="radio"
                       name="bank-transfer"
                       id="ahmed-elsayed"
+                      checked={selectedBankTransfer === "ahmed-elsayed"}
+                      onChange={handleBankTransferChange}
                     />
                     <label htmlFor="ahmed-elsayed">
                       <div className="image-wrapper">
@@ -96,6 +104,8 @@ const ChargeModal = ({ showModal, setShowModal, cartTotalPrice }) => {
                       type="radio"
                       name="bank-transfer"
                       id="ahmed-abdelghany"
+                      checked={selectedBankTransfer === "ahmed-abdelghany"}
+                      onChange={handleBankTransferChange}
                     />
                     <label htmlFor="ahmed-abdelghany">
                       <div className="image-wrapper">
@@ -130,23 +140,73 @@ const ChargeModal = ({ showModal, setShowModal, cartTotalPrice }) => {
                   <Link to="/manage-accounts" className="btn">
                     {t("manageAccount")}
                   </Link>
+
+                  <div className="conditions-wrapper">
+                    <div className="checkbox-group">
+                      <input type="checkbox" name="" id="fees" />
+                      <label htmlFor="fees">{t("balance.feesCondition")}</label>
+                    </div>
+                    <div className="checkbox-group">
+                      <input type="checkbox" name="" id="duration" />
+                      <label htmlFor="duration">
+                        {t("balance.durationCondition")}
+                      </label>
+                    </div>
+                    <div className="checkbox-group">
+                      <input type="checkbox" name="" id="responsibility" />
+                      <label htmlFor="responsibility">
+                        {t("balance.responsibilityCondition")}
+                      </label>
+                    </div>
+                    <p className="condition-note">
+                      الحوالات البنكية التي ترسلها دولية، وحسب البنك الذي تتعامل
+                      معه. قد تمر الحوالة عبر بنك وسيط لاتمام التحويل مما يؤدي
+                      لاقتطاع رسوم إضافية.
+                    </p>
+                    <p className="condition-note">
+                      قد يقتطع البنك المحلي الذي تستخدمه رسوم إضافية لاستقبال
+                      حوالات بنكية دولية أو رسوم لتحويل العملة من الدولار إلى
+                      العملة المحلية.
+                    </p>
+                  </div>
                 </form>
               </Tab.Pane>
-              <Tab.Pane eventKey="paypal">Paypal tab content</Tab.Pane>
+              <Tab.Pane eventKey="paypal">
+                <form className="form">
+                  <InputField
+                    type="number"
+                    id="paypalAmountValue"
+                    name="paypalAmountValue"
+                    placeholder={"00"}
+                    value={paypalAmountValue}
+                    label={`${t("balance.amount")} *`}
+                    onChange={(e) => setPaypalAmountValue(e.target.value)}
+                  />
+                  <InputField
+                    type="number"
+                    id="paypalAccount"
+                    name="paypalAccount"
+                    placeholder={"001321913231"}
+                    value={paypalAccount}
+                    label={`${t("balance.paypalAccount")} *`}
+                    onChange={(e) => setPaypalAccount(e.target.value)}
+                  />
+                </form>
+              </Tab.Pane>
             </Tab.Content>
           </Row>
         </Tab.Container>
 
-        <div className="d-flex justify-content-end gap-3 mt-4">
+        <div className="d-flex justify-content-end gap-3">
           <button onClick={() => setShowModal(false)} className="cancel-btn">
             {t("cancel")}
           </button>
           <Link
             className="order-now text-center"
             to={
-              chargeValue === 0 || chargeValue === ""
+              transferAmountValue === 0 || transferAmountValue === ""
                 ? ""
-                : `https://api.ynjez.com/payment/${chargeValue}?Authorization=${token}&Redirect_url=${window.location.href}`
+                : `https://api.ynjez.com/payment/${transferAmountValue}?Authorization=${token}&Redirect_url=${window.location.href}`
             }
           >
             {t("balance.withdrawBalance")}
@@ -157,4 +217,4 @@ const ChargeModal = ({ showModal, setShowModal, cartTotalPrice }) => {
   );
 };
 
-export default ChargeModal;
+export default WithdrawModal;

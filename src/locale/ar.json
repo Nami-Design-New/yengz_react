@@ -583,7 +583,11 @@
     "bankTransfer": "حوالة بنكية",
     "amount": "المبلغ",
     "bankName": "اسم البنك",
-    "status": "الحالة"
+    "status": "الحالة",
+    "feesCondition": "أعلم أن البنك الوسيط أو المحلي قد يقتطع رسوم إضافية **",
+    "durationCondition": "أعلم أن الحوالات البنكية تستغرق حتى 7 أيام عمل لتصل",
+    "responsibilityCondition": "أتحمل وحدي أي خسارة ناتجة عن إدخال معلومات خاطئة أو غير دقيقة",
+    "paypalAccount": "حساب PayPal"
   },
   "password": "ادخل كلمة المرور ",
   "cancel": "الغاء",
