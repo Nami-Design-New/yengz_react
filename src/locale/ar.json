@@ -579,7 +579,11 @@
     "fees": "رسوم",
     "finishingProject": "انهاء مشروع",
     "refund": "استرجاع",
-    "withdraw": "سحب"
+    "withdraw": "سحب",
+    "bankTransfer": "حوالة بنكية",
+    "amount": "المبلغ",
+    "bankName": "اسم البنك",
+    "status": "الحالة"
   },
   "password": "ادخل كلمة المرور ",
   "cancel": "الغاء",
@@ -608,5 +612,6 @@
   "orMore": "او أكثر",
   "enterChargeValue": "ادخل قيمة الشحن",
   "paymentFailed": "فشل الدفع",
-  "paymentSuccess": "تم الدفع بنجاح"
+  "paymentSuccess": "تم الدفع بنجاح",
+  "manageAccount": "إدارة الحسابات"
 }
