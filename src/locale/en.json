@@ -45,7 +45,8 @@
     "unexisited-requests-orders": "Unexisited Requests Orders",
     "users-stories": "Users Stories and Opinions",
     "bids": "Bids",
-    "balance": "Balance"
+    "balance": "Balance",
+    "manage-accounts": "Manage Accounts"
   },
   "auth": {
     "loginPageTitle": "Login",
@@ -519,6 +520,12 @@
     "durationCondition": "I am aware that bank transfers take up to 7 business days to arrive",
     "responsibilityCondition": "I bear solely any loss resulting from entering incorrect or inaccurate information",
     "paypalAccount": "PayPal Account"
+  },
+  "manageAccounts": {
+    "headerText": "Manage Bank Accounts",
+    "subHeader": "You can add your bank accounts to be able to withdraw your balance to them.",
+    "areYouSureYouWantToDelete": "Are you sure you want to delete this account?",
+    "addAccount": "Add Account"
   },
   "password": "Enter Password",
   "cancel": "Cancel",

@@ -6457,3 +6457,84 @@ body {
     }
   }
 }
+.bank-acc-card {
+  background-color: var(--gray-background);
+  border: 2px solid var(--gray-background);
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  gap: 24px;
+  position: relative;
+  cursor: pointer;
+  transition: var(--transition);
+
+  .image-wrapper {
+    width: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    i {
+      font-size: 36px;
+    }
+  }
+  .info-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+    flex: 1 0;
+
+    h5 {
+      margin: 0;
+    }
+
+    .info-boxes-wrapper {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      .info-box {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        position: relative;
+        font-size: 14px;
+        margin: 0;
+        color: var(--text-color);
+        i {
+          font-size: 12px;
+          width: 16px;
+          height: 16px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: var(--text-color);
+        }
+      }
+    }
+  }
+  .icons {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    display: flex;
+    gap: 8px;
+    button {
+      @include clearInput();
+      background: var(--input-hint);
+      border-radius: 50%;
+      color: var(--white-color);
+      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+      height: 36px;
+      width: 36px;
+      svg {
+        height: 16px;
+        width: 16px;
+      }
+      &:nth-child(2) {
+        background: red;
+      }
+    }
+  }
+}

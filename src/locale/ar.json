@@ -45,7 +45,8 @@
     "unexisited-requests-orders": "طلبات الخدمات غير الموجودة",
     "users-stories": "تجارب وقصص المستخدمين",
     "bids": "عروضى",
-    "balance": "الرصيد"
+    "balance": "الرصيد",
+    "manage-accounts": "ادارة الحسابات"
   },
   "auth": {
     "loginPageTitle": "تسجيل الدخول",
@@ -588,6 +589,12 @@
     "durationCondition": "أعلم أن الحوالات البنكية تستغرق حتى 7 أيام عمل لتصل",
     "responsibilityCondition": "أتحمل وحدي أي خسارة ناتجة عن إدخال معلومات خاطئة أو غير دقيقة",
     "paypalAccount": "حساب PayPal"
+  },
+  "manageAccounts": {
+    "headerText": "ادارة الحسابات البنكية",
+    "subHeader": "يمكنك من خلال هذه الصفحة إضافة حساباتك البنكية لتتمكن من سحب رصيدك إليها",
+    "areYouSureYouWantToDelete": "هل انت متاكد من انك تريد حذف هذا الحساب؟",
+    "addAccount": "اضافة حساب"
   },
   "password": "ادخل كلمة المرور ",
   "cancel": "الغاء",
