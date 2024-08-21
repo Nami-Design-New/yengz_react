@@ -2910,6 +2910,9 @@ body {
           .balance-box {
             min-width: 300px;
             flex: 1 0;
+            background-color: var(--gray-background);
+            padding: 16px;
+            border-radius: 12px;
             position: relative;
             display: flex;
             flex-direction: column;
@@ -2998,7 +3001,7 @@ body {
             }
           }
           .transactions-body {
-            flex: 2 0;
+            flex: 3 0;
             display: flex;
             flex-direction: column;
             position: relative;
@@ -5076,6 +5079,7 @@ body {
         color: #fff;
       }
     }
+  }
   }
   .service-slide {
     position: relative;

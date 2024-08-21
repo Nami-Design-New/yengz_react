@@ -3402,6 +3402,9 @@ body main .balance_section .content-body .balance-boxes-wrapper {
 body main .balance_section .content-body .balance-boxes-wrapper .balance-box {
   min-width: 300px;
   flex: 1 0;
+  background-color: var(--gray-background);
+  padding: 16px;
+  border-radius: 12px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -3492,7 +3495,7 @@ body main .balance_section .content-body .transactions-wrapper .transactions-asi
   color: var(--text-color);
 }
 body main .balance_section .content-body .transactions-wrapper .transactions-body {
-  flex: 2 0;
+  flex: 3 0;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -5528,14 +5531,51 @@ body .pay_modal {
 body .pay_modal .tab-content {
   position: relative;
 }
-body .pay_modal .tab-content::after {
+body .pay_modal .tab-content .conditions-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+body .pay_modal .tab-content .conditions-wrapper::after {
   content: "";
   position: absolute;
-  bottom: -20px;
+  bottom: 0;
   left: 0;
   width: 100%;
   height: 1px;
   background-color: var(--LightGray);
+}
+body .pay_modal .tab-content .conditions-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--LightGray);
+}
+body .pay_modal .tab-content .conditions-wrapper .checkbox-group {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+body .pay_modal .tab-content .conditions-wrapper .checkbox-group input::after {
+  width: 16px;
+  height: 16px;
+}
+body .pay_modal .tab-content .conditions-wrapper .checkbox-group label {
+  font-size: 16px;
+}
+body .pay_modal .tab-content .conditions-wrapper .condition-note {
+  position: relative;
+  font-size: 14px;
+  margin: 0;
+  color: var(--text-color);
+  line-height: 1.6;
 }
 body .pay_modal .form {
   align-items: flex-start !important;

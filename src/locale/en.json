@@ -514,7 +514,11 @@
     "bankTransfer": "Bank Transfer",
     "amount": "Amount",
     "bankName": "Bank Name",
-    "status": "Status"
+    "status": "Status",
+    "feesCondition": "I am aware that the intermediary or local bank may charge additional fees **",
+    "durationCondition": "I am aware that bank transfers take up to 7 business days to arrive",
+    "responsibilityCondition": "I bear solely any loss resulting from entering incorrect or inaccurate information",
+    "paypalAccount": "PayPal Account"
   },
   "password": "Enter Password",
   "cancel": "Cancel",
