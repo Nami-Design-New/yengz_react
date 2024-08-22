@@ -5,13 +5,17 @@ import TextField from "./../../ui/form-elements/TextField";
 import SelectField from "./../../ui/form-elements/SelectField";
 import useCategoriesList from "../categories/useCategoriesList";
 import useSubCategoriesList from "./../categories/useSubCategoriesList";
+import MultiSelect from "../../ui/form-elements/MultiSelect";
 
 const WizardStep1 = ({
   formData,
   setFormData,
   setStep,
   categoryId,
-  setCategoryId
+  setCategoryId,
+  skills,
+  selectedOptions,
+  setSelectedOptions
 }) => {
   const [formValid, setFormValid] = useState(false);
   const { t } = useTranslation();
@@ -36,6 +40,17 @@ const WizardStep1 = ({
     if (formValid) {
       setStep(2);
     }
+  };
+
+  const handleSelect = (selectedItems) => {
+    setSelectedOptions(selectedItems);
+    const selectedValues = selectedItems
+      ? selectedItems?.map((option) => option.value)
+      : [];
+    setFormData({
+      ...formData,
+      skills: selectedValues
+    });
   };
 
   return (
@@ -81,6 +96,19 @@ const WizardStep1 = ({
           categoryId ? t("select") : t("addService.selectCategoryFirst")
         }
       />
+      <div className="col-12 p-2">
+        <MultiSelect
+          label={t("search.skills")}
+          id="skills"
+          name="skills"
+          selectedOptions={selectedOptions}
+          handleChange={handleSelect}
+          options={skills?.map((skill) => ({
+            label: skill?.name,
+            value: skill?.id
+          }))}
+        />
+      </div>
       {/* description */}
       <TextField
         label={t("addService.serviceDescription")}

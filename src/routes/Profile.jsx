@@ -12,6 +12,7 @@ const Profile = () => {
   const [user, setUser] = useState({});
   const { id } = useParams();
   const { data: profile, isLoading } = useGetProfile(id);
+  
   const isMyAccount = !id || id === String(authedUser?.id);
 
   useEffect(() => {
