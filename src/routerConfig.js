@@ -40,6 +40,7 @@ import CommunitySubjectDetails from "./routes/CommunitySubjectDetails";
 import AddCommunitySubject from "./routes/AddCommunitySubject";
 import MyBids from "./routes/MyBids";
 import Balance from "./routes/Balance";
+import ManageAccounts from "./routes/ManageAccounts";
 
 const routesConfig = [
   // main routes
@@ -75,7 +76,7 @@ const routesConfig = [
   {
     path: "/projects-orders/:id",
     element: <ProjectsOrdersDetails />,
-    protected: true
+    protected: true,
   },
 
   // profile routes
@@ -90,6 +91,7 @@ const routesConfig = [
   { path: "/verify-identity", element: <VerifyIdentity />, protected: true },
   { path: "/notifications", element: <Notifcations />, protected: true },
   { path: "/balance", element: <Balance />, protected: true },
+  { path: "/manage-accounts", element: <ManageAccounts />, protected: true },
 
   // community routes
   { path: "/done-works-modals", element: <CommunityDetails /> },
@@ -97,14 +99,14 @@ const routesConfig = [
   { path: "/unexisited-requests-orders", element: <CommunityDetails /> },
   {
     path: "/unexisited-requests-orders/:id",
-    element: <CommunitySubjectDetails />
+    element: <CommunitySubjectDetails />,
   },
   { path: "/users-stories", element: <CommunityDetails /> },
   { path: "/users-stories/:id", element: <CommunitySubjectDetails /> },
   {
     path: "/add-subject",
     element: <AddCommunitySubject />,
-    protected: true
+    protected: true,
   },
 
   // freelancers routes
@@ -121,7 +123,7 @@ const routesConfig = [
   { path: "/blogs", element: <Blogs /> },
   { path: "/blogs/:id", element: <BlogDetails /> },
   { path: "/privacy-policy", element: <Privacy /> },
-  { path: "/terms-conditions", element: <Terms /> }
+  { path: "/terms-conditions", element: <Terms /> },
 ];
 
 export default routesConfig;

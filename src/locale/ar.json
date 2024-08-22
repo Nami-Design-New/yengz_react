@@ -46,6 +46,7 @@
     "users-stories": "تجارب وقصص المستخدمين",
     "bids": "عروضى",
     "balance": "الرصيد",
+    "manage-accounts": "ادارة الحسابات"
     "services": "الخدمات"
   },
   "auth": {
@@ -599,6 +600,32 @@
     "durationCondition": "أعلم أن الحوالات البنكية تستغرق حتى 7 أيام عمل لتصل",
     "responsibilityCondition": "أتحمل وحدي أي خسارة ناتجة عن إدخال معلومات خاطئة أو غير دقيقة",
     "paypalAccount": "حساب PayPal"
+  },
+  "manageAccounts": {
+    "headerText": "ادارة الحسابات البنكية",
+    "subHeader": "يمكنك من خلال هذه الصفحة إضافة حساباتك البنكية لتتمكن من سحب رصيدك إليها",
+    "areYouSureYouWantToDelete": "هل انت متاكد من انك تريد حذف هذا الحساب؟",
+    "addAccount": "اضافة حساب",
+    "editAccount": "تعديل حساب",
+    "userName": "الاسم",
+    "iban": "كود الــ IBAN",
+    "balance": "الرصيد",
+    "bankName": "اسم البنك",
+    "swift": "كود الــ SWIFT",
+    "address": "العنوان",
+    "zip": "مفتاح الرمز البريدي",
+    "country": "الدولة",
+    "city": "المدينة",
+    "area": "المنطقة",
+    "edit": "حفظ",
+    "add": "اضافة",
+    "nameMatchingCondition": "هذا حسابي واسم المستفيد يطابق الاسم المسجل في هويتي الموثقة",
+    "bankMatchingCondition": "معلومات حسابي التي أدخلتها مزودة من البنك وتطابق تمامًا المسجلة لديه",
+    "responsibilityCondition": "أتحمل وحدي أي خسارة ناتجة عن ادخال معلومات خاطئة أو غير دقيقة",
+    "durationCondition": "أعلم أن الحوالات البنكية تستغرق حتى 7 أيام عمل لتصل",
+    "bankAddedSuccessfully": "تمت اضافة الحساب بنجاح",
+    "bankUpdatedSuccessfully": "تمت تعديل الحساب بنجاح",
+    "bankDeletedSuccessfully": "تمت حذف الحساب بنجاح"
   },
   "notFoundPlaceholder": {
     "noWorksFoundWithThisDetails": "لا توجد اعمال بهذه التفاصيل",
