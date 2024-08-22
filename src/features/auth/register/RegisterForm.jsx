@@ -260,7 +260,7 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
         >
           <img src={Google} alt="google" /> {t("auth.googleAccount")}
         </button>
-        <AppleLogin
+        {/* <AppleLogin
           clientId={"process.env.REACT_APP_APPLE_CLIENT_ID"}
           redirectURI={"process.env.REACT_APP_APPLE_REDIRECT_URI"}
           responseType="code"
@@ -281,7 +281,7 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
               <img src={Apple} alt="apple" /> {t("auth.appleAccount")}
             </button>
           )}
-        />
+        /> */}
       </div>
       <Link to="/login" className="noAccount">
         {t("auth.alreadyHaveAccount")} <span>{t("auth.login")}</span>

@@ -45,7 +45,8 @@
     "unexisited-requests-orders": "طلبات الخدمات غير الموجودة",
     "users-stories": "تجارب وقصص المستخدمين",
     "bids": "عروضى",
-    "balance": "الرصيد"
+    "balance": "الرصيد",
+    "services": "الخدمات"
   },
   "auth": {
     "loginPageTitle": "تسجيل الدخول",
@@ -363,7 +364,10 @@
     "3months": "3 شهور",
     "6months": "6 شهور",
     "year": "سنة",
-    "all": "جميع الأعمال"
+    "all": "جميع الأعمال",
+    "deliveryTime": "مدة التسليم",
+    "budget": "الميزانية",
+    "days": "يوم"
   },
   "services": {
     "developments": "تطويرات متوفرة لهذه الخدمة",
@@ -596,7 +600,9 @@
     "paypalAccount": "حساب PayPal"
   },
   "notFoundPlaceholder": {
-    "noWorksFoundWithThisDetails": "لا توجد اعمال بهذه التفاصيل"
+    "noWorksFoundWithThisDetails": "لا توجد اعمال بهذه التفاصيل",
+    "noServicesFoundWithThisDetails": "لا توجد خدمات بهذه التفاصيل",
+    "noProjectsFoundWithThisDetails": "لا توجد مشاريع بهذه التفاصيل"
   },
   "password": "ادخل كلمة المرور ",
   "cancel": "الغاء",

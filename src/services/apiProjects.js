@@ -3,35 +3,23 @@ import axios from "./../utils/axios";
 export async function getProjectsByFilter(
   search,
   page,
-  rate,
-  user_verification,
-  user_available,
   categories,
   sub_categories,
-  is_old
+  duration_from,
+  duration_to,
+  price_from,
+  price_to
 ) {
   const requestBody = {};
 
   if (page) requestBody.page = page;
   if (search) requestBody.search = search;
-  if (rate !== undefined && rate !== null && rate !== "")
-    requestBody.rate = rate;
-  if (
-    user_verification !== undefined &&
-    user_verification !== null &&
-    user_verification !== ""
-  )
-    requestBody.user_verification = user_verification;
-  if (
-    user_available !== undefined &&
-    user_available !== null &&
-    user_available !== ""
-  )
-    requestBody.user_available = user_available;
   if (categories?.length > 0) requestBody.categories = categories;
   if (sub_categories?.length > 0) requestBody.sub_categories = sub_categories;
-  if (is_old !== undefined && is_old !== null && is_old !== "")
-    requestBody.is_old = is_old;
+  if (duration_from) requestBody.duration_from = duration_from;
+  if (duration_to) requestBody.duration_to = duration_to;
+  if (price_from) requestBody.price_from = price_from;
+  if (price_to) requestBody.price_to = price_to;
 
   try {
     const req = await axios.post("/get_projects", requestBody);

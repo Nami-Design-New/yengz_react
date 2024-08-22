@@ -8,10 +8,14 @@ export async function getServicesByFilter(
   user_available,
   categories,
   sub_categories,
-  is_old
+  is_old,
+  skills
 ) {
-  const requestBody = {};
+  const requestBody = {
+    skip: 12
+  };
 
+  if (skills?.length > 0) requestBody.skills = skills.map((id) => Number(id));
   if (page) requestBody.page = page;
   if (search) requestBody.search = search;
   if (rate !== undefined && rate !== null && rate !== "")

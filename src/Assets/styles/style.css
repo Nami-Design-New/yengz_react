@@ -291,6 +291,17 @@ input[type=checkbox]:checked::after {
   outline: none;
 }
 
+.rc-slider-mark span {
+  font-size: 14px;
+  transform: none !important;
+  right: unset !important;
+  left: 0;
+}
+.rc-slider-mark span:nth-child(1) {
+  right: 0;
+  left: initial;
+}
+
 body {
   background: var(--white-color);
   direction: rtl;

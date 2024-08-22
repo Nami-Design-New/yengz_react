@@ -4,10 +4,11 @@ import { getProjectsByFilter } from "../../services/apiProjects";
 
 function useProjectsList() {
   const [searchParams] = useSearchParams();
+  const duration_from = Number(searchParams.get("duration_from"));
+  const duration_to = Number(searchParams.get("duration_to"));
+  const price_from = Number(searchParams.get("price_from"));
+  const price_to = Number(searchParams.get("price_to"));
   const search = searchParams.get("search");
-  const rate = Number(searchParams.get("rate"));
-  const user_verification = Number(searchParams.get("user_verification"));
-  const user_available = Number(searchParams.get("user_available"));
   const categories =
     searchParams.get("categories") &&
     searchParams
@@ -20,19 +21,19 @@ function useProjectsList() {
       .get("sub_categories")
       .split("-")
       .map((subcategory) => Number(subcategory));
-  const is_old = Number(searchParams.get("is_old"));
+
   const pageSize = 10;
 
   const queryKey = [
     "projectsList",
     {
       search,
-      rate,
-      user_verification,
-      user_available,
+      duration_from,
+      duration_to,
+      price_from,
+      price_to,
       categories,
-      sub_categories,
-      is_old
+      sub_categories
     }
   ];
 
@@ -43,12 +44,12 @@ function useProjectsList() {
         getProjectsByFilter(
           search,
           pageParam,
-          rate,
-          user_verification,
-          user_available,
           categories,
           sub_categories,
-          is_old
+          duration_from,
+          duration_to,
+          price_from,
+          price_to
         ),
       getNextPageParam: (lastPage, pages) => {
         const isMore = lastPage.data.length >= pageSize;

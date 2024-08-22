@@ -103,7 +103,9 @@ export function formattedDate(date) {
   return formattedDate;
 }
 
-export default function handleApplyFilters(setSearchParams, searchFilterData) {
+export const handleApplyFilters = (setSearchParams, searchFilterData) => {
+  if (!searchFilterData) return;
+
   const newParams = new URLSearchParams();
 
   for (const [key, value] of Object.entries(searchFilterData)) {
@@ -117,4 +119,4 @@ export default function handleApplyFilters(setSearchParams, searchFilterData) {
   }
 
   setSearchParams(newParams);
-}
+};

@@ -8,6 +8,8 @@ import InputField from "../form-elements/InputField";
 import TextField from "./../form-elements/TextField";
 import SubmitButton from "./../form-elements/SubmitButton";
 import galleryIcon from "../../Assets/images/gallery.svg";
+import useGetSkills from "../../features/settings/useGetSkills";
+import MultiSelect from "../form-elements/MultiSelect";
 
 const AddWorkModal = ({
   showModal,
@@ -16,8 +18,10 @@ const AddWorkModal = ({
   setTargetWork
 }) => {
   const { t } = useTranslation();
+  const { data: skills } = useGetSkills();
   const queryClient = useQueryClient();
   const [loading, setLoading] = useState(false);
+  const [selectedOptions, setSelectedOptions] = useState([]);
   const [formData, setFormData] = useState({
     title: "",
     link: "",
@@ -40,11 +44,29 @@ const AddWorkModal = ({
         images: targetWork.images || [],
         delete_images: []
       });
+
+      const options = targetWork?.skills?.map((item) => {
+        const skill = skills?.find((s) => s?.id === item?.id);
+        return { value: skill?.id, label: skill?.name };
+      });
+
+      setSelectedOptions(options);
     }
   }, [targetWork]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSelect = (selectedItems) => {
+    setSelectedOptions(selectedItems);
+    const selectedValues = selectedItems
+      ? selectedItems?.map((option) => option.value)
+      : [];
+    setFormData({
+      ...formData,
+      skills: selectedValues
+    });
   };
 
   const handleSubmit = async (e) => {
@@ -218,6 +240,19 @@ const AddWorkModal = ({
                   name="end_date"
                   onChange={handleChange}
                   value={formData.end_date}
+                />
+              </div>
+              <div className="col-12 p-2">
+                <MultiSelect
+                  label={t("search.skills")}
+                  id="skills"
+                  name="skills"
+                  selectedOptions={selectedOptions}
+                  handleChange={handleSelect}
+                  options={skills?.map((skill) => ({
+                    label: skill?.name,
+                    value: skill?.id
+                  }))}
                 />
               </div>
               {/* description */}
