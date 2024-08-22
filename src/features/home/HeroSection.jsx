@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
 import "swiper/swiper-bundle.css";
@@ -54,6 +54,23 @@ const HeroSection = () => {
               placeholder={t("home.searchPlaceHolder")}
             />
             <button>{t("home.search")}</button>
+          </div>
+          <div className="words">
+            <Link to="/services" className="word">
+              ui ux designer
+            </Link>
+            <Link to="/services" className="word">
+              wordpress
+            </Link>
+            <Link to="/services" className="word">
+              node js dev
+            </Link>
+            <Link to="/services" className="word">
+              cv writing
+            </Link>
+            <Link to="/services" className="word">
+              content creator
+            </Link>
           </div>
         </form>
       </div>
