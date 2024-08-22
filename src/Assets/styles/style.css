@@ -855,6 +855,7 @@ body main .hero_section .hero_content .words .word {
 body main .hero_section .hero_content .words {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   margin-top: 16px;
   flex-wrap: wrap;
@@ -5572,27 +5573,64 @@ body .pay_modal {
 body .pay_modal .tab-content {
   position: relative;
 }
-body .pay_modal .tab-content::after {
+body .pay_modal .tab-content .conditions-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+body .pay_modal .tab-content .conditions-wrapper::after {
   content: "";
   position: absolute;
-  bottom: -20px;
+  bottom: 0;
   left: 0;
   width: 100%;
   height: 1px;
   background-color: var(--LightGray);
 }
-body .form {
+body .pay_modal .tab-content .conditions-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--LightGray);
+}
+body .pay_modal .tab-content .conditions-wrapper .checkbox-group {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+body .pay_modal .tab-content .conditions-wrapper .checkbox-group input::after {
+  width: 16px;
+  height: 16px;
+}
+body .pay_modal .tab-content .conditions-wrapper .checkbox-group label {
+  font-size: 16px;
+}
+body .pay_modal .tab-content .conditions-wrapper .condition-note {
+  position: relative;
+  font-size: 14px;
+  margin: 0;
+  color: var(--text-color);
+  line-height: 1.6;
+}
+body .pay_modal .form {
   align-items: flex-start !important;
 }
-body .nav {
+body .pay_modal .nav {
   background-color: var(--gray-background);
   padding: 0 !important;
   border-radius: 12px !important;
 }
-body .nav .nav-item {
+body .pay_modal .nav .nav-item {
   border-radius: 12px !important;
 }
-body .nav .nav-item a {
+body .pay_modal .nav .nav-item a {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -5601,14 +5639,14 @@ body .nav .nav-item a {
   color: var(--dark-color);
   transition: var(--transition);
 }
-body .nav .nav-item a.active {
+body .pay_modal .nav .nav-item a.active {
   background-color: var(--main-color);
   color: var(--white-color);
 }
-body .nav .nav-item a i {
+body .pay_modal .nav .nav-item a i {
   font-size: 16px;
 }
-body .cancel-btn {
+body .pay_modal .cancel-btn {
   border: 1px solid var(--black-color);
   color: var(--black-color);
   width: 100%;
@@ -5617,7 +5655,7 @@ body .cancel-btn {
   padding: 8px;
   border-radius: 8px;
 }
-body .order-now {
+body .pay_modal .order-now {
   width: 100%;
   padding: 8px;
   background: var(--main-color);
@@ -5626,43 +5664,43 @@ body .order-now {
   border: 0;
   outline: none;
 }
-body .current_ballance {
+body .pay_modal .current_ballance {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 8px;
 }
-body .current_ballance div {
+body .pay_modal .current_ballance div {
   margin: 0 !important;
 }
-body h3 {
+body .pay_modal h3 {
   color: var(--black-color);
   font-weight: bold;
   text-align: center;
   font-size: 16px;
 }
-body h3 span {
+body .pay_modal h3 span {
   font-size: 24px;
   color: var(--main-color);
 }
-body h3 i {
+body .pay_modal h3 i {
   color: var(--text-color);
 }
 @media (max-width: 576px) {
-  body h3 {
+  body .pay_modal h3 {
     font-size: 16px;
   }
 }
-body .bank-transfer-box {
+body .pay_modal .bank-transfer-box {
   width: 100%;
 }
-body .bank-transfer-box input {
+body .pay_modal .bank-transfer-box input {
   display: none;
 }
-body .bank-transfer-box input:checked + label {
+body .pay_modal .bank-transfer-box input:checked + label {
   border-color: var(--main-color);
 }
-body .bank-transfer-box label {
+body .pay_modal .bank-transfer-box label {
   background-color: var(--gray-background);
   border: 2px solid var(--gray-background);
   width: 100%;
@@ -5674,33 +5712,33 @@ body .bank-transfer-box label {
   cursor: pointer;
   transition: var(--transition);
 }
-body .bank-transfer-box .image-wrapper {
+body .pay_modal .bank-transfer-box .image-wrapper {
   width: 42px;
   height: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-body .bank-transfer-box .image-wrapper i {
+body .pay_modal .bank-transfer-box .image-wrapper i {
   font-size: 24px;
 }
-body .bank-transfer-box .info-wrapper {
+body .pay_modal .bank-transfer-box .info-wrapper {
   display: flex;
   flex-direction: column;
   gap: 8px;
   position: relative;
 }
-body .bank-transfer-box .info-wrapper h5 {
+body .pay_modal .bank-transfer-box .info-wrapper h5 {
   margin: 0;
 }
-body .bank-transfer-box .info-wrapper .info-boxes-wrapper {
+body .pay_modal .bank-transfer-box .info-wrapper .info-boxes-wrapper {
   display: flex;
   position: relative;
   align-items: center;
   flex-wrap: wrap;
   gap: 0 24px;
 }
-body .bank-transfer-box .info-wrapper .info-boxes-wrapper .info-box {
+body .pay_modal .bank-transfer-box .info-wrapper .info-boxes-wrapper .info-box {
   display: flex;
   align-items: center;
   gap: 4px;
@@ -5709,7 +5747,7 @@ body .bank-transfer-box .info-wrapper .info-boxes-wrapper .info-box {
   margin: 0;
   color: var(--text-color);
 }
-body .bank-transfer-box .info-wrapper .info-boxes-wrapper .info-box i {
+body .pay_modal .bank-transfer-box .info-wrapper .info-boxes-wrapper .info-box i {
   font-size: 12px;
   width: 16px;
   height: 16px;
@@ -5718,7 +5756,7 @@ body .bank-transfer-box .info-wrapper .info-boxes-wrapper .info-box i {
   align-items: center;
   color: var(--text-color);
 }
-body .btn {
+body .pay_modal .btn {
   border: 1px solid var(--main-color);
   color: var(--main-color);
   display: flex;
@@ -5730,10 +5768,10 @@ body .btn {
   gap: 4px;
   background: none;
 }
-body .btn i {
+body .pay_modal .btn i {
   margin: 0 4px;
 }
-body .btn:hover {
+body .pay_modal .btn:hover {
   background: var(--main-color);
   color: #fff;
 }
@@ -7100,18 +7138,6 @@ body .bank-acc-card {
   cursor: pointer;
   transition: var(--transition);
 }
-body .bank-acc-card {
-  background-color: var(--gray-background);
-  border: 2px solid var(--gray-background);
-  width: 100%;
-  padding: 16px;
-  border-radius: 12px;
-  display: flex;
-  gap: 24px;
-  position: relative;
-  cursor: pointer;
-  transition: var(--transition);
-}
 body .bank-acc-card .image-wrapper {
   width: 42px;
   display: flex;
@@ -7180,53 +7206,4 @@ body .bank-acc-card .icons button svg {
 }
 body .bank-acc-card .icons button:nth-child(2) {
   background: red;
-}
-body .conditions-wrapper {
-  position: relative;
-  width: 100%;
-  padding: 20px 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-body .conditions-wrapper.no-lines::after, body .conditions-wrapper.no-lines::before {
-  content: none !important;
-}
-body .conditions-wrapper::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background-color: var(--LightGray);
-}
-body .conditions-wrapper::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background-color: var(--LightGray);
-}
-body .conditions-wrapper .checkbox-group {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-body .conditions-wrapper .checkbox-group input::after {
-  width: 16px;
-  height: 16px;
-}
-body .conditions-wrapper .checkbox-group label {
-  font-size: 16px;
-}
-body .conditions-wrapper .condition-note {
-  position: relative;
-  font-size: 14px;
-  margin: 0;
-  color: var(--text-color);
-  line-height: 1.6;
 }/*# sourceMappingURL=style.css.map */
