@@ -231,7 +231,6 @@ const Services = () => {
                   user_verification={searchFilterData.user_verification}
                   onChange={handleChange}
                 />
-                <hr />
                 <div className="d-flex gap-2">
                   <div className="search-btn">
                     <button onClick={handleApplyFilters}>

@@ -46,7 +46,7 @@ export async function getServicesByFilter(
 
 export async function getUserServices(id) {
   try {
-    const req = await axios.post("/user/get_user_services", {
+    const req = await axios.post("/get_user_services", {
       id
     });
     return req.data.data;

@@ -46,7 +46,7 @@ export async function getProjectsByFilter(
 
 export async function getUserProjects(id) {
   try {
-    const req = await axios.post("/user/get_my_projects", {
+    const req = await axios.post("/get_my_projects", {
       user_id: id
     });
     return req.data.data;

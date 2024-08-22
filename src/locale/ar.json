@@ -358,7 +358,12 @@
     "canceled": "ملغية",
     "onlineNow": " المتصلون الآن",
     "addedOffers": "أضافوا عروضا على مشاريعي",
-    "hiredThemBefore": "وظفتهم سابقا"
+    "hiredThemBefore": "وظفتهم سابقا",
+    "month": "شهر",
+    "3months": "3 شهور",
+    "6months": "6 شهور",
+    "year": "سنة",
+    "all": "جميع الأعمال"
   },
   "services": {
     "developments": "تطويرات متوفرة لهذه الخدمة",
@@ -590,6 +595,9 @@
     "responsibilityCondition": "أتحمل وحدي أي خسارة ناتجة عن إدخال معلومات خاطئة أو غير دقيقة",
     "paypalAccount": "حساب PayPal"
   },
+  "notFoundPlaceholder": {
+    "noWorksFoundWithThisDetails": "لا توجد اعمال بهذه التفاصيل"
+  },
   "password": "ادخل كلمة المرور ",
   "cancel": "الغاء",
   "homePage": "الرئيسية",
@@ -618,5 +626,7 @@
   "enterChargeValue": "ادخل قيمة الشحن",
   "paymentFailed": "فشل الدفع",
   "paymentSuccess": "تم الدفع بنجاح",
-  "manageAccount": "إدارة الحسابات"
+  "manageAccount": "إدارة الحسابات",
+  "likeIt": "اعجبني",
+  "notLikeIt": "إلغاء الإعجاب"
 }
