@@ -93,7 +93,7 @@
     "newPasswordSubTitle": "من فضلك ادخل كلمة المرور الجديدة تكون قوية ويسهل تذكرها .",
     "newPassword": "كلمة المرور الجديدة",
     "newPasswordSuccess": "تم تغيير كلمة المرور بنجاح",
-    "interestes": "الاهتمامات",
+    "interestes": "التخصص",
     "age": "العمر",
     "edit": "تعديل",
     "registerSuccess": "تم التسجيل بنجاح",
@@ -110,7 +110,8 @@
     "idSelfie": "صورتك مع الهوية الوطنية",
     "verificationSuccess": "تم ارسال بياناتك بنجاح وجاري مراجعتها حالياً , سيتم اخطارك علي البريد الالكتروني المسجل لدينا",
     "doYouWantChangePassword": "هل تريد تغيير كلمة المرور؟",
-    "areYouSureYouWantToDeleteYourAccount": "هل أنت متأكد من أنك تريد حذف حسابك"
+    "areYouSureYouWantToDeleteYourAccount": "هل أنت متأكد من أنك تريد حذف حسابك",
+    "jobTitle": "المسمى الوظيفي"
   },
   "navbar": {
     "ynjez": "عن ينجز",

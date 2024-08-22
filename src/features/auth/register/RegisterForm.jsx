@@ -16,12 +16,15 @@ import SubmitButton from "../../../ui/form-elements/SubmitButton";
 import MultiSelect from "../../../ui/form-elements/MultiSelect";
 import isSeller from "../../../Assets/images/Vector.svg";
 import useCategoriesList from "../../categories/useCategoriesList";
+import useGetSkills from "../../settings/useGetSkills";
 
 const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const { data: categories } = useCategoriesList();
+  const { data: skills } = useGetSkills();
   const [options, setOptions] = useState([]);
+  const [skillsSelectedOptions, setSkillsSelectedOptions] = useState([]);
   const [selectedOptions, setSelectedOptions] = useState([]);
 
   useEffect(() => {
@@ -174,6 +177,17 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
     }
   };
 
+  const handleSelectSkills = (selectedItems) => {
+    setSkillsSelectedOptions(selectedItems);
+    const selectedValues = selectedItems
+      ? selectedItems?.map((option) => option.value)
+      : [];
+    setFormData({
+      ...formData,
+      skills: selectedValues
+    });
+  };
+
   return (
     <form className="container form" onSubmit={handleSubmit}>
       <ImageUpload
@@ -184,16 +198,27 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
         formData={formData}
         setFormData={setFormData}
       />
-      <InputField
-        label={t("auth.name")}
-        placeholder={t("auth.nameAsInCard")}
-        name="name"
-        type="text"
-        id="name"
-        required={true}
-        value={formData.name}
-        onChange={(e) => handleChange(e)}
-      />
+      <div className="d-flex gap-2 flex-lg-row flex-column w-100">
+        <InputField
+          label={t("auth.name")}
+          placeholder={t("auth.nameAsInCard")}
+          name="name"
+          type="text"
+          id="name"
+          required={true}
+          value={formData.name}
+          onChange={(e) => handleChange(e)}
+        />
+        <InputField
+          label={t("auth.jobTitle")}
+          name="job_title"
+          type="text"
+          id="job_title"
+          required={true}
+          value={formData.job_title}
+          onChange={(e) => handleChange(e)}
+        />
+      </div>
       <div className="d-flex gap-2 flex-lg-row flex-column w-100">
         <InputField
           label={t("auth.email")}
@@ -222,6 +247,17 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
         options={options}
         selectedOptions={selectedOptions}
         handleChange={handleSelect}
+      />
+      <MultiSelect
+        label={t("search.skills")}
+        id="skills"
+        name="skills"
+        selectedOptions={skillsSelectedOptions}
+        handleChange={handleSelectSkills}
+        options={skills?.map((skill) => ({
+          label: skill?.name,
+          value: skill?.id
+        }))}
       />
       <div className="question">
         <label htmlFor="isFreelancer" className="quest">
