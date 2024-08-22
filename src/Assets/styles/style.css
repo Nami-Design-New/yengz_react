@@ -830,6 +830,19 @@ body main .hero_section .hero_content .words .word {
   background: var(--white-color);
   color: var(--main-color);
 }
+body main .hero_section .hero_content .words {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+body main .hero_section .hero_content .words .word {
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: var(--white-color);
+  color: var(--main-color);
+}
 body main .video_section {
   background-color: rgba(255, 255, 255, 0.1568627451);
   background-image: url("../images/yengz-pattern.png");
@@ -5537,18 +5550,27 @@ body .pay_modal {
 body .pay_modal .tab-content {
   position: relative;
 }
-body .pay_modal .form {
+body .pay_modal .tab-content::after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--LightGray);
+}
+body .form {
   align-items: flex-start !important;
 }
-body .pay_modal .nav {
+body .nav {
   background-color: var(--gray-background);
   padding: 0 !important;
   border-radius: 12px !important;
 }
-body .pay_modal .nav .nav-item {
+body .nav .nav-item {
   border-radius: 12px !important;
 }
-body .pay_modal .nav .nav-item a {
+body .nav .nav-item a {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -5557,14 +5579,14 @@ body .pay_modal .nav .nav-item a {
   color: var(--dark-color);
   transition: var(--transition);
 }
-body .pay_modal .nav .nav-item a.active {
+body .nav .nav-item a.active {
   background-color: var(--main-color);
   color: var(--white-color);
 }
-body .pay_modal .nav .nav-item a i {
+body .nav .nav-item a i {
   font-size: 16px;
 }
-body .pay_modal .cancel-btn {
+body .cancel-btn {
   border: 1px solid var(--black-color);
   color: var(--black-color);
   width: 100%;
@@ -5573,7 +5595,7 @@ body .pay_modal .cancel-btn {
   padding: 8px;
   border-radius: 8px;
 }
-body .pay_modal .order-now {
+body .order-now {
   width: 100%;
   padding: 8px;
   background: var(--main-color);
@@ -5582,43 +5604,43 @@ body .pay_modal .order-now {
   border: 0;
   outline: none;
 }
-body .pay_modal .current_ballance {
+body .current_ballance {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 8px;
 }
-body .pay_modal .current_ballance div {
+body .current_ballance div {
   margin: 0 !important;
 }
-body .pay_modal h3 {
+body h3 {
   color: var(--black-color);
   font-weight: bold;
   text-align: center;
   font-size: 16px;
 }
-body .pay_modal h3 span {
+body h3 span {
   font-size: 24px;
   color: var(--main-color);
 }
-body .pay_modal h3 i {
+body h3 i {
   color: var(--text-color);
 }
 @media (max-width: 576px) {
-  body .pay_modal h3 {
+  body h3 {
     font-size: 16px;
   }
 }
-body .pay_modal .bank-transfer-box {
+body .bank-transfer-box {
   width: 100%;
 }
-body .pay_modal .bank-transfer-box input {
+body .bank-transfer-box input {
   display: none;
 }
-body .pay_modal .bank-transfer-box input:checked + label {
+body .bank-transfer-box input:checked + label {
   border-color: var(--main-color);
 }
-body .pay_modal .bank-transfer-box label {
+body .bank-transfer-box label {
   background-color: var(--gray-background);
   border: 2px solid var(--gray-background);
   width: 100%;
@@ -5630,33 +5652,33 @@ body .pay_modal .bank-transfer-box label {
   cursor: pointer;
   transition: var(--transition);
 }
-body .pay_modal .bank-transfer-box .image-wrapper {
+body .bank-transfer-box .image-wrapper {
   width: 42px;
   height: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-body .pay_modal .bank-transfer-box .image-wrapper i {
+body .bank-transfer-box .image-wrapper i {
   font-size: 24px;
 }
-body .pay_modal .bank-transfer-box .info-wrapper {
+body .bank-transfer-box .info-wrapper {
   display: flex;
   flex-direction: column;
   gap: 8px;
   position: relative;
 }
-body .pay_modal .bank-transfer-box .info-wrapper h5 {
+body .bank-transfer-box .info-wrapper h5 {
   margin: 0;
 }
-body .pay_modal .bank-transfer-box .info-wrapper .info-boxes-wrapper {
+body .bank-transfer-box .info-wrapper .info-boxes-wrapper {
   display: flex;
   position: relative;
   align-items: center;
   flex-wrap: wrap;
   gap: 0 24px;
 }
-body .pay_modal .bank-transfer-box .info-wrapper .info-boxes-wrapper .info-box {
+body .bank-transfer-box .info-wrapper .info-boxes-wrapper .info-box {
   display: flex;
   align-items: center;
   gap: 4px;
@@ -5665,7 +5687,7 @@ body .pay_modal .bank-transfer-box .info-wrapper .info-boxes-wrapper .info-box {
   margin: 0;
   color: var(--text-color);
 }
-body .pay_modal .bank-transfer-box .info-wrapper .info-boxes-wrapper .info-box i {
+body .bank-transfer-box .info-wrapper .info-boxes-wrapper .info-box i {
   font-size: 12px;
   width: 16px;
   height: 16px;
@@ -5674,7 +5696,7 @@ body .pay_modal .bank-transfer-box .info-wrapper .info-boxes-wrapper .info-box i
   align-items: center;
   color: var(--text-color);
 }
-body .pay_modal .btn {
+body .btn {
   border: 1px solid var(--main-color);
   color: var(--main-color);
   display: flex;
@@ -5686,10 +5708,10 @@ body .pay_modal .btn {
   gap: 4px;
   background: none;
 }
-body .pay_modal .btn i {
+body .btn i {
   margin: 0 4px;
 }
-body .pay_modal .btn:hover {
+body .btn:hover {
   background: var(--main-color);
   color: #fff;
 }
@@ -6634,6 +6656,7 @@ body .num-count2 {
   background: var(--main-color);
   top: 14px;
   right: 4px;
+  right: 4px;
   border-radius: 50%;
   font-size: 10px;
   padding-top: 2px;
@@ -6987,6 +7010,12 @@ body .bid-card .bid-status {
   border-radius: 8px;
   color: var(--white-color);
 }
+body .bid-card .bid-status {
+  background: var(--main-color);
+  padding: 4px 12px;
+  border-radius: 8px;
+  color: var(--white-color);
+}
 body .bid-card p {
   margin-bottom: 0;
   line-height: 24px;
@@ -7036,6 +7065,18 @@ body.en main .form .input-field .input-span {
 }
 body.en main .row-head a i {
   transform: scaleX(-1);
+}
+body .bank-acc-card {
+  background-color: var(--gray-background);
+  border: 2px solid var(--gray-background);
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  gap: 24px;
+  position: relative;
+  cursor: pointer;
+  transition: var(--transition);
 }
 body .bank-acc-card {
   background-color: var(--gray-background);
