@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import InputField from "../form-elements/InputField";
+import useBanksList from "../../features/Banks/useBanksList";
+import BankTransferCard from "../cards/BankTransferCard";
 
 const WithdrawModal = ({ showModal, setShowModal, cartTotalPrice }) => {
   const { t } = useTranslation();
@@ -13,6 +15,7 @@ const WithdrawModal = ({ showModal, setShowModal, cartTotalPrice }) => {
   const [paypalAccount, setPaypalAccount] = useState("");
   const [cookies] = useCookies(["token"]);
   const token = cookies?.token;
+  const { data: banks } = useBanksList();
 
   const handleBankTransferChange = (event) => {
     setSelectedBankTransfer(event.target.id);
@@ -38,13 +41,13 @@ const WithdrawModal = ({ showModal, setShowModal, cartTotalPrice }) => {
             <Nav variant="pills">
               <Nav.Item>
                 <Nav.Link eventKey="bankTransfer">
-                  <i class="fa-sharp fa-regular fa-building-columns"></i>
+                  <i className="fa-sharp fa-regular fa-building-columns"></i>
                   {t("balance.bankTransfer")}
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
                 <Nav.Link eventKey="paypal">
-                  <i class="fa-brands fa-paypal"></i>
+                  <i className="fa-brands fa-paypal"></i>
                   Paypal
                 </Nav.Link>
               </Nav.Item>
@@ -62,80 +65,16 @@ const WithdrawModal = ({ showModal, setShowModal, cartTotalPrice }) => {
                     onChange={(e) => setTransferAmountValue(e.target.value)}
                   />
 
-                  <div className="bank-transfer-box">
-                    <input
-                      type="radio"
-                      name="bank-transfer"
-                      id="ahmed-elsayed"
-                      checked={selectedBankTransfer === "ahmed-elsayed"}
-                      onChange={handleBankTransferChange}
-                    />
-                    <label htmlFor="ahmed-elsayed">
-                      <div className="image-wrapper">
-                        <i class="fa-sharp fa-regular fa-building-columns"></i>
-                      </div>
-                      <div className="info-wrapper">
-                        <h5>Ahmed Elsayed</h5>
-                        <div className="info-boxes-wrapper">
-                          <div className="info-box">
-                            <span className="box-title">IBAN:</span>
-                            <span className="box-value">
-                              Ah132141937248312321
-                            </span>
-                          </div>
-                          <div className="info-box">
-                            <span className="box-title">
-                              {t("balance.bankName")}:
-                            </span>
-                            <span className="box-value">RIYAD BANK</span>
-                          </div>
-                          <div className="info-box">
-                            <span className="box-title">
-                              {t("balance.status")}:
-                            </span>
-                            <span className="box-value">متاح للسحب</span>
-                          </div>
-                        </div>
-                      </div>
-                    </label>
-                  </div>
-                  <div className="bank-transfer-box">
-                    <input
-                      type="radio"
-                      name="bank-transfer"
-                      id="ahmed-abdelghany"
-                      checked={selectedBankTransfer === "ahmed-abdelghany"}
-                      onChange={handleBankTransferChange}
-                    />
-                    <label htmlFor="ahmed-abdelghany">
-                      <div className="image-wrapper">
-                        <i class="fa-sharp fa-regular fa-building-columns"></i>
-                      </div>
-                      <div className="info-wrapper">
-                        <h5>Ahmed Abdelghany</h5>
-                        <div className="info-boxes-wrapper">
-                          <div className="info-box">
-                            <span className="box-title">IBAN:</span>
-                            <span className="box-value">
-                              Ah132141937248312321
-                            </span>
-                          </div>
-                          <div className="info-box">
-                            <span className="box-title">
-                              {t("balance.bankName")}:
-                            </span>
-                            <span className="box-value">RIYAD BANK</span>
-                          </div>
-                          <div className="info-box">
-                            <span className="box-title">
-                              {t("balance.status")}:
-                            </span>
-                            <span className="box-value">متاح للسحب</span>
-                          </div>
-                        </div>
-                      </div>
-                    </label>
-                  </div>
+                  {banks &&
+                    banks?.length > 0 &&
+                    banks.map((bank) => (
+                      <BankTransferCard
+                        key={bank.id}
+                        bank={bank}
+                        selectedBankTransfer={selectedBankTransfer}
+                        handleBankTransferChange={handleBankTransferChange}
+                      />
+                    ))}
 
                   <Link to="/manage-accounts" className="btn">
                     {t("manageAccount")}

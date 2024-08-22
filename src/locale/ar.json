@@ -40,7 +40,7 @@
     "blogs": "المدونات",
     "requests": "الطلبات",
     "portfolios": "معرض الأعمال",
-    "ynjezCommunity": "مجتمع ينجز",
+    "community": "مجتمع ينجز",
     "done-works-modals": "نماذج أعمال قمت بتنفيذها",
     "unexisited-requests-orders": "طلبات الخدمات غير الموجودة",
     "users-stories": "تجارب وقصص المستخدمين",
@@ -568,7 +568,14 @@
     "subjectDescription": "وصف الموضوع",
     "add": "اضافة",
     "community": "المجتمع",
-    "commentBody": "محتوى التعليق"
+    "commentBody": "محتوى التعليق",
+    "lastInteract": "اخر تفاعل",
+    "noSubjects": "عذراً، لا يوجد مواضيع في هذا المجتمع حتى الآن.",
+    "similarSubjects": "مواضيع مشابهة",
+    "subjectAddedSuccessfully": "تمت اضافة الموضوع بنجاح",
+    "noComments": " لا يوجد تعليقات على هذا المنشور.",
+    "noSimilarSubjects": "عذراً، لا يوجد مواضيع مشابهة في هذا المجتمع حتى الآن.",
+    "commentAddedSuccessfully": "تمت اضافة التعليق بنجاح"
   },
   "balance": {
     "accountBalance": "رصيد الحساب",
@@ -597,7 +604,6 @@
     "bankName": "اسم البنك",
     "status": "الحالة",
     "feesCondition": "أعلم أن البنك الوسيط أو المحلي قد يقتطع رسوم إضافية **",
-    "durationCondition": "أعلم أن الحوالات البنكية تستغرق حتى 7 أيام عمل لتصل",
     "responsibilityCondition": "أتحمل وحدي أي خسارة ناتجة عن إدخال معلومات خاطئة أو غير دقيقة",
     "paypalAccount": "حساب PayPal"
   },

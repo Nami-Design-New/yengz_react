@@ -35,9 +35,8 @@ import ErrorPage from "./routes/ErrorPage";
 import Blogs from "./routes/Blogs";
 import BlogDetails from "./routes/BlogDetails";
 import Portfolios from "./routes/Portfolios";
-import CommunityDetails from "./routes/CommunityDetails";
+import CommunityPosts from "./routes/CommunityPosts";
 import CommunitySubjectDetails from "./routes/CommunitySubjectDetails";
-import AddCommunitySubject from "./routes/AddCommunitySubject";
 import MyBids from "./routes/MyBids";
 import Balance from "./routes/Balance";
 import ManageAccounts from "./routes/ManageAccounts";
@@ -94,20 +93,8 @@ const routesConfig = [
   { path: "/manage-accounts", element: <ManageAccounts />, protected: true },
 
   // community routes
-  { path: "/done-works-modals", element: <CommunityDetails /> },
-  { path: "/done-works-modals/:id", element: <CommunitySubjectDetails /> },
-  { path: "/unexisited-requests-orders", element: <CommunityDetails /> },
-  {
-    path: "/unexisited-requests-orders/:id",
-    element: <CommunitySubjectDetails />,
-  },
-  { path: "/users-stories", element: <CommunityDetails /> },
-  { path: "/users-stories/:id", element: <CommunitySubjectDetails /> },
-  {
-    path: "/add-subject",
-    element: <AddCommunitySubject />,
-    protected: true,
-  },
+  { path: "/community/:name", element: <CommunityPosts /> },
+  { path: "/community/:name/:id", element: <CommunitySubjectDetails /> },
 
   // freelancers routes
   { path: "/freelancers", element: <BestFreeLancers /> },

@@ -852,6 +852,20 @@ body main .hero_section .hero_content .words .word {
   background: var(--white-color);
   color: var(--main-color);
 }
+body main .hero_section .hero_content .words {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+body main .hero_section .hero_content .words .word {
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: var(--white-color);
+  color: var(--main-color);
+}
 body main .video_section {
   background-color: rgba(255, 255, 255, 0.1568627451);
   background-image: url("../images/yengz-pattern.png");
@@ -3364,7 +3378,7 @@ body main .terms .row h6 {
   color: var(--black-color);
 }
 body main .balance_section {
-  padding: 60px 0;
+  padding: 60px 8px;
 }
 body main .balance_section .container {
   display: flex;
@@ -3482,6 +3496,9 @@ body main .balance_section .content-body .transactions-wrapper .transactions-asi
   flex-direction: column;
   position: relative;
   gap: 24px;
+  padding: 8px 16px;
+  border-radius: 12px;
+  background-color: var(--gray-background);
 }
 body main .balance_section .content-body .transactions-wrapper .transactions-aside .filter-box {
   display: flex;
@@ -3501,6 +3518,7 @@ body main .balance_section .content-body .transactions-wrapper .transactions-asi
 body main .balance_section .content-body .transactions-wrapper .transactions-aside .filter-box .box-content .item {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 8px;
 }
 body main .balance_section .content-body .transactions-wrapper .transactions-aside .filter-box .box-content .item .input-field {
@@ -3558,15 +3576,17 @@ body main .balance_section .content-body .transactions-wrapper .transactions-bod
   gap: 4px;
   align-items: center;
   position: relative;
+  flex-wrap: wrap;
 }
 body main .balance_section .content-body .transactions-wrapper .transactions-body .transaction-box .info-wrapper .info-header span {
   color: var(--main-color);
 }
 body main .balance_section .content-body .transactions-wrapper .transactions-body .transaction-box .info-wrapper .info-boxes-wrapper {
   display: flex;
-  align-items: center;
-  gap: 24px;
   position: relative;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0 24px;
 }
 body main .balance_section .content-body .transactions-wrapper .transactions-body .transaction-box .info-wrapper .info-boxes-wrapper .info-box {
   display: flex;
@@ -5713,8 +5733,10 @@ body .pay_modal .bank-transfer-box .info-wrapper h5 {
 }
 body .pay_modal .bank-transfer-box .info-wrapper .info-boxes-wrapper {
   display: flex;
-  flex-direction: column;
   position: relative;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0 24px;
 }
 body .pay_modal .bank-transfer-box .info-wrapper .info-boxes-wrapper .info-box {
   display: flex;
@@ -6440,9 +6462,10 @@ body .communityDetails .container .content-body .info-wrapper {
 }
 body .communityDetails .container .content-body .info-wrapper .info-boxes-wrapper {
   display: flex;
-  align-items: center;
-  gap: 24px;
   position: relative;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0 24px;
 }
 body .communityDetails .container .content-body .info-wrapper .info-boxes-wrapper .info-box {
   display: flex;
@@ -6552,6 +6575,7 @@ body .communityDetails .container .content-body .subject-box .box-item {
   gap: 16px;
   position: relative;
   padding: 0 16px;
+  color: var(--dark-color);
 }
 body .communityDetails .container .content-body .subject-box .box-item.comment-item {
   padding: 0 32px;
@@ -6691,6 +6715,7 @@ body .num-count2 {
   color: var(--white-color);
   background: var(--main-color);
   top: 14px;
+  right: 4px;
   right: 4px;
   border-radius: 50%;
   font-size: 10px;
@@ -7045,6 +7070,12 @@ body .bid-card .bid-status {
   border-radius: 8px;
   color: var(--white-color);
 }
+body .bid-card .bid-status {
+  background: var(--main-color);
+  padding: 4px 12px;
+  border-radius: 8px;
+  color: var(--white-color);
+}
 body .bid-card p {
   margin-bottom: 0;
   line-height: 24px;
@@ -7095,8 +7126,7 @@ body.en main .form .input-field .input-span {
 body.en main .row-head a i {
   transform: scaleX(-1);
 }
-
-.bank-acc-card {
+body .bank-acc-card {
   background-color: var(--gray-background);
   border: 2px solid var(--gray-background);
   width: 100%;
@@ -7108,31 +7138,33 @@ body.en main .row-head a i {
   cursor: pointer;
   transition: var(--transition);
 }
-.bank-acc-card .image-wrapper {
+body .bank-acc-card .image-wrapper {
   width: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.bank-acc-card .image-wrapper i {
+body .bank-acc-card .image-wrapper i {
   font-size: 36px;
 }
-.bank-acc-card .info-wrapper {
+body .bank-acc-card .info-wrapper {
   display: flex;
   flex-direction: column;
   gap: 8px;
   position: relative;
   flex: 1 0;
 }
-.bank-acc-card .info-wrapper h5 {
+body .bank-acc-card .info-wrapper h5 {
   margin: 0;
 }
-.bank-acc-card .info-wrapper .info-boxes-wrapper {
+body .bank-acc-card .info-wrapper .info-boxes-wrapper {
   display: flex;
-  flex-direction: column;
   position: relative;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0 24px;
 }
-.bank-acc-card .info-wrapper .info-boxes-wrapper .info-box {
+body .bank-acc-card .info-wrapper .info-boxes-wrapper .info-box {
   display: flex;
   align-items: center;
   gap: 4px;
@@ -7141,7 +7173,7 @@ body.en main .row-head a i {
   margin: 0;
   color: var(--text-color);
 }
-.bank-acc-card .info-wrapper .info-boxes-wrapper .info-box i {
+body .bank-acc-card .info-wrapper .info-boxes-wrapper .info-box i {
   font-size: 12px;
   width: 16px;
   height: 16px;
@@ -7150,14 +7182,14 @@ body.en main .row-head a i {
   align-items: center;
   color: var(--text-color);
 }
-.bank-acc-card .icons {
+body .bank-acc-card .icons {
   position: absolute;
   top: 12px;
   left: 12px;
   display: flex;
   gap: 8px;
 }
-.bank-acc-card .icons button {
+body .bank-acc-card .icons button {
   border: none;
   background: none;
   outline: none;
@@ -7168,10 +7200,10 @@ body.en main .row-head a i {
   height: 36px;
   width: 36px;
 }
-.bank-acc-card .icons button svg {
+body .bank-acc-card .icons button svg {
   height: 16px;
   width: 16px;
 }
-.bank-acc-card .icons button:nth-child(2) {
+body .bank-acc-card .icons button:nth-child(2) {
   background: red;
 }/*# sourceMappingURL=style.css.map */

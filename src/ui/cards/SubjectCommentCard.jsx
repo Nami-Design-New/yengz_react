@@ -1,29 +1,37 @@
-import avatarPlaceholder from "../../Assets/images/avatar-placeholder-2.svg";
+import { useTranslation } from "react-i18next";
+import { formatTimeDifference, getTimeDifference } from "../../utils/helpers";
 
-function SubjectCommentCard() {
+function SubjectCommentCard({ comment }) {
+  const { t } = useTranslation();
+
+  const commentTimeDifference = getTimeDifference(comment?.created_at);
+  const commentStartTime = formatTimeDifference(
+    commentTimeDifference.years,
+    commentTimeDifference.months,
+    commentTimeDifference.days,
+    commentTimeDifference.hours,
+    commentTimeDifference.minutes,
+    t
+  );
+
   return (
     <div className="box-item column comment-item">
       <div className="userBox">
         <div className="image-wrapper">
-          <img src={avatarPlaceholder} alt="" />
+          <img src={comment?.user?.image} alt={comment?.user?.name} />
         </div>
         <div className="info-wrapper">
-          <p>.Ahmed K</p>
+          <p>{comment?.user?.name}</p>
           <div className="info-boxes-wrapper">
             <p className="info-box name m-0">
               <i className="fa-regular fa-timer"></i>
-              منذ 5 أيام و10 ساعات
+              {commentStartTime}
             </p>
           </div>
         </div>
       </div>
       <div className="comment-wrapper">
-        <p>جميل جدا </p>
-        <p>
-          بس ف تصميم كان ممكن تعمل ظل افضل من كدة تحت الكورسي لاكن مشاء الله شغل
-          جميل
-        </p>
-        <p>بالتوفيق</p>
+        <p>{comment?.comment} </p>
       </div>
     </div>
   );

@@ -10,11 +10,13 @@ import {
 } from "@tabler/icons-react";
 import useGetAbout from "../features/About/useGetAbout";
 import { useSelector } from "react-redux";
+import useGetCommunitiesList from "../features/community/useGetCommunitiesList";
 
 function WebMenuSideBar({ isOpen, setIsOpen }) {
   const { t } = useTranslation();
   const { data: footerCategoriesList } = useGetAbout();
   const isLogged = useSelector((state) => state.authedUser.isLogged);
+  const { data: communities } = useGetCommunitiesList();
 
   useEffect(() => {
     const menuButton = document.querySelector(".webmenu_open");
@@ -99,37 +101,28 @@ function WebMenuSideBar({ isOpen, setIsOpen }) {
               </ul>
             </Accordion.Body>
           </Accordion.Item>
-          <Accordion.Item eventKey="1">
-            <Accordion.Header>
-              <i className="fa-regular fa-comments"></i>{" "}
-              <span>{t("navbar.communities")}</span>
-            </Accordion.Header>
-            <Accordion.Body>
-              <ul>
-                <li>
-                  <Link
-                    to="/done-works-modals"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {t("routes.done-works-modals")}
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/unexisited-requests-orders"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {t("routes.unexisited-requests-orders")}
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/users-stories" onClick={() => setIsOpen(false)}>
-                    تجارب وقصص المستخدمين
-                  </Link>
-                </li>
-              </ul>
-            </Accordion.Body>
-          </Accordion.Item>
+          {communities && communities?.length > 0 && (
+            <Accordion.Item eventKey="1">
+              <Accordion.Header>
+                <i className="fa-regular fa-comments"></i>{" "}
+                <span>{t("navbar.communities")}</span>
+              </Accordion.Header>
+              <Accordion.Body>
+                <ul>
+                  {communities?.map((community) => (
+                    <li key={community.id}>
+                      <Link
+                        to={`/community/${community.name}`}
+                        onClick={() => setIsOpen(false)}
+                      >
+                        {community.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </Accordion.Body>
+            </Accordion.Item>
+          )}
         </Accordion>
         <li>
           <Link to="/blogs" onClick={() => setIsOpen(false)}>

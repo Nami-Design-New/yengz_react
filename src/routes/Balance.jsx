@@ -107,7 +107,7 @@ function Balance() {
                 </h6>
               </div>
             </div>
-            <div className="transactions-wrapper">
+            {/* <div className="transactions-wrapper">
               <h3>{t("balance.transactions")}</h3>
               <div className="transactions-aside">
                 <div className="filter-box">
@@ -250,7 +250,7 @@ function Balance() {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
         <ChargeModal
