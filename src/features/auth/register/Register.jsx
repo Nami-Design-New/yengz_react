@@ -15,6 +15,7 @@ const Register = () => {
     phone: "",
     password: "",
     is_freelance: false,
+    job_title: "",
     categories: []
   });
 

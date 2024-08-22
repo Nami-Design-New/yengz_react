@@ -16,6 +16,8 @@ import useSubCategoriesList from "../features/categories/useSubCategoriesList";
 import ImageUpload from "../Assets/images/img-upload.svg";
 import doc from "../Assets/images/doc.svg";
 import ErrorPage from "./ErrorPage";
+import useGetSkills from "../features/settings/useGetSkills";
+import MultiSelect from "../ui/form-elements/MultiSelect";
 
 function AddProject() {
   const { id } = useParams();
@@ -24,9 +26,11 @@ function AddProject() {
   const navigate = useNavigate();
   const [categoryId, setCategoryId] = useState("");
   const [loading, setLoading] = useState(false);
+  const [selectedOptions, setSelectedOptions] = useState([]);
   const { data: categories } = useCategoriesList();
   const { data: projectDetails, isLoading } = useGetProject();
   const { data: subCategories } = useSubCategoriesList(categoryId);
+  const { data: skills } = useGetSkills();
 
   const [formData, setFormData] = useState({
     title: "",
@@ -35,7 +39,8 @@ function AddProject() {
     days: "",
     description: "",
     project_files: [],
-    delete_files: []
+    delete_files: [],
+    skills: []
   });
 
   useEffect(() => {
@@ -52,11 +57,29 @@ function AddProject() {
         delete_files: []
       };
       setFormData(initialData);
+
+      const options = targetWork?.skills?.map((id) => {
+        const skill = skills?.find((s) => s?.id === Number(id));
+        return { value: id, label: skill?.name };
+      });
+
+      setSelectedOptions(options);
     }
   }, [projectDetails]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSelect = (selectedItems) => {
+    setSelectedOptions(selectedItems);
+    const selectedValues = selectedItems
+      ? selectedItems?.map((option) => option.value)
+      : [];
+    setFormData({
+      ...formData,
+      skills: selectedValues
+    });
   };
 
   const handleAttachments = (e) => {
@@ -202,6 +225,19 @@ function AddProject() {
                       onChange={handleChange}
                       value={formData.description}
                       placeholder={t("writeHere")}
+                    />
+                  </div>
+                  <div className="col-12 p-2">
+                    <MultiSelect
+                      label={t("search.skills")}
+                      id="skills"
+                      name="skills"
+                      selectedOptions={selectedOptions}
+                      handleChange={handleSelect}
+                      options={skills?.map((skill) => ({
+                        label: skill?.name,
+                        value: skill?.id
+                      }))}
                     />
                   </div>
                   <div className="col-12 p-2">

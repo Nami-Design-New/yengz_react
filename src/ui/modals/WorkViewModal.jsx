@@ -1,12 +1,75 @@
+import { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import { calculateDate } from "../../utils/helpers";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
+import axios from "./../../utils/axios";
+import useSearchWorks from "../../features/profile/useSearchWorks";
 
 function WorkViewModal({ showModal, setShowModal, targetWork }) {
+  const { t } = useTranslation();
+  const { refetch } = useSearchWorks();
   const lang = useSelector((state) => state.language.lang);
+  const logged = useSelector((state) => state.authedUser.isLogged);
+  const [isLike, setIsLike] = useState(targetWork?.liked);
+
+  function truncate(inputString) {
+    let truncateStringResult;
+    if (inputString?.length > 35) {
+      truncateStringResult = inputString.substring(0, 35) + "...";
+    } else {
+      truncateStringResult = inputString;
+    }
+    return truncateStringResult;
+  }
+
+  useEffect(() => {
+    const viewWork = async () => {
+      try {
+        await axios.post("/user/increase_view_count", {
+          id: targetWork?.id
+        });
+        refetch();
+      } catch (error) {
+        throw new Error(error.message);
+      }
+    };
+    if (targetWork?.id && !targetWork?.viewed) {
+      viewWork();
+    }
+  }, [targetWork?.viewed]);
+
+  const handleAddLike = async () => {
+    try {
+      const res = await axios.post("/user/addLike", {
+        my_work_id: targetWork?.id
+      });
+      if (res.data.code === 200) {
+        setIsLike(true);
+        refetch();
+      }
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  };
+
+  const handleRemoveLike = async () => {
+    try {
+      const res = await axios.post("/user/deleteLike", {
+        my_work_id: targetWork?.id
+      });
+      if (res.data.code === 200) {
+        setIsLike(false);
+        refetch();
+      }
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  };
+
   return (
     <Modal
       show={showModal}
@@ -20,7 +83,7 @@ function WorkViewModal({ showModal, setShowModal, targetWork }) {
       <Modal.Body className="col-12 p-2">
         <div className="work-view-modal">
           <Swiper
-            spaceBetween={12}
+            spaceBetween={4}
             slidesPerView={1}
             speed={1000}
             loop={true}
@@ -39,7 +102,24 @@ function WorkViewModal({ showModal, setShowModal, targetWork }) {
               ))}
           </Swiper>
           <div className="work-modal-content">
-            <h3>{targetWork?.title}</h3>
+            <div className="d-flex align-items-center justify-content-between">
+              <h3>{targetWork?.title}</h3>
+              {logged && !targetWork?.is_my_work && (
+                <>
+                  {isLike ? (
+                    <button className="like-btn" onClick={handleRemoveLike}>
+                      <i className="fa-sharp fa-solid fa-heart"></i>{" "}
+                      {t("notLikeIt")}
+                    </button>
+                  ) : (
+                    <button className="like-btn" onClick={handleAddLike}>
+                      <i className="fa-sharp fa-solid fa-heart"></i>{" "}
+                      {t("likeIt")}
+                    </button>
+                  )}
+                </>
+              )}
+            </div>
             <h5>{targetWork?.description}</h5>
             <div className="modal-info-item">
               <i className="fa-solid fa-clipboard"></i>
@@ -48,7 +128,7 @@ function WorkViewModal({ showModal, setShowModal, targetWork }) {
                 to={targetWork?.link}
                 className="m-0 item-value"
               >
-                {targetWork?.link}
+                {truncate(targetWork?.link)}
               </Link>
             </div>
             <div className="modal-info-items">

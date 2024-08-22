@@ -7,6 +7,7 @@ function useSearchServicesList() {
   const search = searchParams.get("search");
   const rate = Number(searchParams.get("rate"));
   const user_verification = Number(searchParams.get("user_verification"));
+  const skills = searchParams.get("skills")?.split("-");
   const user_available = Number(searchParams.get("user_available"));
   const categories =
     searchParams.get("categories") &&
@@ -21,7 +22,7 @@ function useSearchServicesList() {
       .split("-")
       .map((subcategory) => Number(subcategory));
   const is_old = Number(searchParams.get("is_old"));
-  const pageSize = 10;
+  const pageSize = 12;
 
   const queryKey = [
     "searchServicesList",
@@ -32,7 +33,8 @@ function useSearchServicesList() {
       user_available,
       categories,
       sub_categories,
-      is_old
+      is_old,
+      skills
     }
   ];
 
@@ -48,7 +50,8 @@ function useSearchServicesList() {
           user_available,
           categories,
           sub_categories,
-          is_old
+          is_old,
+          skills
         ),
       getNextPageParam: (lastPage, pages) => {
         const isMore = lastPage.data.length >= pageSize;

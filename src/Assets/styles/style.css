@@ -271,6 +271,10 @@ input[type=checkbox]:checked::after {
   border-color: var(--LightGray) !important;
 }
 
+.css-1u9des2-indicatorSeparator {
+  display: none;
+}
+
 .form-control {
   box-shadow: none !important;
 }
@@ -279,6 +283,23 @@ input[type=checkbox]:checked::after {
   border: 0 !important;
   box-shadow: none !important;
   background: none !important;
+}
+
+.like-btn {
+  border: none;
+  background: none;
+  outline: none;
+}
+
+.rc-slider-mark span {
+  font-size: 14px;
+  transform: none !important;
+  right: unset !important;
+  left: 0;
+}
+.rc-slider-mark span:nth-child(1) {
+  right: 0;
+  left: initial;
 }
 
 body {
@@ -820,6 +841,7 @@ body main .hero_section .hero_content form .input-fileld button {
 body main .hero_section .hero_content .words {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   margin-top: 16px;
   flex-wrap: wrap;
@@ -1010,7 +1032,7 @@ body main .portfolios .portfolio-card .img .user {
   left: 12px;
   border-radius: 50%;
   overflow: hidden;
-  border: 1px solid var(--white-color);
+  border: 2px solid var(--white-color);
 }
 body main .portfolios .portfolio-card .img .user img {
   width: 100%;
@@ -1034,7 +1056,7 @@ body main .portfolios .portfolio-card .info ul li {
 body main .portfolios .portfolio-card .info ul li i {
   color: var(--input-hint);
 }
-body main .portfolios .portfolio-card .info ul li:nth-child(2) i.active {
+body main .portfolios .portfolio-card .info ul li:nth-child(2) i {
   color: red;
 }
 body main .how_it_works {
