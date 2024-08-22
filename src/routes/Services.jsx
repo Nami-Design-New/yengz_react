@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { handleApplyFilters } from "../utils/helpers";
 import DepartmentFilterBox from "../ui/filter/DepartmentFilterBox";
 import RatingFilterBox from "../ui/filter/RatingFilterBox";
 import SellerStatusFilterBox from "../ui/filter/SellerStatusFilterBox";
@@ -11,9 +12,11 @@ import useCategorieListWithSub from "../features/categories/useCategorieListWith
 import DataLoader from "../ui/DataLoader";
 import EmptyData from "../ui/EmptyData";
 import MultiSelect from "../ui/form-elements/MultiSelect";
+import useGetSkills from "../features/settings/useGetSkills";
 
 const Services = () => {
   const { t } = useTranslation();
+  const { data: skills } = useGetSkills();
   const [searchParams, setSearchParams] = useSearchParams();
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -21,6 +24,7 @@ const Services = () => {
     search: searchParams.get("search") || "",
     page: Number(searchParams.get("page")) || null,
     rate: Number(searchParams.get("rate")) || null,
+    skills: searchParams.get("skills")?.split("-") || [],
     user_verification: Number(searchParams.get("user_verification")) || null,
     user_available: Number(searchParams.get("user_available")) || null,
     categories: searchParams.get("categories")
@@ -38,90 +42,87 @@ const Services = () => {
     is_old: Number(searchParams.get("is_old")) || null,
     skills: searchParams.get("skills")
       ? searchParams.get("skills").split("-")
-      : [],
+      : []
   });
 
-  const options = [
-    { value: "1", label: "1" },
-    { value: "2", label: "2" },
-    { value: "3", label: "3" },
-  ];
+  useEffect(() => {
+    const options = searchFilterData?.skills?.map((id) => {
+      const skill = skills?.find((s) => s?.id === Number(id));
+      return { value: id, label: skill?.name };
+    });
+
+    setSelectedOptions(options);
+  }, [searchFilterData, skills]);
 
   const { isLoading: categoriesIsLoading, data: categoriesWithSubCategories } =
     useCategorieListWithSub();
+
   const {
     data: searchServicesList,
     fetchNextPage,
     hasNextPage,
     isFetching,
-    isFetchingNextPage,
+    isFetchingNextPage
   } = useSearchServicesList();
 
   const handleChange = (e) => {
     const { name, checked, type, value } = e.target;
     const parsedValue = type === "checkbox" ? (checked ? 1 : 0) : value;
-
+    if (name !== "categories" && name !== "sub_categories") {
+      setSearchFilterData((prevState) => ({
+        ...prevState,
+        [name]: parsedValue
+      }));
+      return;
+    }
+    const categoryValue = Number(value);
     setSearchFilterData((prevState) => {
-      const updatedState = { ...prevState, [name]: parsedValue };
-
-      if (name === "categories" || name === "sub_categories") {
-        const updateCategoriesAndSubCategories = (name, value, checked) => {
-          const categoryValue = Number(value);
-
-          const updatedCategoryList = checked
-            ? [...prevState[name], categoryValue]
-            : prevState[name].filter((id) => id !== categoryValue);
-
-          const updatedState = { ...prevState, [name]: updatedCategoryList };
-
-          if (name === "categories") {
-            const relatedSubCategories =
-              categoriesWithSubCategories
-                .find((category) => category.id === categoryValue)
-                ?.sub_categories.map((subCategory) => subCategory.id) || [];
-
-            if (checked) {
-              updatedState["sub_categories"] = [
-                ...new Set([
-                  ...prevState["sub_categories"],
-                  ...relatedSubCategories,
-                ]),
-              ];
-            } else {
-              updatedState["sub_categories"] = prevState[
-                "sub_categories"
-              ].filter((id) => !relatedSubCategories.includes(id));
-            }
-          } else if (name === "sub_categories") {
-            const parentCategory = categoriesWithSubCategories.find(
-              (category) =>
-                category.sub_categories.some(
-                  (subCategory) => subCategory.id === categoryValue
-                )
+      const updatedState = { ...prevState };
+      const updateList = (list, value, add) => {
+        return add ? [...list, value] : list.filter((id) => id !== value);
+      };
+      if (name === "categories") {
+        updatedState[name] = updateList(
+          prevState[name],
+          categoryValue,
+          checked
+        );
+        const relatedSubCategories =
+          categoriesWithSubCategories
+            .find((category) => category.id === categoryValue)
+            ?.sub_categories.map((subCategory) => subCategory.id) || [];
+        updatedState["sub_categories"] = checked
+          ? [
+              ...new Set([
+                ...prevState["sub_categories"],
+                ...relatedSubCategories
+              ])
+            ]
+          : prevState["sub_categories"].filter(
+              (id) => !relatedSubCategories.includes(id)
             );
-
-            const allChildIds = parentCategory.sub_categories.map(
-              (subCategory) => subCategory.id
+      } else if (name === "sub_categories") {
+        updatedState[name] = updateList(
+          prevState[name],
+          categoryValue,
+          checked
+        );
+        const parentCategory = categoriesWithSubCategories.find((category) =>
+          category.sub_categories.some(
+            (subCategory) => subCategory.id === categoryValue
+          )
+        );
+        const allChildIds = parentCategory.sub_categories.map(
+          (subCategory) => subCategory.id
+        );
+        const areAllChildrenChecked = allChildIds.every((id) =>
+          updatedState["sub_categories"].includes(id)
+        );
+        updatedState["categories"] = areAllChildrenChecked
+          ? [...new Set([...prevState["categories"], parentCategory.id])]
+          : prevState["categories"].filter(
+              (categoryId) => categoryId !== parentCategory.id
             );
-
-            const areAllChildrenChecked = allChildIds.every((id) =>
-              updatedState["sub_categories"].includes(id)
-            );
-
-            if (areAllChildrenChecked) {
-              updatedState["categories"] = [
-                ...new Set([...prevState["categories"], parentCategory.id]),
-              ];
-            } else {
-              updatedState["categories"] = prevState["categories"].filter(
-                (categoryId) => categoryId !== parentCategory.id
-              );
-            }
-          }
-          return updatedState;
-        };
-
-        return updateCategoriesAndSubCategories(name, value, checked);
       }
       return updatedState;
     });
@@ -134,7 +135,7 @@ const Services = () => {
       : [];
     setSearchFilterData({
       ...searchFilterData,
-      skills: selectedValues,
+      skills: selectedValues
     });
   };
 
@@ -142,23 +143,9 @@ const Services = () => {
     setSearchParams({});
   }
 
-  function handleApplyFilters() {
-    const newParams = new URLSearchParams();
-    for (const [key, value] of Object.entries(searchFilterData)) {
-      if (value !== undefined && value !== null && value !== "") {
-        if (Array.isArray(value)) {
-          newParams.set(key, value.join("-"));
-        } else {
-          newParams.set(key, value);
-        }
-      }
-    }
-    setSearchParams(newParams);
-  }
-
   function handleSubmit(e) {
     e.preventDefault();
-    handleApplyFilters();
+    handleApplyFilters(setSearchParams, searchFilterData);
   }
 
   useEffect(() => {
@@ -172,7 +159,6 @@ const Services = () => {
         }
       }
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isFetchingNextPage, hasNextPage, fetchNextPage]);
@@ -194,7 +180,6 @@ const Services = () => {
               <div className="colse" onClick={() => setIsFilterOpen(false)}>
                 <i className="fa-light fa-xmark"></i>
               </div>
-
               <form onSubmit={handleSubmit}>
                 <InputField
                   id="aside-search-input"
@@ -215,11 +200,13 @@ const Services = () => {
                   label={t("search.skills")}
                   id="skills"
                   name="skills"
-                  options={options}
                   selectedOptions={selectedOptions}
                   handleChange={handleSelect}
+                  options={skills?.map((skill) => ({
+                    label: skill?.name,
+                    value: skill?.id
+                  }))}
                 />
-                <hr />
                 <RatingFilterBox
                   value={searchFilterData.rate}
                   onChange={handleChange}
@@ -231,7 +218,6 @@ const Services = () => {
                   user_verification={searchFilterData.user_verification}
                   onChange={handleChange}
                 />
-                <hr />
                 <div className="d-flex gap-2">
                   <div className="search-btn">
                     <button onClick={handleApplyFilters}>
@@ -247,6 +233,17 @@ const Services = () => {
               </form>
             </div>
           </aside>
+
+          <div className="small-filter-header">
+            <h6>{t("routes.services")}</h6>
+            <button
+              className="openfilter"
+              onClick={() => setIsFilterOpen(true)}
+            >
+              <i className="fa-light fa-sliders"></i>
+            </button>
+          </div>
+
           <main className="col-lg-9 p-2">
             <div className="row">
               {searchServicesList.length > 0 ? (
@@ -271,7 +268,9 @@ const Services = () => {
                   )}
                 </>
               ) : (
-                <EmptyData />
+                <EmptyData minHeight="300px">
+                  {t("notFoundPlaceholder.noServicesFoundWithThisDetails")}
+                </EmptyData>
               )}
             </div>
           </main>
@@ -280,5 +279,4 @@ const Services = () => {
     </section>
   );
 };
-
 export default Services;

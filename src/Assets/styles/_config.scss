@@ -264,6 +264,9 @@ input[type="checkbox"] {
   border-radius: 12px !important;
   border-color: var(--LightGray) !important;
 }
+.css-1u9des2-indicatorSeparator {
+  display: none;
+}
 
 .form-control {
   box-shadow: none !important;
@@ -273,4 +276,21 @@ input[type="checkbox"] {
   border: 0 !important;
   box-shadow: none !important;
   background: none !important;
+}
+
+.like-btn {
+  @include clearInput();
+}
+
+.rc-slider-mark {
+  span {
+    font-size: 14px;
+    transform: none !important;
+    right: unset !important;
+    left: 0;
+    &:nth-child(1) {
+      right: 0;
+      left: initial;
+    }
+  }
 }

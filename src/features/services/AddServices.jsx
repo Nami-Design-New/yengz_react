@@ -10,8 +10,10 @@ import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import useServiceDetails from "./useServiceDetails";
 import ErrorPage from "../../routes/ErrorPage";
+import useGetSkills from "../settings/useGetSkills";
 
 const AddServices = () => {
+  const { data: skills } = useGetSkills();
   const { id } = useParams();
   const totalSteps = 3;
   const queryClient = useQueryClient();
@@ -22,6 +24,7 @@ const AddServices = () => {
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState((step / totalSteps) * 100);
+  const [selectedOptions, setSelectedOptions] = useState([]);
   const [originalData, setOriginalData] = useState(null);
   const [formData, setFormData] = useState({
     title: "",
@@ -55,6 +58,12 @@ const AddServices = () => {
       setFormData(initialData);
       setOriginalData(initialData);
     }
+    const options = service?.skills?.map((id) => {
+      const skill = skills?.find((s) => s?.id === Number(id));
+      return { value: id, label: skill?.name };
+    });
+
+    setSelectedOptions(options);
   }, [service]);
 
   useEffect(() => {
@@ -121,6 +130,9 @@ const AddServices = () => {
                   setStep={setStep}
                   categoryId={categoryId}
                   setCategoryId={setCategoryId}
+                  skills={skills}
+                  selectedOptions={selectedOptions}
+                  setSelectedOptions={setSelectedOptions}
                 />
               )}
               {step === 2 && (

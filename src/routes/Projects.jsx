@@ -1,52 +1,47 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { handleApplyFilters } from "../utils/helpers";
 import DepartmentFilterBox from "../ui/filter/DepartmentFilterBox";
-import RatingFilterBox from "../ui/filter/RatingFilterBox";
-import SellerStatusFilterBox from "../ui/filter/SellerStatusFilterBox";
 import InputField from "../ui/form-elements/InputField";
 import useCategorieListWithSub from "../features/categories/useCategorieListWithSub";
 import useProjectsList from "../features/projects/useProjectsList";
 import EmptyData from "../ui/EmptyData";
 import DataLoader from "../ui/DataLoader";
-import CustomPagination from "../ui/CustomPagination";
 import ProjectCard from "../ui/cards/ProjectCard";
 import MultiSelect from "../ui/form-elements/MultiSelect";
+import useGetSkills from "../features/settings/useGetSkills";
+import RangeSlider from "../ui/form-elements/RangeSlider";
 
 function Projects() {
   const { t } = useTranslation();
+  const { data: skills } = useGetSkills();
   const [searchParams, setSearchParams] = useSearchParams();
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [searchFilterData, setSearchFilterData] = useState({
     search: searchParams.get("search") || "",
+    price_from: Number(searchParams.get("price_from")) || 5,
+    price_to: Number(searchParams.get("price_to")) || 2000,
+    duration_from: Number(searchParams.get("duration_from")) || 1,
+    duration_to: Number(searchParams.get("duration_to")) || 360,
     page: Number(searchParams.get("page")) || null,
-    rate: Number(searchParams.get("rate")) || null,
-    user_verification: Number(searchParams.get("user_verification")) || null,
-    user_available: Number(searchParams.get("user_available")) || null,
     categories: searchParams.get("categories")
-    ? searchParams
-    .get("categories")
-    .split("-")
-    .map((category) => Number(category))
-    : [],
+      ? searchParams
+          .get("categories")
+          .split("-")
+          .map((category) => Number(category))
+      : [],
     sub_categories: searchParams.get("sub_categories")
-    ? searchParams
-    .get("sub_categories")
-    .split("-")
-    .map((subcategory) => Number(subcategory))
-    : [],
-    is_old: Number(searchParams.get("is_old")) || null,
+      ? searchParams
+          .get("sub_categories")
+          .split("-")
+          .map((subcategory) => Number(subcategory))
+      : [],
     skills: searchParams.get("skills")
       ? searchParams.get("skills").split("-")
-      : [],
+      : []
   });
-
-  const options = [
-    { value: "1", label: "1" },
-    { value: "2", label: "2" },
-    { value: "3", label: "3" },
-  ];
 
   const { isLoading: categoriesIsLoading, data: categoriesWithSubCategories } =
     useCategorieListWithSub();
@@ -56,87 +51,105 @@ function Projects() {
     fetchNextPage,
     hasNextPage,
     isFetching,
-    isFetchingNextPage,
+    isFetchingNextPage
   } = useProjectsList();
+
+  useEffect(() => {
+    const options = searchFilterData?.skills?.map((id) => {
+      const skill = skills?.find((s) => s?.id === Number(id));
+      return { value: id, label: skill?.name };
+    });
+
+    setSelectedOptions(options);
+  }, [searchFilterData, skills]);
 
   const handleChange = (e) => {
     const { name, checked, type, value } = e.target;
     const parsedValue = type === "checkbox" ? (checked ? 1 : 0) : value;
-
+    if (name !== "categories" && name !== "sub_categories") {
+      setSearchFilterData((prevState) => ({
+        ...prevState,
+        [name]: parsedValue
+      }));
+      return;
+    }
+    const categoryValue = Number(value);
     setSearchFilterData((prevState) => {
-      const updatedState = { ...prevState, [name]: parsedValue };
-
-      if (name === "categories" || name === "sub_categories") {
-        const updateCategoriesAndSubCategories = (name, value, checked) => {
-          const categoryValue = Number(value);
-
-          const updatedCategoryList = checked
-            ? [...prevState[name], categoryValue]
-            : prevState[name].filter((id) => id !== categoryValue);
-
-          const updatedState = { ...prevState, [name]: updatedCategoryList };
-
-          if (name === "categories") {
-            const relatedSubCategories =
-              categoriesWithSubCategories
-                .find((category) => category.id === categoryValue)
-                ?.sub_categories.map((subCategory) => subCategory.id) || [];
-
-            if (checked) {
-              updatedState["sub_categories"] = [
-                ...new Set([
-                  ...prevState["sub_categories"],
-                  ...relatedSubCategories,
-                ]),
-              ];
-            } else {
-              updatedState["sub_categories"] = prevState[
-                "sub_categories"
-              ].filter((id) => !relatedSubCategories.includes(id));
-            }
-          } else if (name === "sub_categories") {
-            const parentCategory = categoriesWithSubCategories.find(
-              (category) =>
-                category.sub_categories.some(
-                  (subCategory) => subCategory.id === categoryValue
-                )
+      const updatedState = { ...prevState };
+      const updateList = (list, value, add) => {
+        return add ? [...list, value] : list.filter((id) => id !== value);
+      };
+      if (name === "categories") {
+        updatedState[name] = updateList(
+          prevState[name],
+          categoryValue,
+          checked
+        );
+        const relatedSubCategories =
+          categoriesWithSubCategories
+            .find((category) => category.id === categoryValue)
+            ?.sub_categories.map((subCategory) => subCategory.id) || [];
+        updatedState["sub_categories"] = checked
+          ? [
+              ...new Set([
+                ...prevState["sub_categories"],
+                ...relatedSubCategories
+              ])
+            ]
+          : prevState["sub_categories"].filter(
+              (id) => !relatedSubCategories.includes(id)
             );
-
-            const allChildIds = parentCategory.sub_categories.map(
-              (subCategory) => subCategory.id
+      } else if (name === "sub_categories") {
+        updatedState[name] = updateList(
+          prevState[name],
+          categoryValue,
+          checked
+        );
+        const parentCategory = categoriesWithSubCategories.find((category) =>
+          category.sub_categories.some(
+            (subCategory) => subCategory.id === categoryValue
+          )
+        );
+        const allChildIds = parentCategory.sub_categories.map(
+          (subCategory) => subCategory.id
+        );
+        const areAllChildrenChecked = allChildIds.every((id) =>
+          updatedState["sub_categories"].includes(id)
+        );
+        updatedState["categories"] = areAllChildrenChecked
+          ? [...new Set([...prevState["categories"], parentCategory.id])]
+          : prevState["categories"].filter(
+              (categoryId) => categoryId !== parentCategory.id
             );
-
-            const areAllChildrenChecked = allChildIds.every((id) =>
-              updatedState["sub_categories"].includes(id)
-            );
-
-            if (areAllChildrenChecked) {
-              updatedState["categories"] = [
-                ...new Set([...prevState["categories"], parentCategory.id]),
-              ];
-            } else {
-              updatedState["categories"] = prevState["categories"].filter(
-                (categoryId) => categoryId !== parentCategory.id
-              );
-            }
-          }
-          return updatedState;
-        };
-
-        return updateCategoriesAndSubCategories(name, value, checked);
       }
       return updatedState;
     });
   };
 
+  const handleSliderChange = (name, value) => {
+    if (name === "duration") {
+      setSearchFilterData((prevState) => ({
+        ...prevState,
+        duration_from: value[0],
+        duration_to: value[1]
+      }));
+    } else if (name === "price") {
+      setSearchFilterData((prevState) => ({
+        ...prevState,
+        price_from: value[0],
+        price_to: value[1]
+      }));
+    }
+  };
+
   const handleSelect = (selectedItems) => {
-    setSelectedOptions(selectedItems);    
+    setSelectedOptions(selectedItems);
     const selectedValues = selectedItems
-    ? selectedItems?.map((option) => option.value)
-    : [];
+      ? selectedItems?.map((option) => option.value)
+      : [];
     setSearchFilterData({
       ...searchFilterData,
-      skills: selectedValues,
+      skills: selectedValues
     });
   };
 
@@ -144,23 +157,9 @@ function Projects() {
     setSearchParams({});
   }
 
-  function handleApplyFilters() {
-    const newParams = new URLSearchParams();
-    for (const [key, value] of Object.entries(searchFilterData)) {
-      if (value !== undefined && value !== null && value !== "") {
-        if (Array.isArray(value)) {
-          newParams.set(key, value.join("-"));
-        } else {
-          newParams.set(key, value);
-        }
-      }
-    }
-    setSearchParams(newParams);
-  }
-
   function handleSubmit(e) {
     e.preventDefault();
-    handleApplyFilters();
+    handleApplyFilters(setSearchParams, searchFilterData);
   }
 
   useEffect(() => {
@@ -215,23 +214,47 @@ function Projects() {
                     label={t("search.skills")}
                     id="skills"
                     name="skills"
-                    options={options}
                     selectedOptions={selectedOptions}
                     handleChange={handleSelect}
+                    options={skills?.map((skill) => ({
+                      label: skill?.name,
+                      value: skill?.id
+                    }))}
                   />
-                  <hr />
-                  <RatingFilterBox
-                    value={searchFilterData.rate}
-                    onChange={handleChange}
-                  />
-                  <hr />
-                  {/* <SellerFilterBox /> */}
-                  <SellerStatusFilterBox
-                    user_available={searchFilterData.user_available}
-                    user_verification={searchFilterData.user_verification}
-                    onChange={handleChange}
-                  />
-                  <hr />
+                  <div className="mb-4">
+                    <h6 className="mb-2">{t("search.deliveryTime")}</h6>
+                    <RangeSlider
+                      min={1}
+                      steps={1}
+                      max={360}
+                      value={[
+                        searchFilterData.duration_from,
+                        searchFilterData.duration_to
+                      ]}
+                      handleSlide={(value) =>
+                        handleSliderChange("duration", value)
+                      }
+                      minType={t("search.days")}
+                      maxType={t("search.days")}
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <h6 className="mb-2">{t("search.budget")}</h6>
+                    <RangeSlider
+                      min={5}
+                      max={2000}
+                      steps={5}
+                      value={[
+                        searchFilterData.price_from,
+                        searchFilterData.price_to
+                      ]}
+                      handleSlide={(value) =>
+                        handleSliderChange("price", value)
+                      }
+                      minType="$"
+                      maxType="$"
+                    />
+                  </div>
                   <div className="d-flex gap-2">
                     <div className="search-btn">
                       <button onClick={handleApplyFilters}>
@@ -287,7 +310,9 @@ function Projects() {
                     )}
                   </>
                 ) : (
-                  <EmptyData>{t("projects.emptyProjects")}</EmptyData>
+                  <EmptyData minHeight={"300px"}>
+                    {t("notFoundPlaceholder.noProjectsFoundWithThisDetails")}
+                  </EmptyData>
                 )}
               </div>
             </div>
