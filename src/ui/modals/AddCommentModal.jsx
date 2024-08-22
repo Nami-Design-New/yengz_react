@@ -3,27 +3,32 @@ import { Modal } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import SubmitButton from "../form-elements/SubmitButton";
 import TextField from "../form-elements/TextField";
+import { useParams } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
+import { addComment } from "../../services/apiCommunities";
 
 function AddCommentModal({ showModal, setShowModal }) {
+  const { id } = useParams();
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState({
-    content: "",
-  });
+  const [comment, setComment] = useState("");
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const queryClient = useQueryClient();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setShowModal(false);
-    setFormData({
-      content: "",
-    });
-
-    setLoading(false);
+    try {
+      await addComment({ community_post_id: Number(id), comment }, queryClient);
+      toast.success(t("communities.commentAddedSuccessfully"));
+      setComment("");
+      setShowModal(false);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -31,9 +36,7 @@ function AddCommentModal({ showModal, setShowModal }) {
       show={showModal}
       onHide={() => {
         setShowModal(false);
-        setFormData({
-          content: "",
-        });
+        setComment("");
       }}
       centered
       size="lg"
@@ -50,8 +53,10 @@ function AddCommentModal({ showModal, setShowModal }) {
                   <TextField
                     label={t("communities.commentBody")}
                     name="comment"
-                    onChange={handleChange}
-                    value={formData.content}
+                    onChange={(e) => setComment(e.target.value)}
+                    value={comment}
+                    placeholder={t("writeHere")}
+                    required={true}
                   />
                 </div>
               </div>

@@ -2,42 +2,51 @@ import { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import InputField from "../form-elements/InputField";
-import TextField from "./../form-elements/TextField";
 import SubmitButton from "./../form-elements/SubmitButton";
-import galleryIcon from "../../Assets/images/gallery.svg";
+import SelectField from "../form-elements/SelectField";
+import DataLoader from "../DataLoader";
+import useCountriesList from "../../features/countries/useCountriesList";
+import { addBank, editBank } from "../../services/apiBanks";
+import { useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 function AddAccountModal({
   showModal,
   setShowModal,
-  targetAccount,
-  setTargetAccount,
+  targetBank,
+  setTargetBank,
 }) {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
-    title: "",
-    link: "",
-    description: "",
-    start_date: "",
-    end_date: "",
-    images: [],
-    delete_images: [],
+    user_name: "",
+    iban: "",
+    swift: "",
+    address1: "",
+    address2: "",
+    zip: "",
+    city: "",
+    area: "",
   });
+  const { isLoading: isCountriesLoading, data: countries } = useCountriesList();
+  const [countryId, setCountryId] = useState("");
+  const queryClient = useQueryClient();
 
   useEffect(() => {
-    if (targetAccount) {
+    if (targetBank) {
       setFormData({
-        id: targetAccount.id,
-        title: targetAccount.title,
-        link: targetAccount.link,
-        description: targetAccount.description,
-        start_date: targetAccount.start_date,
-        end_date: targetAccount.end_date,
-        images: targetAccount.images || [],
-        delete_images: [],
+        user_name: targetBank?.user_name || "",
+        iban: targetBank?.iban || "",
+        swift: targetBank?.swift || "",
+        address1: targetBank?.address1 || "",
+        address2: targetBank?.address2 || "",
+        zip: targetBank?.zip || "",
+        city: targetBank?.city || "",
+        area: targetBank?.area || "",
       });
+      setCountryId(targetBank?.country_id || "");
     }
-  }, [targetAccount]);
+  }, [targetBank]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -46,17 +55,37 @@ function AddAccountModal({
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-
-    setLoading(false);
-  };
-
-  const handleImagesChange = (e) => {
-    e.preventDefault();
-    const newImages = Array.from(e.target.files);
-    setFormData((prevState) => ({
-      ...prevState,
-      images: [...prevState.images, ...newImages],
-    }));
+    try {
+      const requestBody = {
+        ...formData,
+        country_id: Number(countryId),
+        id: targetBank?.id,
+      };
+      if (targetBank) {
+        await editBank(requestBody, queryClient);
+        toast.success(t("manageAccounts.bankUpdatedSuccessfully"));
+      } else {
+        await addBank(requestBody, queryClient);
+        toast.success(t("manageAccounts.bankAddedSuccessfully"));
+      }
+      setShowModal(false);
+      setFormData({
+        user_name: targetBank?.user_name || "",
+        iban: targetBank?.iban || "",
+        swift: targetBank?.swift || "",
+        address1: targetBank?.address1 || "",
+        address2: targetBank?.address2 || "",
+        zip: targetBank?.zip || "",
+        city: targetBank?.city || "",
+        area: targetBank?.area || "",
+      });
+      setCountryId(targetBank?.country_id || "");
+      setTargetBank("");
+    } catch (err) {
+      throw new Error(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -65,15 +94,18 @@ function AddAccountModal({
       onHide={() => {
         setShowModal(false);
         setFormData({
-          title: "",
-          link: "",
-          description: "",
-          start_date: "",
-          end_date: "",
-          images: [],
-          delete_images: [],
+          user_name: "",
+          iban: "",
+          swift: "",
+          address1: "",
+          address2: "",
+          zip: "",
+          city: "",
+          zip: "",
+          area: "",
         });
-        setTargetAccount(null);
+        setCountryId("");
+        setTargetBank(null);
       }}
       centered
       size="lg"
@@ -83,10 +115,156 @@ function AddAccountModal({
       </Modal.Header>
       <Modal.Body className="add-work">
         <div className="login-section">
-          <form
-            className="form container m-0 w-100"
-            onSubmit={handleSubmit}
-          ></form>
+          {isCountriesLoading ? (
+            <DataLoader />
+          ) : (
+            <form className="form container m-0 w-100" onSubmit={handleSubmit}>
+              <div className="row">
+                {/* name */}
+                <div className="col-12 p-2">
+                  <InputField
+                    label={t("manageAccounts.userName")}
+                    type="text"
+                    name="user_name"
+                    onChange={handleChange}
+                    value={formData.user_name}
+                    placeholder={t("writeHere")}
+                  />
+                </div>
+                {/* iban */}
+                <div className="col-lg-6 col-12 p-2">
+                  <InputField
+                    label={t("manageAccounts.iban")}
+                    type="text"
+                    name="iban"
+                    onChange={handleChange}
+                    value={formData.iban}
+                    placeholder="Eg2132132213"
+                    required={true}
+                  />
+                </div>
+                {/* swift */}
+                <div className="col-lg-6 col-12 p-2">
+                  <InputField
+                    label={t("manageAccounts.swift")}
+                    type="number"
+                    name="swift"
+                    onChange={handleChange}
+                    value={formData.swift}
+                    placeholder="12345"
+                    required={true}
+                  />
+                </div>
+                {/* address */}
+                <div className="col-lg-6 col-12 p-2">
+                  <InputField
+                    label={`${t("manageAccounts.address")} 1`}
+                    type="address"
+                    name="address1"
+                    onChange={handleChange}
+                    value={formData.address1}
+                    placeholder={t("writeHere")}
+                    required={true}
+                  />
+                </div>
+                {/* address */}
+                <div className="col-lg-6 col-12 p-2">
+                  <InputField
+                    label={`${t("manageAccounts.address")} 2`}
+                    type="address"
+                    name="address2"
+                    onChange={handleChange}
+                    value={formData.address2}
+                    placeholder={t("writeHere")}
+                  />
+                </div>
+                {/* country */}
+                <div className="col-lg-6 col-12 p-2">
+                  <SelectField
+                    label={t("manageAccounts.country")}
+                    id="category"
+                    name="category"
+                    disabledOption={t("select")}
+                    value={countryId}
+                    required={true}
+                    onChange={(e) => {
+                      setCountryId(e.target.value);
+                    }}
+                    options={countries?.map((country) => ({
+                      name: country.name,
+                      value: country.id,
+                    }))}
+                  />
+                </div>
+                {/* zip */}
+                <div className="col-lg-6 col-12 p-2">
+                  <InputField
+                    label={t("manageAccounts.zip")}
+                    type="text"
+                    name="zip"
+                    onChange={handleChange}
+                    value={formData.zip}
+                    placeholder="996"
+                    required={true}
+                  />
+                </div>
+                {/* city */}
+                <div className="col-lg-6 col-12 p-2">
+                  <InputField
+                    label={t("manageAccounts.city")}
+                    type="text"
+                    name="city"
+                    onChange={handleChange}
+                    value={formData.city}
+                    placeholder={t("writeHere")}
+                    required={true}
+                  />
+                </div>
+                {/* area */}
+                <div className="col-lg-6 col-12 p-2">
+                  <InputField
+                    label={t("manageAccounts.area")}
+                    type="text"
+                    name="area"
+                    onChange={handleChange}
+                    value={formData.area}
+                    placeholder={t("writeHere")}
+                    required={true}
+                  />
+                </div>
+                <div className="conditions-wrapper no-lines">
+                  <div className="checkbox-group">
+                    <input type="checkbox" name="" id="fees" />
+                    <label htmlFor="fees">
+                      {t("manageAccounts.nameMatchingCondition")}
+                    </label>
+                  </div>
+                  <div className="checkbox-group">
+                    <input type="checkbox" name="" id="duration" />
+                    <label htmlFor="duration">
+                      {t("manageAccounts.durationCondition")}
+                    </label>
+                  </div>
+                  <div className="checkbox-group">
+                    <input type="checkbox" name="" id="responsibility" />
+                    <label htmlFor="responsibility">
+                      {t("manageAccounts.responsibilityCondition")}
+                    </label>
+                  </div>
+                </div>
+                <div className="col-12 p-2">
+                  <SubmitButton
+                    name={
+                      targetBank
+                        ? t("manageAccounts.edit")
+                        : t("manageAccounts.add")
+                    }
+                    loading={loading}
+                  />
+                </div>
+              </div>
+            </form>
+          )}
         </div>
       </Modal.Body>
     </Modal>

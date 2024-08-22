@@ -4,33 +4,48 @@ import { useTranslation } from "react-i18next";
 import InputField from "../form-elements/InputField";
 import SubmitButton from "../form-elements/SubmitButton";
 import SelectField from "../form-elements/SelectField";
-import { COMMUNITIES_OPTIONS } from "../../utils/constants";
 import TextField from "../form-elements/TextField";
+import useGetCommunitiesList from "../../features/community/useGetCommunitiesList";
+import { useQueryClient } from "@tanstack/react-query";
+import { addSubject } from "../../services/apiCommunities";
+import { toast } from "react-toastify";
 
 function AddSubjectModal({ showModal, setShowModal }) {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
+  const [communityId, setCommunityId] = useState("");
   const [formData, setFormData] = useState({
     title: "",
-    community: "",
     description: "",
   });
+  const queryClient = useQueryClient();
+
+  const { data: communities } = useGetCommunitiesList();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setShowModal(false);
-    setFormData({
-      title: "",
-      community: "",
-      description: "",
-    });
-
-    setLoading(false);
+    try {
+      await addSubject(
+        { ...formData, community_category_id: Number(communityId) },
+        queryClient
+      );
+      toast.success(t("communities.subjectAddedSuccessfully"));
+      setFormData({
+        title: "",
+        community_category_id: "",
+        description: "",
+      });
+      setShowModal(false);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -70,13 +85,14 @@ function AddSubjectModal({ showModal, setShowModal }) {
                   id="category"
                   name="category"
                   disabledOption={t("select")}
-                  value={formData.community}
+                  value={communityId}
+                  required={true}
                   onChange={(e) => {
-                    setCategoryId(e.target.value);
+                    setCommunityId(e.target.value);
                   }}
-                  options={COMMUNITIES_OPTIONS?.map((option) => ({
-                    name: `${t(`routes.${option.name}`)}`,
-                    value: option.name,
+                  options={communities?.map((option) => ({
+                    name: option.name,
+                    value: option.id,
                   }))}
                 />
               </div>
@@ -86,6 +102,7 @@ function AddSubjectModal({ showModal, setShowModal }) {
                     label={t("communities.subjectDescription")}
                     name="description"
                     onChange={handleChange}
+                    required={true}
                     value={formData.description}
                   />
                 </div>

@@ -3342,7 +3342,7 @@ body main .terms .row h6 {
   color: var(--black-color);
 }
 body main .balance_section {
-  padding: 60px 0;
+  padding: 60px 8px;
 }
 body main .balance_section .container {
   display: flex;
@@ -3460,6 +3460,9 @@ body main .balance_section .content-body .transactions-wrapper .transactions-asi
   flex-direction: column;
   position: relative;
   gap: 24px;
+  padding: 8px 16px;
+  border-radius: 12px;
+  background-color: var(--gray-background);
 }
 body main .balance_section .content-body .transactions-wrapper .transactions-aside .filter-box {
   display: flex;
@@ -3479,6 +3482,7 @@ body main .balance_section .content-body .transactions-wrapper .transactions-asi
 body main .balance_section .content-body .transactions-wrapper .transactions-aside .filter-box .box-content .item {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 8px;
 }
 body main .balance_section .content-body .transactions-wrapper .transactions-aside .filter-box .box-content .item .input-field {
@@ -3536,15 +3540,17 @@ body main .balance_section .content-body .transactions-wrapper .transactions-bod
   gap: 4px;
   align-items: center;
   position: relative;
+  flex-wrap: wrap;
 }
 body main .balance_section .content-body .transactions-wrapper .transactions-body .transaction-box .info-wrapper .info-header span {
   color: var(--main-color);
 }
 body main .balance_section .content-body .transactions-wrapper .transactions-body .transaction-box .info-wrapper .info-boxes-wrapper {
   display: flex;
-  align-items: center;
-  gap: 24px;
   position: relative;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0 24px;
 }
 body main .balance_section .content-body .transactions-wrapper .transactions-body .transaction-box .info-wrapper .info-boxes-wrapper .info-box {
   display: flex;
@@ -5531,52 +5537,6 @@ body .pay_modal {
 body .pay_modal .tab-content {
   position: relative;
 }
-body .pay_modal .tab-content .conditions-wrapper {
-  position: relative;
-  width: 100%;
-  padding: 20px 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-body .pay_modal .tab-content .conditions-wrapper::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background-color: var(--LightGray);
-}
-body .pay_modal .tab-content .conditions-wrapper::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background-color: var(--LightGray);
-}
-body .pay_modal .tab-content .conditions-wrapper .checkbox-group {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-body .pay_modal .tab-content .conditions-wrapper .checkbox-group input::after {
-  width: 16px;
-  height: 16px;
-}
-body .pay_modal .tab-content .conditions-wrapper .checkbox-group label {
-  font-size: 16px;
-}
-body .pay_modal .tab-content .conditions-wrapper .condition-note {
-  position: relative;
-  font-size: 14px;
-  margin: 0;
-  color: var(--text-color);
-  line-height: 1.6;
-}
 body .pay_modal .form {
   align-items: flex-start !important;
 }
@@ -5691,8 +5651,10 @@ body .pay_modal .bank-transfer-box .info-wrapper h5 {
 }
 body .pay_modal .bank-transfer-box .info-wrapper .info-boxes-wrapper {
   display: flex;
-  flex-direction: column;
   position: relative;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0 24px;
 }
 body .pay_modal .bank-transfer-box .info-wrapper .info-boxes-wrapper .info-box {
   display: flex;
@@ -6418,9 +6380,10 @@ body .communityDetails .container .content-body .info-wrapper {
 }
 body .communityDetails .container .content-body .info-wrapper .info-boxes-wrapper {
   display: flex;
-  align-items: center;
-  gap: 24px;
   position: relative;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0 24px;
 }
 body .communityDetails .container .content-body .info-wrapper .info-boxes-wrapper .info-box {
   display: flex;
@@ -6530,6 +6493,7 @@ body .communityDetails .container .content-body .subject-box .box-item {
   gap: 16px;
   position: relative;
   padding: 0 16px;
+  color: var(--dark-color);
 }
 body .communityDetails .container .content-body .subject-box .box-item.comment-item {
   padding: 0 32px;
@@ -7073,8 +7037,7 @@ body.en main .form .input-field .input-span {
 body.en main .row-head a i {
   transform: scaleX(-1);
 }
-
-.bank-acc-card {
+body .bank-acc-card {
   background-color: var(--gray-background);
   border: 2px solid var(--gray-background);
   width: 100%;
@@ -7086,31 +7049,33 @@ body.en main .row-head a i {
   cursor: pointer;
   transition: var(--transition);
 }
-.bank-acc-card .image-wrapper {
+body .bank-acc-card .image-wrapper {
   width: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.bank-acc-card .image-wrapper i {
+body .bank-acc-card .image-wrapper i {
   font-size: 36px;
 }
-.bank-acc-card .info-wrapper {
+body .bank-acc-card .info-wrapper {
   display: flex;
   flex-direction: column;
   gap: 8px;
   position: relative;
   flex: 1 0;
 }
-.bank-acc-card .info-wrapper h5 {
+body .bank-acc-card .info-wrapper h5 {
   margin: 0;
 }
-.bank-acc-card .info-wrapper .info-boxes-wrapper {
+body .bank-acc-card .info-wrapper .info-boxes-wrapper {
   display: flex;
-  flex-direction: column;
   position: relative;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0 24px;
 }
-.bank-acc-card .info-wrapper .info-boxes-wrapper .info-box {
+body .bank-acc-card .info-wrapper .info-boxes-wrapper .info-box {
   display: flex;
   align-items: center;
   gap: 4px;
@@ -7119,7 +7084,7 @@ body.en main .row-head a i {
   margin: 0;
   color: var(--text-color);
 }
-.bank-acc-card .info-wrapper .info-boxes-wrapper .info-box i {
+body .bank-acc-card .info-wrapper .info-boxes-wrapper .info-box i {
   font-size: 12px;
   width: 16px;
   height: 16px;
@@ -7128,14 +7093,14 @@ body.en main .row-head a i {
   align-items: center;
   color: var(--text-color);
 }
-.bank-acc-card .icons {
+body .bank-acc-card .icons {
   position: absolute;
   top: 12px;
   left: 12px;
   display: flex;
   gap: 8px;
 }
-.bank-acc-card .icons button {
+body .bank-acc-card .icons button {
   border: none;
   background: none;
   outline: none;
@@ -7146,10 +7111,59 @@ body.en main .row-head a i {
   height: 36px;
   width: 36px;
 }
-.bank-acc-card .icons button svg {
+body .bank-acc-card .icons button svg {
   height: 16px;
   width: 16px;
 }
-.bank-acc-card .icons button:nth-child(2) {
+body .bank-acc-card .icons button:nth-child(2) {
   background: red;
+}
+body .conditions-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+body .conditions-wrapper.no-lines::after, body .conditions-wrapper.no-lines::before {
+  content: none !important;
+}
+body .conditions-wrapper::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--LightGray);
+}
+body .conditions-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--LightGray);
+}
+body .conditions-wrapper .checkbox-group {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+body .conditions-wrapper .checkbox-group input::after {
+  width: 16px;
+  height: 16px;
+}
+body .conditions-wrapper .checkbox-group label {
+  font-size: 16px;
+}
+body .conditions-wrapper .condition-note {
+  position: relative;
+  font-size: 14px;
+  margin: 0;
+  color: var(--text-color);
+  line-height: 1.6;
 }/*# sourceMappingURL=style.css.map */
