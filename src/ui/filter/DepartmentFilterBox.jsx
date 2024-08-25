@@ -5,7 +5,7 @@ function DepartmentFilterBox({
   categoriesWithSubCategories,
   categoriesValue,
   sub_categoriesValue,
-  onChange
+  onChange,
 }) {
   const { t } = useTranslation();
 
@@ -21,7 +21,9 @@ function DepartmentFilterBox({
                   key={item.id}
                   item={item}
                   categoriesValue={categoriesValue}
-                  sub_categoriesValue={sub_categoriesValue}
+                  sub_categoriesValue={
+                    sub_categoriesValue ? sub_categoriesValue : null
+                  }
                   onChange={onChange}
                 />
               ))}

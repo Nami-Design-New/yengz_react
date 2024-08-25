@@ -97,7 +97,7 @@ export function formattedDate(date) {
   formattedDate = new Intl.DateTimeFormat("en-US", {
     day: "numeric",
     month: "long",
-    year: "numeric"
+    year: "numeric",
   }).format(formattedDate);
 
   return formattedDate;
@@ -105,6 +105,8 @@ export function formattedDate(date) {
 
 export const handleApplyFilters = (setSearchParams, searchFilterData) => {
   if (!searchFilterData) return;
+
+  console.log(searchFilterData);
 
   const newParams = new URLSearchParams();
 

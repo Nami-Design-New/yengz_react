@@ -16,6 +16,7 @@ import MultiSelect from "../../ui/form-elements/MultiSelect";
 import useCategoriesList from "./../categories/useCategoriesList";
 import SubmitButton from "./../../ui/form-elements/SubmitButton";
 import Vector from "../../Assets/images/Vector.svg";
+import useGetSkills from "../settings/useGetSkills";
 
 const EditProfile = () => {
   const { t } = useTranslation();
@@ -30,6 +31,8 @@ const EditProfile = () => {
   const [options, setOptions] = useState([]);
   const [wantChangePassword, setWantChangePassword] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState([]);
+  const { data: skills } = useGetSkills();
+  const [skillsSelectedOptions, setSkillsSelectedOptions] = useState([]);
 
   useEffect(() => {
     setFormData({
@@ -131,6 +134,17 @@ const EditProfile = () => {
     }
   };
 
+  const handleSelectSkills = (selectedItems) => {
+    setSkillsSelectedOptions(selectedItems);
+    const selectedValues = selectedItems
+      ? selectedItems?.map((option) => option.value)
+      : [];
+    setFormData({
+      ...formData,
+      skills: selectedValues,
+    });
+  };
+
   return (
     <section className="login-section container">
       <h1 className="text-center">{t("profile.editProfile")}</h1>
@@ -201,6 +215,17 @@ const EditProfile = () => {
               options={options}
               selectedOptions={selectedOptions}
               handleChange={handleSelect}
+            />
+            <MultiSelect
+              label={t("search.skills")}
+              id="skills"
+              name="skills"
+              selectedOptions={skillsSelectedOptions}
+              handleChange={handleSelectSkills}
+              options={skills?.map((skill) => ({
+                label: skill?.name,
+                value: skill?.id,
+              }))}
             />
             <div className="question p-0">
               <label htmlFor="isFreelancer" className="quest">

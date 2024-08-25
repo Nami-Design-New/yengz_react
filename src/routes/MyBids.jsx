@@ -4,17 +4,21 @@ import SectionHeader from "../ui/SectionHeader";
 import InputField from "../ui/form-elements/InputField";
 import MultiSelect from "../ui/form-elements/MultiSelect";
 import BidCard from "../ui/cards/BidCard";
+import useGetMyProjectRequestsList from "../features/projects/useGetMyProjectRequestsList";
+import EmptyData from "../ui/EmptyData";
+import DataLoader from "../ui/DataLoader";
 
 export default function MyBids() {
   const { t } = useTranslation();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [searchFilterData, setSearchFilterData] = useState({});
   const [selectedOptions, setSelectedOptions] = useState([]);
+  const { isLoading, data: bids } = useGetMyProjectRequestsList();
 
   const options = [
     { value: "Ahmed Ali", label: "Ahmed Ali" },
     { value: "Emad Salem", label: "Emad Salem" },
-    { value: "Mohamed Ahmed", label: "Mohamed Ahmed" }
+    { value: "Mohamed Ahmed", label: "Mohamed Ahmed" },
   ];
 
   const handleChange = (e) => {
@@ -29,7 +33,7 @@ export default function MyBids() {
       : [];
     setSearchFilterData({
       ...searchFilterData,
-      skills: selectedValues
+      skills: selectedValues,
     });
   };
 
@@ -125,25 +129,23 @@ export default function MyBids() {
                 </form>
               </div>
             </aside>
-            <div className="col-lg-9 col-12 p-2">
-              <div className="row">
-                <div className="col-12 p-2">
-                  <BidCard />
-                </div>
-                <div className="col-12 p-2">
-                  <BidCard />
-                </div>
-                <div className="col-12 p-2">
-                  <BidCard />
-                </div>
-                <div className="col-12 p-2">
-                  <BidCard />
-                </div>
-                <div className="col-12 p-2">
-                  <BidCard />
+            {isLoading ? (
+              <DataLoader />
+            ) : (
+              <div className="col-lg-9 col-12 p-2">
+                <div className="row">
+                  {bids?.length > 0 ? (
+                    bids.map((bid) => (
+                      <div className="col-12 p-2" key={bid?.id}>
+                        <BidCard bid={bid} />
+                      </div>
+                    ))
+                  ) : (
+                    <EmptyData>{t("search.noData")}</EmptyData>
+                  )}
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </section>

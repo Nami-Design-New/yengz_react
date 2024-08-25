@@ -1,16 +1,17 @@
-function BankTransferCard({
-  bank,
-  selectedBankTransfer,
-  handleBankTransferChange,
-}) {
+function BankTransferCard({ bank, bankTransfer, handleChange }) {
   return (
     <div className="bank-transfer-box">
       <input
         type="radio"
-        name="bank-transfer"
+        name="bank_id"
         id={bank?.id}
-        checked={Number(selectedBankTransfer) === Number(bank?.id)}
-        onChange={handleBankTransferChange}
+        value={bank?.id}
+        checked={Number(bankTransfer) === Number(bank?.id)}
+        onChange={(e) => {
+          console.log(e.target.name);
+          console.log(e.target.value);
+          // handleChange();
+        }}
       />
       <label htmlFor={bank?.id}>
         <div className="image-wrapper">

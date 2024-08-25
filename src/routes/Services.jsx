@@ -24,9 +24,14 @@ const Services = () => {
     search: searchParams.get("search") || "",
     page: Number(searchParams.get("page")) || null,
     rate: Number(searchParams.get("rate")) || null,
-    skills: searchParams.get("skills")?.split("-") || [],
     user_verification: Number(searchParams.get("user_verification")) || null,
     user_available: Number(searchParams.get("user_available")) || null,
+    skills: searchParams.get("skills")
+      ? searchParams
+          .get("skills")
+          .split("-")
+          .map((skill) => Number(skill))
+      : [],
     categories: searchParams.get("categories")
       ? searchParams
           .get("categories")
@@ -42,7 +47,7 @@ const Services = () => {
     is_old: Number(searchParams.get("is_old")) || null,
     skills: searchParams.get("skills")
       ? searchParams.get("skills").split("-")
-      : []
+      : [],
   });
 
   useEffect(() => {
@@ -62,7 +67,7 @@ const Services = () => {
     fetchNextPage,
     hasNextPage,
     isFetching,
-    isFetchingNextPage
+    isFetchingNextPage,
   } = useSearchServicesList();
 
   const handleChange = (e) => {
@@ -71,7 +76,7 @@ const Services = () => {
     if (name !== "categories" && name !== "sub_categories") {
       setSearchFilterData((prevState) => ({
         ...prevState,
-        [name]: parsedValue
+        [name]: parsedValue,
       }));
       return;
     }
@@ -95,8 +100,8 @@ const Services = () => {
           ? [
               ...new Set([
                 ...prevState["sub_categories"],
-                ...relatedSubCategories
-              ])
+                ...relatedSubCategories,
+              ]),
             ]
           : prevState["sub_categories"].filter(
               (id) => !relatedSubCategories.includes(id)
@@ -135,7 +140,7 @@ const Services = () => {
       : [];
     setSearchFilterData({
       ...searchFilterData,
-      skills: selectedValues
+      skills: selectedValues,
     });
   };
 
@@ -204,7 +209,7 @@ const Services = () => {
                   handleChange={handleSelect}
                   options={skills?.map((skill) => ({
                     label: skill?.name,
-                    value: skill?.id
+                    value: skill?.id,
                   }))}
                 />
                 <RatingFilterBox

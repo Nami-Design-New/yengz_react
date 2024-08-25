@@ -35,6 +35,80 @@ body {
           width: 0;
           height: 0;
         }
+
+        .accordion {
+          gap: 10px;
+          display: flex !important;
+          flex-direction: column;
+        }
+
+        .accordion-header {
+          img,
+          svg,
+          i {
+            height: 20px;
+            width: 20px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+        .accordion-body {
+          padding: 8px;
+          ul {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            li {
+              line-height: 24px;
+              a {
+                padding: 0 !important;
+              }
+            }
+          }
+        }
+        .accordion-item {
+          border: none !important;
+          background-color: transparent !important;
+        }
+        .accordion-body {
+          a {
+            padding: 8px 0;
+            line-height: 1.4;
+          }
+        }
+        .accordion-collapse {
+          padding: 0 20px;
+        }
+        .accordion-button {
+          color: var(--black-color);
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 14px;
+          padding: 0;
+          background: transparent !important;
+          box-shadow: none !important;
+          i {
+            width: 20px !important;
+            height: 20px !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+        .accordion-button::after {
+          content: "\f107";
+          background: none;
+          transform: none;
+          font-family: "Font Awesome 6 Pro";
+          flex: 1 0;
+        }
+        .accordion-button:not(.collapsed)::after {
+          content: "\f106";
+        }
+
         .user {
           width: 100%;
           padding: 10px;
@@ -6269,8 +6343,10 @@ body {
       width: 0;
       height: 0;
     }
-    &.active {
-      right: 0;
+    @media (min-width: 992px) {
+      &.active {
+        right: 0;
+      }
     }
     .accordion-header {
       img,
@@ -6376,6 +6452,12 @@ body {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    > p {
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
     h4 {
       color: var(--main-color);
       font-size: 24px;

@@ -4,40 +4,54 @@ import {
   IconCalendar,
   IconClock,
   IconMoneybag,
-  IconUser
+  IconUser,
 } from "@tabler/icons-react";
+import { formatTimeDifference, getTimeDifference } from "../../utils/helpers";
+import { useTranslation } from "react-i18next";
 
-function BidCard() {
+function BidCard({ bid }) {
+  const { t } = useTranslation();
+  console.log(bid);
+
+  const timeDifference = getTimeDifference(bid?.created_at);
+  const formattedTime = formatTimeDifference(
+    timeDifference.years,
+    timeDifference.months,
+    timeDifference.days,
+    timeDifference.hours,
+    timeDifference.minutes,
+    t
+  );
+
   return (
     <Link to="/projects/1" className="bid-card">
       <div className="d-flex align-items-center w-100 justify-content-between">
-        <h4>تصميم كتالوج أصناف</h4>
-        <span className="bid-status">مغلق</span>
+        <h4>{bid?.project?.title}</h4>
+        <span className={`bid-status ${bid?.status}`}>
+          {bid?.project?.status_name}
+        </span>
       </div>
       <ul>
         <li>
           <IconUser stroke={1.5} />
-          <span> Siraj M.</span>
+          <span> {bid?.project?.user?.name}</span>
         </li>
         <li>
           <IconClock stroke={1.5} />
-          <span> نُشر منذ شهر</span>
+          <span> {`${t("projects.publishedScience")} ${formattedTime}`}</span>
         </li>
         <li>
           <IconMoneybag stroke={1.5} />
-          <span>$150.00</span>
+          <span>{`$${bid?.price}`}</span>
         </li>
         <li>
           <IconCalendar stroke={1.5} />
-          <span>مدة التنفيذ 6 أيام</span>
+          <span>{`${t("projects.deliveryTime")} ${bid?.days} ${t(
+            "projects.days"
+          )}`}</span>
         </li>
       </ul>
-      <p>
-        السلام عليكم ورحمة الله وبركاته أستاذ سراج ، يسرني أن أقدم لكم عرضي
-        لتصميم كتالوج احترافي لمنتجاتكم، يتناسب مع احتياجاتكم ويعكس هوية علامتكم
-        التجارية بأفضل شكل السلام عليكم ورحمة الله وبركاته أستاذ سراج ، يسرني أن
-        أقدم لكم عرضي لتصميم كتالوج
-      </p>
+      <p>{bid?.project?.description}</p>
     </Link>
   );
 }

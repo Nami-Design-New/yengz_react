@@ -25,7 +25,7 @@ export async function getProjectsByFilter(
     const req = await axios.post("/get_projects", requestBody);
     return {
       data: req.data.data,
-      total: req.data.total
+      total: req.data.total,
     };
   } catch (err) {
     throw new Error(err.message);
@@ -35,8 +35,17 @@ export async function getProjectsByFilter(
 export async function getUserProjects(id) {
   try {
     const req = await axios.post("/get_my_projects", {
-      user_id: id
+      user_id: id,
     });
+    return req.data.data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+export async function getMyProjectRequests(id) {
+  try {
+    const req = await axios.get("/user/get_my_project_requests");
     return req.data.data;
   } catch (error) {
     throw new Error(error.message);
@@ -47,8 +56,8 @@ export const createProject = async (data, queryClient) => {
   try {
     await axios.post("/user/create_project", data, {
       headers: {
-        "Content-Type": "multipart/form-data"
-      }
+        "Content-Type": "multipart/form-data",
+      },
     });
     queryClient.invalidateQueries(["userProjects"]);
   } catch (error) {
@@ -60,8 +69,8 @@ export const editProject = async (data, queryClient) => {
   try {
     await axios.post("/user/update_project", data, {
       headers: {
-        "Content-Type": "multipart/form-data"
-      }
+        "Content-Type": "multipart/form-data",
+      },
     });
     queryClient.invalidateQueries(["userProjects"]);
   } catch (error) {
@@ -72,7 +81,7 @@ export const editProject = async (data, queryClient) => {
 export async function deleteProject(id, queryClient) {
   try {
     await axios.post("/user/delete_project", {
-      id
+      id,
     });
     queryClient.invalidateQueries(["userProjects"]);
   } catch (error) {
@@ -83,7 +92,7 @@ export async function deleteProject(id, queryClient) {
 export async function getLatestProjects() {
   try {
     const req = await axios.post("/get_projects", {
-      page: 1
+      page: 1,
     });
     return req.data.data;
   } catch (error) {
@@ -94,7 +103,7 @@ export async function getLatestProjects() {
 export async function getProjectById(id) {
   try {
     const req = await axios.post("/get_project_details", {
-      id
+      id,
     });
     return req.data.data;
   } catch (error) {
@@ -107,7 +116,7 @@ export async function getProjectRequests(id, type) {
     const req = await axios.post(
       `${type === "global" ? "" : "/user"}/get_project_request`,
       {
-        id
+        id,
       }
     );
     return req.data.data;
@@ -124,7 +133,7 @@ export async function getProjectsOrders({ page, status }) {
     const req = await axios.post("/user/get_project_orders", requestBody);
     return {
       data: req.data.data,
-      total: req.data.total
+      total: req.data.total,
     };
   } catch (err) {
     throw new Error(err.message);
@@ -153,7 +162,7 @@ export async function updateRequestStatus(id, status, querClinet) {
   try {
     await axios.post("/user/change_request_status", {
       id,
-      status
+      status,
     });
     querClinet.invalidateQueries(["projectRequests"]);
   } catch (error) {
@@ -165,7 +174,7 @@ export async function updateProject(id, status, queryClient) {
   try {
     await axios.post("/user/update_project_order", {
       id: id,
-      status: status
+      status: status,
     });
     queryClient.invalidateQueries("project", "projectsOrdersList");
   } catch (error) {
