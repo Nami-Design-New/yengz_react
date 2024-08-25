@@ -345,6 +345,73 @@ body header .tnavbar .small-media-menu::-webkit-scrollbar {
   width: 0;
   height: 0;
 }
+body header .tnavbar .small-media-menu .accordion {
+  gap: 10px;
+  display: flex !important;
+  flex-direction: column;
+}
+body header .tnavbar .small-media-menu .accordion-header img,
+body header .tnavbar .small-media-menu .accordion-header svg,
+body header .tnavbar .small-media-menu .accordion-header i {
+  height: 20px;
+  width: 20px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body header .tnavbar .small-media-menu .accordion-body {
+  padding: 8px;
+}
+body header .tnavbar .small-media-menu .accordion-body ul {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+body header .tnavbar .small-media-menu .accordion-body ul li {
+  line-height: 24px;
+}
+body header .tnavbar .small-media-menu .accordion-body ul li a {
+  padding: 0 !important;
+}
+body header .tnavbar .small-media-menu .accordion-item {
+  border: none !important;
+  background-color: transparent !important;
+}
+body header .tnavbar .small-media-menu .accordion-body a {
+  padding: 8px 0;
+  line-height: 1.4;
+}
+body header .tnavbar .small-media-menu .accordion-collapse {
+  padding: 0 20px;
+}
+body header .tnavbar .small-media-menu .accordion-button {
+  color: var(--black-color);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  padding: 0;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+body header .tnavbar .small-media-menu .accordion-button i {
+  width: 20px !important;
+  height: 20px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body header .tnavbar .small-media-menu .accordion-button::after {
+  content: "\f107";
+  background: none;
+  transform: none;
+  font-family: "Font Awesome 6 Pro";
+  flex: 1 0;
+}
+body header .tnavbar .small-media-menu .accordion-button:not(.collapsed)::after {
+  content: "\f106";
+}
 body header .tnavbar .small-media-menu .user {
   width: 100%;
   padding: 10px;
@@ -6939,8 +7006,10 @@ body .web-menu-sidebar::-webkit-scrollbar {
   width: 0;
   height: 0;
 }
-body .web-menu-sidebar.active {
-  right: 0;
+@media (min-width: 992px) {
+  body .web-menu-sidebar.active {
+    right: 0;
+  }
 }
 body .web-menu-sidebar .accordion-header img,
 body .web-menu-sidebar .accordion-header svg,
@@ -7042,6 +7111,12 @@ body .bid-card {
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+body .bid-card > p {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 body .bid-card h4 {
   color: var(--main-color);

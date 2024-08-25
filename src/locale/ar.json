@@ -482,6 +482,7 @@
     "projectCard": "بطاقة المشروع",
     "status": "حالة المشروع",
     "publishTime": "تاريخ النشر",
+    "publishedScience": "نُشر منذ",
     "budget": "الميزانية",
     "deliveryTime": "مدة التنفيذ",
     "days": "ايام",
@@ -605,6 +606,7 @@
     "status": "الحالة",
     "feesCondition": "أعلم أن البنك الوسيط أو المحلي قد يقتطع رسوم إضافية **",
     "responsibilityCondition": "أتحمل وحدي أي خسارة ناتجة عن إدخال معلومات خاطئة أو غير دقيقة",
+    "durationCondition": "أعلم أن الحوالات البنكية تستغرق حتى 7 أيام عمل لتصل",
     "paypalAccount": "حساب PayPal"
   },
   "manageAccounts": {
@@ -628,7 +630,6 @@
     "nameMatchingCondition": "هذا حسابي واسم المستفيد يطابق الاسم المسجل في هويتي الموثقة",
     "bankMatchingCondition": "معلومات حسابي التي أدخلتها مزودة من البنك وتطابق تمامًا المسجلة لديه",
     "responsibilityCondition": "أتحمل وحدي أي خسارة ناتجة عن ادخال معلومات خاطئة أو غير دقيقة",
-    "durationCondition": "أعلم أن الحوالات البنكية تستغرق حتى 7 أيام عمل لتصل",
     "bankAddedSuccessfully": "تمت اضافة الحساب بنجاح",
     "bankUpdatedSuccessfully": "تمت تعديل الحساب بنجاح",
     "bankDeletedSuccessfully": "تمت حذف الحساب بنجاح"

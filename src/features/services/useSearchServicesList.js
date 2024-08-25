@@ -34,8 +34,8 @@ function useSearchServicesList() {
       categories,
       sub_categories,
       is_old,
-      skills
-    }
+      skills,
+    },
   ];
 
   const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } =
@@ -59,15 +59,17 @@ function useSearchServicesList() {
       },
       keepPreviousData: true,
       refetchOnWindowFocus: false,
-      refetchOnReconnect: false
+      refetchOnReconnect: false,
     });
+
+  console.log(data);
 
   return {
     data: data?.pages.flatMap((page) => page.data) || [],
     fetchNextPage,
     hasNextPage,
     isFetching,
-    isFetchingNextPage
+    isFetchingNextPage,
   };
 }
 

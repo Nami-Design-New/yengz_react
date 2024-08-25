@@ -1,5 +1,9 @@
 import React from "react";
+import { Accordion } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import useGetAbout from "../features/About/useGetAbout";
+import useGetCommunitiesList from "../features/community/useGetCommunitiesList";
+import { IconFile } from "@tabler/icons-react";
 
 function SmallMediaMenu({
   isSmallMediaMenuOpen,
@@ -9,8 +13,11 @@ function SmallMediaMenu({
   t,
   closeProfileMenu,
   avatar,
-  performLogout
+  performLogout,
 }) {
+  const { data: footerCategoriesList } = useGetAbout();
+  const { data: communities } = useGetCommunitiesList();
+
   return (
     <div className={`small-media-menu  ${isSmallMediaMenuOpen ? "show" : ""}`}>
       {isLogged && (
@@ -37,9 +44,53 @@ function SmallMediaMenu({
         </li>
         <li className="nav-link" onClick={closeSmallMediaMenu}>
           <Link to="/freelancers">
-            <i className="fa-solid fa-stars"></i> {t("navbar.bestFreelancers")}
+            <i className="fa-solid fa-stars"></i> {t("navbar.freelancers")}
           </Link>
         </li>
+        <Accordion>
+          <Accordion.Item eventKey="0">
+            <Accordion.Header className="nav-link">
+              <IconFile stroke={1.5} />
+              <span>{t("navbar.ynjez")}</span>
+            </Accordion.Header>
+            <Accordion.Body>
+              <ul>
+                {footerCategoriesList?.map((category) => (
+                  <li key={category.id} className="nav-link">
+                    <Link
+                      to={`/about/${category.id}`}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {category.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </Accordion.Body>
+          </Accordion.Item>
+          {communities && communities?.length > 0 && (
+            <Accordion.Item eventKey="1">
+              <Accordion.Header className="nav-link">
+                <i className="fa-regular fa-comments"></i>{" "}
+                <span>{t("navbar.communities")}</span>
+              </Accordion.Header>
+              <Accordion.Body>
+                <ul>
+                  {communities?.map((community) => (
+                    <li key={community.id} className="nav-link">
+                      <Link
+                        to={`/community/${community.name}`}
+                        onClick={() => setIsOpen(false)}
+                      >
+                        {community.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </Accordion.Body>
+            </Accordion.Item>
+          )}
+        </Accordion>
         {!isLogged && (
           <li className="nav-link" onClick={closeSmallMediaMenu}>
             <Link to="/login">
@@ -59,6 +110,11 @@ function SmallMediaMenu({
             <li className="nav-link" onClick={closeSmallMediaMenu}>
               <Link to="/add-service">
                 <i className="far fa-plus"></i> {t("navbar.addService")}
+              </Link>
+            </li>
+            <li className="nav-link" onClick={closeSmallMediaMenu}>
+              <Link to="/add-project">
+                <i className="far fa-plus"></i> {t("navbar.addProject")}
               </Link>
             </li>
             <li className="nav-link" onClick={closeSmallMediaMenu}>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IconRosetteDiscountCheckFilled } from "@tabler/icons-react";
 import { useTranslation } from "react-i18next";
 import { Link, useSearchParams } from "react-router-dom";
@@ -10,21 +10,54 @@ import MultiSelect from "../ui/form-elements/MultiSelect";
 import useGetBestFreelancers from "../features/home/useGetBestFreelancers";
 import useCategorieListWithSub from "../features/categories/useCategorieListWithSub";
 import DepartmentFilterBox from "../ui/filter/DepartmentFilterBox";
+import useGetSkills from "../features/settings/useGetSkills";
+import { handleApplyFilters } from "../utils/helpers";
+import EmptyData from "../ui/EmptyData";
+import CustomPagination from "../ui/CustomPagination";
 
 const BestFreeLancers = () => {
   const { t } = useTranslation();
-  const { data: freelancers, isLoading } = useGetBestFreelancers();
+  const {
+    isLoading: isFreelancingLoading,
+    data: freelancers,
+    fetchNextPage,
+    hasNextPage,
+    isFetching,
+    isFetchingNextPage,
+  } = useGetBestFreelancers();
+  const { data: skills } = useGetSkills();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-  const { isLoading: categoriesIsLoading, data: categoriesWithSubCategories } =
+  const [searchFilterData, setSearchFilterData] = useState({
+    search: searchParams.get("search") || "",
+    page: Number(searchParams.get("page")) || null,
+    rate: Number(searchParams.get("rate")) || null,
+    verified: Number(searchParams.get("verified")) || null,
+    job_title: Number(searchParams.get("job_title")) || "",
+    last_login: Number(searchParams.get("last_login")) || null,
+    add_request_in_my_projects:
+      Number(searchParams.get("add_request_in_my_projects")) || null,
+    skills: searchParams.get("skills")
+      ? searchParams
+          .get("skills")
+          .split("-")
+          .map((skill) => skill)
+      : [],
+    categories: searchParams.get("categories")
+      ? searchParams
+          .get("categories")
+          .split("-")
+          .map((category) => Number(category))
+      : [],
+  });
+  const { isLoading, data: categoriesWithSubCategories } =
     useCategorieListWithSub();
 
-  const options = [
-    { value: "1", label: "1" },
-    { value: "2", label: "2" },
-    { value: "3", label: "3" },
-  ];
+  const skillsOptions = skills?.map((skill) => ({
+    value: skill?.id,
+    label: skill?.name,
+  }));
 
   function truncate(inputString) {
     let truncateStringResult;
@@ -36,33 +69,83 @@ const BestFreeLancers = () => {
     return truncateStringResult;
   }
 
-  const [searchFilterData, setSearchFilterData] = useState({
-    skills: [],
-    page: Number(searchParams.get("page")) || null,
-  });
+  useEffect(() => {
+    const options = searchFilterData?.skills?.map((id) => {
+      const skill = skills?.find((s) => s?.id === Number(id));
+      return { value: id, label: skill?.name };
+    });
+
+    setSelectedOptions(options);
+  }, [searchFilterData, skills]);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setSearchFilterData({ ...searchFilterData, [name]: value });
+    const { name, checked, type, value } = e.target;
+    const parsedValue = type === "checkbox" ? (checked ? 1 : 0) : value;
+    if (name !== "categories" && name !== "sub_categories") {
+      setSearchFilterData((prevState) => ({
+        ...prevState,
+        [name]: parsedValue,
+      }));
+      return;
+    }
+    const categoryValue = Number(value);
+    setSearchFilterData((prevState) => {
+      const updatedState = { ...prevState };
+      const updateList = (list, value, add) => {
+        return add ? [...list, value] : list.filter((id) => id !== value);
+      };
+      if (name === "categories") {
+        updatedState[name] = updateList(
+          prevState[name],
+          categoryValue,
+          checked
+        );
+      }
+      return updatedState;
+    });
   };
 
-  const handleRatingChange = (value) => {
-    setSearchFilterData({ ...searchFilterData, rate: value });
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      if (
+        window.innerHeight + document.documentElement.scrollTop >=
+        document.documentElement.offsetHeight - 1000
+      ) {
+        if (!isFetchingNextPage && hasNextPage) {
+          fetchNextPage();
+        }
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isFetchingNextPage, hasNextPage, fetchNextPage]);
 
   const handleSelect = (selectedItems) => {
     setSelectedOptions(selectedItems);
-    console.log(selectedItems);
-    
     const selectedValues = selectedItems
-    ? selectedItems?.map((option) => option.value)
-    : [];
-    console.log(selectedValues);
+      ? selectedItems?.map((option) => option.value)
+      : [];
     setSearchFilterData({
       ...searchFilterData,
       skills: selectedValues,
     });
   };
+
+  function handleClearFilters() {
+    setSearchParams({});
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    handleApplyFilters(setSearchParams, searchFilterData);
+  }
+  const handleRatingChange = (value) => {
+    setSearchFilterData({ ...searchFilterData, rate: value });
+  };
+
+  if ((isLoading || isFetching) && freelancers?.length < 12) {
+    return <DataLoader />;
+  }
 
   return (
     <>
@@ -82,7 +165,7 @@ const BestFreeLancers = () => {
                   <div className="colse" onClick={() => setIsFilterOpen(false)}>
                     <i className="fa-light fa-xmark"></i>
                   </div>
-                  <form className="form">
+                  <form className="form" onAbort={handleSubmit}>
                     <InputField
                       id="search"
                       name="search"
@@ -93,7 +176,6 @@ const BestFreeLancers = () => {
                     />
                     <DepartmentFilterBox
                       categoriesValue={searchFilterData.categories}
-                      sub_categoriesValue={searchFilterData.sub_categories}
                       onChange={handleChange}
                       categoriesWithSubCategories={categoriesWithSubCategories}
                     />
@@ -109,7 +191,7 @@ const BestFreeLancers = () => {
                       label={t("search.skills")}
                       id="skills"
                       name="skills"
-                      options={options}
+                      options={skillsOptions}
                       selectedOptions={selectedOptions}
                       handleChange={handleSelect}
                     />
@@ -147,53 +229,56 @@ const BestFreeLancers = () => {
                         <li>
                           <input
                             type="checkbox"
-                            id="user_verification"
-                            name="user_verification"
+                            id="verified"
+                            name="verified"
+                            checked={searchFilterData.verified === 1}
+                            onChange={handleChange}
                           />
-                          <label htmlFor="user_verification">
+                          <label htmlFor="verified">
                             {t("search.verificated")}
                           </label>
                         </li>
                         <li>
                           <input
                             type="checkbox"
-                            id="online_now"
-                            name="online_now"
+                            id="last_login"
+                            name="last_login"
+                            checked={searchFilterData.last_login === 1}
+                            onChange={handleChange}
                           />
-                          <label htmlFor="user_available">
+                          <label htmlFor="last_login">
                             {t("search.onlineNow")}
                           </label>
                         </li>
                         <li>
                           <input
                             type="checkbox"
-                            id="added_offers"
-                            name="added_offers"
+                            id="add_request_in_my_projects"
+                            name="add_request_in_my_projects"
+                            checked={
+                              searchFilterData.add_request_in_my_projects === 1
+                            }
+                            onChange={handleChange}
                           />
-                          <label htmlFor="added_offers">
+                          <label htmlFor="add_request_in_my_projects">
                             {t("search.addedOffers")}
-                          </label>
-                        </li>
-                        <li>
-                          <input
-                            type="checkbox"
-                            id="hired_them_before"
-                            name="hired_them_before"
-                          />
-                          <label htmlFor="hired_them_before">
-                            {t("search.hiredThemBefore")}
                           </label>
                         </li>
                       </ul>
                     </ul>
                     <div className="d-flex gap-2 w-100">
                       <div className="search-btn">
-                        <button style={{ height: "44px" }}>
+                        <button
+                          onClick={handleSubmit}
+                          style={{ height: "44px" }}
+                        >
                           {t("search.apply")}
                         </button>
                       </div>
                       <div className="search-btn">
-                        <span>{t("search.clear")}</span>
+                        <span onClick={handleClearFilters}>
+                          {t("search.clear")}
+                        </span>
                       </div>
                     </div>
                   </form>
@@ -201,42 +286,50 @@ const BestFreeLancers = () => {
               </aside>
               <div className="col-lg-9 col-12 p-2">
                 <div className="row">
-                  {freelancers?.data?.map((freelancer) => (
-                    <div className="col-12 p-2" key={freelancer?.id}>
-                      <Link
-                        to={`/profile/${freelancer?.id}`}
-                        className="freelancerCard"
-                      >
-                        <div className="d-flex justify-content-between">
-                          <div className="info">
-                            <div className="img">
-                              <img
-                                src={freelancer?.image}
-                                alt={freelancer?.name}
-                              />
-                              {freelancer?.verified === 1 && (
-                                <span className="status">
-                                  <IconRosetteDiscountCheckFilled />
-                                </span>
-                              )}
+                  <>
+                    {freelancers?.data?.map((freelancer) => (
+                      <div className="col-12 p-2" key={freelancer?.id}>
+                        <Link
+                          to={`/profile/${freelancer?.id}`}
+                          className="freelancerCard"
+                        >
+                          <div className="d-flex justify-content-between">
+                            <div className="info">
+                              <div className="img">
+                                <img
+                                  src={freelancer?.image}
+                                  alt={freelancer?.name}
+                                />
+                                {freelancer?.verified === 1 && (
+                                  <span className="status">
+                                    <IconRosetteDiscountCheckFilled />
+                                  </span>
+                                )}
+                              </div>
+                              <div className="content">
+                                <h6>{freelancer?.name}</h6>
+                                <ul>
+                                  <li>
+                                    <i className="fa-regular fa-cubes"></i>{" "}
+                                    {t("servicesCount")}:{" "}
+                                    {freelancer?.service_count}
+                                  </li>
+                                </ul>
+                              </div>
                             </div>
-                            <div className="content">
-                              <h6>{freelancer?.name}</h6>
-                              <ul>
-                                <li>
-                                  <i className="fa-regular fa-cubes"></i>{" "}
-                                  {t("servicesCount")}:{" "}
-                                  {freelancer?.service_count}
-                                </li>
-                              </ul>
-                            </div>
+                            <StarsList rate={freelancer?.rate} />
                           </div>
-                          <StarsList rate={freelancer?.rate} />
-                        </div>
-                        <p>{truncate(freelancer?.about)}</p>
-                      </Link>
-                    </div>
-                  ))}
+                          <p>{truncate(freelancer?.about)}</p>
+                        </Link>
+                      </div>
+                    ))}
+                    {freelancers && freelancers?.total > 10 && (
+                      <CustomPagination
+                        count={freelancers?.total}
+                        pageSize={10}
+                      />
+                    )}
+                  </>
                 </div>
               </div>
             </div>

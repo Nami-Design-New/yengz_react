@@ -408,6 +408,7 @@
     "projectCard": "Project Card",
     "status": "Project Status",
     "publishTime": "Publish Date",
+    "publishedScience": "Published Science",
     "budget": "Budget",
     "deliveryTime": "Delivery Time",
     "days": "Days",
@@ -525,6 +526,7 @@
     "status": "Status",
     "feesCondition": "I am aware that the intermediary or local bank may charge additional fees **",
     "responsibilityCondition": "I bear solely any loss resulting from entering incorrect or inaccurate information",
+    "durationCondition": "I am aware that bank transfers take up to 7 business days to arrive",
     "paypalAccount": "PayPal Account"
   },
   "manageAccounts": {
@@ -547,7 +549,6 @@
     "nameMatchingCondition": "This is my account and the beneficiary name matches the name registered on my verified ID",
     "bankMatchingCondition": "My account information that I entered is provided by the bank and exactly matches what is registered with it",
     "responsibilityCondition": "I bear solely any loss resulting from entering incorrect or inaccurate information",
-    "durationCondition": "I am aware that bank transfers take up to 7 business days to arrive",
     "bankAddedSuccessfully": "Account added successfully",
     "bankUpdatedSuccessfully": "Account updated successfully",
     "bankDeletedSuccessfully": "Account deleted successfully"

@@ -9,16 +9,34 @@ import BankTransferCard from "../cards/BankTransferCard";
 
 const WithdrawModal = ({ showModal, setShowModal, cartTotalPrice }) => {
   const { t } = useTranslation();
-  const [transferAmountValue, setTransferAmountValue] = useState("");
-  const [paypalAmountValue, setPaypalAmountValue] = useState("");
-  const [selectedBankTransfer, setSelectedBankTransfer] = useState("");
-  const [paypalAccount, setPaypalAccount] = useState("");
   const [cookies] = useCookies(["token"]);
   const token = cookies?.token;
   const { data: banks } = useBanksList();
+  const [formData, setFormData] = useState({
+    amount: "",
+    paypal: "",
+    bank_id: "",
+  });
+  const [conditionsCheck, setConditionsCheck] = useState({
+    responsibility: false,
+    duration: false,
+    fees: false,
+  });
 
-  const handleBankTransferChange = (event) => {
-    setSelectedBankTransfer(event.target.id);
+  const handleChange = (e) => {
+    console.log(e.target);
+
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleConditionsChange = (e) => {
+    setConditionsCheck({
+      ...conditionsCheck,
+      [e.target.name]: e.target.checked,
+    });
   };
 
   return (
@@ -57,12 +75,12 @@ const WithdrawModal = ({ showModal, setShowModal, cartTotalPrice }) => {
                 <form className="form">
                   <InputField
                     type="number"
-                    id="transferAmountValue"
-                    name="transferAmountValue"
+                    id="amount"
+                    name="amount"
                     placeholder={"00"}
-                    value={transferAmountValue}
+                    value={formData.amount}
                     label={`${t("balance.amount")} *`}
-                    onChange={(e) => setTransferAmountValue(e.target.value)}
+                    onChange={handleChange}
                   />
 
                   {banks &&
@@ -71,8 +89,8 @@ const WithdrawModal = ({ showModal, setShowModal, cartTotalPrice }) => {
                       <BankTransferCard
                         key={bank.id}
                         bank={bank}
-                        selectedBankTransfer={selectedBankTransfer}
-                        handleBankTransferChange={handleBankTransferChange}
+                        bankTransfer={formData.bank_id}
+                        onChange={handleChange}
                       />
                     ))}
 
@@ -82,17 +100,36 @@ const WithdrawModal = ({ showModal, setShowModal, cartTotalPrice }) => {
 
                   <div className="conditions-wrapper">
                     <div className="checkbox-group">
-                      <input type="checkbox" name="" id="fees" />
+                      <input
+                        type="checkbox"
+                        name="fees"
+                        id="fees"
+                        checked={conditionsCheck.fees}
+                        onChange={handleConditionsChange}
+                      />
+
                       <label htmlFor="fees">{t("balance.feesCondition")}</label>
                     </div>
                     <div className="checkbox-group">
-                      <input type="checkbox" name="" id="duration" />
+                      <input
+                        type="checkbox"
+                        name="duration"
+                        id="duration"
+                        checked={conditionsCheck.duration}
+                        onChange={handleConditionsChange}
+                      />
                       <label htmlFor="duration">
                         {t("balance.durationCondition")}
                       </label>
                     </div>
                     <div className="checkbox-group">
-                      <input type="checkbox" name="" id="responsibility" />
+                      <input
+                        type="checkbox"
+                        name="responsibility"
+                        id="responsibility"
+                        checked={conditionsCheck.responsibility}
+                        onChange={handleConditionsChange}
+                      />
                       <label htmlFor="responsibility">
                         {t("balance.responsibilityCondition")}
                       </label>
@@ -114,22 +151,69 @@ const WithdrawModal = ({ showModal, setShowModal, cartTotalPrice }) => {
                 <form className="form">
                   <InputField
                     type="number"
-                    id="paypalAmountValue"
-                    name="paypalAmountValue"
+                    id="amount"
+                    name="amount"
                     placeholder={"00"}
-                    value={paypalAmountValue}
+                    value={formData.amount}
                     label={`${t("balance.amount")} *`}
-                    onChange={(e) => setPaypalAmountValue(e.target.value)}
+                    onChange={handleChange}
                   />
                   <InputField
                     type="number"
-                    id="paypalAccount"
-                    name="paypalAccount"
+                    id="paypal"
+                    name="paypal"
                     placeholder={"001321913231"}
-                    value={paypalAccount}
+                    value={formData.paypal}
                     label={`${t("balance.paypalAccount")} *`}
-                    onChange={(e) => setPaypalAccount(e.target.value)}
+                    onChange={handleChange}
                   />
+                  <div className="conditions-wrapper">
+                    <div className="checkbox-group">
+                      <input
+                        type="checkbox"
+                        name="fees"
+                        id="fees"
+                        checked={conditionsCheck.fees}
+                        onChange={handleConditionsChange}
+                      />
+
+                      <label htmlFor="fees">{t("balance.feesCondition")}</label>
+                    </div>
+                    <div className="checkbox-group">
+                      <input
+                        type="checkbox"
+                        name="duration"
+                        id="duration"
+                        checked={conditionsCheck.duration}
+                        onChange={handleConditionsChange}
+                      />
+                      <label htmlFor="duration">
+                        {t("balance.durationCondition")}
+                      </label>
+                    </div>
+                    <div className="checkbox-group">
+                      <input
+                        type="checkbox"
+                        name="responsibility"
+                        id="responsibility"
+                        checked={conditionsCheck.responsibility}
+                        onChange={handleConditionsChange}
+                      />
+                      <label htmlFor="responsibility">
+                        {t("balance.responsibilityCondition")}
+                      </label>
+                    </div>
+                    <p className="condition-note">
+                      الحوالات البنكية التي ترسلها دولية، وحسب البنك الذي تتعامل
+                      معه. قد تمر الحوالة عبر بنك وسيط لاتمام التحويل مما يؤدي
+                      لاقتطاع رسوم إضافية.
+                    </p>
+                    <p className="condition-note">
+                      قد يقتطع البنك المحلي الذي تستخدمه رسوم إضافية لاستقبال
+                      حوالات بنكية دولية أو رسوم لتحويل العملة من الدولار إلى
+                      العملة المحلية.
+                    </p>
+                  </div>
                 </form>
               </Tab.Pane>
             </Tab.Content>
@@ -140,16 +224,9 @@ const WithdrawModal = ({ showModal, setShowModal, cartTotalPrice }) => {
           <button onClick={() => setShowModal(false)} className="cancel-btn">
             {t("cancel")}
           </button>
-          <Link
-            className="order-now text-center"
-            to={
-              transferAmountValue === 0 || transferAmountValue === ""
-                ? ""
-                : `https://api.ynjez.com/payment/${transferAmountValue}?Authorization=${token}&Redirect_url=${window.location.href}`
-            }
-          >
+          <button className="order-now text-center" type="submit">
             {t("balance.withdrawBalance")}
-          </Link>
+          </button>
         </div>
       </Modal.Body>
     </Modal>
