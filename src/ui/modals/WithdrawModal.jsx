@@ -6,17 +6,22 @@ import { useCookies } from "react-cookie";
 import InputField from "../form-elements/InputField";
 import useBanksList from "../../features/Banks/useBanksList";
 import BankTransferCard from "../cards/BankTransferCard";
+import { useQueryClient } from "@tanstack/react-query";
+import SubmitButton from "../form-elements/SubmitButton";
+import { createWithdraw } from "../../services/apiBanks";
+import { toast } from "react-toastify";
 
 const WithdrawModal = ({ showModal, setShowModal, cartTotalPrice }) => {
   const { t } = useTranslation();
   const [cookies] = useCookies(["token"]);
   const token = cookies?.token;
   const { data: banks } = useBanksList();
-  const [formData, setFormData] = useState({
-    amount: "",
-    paypal: "",
-    bank_id: "",
-  });
+  const [activeTab, setActiveTab] = useState("bankTransfer");
+  const [amount, setAmount] = useState("");
+  const [paypal, setPaypal] = useState("");
+  const [bankId, setBankId] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const [conditionsCheck, setConditionsCheck] = useState({
     responsibility: false,
     duration: false,
@@ -39,6 +44,48 @@ const WithdrawModal = ({ showModal, setShowModal, cartTotalPrice }) => {
     });
   };
 
+  const queryClint = useQueryClient();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    const requestBody = {};
+
+    if (activeTab === "bankTransfer") {
+      requestBody.amount = amount;
+      requestBody.bank_id = bankId;
+    }
+    if (activeTab === "paypal") {
+      requestBody.amount = amount;
+      requestBody.paypal = paypal;
+    }
+
+    try {
+      if (
+        (activeTab === "bankTransfer" &&
+          bankId &&
+          amount &&
+          conditionsCheck.responsibility &&
+          conditionsCheck.fees &&
+          conditionsCheck.duration) ||
+        (activeTab === "paypal" &&
+          paypal &&
+          amount &&
+          conditionsCheck.responsibility &&
+          conditionsCheck.fees &&
+          conditionsCheck.duration)
+      ) {
+        await createWithdraw(requestBody, queryClint);
+        toast.success(t("projects.projectEditedSuccessfully"));
+      }
+    } catch (error) {
+      console.error("Register error:", error);
+      throw new Error(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <Modal show={showModal} onHide={() => setShowModal(false)} centered>
       <Modal.Header className="pb-0" closeButton>
@@ -54,7 +101,11 @@ const WithdrawModal = ({ showModal, setShowModal, cartTotalPrice }) => {
             </span>
           </h3>
         )}
-        <Tab.Container id="left-tabs-example" defaultActiveKey="bankTransfer">
+        <Tab.Container
+          id="left-tabs-example"
+          activeKey={activeTab}
+          onSelect={(k) => setActiveTab(k)}
+        >
           <Row>
             <Nav variant="pills">
               <Nav.Item>
@@ -78,9 +129,11 @@ const WithdrawModal = ({ showModal, setShowModal, cartTotalPrice }) => {
                     id="amount"
                     name="amount"
                     placeholder={"00"}
-                    value={formData.amount}
+                    value={amount}
                     label={`${t("balance.amount")} *`}
-                    onChange={handleChange}
+                    onChange={(e) => setAmount(e.target.value)}
+                    disabled={loading}
+                    required={true}
                   />
 
                   {banks &&
@@ -89,8 +142,10 @@ const WithdrawModal = ({ showModal, setShowModal, cartTotalPrice }) => {
                       <BankTransferCard
                         key={bank.id}
                         bank={bank}
-                        bankTransfer={formData.bank_id}
-                        onChange={handleChange}
+                        bankTransfer={bankId}
+                        onChange={(id) => setBankId(id)}
+                        disabled={loading}
+                        required={true}
                       />
                     ))}
 
@@ -106,6 +161,8 @@ const WithdrawModal = ({ showModal, setShowModal, cartTotalPrice }) => {
                         id="fees"
                         checked={conditionsCheck.fees}
                         onChange={handleConditionsChange}
+                        disabled={loading}
+                        required={true}
                       />
 
                       <label htmlFor="fees">{t("balance.feesCondition")}</label>
@@ -117,6 +174,8 @@ const WithdrawModal = ({ showModal, setShowModal, cartTotalPrice }) => {
                         id="duration"
                         checked={conditionsCheck.duration}
                         onChange={handleConditionsChange}
+                        disabled={loading}
+                        required={true}
                       />
                       <label htmlFor="duration">
                         {t("balance.durationCondition")}
@@ -129,6 +188,8 @@ const WithdrawModal = ({ showModal, setShowModal, cartTotalPrice }) => {
                         id="responsibility"
                         checked={conditionsCheck.responsibility}
                         onChange={handleConditionsChange}
+                        disabled={loading}
+                        required={true}
                       />
                       <label htmlFor="responsibility">
                         {t("balance.responsibilityCondition")}
@@ -154,18 +215,22 @@ const WithdrawModal = ({ showModal, setShowModal, cartTotalPrice }) => {
                     id="amount"
                     name="amount"
                     placeholder={"00"}
-                    value={formData.amount}
+                    value={amount}
                     label={`${t("balance.amount")} *`}
-                    onChange={handleChange}
+                    onChange={(e) => setAmount(e.target.value)}
+                    disabled={loading}
+                    required={true}
                   />
                   <InputField
                     type="number"
                     id="paypal"
                     name="paypal"
                     placeholder={"001321913231"}
-                    value={formData.paypal}
+                    value={paypal}
                     label={`${t("balance.paypalAccount")} *`}
-                    onChange={handleChange}
+                    onChange={(e) => setPaypal(e.target.value)}
+                    disabled={loading}
+                    required={true}
                   />
                   <div className="conditions-wrapper">
                     <div className="checkbox-group">
@@ -175,6 +240,8 @@ const WithdrawModal = ({ showModal, setShowModal, cartTotalPrice }) => {
                         id="fees"
                         checked={conditionsCheck.fees}
                         onChange={handleConditionsChange}
+                        disabled={loading}
+                        required={true}
                       />
 
                       <label htmlFor="fees">{t("balance.feesCondition")}</label>
@@ -186,6 +253,8 @@ const WithdrawModal = ({ showModal, setShowModal, cartTotalPrice }) => {
                         id="duration"
                         checked={conditionsCheck.duration}
                         onChange={handleConditionsChange}
+                        disabled={loading}
+                        required={true}
                       />
                       <label htmlFor="duration">
                         {t("balance.durationCondition")}
@@ -198,6 +267,8 @@ const WithdrawModal = ({ showModal, setShowModal, cartTotalPrice }) => {
                         id="responsibility"
                         checked={conditionsCheck.responsibility}
                         onChange={handleConditionsChange}
+                        disabled={loading}
+                        required={true}
                       />
                       <label htmlFor="responsibility">
                         {t("balance.responsibilityCondition")}
@@ -224,7 +295,11 @@ const WithdrawModal = ({ showModal, setShowModal, cartTotalPrice }) => {
           <button onClick={() => setShowModal(false)} className="cancel-btn">
             {t("cancel")}
           </button>
-          <button className="order-now text-center" type="submit">
+          <button
+            className="order-now text-center"
+            type="submit"
+            onClick={handleSubmit}
+          >
             {t("balance.withdrawBalance")}
           </button>
         </div>

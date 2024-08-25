@@ -6,7 +6,7 @@ import {
   IconBriefcase,
   IconFile,
   IconMail,
-  IconUsers
+  IconUsers,
 } from "@tabler/icons-react";
 import useGetAbout from "../features/About/useGetAbout";
 import { useSelector } from "react-redux";
@@ -64,21 +64,6 @@ function WebMenuSideBar({ isOpen, setIsOpen }) {
               <IconMail stroke={2} /> {t("navbar.bids")}
             </Link>
           </li>
-        )}
-        {!isLogged && (
-          <>
-            <li>
-              <Link to="/bids" onClick={() => setIsOpen(false)}>
-                <i className="fa-regular fa-file-invoice"></i>{" "}
-                {t("navbar.projects")}
-              </Link>
-            </li>
-            <li>
-              <Link to="/bids" onClick={() => setIsOpen(false)}>
-                <i className="fa-light fa-database"></i> {t("navbar.services")}
-              </Link>
-            </li>
-          </>
         )}
         <Accordion>
           <Accordion.Item eventKey="0">

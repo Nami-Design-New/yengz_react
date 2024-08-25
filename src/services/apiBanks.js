@@ -9,6 +9,15 @@ export async function getBanks() {
   }
 }
 
+export async function createWithdraw(requestBody, queryClient) {
+  try {
+    await axios.post("/user/create_withdraw_balance_request");
+    queryClient.invalidateQueries(["profile"]);
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
 export async function deleteBank(id, queryClient) {
   try {
     await axios.post("/user/delete_bank", {

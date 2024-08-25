@@ -129,23 +129,22 @@ export default function MyBids() {
                 </form>
               </div>
             </aside>
-            {isLoading ? (
-              <DataLoader />
-            ) : (
-              <div className="col-lg-9 col-12 p-2">
-                <div className="row">
-                  {bids?.length > 0 ? (
-                    bids.map((bid) => (
-                      <div className="col-12 p-2" key={bid?.id}>
-                        <BidCard bid={bid} />
-                      </div>
-                    ))
-                  ) : (
-                    <EmptyData>{t("search.noData")}</EmptyData>
-                  )}
-                </div>
+
+            <div className="col-lg-9 col-12 p-2">
+              <div className="row">
+                {isLoading ? (
+                  <DataLoader />
+                ) : bids?.length > 0 ? (
+                  bids.map((bid) => (
+                    <div className="col-12 p-2" key={bid?.id}>
+                      <BidCard bid={bid} />
+                    </div>
+                  ))
+                ) : (
+                  <EmptyData>{t("search.noData")}</EmptyData>
+                )}
               </div>
-            )}
+            </div>
           </div>
         </div>
       </section>
