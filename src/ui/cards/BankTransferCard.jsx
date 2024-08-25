@@ -1,4 +1,4 @@
-function BankTransferCard({ bank, bankTransfer, handleChange }) {
+function BankTransferCard({ bank, bankTransfer, onChange, disabled }) {
   return (
     <div className="bank-transfer-box">
       <input
@@ -8,10 +8,9 @@ function BankTransferCard({ bank, bankTransfer, handleChange }) {
         value={bank?.id}
         checked={Number(bankTransfer) === Number(bank?.id)}
         onChange={(e) => {
-          console.log(e.target.name);
-          console.log(e.target.value);
-          // handleChange();
+          onChange(e.target.value);
         }}
+        disabled={disabled}
       />
       <label htmlFor={bank?.id}>
         <div className="image-wrapper">
