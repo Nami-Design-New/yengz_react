@@ -20,6 +20,7 @@ const PasswordField = ({ label, ...props }) => {
           type={showPass ? "text" : "password"}
           required
           {...props}
+          style={{ cursor: "pointer" }}s
         />
         <span onClick={handleInputType}>
           <i

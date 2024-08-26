@@ -592,5 +592,6 @@
   "enterChargeValue": "Enter Charge Value",
   "paymentFailed": "Payment Failed",
   "paymentSuccess": "Payment Success",
-  "manageAccount": "Manage Account"
+  "manageAccount": "Manage Account",
+  "noFreelancers": "Sorry, there is no freelancers in this set."
 }

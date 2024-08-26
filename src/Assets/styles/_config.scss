@@ -248,8 +248,8 @@ input[type="checkbox"] {
 .form-switch .form-check-input {
   box-shadow: none !important;
   &:checked {
-    background-color: var(--main-color);
-    border-color: var(--main-color);
+    background-color: var(--main-color) !important;
+    border-color: var(--main-color) !important;
   }
 }
 
@@ -272,7 +272,7 @@ input[type="checkbox"] {
   box-shadow: none !important;
 }
 
-.form-check-input {
+.form-check-input.checkBox {
   border: 0 !important;
   box-shadow: none !important;
   background: none !important;
