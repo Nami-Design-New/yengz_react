@@ -11,7 +11,7 @@ export async function getBanks() {
 
 export async function createWithdraw(requestBody, queryClient) {
   try {
-    await axios.post("/user/create_withdraw_balance_request");
+    await axios.post("/user/create_withdraw_balance_request", requestBody);
     queryClient.invalidateQueries(["profile"]);
   } catch (error) {
     throw new Error(error.message);

@@ -158,6 +158,10 @@ body {
               display: flex;
               align-items: center;
               justify-content: center;
+
+              &.bigger {
+                font-weight: 800;
+              }
             }
           }
         }
@@ -234,6 +238,12 @@ body {
             a {
               font-size: 14px;
               color: var(--black-color);
+
+              i {
+                &.bigger {
+                  font-weight: 800;
+                }
+              }
             }
             color: var(--black-color);
             &:hover {
@@ -316,7 +326,7 @@ body {
             box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
             top: calc(100% + 20px) !important;
             bottom: unset !important;
-            border-radius: 16px !important;
+            border-radius: 0 0 16px 16px !important;
             &.search-dropdown-menu {
               width: 100vw;
               top: 100% !important;
@@ -3176,6 +3186,75 @@ body {
       #392f71 92.24%
     );
     padding-top: 60px;
+
+    .accordion {
+      gap: 10px;
+      display: flex !important;
+      flex-direction: column;
+    }
+
+    .accordion-header {
+      img,
+      svg,
+      i {
+        height: 20px;
+        width: 20px;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+    .accordion-body {
+      padding: 8px;
+      ul {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        li {
+          line-height: 24px;
+          a {
+            padding: 0 !important;
+          }
+        }
+      }
+    }
+    .accordion-item {
+      border: none !important;
+      background-color: transparent !important;
+    }
+    .accordion-body {
+      a {
+        padding: 8px 0;
+        line-height: 1.4;
+      }
+    }
+    .accordion-collapse {
+      padding: 0 20px;
+    }
+    .accordion-button {
+      color: var(--white-color) !important;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0;
+      background: transparent !important;
+      box-shadow: none !important;
+      i {
+        width: 20px !important;
+        height: 20px !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+    .accordion-button::after {
+      content: none;
+    }
+    .accordion-button:not(.collapsed)::after {
+      content: none;
+    }
+
     .upper-row {
       padding-bottom: 32px;
       h4 {
@@ -6252,7 +6331,7 @@ body {
     left: 16px !important;
     background: var(--white-color);
     padding: 16px 0;
-    border-radius: 16px !important;
+    border-radius: 0 0 16px 16px !important;
     &.reverse {
       left: unset !important;
       right: 16px !important;

@@ -11,7 +11,6 @@ import { useTranslation } from "react-i18next";
 
 function BidCard({ bid }) {
   const { t } = useTranslation();
-  console.log(bid);
 
   const timeDifference = getTimeDifference(bid?.created_at);
   const formattedTime = formatTimeDifference(
@@ -24,7 +23,7 @@ function BidCard({ bid }) {
   );
 
   return (
-    <Link to="/projects/1" className="bid-card">
+    <Link to={`/bids/${bid?.id}`} className="bid-card">
       <div className="d-flex align-items-center w-100 justify-content-between">
         <h4>{bid?.project?.title}</h4>
         <span className={`bid-status ${bid?.status}`}>

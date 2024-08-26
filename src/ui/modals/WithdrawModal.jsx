@@ -76,7 +76,8 @@ const WithdrawModal = ({ showModal, setShowModal, cartTotalPrice }) => {
           conditionsCheck.duration)
       ) {
         await createWithdraw(requestBody, queryClint);
-        toast.success(t("projects.projectEditedSuccessfully"));
+        toast.success(t("balance.withdrawSuccessfully"));
+        setShowModal(false);
       }
     } catch (error) {
       console.error("Register error:", error);

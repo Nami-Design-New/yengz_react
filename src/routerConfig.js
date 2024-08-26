@@ -40,6 +40,7 @@ import CommunitySubjectDetails from "./routes/CommunitySubjectDetails";
 import MyBids from "./routes/MyBids";
 import Balance from "./routes/Balance";
 import ManageAccounts from "./routes/ManageAccounts";
+import MyBidDetails from "./routes/MyBidDetails";
 
 const routesConfig = [
   // main routes
@@ -87,6 +88,7 @@ const routesConfig = [
   { path: "/my-collections/:id", element: <MyCollection />, protected: true },
   { path: "/chat", element: <Chats />, protected: true },
   { path: "/bids", element: <MyBids />, protected: true },
+  { path: "/bids/:id", element: <MyBidDetails />, protected: true },
   { path: "/verify-identity", element: <VerifyIdentity />, protected: true },
   { path: "/notifications", element: <Notifcations />, protected: true },
   { path: "/balance", element: <Balance />, protected: true },

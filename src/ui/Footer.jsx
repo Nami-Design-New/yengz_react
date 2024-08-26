@@ -5,12 +5,15 @@ import logo from "../Assets/images/logo.svg";
 import usePaymentMethodsList from "../features/payments/usePaymentMethodsList";
 import useGetAbout from "../features/About/useGetAbout";
 import usePopularCategories from "../features/categories/usePopularCategories";
+import { Accordion } from "react-bootstrap";
+import useGetCommunitiesList from "../features/community/useGetCommunitiesList";
 
 const Footer = () => {
   const { data: payments } = usePaymentMethodsList();
   const { t } = useTranslation();
   const { data: footerCategoriesList } = useGetAbout();
   const { data: popularCategoriesList } = usePopularCategories();
+  const { data: communities } = useGetCommunitiesList();
 
   return (
     <footer>
@@ -43,6 +46,29 @@ const Footer = () => {
                   <li>
                     <Link to="/privacy-policy">{t("footer.privacy")}</Link>
                   </li>
+                  <Accordion>
+                    {communities && communities?.length > 0 && (
+                      <Accordion.Item eventKey="0">
+                        <Accordion.Header className="nav-link">
+                          <span>{t("navbar.communities")}</span>
+                        </Accordion.Header>
+                        <Accordion.Body>
+                          <ul>
+                            {communities?.map((community) => (
+                              <li key={community.id} className="nav-link">
+                                <Link
+                                  to={`/community/${community.name}`}
+                                  onClick={() => setIsOpen(false)}
+                                >
+                                  {community.name}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </Accordion.Body>
+                      </Accordion.Item>
+                    )}
+                  </Accordion>
                 </ul>
               </div>
             </div>
@@ -143,7 +169,7 @@ const Footer = () => {
                           style={{
                             width: "50px",
                             objectFit: "cover",
-                            cursor: "pointer"
+                            cursor: "pointer",
                           }}
                         />
                       ))}
