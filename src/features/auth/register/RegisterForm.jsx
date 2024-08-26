@@ -17,6 +17,8 @@ import MultiSelect from "../../../ui/form-elements/MultiSelect";
 import isSeller from "../../../Assets/images/Vector.svg";
 import useCategoriesList from "../../categories/useCategoriesList";
 import useGetSkills from "../../settings/useGetSkills";
+import SelectField from "../../../ui/form-elements/SelectField";
+import useCountriesList from "../../countries/useCountriesList";
 
 const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
   const { t } = useTranslation();
@@ -26,12 +28,14 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
   const [options, setOptions] = useState([]);
   const [skillsSelectedOptions, setSkillsSelectedOptions] = useState([]);
   const [selectedOptions, setSelectedOptions] = useState([]);
+  const { isLoading: isCountriesLoading, data: countries } = useCountriesList();
+  const [countryId, setCountryId] = useState("");
 
   useEffect(() => {
     if (categories) {
       const options = categories?.map((category) => ({
         value: category.id,
-        label: category.name
+        label: category.name,
       }));
       setOptions(options);
     }
@@ -43,12 +47,20 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
         const option = options.find((opt) => opt.value === categoryId);
         return {
           value: option?.value,
-          label: option?.label
+          label: option?.label,
         };
       });
       setSelectedOptions(selectedOptions);
     }
   }, [formData.categories, options]);
+
+  const handleCountrtSelect = (e) => {
+    setCountryId(e.target.value);
+    setFormData({
+      ...formData,
+      country_id: e.target.value,
+    });
+  };
 
   const handleSelect = (selectedItems) => {
     setSelectedOptions(selectedItems);
@@ -57,29 +69,29 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
       : [];
     setFormData({
       ...formData,
-      categories: selectedValues
+      categories: selectedValues,
     });
   };
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const headers = {
     Accept: "application/json",
-    "Content-Type": "multipart/form-data"
+    "Content-Type": "multipart/form-data",
   };
   const request = {
     method: "POST",
     headers: headers,
     data: {
       ...formData,
-      is_freelance: formData.is_freelance ? 1 : 0
+      is_freelance: formData.is_freelance ? 1 : 0,
     },
-    url: "/user/can_register"
+    url: "/user/can_register",
   };
 
   const handleSubmit = async (e) => {
@@ -91,7 +103,7 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
         setShowOtp(true);
         setOtpData((prev) => ({
           ...prev,
-          hashed_code: res.data.data
+          hashed_code: res.data.data,
         }));
       } else {
         toast.error(res.data.message);
@@ -109,7 +121,7 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
       try {
         const res = await axios.post("/user/social_login", {
           login_from: "google",
-          google_token: tokenResponse.access_token
+          google_token: tokenResponse.access_token,
         });
 
         if (res.data.code === 200) {
@@ -120,12 +132,12 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
           setCookie("token", res.data.data.token, {
             path: "/",
             secure: true,
-            sameSite: "Strict"
+            sameSite: "Strict",
           });
           setCookie("id", res.data.data.id, {
             path: "/",
             secure: true,
-            sameSite: "Strict"
+            sameSite: "Strict",
           });
           axios.defaults.headers.common[
             "Authorization"
@@ -139,7 +151,7 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
     onError: (error) => {
       console.log("Google Login Error:", error);
       toast.error(t("auth.googleLoginError"));
-    }
+    },
   });
 
   const handleAppleLogin = async (response) => {
@@ -147,7 +159,7 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
       console.log("Apple Login Success:", response);
       const res = await axios.post("/user/social_login", {
         login_from: "apple",
-        token: response.code
+        token: response.code,
       });
 
       if (res.data.code === 200) {
@@ -158,12 +170,12 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
         setCookie("token", res.data.data.token, {
           path: "/",
           secure: true,
-          sameSite: "Strict"
+          sameSite: "Strict",
         });
         setCookie("id", res.data.data.id, {
           path: "/",
           secure: true,
-          sameSite: "Strict"
+          sameSite: "Strict",
         });
         axios.defaults.headers.common[
           "Authorization"
@@ -184,7 +196,7 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
       : [];
     setFormData({
       ...formData,
-      skills: selectedValues
+      skills: selectedValues,
     });
   };
 
@@ -230,16 +242,31 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
           formData={formData}
           onChange={(e) => handleChange(e)}
         />
+        <PasswordField
+          label={t("auth.password")}
+          name={"password"}
+          id={"password"}
+          minLength={6}
+          value={formData.password}
+          onChange={handleChange}
+        />
+      </div>
+      <div className="d-flex gap-2 flex-lg-row flex-column w-100">
+        <SelectField
+          label={t("manageAccounts.country")}
+          id="category"
+          name="category"
+          disabledOption={t("select")}
+          value={countryId}
+          required={true}
+          onChange={handleCountrtSelect}
+          options={countries?.map((country) => ({
+            name: country.name,
+            value: country.id,
+          }))}
+        />
         <PhoneField formData={formData} setFormData={setFormData} id="phone" />
       </div>
-      <PasswordField
-        label={t("auth.password")}
-        name={"password"}
-        id={"password"}
-        minLength={6}
-        value={formData.password}
-        onChange={handleChange}
-      />
       <MultiSelect
         label={t("auth.interestes")}
         id="interest"
@@ -256,7 +283,7 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
         handleChange={handleSelectSkills}
         options={skills?.map((skill) => ({
           label: skill?.name,
-          value: skill?.id
+          value: skill?.id,
         }))}
       />
       <div className="question">
@@ -271,7 +298,7 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
           onChange={() =>
             setFormData({
               ...formData,
-              is_freelance: formData.is_freelance === 1 ? 0 : 1
+              is_freelance: formData.is_freelance === 1 ? 0 : 1,
             })
           }
         />

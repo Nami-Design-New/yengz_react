@@ -17,7 +17,7 @@ const CategoryCard = ({ category }) => {
                 ? `${category?.count} ${t("home.service")}`
                 : `${t("home.noService")}`}
             </h6>
-            <h5 className="text">{category?.name || "تصميم وابداع"}</h5>
+            <h5 className="text">{category?.name || ""}</h5>
           </div>
         </div>
       </Link>

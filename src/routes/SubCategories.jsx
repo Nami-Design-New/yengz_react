@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import SectionHeader from "../ui/SectionHeader";
-import CategoryCard from "../ui/cards/CategoryCard";
 import EmptyData from "../ui/EmptyData";
 import useSubCategoriesList from "../features/categories/useSubCategoriesList";
 import DataLoader from "../ui/DataLoader";
@@ -16,7 +15,7 @@ const SubCategories = () => {
   const { t } = useTranslation();
   const { data: category } = useGetCategoryById(id);
   const { data, isLoading } = useSubCategoriesList(id);
-  const [showModal, setShowModal] = React.useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [targetedSubCategory, setTargetedSubCategory] = useState("");
 
   if (!isLoading && !category) {

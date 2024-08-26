@@ -597,6 +597,7 @@ body {
             border-radius: 20px;
             background: var(--white-color);
             color: var(--main-color);
+            cursor: pointer;
           }
         }
       }
@@ -6332,6 +6333,13 @@ body {
     background: var(--white-color);
     padding: 16px 0;
     border-radius: 0 0 16px 16px !important;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
+
     &.reverse {
       left: unset !important;
       right: 16px !important;
@@ -6707,6 +6715,32 @@ body {
           background: red;
         }
       }
+    }
+  }
+}
+.like-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-direction: row !important;
+  transition: var(--main-transation);
+
+  i {
+    transition: var(--main-transation);
+    color: var(--input-hint) !important;
+  }
+
+  &.can-like {
+    &:hover {
+      i {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  &.liked {
+    i {
+      color: red !important;
     }
   }
 }

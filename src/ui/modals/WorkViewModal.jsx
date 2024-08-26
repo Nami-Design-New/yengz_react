@@ -30,7 +30,7 @@ function WorkViewModal({ showModal, setShowModal, targetWork }) {
     const viewWork = async () => {
       try {
         await axios.post("/user/increase_view_count", {
-          id: targetWork?.id
+          id: targetWork?.id,
         });
         refetch();
       } catch (error) {
@@ -45,7 +45,7 @@ function WorkViewModal({ showModal, setShowModal, targetWork }) {
   const handleAddLike = async () => {
     try {
       const res = await axios.post("/user/addLike", {
-        my_work_id: targetWork?.id
+        my_work_id: targetWork?.id,
       });
       if (res.data.code === 200) {
         setIsLike(true);
@@ -59,7 +59,7 @@ function WorkViewModal({ showModal, setShowModal, targetWork }) {
   const handleRemoveLike = async () => {
     try {
       const res = await axios.post("/user/deleteLike", {
-        my_work_id: targetWork?.id
+        my_work_id: targetWork?.id,
       });
       if (res.data.code === 200) {
         setIsLike(false);
@@ -107,14 +107,15 @@ function WorkViewModal({ showModal, setShowModal, targetWork }) {
               {logged && !targetWork?.is_my_work && (
                 <>
                   {isLike ? (
-                    <button className="like-btn" onClick={handleRemoveLike}>
-                      <i className="fa-sharp fa-solid fa-heart"></i>{" "}
-                      {t("notLikeIt")}
+                    <button
+                      className="like-btn liked can-like"
+                      onClick={handleRemoveLike}
+                    >
+                      <i className="fa-sharp fa-solid fa-heart can-like"></i>{" "}
                     </button>
                   ) : (
                     <button className="like-btn" onClick={handleAddLike}>
                       <i className="fa-sharp fa-solid fa-heart"></i>{" "}
-                      {t("likeIt")}
                     </button>
                   )}
                 </>

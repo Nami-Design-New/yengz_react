@@ -939,6 +939,7 @@ body main .hero_section .hero_content .words .word {
   border-radius: 20px;
   background: var(--white-color);
   color: var(--main-color);
+  cursor: pointer;
 }
 body main .video_section {
   background-color: rgba(255, 255, 255, 0.1568627451);
@@ -6982,6 +6983,11 @@ body .profile-menu {
   background: var(--white-color);
   padding: 16px 0;
   border-radius: 0 0 16px 16px !important;
+  overflow-y: auto;
+}
+body .profile-menu::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 body .profile-menu.reverse {
   left: unset !important;
@@ -7350,4 +7356,22 @@ body .bank-acc-card .icons button svg {
 }
 body .bank-acc-card .icons button:nth-child(2) {
   background: red;
+}
+
+.like-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-direction: row !important;
+  transition: var(--main-transation);
+}
+.like-btn i {
+  transition: var(--main-transation);
+  color: var(--input-hint) !important;
+}
+.like-btn.can-like:hover i {
+  transform: scale(1.1);
+}
+.like-btn.liked i {
+  color: red !important;
 }/*# sourceMappingURL=style.css.map */
