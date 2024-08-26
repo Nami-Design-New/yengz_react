@@ -286,50 +286,54 @@ const BestFreeLancers = () => {
               </aside>
               <div className="col-lg-9 col-12 p-2">
                 <div className="row">
-                  <>
-                    {freelancers?.data?.map((freelancer) => (
-                      <div className="col-12 p-2" key={freelancer?.id}>
-                        <Link
-                          to={`/profile/${freelancer?.id}`}
-                          className="freelancerCard"
-                        >
-                          <div className="d-flex justify-content-between">
-                            <div className="info">
-                              <div className="img">
-                                <img
-                                  src={freelancer?.image}
-                                  alt={freelancer?.name}
-                                />
-                                {freelancer?.verified === 1 && (
-                                  <span className="status">
-                                    <IconRosetteDiscountCheckFilled />
-                                  </span>
-                                )}
+                  {freelancers?.data?.length > 0 ? (
+                    <>
+                      {freelancers?.data?.map((freelancer) => (
+                        <div className="col-12 p-2" key={freelancer?.id}>
+                          <Link
+                            to={`/profile/${freelancer?.id}`}
+                            className="freelancerCard"
+                          >
+                            <div className="d-flex justify-content-between">
+                              <div className="info">
+                                <div className="img">
+                                  <img
+                                    src={freelancer?.image}
+                                    alt={freelancer?.name}
+                                  />
+                                  {freelancer?.verified === 1 && (
+                                    <span className="status">
+                                      <IconRosetteDiscountCheckFilled />
+                                    </span>
+                                  )}
+                                </div>
+                                <div className="content">
+                                  <h6>{freelancer?.name}</h6>
+                                  <ul>
+                                    <li>
+                                      <i className="fa-regular fa-cubes"></i>{" "}
+                                      {t("servicesCount")}:{" "}
+                                      {freelancer?.service_count}
+                                    </li>
+                                  </ul>
+                                </div>
                               </div>
-                              <div className="content">
-                                <h6>{freelancer?.name}</h6>
-                                <ul>
-                                  <li>
-                                    <i className="fa-regular fa-cubes"></i>{" "}
-                                    {t("servicesCount")}:{" "}
-                                    {freelancer?.service_count}
-                                  </li>
-                                </ul>
-                              </div>
+                              <StarsList rate={freelancer?.rate} />
                             </div>
-                            <StarsList rate={freelancer?.rate} />
-                          </div>
-                          <p>{truncate(freelancer?.about)}</p>
-                        </Link>
-                      </div>
-                    ))}
-                    {freelancers && freelancers?.total > 10 && (
-                      <CustomPagination
-                        count={freelancers?.total}
-                        pageSize={10}
-                      />
-                    )}
-                  </>
+                            <p>{truncate(freelancer?.about)}</p>
+                          </Link>
+                        </div>
+                      ))}
+                      {freelancers && freelancers?.total > 10 && (
+                        <CustomPagination
+                          count={freelancers?.total}
+                          pageSize={10}
+                        />
+                      )}
+                    </>
+                  ) : (
+                    <EmptyData>{t("noFreelancers")}</EmptyData>
+                  )}
                 </div>
               </div>
             </div>

@@ -35,6 +35,7 @@ function CheckBoxContainer({
           {item.name}
         </label>
         <input
+          className="checkBox"
           type="checkbox"
           name="categories"
           value={item.id}
