@@ -81,7 +81,6 @@ const Login = () => {
     window.AppleID.auth
       .signIn()
       .then((response) => {
-        console.log(response);
         alert(JSON.stringify(response));
       })
       .catch((error) => {

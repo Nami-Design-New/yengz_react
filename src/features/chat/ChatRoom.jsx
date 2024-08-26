@@ -50,7 +50,6 @@ const ChatRoom = ({ chat }) => {
     const channel = pusher.subscribe(`chat_${chat?.id}`);
 
     channel.bind("new_message", function (data) {
-      console.log("Message received:", data?.message);
       pushMessage(data?.message);
     });
 
@@ -138,10 +137,6 @@ const ChatRoom = ({ chat }) => {
 
       mediaRecorderInstance.onstop = async () => {
         const audioBlob = new Blob(audioChunks, { type: "audio/m4a" });
-
-        console.log("Audio blob:", audioBlob.type);
-        console.log("Audio blob:", audioBlob.size);
-        console.log("Audio blob:", audioBlob);
 
         setMessage((prevMessage) => ({
           ...prevMessage,

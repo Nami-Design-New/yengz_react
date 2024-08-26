@@ -12,8 +12,6 @@ function OrderCard({ order, type }) {
   const [searchParams] = useSearchParams();
   const page = Number(searchParams.get("page")) || 1;
 
-  console.log(page, order);
-
   const lang = useSelector((state) => state.language.lang);
   const { t } = useTranslation();
   const timeDifference = getTimeDifference(order.created_at);

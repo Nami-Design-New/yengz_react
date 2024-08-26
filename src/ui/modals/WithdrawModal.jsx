@@ -14,7 +14,6 @@ import { toast } from "react-toastify";
 const WithdrawModal = ({ showModal, setShowModal, cartTotalPrice }) => {
   const { t } = useTranslation();
   const [cookies] = useCookies(["token"]);
-  const token = cookies?.token;
   const { data: banks } = useBanksList();
   const [activeTab, setActiveTab] = useState("bankTransfer");
   const [amount, setAmount] = useState("");
@@ -27,15 +26,6 @@ const WithdrawModal = ({ showModal, setShowModal, cartTotalPrice }) => {
     duration: false,
     fees: false,
   });
-
-  const handleChange = (e) => {
-    console.log(e.target);
-
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
 
   const handleConditionsChange = (e) => {
     setConditionsCheck({

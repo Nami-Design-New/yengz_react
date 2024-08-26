@@ -14,7 +14,6 @@ const setupAxiosInterceptors = (setCookie) => {
         try {
           const cookies = document.cookie;
           const listOfCookies = cookies.split(";");
-          console.log(listOfCookies);
 
           let token = "";
           listOfCookies.forEach((e) => {

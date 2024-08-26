@@ -23,7 +23,6 @@ const CollectionCard = ({ collection }) => {
   const queryClient = useQueryClient();
 
   const timeDifference = getTimeDifference(collection?.created_at);
-  console.log(timeDifference);
   const startTime = formatTimeDifference(
     timeDifference.years,
     timeDifference.months,

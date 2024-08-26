@@ -106,8 +106,6 @@ export function formattedDate(date) {
 export const handleApplyFilters = (setSearchParams, searchFilterData) => {
   if (!searchFilterData) return;
 
-  console.log(searchFilterData);
-
   const newParams = new URLSearchParams();
 
   for (const [key, value] of Object.entries(searchFilterData)) {

@@ -22,6 +22,7 @@ function useSearchServicesList() {
       .split("-")
       .map((subcategory) => Number(subcategory));
   const is_old = Number(searchParams.get("is_old"));
+  const sort = searchParams.get("sort");
   const pageSize = 12;
 
   const queryKey = [
@@ -35,6 +36,7 @@ function useSearchServicesList() {
       sub_categories,
       is_old,
       skills,
+      sort,
     },
   ];
 
@@ -51,7 +53,8 @@ function useSearchServicesList() {
           categories,
           sub_categories,
           is_old,
-          skills
+          skills,
+          sort
         ),
       getNextPageParam: (lastPage, pages) => {
         const isMore = lastPage.data.length >= pageSize;
@@ -61,8 +64,6 @@ function useSearchServicesList() {
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
     });
-
-  console.log(data);
 
   return {
     data: data?.pages.flatMap((page) => page.data) || [],

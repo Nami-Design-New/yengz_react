@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { handleApplyFilters } from "../utils/helpers";
 import DepartmentFilterBox from "../ui/filter/DepartmentFilterBox";
@@ -12,6 +12,8 @@ import ProjectCard from "../ui/cards/ProjectCard";
 import MultiSelect from "../ui/form-elements/MultiSelect";
 import useGetSkills from "../features/settings/useGetSkills";
 import RangeSlider from "../ui/form-elements/RangeSlider";
+import SelectField from "../ui/form-elements/SelectField";
+import SortFilterBox from "../ui/SortFilterBox";
 
 function Projects() {
   const { t } = useTranslation();
@@ -40,7 +42,7 @@ function Projects() {
       : [],
     skills: searchParams.get("skills")
       ? searchParams.get("skills").split("-")
-      : []
+      : [],
   });
 
   const { isLoading: categoriesIsLoading, data: categoriesWithSubCategories } =
@@ -51,7 +53,7 @@ function Projects() {
     fetchNextPage,
     hasNextPage,
     isFetching,
-    isFetchingNextPage
+    isFetchingNextPage,
   } = useProjectsList();
 
   useEffect(() => {
@@ -69,7 +71,7 @@ function Projects() {
     if (name !== "categories" && name !== "sub_categories") {
       setSearchFilterData((prevState) => ({
         ...prevState,
-        [name]: parsedValue
+        [name]: parsedValue,
       }));
       return;
     }
@@ -93,8 +95,8 @@ function Projects() {
           ? [
               ...new Set([
                 ...prevState["sub_categories"],
-                ...relatedSubCategories
-              ])
+                ...relatedSubCategories,
+              ]),
             ]
           : prevState["sub_categories"].filter(
               (id) => !relatedSubCategories.includes(id)
@@ -131,13 +133,13 @@ function Projects() {
       setSearchFilterData((prevState) => ({
         ...prevState,
         duration_from: value[0],
-        duration_to: value[1]
+        duration_to: value[1],
       }));
     } else if (name === "price") {
       setSearchFilterData((prevState) => ({
         ...prevState,
         price_from: value[0],
-        price_to: value[1]
+        price_to: value[1],
       }));
     }
   };
@@ -149,7 +151,7 @@ function Projects() {
       : [];
     setSearchFilterData({
       ...searchFilterData,
-      skills: selectedValues
+      skills: selectedValues,
     });
   };
 
@@ -218,7 +220,7 @@ function Projects() {
                     handleChange={handleSelect}
                     options={skills?.map((skill) => ({
                       label: skill?.name,
-                      value: skill?.id
+                      value: skill?.id,
                     }))}
                   />
                   <div className="mb-4">
@@ -229,7 +231,7 @@ function Projects() {
                       max={360}
                       value={[
                         searchFilterData.duration_from,
-                        searchFilterData.duration_to
+                        searchFilterData.duration_to,
                       ]}
                       handleSlide={(value) =>
                         handleSliderChange("duration", value)
@@ -246,7 +248,7 @@ function Projects() {
                       steps={5}
                       value={[
                         searchFilterData.price_from,
-                        searchFilterData.price_to
+                        searchFilterData.price_to,
                       ]}
                       handleSlide={(value) =>
                         handleSliderChange("price", value)
@@ -285,12 +287,7 @@ function Projects() {
           <div className="col-lg-9 col-12 p-2 results-wrapper">
             <div className="container">
               <div className="row">
-                <div className="col-12 p-2 pt-0 d-flex justify-content-end">
-                  <Link to="/add-project" className="btn btn-success">
-                    <i className="fa-regular fa-hexagon-plus me-2"></i> {""}
-                    {t("projects.addProject")}
-                  </Link>
-                </div>
+                <SortFilterBox type="projects" />
                 {searchProjectsList && searchProjectsList?.length > 0 ? (
                   <>
                     {searchProjectsList.map((project) => (

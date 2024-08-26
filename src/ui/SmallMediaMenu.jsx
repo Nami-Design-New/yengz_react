@@ -163,6 +163,12 @@ function SmallMediaMenu({
               </Link>
             </li>
             <li className="nav-link" onClick={closeSmallMediaMenu}>
+              <Link to="/manage-accounts">
+                <i className="fa-sharp fa-regular fa-building-columns"></i>
+                {t("navbar.manageAccounts")}
+              </Link>
+            </li>
+            <li className="nav-link" onClick={closeSmallMediaMenu}>
               <Link>
                 <i className="fa-solid fa-trash"></i>
                 {t("navbar.deleteAccount")}

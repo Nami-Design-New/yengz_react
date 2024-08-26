@@ -127,6 +127,7 @@
     "myProfile": "My Profile",
     "balance": "Balance",
     "editProfile": "Edit Profile",
+    "manageAccounts": "Manage Bank Accounts",
     "support": "Support",
     "report": "Report an Issue",
     "deleteAccount": "Delete Account",
@@ -245,7 +246,9 @@
     "verifyPhone": "Verify Phone Number",
     "areYouSureWantToDeleteThisService": "Are you sure you want to delete this service?",
     "deleteService": "Delete",
-    "profileEditedSuccessfully": "Profile edited successfully"
+    "profileEditedSuccessfully": "Profile edited successfully",
+    "skills": "Skills",
+    "country": "Country"
   },
   "addService": {
     "serviceTitle": "Service Title",
@@ -553,6 +556,13 @@
     "bankAddedSuccessfully": "Account added successfully",
     "bankUpdatedSuccessfully": "Account updated successfully",
     "bankDeletedSuccessfully": "Account deleted successfully"
+  },
+  "filter": {
+    "newest": "Newest",
+    "oldest": "Oldest",
+    "most_offer": "Most offer",
+    "less_offer": "Less offer",
+    "noSort": "All"
   },
   "password": "Enter Password",
   "cancel": "Cancel",

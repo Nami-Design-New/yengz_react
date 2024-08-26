@@ -1684,6 +1684,8 @@ body main .profile-section .profile-descripe .cash .cash-info span {
   }
 }
 body main .profile-section .profile-descripe .cash .cash-info h6 {
+  width: 100%;
+  text-align: center;
   color: var(--main-color);
   font-weight: bold;
   margin: 0;
@@ -7374,4 +7376,65 @@ body .bank-acc-card .icons button:nth-child(2) {
 }
 .like-btn.liked i {
   color: red !important;
+}
+
+.profile-skills {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.profile-skills .cash-info {
+  display: flex;
+  flex-direction: column;
+  background: var(--main10-color);
+  gap: 4px;
+  padding: 12px;
+  border-radius: 8px;
+}
+.profile-skills .cash-info span {
+  font-size: 14px;
+  color: var(--black-color);
+  font-weight: 600;
+}
+@media (max-width: 576px) {
+  .profile-skills .cash-info span {
+    font-size: 12px;
+  }
+}
+.profile-skills .cash-info h6 {
+  width: 100%;
+  text-align: center;
+  color: var(--main-color);
+  font-weight: bold;
+  margin: 0;
+  font-size: 16px !important;
+}
+.profile-skills .cash-info h6 i {
+  color: var(--text-color);
+}
+@media (max-width: 576px) {
+  .profile-skills .cash-info h6 {
+    font-size: 16px;
+  }
+}
+
+.profile-country-box .country-wrapper {
+  display: flex;
+  position: relative;
+  align-items: center;
+  gap: 8px;
+}
+.profile-country-box .country-wrapper h6 {
+  color: var(--main-color) !important;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+.profile-country-box .country-wrapper img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 50px;
+  border-radius: 12px;
 }/*# sourceMappingURL=style.css.map */

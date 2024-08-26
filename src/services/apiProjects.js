@@ -8,7 +8,8 @@ export async function getProjectsByFilter(
   duration_from,
   duration_to,
   price_from,
-  price_to
+  price_to,
+  sort
 ) {
   const requestBody = {};
 
@@ -20,6 +21,7 @@ export async function getProjectsByFilter(
   if (duration_to) requestBody.duration_to = duration_to;
   if (price_from) requestBody.price_from = price_from;
   if (price_to) requestBody.price_to = price_to;
+  if (sort) requestBody.sort = sort;
 
   try {
     const req = await axios.post("/get_projects", requestBody);
@@ -43,9 +45,13 @@ export async function getUserProjects(id) {
   }
 }
 
-export async function getMyProjectRequests(id) {
+export async function getMyProjectRequests(sort) {
+  const requestBody = {};
+
+  if (sort) requestBody.sort = sort;
+
   try {
-    const req = await axios.get("/user/get_my_project_requests");
+    const req = await axios.get("/user/get_my_project_requests", requestBody);
     return req.data.data;
   } catch (error) {
     throw new Error(error.message);

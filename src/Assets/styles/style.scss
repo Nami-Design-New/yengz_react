@@ -1303,6 +1303,8 @@ body {
               }
             }
             h6 {
+              width: 100%;
+              text-align: center;
               color: var(--main-color);
               font-weight: bold;
               margin: 0;
@@ -6741,6 +6743,64 @@ body {
   &.liked {
     i {
       color: red !important;
+    }
+  }
+}
+.profile-skills {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  .cash-info {
+    display: flex;
+    flex-direction: column;
+    background: var(--main10-color);
+    gap: 4px;
+    padding: 12px;
+    border-radius: 8px;
+    span {
+      font-size: 14px;
+      color: var(--black-color);
+      font-weight: 600;
+      @media (max-width: 576px) {
+        font-size: 12px;
+      }
+    }
+    h6 {
+      width: 100%;
+      text-align: center;
+      color: var(--main-color);
+      font-weight: bold;
+      margin: 0;
+      font-size: 16px !important;
+      i {
+        color: var(--text-color);
+      }
+      @media (max-width: 576px) {
+        font-size: 16px;
+      }
+    }
+  }
+}
+.profile-country-box {
+  .country-wrapper {
+    display: flex;
+    position: relative;
+    align-items: center;
+    gap: 8px;
+
+    h6 {
+      color: var(--main-color) !important;
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    img {
+      object-fit: cover;
+      width: 50px;
+      border-radius: 12px;
     }
   }
 }
