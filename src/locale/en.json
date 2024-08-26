@@ -554,6 +554,13 @@
     "bankUpdatedSuccessfully": "Account updated successfully",
     "bankDeletedSuccessfully": "Account deleted successfully"
   },
+  "filter": {
+    "newest": "Newest",
+    "oldest": "Oldest",
+    "most_offer": "Most offer",
+    "less_offer": "Less offer",
+    "noSort": "All"
+  },
   "password": "Enter Password",
   "cancel": "Cancel",
   "homePage": "Home",

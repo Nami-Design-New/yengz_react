@@ -13,6 +13,7 @@ import DataLoader from "../ui/DataLoader";
 import EmptyData from "../ui/EmptyData";
 import MultiSelect from "../ui/form-elements/MultiSelect";
 import useGetSkills from "../features/settings/useGetSkills";
+import SortFilterBox from "../ui/SortFilterBox";
 
 const Services = () => {
   const { t } = useTranslation();
@@ -251,6 +252,7 @@ const Services = () => {
 
           <main className="col-lg-9 p-2">
             <div className="row">
+              <SortFilterBox type="services" />
               {searchServicesList.length > 0 ? (
                 <>
                   {searchServicesList.map((service) => (

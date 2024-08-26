@@ -21,6 +21,7 @@ function useProjectsList() {
       .get("sub_categories")
       .split("-")
       .map((subcategory) => Number(subcategory));
+  const sort = searchParams.get("sort");
 
   const pageSize = 10;
 
@@ -33,8 +34,9 @@ function useProjectsList() {
       price_from,
       price_to,
       categories,
-      sub_categories
-    }
+      sub_categories,
+      sort,
+    },
   ];
 
   const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } =
@@ -49,7 +51,8 @@ function useProjectsList() {
           duration_from,
           duration_to,
           price_from,
-          price_to
+          price_to,
+          sort
         ),
       getNextPageParam: (lastPage, pages) => {
         const isMore = lastPage.data.length >= pageSize;
@@ -57,7 +60,7 @@ function useProjectsList() {
       },
       keepPreviousData: true,
       refetchOnWindowFocus: false,
-      refetchOnReconnect: false
+      refetchOnReconnect: false,
     });
 
   return {
@@ -65,7 +68,7 @@ function useProjectsList() {
     fetchNextPage,
     hasNextPage,
     isFetching,
-    isFetchingNextPage
+    isFetchingNextPage,
   };
 }
 

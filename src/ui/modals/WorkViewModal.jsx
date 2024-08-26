@@ -112,10 +112,12 @@ function WorkViewModal({ showModal, setShowModal, targetWork }) {
                       onClick={handleRemoveLike}
                     >
                       <i className="fa-sharp fa-solid fa-heart can-like"></i>{" "}
+                      {t("likeIt")}
                     </button>
                   ) : (
                     <button className="like-btn" onClick={handleAddLike}>
                       <i className="fa-sharp fa-solid fa-heart"></i>{" "}
+                      {t("notLikeIt")}
                     </button>
                   )}
                 </>
