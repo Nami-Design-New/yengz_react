@@ -607,7 +607,8 @@
     "feesCondition": "أعلم أن البنك الوسيط أو المحلي قد يقتطع رسوم إضافية **",
     "responsibilityCondition": "أتحمل وحدي أي خسارة ناتجة عن إدخال معلومات خاطئة أو غير دقيقة",
     "durationCondition": "أعلم أن الحوالات البنكية تستغرق حتى 7 أيام عمل لتصل",
-    "paypalAccount": "حساب PayPal"
+    "paypalAccount": "حساب PayPal",
+    "withdrawSuccessfully": "تم السحب بنجاح"
   },
   "manageAccounts": {
     "headerText": "ادارة الحسابات البنكية",

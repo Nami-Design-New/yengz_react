@@ -527,7 +527,8 @@
     "feesCondition": "I am aware that the intermediary or local bank may charge additional fees **",
     "responsibilityCondition": "I bear solely any loss resulting from entering incorrect or inaccurate information",
     "durationCondition": "I am aware that bank transfers take up to 7 business days to arrive",
-    "paypalAccount": "PayPal Account"
+    "paypalAccount": "PayPal Account",
+    "withdrawSuccessfully": "Withdraw successfully"
   },
   "manageAccounts": {
     "headerText": "Manage Bank Accounts",

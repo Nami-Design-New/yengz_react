@@ -109,12 +109,12 @@ function SmallMediaMenu({
             </li>
             <li className="nav-link" onClick={closeSmallMediaMenu}>
               <Link to="/add-service">
-                <i className="far fa-plus"></i> {t("navbar.addService")}
+                <i className="far fa-plus bigger"></i> {t("navbar.addService")}
               </Link>
             </li>
             <li className="nav-link" onClick={closeSmallMediaMenu}>
               <Link to="/add-project">
-                <i className="far fa-plus"></i> {t("navbar.addProject")}
+                <i className="far fa-plus bigger"></i> {t("navbar.addProject")}
               </Link>
             </li>
             <li className="nav-link" onClick={closeSmallMediaMenu}>

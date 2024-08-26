@@ -190,7 +190,7 @@ const Navbar = () => {
                 to="/add-service"
                 className="d-flex align-items-center gap-1"
               >
-                <i className="far fa-plus"></i> {t("navbar.addService")}
+                <i className="far fa-plus bigger"></i> {t("navbar.addService")}
               </Link>
             </li>
             <li className="nav-link">
@@ -198,7 +198,7 @@ const Navbar = () => {
                 to="/add-project"
                 className="d-flex align-items-center gap-1"
               >
-                <i className="far fa-plus"></i> {t("navbar.addProject")}
+                <i className="far fa-plus bigger"></i> {t("navbar.addProject")}
               </Link>
             </li>
             {isLogged && (
@@ -350,7 +350,10 @@ const Navbar = () => {
                       {notifications?.map((notification) => (
                         <Fragment key={notification?.title}>
                           <Dropdown.Item className="drop_Message">
-                            <Link to="/notifications" style={{ display: "flex" }}>
+                            <Link
+                              to="/notifications"
+                              style={{ display: "flex" }}
+                            >
                               <div className="text-wrap">
                                 <div className="d-flex justify-content-between">
                                   <h6>{notification?.title}</h6>

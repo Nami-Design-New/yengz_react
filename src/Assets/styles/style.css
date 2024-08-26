@@ -465,6 +465,9 @@ body header .tnavbar .small-media-menu .nav-links li a i {
   align-items: center;
   justify-content: center;
 }
+body header .tnavbar .small-media-menu .nav-links li a i.bigger {
+  font-weight: 800;
+}
 @media (max-width: 992px) {
   body header .tnavbar .small-media-menu.show {
     right: 0;
@@ -550,6 +553,10 @@ body header .tnavbar .right-wrapper .nav-links .nav-link a,
 body header .tnavbar .left-wrapper .nav-links .nav-link a {
   font-size: 14px;
   color: var(--black-color);
+}
+body header .tnavbar .right-wrapper .nav-links .nav-link a i.bigger,
+body header .tnavbar .left-wrapper .nav-links .nav-link a i.bigger {
+  font-weight: 800;
 }
 body header .tnavbar .right-wrapper .nav-links .nav-link:hover,
 body header .tnavbar .left-wrapper .nav-links .nav-link:hover {
@@ -643,7 +650,7 @@ body header .tnavbar .loged-in-minor-menu .link .dropdown-menu {
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   top: calc(100% + 20px) !important;
   bottom: unset !important;
-  border-radius: 16px !important;
+  border-radius: 0 0 16px 16px !important;
 }
 body header .tnavbar .loged-in-minor-menu .link .dropdown-menu.search-dropdown-menu {
   width: 100vw;
@@ -3676,6 +3683,68 @@ body main .balance_section .content-body .transactions-wrapper .transactions-bod
 body footer {
   background: linear-gradient(90.12deg, #896698 4.61%, #664180 48.43%, #392f71 92.24%);
   padding-top: 60px;
+}
+body footer .accordion {
+  gap: 10px;
+  display: flex !important;
+  flex-direction: column;
+}
+body footer .accordion-header img,
+body footer .accordion-header svg,
+body footer .accordion-header i {
+  height: 20px;
+  width: 20px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body footer .accordion-body {
+  padding: 8px;
+}
+body footer .accordion-body ul {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+body footer .accordion-body ul li {
+  line-height: 24px;
+}
+body footer .accordion-body ul li a {
+  padding: 0 !important;
+}
+body footer .accordion-item {
+  border: none !important;
+  background-color: transparent !important;
+}
+body footer .accordion-body a {
+  padding: 8px 0;
+  line-height: 1.4;
+}
+body footer .accordion-collapse {
+  padding: 0 20px;
+}
+body footer .accordion-button {
+  color: var(--white-color) !important;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+body footer .accordion-button i {
+  width: 20px !important;
+  height: 20px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body footer .accordion-button::after {
+  content: none;
+}
+body footer .accordion-button:not(.collapsed)::after {
+  content: none;
 }
 body footer .upper-row {
   padding-bottom: 32px;
@@ -6912,7 +6981,7 @@ body .profile-menu {
   left: 16px !important;
   background: var(--white-color);
   padding: 16px 0;
-  border-radius: 16px !important;
+  border-radius: 0 0 16px 16px !important;
 }
 body .profile-menu.reverse {
   left: unset !important;
