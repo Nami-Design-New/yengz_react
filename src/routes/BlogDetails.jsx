@@ -8,7 +8,6 @@ import ErrorPage from "./ErrorPage";
 
 function BlogDetails() {
   const { isLoading, data: blog } = useBlogDetails();
-  console.log(blog);
 
   const renderHTML = (htmlContent) => {
     return { __html: htmlContent };

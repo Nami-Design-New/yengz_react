@@ -6,7 +6,6 @@ import DataLoader from "../../../ui/DataLoader";
 const Instructions = ({ setStep }) => {
   const { t } = useTranslation();
   const { data: settings, isLoading } = useGetSettings();
-  console.log(settings);
   return (
     <div className="instructions form">
       {isLoading ? (

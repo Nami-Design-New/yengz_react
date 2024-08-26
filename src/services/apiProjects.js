@@ -45,9 +45,13 @@ export async function getUserProjects(id) {
   }
 }
 
-export async function getMyProjectRequests(id) {
+export async function getMyProjectRequests(sort) {
+  const requestBody = {};
+
+  if (sort) requestBody.sort = sort;
+
   try {
-    const req = await axios.get("/user/get_my_project_requests");
+    const req = await axios.get("/user/get_my_project_requests", requestBody);
     return req.data.data;
   } catch (error) {
     throw new Error(error.message);

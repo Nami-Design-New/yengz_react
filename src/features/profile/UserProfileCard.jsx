@@ -35,6 +35,42 @@ const UserProfileCard = ({ user, isMyAccount }) => {
         <h6 className="mb-2">{t(user?.name)}</h6>
         <StarsList rate={user?.rate || 0} />
       </div>
+      {user?.country_id && (user?.country?.name || user?.country?.image) && (
+        <div className="cash profile-country-box mt-3">
+          <div className="row">
+            <div className="col-6 p-2">
+              <div className="head">
+                <h4>{t("profile.country")}</h4>
+              </div>
+            </div>
+            <div className="country-wrapper col-6 p-2">
+              <img src={user?.country?.image} alt="country" />
+              <h6 className="">{user?.country?.name}</h6>
+            </div>
+          </div>
+        </div>
+      )}
+      {user?.skills && user?.skills?.length > 0 && (
+        <div className="cash profile-skills-box mt-3">
+          <div className="row">
+            <div className="col-12 p-2">
+              <div className="head">
+                <h4>{t("profile.skills")}</h4>
+              </div>
+            </div>
+            <div className="profile-skills p-2">
+              {user?.skills?.map(
+                (skill) =>
+                  skill?.name && (
+                    <div className="cash-info">
+                      <h6>{skill.name}</h6>
+                    </div>
+                  )
+              )}
+            </div>
+          </div>
+        </div>
+      )}
       {isMyAccount && (
         <div className="cash mt-3">
           <div className="row">

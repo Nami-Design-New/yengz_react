@@ -156,7 +156,6 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
 
   const handleAppleLogin = async (response) => {
     try {
-      console.log("Apple Login Success:", response);
       const res = await axios.post("/user/social_login", {
         login_from: "apple",
         token: response.code,

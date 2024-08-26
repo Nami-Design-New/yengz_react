@@ -38,8 +38,6 @@ const EditProfile = () => {
   const { isLoading: isCountriesLoading, data: countries } = useCountriesList();
   const [countryId, setCountryId] = useState("");
 
-  console.log(user);
-
   useEffect(() => {
     setFormData({
       image: "",

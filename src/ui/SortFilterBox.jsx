@@ -25,13 +25,17 @@ function SortFilterBox({ type }) {
     },
     {
       name: `${t("filter.most_offer")}`,
-      value: `${type === "projects" ? "most_offer" : ""}${
+      value: `${!type ? "most_offer" : ""}${
+        type === "projects" ? "most_offer" : ""
+      }${type === "bids" ? "most_offer" : ""}${
         type === "services" ? "most_ordered" : ""
       }`,
     },
     {
       name: `${t("filter.less_offer")}`,
-      value: `${type === "projects" ? "less_offers" : ""}${
+      value: `${!type ? "less_offers" : ""}${
+        type === "projects" ? "less_offers" : ""
+      }${type === "bids" ? "less_offers" : ""}${
         type === "services" ? "less_ordered" : ""
       }`,
     },

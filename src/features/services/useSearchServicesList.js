@@ -65,8 +65,6 @@ function useSearchServicesList() {
       refetchOnReconnect: false,
     });
 
-  console.log(data);
-
   return {
     data: data?.pages.flatMap((page) => page.data) || [],
     fetchNextPage,

@@ -129,6 +129,7 @@
     "myProfile": "حسابي",
     "balance": "الرصيد",
     "editProfile": "تعديل الملف الشخصي",
+    "manageAccounts": "ادارة الحسابات البنكية",
     "support": "المساعدة",
     "report": "الابلاغ عن مشكلة",
     "deleteAccount": "حذف الحساب",
@@ -296,7 +297,9 @@
     "verifyPhone": "توثيق رقم الجوال",
     "areYouSureWantToDeleteThisService": "هل انت متاكد من حذف هذا الخدمة؟",
     "deleteService": "حذف",
-    "profileEditedSuccessfully": "تم تعديل الملف الشخصي بنجاح"
+    "profileEditedSuccessfully": "تم تعديل الملف الشخصي بنجاح",
+    "skills": "المهارات",
+    "country": "الدولة"
   },
   "addService": {
     "serviceTitle": "عنوان الخدمة",

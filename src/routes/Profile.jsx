@@ -15,8 +15,6 @@ const Profile = () => {
 
   const isMyAccount = !id || id === String(authedUser?.id);
 
-  console.log(user);
-
   useEffect(() => {
     if (isMyAccount) {
       setUser(authedUser);

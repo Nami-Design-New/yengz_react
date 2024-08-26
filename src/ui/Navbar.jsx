@@ -428,6 +428,15 @@ const Navbar = () => {
                         {t("navbar.balance")}
                       </Link>
                     </li>
+                    <li onClick={closeProfileMenu}>
+                      <Link
+                        className="dropdown-item_Link"
+                        to="/manage-accounts"
+                      >
+                        <i className="fa-sharp fa-regular fa-building-columns"></i>
+                        {t("navbar.manageAccounts")}
+                      </Link>
+                    </li>
                     <hr />
                     <li onClick={closeProfileMenu}>
                       <Link className="dropdown-item_Link" to="/edit-profile">
