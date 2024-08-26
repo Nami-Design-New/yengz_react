@@ -3,7 +3,13 @@ import { Modal } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
-const ChooseCategoryPath = ({ showModal, setShowModal, subCategory }) => {
+const ChooseCategoryPath = ({
+  showModal,
+  setShowModal,
+  subCategory,
+  category,
+  searchValue,
+}) => {
   const { t } = useTranslation();
 
   return (
@@ -15,13 +21,21 @@ const ChooseCategoryPath = ({ showModal, setShowModal, subCategory }) => {
         <div className="d-flex gap-2">
           <Link
             className="pathLink"
-            to={`/services?sub_categories=${subCategory?.id}`}
+            to={`/services?${
+              subCategory ? `sub_categories=${subCategory?.id}` : ""
+            }${category ? `categories=${category?.id}` : ""}${
+              searchValue ? `search=${searchValue}` : ""
+            }`}
           >
             {t("servicesLink")}
           </Link>
           <Link
             className="pathLink"
-            to={`/projects?sub_categories=${subCategory?.id}`}
+            to={`/projects?${
+              subCategory ? `sub_categories=${subCategory?.id}` : ""
+            }${category ? `categories=${category?.id}` : ""}${
+              searchValue ? `search=${searchValue}` : ""
+            }`}
           >
             {t("projectsLink")}
           </Link>

@@ -17,6 +17,8 @@ import useCategoriesList from "./../categories/useCategoriesList";
 import SubmitButton from "./../../ui/form-elements/SubmitButton";
 import Vector from "../../Assets/images/Vector.svg";
 import useGetSkills from "../settings/useGetSkills";
+import SelectField from "../../ui/form-elements/SelectField";
+import useCountriesList from "../countries/useCountriesList";
 
 const EditProfile = () => {
   const { t } = useTranslation();
@@ -33,6 +35,10 @@ const EditProfile = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const { data: skills } = useGetSkills();
   const [skillsSelectedOptions, setSkillsSelectedOptions] = useState([]);
+  const { isLoading: isCountriesLoading, data: countries } = useCountriesList();
+  const [countryId, setCountryId] = useState("");
+
+  console.log(user);
 
   useEffect(() => {
     setFormData({
@@ -77,6 +83,14 @@ const EditProfile = () => {
       setSelectedOptions(selectedOptions);
     }
   }, [formData.categories, options]);
+
+  const handleCountrtSelect = (e) => {
+    setCountryId(e.target.value);
+    setFormData({
+      ...formData,
+      country_id: e.target.value,
+    });
+  };
 
   // handle select
   const handleSelect = (selectedItems) => {
@@ -191,6 +205,21 @@ const EditProfile = () => {
                 required={true}
                 value={formData?.email}
                 onChange={(e) => handleChange(e)}
+              />
+            </div>
+            <div className="d-flex gap-2 flex-lg-row flex-column w-100">
+              <SelectField
+                label={t("manageAccounts.country")}
+                id="category"
+                name="category"
+                disabledOption={t("select")}
+                value={countryId}
+                required={true}
+                onChange={handleCountrtSelect}
+                options={countries?.map((country) => ({
+                  name: country.name,
+                  value: country.id,
+                }))}
               />
               <PhoneField
                 formData={formData}

@@ -12,7 +12,7 @@ function ProtectedRoute({ children, profile }) {
 
   useEffect(() => {
     if ((!token && !isLogged) || !profile) {
-      navigate("/login");
+      navigate("/login", { replace: false });
     }
   }, [token, isLogged, navigate]);
 

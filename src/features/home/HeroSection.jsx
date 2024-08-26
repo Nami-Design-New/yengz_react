@@ -1,21 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Link, useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
 import "swiper/swiper-bundle.css";
 import slide1 from "../../Assets/images/slide1.jpg";
 import slide2 from "../../Assets/images/slide2.jpg";
 import slide3 from "../../Assets/images/slide3.jpg";
+import useCategorieListWithSub from "../categories/useCategorieListWithSub";
+import ChooseCategoryPath from "../../ui/modals/ChooseCategoryPath";
+import HomeKeywords from "../../ui/HomeKeywords";
 
 const HeroSection = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
+  const { isLoading, data: categoriesWithSubCategories } =
+    useCategorieListWithSub();
 
   function handleSubmitSearch(e) {
     e.preventDefault();
-    const searchInput = e.target[0].value;
-    navigate(`/services?search=${searchInput}`);
+    setShowModal(true);
+  }
+
+  function handleSearchChange(e) {
+    setSearchValue(e.target.value);
   }
 
   return (
@@ -52,28 +60,20 @@ const HeroSection = () => {
               id="search"
               name="search"
               placeholder={t("home.searchPlaceHolder")}
+              value={searchValue}
+              onChange={handleSearchChange}
             />
             <button>{t("home.search")}</button>
           </div>
-          <div className="words">
-            <Link to="/services" className="word">
-              ui ux designer
-            </Link>
-            <Link to="/services" className="word">
-              wordpress
-            </Link>
-            <Link to="/services" className="word">
-              node js dev
-            </Link>
-            <Link to="/services" className="word">
-              cv writing
-            </Link>
-            <Link to="/services" className="word">
-              content creator
-            </Link>
-          </div>
+          {categoriesWithSubCategories &&
+            categoriesWithSubCategories?.length > 0 && <HomeKeywords categories={categoriesWithSubCategories} />}
         </form>
       </div>
+      <ChooseCategoryPath
+        searchValue={searchValue}
+        showModal={showModal}
+        setShowModal={setShowModal}
+      />
     </section>
   );
 };
