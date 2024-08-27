@@ -6,6 +6,7 @@ import SelectField from "./../../ui/form-elements/SelectField";
 import useCategoriesList from "../categories/useCategoriesList";
 import useSubCategoriesList from "./../categories/useSubCategoriesList";
 import MultiSelect from "../../ui/form-elements/MultiSelect";
+import useCategorieListWithSub from "../categories/useCategorieListWithSub";
 
 const WizardStep1 = ({
   formData,
@@ -15,17 +16,17 @@ const WizardStep1 = ({
   setCategoryId,
   skills,
   selectedOptions,
-  setSelectedOptions
+  setSelectedOptions,
 }) => {
   const [formValid, setFormValid] = useState(false);
   const { t } = useTranslation();
-  const { data: categories } = useCategoriesList();
-  const { data: subCategories } = useSubCategoriesList(categoryId);
+  const [subCategories, setSubCategories] = useState([]);
+  const { data: categories } = useCategorieListWithSub();
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -49,7 +50,7 @@ const WizardStep1 = ({
       : [];
     setFormData({
       ...formData,
-      skills: selectedValues
+      skills: selectedValues,
     });
   };
 
@@ -74,11 +75,16 @@ const WizardStep1 = ({
         disabledOption={t("select")}
         value={categoryId}
         onChange={(e) => {
+          setSubCategories(
+            categories?.find(
+              (category) => Number(category.id) === Number(e.target.value)
+            )?.sub_categories
+          );
           setCategoryId(e.target.value);
         }}
         options={categories?.map((category) => ({
           name: category.name,
-          value: category.id
+          value: category.id,
         }))}
       />
       {/* sub_category */}
@@ -90,7 +96,7 @@ const WizardStep1 = ({
         onChange={handleChange}
         options={subCategories?.map((subCategory) => ({
           name: subCategory.name,
-          value: subCategory.id
+          value: subCategory.id,
         }))}
         disabledOption={
           categoryId ? t("select") : t("addService.selectCategoryFirst")
@@ -105,7 +111,7 @@ const WizardStep1 = ({
           handleChange={handleSelect}
           options={skills?.map((skill) => ({
             label: skill?.name,
-            value: skill?.id
+            value: skill?.id,
           }))}
         />
       </div>

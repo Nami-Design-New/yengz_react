@@ -6,14 +6,14 @@ import { useQueryClient } from "@tanstack/react-query";
 import {
   calculateExpectedEndDate,
   formatTimeDifference,
-  getTimeDifference
+  getTimeDifference,
 } from "../utils/helpers";
 import DataLoader from "../ui/DataLoader";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   ORDER_STATUS_AR,
   ORDER_STATUS_EN,
-  ORDER_STATUS_PERSENTAGE
+  ORDER_STATUS_PERSENTAGE,
 } from "../utils/constants";
 import AddRateModal from "../ui/modals/AddRateModal";
 import SubmitButton from "../ui/form-elements/SubmitButton";
@@ -31,6 +31,7 @@ function ProjectsOrdersDetails() {
   const quryClient = useQueryClient();
   const user = useSelector((state) => state.authedUser.user);
   const lang = useSelector((state) => state.language.lang);
+  const navigate = useNavigate();
 
   const timeDifference = getTimeDifference(project?.created_at);
   const startTime = formatTimeDifference(
@@ -69,17 +70,12 @@ function ProjectsOrdersDetails() {
     }
   };
 
-  const handleRequestRoom = () => {
-    sessionStorage.setItem("request_type", "service");
-    sessionStorage.setItem("request_id", project?.service?.id);
-    sessionStorage.setItem(
-      "owner_id",
-      userType === "seller" ? project?.user?.id : user?.id
-    );
-    sessionStorage.setItem(
-      "applied_id",
-      userType === "seller" ? user?.id : project?.user?.id
-    );
+  const handleCreateRoom = () => {
+    sessionStorage.setItem("request_type", "project");
+    sessionStorage.setItem("request_id", project?.project_id);
+    sessionStorage.setItem("owner_id", user?.id);
+    sessionStorage.setItem("applied_id", project?.user?.id);
+    navigate(`/chat`);
   };
 
   if (isLoading) {
@@ -92,6 +88,15 @@ function ProjectsOrdersDetails() {
   return (
     <section className="cart-section container">
       <div className="row">
+        {project?.refuse_reason !== null && (
+          <div className="col-12 p-2 mb-3">
+            <div className="refuse_reason">
+              <p>
+                {t("services.refuseReason")}: {project?.refuse_reason}
+              </p>
+            </div>
+          </div>
+        )}
         <div className="col-12">
           <div className="service container">
             <div className="row justify-content-center">
@@ -171,7 +176,7 @@ function ProjectsOrdersDetails() {
                           style={{
                             width: `${
                               ORDER_STATUS_PERSENTAGE[project?.status]
-                            }%`
+                            }%`,
                           }}
                           aria-valuenow={
                             ORDER_STATUS_PERSENTAGE[project?.status]
@@ -184,7 +189,7 @@ function ProjectsOrdersDetails() {
                     <Link
                       to="/chat"
                       className="chat"
-                      onClick={handleRequestRoom}
+                      onClick={handleCreateRoom}
                     >
                       <i className="fa-light fa-message-lines"></i>
                     </Link>

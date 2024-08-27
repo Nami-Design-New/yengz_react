@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import {
   ORDER_STATUS_AR,
   ORDER_STATUS_EN,
-  ORDER_STATUS_PERSENTAGE
+  ORDER_STATUS_PERSENTAGE,
 } from "../../utils/constants";
 
 function OrderCard({ order, type }) {
@@ -59,7 +59,7 @@ function OrderCard({ order, type }) {
                     className={`progress-bar ${order?.status}`}
                     role="progressbar"
                     style={{
-                      width: `${ORDER_STATUS_PERSENTAGE[order?.status]}%`
+                      width: `${ORDER_STATUS_PERSENTAGE[order?.status]}%`,
                     }}
                     aria-valuenow={ORDER_STATUS_PERSENTAGE[order?.status]}
                     aria-valuemin="0"

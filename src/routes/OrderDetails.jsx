@@ -3,7 +3,7 @@ import {
   Link,
   useLocation,
   useParams,
-  useSearchParams
+  useSearchParams,
 } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import avatar from "../Assets/images/avatar.jpg";
@@ -14,7 +14,7 @@ import { useSelector } from "react-redux";
 import {
   ORDER_STATUS_AR,
   ORDER_STATUS_EN,
-  ORDER_STATUS_PERSENTAGE
+  ORDER_STATUS_PERSENTAGE,
 } from "../utils/constants";
 import { formatTimeDifference, getTimeDifference } from "../utils/helpers";
 import { calculateExpectedEndDate } from "./../utils/helpers";
@@ -107,6 +107,15 @@ function OrderDetails() {
   return (
     <section className="cart-section container">
       <div className="row">
+        {order?.service?.refuse_reason !== null && (
+          <div className="col-12 p-2 mb-3">
+            <div className="refuse_reason">
+              <p>
+                {t("services.refuseReason")}: {order?.service?.refuse_reason}
+              </p>
+            </div>
+          </div>
+        )}
         <div className="col-12">
           <div className="service container">
             <div className="row justify-content-center">
@@ -171,7 +180,7 @@ function OrderDetails() {
                           className={`progress-bar ${order?.status}`}
                           role="progressbar"
                           style={{
-                            width: `${ORDER_STATUS_PERSENTAGE[order?.status]}%`
+                            width: `${ORDER_STATUS_PERSENTAGE[order?.status]}%`,
                           }}
                           aria-valuenow={ORDER_STATUS_PERSENTAGE[order?.status]}
                           aria-valuemin="0"

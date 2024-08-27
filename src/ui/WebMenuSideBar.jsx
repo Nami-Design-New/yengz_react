@@ -17,6 +17,7 @@ function WebMenuSideBar({ isOpen, setIsOpen }) {
   const { data: footerCategoriesList } = useGetAbout();
   const isLogged = useSelector((state) => state.authedUser.isLogged);
   const { data: communities } = useGetCommunitiesList();
+  const lang = useSelector((state) => state.language.lang);
 
   useEffect(() => {
     const menuButton = document.querySelector(".webmenu_open");
@@ -29,7 +30,7 @@ function WebMenuSideBar({ isOpen, setIsOpen }) {
   }, [setIsOpen]);
 
   return (
-    <div className={`web-menu-sidebar ${isOpen ? "active" : ""}`}>
+    <div className={`web-menu-sidebar ${isOpen ? "active" : ""} ${lang === "en" ? "en" : ""}`}>
       <ul className="nav_side_menu">
         <li className="nav-link" onClick={() => setIsOpen(false)}>
           <Link to="/categories">
