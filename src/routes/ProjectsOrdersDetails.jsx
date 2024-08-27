@@ -72,7 +72,7 @@ function ProjectsOrdersDetails() {
 
   const handleCreateRoom = () => {
     sessionStorage.setItem("request_type", "project");
-    sessionStorage.setItem("request_id", project?.project_id);
+    sessionStorage.setItem("request_id", project?.id);
     sessionStorage.setItem("owner_id", user?.id);
     sessionStorage.setItem("applied_id", project?.user?.id);
     navigate(`/chat`);
