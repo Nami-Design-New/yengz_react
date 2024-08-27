@@ -10,19 +10,19 @@ const WizardStep3 = ({ formData, setFormData, setStep, loading, isEdit }) => {
   const developmentInitial = {
     description: "",
     price: "",
-    duration: ""
+    duration: "",
   };
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleAddDev = () => {
     setFormData((prev) => ({
       ...prev,
-      developments: [...prev.developments, developmentInitial]
+      developments: [...prev.developments, developmentInitial],
     }));
   };
   const handleRemoveDev = (dev, index) => {
@@ -30,12 +30,12 @@ const WizardStep3 = ({ formData, setFormData, setStep, loading, isEdit }) => {
       setFormData((prevState) => ({
         ...prevState,
         developments: prevState?.developments?.filter((_, i) => i !== index),
-        delete_developments: [...prevState.delete_developments, dev.id]
+        delete_developments: [...prevState.delete_developments, dev.id],
       }));
     } else {
       setFormData((prev) => ({
         ...prev,
-        developments: prev.developments.filter((_, i) => i !== index)
+        developments: prev.developments.filter((_, i) => i !== index),
       }));
     }
   };
@@ -45,7 +45,7 @@ const WizardStep3 = ({ formData, setFormData, setStep, loading, isEdit }) => {
       ...prev,
       developments: prev.developments.map((dev, i) =>
         i === index ? { ...dev, [name]: value } : dev
-      )
+      ),
     }));
   };
 
@@ -68,25 +68,6 @@ const WizardStep3 = ({ formData, setFormData, setStep, loading, isEdit }) => {
         toolTipContent={t("addService.instructionsHint")}
       />
 
-      {/* add more development */}
-      <div className="input-field">
-        <label htmlFor="add-more-devlop">
-          <div className="d-flex justify-content-between align-items-center">
-            <span>{t("addService.addMoreDevelopment")}</span>
-            <OverlayTrigger
-              placement="bottom"
-              overlay={renderTooltip({
-                content: t("addService.addMoreDevelopmentHint")
-              })}
-            >
-              <i className="info-label fa-light fa-circle-info"></i>
-            </OverlayTrigger>
-          </div>
-        </label>
-        <div className="add-more-devlop" onClick={handleAddDev}>
-          {t("addService.addMoreDevelopment")}
-        </div>
-      </div>
       <div className="w-100">
         {formData?.developments?.map((dev, index) => (
           <AddMoreDevelopCard
@@ -97,6 +78,26 @@ const WizardStep3 = ({ formData, setFormData, setStep, loading, isEdit }) => {
             onDevChange={onDevChange}
           />
         ))}
+      </div>
+
+      {/* add more development */}
+      <div className="input-field">
+        <label htmlFor="add-more-devlop">
+          <div className="d-flex justify-content-between align-items-center">
+            <span>{t("addService.addMoreDevelopment")}</span>
+            <OverlayTrigger
+              placement="bottom"
+              overlay={renderTooltip({
+                content: t("addService.addMoreDevelopmentHint"),
+              })}
+            >
+              <i className="info-label fa-light fa-circle-info"></i>
+            </OverlayTrigger>
+          </div>
+        </label>
+        <div className="add-more-devlop" onClick={handleAddDev}>
+          {t("addService.addMoreDevelopment")}
+        </div>
       </div>
 
       <div className="d-flex justify-content-between mt-4 w-100">

@@ -18,6 +18,7 @@ import doc from "../Assets/images/doc.svg";
 import ErrorPage from "./ErrorPage";
 import useGetSkills from "../features/settings/useGetSkills";
 import MultiSelect from "../ui/form-elements/MultiSelect";
+import useCategorieListWithSub from "../features/categories/useCategorieListWithSub";
 
 function AddProject() {
   const { id } = useParams();
@@ -27,9 +28,9 @@ function AddProject() {
   const [categoryId, setCategoryId] = useState("");
   const [loading, setLoading] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState([]);
-  const { data: categories } = useCategoriesList();
+  const [subCategories, setSubCategories] = useState([]);
+  const { data: categories } = useCategorieListWithSub();
   const { data: projectDetails, isLoading } = useGetProject();
-  const { data: subCategories } = useSubCategoriesList(categoryId);
   const { data: skills } = useGetSkills();
 
   const [formData, setFormData] = useState({
@@ -40,7 +41,7 @@ function AddProject() {
     description: "",
     project_files: [],
     delete_files: [],
-    skills: []
+    skills: [],
   });
 
   useEffect(() => {
@@ -54,12 +55,13 @@ function AddProject() {
         days: projectDetails?.days,
         description: projectDetails?.description,
         project_files: projectDetails?.files,
-        delete_files: []
+        delete_files: [],
       };
       setFormData(initialData);
 
-      const options = targetWork?.skills?.map((id) => {
-        const skill = skills?.find((s) => s?.id === Number(id));
+      const options = projectDetails?.skills?.map((id) => {
+        const skill = skills?.find((s) => Number(s?.id) === Number(id?.id));
+
         return { value: id, label: skill?.name };
       });
 
@@ -78,7 +80,7 @@ function AddProject() {
       : [];
     setFormData({
       ...formData,
-      skills: selectedValues
+      skills: selectedValues,
     });
   };
 
@@ -86,7 +88,7 @@ function AddProject() {
     const filesArray = Array.from(e.target.files);
     setFormData((prev) => ({
       ...prev,
-      project_files: [...prev.project_files, ...filesArray]
+      project_files: [...prev.project_files, ...filesArray],
     }));
   };
 
@@ -101,7 +103,7 @@ function AddProject() {
       return {
         ...prevState,
         project_files: updatedFiles,
-        delete_files: updatedDeleteFiles
+        delete_files: updatedDeleteFiles,
       };
     });
   };
@@ -110,7 +112,7 @@ function AddProject() {
     ...formData,
     project_files: formData.project_files.filter((file) =>
       file?.type?.startsWith("image/")
-    )
+    ),
   };
 
   const handleSubmit = async (e) => {
@@ -190,11 +192,17 @@ function AddProject() {
                       disabledOption={t("select")}
                       value={categoryId}
                       onChange={(e) => {
+                        setSubCategories(
+                          categories?.find(
+                            (category) =>
+                              Number(category.id) === Number(e.target.value)
+                          )?.sub_categories
+                        );
                         setCategoryId(e.target.value);
                       }}
                       options={categories?.map((category) => ({
                         name: category.name,
-                        value: category.id
+                        value: category.id,
                       }))}
                     />
                   </div>
@@ -207,7 +215,7 @@ function AddProject() {
                       onChange={handleChange}
                       options={subCategories?.map((subCategory) => ({
                         name: subCategory.name,
-                        value: subCategory.id
+                        value: subCategory.id,
                       }))}
                       disabledOption={
                         categoryId
@@ -236,7 +244,7 @@ function AddProject() {
                       handleChange={handleSelect}
                       options={skills?.map((skill) => ({
                         label: skill?.name,
-                        value: skill?.id
+                        value: skill?.id,
                       }))}
                     />
                   </div>

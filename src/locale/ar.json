@@ -475,7 +475,8 @@
     "acceptOrder": "قبول الطلب",
     "readyForDelevier": "جاهز للتسليم",
     "recieve": "إستلام",
-    "RateService": "تقييم الخدمة"
+    "RateService": "تقييم الخدمة",
+    "refuseReason":"سبب الرفض"
   },
   "projects": {
     "title": "المشاريع",

@@ -10,7 +10,7 @@ import {
   IconPaperclip,
   IconPlayerPause,
   IconSend,
-  IconTrash
+  IconTrash,
 } from "@tabler/icons-react";
 import Pusher from "pusher-js";
 import avatar from "../../Assets/images/avatar.jpg";
@@ -33,7 +33,7 @@ const ChatRoom = ({ chat }) => {
     from_id: user?.id,
     chat_id: chat?.id,
     message: "",
-    type: ""
+    type: "",
   });
 
   useEffect(() => {
@@ -44,7 +44,7 @@ const ChatRoom = ({ chat }) => {
 
   useEffect(() => {
     const pusher = new Pusher("40956cc89171b3e710e6", {
-      cluster: "eu"
+      cluster: "eu",
     });
 
     const channel = pusher.subscribe(`chat_${chat?.id}`);
@@ -96,8 +96,8 @@ const ChatRoom = ({ chat }) => {
               ? URL.createObjectURL(message.message)
               : message.message,
           id: Date.now(),
-          created_at: Date.now()
-        }
+          created_at: Date.now(),
+        },
       ];
     });
     formRef.current.reset();
@@ -105,7 +105,7 @@ const ChatRoom = ({ chat }) => {
       from_id: user?.id,
       chat_id: chat?.id,
       message: "",
-      type: ""
+      type: "",
     });
 
     try {
@@ -118,6 +118,8 @@ const ChatRoom = ({ chat }) => {
     }
   };
 
+  console.log(chat);
+
   const startRecording = async () => {
     setIsRecording(true);
     setRecordingTime(0);
@@ -126,7 +128,7 @@ const ChatRoom = ({ chat }) => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       const mediaRecorderInstance = new MediaRecorder(stream, {
-        mimeType: "audio/webm"
+        mimeType: "audio/webm",
       });
 
       mediaRecorderInstance.ondataavailable = (event) => {
@@ -141,7 +143,7 @@ const ChatRoom = ({ chat }) => {
         setMessage((prevMessage) => ({
           ...prevMessage,
           message: audioBlob,
-          type: "audio"
+          type: "audio",
         }));
 
         mediaRecorderInstance.stream.getTracks().forEach((track) => {
@@ -244,7 +246,7 @@ const ChatRoom = ({ chat }) => {
                     style={{
                       aspectRatio: 1 / 1,
                       width: "300px",
-                      objectFit: "contain"
+                      objectFit: "contain",
                     }}
                     src={message?.message}
                     alt=""
@@ -284,7 +286,7 @@ const ChatRoom = ({ chat }) => {
                   setMessage({
                     ...message,
                     message: e.target.value,
-                    type: "text"
+                    type: "text",
                   })
                 }
               />
@@ -321,7 +323,7 @@ const ChatRoom = ({ chat }) => {
                       ? "image"
                       : file.type.startsWith("audio/")
                       ? "audio"
-                      : "file"
+                      : "file",
                   });
                 }}
                 type="file"

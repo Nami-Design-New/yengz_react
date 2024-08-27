@@ -7,7 +7,6 @@ import { useTranslation } from "react-i18next";
 import { deleteAccount } from "../services/apiAuth";
 import { logout, setIsLogged, setUser } from "../redux/slices/authedUser";
 import { toast } from "react-toastify";
-import { calculateDate } from "../utils/helpers";
 import { useCookies } from "react-cookie";
 import "../Assets/styles/dropdownes.css";
 import axios from "./../utils/axios";
@@ -20,6 +19,7 @@ import DeleteAcountModal from "./modals/DeleteAcountModal";
 import useGetNotifications from "../features/profile/useGetNotifications";
 import SmallMediaMenu from "./SmallMediaMenu";
 import WebMenuSideBar from "./WebMenuSideBar";
+import NotificationItem from "./NotificationItem";
 
 const Navbar = () => {
   const { t } = useTranslation();
@@ -334,7 +334,9 @@ const Navbar = () => {
 
                 {/* Notifications */}
                 <li
-                  className={`link hide-sm2 ${lang === "en" ? "reverse" : ""}`}
+                  className={`link hide-sm2 notifications ${
+                    lang === "en" ? "reverse" : ""
+                  }`}
                 >
                   <Dropdown style={{ position: "relative" }}>
                     <Dropdown.Toggle
@@ -350,22 +352,8 @@ const Navbar = () => {
                       {notifications?.map((notification) => (
                         <Fragment key={notification?.title}>
                           <Dropdown.Item className="drop_Message">
-                            <Link
-                              to="/notifications"
-                              style={{ display: "flex" }}
-                            >
-                              <div className="text-wrap">
-                                <div className="d-flex justify-content-between">
-                                  <h6>{notification?.title}</h6>
-                                  <span className="time">
-                                    {calculateDate(notification?.created_at)}
-                                  </span>
-                                </div>
-                                <p>{notification?.description}</p>
-                              </div>
-                            </Link>
+                            <NotificationItem notification={notification} />
                           </Dropdown.Item>
-                          <hr />
                         </Fragment>
                       ))}
                       <div className="showall">

@@ -401,7 +401,8 @@
     "acceptOrder": "Accept Order",
     "readyForDelevier": "Ready for Delivery",
     "recieve": "Receive",
-    "RateService": "Rate Service"
+    "RateService": "Rate Service",
+    "refuseReason": "Refuse Reason"
   },
   "projects": {
     "title": "Projects",
