@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import StatusFilter from "../ui/StatusFilter";
-import OrderCard from "../ui/cards/OrderCard";
+import InProgressOrderCard from "../ui/cards/InProgressOrderCard";
 import EmptyData from "../ui/EmptyData";
 import DataLoader from "../ui/DataLoader";
 import CustomPagination from "../ui/CustomPagination";
@@ -41,7 +41,11 @@ const ProjectsOrders = () => {
                   <>
                     <div className="row">
                       {projectsOrdersList?.data?.map((order) => (
-                        <OrderCard order={order} key={order.id} type="project" />
+                        <InProgressOrderCard
+                          order={order}
+                          key={order.id}
+                          type="project"
+                        />
                       ))}
                     </div>
                     {projectsOrdersList && projectsOrdersList?.total > 10 && (

@@ -2473,6 +2473,16 @@ body main .cart-section .service-head {
     gap: 18px;
   }
 }
+body main .cart-section .service-head.mini .request-owner-img {
+  width: 56px;
+  height: 56px;
+}
+body main .cart-section .service-head.mini .owner span {
+  font-size: 16px !important;
+}
+body main .cart-section .service-head.mini .title h5 {
+  font-size: 14px !important;
+}
 body main .cart-section .service-head .request-owner-img {
   width: 80px;
   height: 80px;
