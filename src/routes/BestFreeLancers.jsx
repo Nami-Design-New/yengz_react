@@ -14,6 +14,7 @@ import useGetSkills from "../features/settings/useGetSkills";
 import { handleApplyFilters } from "../utils/helpers";
 import EmptyData from "../ui/EmptyData";
 import CustomPagination from "../ui/CustomPagination";
+import FreelancerCard from "../ui/cards/FreelancerCard";
 
 const BestFreeLancers = () => {
   const { t } = useTranslation();
@@ -290,38 +291,7 @@ const BestFreeLancers = () => {
                     <>
                       {freelancers?.data?.map((freelancer) => (
                         <div className="col-12 p-2" key={freelancer?.id}>
-                          <Link
-                            to={`/profile/${freelancer?.id}`}
-                            className="freelancerCard"
-                          >
-                            <div className="d-flex justify-content-between">
-                              <div className="info">
-                                <div className="img">
-                                  <img
-                                    src={freelancer?.image}
-                                    alt={freelancer?.name}
-                                  />
-                                  {freelancer?.verified === 1 && (
-                                    <span className="status">
-                                      <IconRosetteDiscountCheckFilled />
-                                    </span>
-                                  )}
-                                </div>
-                                <div className="content">
-                                  <h6>{freelancer?.name}</h6>
-                                  <ul>
-                                    <li>
-                                      <i className="fa-regular fa-cubes"></i>{" "}
-                                      {t("servicesCount")}:{" "}
-                                      {freelancer?.service_count}
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                              <StarsList rate={freelancer?.rate} />
-                            </div>
-                            <p>{truncate(freelancer?.about)}</p>
-                          </Link>
+                          <FreelancerCard freelancer={freelancer} truncate={truncate} />
                         </div>
                       ))}
                       {freelancers && freelancers?.total > 10 && (
