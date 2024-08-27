@@ -18,8 +18,8 @@ const CategoriesSection = () => {
     <section className="categories ">
       <div className="container">
         {/* section head */}
-        <h2 className="title">اعثر على مستقلين محترفين في كافة المجالات</h2>
-        <p className="desc">غطي احتياجاتك من المهارات في جميع التخصصات</p>
+        <h2 className="title">{t("home.findFreelancersYouNeed")}</h2>
+        <p className="desc">{t("home.coverAllYourNeeds")}</p>
         <div className="row-head" data-aos="fade-up">
           <h6>
             <i className="fa-sharp fa-solid fa-grid-2"></i>{" "}
