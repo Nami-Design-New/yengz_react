@@ -21,22 +21,20 @@ import SelectField from "../../ui/form-elements/SelectField";
 import useCountriesList from "../countries/useCountriesList";
 
 const EditProfile = () => {
+  const user = useSelector((state) => state.authedUser.user);
   const { t } = useTranslation();
-  const { data: categories } = useCategoriesList();
-  const [cookies] = useCookies(["token"]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const token = cookies?.token;
-  const user = useSelector((state) => state.authedUser.user);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({});
   const [options, setOptions] = useState([]);
-  const [wantChangePassword, setWantChangePassword] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState([]);
-  const { data: skills } = useGetSkills();
   const [skillsSelectedOptions, setSkillsSelectedOptions] = useState([]);
-  const { isLoading: isCountriesLoading, data: countries } = useCountriesList();
-  const [countryId, setCountryId] = useState("");
+  const [wantChangePassword, setWantChangePassword] = useState(false);
+
+  const { data: skills } = useGetSkills();
+  const { data: categories } = useCategoriesList();
+  const { data: countries } = useCountriesList();
 
   useEffect(() => {
     setFormData({
@@ -46,51 +44,43 @@ const EditProfile = () => {
       phone: user?.phone || "",
       about: user?.about || "",
       age: user?.age || "",
+      country_id: user?.country_id || "",
       is_freelance: user?.is_freelance || 0,
-      categories: user?.categories?.map((category) => category?.id) || [],
+      skills: user?.skills?.map((skill) => skill?.id) || [],
+      categories: user?.categories?.map((category) => category?.id) || []
     });
     if (wantChangePassword) {
       setFormData((prev) => ({
         ...prev,
-        password: "",
+        password: ""
       }));
     }
   }, [user, wantChangePassword]);
 
-  // set options of multi select
   useEffect(() => {
-    if (categories) {
-      const options = categories?.map((category) => ({
-        value: category.id,
-        label: category.name,
-      }));
-      setOptions(options);
-    }
-  }, [categories]);
-
-  // set selected options of multi select
-  useEffect(() => {
-    if (options?.length > 0 && formData.categories?.length > 0) {
+    if (formData.categories?.length > 0) {
       const selectedOptions = formData.categories?.map((categoryId) => {
-        const option = options.find((opt) => opt.value === categoryId);
+        const option = categories?.find((opt) => opt.id === categoryId);
         return {
-          value: option?.value,
-          label: option?.label,
+          value: option?.id,
+          label: option?.name
         };
       });
       setSelectedOptions(selectedOptions);
     }
-  }, [formData.categories, options]);
 
-  const handleCountrtSelect = (e) => {
-    setCountryId(e.target.value);
-    setFormData({
-      ...formData,
-      country_id: e.target.value,
-    });
-  };
+    if (formData.skills?.length > 0) {
+      const selectedOptions = formData.skills?.map((skillId) => {
+        const option = skills?.find((opt) => opt.id === skillId);
+        return {
+          value: option?.id,
+          label: option?.name
+        };
+      });
+      setSkillsSelectedOptions(selectedOptions);
+    }
+  }, [formData.categories, formData.skills, categories, skills]);
 
-  // handle select
   const handleSelect = (selectedItems) => {
     setSelectedOptions(selectedItems);
     const selectedValues = selectedItems
@@ -98,39 +88,37 @@ const EditProfile = () => {
       : [];
     setFormData({
       ...formData,
-      categories: selectedValues,
+      categories: selectedValues
     });
   };
 
-  useEffect(() => {
-    if (!token) {
-      navigate("/login");
-    }
-  }, [token]);
+  const handleSelectSkills = (selectedItems) => {
+    setSkillsSelectedOptions(selectedItems);
+    const selectedValues = selectedItems
+      ? selectedItems?.map((option) => option.value)
+      : [];
+    setFormData({
+      ...formData,
+      skills: selectedValues
+    });
+  };
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
-  };
-
-  const headers = {
-    Accept: "application/json",
-    "Content-Type": "multipart/form-data",
-  };
-  const request = {
-    method: "POST",
-    headers: headers,
-    data: formData,
-    url: "/user/update_profile",
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.request(request);
+      const res = await axios.post("/user/update_profile", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      });
       if (res.data.code === 200) {
         toast.success(t("profile.profileEditedSuccessfully"));
         dispatch(setUser(res.data.data));
@@ -144,17 +132,6 @@ const EditProfile = () => {
     } finally {
       setLoading(false);
     }
-  };
-
-  const handleSelectSkills = (selectedItems) => {
-    setSkillsSelectedOptions(selectedItems);
-    const selectedValues = selectedItems
-      ? selectedItems?.map((option) => option.value)
-      : [];
-    setFormData({
-      ...formData,
-      skills: selectedValues,
-    });
   };
 
   return (
@@ -208,15 +185,14 @@ const EditProfile = () => {
             <div className="d-flex gap-2 flex-lg-row flex-column w-100">
               <SelectField
                 label={t("manageAccounts.country")}
-                id="category"
-                name="category"
+                id="country_id"
+                name="country_id"
                 disabledOption={t("select")}
-                value={countryId}
-                required={true}
-                onChange={handleCountrtSelect}
+                value={formData?.country_id}
+                onChange={(e) => handleChange(e)}
                 options={countries?.map((country) => ({
                   name: country.name,
-                  value: country.id,
+                  value: country.id
                 }))}
               />
               <PhoneField
@@ -239,7 +215,10 @@ const EditProfile = () => {
               label={t("auth.interestes")}
               id="interest"
               name="interest"
-              options={options}
+              options={categories?.map((category) => ({
+                value: category.id,
+                label: category.name
+              }))}
               selectedOptions={selectedOptions}
               handleChange={handleSelect}
             />
@@ -251,7 +230,7 @@ const EditProfile = () => {
               handleChange={handleSelectSkills}
               options={skills?.map((skill) => ({
                 label: skill?.name,
-                value: skill?.id,
+                value: skill?.id
               }))}
             />
             <div className="question p-0">
@@ -266,7 +245,7 @@ const EditProfile = () => {
                 onChange={() =>
                   setFormData({
                     ...formData,
-                    is_freelance: formData?.is_freelance === 1 ? 0 : 1,
+                    is_freelance: formData?.is_freelance === 1 ? 0 : 1
                   })
                 }
               />
