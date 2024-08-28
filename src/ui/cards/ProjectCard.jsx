@@ -76,6 +76,12 @@ function ProjectCard({ project }) {
                     <i className="fa-regular fa-timer"></i>
                     {formattedTime}
                   </p>
+                  <p className="time m-0">
+                    <i className="fa-regular fa-envelope-open-text"></i>
+                    {project?.requests_count > 0
+                      ? project?.requests_count + " " + t("projects.offer")
+                      : t("projects.addFirst")}
+                  </p>
                 </div>
               </div>
             </div>

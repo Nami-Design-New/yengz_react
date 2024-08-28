@@ -56,4 +56,10 @@
 hr {
   padding: 0;
   margin: 0;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }/*# sourceMappingURL=dropdownes.css.map */

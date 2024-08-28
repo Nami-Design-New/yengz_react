@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { ProgressBar } from "react-bootstrap";
-import WizardStep1 from "./WizardStep1";
-import WizardStep2 from "./WizardStep2";
-import WizardStep3 from "./WizardStep3";
 import { createService, updateService } from "../../services/apiServices";
 import { useQueryClient } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
+import WizardStep1 from "./WizardStep1";
+import WizardStep2 from "./WizardStep2";
+import WizardStep3 from "./WizardStep3";
 import useServiceDetails from "./useServiceDetails";
 import ErrorPage from "../../routes/ErrorPage";
 import useGetSkills from "../settings/useGetSkills";
@@ -34,6 +34,7 @@ const AddServices = () => {
     price: "",
     instructions: "",
     images: [],
+    skills: [],
     developments: [],
     delete_images: [],
     delete_developments: []
@@ -52,19 +53,27 @@ const AddServices = () => {
         images: service?.images,
         developments: service?.developments,
         sub_category_id: service?.sub_category_id,
+        skills: service?.skills?.map((skill) => skill?.id) || [],
         delete_images: [],
         delete_developments: []
       };
       setFormData(initialData);
       setOriginalData(initialData);
     }
-    const options = service?.skills?.map((id) => {
-      const skill = skills?.find((s) => s?.id === Number(id));
-      return { value: id, label: skill?.name };
-    });
-
-    setSelectedOptions(options);
   }, [service]);
+
+  useEffect(() => {
+    if (formData.skills?.length > 0) {
+      const selectedOptions = formData.skills?.map((skillId) => {
+        const option = skills?.find((opt) => opt.id === skillId);
+        return {
+          value: option?.id,
+          label: option?.name
+        };
+      });
+      setSelectedOptions(selectedOptions);
+    }
+  }, [formData.skills, skills]);
 
   useEffect(() => {
     setProgress((step / totalSteps) * 100);

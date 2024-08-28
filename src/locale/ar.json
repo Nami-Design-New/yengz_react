@@ -527,7 +527,9 @@
     "attachments": "المرفقات",
     "requestRefused": "تم رفض الطلب",
     "requestAccepted": "تم قبول الطلب",
-    "refused": "مرفوض"
+    "refused": "مرفوض",
+    "offer": "عروض",
+    "addFirst": "اضف أول عرض"
   },
   "chat": {
     "block": "حظر",
@@ -616,7 +618,8 @@
     "responsibilityCondition": "أتحمل وحدي أي خسارة ناتجة عن إدخال معلومات خاطئة أو غير دقيقة",
     "durationCondition": "أعلم أن الحوالات البنكية تستغرق حتى 7 أيام عمل لتصل",
     "paypalAccount": "حساب PayPal",
-    "withdrawSuccessfully": "تم السحب بنجاح"
+    "withdrawSuccessfully": "تم السحب بنجاح",
+    "noTransactions": "لا توجد معاملات مالية"
   },
   "manageAccounts": {
     "headerText": "ادارة الحسابات البنكية",
@@ -654,6 +657,20 @@
     "most_offer": "الأكثر طلبًا",
     "less_offer": "الأقل طلبًا",
     "noSort": "الكل"
+  },
+  "transactions": {
+    "charge": "شحن",
+    "app_service_percentage": "نسبة التطبيق على الخدمة",
+    "app_project_percentage": "نسبة التطبيق على المشروع",
+    "project_accept": "قبول المشروع",
+    "refund_project": "إلغاء المشروع",
+    "project_complete": "اكتمال المشروع",
+    "service_order_finish": "اكتمال طلب الخدمة",
+    "service_order_create": "إنشاء طلب خدمة",
+    "refund_service_order": "إلغاء طلب الخدمة",
+    "withdraw_balance_complete": "اكتمال سحب الرصيد",
+    "withdraw_balance_request": "طلب سحب الرصيد",
+    "withdraw_balance_canceled": "إلغاء سحب الرصيد"
   },
   "password": "ادخل كلمة المرور ",
   "cancel": "الغاء",

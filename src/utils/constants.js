@@ -4,21 +4,36 @@ export const FILTER_STATUS = [
   "in_progress",
   "ready",
   "received",
-  "canceled",
+  "canceled"
+];
+
+export const TRANSACTIONS_STATUS = [
+  "charge",
+  "app_service_percentage",
+  "app_project_percentage",
+  "project_accept",
+  "refund_project",
+  "project_complete",
+  "service_order_finish",
+  "service_order_create",
+  "refund_service_order",
+  "withdraw_balance_complete",
+  "withdraw_balance_request",
+  "withdraw_balance_canceled"
 ];
 
 export const PAGE_SIZE = 10;
 
 export const COMMUNITIES_OPTIONS = [
   {
-    name: "unexisited-requests-orders",
+    name: "unexisited-requests-orders"
   },
   {
-    name: "users-stories",
+    name: "users-stories"
   },
   {
-    name: "done-works-modals",
-  },
+    name: "done-works-modals"
+  }
 ];
 
 export const ORDER_STATUS_AR = {
@@ -27,7 +42,7 @@ export const ORDER_STATUS_AR = {
   ready: "جاهز",
   complete: "تم الانتهاء",
   received: "تم الاستلام",
-  canceled: "ملغى",
+  canceled: "ملغى"
 };
 
 export const ORDER_STATUS_EN = {
@@ -36,7 +51,7 @@ export const ORDER_STATUS_EN = {
   ready: "Ready",
   received: "Received",
   complete: "Complete",
-  canceled: "Canceled",
+  canceled: "Canceled"
 };
 
 export const ORDER_STATUS_PERSENTAGE = {
@@ -44,5 +59,5 @@ export const ORDER_STATUS_PERSENTAGE = {
   in_progress: 50,
   ready: 75,
   received: 100,
-  canceled: 100,
+  canceled: 100
 };

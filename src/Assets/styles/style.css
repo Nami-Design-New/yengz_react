@@ -302,6 +302,11 @@ input[type=checkbox]:checked::after {
   left: initial;
 }
 
+.form-select {
+  box-shadow: none !important;
+  cursor: pointer;
+}
+
 body {
   background: var(--white-color);
   direction: rtl;
@@ -744,15 +749,18 @@ body header .tnavbar .loged-in-minor-menu .link .dropdown-menu .text-wrap .time 
 }
 body header .tnavbar .loged-in-minor-menu .link .dropdown-menu .text-wrap .status {
   font-size: 12px;
-  color: var(--white-color);
   line-height: 20px;
   background-color: var(--main-color);
-  padding: 2px 8px;
-  border-radius: 8px;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+}
+body header .tnavbar .loged-in-minor-menu .link .dropdown-menu .text-wrap .status i {
+  color: #fff;
 }
 body header .tnavbar .loged-in-minor-menu .link .dropdown-menu .text-wrap .status.refused {
   background-color: #d9534f;
@@ -787,11 +795,9 @@ body header .tnavbar .loged-in-minor-menu .link .dropdown-menu .text-wrap .messa
 body header .tnavbar .loged-in-minor-menu .link .dropdown-menu .showall {
   display: flex;
   width: 100%;
-  padding: 8px 14px;
-  background: var(--LightGray);
-  position: relative;
-  bottom: 0px;
-  left: 0;
+  padding: 10px 14px;
+  background: var(--input-bg);
+  color: var(--black-color);
 }
 body header .tnavbar .loged-in-minor-menu .link .dropdown-menu .showall a {
   color: var(--black-color);
@@ -953,11 +959,17 @@ body main .hero_section .hero_content .words {
   flex-wrap: wrap;
 }
 body main .hero_section .hero_content .words .word {
-  padding: 4px 12px;
+  padding: 4px 22px;
   border-radius: 20px;
-  background: var(--white-color);
-  color: var(--main-color);
+  background: rgba(255, 255, 255, 0.5215686275);
+  color: #000000;
   cursor: pointer;
+  -webkit-backdrop-filter: blur(26px);
+          backdrop-filter: blur(26px);
+  transition: 0.2s ease-in-out;
+}
+body main .hero_section .hero_content .words .word:hover {
+  background: #ffffff;
 }
 body main .video_section {
   background-color: rgba(255, 255, 255, 0.1568627451);
@@ -3634,7 +3646,7 @@ body main .balance_section .content-body .transactions-wrapper .transactions-asi
   flex-direction: column;
   position: relative;
   gap: 24px;
-  padding: 8px 16px;
+  padding: 24px 16px;
   border-radius: 12px;
   background-color: var(--gray-background);
 }
@@ -3673,11 +3685,12 @@ body main .balance_section .content-body .transactions-wrapper .transactions-asi
   color: var(--text-color);
 }
 body main .balance_section .content-body .transactions-wrapper .transactions-body {
-  flex: 3 0;
+  flex: 4 0;
   display: flex;
   flex-direction: column;
   position: relative;
   gap: 16px;
+  color: var(--black-color);
 }
 body main .balance_section .content-body .transactions-wrapper .transactions-body .transaction-box {
   width: 100%;
@@ -3698,6 +3711,7 @@ body main .balance_section .content-body .transactions-wrapper .transactions-bod
 body main .balance_section .content-body .transactions-wrapper .transactions-body .transaction-box .money-wrapper h5 {
   display: flex;
   align-items: center;
+  color: var(--black-color);
   gap: 4px;
   font-size: 18px;
   font-weight: 600;
@@ -3715,6 +3729,7 @@ body main .balance_section .content-body .transactions-wrapper .transactions-bod
   align-items: center;
   position: relative;
   flex-wrap: wrap;
+  color: var(--black-color);
 }
 body main .balance_section .content-body .transactions-wrapper .transactions-body .transaction-box .info-wrapper .info-header span {
   color: var(--main-color);
@@ -3745,7 +3760,7 @@ body main .balance_section .content-body .transactions-wrapper .transactions-bod
   color: var(--text-color);
 }
 body footer {
-  background: linear-gradient(90.12deg, #896698 4.61%, #664180 48.43%, #392f71 92.24%);
+  background: #392f71;
   padding-top: 60px;
 }
 body footer .accordion {
@@ -5008,7 +5023,7 @@ body .singleRequst {
   position: relative;
 }
 body .singleRequst p {
-  color: var(--black-color);
+  color: var(--text-color);
 }
 body .singleRequst .requstPost,
 body .singleRequst .lastInteraction {
@@ -7554,4 +7569,41 @@ body .bank-acc-card .icons button:nth-child(2) {
   background: var(--LightGray);
   position: absolute;
   right: 0;
+}
+
+.project_owner,
+.project_freelancer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.project_owner .img,
+.project_freelancer .img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.project_owner .img img,
+.project_freelancer .img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.project_owner .content h5,
+.project_freelancer .content h5 {
+  color: var(--black-color);
+  font-size: 18px;
+}
+.project_owner .content h6,
+.project_freelancer .content h6 {
+  font-size: 14px;
+  color: var(--text-color);
+  margin: 0;
+}
+
+.scroll_menu {
+  overflow-y: scroll;
+  height: 252px;
 }/*# sourceMappingURL=style.css.map */

@@ -49,24 +49,34 @@ const Chats = () => {
           <span> {t("chat.chats")} </span>
         </button>
         <div className="row">
-          <div className="col-lg-4 col-12 p-2">
-            <ChatSideBar
-              chats={chats}
-              setTargetChat={setTargetChat}
-              targetChat={targetChat}
-              showChatsMenu={showChatsMenu}
-              setShowChatsMenu={setShowChatsMenu}
-            />
-          </div>
-          <div className="col-lg-8 col-12 p-2">
-            {targetChat ? (
-              <>{isChatLoading ? <DataLoader /> : <ChatRoom chat={chat} />}</>
-            ) : (
-              <div className="lottie_player_holder">
-                <Lottie options={defaultOptions} height={250} width={250} />
+          {chats?.length > 0 ? (
+            <>
+              <div className="col-lg-4 col-12 p-2">
+                <ChatSideBar
+                  chats={chats}
+                  setTargetChat={setTargetChat}
+                  targetChat={targetChat}
+                  showChatsMenu={showChatsMenu}
+                  setShowChatsMenu={setShowChatsMenu}
+                />
               </div>
-            )}
-          </div>
+              <div className="col-lg-8 col-12 p-2">
+                {targetChat ? (
+                  <>
+                    {isChatLoading ? <DataLoader /> : <ChatRoom chat={chat} />}
+                  </>
+                ) : (
+                  <div className="lottie_player_holder">
+                    <Lottie options={defaultOptions} height={250} width={250} />
+                  </div>
+                )}
+              </div>
+            </>
+          ) : (
+            <div className="lottie_player_holder">
+              <Lottie options={defaultOptions} height={250} width={250} />
+            </div>
+          )}
         </div>
       </div>
     </section>

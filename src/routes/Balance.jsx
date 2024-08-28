@@ -5,6 +5,7 @@ import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useState } from "react";
 import ChargeModal from "../ui/modals/ChargeModal";
 import WithdrawModal from "../ui/modals/WithdrawModal";
+import Transactions from "../features/wallet/Transactions";
 
 function Balance() {
   const { t } = useTranslation();
@@ -45,7 +46,7 @@ function Balance() {
                   <OverlayTrigger
                     placement="bottom"
                     overlay={renderTooltip({
-                      content: t("profile.totalBalanceTooltip"),
+                      content: t("profile.totalBalanceTooltip")
                     })}
                   >
                     <i className="info-label fa-light fa-circle-info"></i>
@@ -62,7 +63,7 @@ function Balance() {
                   <OverlayTrigger
                     placement="bottom"
                     overlay={renderTooltip({
-                      content: t("profile.pendingBalanceTooltip"),
+                      content: t("profile.pendingBalanceTooltip")
                     })}
                   >
                     <i className="info-label fa-light fa-circle-info"></i>
@@ -79,7 +80,7 @@ function Balance() {
                   <OverlayTrigger
                     placement="bottom"
                     overlay={renderTooltip({
-                      content: t("profile.availableBalanceTooltip"),
+                      content: t("profile.availableBalanceTooltip")
                     })}
                   >
                     <i className="info-label fa-light fa-circle-info"></i>
@@ -96,7 +97,7 @@ function Balance() {
                   <OverlayTrigger
                     placement="bottom"
                     overlay={renderTooltip({
-                      content: t("profile.walletTooltip"),
+                      content: t("profile.walletTooltip")
                     })}
                   >
                     <i className="info-label fa-light fa-circle-info"></i>
@@ -107,150 +108,7 @@ function Balance() {
                 </h6>
               </div>
             </div>
-            {/* <div className="transactions-wrapper">
-              <h3>{t("balance.transactions")}</h3>
-              <div className="transactions-aside">
-                <div className="filter-box">
-                  <h5 className="box-header">{t("balance.period")}</h5>
-                  <div className="box-content">
-                    <div className="item">
-                      <div className="input-field">
-                        <label htmlFor="date-from">{t("balance.from")}</label>
-                        <input
-                          type="date"
-                          className="form-date"
-                          placeholder={t("balance.from")}
-                          id="date-from"
-                        />
-                      </div>
-                      <div className="input-field">
-                        <label htmlFor="date-to">{t("balance.to")}</label>
-                        <input
-                          type="date"
-                          className="form-date"
-                          placeholder={t("balance.to")}
-                          id="date-to"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="filter-box">
-                  <h5 className="box-header">{t("balance.transactionType")}</h5>
-                  <div className="box-content">
-                    <div className="item">
-                      <input
-                        type="checkbox"
-                        className="form-checkbox"
-                        name="transactionType"
-                        value="deposit"
-                        id="deposit"
-                      />
-                      <label htmlFor="deposit">{t("balance.deposit")}</label>
-                    </div>
-                    <div className="item">
-                      <input
-                        type="checkbox"
-                        className="form-checkbox"
-                        name="transactionType"
-                        value="fees"
-                        id="fees"
-                      />
-                      <label htmlFor="fees">{t("balance.fees")}</label>
-                    </div>
-                    <div className="item">
-                      <input
-                        type="checkbox"
-                        className="form-checkbox"
-                        name="transactionType"
-                        value="finishingProject"
-                        id="finishingProject"
-                      />
-                      <label htmlFor="finishingProject">
-                        {t("balance.finishingProject")}
-                      </label>
-                    </div>
-                    <div className="item">
-                      <input
-                        type="checkbox"
-                        className="form-checkbox"
-                        name="transactionType"
-                        value="refund"
-                        id="refund"
-                      />
-                      <label htmlFor="refund">{t("balance.refund")}</label>
-                    </div>
-                    <div className="item">
-                      <input
-                        type="checkbox"
-                        className="form-checkbox"
-                        name="transactionType"
-                        value="withdraw"
-                        id="withdraw"
-                      />
-                      <label htmlFor="withdraw">{t("balance.withdraw")}</label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="transactions-body">
-                <div className="transaction-box">
-                  <div className="money-wrapper">
-                    <h5>
-                      +20.00<i className="fa-solid fa-dollar-sign"></i>
-                    </h5>
-                  </div>
-                  <div className="info-wrapper">
-                    <h6 className="info-header">
-                      الربح من إكمال مشروع <span>في برمجة وتطوير الويب</span>
-                    </h6>
-                    <div className="info-boxes-wrapper">
-                      <div className="info-box">
-                        <i className="fa-regular fa-timer"></i>
-                        20/4/2024
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="transaction-box">
-                  <div className="money-wrapper">
-                    <h5>
-                      +276.00<i className="fa-solid fa-dollar-sign"></i>
-                    </h5>
-                  </div>
-                  <div className="info-wrapper">
-                    <h6 className="info-header">
-                      الربح من إكمال مشروع <span>كتابة محتوى موقع</span>
-                    </h6>
-                    <div className="info-boxes-wrapper">
-                      <div className="info-box">
-                        <i className="fa-regular fa-timer"></i>
-                        1/2/2024
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="transaction-box">
-                  <div className="money-wrapper">
-                    <h5>
-                      +340.00<i className="fa-solid fa-dollar-sign"></i>
-                    </h5>
-                  </div>
-                  <div className="info-wrapper">
-                    <h6 className="info-header">
-                      الربح من إكمال مشروع{" "}
-                      <span>ترجمة كتاب تقني على الووردبريس</span>
-                    </h6>
-                    <div className="info-boxes-wrapper">
-                      <div className="info-box">
-                        <i className="fa-regular fa-timer"></i>
-                        5/8/2023
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> */}
+            <Transactions />
           </div>
         </div>
         <ChargeModal

@@ -35,7 +35,7 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
     if (categories) {
       const options = categories?.map((category) => ({
         value: category.id,
-        label: category.name,
+        label: category.name
       }));
       setOptions(options);
     }
@@ -47,7 +47,7 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
         const option = options.find((opt) => opt.value === categoryId);
         return {
           value: option?.value,
-          label: option?.label,
+          label: option?.label
         };
       });
       setSelectedOptions(selectedOptions);
@@ -58,7 +58,7 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
     setCountryId(e.target.value);
     setFormData({
       ...formData,
-      country_id: e.target.value,
+      country_id: e.target.value
     });
   };
 
@@ -69,29 +69,29 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
       : [];
     setFormData({
       ...formData,
-      categories: selectedValues,
+      categories: selectedValues
     });
   };
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
   const headers = {
     Accept: "application/json",
-    "Content-Type": "multipart/form-data",
+    "Content-Type": "multipart/form-data"
   };
   const request = {
     method: "POST",
     headers: headers,
     data: {
       ...formData,
-      is_freelance: formData.is_freelance ? 1 : 0,
+      is_freelance: formData.is_freelance ? 1 : 0
     },
-    url: "/user/can_register",
+    url: "/user/can_register"
   };
 
   const handleSubmit = async (e) => {
@@ -103,7 +103,7 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
         setShowOtp(true);
         setOtpData((prev) => ({
           ...prev,
-          hashed_code: res.data.data,
+          hashed_code: res.data.data
         }));
       } else {
         toast.error(res.data.message);
@@ -121,7 +121,7 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
       try {
         const res = await axios.post("/user/social_login", {
           login_from: "google",
-          google_token: tokenResponse.access_token,
+          google_token: tokenResponse.access_token
         });
 
         if (res.data.code === 200) {
@@ -132,12 +132,12 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
           setCookie("token", res.data.data.token, {
             path: "/",
             secure: true,
-            sameSite: "Strict",
+            sameSite: "Strict"
           });
           setCookie("id", res.data.data.id, {
             path: "/",
             secure: true,
-            sameSite: "Strict",
+            sameSite: "Strict"
           });
           axios.defaults.headers.common[
             "Authorization"
@@ -151,14 +151,14 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
     onError: (error) => {
       console.log("Google Login Error:", error);
       toast.error(t("auth.googleLoginError"));
-    },
+    }
   });
 
   const handleAppleLogin = async (response) => {
     try {
       const res = await axios.post("/user/social_login", {
         login_from: "apple",
-        token: response.code,
+        token: response.code
       });
 
       if (res.data.code === 200) {
@@ -169,12 +169,12 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
         setCookie("token", res.data.data.token, {
           path: "/",
           secure: true,
-          sameSite: "Strict",
+          sameSite: "Strict"
         });
         setCookie("id", res.data.data.id, {
           path: "/",
           secure: true,
-          sameSite: "Strict",
+          sameSite: "Strict"
         });
         axios.defaults.headers.common[
           "Authorization"
@@ -195,7 +195,7 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
       : [];
     setFormData({
       ...formData,
-      skills: selectedValues,
+      skills: selectedValues
     });
   };
 
@@ -261,7 +261,7 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
           onChange={handleCountrtSelect}
           options={countries?.map((country) => ({
             name: country.name,
-            value: country.id,
+            value: country.id
           }))}
         />
         <PhoneField formData={formData} setFormData={setFormData} id="phone" />
@@ -282,7 +282,7 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
         handleChange={handleSelectSkills}
         options={skills?.map((skill) => ({
           label: skill?.name,
-          value: skill?.id,
+          value: skill?.id
         }))}
       />
       <div className="question">
@@ -297,7 +297,7 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
           onChange={() =>
             setFormData({
               ...formData,
-              is_freelance: formData.is_freelance === 1 ? 0 : 1,
+              is_freelance: formData.is_freelance === 1 ? 0 : 1
             })
           }
         />
@@ -322,7 +322,7 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
         >
           <img src={Google} alt="google" /> {t("auth.googleAccount")}
         </button>
-        {/* <AppleLogin
+        <AppleLogin
           clientId={"process.env.REACT_APP_APPLE_CLIENT_ID"}
           redirectURI={"process.env.REACT_APP_APPLE_REDIRECT_URI"}
           responseType="code"
@@ -343,7 +343,7 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
               <img src={Apple} alt="apple" /> {t("auth.appleAccount")}
             </button>
           )}
-        /> */}
+        />
       </div>
       <Link to="/login" className="noAccount">
         {t("auth.alreadyHaveAccount")} <span>{t("auth.login")}</span>

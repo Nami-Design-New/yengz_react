@@ -25,9 +25,13 @@ const AddRateModal = ({ showModal, setShowModal, order }) => {
     e.preventDefault();
     setLoading(true);
     try {
-      await createRate(formData);
-      toast.success(t("comments.createSuccess"));
-      navigate("/purchases");
+      const { code, message } = await createRate(formData);
+      if (code === 200) {
+        toast.success(t("comments.createSuccess"));
+        navigate("/purchases");
+      } else {
+        toast.error(message);
+      }
       setShowModal(false);
     } catch (error) {
       throw new Error(error.message);

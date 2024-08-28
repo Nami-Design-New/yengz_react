@@ -16,7 +16,7 @@ const WizardStep1 = ({
   setCategoryId,
   skills,
   selectedOptions,
-  setSelectedOptions,
+  setSelectedOptions
 }) => {
   const [formValid, setFormValid] = useState(false);
   const { t } = useTranslation();
@@ -26,7 +26,7 @@ const WizardStep1 = ({
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
@@ -50,9 +50,19 @@ const WizardStep1 = ({
       : [];
     setFormData({
       ...formData,
-      skills: selectedValues,
+      skills: selectedValues
     });
   };
+
+  useEffect(() => {
+    if (categoryId) {
+      setSubCategories(
+        categories?.find(
+          (category) => Number(category.id) === Number(categoryId)
+        )?.sub_categories
+      );
+    }
+  }, [categoryId, categories]);
 
   return (
     <>
@@ -84,7 +94,7 @@ const WizardStep1 = ({
         }}
         options={categories?.map((category) => ({
           name: category.name,
-          value: category.id,
+          value: category.id
         }))}
       />
       {/* sub_category */}
@@ -96,7 +106,7 @@ const WizardStep1 = ({
         onChange={handleChange}
         options={subCategories?.map((subCategory) => ({
           name: subCategory.name,
-          value: subCategory.id,
+          value: subCategory.id
         }))}
         disabledOption={
           categoryId ? t("select") : t("addService.selectCategoryFirst")
@@ -111,7 +121,7 @@ const WizardStep1 = ({
           handleChange={handleSelect}
           options={skills?.map((skill) => ({
             label: skill?.name,
-            value: skill?.id,
+            value: skill?.id
           }))}
         />
       </div>

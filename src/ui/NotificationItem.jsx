@@ -2,7 +2,6 @@ import { Link, useLocation } from "react-router-dom";
 import { calculateDate } from "../utils/helpers";
 import { useState } from "react";
 import useGetCommunityPostDetails from "../features/community/useGetCommunityPostDetails";
-import DataLoader from "./DataLoader";
 
 function NotificationItem({ notification }) {
   const currentPath = useLocation().pathname;
@@ -12,6 +11,25 @@ function NotificationItem({ notification }) {
   );
 
   console.log(notification);
+
+  let status = "";
+
+  switch (notification?.status) {
+    case "pending":
+      status = <i className="fa-solid fa-hourglass-end"></i>;
+      break;
+    case "accepted":
+      status = <i className="fa-regular fa-check"></i>;
+      break;
+    case "refused":
+      status = <i className="fa-regular fa-xmark"></i>;
+      break;
+    case "comment":
+      status = <i className="fa-regular fa-message"></i>;
+      break;
+    default:
+      break;
+  }
 
   return (
     <Link
@@ -26,6 +44,10 @@ function NotificationItem({ notification }) {
       }${
         notification?.request_type === "community"
           ? `/community/${post?.category_name}/${notification?.request_id}`
+          : ""
+      }${
+        notification?.request_type === "service_order"
+          ? `/recieved-orders`
           : ""
       }`}
       className="d-flex align-items-start flex-wrap"
@@ -56,7 +78,7 @@ function NotificationItem({ notification }) {
               <h6>{notification?.title}</h6>
               {notification?.status && (
                 <span className={`status ${notification?.status}`}>
-                  {notification?.status}
+                  {status}
                 </span>
               )}
             </div>

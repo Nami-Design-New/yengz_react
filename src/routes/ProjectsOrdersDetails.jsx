@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import useGetProject from "../features/projects/useGetProject";
+import { updateProject } from "../services/apiProjects";
 import { useQueryClient } from "@tanstack/react-query";
 import {
   calculateExpectedEndDate,
   formatTimeDifference,
-  getTimeDifference,
+  getTimeDifference
 } from "../utils/helpers";
-import DataLoader from "../ui/DataLoader";
+import useGetProject from "../features/projects/useGetProject";
 import { Link, useNavigate } from "react-router-dom";
 import {
   ORDER_STATUS_AR,
   ORDER_STATUS_EN,
-  ORDER_STATUS_PERSENTAGE,
+  ORDER_STATUS_PERSENTAGE
 } from "../utils/constants";
+import DataLoader from "../ui/DataLoader";
 import AddRateModal from "../ui/modals/AddRateModal";
 import SubmitButton from "../ui/form-elements/SubmitButton";
-import { updateProject } from "../services/apiProjects";
 import ErrorPage from "./ErrorPage";
 
 function ProjectsOrdersDetails() {
@@ -106,7 +106,26 @@ function ProjectsOrdersDetails() {
                     <i className="fa-regular fa-circle-info"></i>
                     <p className="p-0 m-0">{t("projects.projectCard")}</p>
                   </div>
-                  <h5>{project?.title}</h5>
+                  <div className="d-flex justify-content-between">
+                    <div className="project_owner">
+                      <div className="img">
+                        <img src={project?.user?.image} alt="user" />
+                      </div>
+                      <div className="content">
+                        <h5>{project?.title}</h5>
+                        <h6>{project?.user?.name}</h6>
+                      </div>
+                    </div>
+                    {/* <div className="project_freelancer">
+                      <div className="img">
+                        <img src={project?.user?.image} alt="user" />
+                      </div>
+                      <div className="content">
+                        <h6>{project?.user?.name}</h6>
+                      </div>
+                    </div> */}
+                  </div>
+
                   <p>{project?.description}</p>
                   {project?.files?.length > 0 && (
                     <>
@@ -176,7 +195,7 @@ function ProjectsOrdersDetails() {
                           style={{
                             width: `${
                               ORDER_STATUS_PERSENTAGE[project?.status]
-                            }%`,
+                            }%`
                           }}
                           aria-valuenow={
                             ORDER_STATUS_PERSENTAGE[project?.status]

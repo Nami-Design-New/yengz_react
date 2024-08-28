@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { IconRosetteDiscountCheckFilled } from "@tabler/icons-react";
+import { handleApplyFilters } from "../utils/helpers";
 import { useTranslation } from "react-i18next";
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import SectionHeader from "../ui/SectionHeader";
-import StarsList from "../ui/StarsList";
 import DataLoader from "../ui/DataLoader";
 import InputField from "./../ui/form-elements/InputField";
 import MultiSelect from "../ui/form-elements/MultiSelect";
@@ -11,25 +10,16 @@ import useGetBestFreelancers from "../features/home/useGetBestFreelancers";
 import useCategorieListWithSub from "../features/categories/useCategorieListWithSub";
 import DepartmentFilterBox from "../ui/filter/DepartmentFilterBox";
 import useGetSkills from "../features/settings/useGetSkills";
-import { handleApplyFilters } from "../utils/helpers";
 import EmptyData from "../ui/EmptyData";
 import CustomPagination from "../ui/CustomPagination";
 import FreelancerCard from "../ui/cards/FreelancerCard";
 
 const BestFreeLancers = () => {
   const { t } = useTranslation();
-  const {
-    isLoading: isFreelancingLoading,
-    data: freelancers,
-    fetchNextPage,
-    hasNextPage,
-    isFetching,
-    isFetchingNextPage,
-  } = useGetBestFreelancers();
-  const { data: skills } = useGetSkills();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
+
   const [searchFilterData, setSearchFilterData] = useState({
     search: searchParams.get("search") || "",
     page: Number(searchParams.get("page")) || null,
@@ -50,15 +40,14 @@ const BestFreeLancers = () => {
           .get("categories")
           .split("-")
           .map((category) => Number(category))
-      : [],
+      : []
   });
+
+  const { data: skills } = useGetSkills();
   const { isLoading, data: categoriesWithSubCategories } =
     useCategorieListWithSub();
-
-  const skillsOptions = skills?.map((skill) => ({
-    value: skill?.id,
-    label: skill?.name,
-  }));
+  const { data: freelancers, isLoading: isFreelancingLoading } =
+    useGetBestFreelancers();
 
   function truncate(inputString) {
     let truncateStringResult;
@@ -85,7 +74,7 @@ const BestFreeLancers = () => {
     if (name !== "categories" && name !== "sub_categories") {
       setSearchFilterData((prevState) => ({
         ...prevState,
-        [name]: parsedValue,
+        [name]: parsedValue
       }));
       return;
     }
@@ -106,21 +95,6 @@ const BestFreeLancers = () => {
     });
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (
-        window.innerHeight + document.documentElement.scrollTop >=
-        document.documentElement.offsetHeight - 1000
-      ) {
-        if (!isFetchingNextPage && hasNextPage) {
-          fetchNextPage();
-        }
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [isFetchingNextPage, hasNextPage, fetchNextPage]);
-
   const handleSelect = (selectedItems) => {
     setSelectedOptions(selectedItems);
     const selectedValues = selectedItems
@@ -128,23 +102,35 @@ const BestFreeLancers = () => {
       : [];
     setSearchFilterData({
       ...searchFilterData,
-      skills: selectedValues,
+      skills: selectedValues
     });
   };
 
-  function handleClearFilters() {
-    setSearchParams({});
-  }
+  const handleRatingChange = (value) => {
+    setSearchFilterData({ ...searchFilterData, rate: value });
+  };
 
   function handleSubmit(e) {
     e.preventDefault();
     handleApplyFilters(setSearchParams, searchFilterData);
   }
-  const handleRatingChange = (value) => {
-    setSearchFilterData({ ...searchFilterData, rate: value });
-  };
 
-  if ((isLoading || isFetching) && freelancers?.length < 12) {
+  function handleClearFilters() {
+    setSearchParams({});
+    setSearchFilterData({
+      search: "",
+      page: null,
+      rate: null,
+      verified: null,
+      job_title: "",
+      last_login: null,
+      add_request_in_my_projects: null,
+      skills: [],
+      categories: []
+    });
+  }
+
+  if ((isLoading || isFreelancingLoading) && freelancers?.length < 12) {
     return <DataLoader />;
   }
 
@@ -192,7 +178,10 @@ const BestFreeLancers = () => {
                       label={t("search.skills")}
                       id="skills"
                       name="skills"
-                      options={skillsOptions}
+                      options={skills?.map((skill) => ({
+                        value: skill?.id,
+                        label: skill?.name
+                      }))}
                       selectedOptions={selectedOptions}
                       handleChange={handleSelect}
                     />
@@ -287,22 +276,31 @@ const BestFreeLancers = () => {
               </aside>
               <div className="col-lg-9 col-12 p-2">
                 <div className="row">
-                  {freelancers?.data?.length > 0 ? (
+                  {isFreelancingLoading ? (
+                    <DataLoader />
+                  ) : (
                     <>
-                      {freelancers?.data?.map((freelancer) => (
-                        <div className="col-12 p-2" key={freelancer?.id}>
-                          <FreelancerCard freelancer={freelancer} truncate={truncate} />
-                        </div>
-                      ))}
-                      {freelancers && freelancers?.total > 10 && (
-                        <CustomPagination
-                          count={freelancers?.total}
-                          pageSize={10}
-                        />
+                      {freelancers?.data?.length > 0 ? (
+                        <>
+                          {freelancers?.data?.map((freelancer) => (
+                            <div className="col-12 p-2" key={freelancer?.id}>
+                              <FreelancerCard
+                                freelancer={freelancer}
+                                truncate={truncate}
+                              />
+                            </div>
+                          ))}
+                          {freelancers && freelancers?.total > 10 && (
+                            <CustomPagination
+                              count={freelancers?.total}
+                              pageSize={10}
+                            />
+                          )}
+                        </>
+                      ) : (
+                        <EmptyData>{t("noFreelancers")}</EmptyData>
                       )}
                     </>
-                  ) : (
-                    <EmptyData>{t("noFreelancers")}</EmptyData>
                   )}
                 </div>
               </div>

@@ -20,6 +20,7 @@ import useGetNotifications from "../features/profile/useGetNotifications";
 import SmallMediaMenu from "./SmallMediaMenu";
 import WebMenuSideBar from "./WebMenuSideBar";
 import NotificationItem from "./NotificationItem";
+import { useQueryClient } from "@tanstack/react-query";
 
 const Navbar = () => {
   const { t } = useTranslation();
@@ -44,6 +45,7 @@ const Navbar = () => {
   const [, , deleteCookie] = useCookies();
   const [cookies] = useCookies(["token"]);
   const token = cookies?.token;
+  const queryClient = useQueryClient();
 
   function handleShowDeleteAccountModal() {
     setIsDeleteAccountModalOpen(true);
@@ -105,15 +107,16 @@ const Navbar = () => {
 
   const performLogout = async () => {
     try {
-      deleteCookie("token");
-      deleteCookie("id");
       const deleteToken = await axios.post("/user/logout", { token: token });
       if (deleteToken.data.code === 200) {
+        deleteCookie("token");
+        deleteCookie("id");
         delete axios.defaults.headers.common["Authorization"];
         dispatch(setUser({}));
         dispatch(setIsLogged(false));
-        dispatch(logout());
         navigate("/");
+        queryClient.clear();
+        sessionStorage.clear();
       }
     } catch (error) {
       console.error("Error during logout:", error);
@@ -349,18 +352,18 @@ const Navbar = () => {
                       </span>
                     </Dropdown.Toggle>
                     <Dropdown.Menu className="drop_Message_Menu" align="start">
-                      {notifications?.map((notification) => (
-                        <Fragment key={notification?.title}>
-                          <Dropdown.Item className="drop_Message">
-                            <NotificationItem notification={notification} />
-                          </Dropdown.Item>
-                        </Fragment>
-                      ))}
-                      <div className="showall">
-                        <Link to="/notifications">
-                          {t("navbar.allNotifications")}
-                        </Link>
+                      <div className="scroll_menu">
+                        {notifications?.map((notification) => (
+                          <Fragment key={notification?.title}>
+                            <Dropdown.Item className="drop_Message">
+                              <NotificationItem notification={notification} />
+                            </Dropdown.Item>
+                          </Fragment>
+                        ))}
                       </div>
+                      <Link className="showall" to="/notifications">
+                        {t("navbar.allNotifications")}
+                      </Link>
                     </Dropdown.Menu>
                   </Dropdown>
                 </li>

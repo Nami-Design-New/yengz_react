@@ -41,7 +41,7 @@ function AddProject() {
     description: "",
     project_files: [],
     delete_files: [],
-    skills: [],
+    skills: []
   });
 
   useEffect(() => {
@@ -53,21 +53,37 @@ function AddProject() {
         sub_category_id: projectDetails?.sub_category_id,
         price: projectDetails?.price,
         days: projectDetails?.days,
+        skills: projectDetails?.skills?.map((skill) => skill?.id) || [],
         description: projectDetails?.description,
         project_files: projectDetails?.files,
-        delete_files: [],
+        delete_files: []
       };
       setFormData(initialData);
-
-      const options = projectDetails?.skills?.map((id) => {
-        const skill = skills?.find((s) => Number(s?.id) === Number(id?.id));
-
-        return { value: id, label: skill?.name };
-      });
-
-      setSelectedOptions(options);
     }
   }, [projectDetails]);
+
+  useEffect(() => {
+    if (formData.skills?.length > 0) {
+      const selectedOptions = formData.skills?.map((skillId) => {
+        const option = skills?.find((opt) => opt.id === skillId);
+        return {
+          value: option?.id,
+          label: option?.name
+        };
+      });
+      setSelectedOptions(selectedOptions);
+    }
+  }, [formData.skills, skills]);
+
+  useEffect(() => {
+    if (categoryId) {
+      setSubCategories(
+        categories?.find(
+          (category) => Number(category.id) === Number(categoryId)
+        )?.sub_categories
+      );
+    }
+  }, [categoryId, categories]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -80,7 +96,7 @@ function AddProject() {
       : [];
     setFormData({
       ...formData,
-      skills: selectedValues,
+      skills: selectedValues
     });
   };
 
@@ -88,7 +104,7 @@ function AddProject() {
     const filesArray = Array.from(e.target.files);
     setFormData((prev) => ({
       ...prev,
-      project_files: [...prev.project_files, ...filesArray],
+      project_files: [...prev.project_files, ...filesArray]
     }));
   };
 
@@ -103,7 +119,7 @@ function AddProject() {
       return {
         ...prevState,
         project_files: updatedFiles,
-        delete_files: updatedDeleteFiles,
+        delete_files: updatedDeleteFiles
       };
     });
   };
@@ -112,7 +128,7 @@ function AddProject() {
     ...formData,
     project_files: formData.project_files.filter((file) =>
       file?.type?.startsWith("image/")
-    ),
+    )
   };
 
   const handleSubmit = async (e) => {
@@ -202,7 +218,7 @@ function AddProject() {
                       }}
                       options={categories?.map((category) => ({
                         name: category.name,
-                        value: category.id,
+                        value: category.id
                       }))}
                     />
                   </div>
@@ -215,7 +231,7 @@ function AddProject() {
                       onChange={handleChange}
                       options={subCategories?.map((subCategory) => ({
                         name: subCategory.name,
-                        value: subCategory.id,
+                        value: subCategory.id
                       }))}
                       disabledOption={
                         categoryId
@@ -244,7 +260,7 @@ function AddProject() {
                       handleChange={handleSelect}
                       options={skills?.map((skill) => ({
                         label: skill?.name,
-                        value: skill?.id,
+                        value: skill?.id
                       }))}
                     />
                   </div>
