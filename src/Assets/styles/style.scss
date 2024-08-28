@@ -612,11 +612,16 @@ body {
           margin-top: 16px;
           flex-wrap: wrap;
           .word {
-            padding: 4px 12px;
+            padding: 4px 22px;
             border-radius: 20px;
-            background: var(--white-color);
-            color: var(--main-color);
+            background: #ffffff85;
+            color: #000000;
             cursor: pointer;
+            backdrop-filter: blur(26px);
+            transition: .2s ease-in-out;
+            &:hover {
+              background: #ffffff;
+            }
           }
         }
       }
@@ -3132,7 +3137,7 @@ body {
             flex-direction: column;
             position: relative;
             gap: 24px;
-            padding: 8px 16px;
+            padding: 24px 16px;
             border-radius: 12px;
             background-color: var(--gray-background);
             .filter-box {
@@ -3171,7 +3176,7 @@ body {
             }
           }
           .transactions-body {
-            flex: 3 0;
+            flex: 4 0;
             display: flex;
             flex-direction: column;
             position: relative;
@@ -3247,12 +3252,7 @@ body {
     }
   }
   footer {
-    background: linear-gradient(
-      90.12deg,
-      #896698 4.61%,
-      #664180 48.43%,
-      #392f71 92.24%
-    );
+    background: #392f71;
     padding-top: 60px;
     .accordion {
       gap: 10px;

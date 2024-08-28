@@ -232,7 +232,7 @@ function AddAccountModal({
                     required={true}
                   />
                 </div>
-                <div className="conditions-wrapper no-lines">
+                <div className="conditions-wrapper mt-2 mb-2 no-lines">
                   <div className="checkbox-group">
                     <input type="checkbox" name="" id="fees" />
                     <label htmlFor="fees">
@@ -242,7 +242,7 @@ function AddAccountModal({
                   <div className="checkbox-group">
                     <input type="checkbox" name="" id="duration" />
                     <label htmlFor="duration">
-                      {t("manageAccounts.durationCondition")}
+                      {t("balance.durationCondition")}
                     </label>
                   </div>
                   <div className="checkbox-group">

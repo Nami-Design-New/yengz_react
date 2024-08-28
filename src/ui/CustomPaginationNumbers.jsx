@@ -2,11 +2,13 @@ export default function CustomPaginationNumbers({
   currentPage: page,
   lastPage: max,
   param,
-  setSearchParams,
+  setSearchParams
 }) {
   function handleSetParams(event, n) {
     event.preventDefault();
-    setSearchParams({ [param]: n });
+    const updatedParams = new URLSearchParams(window.location.search);
+    updatedParams.set(param, n);
+    setSearchParams(updatedParams);
   }
 
   return (
@@ -83,7 +85,9 @@ export default function CustomPaginationNumbers({
             </>
           )}
           {+page === +max - 2 && (
-            <button onClick={(event) => handleSetParams(event, max)}>{max}</button>
+            <button onClick={(event) => handleSetParams(event, max)}>
+              {max}
+            </button>
           )}
         </>
       )}

@@ -11,36 +11,44 @@ export default function CustomPagination({
 }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const lastPage = Math.ceil(count / (pageSize || PAGE_SIZE));
-  const currentPage = searchParams.get(param) || 1;
+  const currentPage = parseInt(searchParams.get(param)) || 1;
   const lang = useSelector((state) => state.language.lang);
 
   const atStart = currentPage <= 1;
   const atEnd = currentPage >= lastPage;
 
+  function updatePage(newPage) {
+    const updatedParams = new URLSearchParams(searchParams);
+    updatedParams.set(param, newPage);
+    setSearchParams(updatedParams);
+  }
+
   function handlePrev(event) {
     event.preventDefault();
-    !atStart &&
-      setSearchParams((prev) => ({ ...prev, [param]: currentPage - 1 }));
+    if (!atStart) {
+      updatePage(currentPage - 1);
+    }
   }
 
   function handleNext(event) {
     event.preventDefault();
-    !atEnd &&
-      setSearchParams((prev) => ({ ...prev, [param]: +currentPage + 1 }));
+    if (!atEnd) {
+      updatePage(currentPage + 1);
+    }
   }
 
   function handleFirstPage(event) {
     event.preventDefault();
-    setSearchParams((prev) => ({ ...prev, [param]: 1 }));
+    updatePage(1);
   }
 
   function handleLastPage(event) {
     event.preventDefault();
-    setSearchParams((prev) => ({ ...prev, [param]: lastPage }));
+    updatePage(lastPage);
   }
 
   return (
-    <div className={`pagination_component mt-4 ${className} `}>
+    <div className={`pagination_component mt-4 ${className}`}>
       <div
         className={`paginator_btns d-flex align-items-center gap-1 ${
           lang === "en" ? "rotate" : ""
@@ -59,7 +67,6 @@ export default function CustomPagination({
         param={param}
         setSearchParams={setSearchParams}
       />
-
       <div
         className={`paginator_btns d-flex align-items-center gap-1 ${
           lang === "en" ? "rotate" : ""

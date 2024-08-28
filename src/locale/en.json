@@ -618,7 +618,8 @@
     "responsibilityCondition": "I alone am responsible for any loss resulting from entering incorrect or inaccurate information",
     "durationCondition": "I understand that bank transfers may take up to 7 business days to process",
     "paypalAccount": "PayPal Account",
-    "withdrawSuccessfully": "Withdrawal Successful"
+    "withdrawSuccessfully": "Withdrawal Successful",
+    "noTransactions": "No Transactions"
   },
   "manageAccounts": {
     "headerText": "Manage Bank Accounts",
@@ -656,6 +657,20 @@
     "most_offer": "Most Requested",
     "less_offer": "Least Requested",
     "noSort": "All"
+  },
+  "transactions": {
+    "charge": "Charge",
+    "app_service_percentage": "Application Service Percentage",
+    "app_project_percentage": "Application Project Percentage",
+    "project_accept": "Project Accepted",
+    "refund_project": "Project Canceled",
+    "project_complete": "Project Completed",
+    "service_order_finish": "Service Order Completed",
+    "service_order_create": "New Service Order",
+    "refund_service_order": "Service Order Canceled",
+    "withdraw_balance_complete": "Balance Withdrawal Completed",
+    "withdraw_balance_request": "Balance Withdrawal Requested",
+    "withdraw_balance_canceled": "Balance Withdrawal Canceled"
   },
   "password": "Enter password",
   "cancel": "Cancel",

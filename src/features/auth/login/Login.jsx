@@ -165,12 +165,12 @@ const Login = () => {
               >
                 <img src={Google} alt="google" /> {t("auth.googleAccount")}
               </button>
-              {/* <button
+              <button
                 onClick={(e) => handleAppleSignIn(e)}
                 className="auth_social_btn"
               >
                 <img src={Apple} alt="apple" /> {t("auth.appleAccount")}
-              </button> */}
+              </button>
             </div>
             <Link to="/register" className="noAccount">
               {t("auth.don'tHaveAccount")}{" "}
