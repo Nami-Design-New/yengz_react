@@ -7,7 +7,7 @@ export default function CustomPagination({
   pageSize,
   className,
   count,
-  param = "page",
+  param = "page"
 }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const lastPage = Math.ceil(count / (pageSize || PAGE_SIZE));
@@ -46,11 +46,11 @@ export default function CustomPagination({
           lang === "en" ? "rotate" : ""
         }`}
       >
-        <button onClick={handlePrev} className={atStart ? "disabled" : ""}>
-          <i className="fa-regular fa-angle-right"></i>
-        </button>
         <button onClick={handleFirstPage} className={atStart ? "disabled" : ""}>
           <i className="fa-regular fa-angles-right"></i>
+        </button>
+        <button onClick={handlePrev} className={atStart ? "disabled" : ""}>
+          <i className="fa-regular fa-angle-right"></i>
         </button>
       </div>
       <CustomPaginationNumbers
@@ -65,11 +65,11 @@ export default function CustomPagination({
           lang === "en" ? "rotate" : ""
         }`}
       >
-        <button onClick={handleLastPage} className={atEnd ? "disabled" : ""}>
-          <i className="fa-regular fa-angles-left"></i>
-        </button>
         <button onClick={handleNext} className={atEnd ? "disabled" : ""}>
           <i className="fa-regular fa-angle-left"></i>
+        </button>
+        <button onClick={handleLastPage} className={atEnd ? "disabled" : ""}>
+          <i className="fa-regular fa-angles-left"></i>
         </button>
       </div>
     </div>
