@@ -3690,6 +3690,7 @@ body main .balance_section .content-body .transactions-wrapper .transactions-bod
   flex-direction: column;
   position: relative;
   gap: 16px;
+  color: var(--black-color);
 }
 body main .balance_section .content-body .transactions-wrapper .transactions-body .transaction-box {
   width: 100%;
@@ -3710,6 +3711,7 @@ body main .balance_section .content-body .transactions-wrapper .transactions-bod
 body main .balance_section .content-body .transactions-wrapper .transactions-body .transaction-box .money-wrapper h5 {
   display: flex;
   align-items: center;
+  color: var(--black-color);
   gap: 4px;
   font-size: 18px;
   font-weight: 600;
@@ -3727,6 +3729,7 @@ body main .balance_section .content-body .transactions-wrapper .transactions-bod
   align-items: center;
   position: relative;
   flex-wrap: wrap;
+  color: var(--black-color);
 }
 body main .balance_section .content-body .transactions-wrapper .transactions-body .transaction-box .info-wrapper .info-header span {
   color: var(--main-color);

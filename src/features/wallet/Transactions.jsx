@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { TRANSACTIONS_STATUS } from "../../utils/constants";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import useGetWalletOperations from "./useGetWalletOperations";
 import DataLoader from "../../ui/DataLoader";
 import EmptyData from "./../../ui/EmptyData";
 import CustomPagination from "../../ui/CustomPagination";
+import { formattedDate } from "../../utils/helpers";
 
 function Transactions() {
   const { t } = useTranslation();
@@ -110,25 +111,33 @@ function Transactions() {
           ) : transactions?.data && transactions?.data?.length > 0 ? (
             <div className="transactions-body">
               {transactions?.data?.map((transaction, index) => (
-                <div className="transaction-box" key={index}>
+                <Link
+                  to={`${
+                    transaction?.service_order_id || transaction?.project_id
+                      ? transaction?.service_order_id
+                        ? `/recieved-orders/${transaction?.service_order_id}`
+                        : `/projects-orders/${transaction?.project_id}`
+                      : ""
+                  }`}
+                  className="transaction-box"
+                  key={index}
+                >
                   <div className="money-wrapper">
                     <h5>
-                      {transaction?.amount}
+                      {transaction?.price}
                       <i className="fa-solid fa-dollar-sign"></i>
                     </h5>
                   </div>
                   <div className="info-wrapper">
-                    <h6 className="info-header">
-                      الربح من إكمال مشروع <span>في برمجة وتطوير الويب</span>
-                    </h6>
+                    <h6 className="info-header">{transaction?.title}</h6>
                     <div className="info-boxes-wrapper">
                       <div className="info-box">
                         <i className="fa-regular fa-timer"></i>
-                        20/4/2024
+                        {formattedDate(transaction?.created_at)}
                       </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
               {transactions?.total > 8 && (
                 <CustomPagination count={transactions?.total} pageSize={8} />
