@@ -178,6 +178,7 @@ const EditProfile = () => {
                 name="email"
                 id="email"
                 required={true}
+                disabled={user?.login_from !== "user"}
                 value={formData?.email}
                 onChange={(e) => handleChange(e)}
               />

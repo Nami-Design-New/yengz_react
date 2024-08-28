@@ -13,7 +13,7 @@ export async function getServicesByFilter(
   sort
 ) {
   const requestBody = {
-    skip: 12,
+    skip: 12
   };
 
   if (skills?.length > 0) requestBody.skills = skills.map((id) => Number(id));
@@ -44,7 +44,7 @@ export async function getServicesByFilter(
     const req = await axios.post("/get_services", requestBody);
     return {
       data: req.data.data,
-      total: req.data.total,
+      total: req.data.total
     };
   } catch (err) {
     throw new Error(err.message);
@@ -54,7 +54,7 @@ export async function getServicesByFilter(
 export async function getUserServices(id) {
   try {
     const req = await axios.post("/get_user_services", {
-      id,
+      id
     });
     return req.data.data;
   } catch (error) {
@@ -65,7 +65,7 @@ export async function getUserServices(id) {
 export async function getServiceDetails(id) {
   try {
     const req = await axios.post("/get_service_details", {
-      id,
+      id
     });
     return req.data.data;
   } catch (error) {
@@ -77,8 +77,8 @@ export async function createService(data, queryClient) {
   try {
     const req = await axios.post("/user/create_service", data, {
       headers: {
-        "Content-Type": "multipart/form-data",
-      },
+        "Content-Type": "multipart/form-data"
+      }
     });
     queryClient.invalidateQueries("userServices");
     return req.data;
@@ -91,8 +91,8 @@ export async function updateService(data, queryClient) {
   try {
     const req = await axios.post("/user/update_service", data, {
       headers: {
-        "Content-Type": "multipart/form-data",
-      },
+        "Content-Type": "multipart/form-data"
+      }
     });
     queryClient.invalidateQueries("userServices");
     return req.data;
@@ -104,7 +104,7 @@ export async function updateService(data, queryClient) {
 export async function deleteService(id, queryClient) {
   try {
     const req = await axios.post("/user/delete_service", {
-      id,
+      id
     });
     queryClient.invalidateQueries("userServices");
     return req.data;
@@ -116,7 +116,7 @@ export async function deleteService(id, queryClient) {
 export async function getRates(id) {
   try {
     const req = await axios.post("/get_rates", {
-      id,
+      id
     });
     return req.data;
   } catch (error) {
@@ -127,7 +127,7 @@ export async function getRates(id) {
 export async function getComments(id) {
   try {
     const req = await axios.post("/get_comments", {
-      id,
+      id
     });
     return req.data;
   } catch (error) {
@@ -138,9 +138,12 @@ export async function getComments(id) {
 export async function createRate(data) {
   try {
     const req = await axios.post("/user/create_rate", {
-      ...data,
+      ...data
     });
-    return req.data;
+    return {
+      code: req.data.code,
+      message: req.data.message
+    };
   } catch (error) {
     throw new Error(error.message);
   }

@@ -415,16 +415,18 @@ body {
               }
               .status {
                 font-size: 12px;
-                color: var(--white-color);
                 line-height: 20px;
                 background-color: var(--main-color);
-                padding: 2px 8px;
-                border-radius: 8px;
+                border-radius: 50%;
+                width: 24px;
+                height: 24px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 position: relative;
-
+                i {
+                  color: #fff;
+                }
                 &.refused {
                   background-color: #d9534f;
                 }
@@ -458,11 +460,9 @@ body {
             .showall {
               display: flex;
               width: 100%;
-              padding: 8px 14px;
-              background: var(--LightGray);
-              position: relative;
-              bottom: 0px;
-              left: 0;
+              padding: 10px 14px;
+              background: var(--input-bg);
+              color: var(--black-color);
               a {
                 color: var(--black-color);
               }
@@ -3267,7 +3267,6 @@ body {
         width: 20px;
         font-size: 18px;
         display: flex;
-
         align-items: center;
         justify-content: center;
       }
@@ -6890,7 +6889,6 @@ body {
       height: 42px;
       border-radius: 50%;
       overflow: hidden;
-
       display: flex;
       position: relative;
       align-items: center;
@@ -6916,4 +6914,36 @@ body {
       }
     }
   }
+}
+.project_owner,
+.project_freelancer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  .img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .content {
+    h5 {
+      color: var(--black-color);
+      font-size: 18px;
+    }
+    h6 {
+      font-size: 14px;
+      color: var(--text-color);
+      margin: 0;
+    }
+  }
+}
+.scroll_menu {
+  overflow-y: scroll;
+  height: 252px;
 }
