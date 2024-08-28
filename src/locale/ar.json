@@ -527,7 +527,9 @@
     "attachments": "المرفقات",
     "requestRefused": "تم رفض الطلب",
     "requestAccepted": "تم قبول الطلب",
-    "refused": "مرفوض"
+    "refused": "مرفوض",
+    "offer": "عروض",
+    "addFirst": "اضف أول عرض"
   },
   "chat": {
     "block": "حظر",

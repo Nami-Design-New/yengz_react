@@ -302,6 +302,11 @@ input[type=checkbox]:checked::after {
   left: initial;
 }
 
+.form-select {
+  box-shadow: none !important;
+  cursor: pointer;
+}
+
 body {
   background: var(--white-color);
   direction: rtl;
@@ -5008,7 +5013,7 @@ body .singleRequst {
   position: relative;
 }
 body .singleRequst p {
-  color: var(--black-color);
+  color: var(--text-color);
 }
 body .singleRequst .requstPost,
 body .singleRequst .lastInteraction {

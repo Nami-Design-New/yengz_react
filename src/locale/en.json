@@ -527,7 +527,9 @@
     "attachments": "Attachments",
     "requestRefused": "Request Refused",
     "requestAccepted": "Request Accepted",
-    "refused": "Rejected"
+    "refused": "Rejected",
+    "offer": "Offers",
+    "addFirst": "Add First Offer"
   },
   "chat": {
     "block": "Block",

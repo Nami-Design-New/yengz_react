@@ -2031,7 +2031,6 @@ body {
         @media (max-width: 576px) {
           gap: 18px;
         }
-
         &.mini {
           .request-owner-img {
             width: 56px;
@@ -2042,7 +2041,6 @@ body {
               font-size: 16px !important;
             }
           }
-
           .title {
             h5 {
               font-size: 14px !important;
@@ -3137,7 +3135,6 @@ body {
             padding: 8px 16px;
             border-radius: 12px;
             background-color: var(--gray-background);
-
             .filter-box {
               display: flex;
               flex-direction: column;
@@ -3257,13 +3254,11 @@ body {
       #392f71 92.24%
     );
     padding-top: 60px;
-
     .accordion {
       gap: 10px;
       display: flex !important;
       flex-direction: column;
     }
-
     .accordion-header {
       img,
       svg,
@@ -3272,6 +3267,7 @@ body {
         width: 20px;
         font-size: 18px;
         display: flex;
+
         align-items: center;
         justify-content: center;
       }
@@ -3325,7 +3321,6 @@ body {
     .accordion-button:not(.collapsed)::after {
       content: none;
     }
-
     .upper-row {
       padding-bottom: 32px;
       h4 {
@@ -4443,7 +4438,7 @@ body {
     border-radius: 12px;
     position: relative;
     p {
-      color: var(--black-color);
+      color: var(--text-color);
     }
     .requstPost,
     .lastInteraction {
@@ -6135,7 +6130,6 @@ body {
             position: relative;
             padding: 0 16px;
             color: var(--dark-color);
-
             &.comment-item {
               padding: 0 32px;
               &::after {
@@ -6404,12 +6398,10 @@ body {
     padding: 16px 0;
     border-radius: 0 0 16px 16px !important;
     overflow-y: auto;
-
     &::-webkit-scrollbar {
       width: 0;
       height: 0;
     }
-
     &.reverse {
       left: unset !important;
       right: 16px !important;
@@ -6715,7 +6707,6 @@ body {
       transform: scaleX(-1);
     }
   }
-
   .bank-acc-card {
     background-color: var(--gray-background);
     border: 2px solid var(--gray-background);
@@ -6802,12 +6793,10 @@ body {
   gap: 4px;
   flex-direction: row !important;
   transition: var(--main-transation);
-
   i {
     transition: var(--main-transation);
     color: var(--input-hint) !important;
   }
-
   &.can-like {
     &:hover {
       i {
@@ -6815,7 +6804,6 @@ body {
       }
     }
   }
-
   &.liked {
     i {
       color: red !important;
@@ -6865,14 +6853,12 @@ body {
     position: relative;
     align-items: center;
     gap: 8px;
-
     h6 {
       color: var(--main-color) !important;
       font-size: 18px;
       font-weight: 600;
       margin: 0;
     }
-
     img {
       object-fit: cover;
       width: 50px;
@@ -6883,49 +6869,41 @@ body {
 .notifications {
   .dropdown-menu {
     overflow-y: auto !important;
-
     &::-webkit-scrollbar {
       width: 0;
       height: 0;
     }
   }
-
   .dropdown-item {
     position: relative;
-
     p {
       margin: 0;
     }
-
     h6 {
       text-align: start !important;
     }
-
     .time {
       white-space: nowrap;
     }
-
     .image-wrapper {
       width: 42px;
       height: 42px;
       border-radius: 50%;
       overflow: hidden;
+
       display: flex;
       position: relative;
       align-items: center;
       justify-content: center;
-
       i {
         font-size: 24px;
       }
-
       img {
         width: 100%;
         height: 100%;
         object-fit: cover;
       }
     }
-
     &:not(:last-of-type) {
       &::after {
         content: "";
