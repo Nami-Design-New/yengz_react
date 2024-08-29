@@ -162,7 +162,7 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
   });
 
   const handleAppleAuth = (response) => {
-    if (response?.id_token) {
+    if (response?.authorization?.id_token) {
       try {
         const login = axios.post("/user/social_login", {
           login_from: "apple",
