@@ -19,6 +19,7 @@ import DataLoader from "../ui/DataLoader";
 import AddRateModal from "../ui/modals/AddRateModal";
 import SubmitButton from "../ui/form-elements/SubmitButton";
 import ErrorPage from "./ErrorPage";
+import StarsList from "../ui/StarsList";
 
 function ProjectsOrdersDetails() {
   const { t } = useTranslation();
@@ -98,7 +99,7 @@ function ProjectsOrdersDetails() {
           </div>
         )}
         <div className="col-12">
-          <div className="service container">
+          <div className=" container">
             <div className="row justify-content-center">
               <div className="col-lg-9 col-12">
                 <div className="products-card d-flex flex-column gap-3">
@@ -106,24 +107,41 @@ function ProjectsOrdersDetails() {
                     <i className="fa-regular fa-circle-info"></i>
                     <p className="p-0 m-0">{t("projects.projectCard")}</p>
                   </div>
-                  <div className="d-flex justify-content-between">
+                  <div className="d-flex justify-content-between flex-lg-row flex-column gap-2">
                     <div className="project_owner">
-                      <div className="img">
+                      <Link
+                        to={`/profile/${project?.user?.id}`}
+                        className="img"
+                      >
                         <img src={project?.user?.image} alt="user" />
-                      </div>
+                      </Link>
                       <div className="content">
                         <h5>{project?.title}</h5>
                         <h6>{project?.user?.name}</h6>
                       </div>
                     </div>
-                    {/* <div className="project_freelancer">
-                      <div className="img">
-                        <img src={project?.user?.image} alt="user" />
+                    <div className="service-head mini">
+                      <Link
+                        to={`/profile/${project?.accepted_request?.user?.id}`}
+                        className="request-owner-img"
+                      >
+                        <img
+                          src={project?.accepted_request?.user?.image}
+                          alt="service"
+                        />
+                      </Link>
+                      <div className="title requester-title">
+                        <Link
+                          to={`/profile/${project?.accepted_request?.user?.id}`}
+                          className="owner"
+                        >
+                          <span>{project?.accepted_request?.user?.name}</span>
+                        </Link>
+                        <StarsList
+                          rate={project?.accepted_request?.user?.rate || 0}
+                        />
                       </div>
-                      <div className="content">
-                        <h6>{project?.user?.name}</h6>
-                      </div>
-                    </div> */}
+                    </div>
                   </div>
 
                   <p>{project?.description}</p>

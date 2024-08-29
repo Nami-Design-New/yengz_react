@@ -2469,13 +2469,14 @@ body main .cart-section .cartTotalPrice h6 i {
 body main .cart-section .service {
   padding-bottom: 16px;
   margin-bottom: 16px;
-  border-bottom: 1px dashed var(--text-color);
+  background: #f4f4f4;
+  padding: 16px 8px;
+  border-radius: 16px;
 }
 body main .cart-section .service:last-child {
   border-bottom: 0 !important;
 }
 body main .cart-section .service-head {
-  width: 100%;
   display: flex;
   align-items: center;
   gap: 24px;
@@ -2496,8 +2497,9 @@ body main .cart-section .service-head.mini .title h5 {
   font-size: 14px !important;
 }
 body main .cart-section .service-head .request-owner-img {
-  width: 80px;
-  height: 80px;
+  min-width: 56px;
+  height: 56px;
+  max-width: 56px;
   border-radius: 50%;
   overflow: hidden;
 }
