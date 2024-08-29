@@ -109,7 +109,10 @@ function ProjectsOrdersDetails() {
                   </div>
                   <div className="d-flex justify-content-between flex-lg-row flex-column gap-2">
                     <div className="project_owner">
-                      <Link to={`/profile/${project?.user?.id}`} className="img">
+                      <Link
+                        to={`/profile/${project?.user?.id}`}
+                        className="img"
+                      >
                         <img src={project?.user?.image} alt="user" />
                       </Link>
                       <div className="content">

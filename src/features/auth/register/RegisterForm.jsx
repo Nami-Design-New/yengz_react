@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import { useGoogleLogin } from "@react-oauth/google";
-import AppleLogin from "react-apple-login";
 import axios from "./../../../utils/axios";
 import Google from "../../../Assets/images/Google.svg";
 import Apple from "../../../Assets/images/Apple.svg";
@@ -62,6 +61,17 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
     });
   };
 
+  const handleSelectSkills = (selectedItems) => {
+    setSkillsSelectedOptions(selectedItems);
+    const selectedValues = selectedItems
+      ? selectedItems?.map((option) => option.value)
+      : [];
+    setFormData({
+      ...formData,
+      skills: selectedValues
+    });
+  };
+
   const handleSelect = (selectedItems) => {
     setSelectedOptions(selectedItems);
     const selectedValues = selectedItems
@@ -80,25 +90,22 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
     });
   };
 
-  const headers = {
-    Accept: "application/json",
-    "Content-Type": "multipart/form-data"
-  };
-  const request = {
-    method: "POST",
-    headers: headers,
-    data: {
-      ...formData,
-      is_freelance: formData.is_freelance ? 1 : 0
-    },
-    url: "/user/can_register"
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.request(request);
+      const res = await axios.post(
+        "/user/can_register",
+        {
+          ...formData,
+          is_freelance: formData.is_freelance ? 1 : 0
+        },
+        {
+          headers: {
+            "Content-Type": "multipart/form-data"
+          }
+        }
+      );
       if (res.data.code === 200) {
         setShowOtp(true);
         setOtpData((prev) => ({
@@ -153,51 +160,6 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
       toast.error(t("auth.googleLoginError"));
     }
   });
-
-  const handleAppleLogin = async (response) => {
-    try {
-      const res = await axios.post("/user/social_login", {
-        login_from: "apple",
-        token: response.code
-      });
-
-      if (res.data.code === 200) {
-        toast.success(t("auth.loginSuccess"));
-        dispatch(setUser(res.data.data));
-        dispatch(setIsLogged(true));
-        navigate("/");
-        setCookie("token", res.data.data.token, {
-          path: "/",
-          secure: true,
-          sameSite: "Strict"
-        });
-        setCookie("id", res.data.data.id, {
-          path: "/",
-          secure: true,
-          sameSite: "Strict"
-        });
-        axios.defaults.headers.common[
-          "Authorization"
-        ] = `${res.data.data.token}`;
-      } else {
-        toast.error(t("auth.emailOrPasswordWrong"));
-      }
-    } catch (error) {
-      toast.error(t("auth.loginErorr"));
-      console.error("Apple Login Error:", error);
-    }
-  };
-
-  const handleSelectSkills = (selectedItems) => {
-    setSkillsSelectedOptions(selectedItems);
-    const selectedValues = selectedItems
-      ? selectedItems?.map((option) => option.value)
-      : [];
-    setFormData({
-      ...formData,
-      skills: selectedValues
-    });
-  };
 
   return (
     <form className="container form" onSubmit={handleSubmit}>

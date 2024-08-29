@@ -5,13 +5,15 @@ import { useCookies } from "react-cookie";
 import { useDispatch } from "react-redux";
 import { setIsLogged, setUser } from "../../../redux/slices/authedUser";
 import { useTranslation } from "react-i18next";
+
 import { useGoogleLogin } from "@react-oauth/google";
-import Google from "../../../Assets/images/Google.svg";
-import Apple from "../../../Assets/images/Apple.svg";
 import InputField from "../../../ui/form-elements/InputField";
 import PasswordField from "../../../ui/form-elements/PasswordField";
 import axios from "../../../utils/axios";
 import SubmitButton from "../../../ui/form-elements/SubmitButton";
+import Google from "../../../Assets/images/Google.svg";
+import Apple from "../../../Assets/images/Apple.svg";
+import AppleSigninButton from "../AppleSigninButton";
 
 const Login = () => {
   const { t } = useTranslation();
@@ -69,24 +71,24 @@ const Login = () => {
     }
   });
 
-  const handleAppleSignIn = (e) => {
-    e.preventDefault();
-    window.AppleID.auth.init({
-      clientId: process.env.REACT_APP_APPLE_CLIENT_ID,
-      scope: "name email",
-      redirectURI: process.env.REACT_APP_APPLE_REDIRECT_URI,
-      usePopup: true
-    });
+  // const handleAppleSignIn = (e) => {
+  //   e.preventDefault();
+  //   window.AppleID.auth.init({
+  //     clientId: process.env.REACT_APP_APPLE_CLIENT_ID,
+  //     redirectURI: process.env.REACT_APP_APPLE_REDIRECT_URI,
+  //     scope: "name email",
+  //     usePopup: true
+  //   });
 
-    window.AppleID.auth
-      .signIn()
-      .then((response) => {
-        alert(JSON.stringify(response));
-      })
-      .catch((error) => {
-        console.error("Apple Sign-In Error:", error);
-      });
-  };
+  //   window.AppleID.auth
+  //     .signIn()
+  //     ?.then((response) => {
+  //       console.log("Apple Sign-In Response:", response);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Apple Sign-In Error:", error);
+  //     });
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -165,12 +167,13 @@ const Login = () => {
               >
                 <img src={Google} alt="google" /> {t("auth.googleAccount")}
               </button>
-              <button
+              {/* <button
                 onClick={(e) => handleAppleSignIn(e)}
                 className="auth_social_btn"
               >
                 <img src={Apple} alt="apple" /> {t("auth.appleAccount")}
-              </button>
+              </button> */}
+              <AppleSigninButton />
             </div>
             <Link to="/register" className="noAccount">
               {t("auth.don'tHaveAccount")}{" "}
