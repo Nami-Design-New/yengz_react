@@ -161,31 +161,31 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
     }
   });
 
-  const handleAppleAuth = (res) => {
-    if (res?.id_token) {
+  const handleAppleAuth = (response) => {
+    if (response?.id_token) {
       try {
         const login = axios.post("/user/social_login", {
           login_from: "apple",
-          google_token: res?.id_token
+          google_token: response?.id_token
         });
-        if (res.data.code === 200) {
+        if (login.data.code === 200) {
           toast.success(t("auth.loginSuccess"));
-          dispatch(setUser(res.data.data));
+          dispatch(setUser(login.data.data));
           dispatch(setIsLogged(true));
           navigate("/");
-          setCookie("token", res.data.data.token, {
+          setCookie("token", login.data.data.token, {
             path: "/",
             secure: true,
             sameSite: "Strict"
           });
-          setCookie("id", res.data.data.id, {
+          setCookie("id", login.data.data.id, {
             path: "/",
             secure: true,
             sameSite: "Strict"
           });
           axios.defaults.headers.common[
             "Authorization"
-          ] = `${res.data.data.token}`;
+          ] = `${login.data.data.token}`;
         }
       } catch (error) {
         console.log(error);
