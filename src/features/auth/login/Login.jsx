@@ -70,6 +70,8 @@ const Login = () => {
   });
 
   const handleAppleAuth = (response) => {
+    console.log(response);
+    
     if (response?.id_token) {
       try {
         const login = axios.post("/user/social_login", {
