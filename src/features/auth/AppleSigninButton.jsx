@@ -17,10 +17,10 @@ const AppleSigninButton = ({ t, handleAppleAuth }) => (
     onError={(error) => console.error(error)}
     skipScript={false}
     iconProp={{ style: { marginTop: "10px" } }}
-    render={() => (
-      <div className="auth_social_btn">
+    render={(props) => (
+      <button {...props} className="auth_social_btn">
         <img src={Apple} alt="apple" /> {t("auth.appleAccount")}
-      </div>
+      </button>
     )}
   />
 );
