@@ -6,7 +6,6 @@ import { useTranslation } from "react-i18next";
 import { useGoogleLogin } from "@react-oauth/google";
 import axios from "./../../../utils/axios";
 import Google from "../../../Assets/images/Google.svg";
-import Apple from "../../../Assets/images/Apple.svg";
 import InputField from "../../../ui/form-elements/InputField";
 import ImageUpload from "../../../ui/form-elements/ImageUpload";
 import PasswordField from "./../../../ui/form-elements/PasswordField";
@@ -18,6 +17,7 @@ import useCategoriesList from "../../categories/useCategoriesList";
 import useGetSkills from "../../settings/useGetSkills";
 import SelectField from "../../../ui/form-elements/SelectField";
 import useCountriesList from "../../countries/useCountriesList";
+import AppleSigninButton from "../AppleSigninButton";
 
 const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
   const { t } = useTranslation();
@@ -161,6 +161,39 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
     }
   });
 
+  const handleAppleAuth = (res) => {
+    if (res?.id_token) {
+      try {
+        const login = axios.post("/user/social_login", {
+          login_from: "apple",
+          google_token: res?.id_token
+        });
+        if (res.data.code === 200) {
+          toast.success(t("auth.loginSuccess"));
+          dispatch(setUser(res.data.data));
+          dispatch(setIsLogged(true));
+          navigate("/");
+          setCookie("token", res.data.data.token, {
+            path: "/",
+            secure: true,
+            sameSite: "Strict"
+          });
+          setCookie("id", res.data.data.id, {
+            path: "/",
+            secure: true,
+            sameSite: "Strict"
+          });
+          axios.defaults.headers.common[
+            "Authorization"
+          ] = `${res.data.data.token}`;
+        }
+      } catch (error) {
+        console.log(error);
+        throw new Error(error.message);
+      }
+    }
+  };
+
   return (
     <form className="container form" onSubmit={handleSubmit}>
       <ImageUpload
@@ -284,28 +317,7 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
         >
           <img src={Google} alt="google" /> {t("auth.googleAccount")}
         </button>
-        <AppleLogin
-          clientId={"process.env.REACT_APP_APPLE_CLIENT_ID"}
-          redirectURI={"process.env.REACT_APP_APPLE_REDIRECT_URI"}
-          responseType="code"
-          responseMode="form_post"
-          scope="name email"
-          usePopup={true}
-          onSuccess={handleAppleLogin}
-          onError={(error) => {
-            console.error("Apple Login Error:", error);
-            toast.error(t("auth.appleLoginError"));
-          }}
-          render={(renderProps) => (
-            <button
-              onClick={renderProps.onClick}
-              disabled={renderProps.disabled}
-              className="auth_social_btn"
-            >
-              <img src={Apple} alt="apple" /> {t("auth.appleAccount")}
-            </button>
-          )}
-        />
+        <AppleSigninButton t={t} handleAppleAuth={handleAppleAuth} />
       </div>
       <Link to="/login" className="noAccount">
         {t("auth.alreadyHaveAccount")} <span>{t("auth.login")}</span>

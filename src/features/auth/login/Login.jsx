@@ -5,14 +5,12 @@ import { useCookies } from "react-cookie";
 import { useDispatch } from "react-redux";
 import { setIsLogged, setUser } from "../../../redux/slices/authedUser";
 import { useTranslation } from "react-i18next";
-
 import { useGoogleLogin } from "@react-oauth/google";
 import InputField from "../../../ui/form-elements/InputField";
 import PasswordField from "../../../ui/form-elements/PasswordField";
 import axios from "../../../utils/axios";
 import SubmitButton from "../../../ui/form-elements/SubmitButton";
 import Google from "../../../Assets/images/Google.svg";
-import Apple from "../../../Assets/images/Apple.svg";
 import AppleSigninButton from "../AppleSigninButton";
 
 const Login = () => {
@@ -71,24 +69,38 @@ const Login = () => {
     }
   });
 
-  // const handleAppleSignIn = (e) => {
-  //   e.preventDefault();
-  //   window.AppleID.auth.init({
-  //     clientId: process.env.REACT_APP_APPLE_CLIENT_ID,
-  //     redirectURI: process.env.REACT_APP_APPLE_REDIRECT_URI,
-  //     scope: "name email",
-  //     usePopup: true
-  //   });
-
-  //   window.AppleID.auth
-  //     .signIn()
-  //     ?.then((response) => {
-  //       console.log("Apple Sign-In Response:", response);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Apple Sign-In Error:", error);
-  //     });
-  // };
+  const handleAppleAuth = (res) => {
+    if (res?.id_token) {
+      try {
+        const login = axios.post("/user/social_login", {
+          login_from: "apple",
+          google_token: res?.id_token
+        });
+        if (res.data.code === 200) {
+          toast.success(t("auth.loginSuccess"));
+          dispatch(setUser(res.data.data));
+          dispatch(setIsLogged(true));
+          navigate("/");
+          setCookie("token", res.data.data.token, {
+            path: "/",
+            secure: true,
+            sameSite: "Strict"
+          });
+          setCookie("id", res.data.data.id, {
+            path: "/",
+            secure: true,
+            sameSite: "Strict"
+          });
+          axios.defaults.headers.common[
+            "Authorization"
+          ] = `${res.data.data.token}`;
+        }
+      } catch (error) {
+        console.log(error);
+        throw new Error(error.message);
+      }
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -167,13 +179,7 @@ const Login = () => {
               >
                 <img src={Google} alt="google" /> {t("auth.googleAccount")}
               </button>
-              {/* <button
-                onClick={(e) => handleAppleSignIn(e)}
-                className="auth_social_btn"
-              >
-                <img src={Apple} alt="apple" /> {t("auth.appleAccount")}
-              </button> */}
-              <AppleSigninButton />
+              <AppleSigninButton t={t} handleAppleAuth={handleAppleAuth} />
             </div>
             <Link to="/register" className="noAccount">
               {t("auth.don'tHaveAccount")}{" "}
