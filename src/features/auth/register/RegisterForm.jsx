@@ -166,7 +166,7 @@ const RegisterForm = ({ formData, setFormData, setShowOtp, setOtpData }) => {
       try {
         const login = axios.post("/user/social_login", {
           login_from: "apple",
-          google_token: response?.id_token
+          google_token: response?.authorization?.id_token
         });
         if (login.data.code === 200) {
           toast.success(t("auth.loginSuccess"));
