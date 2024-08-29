@@ -1,6 +1,7 @@
 import AppleSignin from "react-apple-signin-auth";
+import Apple from "../../Assets/images/Apple.svg";
 
-const AppleSigninButton = () => (
+const AppleSigninButton = ({ t, handleAppleAuth }) => (
   <AppleSignin
     authOptions={{
       clientId: process.env.REACT_APP_APPLE_CLIENT_ID,
@@ -11,13 +12,16 @@ const AppleSigninButton = () => (
       usePopup: true
     }}
     uiType="dark"
-    className="apple-auth-btn"
     buttonExtraChildren="Continue with Apple"
-    onSuccess={(response) => console.log(response)}
+    onSuccess={(response) => handleAppleAuth(response)}
     onError={(error) => console.error(error)}
     skipScript={false}
     iconProp={{ style: { marginTop: "10px" } }}
-    render={(props) => <button {...props}>My Custom Button</button>}
+    render={() => (
+      <div className="auth_social_btn">
+        <img src={Apple} alt="apple" /> {t("auth.appleAccount")}
+      </div>
+    )}
   />
 );
 

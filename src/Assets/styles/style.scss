@@ -2033,7 +2033,6 @@ body {
       .service-head {
         display: flex;
         align-items: center;
-
         gap: 24px;
         @media (max-width: 576px) {
           gap: 18px;
@@ -3786,8 +3785,11 @@ body {
     }
     .auth_social_btn {
       @include clearInput();
+      @include centerFlex();
+      cursor: pointer;
       width: 100%;
       height: 48px;
+      border-radius: 12px;
       border: 1px solid var(--input-hint);
       color: var(--black-color);
       gap: 16px;
