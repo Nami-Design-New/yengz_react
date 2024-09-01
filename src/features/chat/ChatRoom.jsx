@@ -42,22 +42,22 @@ const ChatRoom = ({ chat }) => {
     }
   }, [chat]);
 
-  useEffect(() => {
-    const pusher = new Pusher("40956cc89171b3e710e6", {
-      cluster: "eu",
-    });
+  // useEffect(() => {
+  //   const pusher = new Pusher("40956cc89171b3e710e6", {
+  //     cluster: "eu",
+  //   });
 
-    const channel = pusher.subscribe(`chat_${chat?.id}`);
+  //   const channel = pusher.subscribe(`chat_${chat?.id}`);
 
-    channel.bind("new_message", function (data) {
-      pushMessage(data?.message);
-    });
+  //   channel.bind("new_message", function (data) {
+  //     pushMessage(data?.message);
+  //   });
 
-    return () => {
-      channel.unbind_all();
-      channel.unsubscribe();
-    };
-  }, [chat?.id]);
+  //   return () => {
+  //     channel.unbind_all();
+  //     channel.unsubscribe();
+  //   };
+  // }, [chat?.id]);
 
   useEffect(() => {
     if (chatContainerRef.current) {
