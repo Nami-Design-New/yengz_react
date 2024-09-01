@@ -5,10 +5,7 @@ export default function useGetChat(target) {
   const { isLoading, data, error } = useQuery({
     queryKey: ["chat-object", target],
     queryFn: () => getTargetChat(target),
-    retry: false,
-    refetchOnWindowFocus: false,
-    refetchOnMount: false,
-    refetchOnReconnect: false
+    staleTime: 1000 * 60 * 5
   });
   return { isLoading, data, error };
 }
