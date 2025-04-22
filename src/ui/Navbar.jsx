@@ -21,6 +21,7 @@ import SmallMediaMenu from "./SmallMediaMenu";
 import WebMenuSideBar from "./WebMenuSideBar";
 import NotificationItem from "./NotificationItem";
 import { useQueryClient } from "@tanstack/react-query";
+import useCategorieListWithSub from "../features/categories/useCategorieListWithSub";
 
 const Navbar = () => {
   const { t } = useTranslation();
@@ -39,6 +40,8 @@ const Navbar = () => {
   const [isWebMenuOpen, setIsWebMenuOpen] = useState(false);
   const [isDeleteAccountModalOpen, setIsDeleteAccountModalOpen] =
     useState(false);
+
+  const { data: categoriesWithSubCategories } = useCategorieListWithSub();
 
   const { data: notifications } = useGetNotifications();
 
@@ -203,6 +206,42 @@ const Navbar = () => {
               >
                 <i className="far fa-plus bigger"></i> {t("navbar.addProject")}
               </Link>
+            </li>
+            <li className="nav-link">
+              <div class="dropdown">
+                <button
+                  class="dropdown-toggle"
+                  type="button"
+                  id="dropdownMenuButton1"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i className="far fa-cube"></i> {t("navbar.categories")}
+                </button>
+                <div
+                  class="dropdown-menu categories_list"
+                  aria-labelledby="dropdownMenuButton1"
+                >
+                  <div className="row">
+                    {categoriesWithSubCategories?.map((category) => (
+                      <div className="col-3 p-2" key={category.id}>
+                        <h4>{category.name}</h4>
+                        <ul>
+                          {category?.sub_categories?.map((subCategory) => (
+                            <li key={subCategory.id}>
+                              <Link
+                                to={`/services?sub_categories=${subCategory.id}`}
+                              >
+                                {subCategory.name}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </li>
             {isLogged && (
               <>

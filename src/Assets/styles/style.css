@@ -313,6 +313,23 @@ body {
   overflow-x: hidden;
   position: relative;
 }
+body .layer {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  height: calc(100dvh - 80px);
+  background: rgba(0, 0, 0, 0.355);
+  z-index: 1000;
+  opacity: 0;
+  display: none;
+  transition: var(--main-transation);
+  transition-behavior: allow-discrete;
+}
+body .layer.show {
+  display: block;
+  opacity: 1;
+}
 body header {
   position: sticky;
   top: 0;
@@ -555,12 +572,19 @@ body header .tnavbar .left-wrapper .nav-links .nav-link {
   color: var(--black-color);
 }
 body header .tnavbar .right-wrapper .nav-links .nav-link a,
-body header .tnavbar .left-wrapper .nav-links .nav-link a {
+body header .tnavbar .right-wrapper .nav-links .nav-link button,
+body header .tnavbar .left-wrapper .nav-links .nav-link a,
+body header .tnavbar .left-wrapper .nav-links .nav-link button {
+  border: none !important;
+  background: none !important;
+  outline: none !important;
   font-size: 14px;
   color: var(--black-color);
 }
 body header .tnavbar .right-wrapper .nav-links .nav-link a i.bigger,
-body header .tnavbar .left-wrapper .nav-links .nav-link a i.bigger {
+body header .tnavbar .right-wrapper .nav-links .nav-link button i.bigger,
+body header .tnavbar .left-wrapper .nav-links .nav-link a i.bigger,
+body header .tnavbar .left-wrapper .nav-links .nav-link button i.bigger {
   font-weight: 800;
 }
 body header .tnavbar .right-wrapper .nav-links .nav-link:hover,
@@ -7153,7 +7177,20 @@ body .web-menu-sidebar {
   right: -250px;
   transition: 0.3s ease-in-out;
   padding: 24px;
+  z-index: 99999;
   overflow-y: auto;
+}
+body .web-menu-sidebar form {
+  margin-bottom: 24px;
+}
+body .web-menu-sidebar form input {
+  width: 100%;
+  border: 0;
+  padding: 4px 0;
+  font-size: 14px;
+  outline: none;
+  background: none;
+  border-bottom: 1px solid var(--input-hint);
 }
 body .web-menu-sidebar.en {
   right: unset;
@@ -7613,4 +7650,20 @@ body .bank-acc-card .icons button:nth-child(2) {
 .scroll_menu {
   overflow-y: scroll;
   height: 252px;
+}
+
+.categories_list {
+  top: 16px !important;
+  inset: unset !important;
+  width: -moz-max-content !important;
+  width: max-content !important;
+  min-width: 60vw !important;
+  max-width: 100vw !important;
+  text-align: start !important;
+  padding: 24px;
+  white-space: nowrap;
+}
+.categories_list h4 {
+  margin-bottom: 12px;
+  font-size: 20px;
 }/*# sourceMappingURL=style.css.map */
