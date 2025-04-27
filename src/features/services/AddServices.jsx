@@ -168,16 +168,16 @@ const AddServices = () => {
               <h6>{t("addServiceAdvice")}</h6>
               <p>{t("addServiceAdviceText")}</p>
 
-              <h6>{t("serviceTitle")}</h6>
+              <h6>1. {t("serviceTitle")}</h6>
               <p>{t("serviceTitleText")}</p>
 
-              <h6>{t("serviceCategory")}</h6>
+              <h6>2. {t("serviceCategory")}</h6>
               <p>{t("serviceCategoryText")}</p>
 
-              <h6>{t("servicePrice")}</h6>
+              <h6>3. {t("servicePrice")}</h6>
               <p>{t("servicePriceText")}</p>
 
-              <h6>{t("serviceDays")}</h6>
+              <h6>4. {t("serviceDays")}</h6>
               <p>{t("serviceDaysText")}</p>
             </div>
           </div>

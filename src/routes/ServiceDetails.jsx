@@ -6,7 +6,7 @@ import {
   addToCart,
   decreaseCartQuantity,
   increaseCartQuantity,
-  updateDevelopmentsInCart
+  updateDevelopmentsInCart,
 } from "../services/apiCart";
 import { useQueryClient } from "@tanstack/react-query";
 import { updateEntireCart } from "../redux/slices/cart";
@@ -23,6 +23,7 @@ import SimilarServices from "./../features/services/SimilarServices";
 import CollectionModal from "../ui/modals/CollectionModal";
 import useGetComments from "../features/services/useGetComments";
 import ErrorPage from "./ErrorPage";
+import warrentyImage from "../Assets/images/warrenty.png";
 
 const ServiceDetails = () => {
   const { t } = useTranslation();
@@ -47,7 +48,7 @@ const ServiceDetails = () => {
   const [cartObj, setCartObj] = useState({
     service_id: service?.id,
     quantity: 1,
-    developments: []
+    developments: [],
   });
 
   useEffect(() => {
@@ -60,7 +61,7 @@ const ServiceDetails = () => {
             quantity: item.quantity,
             developments: item?.service?.developments
               ?.filter((dev) => dev.in_cart)
-              .map((dev) => dev.id)
+              .map((dev) => dev.id),
           }))
         )
       );
@@ -96,7 +97,7 @@ const ServiceDetails = () => {
         id: itemFromCart?.id,
         service_id: service.id,
         quantity: itemFromCart ? itemFromCart.quantity : 1,
-        developments: itemFromCart ? itemFromCart.developments : []
+        developments: itemFromCart ? itemFromCart.developments : [],
       });
       setTotalPrice(
         (servicePrice || 0) +
@@ -122,7 +123,7 @@ const ServiceDetails = () => {
     } else {
       setCartObj((prevCartObj) => ({
         ...prevCartObj,
-        quantity: prevCartObj.quantity + 1
+        quantity: prevCartObj.quantity + 1,
       }));
     }
     const newQuantity = cartObj.quantity + 1;
@@ -150,7 +151,7 @@ const ServiceDetails = () => {
       } else {
         setCartObj((prevCartObj) => ({
           ...prevCartObj,
-          quantity: prevCartObj.quantity - 1
+          quantity: prevCartObj.quantity - 1,
         }));
       }
       const newQuantity = cartObj.quantity - 1;
@@ -167,7 +168,7 @@ const ServiceDetails = () => {
     } else return;
   };
   // developments
-  
+
   const handleCheckboxChange = async (id) => {
     const isChecked = cartObj.developments.includes(id);
     if (inCart) {
@@ -175,7 +176,7 @@ const ServiceDetails = () => {
         await updateDevelopmentsInCart(
           {
             cart_id: cartObj?.id,
-            development_id: id
+            development_id: id,
           },
           queryClient
         );
@@ -187,7 +188,7 @@ const ServiceDetails = () => {
         ...prevCartObj,
         developments: isChecked
           ? prevCartObj.developments.filter((item) => item !== id)
-          : [...prevCartObj.developments, id]
+          : [...prevCartObj.developments, id],
       }));
     }
     setTotalPrice((prevTotalPrice) =>
@@ -221,6 +222,7 @@ const ServiceDetails = () => {
   if (!isLoading && !service) {
     return <ErrorPage />;
   }
+
   return (
     <>
       <section className="service-details container">
@@ -234,6 +236,7 @@ const ServiceDetails = () => {
               </div>
             </div>
           )}
+
           <div className="col-lg-7 col-12 p-2">
             <div className="service-content">
               <ServiceSlider images={service?.images} />
@@ -307,7 +310,7 @@ const ServiceDetails = () => {
                           onChange={(e) =>
                             setCartObj({
                               ...cartObj,
-                              quantity: e.target.value
+                              quantity: e.target.value,
                             })
                           }
                         />
@@ -366,8 +369,14 @@ const ServiceDetails = () => {
               </div>
             </div>
           </div>
+
           <div className="col-lg-5 col-12 p-2">
             <UserServiceCard service={service} />
+
+            <Link to="/terms-conditions" className="warrenty_container">
+              <img src={warrentyImage} alt="warrenty" />
+            </Link>
+
             <div className="rating-cards-container">
               {rates?.data?.map((rate) => (
                 <RateCard key={rate?.id} rate={rate} />
@@ -376,6 +385,7 @@ const ServiceDetails = () => {
           </div>
         </div>
       </section>
+
       {service?.similar_services?.length > 0 && (
         <SimilarServices services={service?.similar_services} />
       )}

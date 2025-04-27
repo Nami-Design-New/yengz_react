@@ -16,7 +16,7 @@ const WizardStep1 = ({
   setCategoryId,
   skills,
   selectedOptions,
-  setSelectedOptions
+  setSelectedOptions,
 }) => {
   const [formValid, setFormValid] = useState(false);
   const { t } = useTranslation();
@@ -26,7 +26,7 @@ const WizardStep1 = ({
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -50,7 +50,7 @@ const WizardStep1 = ({
       : [];
     setFormData({
       ...formData,
-      skills: selectedValues
+      skills: selectedValues,
     });
   };
 
@@ -77,41 +77,44 @@ const WizardStep1 = ({
         onChange={handleChange}
         toolTipContent={t("addService.titleHint")}
       />
-      {/* category */}
-      <SelectField
-        label={t("addService.serviceCategory")}
-        id="category"
-        name="category"
-        disabledOption={t("select")}
-        value={categoryId}
-        onChange={(e) => {
-          setSubCategories(
-            categories?.find(
-              (category) => Number(category.id) === Number(e.target.value)
-            )?.sub_categories
-          );
-          setCategoryId(e.target.value);
-        }}
-        options={categories?.map((category) => ({
-          name: category.name,
-          value: category.id
-        }))}
-      />
-      {/* sub_category */}
-      <SelectField
-        label={t("addService.serviceSubCategory")}
-        id="sub_category_id"
-        name="sub_category_id"
-        value={formData.sub_category_id}
-        onChange={handleChange}
-        options={subCategories?.map((subCategory) => ({
-          name: subCategory.name,
-          value: subCategory.id
-        }))}
-        disabledOption={
-          categoryId ? t("select") : t("addService.selectCategoryFirst")
-        }
-      />
+      <div className="d-flex align-items-center gap-2 w-100">
+        {/* category */}
+        <SelectField
+          label={t("addService.serviceCategory")}
+          id="category"
+          name="category"
+          disabledOption={t("select")}
+          value={categoryId}
+          onChange={(e) => {
+            setSubCategories(
+              categories?.find(
+                (category) => Number(category.id) === Number(e.target.value)
+              )?.sub_categories
+            );
+            setCategoryId(e.target.value);
+          }}
+          options={categories?.map((category) => ({
+            name: category.name,
+            value: category.id,
+          }))}
+        />
+        {/* sub_category */}
+        <SelectField
+          label={t("addService.serviceSubCategory")}
+          id="sub_category_id"
+          name="sub_category_id"
+          value={formData.sub_category_id}
+          onChange={handleChange}
+          options={subCategories?.map((subCategory) => ({
+            name: subCategory.name,
+            value: subCategory.id,
+          }))}
+          disabledOption={
+            categoryId ? t("select") : t("addService.selectCategoryFirst")
+          }
+        />
+      </div>
+
       <div className="col-12 p-2">
         <MultiSelect
           label={t("search.skills")}
@@ -121,7 +124,7 @@ const WizardStep1 = ({
           handleChange={handleSelect}
           options={skills?.map((skill) => ({
             label: skill?.name,
-            value: skill?.id
+            value: skill?.id,
           }))}
         />
       </div>

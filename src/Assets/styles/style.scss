@@ -1224,6 +1224,9 @@ body {
       .instructions {
         padding: 32px 0 0;
       }
+      .form button {
+        background: #000;
+      }
     }
     .add-service {
       padding: 48px 0;
@@ -7039,5 +7042,20 @@ body {
     font-size: 14px;
     color: var(--text-color);
     margin-bottom: 32px;
+  }
+}
+
+.warrenty_container {
+  width: 100%;
+  display: block;
+  margin-bottom: 16px;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 4 / 2;
+    object-fit: contain;
+    background-color: #37108c;
+    border-radius: 12px;
   }
 }
