@@ -705,5 +705,15 @@
   "notLikeIt": "Unlike",
   "sort": "Sort",
   "noFreelancers": "Sorry, there are no freelancers in this category.",
-  "shareBlog": "Share the blog"
+  "shareBlog": "Share the blog",
+  "addServiceAdvice": "Tips for adding a successful service",
+  "addServiceAdviceText": "Make sure to add a clear and concise title for the service, and write a comprehensive description detailing the service and what it offers the buyer. Use high-quality images to attract attention, and don't forget to specify the price and delivery time accurately.",
+  "serviceTitle": "Service Title",
+  "serviceTitleText": "Write a clear and concise title for the service, explaining what it offers to the buyer.",
+  "serviceCategory": "Category",
+  "serviceCategoryText": "Choose the most appropriate category for your service to help buyers find it easily.",
+  "servicePrice": "Price",
+  "servicePriceText": "Set a fair price for your service based on its value and the time required to complete it.",
+  "serviceDays":"Delivery Time",
+  "serviceDaysText":"Set the estimated delivery time for your service, considering the time it will take to complete it."
 }

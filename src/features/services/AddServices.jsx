@@ -37,7 +37,7 @@ const AddServices = () => {
     skills: [],
     developments: [],
     delete_images: [],
-    delete_developments: []
+    delete_developments: [],
   });
 
   useEffect(() => {
@@ -55,7 +55,7 @@ const AddServices = () => {
         sub_category_id: service?.sub_category_id,
         skills: service?.skills?.map((skill) => skill?.id) || [],
         delete_images: [],
-        delete_developments: []
+        delete_developments: [],
       };
       setFormData(initialData);
       setOriginalData(initialData);
@@ -68,7 +68,7 @@ const AddServices = () => {
         const option = skills?.find((opt) => opt.id === skillId);
         return {
           value: option?.id,
-          label: option?.name
+          label: option?.name,
         };
       });
       setSelectedOptions(selectedOptions);
@@ -101,8 +101,8 @@ const AddServices = () => {
         id: dev?.id || null,
         description: dev?.description,
         price: dev?.price,
-        duration: dev?.duration
-      }))
+        duration: dev?.duration,
+      })),
     };
 
     try {
@@ -128,8 +128,8 @@ const AddServices = () => {
   return (
     <section className="add-service">
       <div className="container">
-        <div className="row justify-content-center">
-          <div className="col-lg-8 col-12 p-2">
+        <div className="row justify-content-between">
+          <div className="col-lg-7 col-12 p-2">
             <ProgressBar striped animated now={progress} />
             <form className="form" onSubmit={handleSubmit}>
               {step === 1 && (
@@ -161,6 +161,25 @@ const AddServices = () => {
                 />
               )}
             </form>
+          </div>
+
+          <div className="col-lg-4 col-12 p-2">
+            <div className="add_service_adivce">
+              <h6>{t("addServiceAdvice")}</h6>
+              <p>{t("addServiceAdviceText")}</p>
+
+              <h6>{t("serviceTitle")}</h6>
+              <p>{t("serviceTitleText")}</p>
+
+              <h6>{t("serviceCategory")}</h6>
+              <p>{t("serviceCategoryText")}</p>
+
+              <h6>{t("servicePrice")}</h6>
+              <p>{t("servicePriceText")}</p>
+
+              <h6>{t("serviceDays")}</h6>
+              <p>{t("serviceDaysText")}</p>
+            </div>
           </div>
         </div>
       </div>

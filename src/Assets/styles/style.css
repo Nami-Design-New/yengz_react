@@ -7686,4 +7686,16 @@ body .bank-acc-card .icons button:nth-child(2) {
   outline: none;
   border: 0;
   font-size: 14px;
+}
+
+.add_service_adivce h6 {
+  font-size: 16px;
+  color: var(--black-color);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.add_service_adivce p {
+  font-size: 14px;
+  color: var(--text-color);
+  margin-bottom: 32px;
 }/*# sourceMappingURL=style.css.map */
