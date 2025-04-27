@@ -3,7 +3,7 @@ import { Form } from "react-bootstrap";
 export default function SelectField({ options, disabledOption, ...props }) {
   return (
     <div className="input-field">
-      {props.label && <label>{props.label}</label>}
+      {props.label && <label>{props.label} <b style={{ color: "red" }}>*</b></label>}
       <Form.Select {...props}>
         <option value={""} disabled>
           {disabledOption}

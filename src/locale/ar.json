@@ -56,7 +56,7 @@
     "password": "كلمة المرور",
     "forgetPassword": "نسيت كلمة المرور",
     "orLoginWith": "او تسجيل الدخول باستخدام",
-    "googleAccount": "حساب جوجل",
+    "googleAccount": "باستخدام جوجل",
     "facebookAccount": "حساب فيسبوك",
     "appleAccount": "حساب ابل",
     "don'tHaveAccount": "ليس لديك حساب؟",
@@ -704,5 +704,6 @@
   "likeIt": "اعجبني",
   "notLikeIt": "إلغاء الإعجاب",
   "sort": "رتب",
-  "noFreelancers": "عذراً، لا يوجد مستقلين في هذه الفئة."
+  "noFreelancers": "عذراً، لا يوجد مستقلين في هذه الفئة.",
+  "shareBlog": "مشاركة المقالة"
 }

@@ -12,7 +12,7 @@ const PasswordField = ({ label, ...props }) => {
 
   return (
     <div className="input-field">
-      <label htmlFor={props.id}>{label}</label>
+      <label htmlFor={props.id}>{label} <b style={{ color: "red" }}>*</b></label>
       <div className="pass-group">
         <Form.Control
           className="form-control"

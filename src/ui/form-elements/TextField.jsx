@@ -11,7 +11,7 @@ export default function TextField({ label, icon, toolTipContent, ...props }) {
       <label htmlFor={props.id}>
         <div className="d-flex justify-content-between align-items-center">
           <span>
-            {icon} {label}
+            {icon} {label} <b style={{ color: "red" }}>*</b>
           </span>
           {toolTipContent && (
             <OverlayTrigger

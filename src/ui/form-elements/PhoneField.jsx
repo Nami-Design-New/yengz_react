@@ -14,7 +14,7 @@ const PhoneField = ({ formData, setFormData, id, value, icon }) => {
   return (
     <div className="input-field">
       <label htmlFor="phone">
-        {icon} {t("auth.phone")}
+        {icon} {t("auth.phone")} <b style={{ color: "red" }}>*</b>
       </label>
       <div className="phone-group">
         <PhoneInput

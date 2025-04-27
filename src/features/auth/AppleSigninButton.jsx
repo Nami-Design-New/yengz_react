@@ -9,7 +9,7 @@ const AppleSigninButton = ({ t, handleAppleAuth }) => (
       redirectURI: process.env.REACT_APP_APPLE_REDIRECT_URI,
       state: "state",
       nonce: "nonce",
-      usePopup: true
+      usePopup: true,
     }}
     uiType="dark"
     buttonExtraChildren="Continue with Apple"
@@ -18,7 +18,7 @@ const AppleSigninButton = ({ t, handleAppleAuth }) => (
     skipScript={false}
     iconProp={{ style: { marginTop: "10px" } }}
     render={(props) => (
-      <button {...props} className="auth_social_btn">
+      <button {...props} className="auth_social_btn apple">
         <img src={Apple} alt="apple" /> {t("auth.appleAccount")}
       </button>
     )}

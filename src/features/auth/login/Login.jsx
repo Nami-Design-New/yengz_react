@@ -171,16 +171,19 @@ const Login = () => {
             <div className="line">
               <span>{t("auth.orLoginWith")}</span>
             </div>
+
             <div className="d-flex gap-2 flex-lg-row mt-3 flex-column w-100">
               <button
                 type="button"
-                className="auth_social_btn"
+                className="auth_social_btn google"
                 onClick={() => handleGoogleLogin()}
               >
                 <img src={Google} alt="google" /> {t("auth.googleAccount")}
               </button>
+
               <AppleSigninButton t={t} handleAppleAuth={handleAppleAuth} />
             </div>
+
             <Link to="/register" className="noAccount">
               {t("auth.don'tHaveAccount")}{" "}
               <span>{t("auth.createAccount")}</span>

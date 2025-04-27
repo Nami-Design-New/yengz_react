@@ -4205,6 +4205,7 @@ body .form .forgetpass {
 }
 body .form .noAccount {
   color: var(--text-color);
+  width: 100%;
 }
 body .form .noAccount span {
   color: var(--main-color);
@@ -4339,14 +4340,19 @@ body .form .auth_social_btn {
   justify-content: center;
   cursor: pointer;
   width: 100%;
-  height: 48px;
-  border-radius: 12px;
-  border: 1px solid var(--input-hint);
-  color: var(--black-color);
+  height: 52px;
+  color: var(--white-color);
+  border-radius: 0;
   gap: 16px;
 }
 body .form .auth_social_btn img {
-  height: 28px;
+  height: 24px;
+}
+body .form .auth_social_btn.google {
+  background: #cd5542;
+}
+body .form .auth_social_btn.apple {
+  background: #1f4ea7;
 }
 body .form .line {
   width: 100%;
@@ -7666,4 +7672,18 @@ body .bank-acc-card .icons button:nth-child(2) {
 .categories_list h4 {
   margin-bottom: 12px;
   font-size: 20px;
+}
+
+.shareBlog {
+  margin-inline-start: auto;
+  background: var(--input-bg);
+  border-radius: 12px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--main-color);
+  outline: none;
+  border: 0;
+  font-size: 14px;
 }/*# sourceMappingURL=style.css.map */
